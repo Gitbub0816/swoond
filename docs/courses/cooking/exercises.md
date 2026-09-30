@@ -877,7 +877,7 @@ The three sample payloads for `talk-track` are the full scenarios in section 4 (
 
 ---
 
-## 3. Playbook terms (66)
+## 3. Playbook terms (68)
 
 Definition plus an example line in an enthusiast's voice. Plain words, no jargon in the definition.
 
@@ -952,7 +952,7 @@ Definition plus an example line in an enthusiast's voice. Plain words, no jargon
 | Family meal | The meal restaurant staff eat together before service | "Family meal is the best meal of the day." |
 | 86 | Kitchen slang: the item is out of stock or removed | "We're 86 on the salmon." |
 
-(66 rows. Concept ids for each are listed in CDS section 11's Appendix; term-to-concept mapping is done when the curriculum root is authored.)
+(68 rows. Concept ids for each are listed in CDS section 11's Appendix; term-to-concept mapping is done when the curriculum root is authored.)
 
 ---
 

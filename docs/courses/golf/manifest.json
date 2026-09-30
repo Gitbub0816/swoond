@@ -1,0 +1,126 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "golf",
+  "displayName": "Golf",
+  "category": "Sports > Golf",
+  "family": "Sports",
+  "status": "cds-draft",
+  "wave": 2,
+  "simulationPrefix": "golf",
+  "branches": [
+    { "id": "rec-play", "displayName": "She plays (recreational)", "description": "Weekend rounds, leagues, handicaps, scrambles, gear, golf trips. Default branch." },
+    { "id": "pga-tour", "displayName": "PGA TOUR fan", "description": "Weekly leaderboards, FedExCup, signature events, Korn Ferry pathway; shares the majors and cups units.", "personalizationDimension": "league" },
+    { "id": "lpga-tour", "displayName": "LPGA fan", "description": "LPGA season, Race to the CME Globe, Rolex rankings, five women's majors, Solheim Cup path.", "personalizationDimension": "league" },
+    { "id": "liv-golf", "displayName": "LIV Golf fan", "description": "Team and individual format, 13 teams, wild cards, funding and future, eligibility debates.", "personalizationDimension": "league" },
+    { "id": "dp-world-tour", "displayName": "DP World Tour fan", "description": "European-based global tour, Race to Dubai, Rolex Series, road to the Ryder Cup.", "personalizationDimension": "league" }
+  ],
+  "curriculumVersion": "0.1.0",
+  "foundationalModules": [
+    { "id": "the-game", "title": "The Game and the Course", "summary": "Objective, parts of a hole, par, hazards, the round, golf's cousins." },
+    { "id": "scoring", "title": "Keeping Score", "summary": "Stroke play, birdie to bogey, score to par, leaderboards, scorecards, penalties, benchmarks." },
+    { "id": "clubs-and-swings", "title": "Clubs, Swings and Shots", "summary": "The 14 clubs, loft, carry distances, swing phases, why a ball curves, mishit vocabulary." },
+    { "id": "rules-and-etiquette", "title": "Rules and Etiquette", "summary": "Play it as it lies, lost ball and OB, penalty areas, relief and drops, bunker and green rules, manners." },
+    { "id": "short-game-and-putting", "title": "The Short Game and Putting", "summary": "Line and speed, reading greens, chip/pitch/flop, carry and roll, bunkers, the yips." }
+  ],
+  "interactionTypes": [
+    "multiple-choice", "binary-call", "term-match", "sequence-order", "visual-id", "decision-scenario",
+    "talk-track", "timing-tap", "say-this", "fill-the-gap", "listening-id", "estimate-slider", "hotspot-tap", "unity-sim"
+  ],
+  "unitySimulations": [
+    {
+      "simulationId": "golf.ball-flight.shot-shape.v1",
+      "specPath": "docs/courses/golf/sims/golf.ball-flight.shot-shape.v1.md",
+      "status": "spec-draft",
+      "lessonIds": ["club-05"]
+    },
+    {
+      "simulationId": "golf.putting.read-the-break.v1",
+      "specPath": "docs/courses/golf/sims/golf.putting.read-the-break.v1.md",
+      "status": "spec-draft",
+      "lessonIds": ["short-03"]
+    },
+    {
+      "simulationId": "golf.strategy.play-your-miss.v1",
+      "specPath": "docs/courses/golf/sims/golf.strategy.play-your-miss.v1.md",
+      "status": "spec-draft",
+      "lessonIds": ["mgmt-02"]
+    },
+    {
+      "simulationId": "golf.short-game.carry-and-roll.v1",
+      "specPath": "docs/courses/golf/sims/golf.short-game.carry-and-roll.v1.md",
+      "status": "spec-draft",
+      "lessonIds": ["short-05"]
+    }
+  ],
+  "nativeExercises": [
+    { "exerciseType": "multiple-choice", "specPath": "docs/courses/golf/exercises.md", "estimatedCount": 240 },
+    { "exerciseType": "binary-call", "specPath": "docs/courses/golf/exercises.md", "estimatedCount": 60 },
+    { "exerciseType": "term-match", "specPath": "docs/courses/golf/exercises.md", "estimatedCount": 40 },
+    { "exerciseType": "sequence-order", "specPath": "docs/courses/golf/exercises.md", "estimatedCount": 30 },
+    { "exerciseType": "visual-id", "specPath": "docs/courses/golf/exercises.md", "estimatedCount": 30 },
+    { "exerciseType": "decision-scenario", "specPath": "docs/courses/golf/exercises.md", "estimatedCount": 70 },
+    { "exerciseType": "talk-track", "specPath": "docs/courses/golf/exercises.md", "estimatedCount": 18 },
+    { "exerciseType": "timing-tap", "specPath": "docs/courses/golf/exercises.md", "estimatedCount": 8 },
+    { "exerciseType": "say-this", "specPath": "docs/courses/golf/exercises.md", "estimatedCount": 80 },
+    { "exerciseType": "fill-the-gap", "specPath": "docs/courses/golf/exercises.md", "estimatedCount": 50 },
+    { "exerciseType": "listening-id", "specPath": "docs/courses/golf/exercises.md", "estimatedCount": 10 },
+    { "exerciseType": "estimate-slider", "specPath": "docs/courses/golf/exercises.md", "estimatedCount": 25 },
+    { "exerciseType": "hotspot-tap", "specPath": "docs/courses/golf/exercises.md", "estimatedCount": 35 }
+  ],
+  "dynamicData": [
+    { "kind": "schedules", "providerCandidates": ["Official tour calendars: PGA TOUR, LPGA, DP World Tour, LIV Golf (curated at first)", "Sportradar Golf (upgrade, licensed)", "SportsDataIO Golf (upgrade, licensed)", "TheSportsDB (only if golf coverage confirmed)"], "refreshFrequency": "weekly", "notes": "Season boundaries: PGA TOUR January to August plus a fall series; majors April to July; LPGA roughly February to November; DP World Tour year-round global swings; Ryder Cup in odd years." },
+    { "kind": "events", "providerCandidates": ["Official tour event pages (curated)", "Sportradar Golf (licensed)", "SportsDataIO Golf (licensed)"], "refreshFrequency": "weekly", "notes": "Event type (major, signature event, cup, playoff, Rolex Series) drives context cards." },
+    { "kind": "scores", "providerCandidates": ["Sportradar Golf (licensed)", "SportsDataIO Golf (licensed)", "TheSportsDB (only if coverage and terms confirmed)"], "refreshFrequency": "minutes-during-events", "notes": "Leaderboards and cut line during tournament rounds; a few minutes of lag is acceptable (spec section 33). No unofficial or undocumented tour/media endpoints. No betting odds." },
+    { "kind": "standings", "providerCandidates": ["Sportradar Golf (licensed)", "SportsDataIO Golf (licensed)", "Official standings pages (curated snapshots)"], "refreshFrequency": "daily", "notes": "FedExCup, Race to the CME Globe, Race to Dubai, LIV points; show as-of date." },
+    { "kind": "rankings", "providerCandidates": ["Official World Golf Ranking (link and curated snapshot)", "Rolex Women's World Golf Rankings (link and curated snapshot)", "Licensed provider if terms allow"], "refreshFrequency": "weekly", "notes": "Snapshot with date; never presented as real-time." },
+    { "kind": "rosters", "providerCandidates": ["Official Ryder Cup, Solheim Cup, Presidents Cup team pages (curated)", "LIV Golf team pages (curated)", "Licensed provider"], "refreshFrequency": "weekly", "notes": "Cup teams and qualification standings in cup years; LIV team rosters around season boundaries." },
+    { "kind": "statistics", "providerCandidates": ["Licensed golf statistics provider (Sportradar, SportsDataIO, or a specialist such as Data Golf under a commercial licence)"], "refreshFrequency": "weekly", "notes": "Light need: strokes-gained explainer, driving distance and accuracy. Evergreen numbers until a licence is cleared." },
+    { "kind": "news", "providerCandidates": ["PGA TOUR, LPGA, DP World Tour, LIV, R&A, USGA official news (link-only)", "Golf media headlines (link-only)"], "refreshFrequency": "daily", "notes": "Identify topics, explain in Swoon'd words, link out. Editorial provider decision is open (DECISIONS Q-3, OPEN_QUESTIONS L-01)." },
+    { "kind": "regulations", "providerCandidates": ["R&A and USGA Rules of Golf pages (link and own-words explanation)", "USGA/R&A equipment rules and model local rules notices (link)"], "refreshFrequency": "monthly", "notes": "Rules edition cycle, equipment standards, model local rules such as the 2028 proposals; rule numbers cited, text never copied." },
+    { "kind": "new-products", "providerCandidates": ["Equipment brand press pages (link-only)", "USGA and R&A conforming lists (link)"], "refreshFrequency": "monthly", "notes": "Optional gear-news cards for the `equipment` personalization." },
+    { "kind": "weather", "providerCandidates": ["National Weather Service API (US, public)", "Commercial weather provider for wind and lightning proximity (later)"], "refreshFrequency": "hourly", "notes": "Optional rec-play card ('can you play Saturday?'), only when a region is set; lightning guidance is generic and defers to the course." }
+  ],
+  "editorial": {
+    "approach": "explain-and-link",
+    "sources": ["R&A and USGA (rules and equipment governance)", "PGA TOUR, LPGA, DP World Tour, LIV Golf official news", "Golf media headlines (link-only)"],
+    "topicsWeExplain": [
+      "why a leaderboard or a cut line matters",
+      "why a ruling or a rules change is being debated",
+      "why the ball or equipment governance is controversial",
+      "why LIV, funding and eligibility are in the news",
+      "why a Ryder or Solheim Cup captain's pick is discussed",
+      "why a course setup is being called too hard or too easy"
+    ],
+    "copyrightPolicy": "Publisher article text and Rules of Golf text are never copied; rules and news are explained in Swoon'd's own words with rule numbers and links to the original."
+  },
+  "personalizationDimensions": ["skill-level", "player", "league", "team", "equipment", "region"],
+  "conversationScenarios": {
+    "count": 18,
+    "path": "docs/courses/golf/curriculum/course.json"
+  },
+  "masteryModel": {
+    "type": "concept-mastery-v1",
+    "passThreshold": 0.8,
+    "usefulCompetenceStatement": "She can follow a round or a golf broadcast, understand par, penalties, formats and the big events, ask a couple of good questions about a shot, a putt or a course, and say 'okay, I get why you love this' without faking it."
+  },
+  "licensingConstraints": [
+    { "area": "imagery", "constraint": "Procedural or original illustrations only (license original-swoond); no third-party player, event or course photography without a written license; famous-hole lessons use original schematics." },
+    { "area": "audio", "constraint": "Original foley or synthesised strike and putt sounds only; no broadcast, commentary or crowd audio." },
+    { "area": "logos-trademarks", "constraint": "PGA TOUR, LPGA, DP World Tour, LIV Golf, R&A, USGA, PGA of America, Ryder Cup, Solheim Cup, Presidents Cup, Masters, Augusta National, equipment brands and team marks are trademarks: text mentions and link-outs only, no logos or event artwork without permission." },
+    { "area": "video", "constraint": "No embedded broadcast video; deep-link to official streams." },
+    { "area": "article-text", "constraint": "Never copy publisher text or Rules of Golf text; paraphrase with rule numbers and link." },
+    { "area": "data-provider-terms", "constraint": "Live scores only via a licensed provider or official partnership; no unofficial or reverse-engineered tour or media endpoints; TheSportsDB only after golf coverage and terms are confirmed; OpenStreetMap needs ODbL attribution." },
+    { "area": "player-likeness", "constraint": "Names as facts only; no likeness, endorsement implication, or fabricated quotes." },
+    { "area": "other", "constraint": "No betting odds, tips or gambling promotion; friendly formats (skins, Nassau) are explained as social games only." }
+  ],
+  "safetyConstraints": [
+    "On-course safety guidance stays conservative and generic: shout 'Fore!' and stay aware of golf balls; when the course sounds its lightning warning or thunder is heard, leave the course and follow its procedure; never shelter under a tree or hold a club aloft.",
+    "Heat, sun, hydration, cart and injury content stays generic (warm up, stay hydrated, stop if it hurts, see a professional); no medical claims.",
+    "Rules and etiquette scenarios teach honesty, de-escalation and asking an official; never coach confrontation, cheating or fudged scores.",
+    "Swoon'd builds appreciation, not a substitute for lessons, club fitting or fitness training; never encourage the learner to fake a skill level or expertise with the person they care about."
+  ],
+  "relatedCourses": [
+    { "courseId": "tennis", "relationship": "adjacent" },
+    { "courseId": "pickleball", "relationship": "adjacent" }
+  ]
+}

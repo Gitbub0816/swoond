@@ -240,22 +240,11 @@
             "conceptIds": ["delayed-offside", "offside"],
             "payload": {
               "simulationId": "hockey.rules.offside-read.v1",
-              "prompt": "Watch: an attacking player enters early, but the defense controls the puck. What's the call—do you blow the whistle or let it play?",
-              "native-fallback": {
-                "type": "multiple-choice",
-                "payload": {
-                  "prompt": "An attacking skater is over the blue line offside. The defense then gains control of the puck and passes it. Do you call offside?",
-                  "options": [
-                    {"id": "a", "text": "Yes, immediately call it"},
-                    {"id": "b", "text": "No, it's delayed offside; let play continue until the attacking team gets the puck"},
-                    {"id": "c", "text": "Only if the offside player touches the puck"}
-                  ],
-                  "correctOptionIds": ["b"],
-                  "explanation": {
-                    "correct": "Right. It's delayed offside. If the defense has control, play continues. Only call it if the attacking team gets the puck while someone is still offside.",
-                    "incorrect": "Delayed offside means the linesman lets play go even though someone is offside, as long as the defense has possession."
-                  }
-                }
+              "simulationVersion": "1.0.0",
+              "difficulty": 3,
+              "configuration": {
+                "scenarioCount": 5,
+                "includeDelayedOffside": true
               }
             }
           },
@@ -430,22 +419,11 @@
             "conceptIds": ["hybrid-icing"],
             "payload": {
               "simulationId": "hockey.rules.icing-call.v1",
-              "prompt": "Watch the icing race: does the defender or the attacker reach the dots first? Call it in real time.",
-              "native-fallback": {
-                "type": "multiple-choice",
-                "payload": {
-                  "prompt": "In NHL hybrid icing, when does the linesman blow the whistle?",
-                  "options": [
-                    {"id": "a", "text": "When a player first touches the puck after icing"},
-                    {"id": "b", "text": "As soon as a defender would reach the faceoff dots ahead of the opposing skater"},
-                    {"id": "c", "text": "When the puck reaches the goal line"}
-                  ],
-                  "correctOptionIds": ["b"],
-                  "explanation": {
-                    "correct": "Right. The linesman blows the whistle as soon as it's clear the defender will reach the dots first. No one touches the puck; it's an automatic call based on positioning.",
-                    "incorrect": "Hybrid icing prevents races to the puck at the boards. The linesman calls it based on who would get there first, not on an actual touch."
-                  }
-                }
+              "simulationVersion": "1.0.0",
+              "difficulty": 2,
+              "configuration": {
+                "scenarioCount": 5,
+                "racingStyle": "hybrid"
               }
             }
           },

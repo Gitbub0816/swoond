@@ -581,7 +581,7 @@ Additional gates: [ ] manifest validates (run `tools/validate`); [ ] curriculum 
 | 1 | Confirm the next Rules of Golf edition and its date (four-year cycle: 2019, 2023, expected 2027) before any rules lesson locks; no official announcement found on 2026-09-30. | Content | No |
 | 2 | Golf data provider: coverage and pricing of Sportradar Golf / SportsDataIO Golf for PGA TOUR, LPGA, DP World Tour, LIV and majors; does TheSportsDB cover golf adequately? Blocks the live leaderboard layer. | Product/Data | Yes for `live-02` only |
 | 3 | Confirm the 2026 LIV team champion and season-end results, the 2027 LIV format after Saudi funding ends, and any format change (54 vs 72 holes) before `tour-liv` locks. | Content | No |
-| 4 | Confirm the 2026 Ryder Cup 2025 result wording and captains' details, and the 2027 Ryder Cup qualification rules. | Content | No |
+| 4 | Confirm the 2025 Ryder Cup result (Europe 15-13 at Bethpage Black), captains and details, and the 2027 Ryder Cup qualification rules. | Content | No |
 | 5 | Status of the 2028 model local rules (ball at 317.0 yd overall distance, CT limit, club length) after the comment period closes Oct 21, 2026; wording in `hist-06`. | Content | No |
 | 6 | Golf-specific safety review (lightning, heat, cart use) by a qualified reviewer (for example a golf-course superintendent or PGA professional) before `rec-` and etiquette safety copy releases. | Product | No |
 | 7 | SME review of the four sim reference models (ball-flight mapping, roll physics, dispersion evaluator, carry-roll table) by a PGA professional or a golf coach. | Product | Yes for sim approval |
