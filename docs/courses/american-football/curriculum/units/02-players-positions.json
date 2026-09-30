@@ -168,7 +168,11 @@
             "conceptIds": ["running-back", "wide-receiver", "tight-end"],
             "payload": {
               "prompt": "Which skill position is highlighted in the receiver slot?",
-              "image": "football-formation-highlight",
+              "image": {
+                "diagramId": "football-formation-highlight",
+                "alt": "An offensive formation with one player highlighted split out wide from the line.",
+                "aspectRatio": 2.5
+              },
               "options": [
                 {"id": "a", "text": "Running back"},
                 {"id": "b", "text": "Wide receiver"},
@@ -622,11 +626,11 @@
             "conceptIds": ["jersey-numbers"],
             "payload": {
               "prompt": "Fill in the typical jersey number ranges for each position group.",
-              "template": "Quarterbacks wear {{qb_range}}, receivers and tight ends wear {{skill_range}}, and linebackers wear {{lb_range}}.",
+              "template": "Quarterbacks wear {{qb-range}}, receivers and tight ends wear {{skill-range}}, and linebackers wear {{lb-range}}.",
               "gaps": [
-                {"id": "qb_range", "options": ["1-19", "40-49", "80-89"], "correct": "1-19"},
-                {"id": "skill_range", "options": ["10-19", "80-89", "50-59"], "correct": "80-89"},
-                {"id": "lb_range", "options": ["40-49", "50-59", "90-99"], "correct": "40-49"}
+                {"id": "qb-range", "options": ["1-19", "40-49", "80-89"], "correct": "1-19"},
+                {"id": "skill-range", "options": ["10-19", "80-89", "50-59"], "correct": "80-89"},
+                {"id": "lb-range", "options": ["40-49", "50-59", "90-99"], "correct": "40-49"}
               ],
               "explanation": {
                 "correct": "QBs are 1-19, receivers/TEs are 80-89, linebackers are 40-49. These ranges help fans and officials spot eligible receivers.",
@@ -761,7 +765,7 @@
             "type": "binary-call",
             "conceptIds": ["depth-chart"],
             "payload": {
-              "prompt": "If a team trades for a star player, he automatically starts ahead of the current starter in the depth chart. True or false?",
+              "prompt": "If a team trades for a star, he automatically starts ahead in the depth chart. True or false?",
               "scene": {"kind": "none", "alt": "A depth chart being updated with a new player's name added at the top of the list."},
               "choices": [
                 {"id": "true", "label": "True"},
