@@ -22,3 +22,15 @@ Authored strings may contain `{{dimension}}` (e.g. `{{team}}`) resolved from the
 ## Validation
 
 `node tools/validate/validate.mjs` checks schema, unique ids, prerequisite references, concept references and each activity payload. Example: `examples/american-football-sample.json`.
+
+### Content lint
+
+Schema-valid is not the same as shippable. After the schema checks, `validate.mjs` runs a content lint on every `docs/courses/*/curriculum/*.json` and exits non-zero on any lint error (`--no-lint` skips it; `--course <id>` limits to one course; `--lint-max 0` prints every issue). Rules:
+
+- **placeholder** (error): stub text such as "Sample question?", "Option A", "First step", "Put in order", "How many?", "Another interpretation", lorem ipsum, TODO/TBD, "placeholder", "[insert"; and explanations that are only "Correct." / "Close!" / "Try again.". Reported with file and JSON pointer.
+- **duplicate-payload** (error): the same canonical (sorted-key) payload on more than one activity in a course. **repeated-prompt** (error): the same prompt/question/statement text on more than 2 activities.
+- **thin-explanation / thin-prompt / empty-option / duplicate-option** (error): explanations under 25 chars, prompts under 12 chars, empty or repeated option texts within an activity.
+- **no-sims** (error) / **missing-sim** (warning): every `unitySimulations[].simulationId` in the course manifest should appear in a `unity-sim` activity; a curriculum with none is an error, each individual missing sim a warning.
+- **info**: lessons, activities, activity-type histogram and distinct-payload ratio per course.
+
+Tests: `cd tools/validate && npm test` (good/bad fixtures in `test-fixtures/`; `docs/courses/soccer` is the standing negative case until its placeholder curriculum is replaced).

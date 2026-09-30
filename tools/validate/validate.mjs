@@ -3,6 +3,10 @@
 //
 //   node validate.mjs            validate everything
 //   node validate.mjs --quiet    only print failures + summary
+//   node validate.mjs --no-lint  schema/cross-checks only (skip content lint)
+//   node validate.mjs --course <id>   restrict to one course (skips contract examples)
+//   node validate.mjs --courses-dir <dir> --no-examples   validate an alternate courses tree (used by tests)
+//   node validate.mjs --lint-max <n>  max lint issues printed per file (default 25; 0 = all)
 //
 // What is validated:
 //   docs/courses/*/manifest.json                  -> course-manifest/v1
@@ -15,11 +19,18 @@ import { join, dirname, resolve, relative, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
+import { lintCourse } from './lint.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const CONTRACTS = join(ROOT, 'docs', 'contracts');
-const COURSES = join(ROOT, 'docs', 'courses');
-const quiet = process.argv.includes('--quiet');
+const argv = process.argv.slice(2);
+const flagVal = (n) => (argv.includes(n) ? argv[argv.indexOf(n) + 1] : undefined);
+const COURSES = flagVal('--courses-dir') ? resolve(flagVal('--courses-dir')) : join(ROOT, 'docs', 'courses');
+const quiet = argv.includes('--quiet');
+const doLint = !argv.includes('--no-lint');
+const onlyCourse = flagVal('--course');
+const noExamples = argv.includes('--no-examples') || !!onlyCourse;
+const lintMax = flagVal('--lint-max') !== undefined ? Number(flagVal('--lint-max')) : 25;
 
 const readJson = (p) => JSON.parse(readFileSync(p, 'utf8'));
 const walk = (dir) => {
@@ -136,22 +147,56 @@ function validateCurriculum(file, data) {
 }
 
 // 1. Course content
+let lintErrors = 0;
+let lintWarnings = 0;
+function lintStage(dir, manifestData, curricula) {
+  if (!curricula.length) return;
+  const { perFile, info } = lintCourse(dir, manifestData, curricula);
+  console.log(`\nLINT ${dir}`);
+  for (const l of info) console.log(`  info ${l}`);
+  for (const [f, { errors, warnings }] of perFile) {
+    lintErrors += errors.length;
+    lintWarnings += warnings.length;
+    const rules = {};
+    for (const e of errors) rules[e.rule] = (rules[e.rule] ?? 0) + 1;
+    const tag = errors.length ? 'LINT-FAIL' : 'lint ok  ';
+    const by = Object.entries(rules).sort((a, b) => b[1] - a[1]).map(([r, n]) => `${r}=${n}`).join(' ');
+    console.log(`${tag} ${relative(ROOT, f)}: ${errors.length} error(s), ${warnings.length} warning(s)${by ? '  [' + by + ']' : ''}`);
+    const show = (list, label) => {
+      const cap = lintMax > 0 ? lintMax : Infinity;
+      for (const e of list.slice(0, cap)) console.log(`     ${label} [${e.rule}] ${relative(ROOT, f)}#${e.msg}`);
+      if (list.length > cap) console.log(`     ... ${list.length - cap} more ${label.toLowerCase()}(s); use --lint-max 0 to see all`);
+    };
+    const rank = ['no-sims', 'duplicate-payload', 'repeated-prompt'];
+    const r = (e) => (rank.includes(e.rule) ? rank.indexOf(e.rule) : rank.length);
+    show([...errors].sort((a, b) => r(a) - r(b)), 'ERROR');
+    show(warnings, 'WARN');
+  }
+}
+
 for (const dir of existsSync(COURSES) ? readdirSync(COURSES) : []) {
+  if (onlyCourse && dir !== onlyCourse) continue;
   const cdir = join(COURSES, dir);
   if (!statSync(cdir).isDirectory()) continue;
   const manifest = join(cdir, 'manifest.json');
+  let manifestData = null;
   if (existsSync(manifest)) {
-    const data = readJson(manifest);
+    const data = (manifestData = readJson(manifest));
     if (validateWith(validators.manifest, manifest, data)) {
       if (data.courseId !== dir) fail(manifest, [`courseId "${data.courseId}" must equal folder name "${dir}"`]);
       else ok(manifest);
     }
   }
+  const curricula = [];
   for (const f of walk(join(cdir, 'curriculum')).filter((x) => x.endsWith('.json'))) {
     const data = readJson(f);
     if (validateCurriculum(f, data)) ok(f);
+    // Lint even when schema checks failed, as long as the file has the basic shape.
+    if (Array.isArray(data?.units)) curricula.push({ path: f, data });
   }
+  if (doLint) lintStage(dir, manifestData, curricula);
 }
+if (onlyCourse && !existsSync(join(COURSES, onlyCourse))) fail(join(COURSES, onlyCourse), ['unknown course']);
 
 // 2. Contract examples. Folder decides the schema; bridge examples are chosen by file-name suffix.
 const EXAMPLE_RULES = [
@@ -160,7 +205,7 @@ const EXAMPLE_RULES = [
   { dir: 'curriculum', pick: () => 'curriculum' },
   { dir: 'sim-definition', pick: () => 'simDef' },
 ];
-for (const f of walk(CONTRACTS).filter((x) => x.endsWith('.json') && x.includes(`${'/'}examples${'/'}`))) {
+for (const f of noExamples ? [] : walk(CONTRACTS).filter((x) => x.endsWith('.json') && x.includes(`${'/'}examples${'/'}`))) {
   const rel = relative(CONTRACTS, f);
   const data = readJson(f);
   const rule = EXAMPLE_RULES.find((r) => rel.startsWith(r.dir + '/'));
@@ -178,10 +223,10 @@ for (const f of walk(CONTRACTS).filter((x) => x.endsWith('.json') && x.includes(
 }
 
 // 3. Every native exercise schema must ship at least one example.
-for (const type of exerciseValidators.keys()) {
+for (const type of noExamples ? [] : exerciseValidators.keys()) {
   const ex = join(CONTRACTS, 'native-exercises', 'v1', 'examples', `${type}.example.json`);
   if (!existsSync(ex)) fail(ex, ['missing example for exercise type']);
 }
 
-console.log(`\n${checked} file(s) valid, ${failures} failure(s).`);
-process.exit(failures ? 1 : 0);
+console.log(`\n${checked} file(s) valid, ${failures} schema failure(s)` + (doLint ? `, ${lintErrors} lint error(s), ${lintWarnings} lint warning(s).` : ' (lint skipped).'));
+process.exit(failures || lintErrors ? 1 : 0);

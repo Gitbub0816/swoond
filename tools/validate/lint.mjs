@@ -1,0 +1,142 @@
+// Content-quality lint for curriculum JSON. Schema-valid is necessary but not sufficient:
+// this catches placeholder text, duplicated payloads, thin copy and missing planned sims.
+// Pure functions; validate.mjs does the I/O and printing.
+
+const PLACEHOLDER_FULL = [
+  /^(sample|example) question/i,
+  /^option [a-z0-9]$/i,
+  /^(first|second|third|fourth) step$/i,
+  /^put in order$/i,
+  /^how many\??$/i,
+  /^another interpretation$/i,
+];
+const PLACEHOLDER_ANY = [/lorem ipsum/i, /\bTODO\b/, /\bTBD\b/i, /placeholder/i, /another interpretation/i, /\[insert/i];
+// Only placeholders when they ARE the whole explanation text.
+const PLACEHOLDER_EXPLANATION = [/^\s*(correct|close)[.!]?\s*$/i, /^\s*try again[.!]?\s*$/i];
+
+export const MIN_EXPLANATION = 25;
+export const MIN_PROMPT = 12;
+export const MAX_SAME_PROMPT = 2;
+
+const esc = (k) => String(k).replace(/~/g, '~0').replace(/\//g, '~1');
+
+export function canonical(v) {
+  if (Array.isArray(v)) return `[${v.map(canonical).join(',')}]`;
+  if (v && typeof v === 'object') return `{${Object.keys(v).sort().map((k) => `${JSON.stringify(k)}:${canonical(v[k])}`).join(',')}}`;
+  return JSON.stringify(v);
+}
+
+// Yield [pointer, string, inExplanation] for every string leaf.
+function* strings(node, ptr, inExpl = false) {
+  if (typeof node === 'string') yield [ptr, node, inExpl];
+  else if (Array.isArray(node)) for (let i = 0; i < node.length; i++) yield* strings(node[i], `${ptr}/${i}`, inExpl);
+  else if (node && typeof node === 'object')
+    for (const k of Object.keys(node)) yield* strings(node[k], `${ptr}/${esc(k)}`, inExpl || k === 'explanation');
+}
+
+const promptOf = (p) => {
+  if (!p || typeof p !== 'object') return null;
+  for (const k of ['prompt', 'question']) if (typeof p[k] === 'string') return [k, p[k]];
+  if (typeof p.statement?.text === 'string') return ['statement/text', p.statement.text];
+  return null;
+};
+
+// Option-like texts inside one activity, for the non-empty / distinct check.
+function optionTexts(p) {
+  const out = [];
+  for (const k of ['options', 'choices', 'items']) {
+    if (!Array.isArray(p?.[k])) continue;
+    p[k].forEach((o, i) => {
+      if (typeof o === 'string') out.push([`/payload/${k}/${i}`, o]);
+      else if (o && typeof o === 'object') {
+        const f = 'text' in o ? 'text' : 'label' in o ? 'label' : null;
+        if (f) out.push([`/payload/${k}/${i}/${f}`, o[f]]);
+      }
+    });
+  }
+  return out;
+}
+
+/**
+ * files: [{ path, data }] for one course. Returns { perFile: Map(path -> {errors, warnings}), info: string[] }.
+ * Each issue is { rule, msg }.
+ */
+export function lintCourse(courseId, manifest, files) {
+  const perFile = new Map(files.map((f) => [f.path, { errors: [], warnings: [] }]));
+  const err = (f, rule, msg) => perFile.get(f).errors.push({ rule, msg });
+  const warn = (f, rule, msg) => perFile.get(f).warnings.push({ rule, msg });
+
+  const acts = []; // {file, id, type, payload, ptr}
+  let lessons = 0;
+  const talk = [];
+  for (const { path, data } of files) {
+    (data.units ?? []).forEach((u, ui) =>
+      (u.lessons ?? []).forEach((l, li) => {
+        lessons++;
+        (l.activities ?? []).forEach((a, ai) =>
+          acts.push({ file: path, id: a.id, type: a.type, payload: a.payload, ptr: `/units/${ui}/lessons/${li}/activities/${ai}` }));
+      }));
+    (data.talkTracks ?? []).forEach((t, i) => talk.push({ file: path, id: t.id, payload: t.payload, ptr: `/talkTracks/${i}` }));
+  }
+
+  // 1 + 3: per-activity text checks
+  for (const a of [...acts.filter((a) => a.type !== 'unity-sim'), ...talk.map((t) => ({ ...t, type: 'talk-track' }))]) {
+    const base = `${a.ptr}/payload`;
+    for (const [sp, s, inExpl] of strings(a.payload, base)) {
+      const where = `${sp} (${a.id})`;
+      const t = s.trim();
+      const bad = PLACEHOLDER_FULL.find((r) => r.test(t)) ?? PLACEHOLDER_ANY.find((r) => r.test(t)) ?? (inExpl ? PLACEHOLDER_EXPLANATION.find((r) => r.test(t)) : null);
+      if (bad) err(a.file, 'placeholder', `${where}: placeholder text ${JSON.stringify(s.length > 60 ? s.slice(0, 57) + '...' : s)}`);
+      if (inExpl && t.length < MIN_EXPLANATION) err(a.file, 'thin-explanation', `${where}: explanation ${t.length} chars (< ${MIN_EXPLANATION}): ${JSON.stringify(s)}`);
+    }
+    if (a.type === 'talk-track') continue;
+    const pr = promptOf(a.payload);
+    if (pr && pr[1].trim().length < MIN_PROMPT) err(a.file, 'thin-prompt', `${base}/${pr[0]} (${a.id}): prompt ${pr[1].trim().length} chars (< ${MIN_PROMPT}): ${JSON.stringify(pr[1])}`);
+    const seen = new Map();
+    for (const [p, txt] of optionTexts(a.payload)) {
+      const t = typeof txt === 'string' ? txt.trim() : '';
+      if (!t) { err(a.file, 'empty-option', `${a.ptr}${p} (${a.id}): empty option text`); continue; }
+      const k = t.toLowerCase();
+      if (seen.has(k)) err(a.file, 'duplicate-option', `${a.ptr}${p} (${a.id}): option ${JSON.stringify(t)} duplicates ${seen.get(k)}`);
+      else seen.set(k, p.replace('/payload/', ''));
+    }
+  }
+
+  // 2: duplicate payloads + repeated prompts
+  const byPayload = new Map();
+  const byPrompt = new Map();
+  for (const a of acts) {
+    const k = `${a.type}|${canonical(a.payload)}`;
+    (byPayload.get(k) ?? byPayload.set(k, []).get(k)).push(a);
+    const pr = promptOf(a.payload);
+    if (pr && a.type !== 'unity-sim') {
+      const n = pr[1].trim().toLowerCase().replace(/\s+/g, ' ');
+      (byPrompt.get(n) ?? byPrompt.set(n, []).get(n)).push(a);
+    }
+  }
+  const ids = (g) => { const s = g.map((a) => a.id); return s.length > 8 ? `${s.slice(0, 8).join(', ')} ... (+${s.length - 8})` : s.join(', '); };
+  for (const g of byPayload.values())
+    if (g.length > 1) err(g[0].file, 'duplicate-payload', `${g[0].ptr}/payload: identical payload in ${g.length} activities: ${ids(g)}`);
+  for (const [text, g] of byPrompt)
+    if (g.length > MAX_SAME_PROMPT) err(g[0].file, 'repeated-prompt', `${g[0].ptr}/payload: prompt ${JSON.stringify(text.slice(0, 60))} used by ${g.length} activities (max ${MAX_SAME_PROMPT}): ${ids(g)}`);
+
+  // 4: planned sims
+  const planned = (manifest?.unitySimulations ?? []).map((s) => s.simulationId);
+  const used = new Set(acts.filter((a) => a.type === 'unity-sim').map((a) => a.payload?.simulationId));
+  const anchor = files[0]?.path;
+  if (anchor && planned.length) {
+    if (used.size === 0) err(anchor, 'no-sims', `manifest lists ${planned.length} unity simulation(s) but curriculum has no "unity-sim" activities`);
+    else for (const id of planned) if (!used.has(id)) warn(anchor, 'missing-sim', `planned sim ${id} has no unity-sim activity`);
+  }
+
+  // 5: coverage
+  const hist = {};
+  for (const a of acts) hist[a.type] = (hist[a.type] ?? 0) + 1;
+  const distinct = byPayload.size;
+  const info = [
+    `course ${courseId}: ${lessons} lessons, ${acts.length} activities, ${talk.length} talk tracks`,
+    `types: ${Object.entries(hist).sort((a, b) => b[1] - a[1]).map(([t, n]) => `${t}=${n}`).join(' ') || '(none)'}`,
+    `distinct payloads: ${distinct}/${acts.length} (${acts.length ? ((100 * distinct) / acts.length).toFixed(1) : '0'}%); sims used ${[...used].filter((s) => planned.includes(s)).length}/${planned.length} planned`,
+  ];
+  return { perFile, info };
+}
