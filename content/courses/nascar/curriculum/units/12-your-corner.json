@@ -1,0 +1,1100 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "nascar",
+  "unit": {
+    "id": "your-corner",
+    "title": "Your Person's Corner",
+    "layer": "intermediate",
+    "order": 12,
+    "prerequisiteUnitIds": [
+      "race-flow"
+    ],
+    "personalizationSlots": [
+      "series",
+      "driver",
+      "team",
+      "brand",
+      "region"
+    ],
+    "lessons": [
+      {
+        "id": "corner-01",
+        "title": "Cup Series branch",
+        "objective": "Learn what Cup fans care about.",
+        "estimatedMinutes": 9,
+        "conceptIds": [
+          "cup-series",
+          "series-focus"
+        ],
+        "activities": [
+          {
+            "id": "corner-01-st-cup-prestige",
+            "type": "say-this",
+            "conceptIds": [
+              "cup-series",
+              "series-focus"
+            ],
+            "branchId": "cup-series",
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "Cup is the big league. Everything else feeds into it."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "The Cup Series is NASCAR's top national series, where the biggest names and budgets are."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "Cup drivers earn less than O'Reilly drivers."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "Cup races are only run on superspeedways like Daytona."
+                }
+              ],
+              "translation": "Cup is where the top drivers race; O'Reilly and Trucks are steps on the way up.",
+              "followUps": [
+                {
+                  "line": "Cup is where champions are crowned and legacies are built.",
+                  "why": "Cup fans talk about the prestige of racing against the best in the sport."
+                },
+                {
+                  "line": "Many drivers climb from short tracks to Trucks, then O'Reilly, then Cup.",
+                  "why": "The series ladder matters in NASCAR culture, and Cup is the destination."
+                }
+              ]
+            }
+          },
+          {
+            "id": "corner-01-mc-cup-schedule",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "cup-series"
+            ],
+            "branchId": "cup-series",
+            "payload": {
+              "prompt": "How many points races make up a Cup Series season?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "26 races"
+                },
+                {
+                  "id": "b",
+                  "text": "36 races"
+                },
+                {
+                  "id": "c",
+                  "text": "16 races"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. Cup runs 36 points races: 26 in the regular season, then 10 more in the Chase for the top 16 in points.",
+                "incorrect": "The regular season is 26 races, and 16 is the number of drivers in the Chase. Add the ten Chase races and a Cup season is 36 points races."
+              }
+            }
+          },
+          {
+            "id": "corner-01-fg-cup-field",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "cup-series"
+            ],
+            "branchId": "cup-series",
+            "payload": {
+              "prompt": "A Cup field has {{cars}} cars: 36 charter teams plus four open-car spots.",
+              "template": "A Cup field has {{cars}} cars: 36 charter teams plus four open-car spots.",
+              "gaps": [
+                {
+                  "id": "cars",
+                  "options": [
+                    "30",
+                    "40",
+                    "50"
+                  ],
+                  "correct": "40"
+                }
+              ],
+              "explanation": {
+                "correct": "Yes. 36 charters guarantee a starting spot, and the four open spots go to the fastest teams that do not hold a charter. That makes a 40-car field.",
+                "incorrect": "36 charters plus four open-car spots adds up to 40 cars, the standard Cup field."
+              }
+            }
+          },
+          {
+            "id": "corner-01-st-cup-chase",
+            "type": "say-this",
+            "conceptIds": [
+              "series-focus"
+            ],
+            "branchId": "cup-series",
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "The top 16 in points make the Chase and we start fresh."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "The Chase is ten races for the top 16, and their points are reset by seed."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "Only the top 4 drivers make the Chase."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "Winning a race automatically puts you in the Chase."
+                }
+              ],
+              "translation": "The 2026 Chase is ten races for the top 16 drivers; your regular-season finish sets your starting points.",
+              "followUps": [
+                {
+                  "line": "The regular season still matters: it sets the seeding, and the top seed starts 25 points ahead of second.",
+                  "why": "It shows you know the reset gives a small head start, not an automatic title."
+                }
+              ]
+            }
+          },
+          {
+            "id": "corner-01-bc-open-team",
+            "type": "binary-call",
+            "conceptIds": [
+              "cup-series",
+              "series-focus"
+            ],
+            "branchId": "cup-series",
+            "payload": {
+              "prompt": "Can a team without a charter still race in Cup?",
+              "scene": {
+                "kind": "none",
+                "alt": "A Cup starting grid with some cars marked as open entries."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, by qualifying on speed."
+                },
+                {
+                  "id": "no",
+                  "label": "No, only charter teams race."
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes. Four spots in the 40-car field are open, so a team without a charter can race if it is fast enough to qualify.",
+                "incorrect": "Charters guarantee a spot for 36 cars, but four open spots go to non-charter teams that qualify on speed."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "corner-02",
+        "title": "O'Reilly Series branch",
+        "objective": "Learn what O'Reilly fans care about.",
+        "estimatedMinutes": 9,
+        "conceptIds": [
+          "oreilly-series",
+          "series-focus"
+        ],
+        "activities": [
+          {
+            "id": "corner-02-st-oreilly-pipeline",
+            "type": "say-this",
+            "conceptIds": [
+              "oreilly-series",
+              "series-focus"
+            ],
+            "branchId": "oreilly-series",
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "He came up through Trucks, now he is racing O'Reilly before the jump to Cup."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "O'Reilly is the middle rung, where drivers prove themselves before Cup."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "O'Reilly is a lower series than Trucks."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "Drivers never move from O'Reilly to Cup."
+                }
+              ],
+              "translation": "O'Reilly is where rising drivers and some Cup regulars race; it is the middle step on the ladder.",
+              "followUps": [
+                {
+                  "line": "Some Cup drivers also run O'Reilly races on Cup weekends, within NASCAR's limits.",
+                  "why": "It shows you know the series mixes future stars with established names."
+                },
+                {
+                  "line": "A driver's O'Reilly record tells you a lot about their path to the top.",
+                  "why": "An O'Reilly title is a career milestone that fans respect."
+                }
+              ]
+            }
+          },
+          {
+            "id": "corner-02-mc-oreilly-competitors",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "oreilly-series"
+            ],
+            "branchId": "oreilly-series",
+            "payload": {
+              "prompt": "What kind of drivers does the O'Reilly series attract?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Only drivers aged 18 to 21."
+                },
+                {
+                  "id": "b",
+                  "text": "Rising young drivers plus some Cup regulars who race it on the side."
+                },
+                {
+                  "id": "c",
+                  "text": "Retired Cup drivers only."
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. O'Reilly is where up-and-coming talent learns and where some established Cup drivers race too, which mixes hunger and experience.",
+                "incorrect": "There is no age cap at 21 and it is not a retirement series. You see young drivers reaching for Cup and a few Cup regulars racing alongside them."
+              }
+            }
+          },
+          {
+            "id": "corner-02-mc-oreilly-schedule",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "oreilly-series"
+            ],
+            "branchId": "oreilly-series",
+            "payload": {
+              "prompt": "How does the O'Reilly schedule differ from Cup?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "O'Reilly races on weekdays only."
+                },
+                {
+                  "id": "b",
+                  "text": "It often races at Cup tracks on the same weekend, plus some events of its own."
+                },
+                {
+                  "id": "c",
+                  "text": "It uses the exact same schedule as Cup."
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. O'Reilly often runs as the support race on a Cup weekend, and it also has a few weekends of its own. That lets some drivers do both.",
+                "incorrect": "O'Reilly is not weekday-only and is not a copy of the Cup calendar. It often shares a weekend with Cup, plus has some events of its own."
+              }
+            }
+          },
+          {
+            "id": "corner-02-bc-cup-drivers-oreilly",
+            "type": "binary-call",
+            "conceptIds": [
+              "series-focus"
+            ],
+            "branchId": "oreilly-series",
+            "payload": {
+              "prompt": "Can Cup regulars race in the O'Reilly Series?",
+              "scene": {
+                "kind": "none",
+                "alt": "An O'Reilly Series garage with a Cup driver's car."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, but NASCAR limits how often."
+                },
+                {
+                  "id": "no",
+                  "label": "No, they are never allowed."
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes. Cup regulars can race O'Reilly, and fans love seeing them, but NASCAR limits how many races experienced Cup drivers can enter.",
+                "incorrect": "Cup regulars do appear in O'Reilly. NASCAR places limits so the series still belongs to its own regulars and rising drivers."
+              }
+            }
+          },
+          {
+            "id": "corner-02-st-oreilly-path",
+            "type": "say-this",
+            "conceptIds": [
+              "series-focus"
+            ],
+            "branchId": "oreilly-series",
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "She is in O'Reilly now; if she wins the championship, Cup teams will notice."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "Winning in O'Reilly can earn a shot at Cup; a title is strong proof."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "Cup teams ignore O'Reilly champions."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "O'Reilly wins do not matter in racing."
+                }
+              ],
+              "translation": "O'Reilly success opens doors because Cup teams watch it closely.",
+              "followUps": [
+                {
+                  "line": "Many Cup drivers have an O'Reilly title or a strong O'Reilly record behind them.",
+                  "why": "It is a stepping stone, and fans respect the path."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "corner-03",
+        "title": "Truck Series branch",
+        "objective": "Learn what Truck fans care about.",
+        "estimatedMinutes": 9,
+        "conceptIds": [
+          "truck-series",
+          "series-focus"
+        ],
+        "activities": [
+          {
+            "id": "corner-03-st-trucks-chaotic",
+            "type": "say-this",
+            "conceptIds": [
+              "truck-series",
+              "series-focus"
+            ],
+            "branchId": "truck-series",
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "Trucks is where the chaotic short-track racing lives."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "Truck races are known for close, bumper-to-bumper racing that rewards aggression and nerve."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "Truck racing is the most polite series."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "Trucks races have no contact between vehicles."
+                }
+              ],
+              "translation": "The Truck Series is known for physical, close racing with plenty of drama.",
+              "followUps": [
+                {
+                  "line": "Truck fans enjoy the raw racing, with plenty of side-by-side moves.",
+                  "why": "It celebrates what the series is known for without overstating it."
+                },
+                {
+                  "line": "Careers can take off after a big Truck race.",
+                  "why": "Trucks is a proving ground, so one breakout run gets noticed."
+                }
+              ]
+            }
+          },
+          {
+            "id": "corner-03-mc-trucks-tracks",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "truck-series"
+            ],
+            "branchId": "truck-series",
+            "payload": {
+              "prompt": "Where do Truck races mainly take place?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Only on superspeedways like Daytona."
+                },
+                {
+                  "id": "b",
+                  "text": "On a mix of tracks, weighted toward short and intermediate ovals."
+                },
+                {
+                  "id": "c",
+                  "text": "Only on flat tracks with no banking."
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. The Truck schedule leans on short and intermediate ovals, with a few superspeedways and road courses mixed in. The tighter tracks are where the close racing comes from.",
+                "incorrect": "Trucks race at many kinds of tracks, not just superspeedways and not just flat ones. Most are short and intermediate ovals, which is why the racing is so close."
+              }
+            }
+          },
+          {
+            "id": "corner-03-mc-trucks-vehicles",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "truck-series"
+            ],
+            "branchId": "truck-series",
+            "payload": {
+              "prompt": "What makes Craftsman Truck Series vehicles different from Cup cars?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Trucks have pickup-truck bodies and a different package from Cup cars."
+                },
+                {
+                  "id": "b",
+                  "text": "Trucks are slower and use fewer tires."
+                },
+                {
+                  "id": "c",
+                  "text": "Trucks are identical to Cup cars except for paint."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Trucks have pickup-style bodies and their own setup package, so they drive and race differently from Cup cars.",
+                "incorrect": "Trucks are not Cup cars with a new coat of paint. They are pickup-styled vehicles with their own package, and they run on the same kind of tires as any race."
+              }
+            }
+          },
+          {
+            "id": "corner-03-st-trucks-entry",
+            "type": "say-this",
+            "conceptIds": [
+              "series-focus"
+            ],
+            "branchId": "truck-series",
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "Trucks is entry-level, but the racing is more raw than Cup."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "Trucks is where many careers start, and its close racing can feel rougher than Cup."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "Trucks racing is safer than Cup because it is entry-level."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "Cup drivers never race in Trucks."
+                }
+              ],
+              "translation": "Entry-level does not mean tame: close racing and hungry drivers make Trucks lively.",
+              "followUps": [
+                {
+                  "line": "Some Cup drivers still race Trucks, within NASCAR's limits.",
+                  "why": "It shows you know the series mixes stars and newcomers."
+                }
+              ]
+            }
+          },
+          {
+            "id": "corner-03-bc-trucks-rise",
+            "type": "binary-call",
+            "conceptIds": [
+              "series-focus"
+            ],
+            "branchId": "truck-series",
+            "payload": {
+              "prompt": "Do strong Truck results help a driver move up?",
+              "scene": {
+                "kind": "none",
+                "alt": "A Truck Series trophy next to a path leading to O'Reilly and Cup."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, wins and titles get noticed."
+                },
+                {
+                  "id": "no",
+                  "label": "No, Cup teams ignore Trucks."
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes. Trucks is the entry rung, and a driver who wins there often gets a look from O'Reilly and Cup teams and sponsors.",
+                "incorrect": "Cup teams do watch Trucks. Strong results, especially wins or a title, are a common way for a driver to move up the ladder."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "corner-04",
+        "title": "Their driver: {{driver}}",
+        "objective": "Learn the driver's story.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "driver-focus",
+          "driver-archetypes"
+        ],
+        "activities": [
+          {
+            "id": "corner-04-st-driver-story",
+            "type": "say-this",
+            "conceptIds": [
+              "driver-focus"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "{{driver|Their driver}} is having a career year; the cars are finally fast enough."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "Results come from car speed, team quality, track fit and luck; a good year often means all four lined up."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "Driver skill is the only thing that matters in NASCAR."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "The best car always wins regardless of the driver."
+                }
+              ],
+              "translation": "A driver's season rises and falls with car speed, team strategy and which tracks suit their style.",
+              "followUps": [
+                {
+                  "line": "A great year usually means the car is fast, the team is sharp and the luck is turning.",
+                  "why": "Fans know that racing success is a mix of factors, so celebrating a good year means appreciating all of them."
+                }
+              ]
+            }
+          },
+          {
+            "id": "corner-04-mc-driver-style",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "driver-archetypes"
+            ],
+            "payload": {
+              "prompt": "Short-track aces and road-course ringers exist. What does this tell you?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "All drivers are equally good at every track type."
+                },
+                {
+                  "id": "b",
+                  "text": "Some drivers excel at certain track types, because their skills fit some places better."
+                },
+                {
+                  "id": "c",
+                  "text": "Track type does not matter in NASCAR."
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. Some drivers love the bumping at short tracks, others thrive on road courses, and some are magic at superspeedways. Knowing where {{driver|their driver}} shines helps you predict the good weeks.",
+                "incorrect": "Drivers have different strengths. Some peak on short tracks, others on road courses or superspeedways, and {{driver|their driver}} likely has a few tracks where the car and the driver click."
+              }
+            }
+          },
+          {
+            "id": "corner-04-tt-driver-convo",
+            "type": "talk-track",
+            "conceptIds": [
+              "driver-focus"
+            ],
+            "payload": {
+              "title": "Talk about {{driver}}'s weekend",
+              "setting": "After the race, she texts you about how {{driver|her driver}} ran.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "He finished 8th but led 50 laps. I am frustrated.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "That is rough. Was the car fast early then faded, or did pit strategy hurt?",
+                      "smoothDelta": 28,
+                      "theirResponse": "Pit strategy cost us track position on a late caution. We had the speed.",
+                      "coachNote": "You asked about the story behind the finish, not just the number."
+                    },
+                    {
+                      "id": "b",
+                      "text": "8th is a good finish.",
+                      "smoothDelta": 2,
+                      "theirResponse": "But he led 50 laps. We should have had it.",
+                      "coachNote": "True, but the real story is why the result did not match the speed."
+                    },
+                    {
+                      "id": "c",
+                      "text": "He is never going to win.",
+                      "smoothDelta": -20,
+                      "theirResponse": "That is harsh. One bad day does not erase everything.",
+                      "coachNote": "Be kind about the driver she loves, even after a tough race."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "The car was fast on the short run but faded. That has been our problem all year.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "Is the team working on that for the next race, or is it track-specific?",
+                      "smoothDelta": 26,
+                      "theirResponse": "We think it is setup-related. A different track might be different.",
+                      "coachNote": "Looking ahead and asking about the cause shows real interest."
+                    },
+                    {
+                      "id": "b",
+                      "text": "They should just make the car faster.",
+                      "smoothDelta": -10,
+                      "theirResponse": "Yeah, if it were that easy...",
+                      "coachNote": "Teams work hard on these problems; appreciate the struggle."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "The best conversations look past the finish and ask about the car, the strategy and what comes next."
+            }
+          },
+          {
+            "id": "corner-04-bc-driver-respect",
+            "type": "binary-call",
+            "conceptIds": [
+              "driver-focus"
+            ],
+            "payload": {
+              "prompt": "Does a driver need a championship to be respected as great?",
+              "scene": {
+                "kind": "none",
+                "alt": "A driver celebrating a win in victory lane."
+              },
+              "choices": [
+                {
+                  "id": "no",
+                  "label": "No, wins and racecraft earn respect too."
+                },
+                {
+                  "id": "yes",
+                  "label": "Yes, only champions count."
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Right. A title is one measure, but speed, wins, racecraft and big moments earn respect too, and plenty of great drivers never won a championship.",
+                "incorrect": "Only counting champions would leave out many beloved drivers. Fans respect wins, consistency and craft as well as titles."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "corner-05",
+        "title": "Their team: {{team}}",
+        "objective": "Learn the team's story.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "team-focus",
+          "team-organization",
+          "manufacturer-focus"
+        ],
+        "activities": [
+          {
+            "id": "corner-05-st-team-pride",
+            "type": "say-this",
+            "conceptIds": [
+              "team-focus"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "{{team|Their team}} just brought in a new crew chief; this could turn the season around."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "A crew chief is the strategist and lead engineer, so the right person can change a team's performance."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "The crew chief is just the person who tells the driver when to pit."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "Crew chiefs do not have much impact on race results."
+                }
+              ],
+              "translation": "A crew chief brings strategy, engineering and leadership, so changing that seat can matter as much as a driver change.",
+              "followUps": [
+                {
+                  "line": "Some crew chiefs are known for their track knowledge or strategy calls.",
+                  "why": "It shows you know the crew chief is more than a pit-call coordinator."
+                }
+              ]
+            }
+          },
+          {
+            "id": "corner-05-fg-team-structure",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "team-organization"
+            ],
+            "payload": {
+              "prompt": "Teammates on a multi-car team share {{what}} to help each other.",
+              "template": "Teammates on a multi-car team share {{what}} to help each other.",
+              "gaps": [
+                {
+                  "id": "what",
+                  "options": [
+                    "data and setup ideas",
+                    "one fuel tank",
+                    "a single set of points"
+                  ],
+                  "correct": "data and setup ideas"
+                }
+              ],
+              "explanation": {
+                "correct": "Yes. Teammates trade data, setup ideas and lessons from practice, which is an advantage of a larger organization. Each car still has its own crew, points and strategy.",
+                "incorrect": "Teammates do not share a fuel tank or points; each car scores on its own. What they share is information, data and setup ideas."
+              }
+            }
+          },
+          {
+            "id": "corner-05-mc-manufacturer",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "manufacturer-focus"
+            ],
+            "payload": {
+              "prompt": "What does it mean that {{team|their team}} races {{brand|a certain brand}}?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The brand is just a paint scheme; it does not affect the car."
+                },
+                {
+                  "id": "b",
+                  "text": "The brand backs the team with engines and technical support, and fans feel loyal to it."
+                },
+                {
+                  "id": "c",
+                  "text": "All NASCAR teams are identical regardless of manufacturer."
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. {{brand|Their brand}} backs {{team|their team}} with engine and technical support, and fans often root for the brand as much as the team.",
+                "incorrect": "The brand is more than paint. It supplies engine support and engineering help, and it shapes alliances and fan loyalty."
+              }
+            }
+          },
+          {
+            "id": "corner-05-tt-team-race",
+            "type": "talk-track",
+            "conceptIds": [
+              "team-focus"
+            ],
+            "payload": {
+              "title": "Talk about {{team}}'s weekend",
+              "setting": "After the race, she is talking about how {{team|her team}} performed.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "We had terrible pit stops today. That hurt both our drivers.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "Were they slow on the change or did someone make a mistake?",
+                      "smoothDelta": 27,
+                      "theirResponse": "A lug nut problem on one stop and a slow fuel fill on the other.",
+                      "coachNote": "Asking about the specific problem shows you understand pit stops."
+                    },
+                    {
+                      "id": "b",
+                      "text": "That is unlucky.",
+                      "smoothDelta": 3,
+                      "theirResponse": "It was bad execution, not luck. We have to fix it.",
+                      "coachNote": "It feels like bad luck, but teams own their mistakes."
+                    },
+                    {
+                      "id": "c",
+                      "text": "Fire the pit crew.",
+                      "smoothDelta": -18,
+                      "theirResponse": "It was one bad day. The crew is usually solid.",
+                      "coachNote": "Be kind about the people who work hard every week."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "At least both cars finished in the top 20. We can build on that.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "That is a good reset for next week. What do they need to work on?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Pit stops, for sure. The car balance was okay.",
+                      "coachNote": "Looking ahead and problem-solving is how real fans think."
+                    },
+                    {
+                      "id": "b",
+                      "text": "Top 20 is not that great.",
+                      "smoothDelta": -8,
+                      "theirResponse": "Better than last week when we finished 28th.",
+                      "coachNote": "Progress counts, so recognize it even if it is not a win."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Team fans care about execution and the whole organization, so asking about both cars and the crew shows you get it."
+            }
+          },
+          {
+            "id": "corner-05-st-team-heritage",
+            "type": "say-this",
+            "conceptIds": [
+              "team-focus"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "{{team|Their team}} has a storied history, but they have been struggling lately."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "Teams have ups and downs; great organizations rebuild. Legacy does not guarantee today's speed."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "If a team was good once, it will always be good."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "Past success does not matter in NASCAR."
+                }
+              ],
+              "translation": "Team history is respected, but racing is won in the present; every year is a new competition.",
+              "followUps": [
+                {
+                  "line": "Great teams rebuild and come back. Their heritage gives them resources and smart people.",
+                  "why": "Fans support teams through the lows because good organizations can rebound."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "corner-06",
+        "title": "Their track: {{track}}",
+        "objective": "Learn the home track.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "track-focus",
+          "track-types"
+        ],
+        "activities": [
+          {
+            "id": "corner-06-mc-track-types",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "track-types"
+            ],
+            "payload": {
+              "prompt": "How do track types shape racing?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Each track type creates a different challenge and favors different skills."
+                },
+                {
+                  "id": "b",
+                  "text": "All tracks are identical regardless of size or shape."
+                },
+                {
+                  "id": "c",
+                  "text": "Only horsepower matters; track type does not."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Short tracks demand tire management and close racing. Intermediates reward aero and setup. Superspeedways favor drafting and pack racing. Road courses are about braking and turning. {{track|Their home track}} fits into one of those groups, and that tells you what to expect.",
+                "incorrect": "Track type changes how the car behaves and how passing works. Size and shape decide what matters, so {{track|their home track}}'s type shapes the whole race story."
+              }
+            }
+          },
+          {
+            "id": "corner-06-tm-track-styles",
+            "type": "term-match",
+            "conceptIds": [
+              "track-types"
+            ],
+            "payload": {
+              "prompt": "Match each track type to its racing style.",
+              "pairs": [
+                {
+                  "id": "short",
+                  "term": "Short track",
+                  "definition": "Close, bumper-to-bumper racing where tire wear and patience matter."
+                },
+                {
+                  "id": "intermediate",
+                  "term": "Intermediate track",
+                  "definition": "Bigger ovals where aero and setup matter and long runs spread the field."
+                },
+                {
+                  "id": "superspeedway",
+                  "term": "Superspeedway",
+                  "definition": "Huge, fast ovals where drafting and pack racing rule."
+                },
+                {
+                  "id": "road",
+                  "term": "Road course",
+                  "definition": "Left and right turns where braking and precision decide the race."
+                }
+              ],
+              "distractorDefinitions": [
+                "A track where only the pole sitter can pass.",
+                "A track with no banking and no corners."
+              ],
+              "explanation": {
+                "summary": "Knowing a track's type tells you what kind of race to expect, and what kind of driver will shine there."
+              }
+            }
+          },
+          {
+            "id": "corner-06-bc-track-passing",
+            "type": "binary-call",
+            "conceptIds": [
+              "track-types"
+            ],
+            "payload": {
+              "prompt": "At a superspeedway, does the draft help a trailing car?",
+              "scene": {
+                "kind": "none",
+                "alt": "Cars lined up in a draft on a superspeedway."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, it helps the trailing car."
+                },
+                {
+                  "id": "no",
+                  "label": "No, it only helps the leader."
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes. A trailing car gets pulled along in the draft and can build a run to slingshot past, which is why superspeedway racing is about packs.",
+                "incorrect": "The draft helps the car behind. It lets a trailing car close in and make a move, and cars line up to help each other."
+              }
+            }
+          },
+          {
+            "id": "corner-06-st-track-love",
+            "type": "say-this",
+            "conceptIds": [
+              "track-focus"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "I love {{track|my home track}}; it is my happy place in the NASCAR calendar."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "Fans have favorite tracks for the racing, the atmosphere or a personal connection. Loving {{track|that track}} makes sense."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "You should not have a favorite track."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "All tracks are equally interesting to all fans."
+                }
+              ],
+              "translation": "Every fan has a favorite track for its racing, the crowd or personal meaning.",
+              "followUps": [
+                {
+                  "line": "When it comes around on the schedule, the excitement is part of what makes NASCAR special.",
+                  "why": "Personal connection to a track deepens fandom and makes the story richer."
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

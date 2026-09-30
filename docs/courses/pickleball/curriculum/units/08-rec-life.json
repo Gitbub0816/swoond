@@ -19,7 +19,7 @@
             "type": "multiple-choice",
             "conceptIds": ["open-play-rotation"],
             "payload": {
-              "prompt": "What happens when you win a game in open play at most courts?",
+              "prompt": "At a winners-stay court, what happens when you win a game?",
               "options": [
                 {"id": "a", "text": "You stay on the court; losers go to the back of the paddle stack."},
                 {"id": "b", "text": "Everyone sits out for the next game."},
@@ -28,9 +28,9 @@
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Winners stay and play the next challenger from the stack. Losers go to the back; that's the rotation.",
-                "incorrect": "Open play is winners-stay. The winning team keeps playing; losers queue up again.",
-                "sayThisLine": "Winners stay, losers rotate."
+                "correct": "Winners stay and play the next group from the stack. Losers go to the back of the line. Some courts do it differently, so it is fine to ask how yours works.",
+                "incorrect": "At a winners-stay court the winning team keeps playing and the losing team queues up again. Nobody is forced off, and the score does not reset.",
+                "sayThisLine": "At a winners-stay court, winners stay and losers rotate."
               }
             }
           },
@@ -39,38 +39,38 @@
             "type": "sequence-order",
             "conceptIds": ["paddle-stack", "open-play-rotation"],
             "payload": {
-              "prompt": "Order the steps of joining open play.",
+              "prompt": "Put joining open play in order, from arriving to the next game.",
               "items": [
                 {
                   "id": "step1",
-                  "text": "Stack your paddle with others waiting to play.",
-                  "why": "This registers your group in the rotation queue."
+                  "text": "Put your paddle in the stack with the others waiting",
+                  "why": "The stack shows whose turn is next."
                 },
                 {
                   "id": "step2",
-                  "text": "Watch the current game and wait your turn.",
-                  "why": "You're waiting for your paddle to be called to the court."
+                  "text": "Watch the current game and wait your turn",
+                  "why": "You are waiting for your paddle to come up."
                 },
                 {
                   "id": "step3",
-                  "text": "Step on the court when your paddle is called.",
-                  "why": "Your group is now up to play against the current winners."
-                },
-                {
-                  "id": "step5",
-                  "text": "If you win, you stay and play the next group.",
-                  "why": "Winners-stay is the open-play rule; you earned another game."
+                  "text": "Step on when your group is called",
+                  "why": "Your group is now up against the current winners."
                 },
                 {
                   "id": "step4",
-                  "text": "If you lose, go to the back of the stack.",
-                  "why": "Losers queue again; the next group challenges the new winners."
+                  "text": "Play the game",
+                  "why": "The game has to finish before anyone rotates."
+                },
+                {
+                  "id": "step5",
+                  "text": "Winners stay on, and losers go to the back of the stack",
+                  "why": "That is the rotation at a winners-stay court, and it starts the cycle again."
                 }
               ],
               "explanation": {
-                "correct": "You stack, wait, step on when called, and then winners stay (step 5) before losers go to the back (step 4).",
-                "incorrect": "The order is: stack, wait, play, then check the result—winners stay, losers queue again.",
-                "sayThisLine": "Stack, wait, play, and know the outcome: stay or go to the back."
+                "correct": "Stack your paddle, wait, step on when called, play the game, then rotate: winners stay and losers go to the back of the line.",
+                "incorrect": "The order is stack, wait, play, then rotate. You only find out who stays or goes after the game is finished.",
+                "sayThisLine": "Stack, wait, play, then rotate."
               }
             }
           },
@@ -84,17 +84,17 @@
                 {
                   "id": "openplay-pair",
                   "term": "Open play",
-                  "definition": "Informal drop-in games where winners stay on the court and losers go to the back of the stack."
+                  "definition": "Informal drop-in games that anyone can join, with a queue for who plays next."
                 },
                 {
                   "id": "paddlestack-pair",
                   "term": "Paddle stack",
-                  "definition": "Paddles lined up to show who's waiting to play; your paddle is called when it's your group's turn."
+                  "definition": "Paddles lined up to show who is waiting to play, so everyone gets a fair turn."
                 },
                 {
                   "id": "winnerstay-pair",
                   "term": "Winners stay",
-                  "definition": "The rule that keeps the winning team on the court for the next game."
+                  "definition": "A common rotation rule that keeps the winning team on the court for the next game."
                 }
               ],
               "distractorDefinitions": [
@@ -102,8 +102,8 @@
                 "A way to store equipment between games"
               ],
               "explanation": {
-                "summary": "Open play is casual, winners-stay rotation. You stack your paddle to queue and rotate in and out based on results.",
-                "sayThisLine": "Open play means stack and rotate: winners stay, losers go to the back."
+                "summary": "Open play is drop-in and casual. You put your paddle in the stack to queue, and many courts rotate by winners-stay.",
+                "sayThisLine": "Open play means a stack and a rotation. Ask how your court does it."
               }
             }
           },
@@ -138,20 +138,20 @@
             "type": "binary-call",
             "conceptIds": ["open-play-rotation"],
             "payload": {
-              "prompt": "You just won your game in open play. You stay on the court for the next game. Right?",
+              "prompt": "At a winners-stay court you just won. Do you stay on?",
               "scene": {
                 "kind": "none",
-                "alt": "Open play scenario: winning team on the court."
+                "alt": "Open play scenario: the winning team is on the court at a winners-stay court."
               },
               "choices": [
                 {"id": "stay-yes", "label": "Yes, winners stay on"},
-                {"id": "rotate-out", "label": "No, everyone rotates"}
+                {"id": "rotate-out", "label": "No, everyone rotates off"}
               ],
               "correctChoiceId": "stay-yes",
               "explanation": {
-                "correct": "Yes. Winners stay and play the next group from the stack. That's the open-play rule.",
-                "incorrect": "Winners stay on the court in open play. Losers queue; winners play again.",
-                "sayThisLine": "Win and you stay. Lose and you wait."
+                "correct": "Yes. At a winners-stay court the winners play the next group from the stack, and the losers go to the back of the line.",
+                "incorrect": "Winners-stay means exactly that. If your court rotates everyone off, that is a different setup, and it is worth asking about.",
+                "sayThisLine": "Win and I stay. Lose and I wait."
               },
               "ruleTag": "Open play rotation"
             }
@@ -184,22 +184,22 @@
                   "id": "call-in",
                   "label": "Call it in (benefit of the doubt)",
                   "verdict": "best",
-                  "consequence": "Correct. When you're not sure, the ball is in. That's gracious and builds trust.",
+                  "consequence": "Right. When you are not sure, the doubt goes to the other side. A ball touching the line is in anyway, and giving it keeps the game friendly.",
                   "considerations": [
-                    "Lines are in if they touch",
-                    "When in doubt, call it in",
-                    "Fair play is better than winning on a bad call"
+                    "Lines are in if any part touches",
+                    "When in doubt, it is in",
+                    "Fair play beats winning on a shaky call"
                   ]
                 },
                 {
                   "id": "call-out",
                   "label": "Call it out to be safe",
                   "verdict": "poor",
-                  "consequence": "You lose the point but damage trust. Benefit of the doubt means you give them the ball when it's close.",
+                  "consequence": "You would take a point you are not sure you earned, and that costs trust. Benefit of the doubt means close balls go to the other side.",
                   "considerations": [
-                    "Benefit of the doubt is a tradition",
-                    "Questionable calls hurt open play",
-                    "Integrity matters"
+                    "Benefit of the doubt is the standard expectation",
+                    "Questionable calls sour open play",
+                    "Integrity matters more than one point"
                   ]
                 }
               ],

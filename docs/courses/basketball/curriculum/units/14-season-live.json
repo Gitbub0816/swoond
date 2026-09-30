@@ -225,32 +225,49 @@
             "type": "decision-scenario",
             "conceptIds": ["live-game-preview"],
             "payload": {
-              "prompt": "Your team is on a four-game road trip. Tonight is game two. Rotation strategy?",
+              "prompt": "{{player}} is listed questionable tonight. What do you ask her?",
               "situation": {
+                "narrative": "She is checking the injury report before {{team}}'s game.",
                 "facts": [
-                  {"label": "Trip", "value": "Four games in six nights, two more after tonight"},
-                  {"label": "Record so far", "value": "1-0 on the trip; tired"},
-                  {"label": "Opponent", "value": "Playoff-race team, not elite"},
-                  {"label": "Bench depth", "value": "Solid; can handle extra minutes"}
+                  {"label": "Status", "value": "Questionable"},
+                  {"label": "Schedule", "value": "Second night of a back-to-back"},
+                  {"label": "Update", "value": "Final word usually comes near tip-off"}
                 ]
               },
               "options": [
                 {
-                  "id": "rest-starters",
-                  "label": "Rest starters now, lean on bench.",
+                  "id": "ask-rest",
+                  "label": "Do they usually rest him on back-to-backs?",
                   "verdict": "best",
-                  "consequence": "Conserve energy for the final two games. Bench gets valuable minutes.",
-                  "considerations": ["Long trip ahead.", "This game is winnable with bench.", "Save the stars for critical games."]
+                  "consequence": "That is the right question. On the second night of a back-to-back, teams sometimes rest a player, so the pattern is worth knowing.",
+                  "considerations": [
+                    "Questionable means it could go either way",
+                    "Back-to-backs are when rest days often happen",
+                    "It shows you understood both words on the report"
+                  ]
                 },
                 {
-                  "id": "go-all-out",
-                  "label": "Play to win; go full strength.",
+                  "id": "ask-when",
+                  "label": "When will we know for sure?",
                   "verdict": "acceptable",
-                  "consequence": "Win now, handle fatigue later. But risky if key players get hurt.",
-                  "considerations": ["Winning matters now.", "But exhaustion is real.", "Rest matters later."]
+                  "consequence": "A fair question, and the honest answer is usually close to game time. It just does not use what you can read on the report.",
+                  "considerations": [
+                    "Teams often update close to tip-off",
+                    "It is a good second question"
+                  ]
+                },
+                {
+                  "id": "definitely-out",
+                  "label": "Questionable means he is definitely out, right?",
+                  "verdict": "poor",
+                  "consequence": "Not quite. Questionable means uncertain. A player labeled questionable plays in many games, so guessing out could make you sound unsure.",
+                  "considerations": [
+                    "Out means out; questionable means uncertain",
+                    "Assuming the worst can upset her"
+                  ]
                 }
               ],
-              "expertNote": "Four-game trips are grinding. Winners rest strategically against non-elite teams early in the trip."
+              "expertNote": "Injury statuses are a scale. Questionable means it could go either way, and the final word often comes near tip-off. Ask, do not assume."
             }
           },
           {
@@ -258,16 +275,16 @@
             "type": "multiple-choice",
             "conceptIds": ["live-game-preview"],
             "payload": {
-              "prompt": "{{team}} announced a late-game injury update. What should you check before game time?",
+              "prompt": "{{team}}'s star is listed questionable. Where should you check before tip-off?",
               "options": [
-                {"id": "a", "text": "The league's official injury report and the team's public statements."},
-                {"id": "b", "text": "Social media rumors and player hints."},
-                {"id": "c", "text": "The coach's game-day practice notes."}
+                {"id": "a", "text": "The league's official injury report and the team's own updates."},
+                {"id": "b", "text": "Unverified posts and rumors on social media."},
+                {"id": "c", "text": "Last season's box scores."}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Official sources only. The league injury report is the truth.",
-                "incorrect": "Stick to official reports. Social media is speculation; rumors are not facts."
+                "correct": "Right. The official injury report and the team's own updates are the most reliable places. Rumors can be wrong, and old box scores cannot tell you tonight's status.",
+                "incorrect": "Not quite. The official injury report and team updates are the most reliable. Rumors are guesses, and last season's box scores say nothing about tonight."
               }
             }
           },
@@ -340,16 +357,16 @@
             "type": "multiple-choice",
             "conceptIds": ["live-explainer"],
             "payload": {
-              "prompt": "A star player just signed a supermax contract extension. Why is that huge news?",
+              "prompt": "A star signs a supermax-style extension. Why is that big news?",
               "options": [
-                {"id": "a", "text": "It costs the team a ton of cap space; they cannot trade or sign freely."},
-                {"id": "b", "text": "It signals the player wants to stay, shaping the team's future."},
-                {"id": "c", "text": "It immediately affects playoff seeding and matchups."}
+                {"id": "a", "text": "It ties up a huge share of the team's cap for years, shaping every other move."},
+                {"id": "b", "text": "It guarantees the team makes the playoffs."},
+                {"id": "c", "text": "The league gives the team a bonus draft pick."}
               ],
-              "correctOptionIds": ["a", "b"],
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. Supermax contracts lock in players and cap space. That shapes team building.",
-                "incorrect": "Player signings matter for cap and chemistry. A supermax signals commitment and limits flexibility."
+                "correct": "Right. A supermax-style deal is a very large, long contract. It shows the star's commitment, and it eats a big slice of the cap, which limits what the team can add around him.",
+                "incorrect": "Not quite. Nothing about a contract guarantees wins or draft picks. The news is that a big, long deal shows commitment and uses up a large share of the team's cap."
               }
             }
           },
@@ -363,23 +380,23 @@
                 "text": "The trade deadline is two weeks away and nobody knows what to expect."
               },
               "options": [
-                {"id": "a", "isCorrect": true, "text": "Trades are unpredictable; teams make moves based on health, seeding and opportunity."},
+                {"id": "a", "isCorrect": true, "text": "Nobody knows what will happen; teams decide based on injuries, the standings and cost."},
                 {"id": "b", "isCorrect": false, "text": "Trade deadline trades are always quiet."},
                 {"id": "c", "isCorrect": false, "text": "All contenders make the same trades."},
                 {"id": "d", "isCorrect": false, "text": "Trades do not happen at the deadline anymore."}
               ],
-              "translation": "She means deadline trades are a wild card. Who moves where is genuinely uncertain.",
+              "translation": "She means the trade deadline is coming and nobody can be sure who will move. Teams decide based on injuries, the standings and what they can afford.",
               "followUps": [
                 {
-                  "line": "Think your team will do anything?",
-                  "why": "Invites her to predict her team's moves based on their situation."
+                  "line": "Do you think your team will do anything?",
+                  "why": "Invites her to share her guess and her hopes."
                 },
                 {
-                  "line": "Deadline trades always seem random.",
-                  "why": "Fair observation: trades do look surprising until the context is clear."
+                  "line": "Who would you want them to go get?",
+                  "why": "A fun question that lets her show what she knows about the roster."
                 }
               ],
-              "noFakeExpertNote": "Trade deadlines create buzz because moves are real and impact playoff positioning."
+              "noFakeExpertNote": "Nobody knows what happens at the deadline. Ask what she hopes her team does."
             }
           },
           {
@@ -387,49 +404,66 @@
             "type": "decision-scenario",
             "conceptIds": ["live-explainer"],
             "payload": {
-              "prompt": "A team fired their coach mid-season. Is that a reset or a sign of trouble?",
+              "prompt": "She says her team fired its coach mid-season. What do you say?",
               "situation": {
+                "narrative": "The news broke this morning and she is clearly rattled.",
                 "facts": [
-                  {"label": "Record", "value": "35 wins, 25 losses; still in playoff race"},
-                  {"label": "Reason", "value": "Locker room discord reported"},
-                  {"label": "Interim", "value": "An assistant takes over; knows the team"},
-                  {"label": "Precedent", "value": "Coaching changes sometimes spark runs"}
+                  {"label": "Timing", "value": "Mid-season, playoffs still in reach"},
+                  {"label": "Interim", "value": "An assistant coach takes over"},
+                  {"label": "Reason", "value": "The team has not said"}
                 ]
               },
               "options": [
                 {
-                  "id": "reset",
-                  "label": "It is a reset; could spark a run.",
+                  "id": "ask-how",
+                  "label": "That is a lot. How are you feeling about it?",
                   "verdict": "best",
-                  "consequence": "Fresh coaching can fix culture issues. The interim coach has respect.",
-                  "considerations": ["New voice helps.", "Players know the system.", "Disruption can work."]
+                  "consequence": "She talks about what worries her, and you learn what matters most. You do not need a hot take.",
+                  "considerations": [
+                    "Coaching changes are emotional for fans",
+                    "Nobody outside the team knows the full reason",
+                    "Asking beats guessing"
+                  ]
                 },
                 {
-                  "id": "trouble",
-                  "label": "It signals locker room dysfunction.",
+                  "id": "interim-question",
+                  "label": "Who takes over as the interim coach?",
                   "verdict": "acceptable",
-                  "consequence": "True that mid-season firings indicate problems. But a change sometimes solves it.",
-                  "considerations": ["Discord is real.", "But change helps.", "Sometimes it is just bad culture."]
+                  "consequence": "A reasonable factual question. It goes better after you check in on how she feels.",
+                  "considerations": [
+                    "It shows you want the facts",
+                    "It skips the feeling behind her message"
+                  ]
+                },
+                {
+                  "id": "guess-why",
+                  "label": "Probably locker room drama, right?",
+                  "verdict": "poor",
+                  "consequence": "Nobody knows the reason yet, so a guess can sound like gossip about people she cares about.",
+                  "considerations": [
+                    "The team has not said why",
+                    "Guessing adds drama she did not ask for"
+                  ]
                 }
               ],
-              "expertNote": "Mid-season coaching changes succeed when locker room was the problem, not talent."
+              "expertNote": "Coaching changes are big news, but the reasons are rarely public. A caring question beats a theory."
             }
           },
           {
-            "id": "liv-03-mc-impact",
+            "id": "liv-03-mc-deadline",
             "type": "multiple-choice",
-            "conceptIds": ["live-explainer"],
+            "conceptIds": ["trade"],
             "payload": {
-              "prompt": "A league rule change is announced for next season. Why do fans care now?",
+              "prompt": "What is the trade deadline?",
               "options": [
-                {"id": "a", "text": "It might affect playoff strategy and team composition immediately."},
-                {"id": "b", "text": "It gives months of time to adapt; fans follow it for discussion."},
-                {"id": "c", "text": "It has no impact on this season, so fans focus on next year."}
+                {"id": "a", "text": "The date after which teams cannot make trades until the season ends."},
+                {"id": "b", "text": "The last day a coach can be fired."},
+                {"id": "c", "text": "The day the regular season ends."}
               ],
-              "correctOptionIds": ["a", "b"],
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Exactly. Rule changes announced now affect team planning and fan debate.",
-                "incorrect": "Rule changes shape how teams think about trades and draft. Fans follow them because they matter."
+                "correct": "Right. After the deadline, trades are frozen until after the season. That is why teams push to make moves right before it, and why fans watch so closely.",
+                "incorrect": "Not quite. The trade deadline is the last date teams can make trades during the season. It is not about coaches or the end of the schedule."
               }
             }
           }
@@ -453,15 +487,14 @@
             "payload": {
               "prompt": "A player is listed as questionable for tonight. What does that mean?",
               "options": [
-                {"id": "a", "text": "He will not play; it is a precaution."},
-                {"id": "b", "text": "He is uncertain to play; a game-time decision."},
+                {"id": "a", "text": "He has been ruled out and will not play tonight."},
+                {"id": "b", "text": "It could go either way; he may play or sit."},
                 {"id": "c", "text": "He will definitely play but is limited."}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. Questionable means game-time decision. You find out at warmups.",
-                "incorrect": "Questionable is the middle ground: the player might play, but it is uncertain."
-              }
+                "correct": "Right. Questionable is the middle of the scale, between doubtful and probable. Fans also call it a game-time decision, because the answer often comes near tip-off.",
+                "incorrect": "Not quite. Questionable means uncertain: he may play or may sit. Out means he will not play, and probable means he is likely to."
             }
           },
           {
@@ -482,15 +515,15 @@
               "translation": "She means injuries create a chance for lesser-known players to step up.",
               "followUps": [
                 {
-                  "line": "Can the bench actually win without them?",
-                  "why": "Good: you are thinking about whether depth is real or just depth."
+                  "line": "Who on the bench do you trust to step up?",
+                  "why": "A curious question that lets her name her favorite role player."
                 },
                 {
                   "line": "Bench mob to the rescue.",
-                  "why": "Fair: lighthearted way to root for the reserves."
+                  "why": "A lighthearted way to root for the reserves."
                 }
               ],
-              "noFakeExpertNote": "Injuries are opportunities for backup players. Some rise to the occasion; others do not."
+              "noFakeExpertNote": "Injuries open minutes for backups, and some rise to the moment while others do not. Ask who she trusts."
             }
           },
           {

@@ -1096,17 +1096,17 @@
               "choices": [
                 {
                   "id": "add",
-                  "label": "Add wing"
+                  "label": "Add front wing angle"
                 },
                 {
                   "id": "remove",
-                  "label": "Remove wing"
+                  "label": "Take front wing angle off"
                 }
               ],
               "correctChoiceId": "add",
               "explanation": {
-                "correct": "Right. Understeer means the front has no grip. Adding wing (downforce) gives the front more grip to turn.",
-                "incorrect": "To fix understeer, add downforce (wing) at the front. More wing means more grip, which helps the car turn in."
+                "correct": "Right. Understeer means the front is short of grip. More front wing angle adds downforce over the front tyres, so the car bites and turns in better.",
+                "incorrect": "Understeer is a front-grip problem, so the fix is more front downforce. Taking wing off would make the front even lighter on grip."
               },
               "ruleTag": "Setup changes"
             }
@@ -1135,8 +1135,8 @@
               ],
               "correctChoiceId": "soften",
               "explanation": {
-                "correct": "Right. Oversteer means the rear is sliding. Softening the suspension lets the rear grip the track better, so the rear stops sliding out.",
-                "incorrect": "To fix oversteer, soften the rear suspension. A softer rear lets the rear tyre keep better contact with the track."
+                "correct": "Right. A softer rear gives the rear tyres more mechanical grip, so the back end stops stepping out. It is one of the standard balance changes.",
+                "incorrect": "Teams usually soften the rear to cure oversteer, because a softer rear keeps the tyres in better contact with the track. A stiffer rear tends to make the slide worse."
               },
               "ruleTag": "Handling balance"
             }
@@ -1148,66 +1148,73 @@
               "traction"
             ],
             "payload": {
-              "prompt": "In a high-speed corner (flat out), is traction (rear grip on exit) more important than top speed on the straight?",
+              "prompt": "Exiting a slow hairpin, he floors the throttle and the rear steps out. Is that oversteer?",
               "scene": {
                 "kind": "none",
-                "alt": "A car exiting a high-speed corner onto a straight."
+                "alt": "Text only: a car on a slow corner exit, with the rear tyres spinning as the driver applies full power."
               },
               "choices": [
                 {
                   "id": "yes",
-                  "label": "Yes"
+                  "label": "Yes, the rear is sliding"
                 },
                 {
                   "id": "no",
-                  "label": "No"
+                  "label": "No, that is understeer"
                 }
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Right. In a high-speed corner, traction (the ability to put power down) is more important than raw top speed. Good traction lets you exit faster.",
-                "incorrect": "Yes. Traction on the exit gives you a better run onto the next straight. A car with no traction spins and loses more than a car with low top speed."
+                "correct": "Right. Too much power for the rear grip available makes the back step out, which is oversteer. It is the traction limit on show: good traction means you can use more of the power.",
+                "incorrect": "When the rear tyres lose grip and the back end steps out, that is oversteer. Understeer is the front pushing wide. On a slow exit, the rear is the end struggling with the power."
               },
-              "ruleTag": "Performance priorities"
+              "ruleTag": "Power-on oversteer"
             }
           },
           {
             "id": "ct-06-mul-identify-understeer",
-            "type": "multiple-choice",
+            "type": "say-this",
             "conceptIds": [
               "understeer"
             ],
             "payload": {
-              "prompt": "A driver says: 'The front is gone, I cannot turn it.' What is this?",
+              "statement": {
+                "speaker": "Sarah, paraphrasing a radio call",
+                "text": "He said the front was gone and he could not turn the car."
+              },
+              "question": "What is the car doing?",
               "options": [
                 {
                   "id": "a",
                   "text": "Understeer: the front tyres have no grip and the car will not turn in.",
-                  "explanation": "Right. 'Cannot turn it' is the classic understeer complaint. The front is washing out."
+                  "isCorrect": true,
+                  "explanation": "'The front is gone' is the classic understeer complaint. The front tyres are washing out."
                 },
                 {
                   "id": "b",
                   "text": "Oversteer: the rear is sliding out.",
-                  "explanation": "Oversteer is when the rear slides. The front going is understeer."
+                  "isCorrect": false,
+                  "explanation": "Oversteer is the rear sliding. Here it is the front that will not bite."
                 },
                 {
                   "id": "c",
-                  "text": "A broken steering rack.",
-                  "explanation": "A mechanical issue would be 'steering is broken'. This is a handling complaint, so it is understeer or oversteer."
-                },
-                {
-                  "id": "d",
-                  "text": "Too much speed for the corner.",
-                  "explanation": "Speed affects handling, but 'the front is gone' is the language for understeer, not just going too fast."
+                  "text": "The steering has broken.",
+                  "isCorrect": false,
+                  "explanation": "A broken part would be reported as a failure. This is a handling complaint about grip."
                 }
               ],
-              "correctOptionIds": [
-                "a"
+              "translation": "The front tyres are not gripping, so the car pushes wide instead of turning in. That is understeer.",
+              "followUps": [
+                {
+                  "line": "Is it the same all lap, or only in the slow corners?",
+                  "why": "Shows you know balance can change from corner to corner without pretending to know the set-up."
+                },
+                {
+                  "line": "Do you think they can fix it with a wing change?",
+                  "why": "Invites her to explain what teams can do, which is a friendly way to keep the chat going."
+                }
               ],
-              "explanation": {
-                "correct": "Right. 'The front is gone' and 'I cannot turn it' are understeer complaints. The front tyres are not gripping.",
-                "incorrect": "Understeer is when the driver cannot turn in. The front washes out and the car ploughs straight. 'The front is gone' is the radio way to say it."
-              }
+              "noFakeExpertNote": "You do not need the set-up details. 'Front is gone' means understeer, and asking a simple question is enough."
             }
           },
           {
@@ -1273,8 +1280,8 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "One third of the lap, timed separately; purple/green/yellow show who is quickest in each sector.",
-                  "explanation": "Right. A lap is split into three sectors. Timing is displayed per sector so you can see where speed is gained or lost."
+                  "text": "Roughly a third of the lap, timed separately so you can see where time is gained or lost.",
+                  "explanation": "Right. A lap is split into three sectors, each timed on its own, so you can see where a driver is quick or slow."
                 },
                 {
                   "id": "b",
@@ -1284,7 +1291,7 @@
                 {
                   "id": "c",
                   "text": "A group of corners that take the same amount of time.",
-                  "explanation": "Not intentionally. A sector is one third of the lap distance."
+                  "explanation": "Not quite. Sectors are fixed stretches of the lap, and they are not built to take equal time."
                 },
                 {
                   "id": "d",
@@ -1296,15 +1303,15 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Right. Sectors split the lap into three equal parts (distance-wise). The timing display shows each sector separately so you can see who is quick where.",
-                "incorrect": "A lap is split into three sectors. Each sector is timed separately. Purple means fastest, green means fast, yellow means less fast.",
+                "correct": "Right. Sectors split the lap into three stretches of roughly similar length. The timing screen shows each one separately, so you can see who is quick where.",
+                "incorrect": "A lap is split into three sectors, each timed separately. On the screen, purple is the fastest anyone has gone in that sector, green is a driver's own best, and yellow is slower than that.",
                 "sayThisLine": "He set a purple sector time."
               }
             }
           },
           {
             "id": "ct-07-mul-gap-vs-interval",
-            "type": "multiple-choice",
+            "type": "term-match",
             "conceptIds": [
               "gap-and-interval"
             ],

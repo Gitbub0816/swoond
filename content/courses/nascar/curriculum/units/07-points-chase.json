@@ -714,23 +714,23 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "Homestead-Miami (late November)"
+                  "text": "Homestead-Miami"
                 },
                 {
                   "id": "b",
-                  "text": "Phoenix (November)"
+                  "text": "Phoenix"
                 },
                 {
                   "id": "c",
-                  "text": "Las Vegas (December)"
+                  "text": "Las Vegas"
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. The 2026 finale moved to Homestead-Miami. That is race 36, held in early November. Phoenix hosted the finale from 2020-2025.",
-                "incorrect": "In 2026, the Cup Series championship race is at Homestead-Miami (also called Miami-Dade Speedway) in early November. The Chase ends there, and the title goes to the highest points finisher."
+                "correct": "Right. The 2026 finale is at Homestead-Miami, race 36, on November 8. Phoenix hosted the finale from 2020 to 2025.",
+                "incorrect": "In 2026 the Cup finale is at Homestead-Miami in early November. Phoenix hosted it in the previous years. The Chase ends there and the title goes to the driver with the most points."
               }
             }
           },
@@ -745,23 +745,23 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "Driver B wins the title (gains 20 points net)."
+                  "text": "Driver B, who gained 20 points."
                 },
                 {
                   "id": "b",
-                  "text": "Driver A wins the title (held the lead before the race)."
+                  "text": "Driver A, who led before the race."
                 },
                 {
                   "id": "c",
-                  "text": "They tie; go to a tiebreaker."
+                  "text": "They tie."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Exactly. B gains 20 points (55 - 35 = 20). A's 10-point lead erases, and B takes the title by 10. Race points decide it.",
-                "incorrect": "In 2026, the final points total decides the champion. Before Homestead, A led by 10. A scored 35 points (second); B scored 55 (first). B's gain of 20 points overcomes the deficit and wins the title."
+                "correct": "Exactly. B scores 55 to A's 35, a 20-point swing. A's 10-point lead turns into a 10-point deficit, so B leads by 10.",
+                "incorrect": "The final points total decides the 2026 champion. A led by 10 but scored 35 to B's 55, so B gains 20 and finishes 10 ahead. Stage points could move it, which is why the prompt says to ignore them."
               }
             }
           },
@@ -808,43 +808,35 @@
             "id": "chase-05-fg-finale-points-scenario",
             "type": "fill-the-gap",
             "conceptIds": [
-              "championship-race"
+              "championship-race",
+              "race-points"
             ],
             "payload": {
-              "prompt": "If you enter Homestead {{deficit}} points behind and finish {{race}}, you {{outcome}}.",
-              "template": "If you enter Homestead {{deficit}} points behind and finish {{race}}, you {{outcome}}.",
+              "prompt": "Work out the finale swing.",
+              "template": "You enter Homestead 10 points behind. You win (55) and the leader is second (35), so you gain {{gain}} points and {{result}}.",
               "gaps": [
                 {
-                  "id": "deficit",
+                  "id": "gain",
                   "options": [
-                    "20 points",
-                    "10 points",
-                    "50 points"
+                    "20",
+                    "55",
+                    "35"
                   ],
-                  "correct": "10 points"
+                  "correct": "20"
                 },
                 {
-                  "id": "race",
+                  "id": "result",
                   "options": [
-                    "second (35 points)",
-                    "first (55 points)",
-                    "third (34 points)"
+                    "take the title by 10",
+                    "fall 10 short",
+                    "tie the leader"
                   ],
-                  "correct": "first (55 points)"
-                },
-                {
-                  "id": "outcome",
-                  "options": [
-                    "win the title by 30 points",
-                    "win the title by 10 points",
-                    "lose by 5 points"
-                  ],
-                  "correct": "win the title by 30 points"
+                  "correct": "take the title by 10"
                 }
               ],
               "explanation": {
-                "correct": "Exactly. Down 10, you win 55 points, netting 45 points. You win the title by 30. That is how Homestead can flip the standings.",
-                "incorrect": "The finale is where big swings happen. If you are down 10 and win (55 points), you gain 45 points net and win the title. That is why the ninth-race standings matter; some drivers have no shot at Homestead because they are too far back."
+                "correct": "Right. You score 55 and the leader scores 35, so you gain 20 on them. Down 10, you finish 10 ahead. Ignoring stage points, that is how Homestead can flip the standings.",
+                "incorrect": "Compare what each of you scores: 55 for the win, 35 for second. You gain 20 on the leader, which turns a 10-point deficit into a 10-point lead. Stage points could change it, but that is the basic swing."
               }
             }
           }

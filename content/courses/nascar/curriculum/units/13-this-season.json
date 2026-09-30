@@ -1,0 +1,1297 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "nascar",
+  "unit": {
+    "id": "this-season",
+    "title": "This Season",
+    "layer": "current-season",
+    "order": 13,
+    "prerequisiteUnitIds": [
+      "your-corner"
+    ],
+    "personalizationSlots": [
+      "driver",
+      "team",
+      "series",
+      "manufacturer",
+      "track",
+      "nextRace"
+    ],
+    "live": {
+      "dataKind": "schedule,results,standings,roster,news",
+      "adapterKey": "nascar.season",
+      "refreshHint": "hourly; minutes during races"
+    },
+    "lessons": [
+      {
+        "id": "live-01",
+        "title": "Race preview: {{nextRace}}",
+        "objective": "Preview this week's race and understand what {{driver}} needs to do.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "current-season",
+          "track-types"
+        ],
+        "live": {
+          "dataKind": "schedule",
+          "refreshHint": "daily"
+        },
+        "activities": [
+          {
+            "id": "live-01-mc-track",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "track-types"
+            ],
+            "payload": {
+              "prompt": "What is the first thing to check in a preview of {{nextRace|this week's race}}?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The track type: short, intermediate, superspeedway or road course."
+                },
+                {
+                  "id": "b",
+                  "text": "The color of the winner's car."
+                },
+                {
+                  "id": "c",
+                  "text": "Which sponsors are on the hood."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Track type shapes the race: short tracks mean contact and tire wear, intermediates favor aero and setup, superspeedways mean pack racing and the Big One, road courses reward braking.",
+                "incorrect": "Paint and sponsors do not change how a race plays out. The track type does: it tells you whether to expect contact, long green-flag runs, pack racing or a braking battle."
+              }
+            }
+          },
+          {
+            "id": "live-01-ds-preview",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "current-season",
+              "track-types"
+            ],
+            "payload": {
+              "prompt": "A driver has won at this track before. What does that mean for Sunday?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Driver history",
+                    "value": "Has won at this track in the past"
+                  },
+                  {
+                    "label": "Recent form",
+                    "value": "Solid, not dominant"
+                  },
+                  {
+                    "label": "Car and rules",
+                    "value": "Cars and setups change every year"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "yes",
+                  "label": "A reason to watch, not a guarantee.",
+                  "verdict": "best",
+                  "consequence": "Past success shows the driver knows the track's grip and passing lanes. Cars change, so it is a good sign and not a promise.",
+                  "considerations": [
+                    "Track knowledge is real.",
+                    "Cars change year to year.",
+                    "Recent form still matters."
+                  ]
+                },
+                {
+                  "id": "no",
+                  "label": "It means nothing at all.",
+                  "verdict": "poor",
+                  "consequence": "That goes too far. Comfort at a track and a feel for its quirks do carry over, even when the car is new.",
+                  "considerations": [
+                    "Experience counts.",
+                    "Comfort with the track is an edge.",
+                    "It is a signal, not a guarantee."
+                  ]
+                }
+              ],
+              "expertNote": "Track history is a real signal, but only one of several. Pair it with current form and the track type."
+            }
+          },
+          {
+            "id": "live-01-st-preview",
+            "type": "say-this",
+            "conceptIds": [
+              "current-season"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "{{driver|My driver}} needs a good qualifying run so the start is not stuck in traffic."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "Starting up front helps with track position and avoids early trouble."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "Qualifying does not affect the race."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "The fastest car always starts from the back."
+                }
+              ],
+              "translation": "A good starting spot means clean air and less risk in the early laps.",
+              "followUps": [
+                {
+                  "line": "Does {{driver|your driver}} usually qualify well at tracks like this one?",
+                  "why": "It shows you are thinking about track-specific trends."
+                },
+                {
+                  "line": "What is the biggest challenge at this track?",
+                  "why": "It invites her to share what she sees as the key factor."
+                }
+              ]
+            }
+          },
+          {
+            "id": "live-01-tt-preview",
+            "type": "talk-track",
+            "conceptIds": [
+              "current-season"
+            ],
+            "payload": {
+              "title": "Race week talk",
+              "setting": "She is excited about this week's race and wants to talk about {{driver|her driver}}'s chances.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "I think {{driver|my driver}} has a real shot this week. The car has felt fast lately.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "What has been working, the speed, the pit crew or the setup?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Good question. The car has felt better the last few weeks.",
+                      "coachNote": "You asked about specifics, which invites deeper talk."
+                    },
+                    {
+                      "id": "b",
+                      "text": "Yeah, I hope they win.",
+                      "smoothDelta": 3,
+                      "theirResponse": "Me too. Do you think the track suits them?",
+                      "coachNote": "Support is kind, but a question about strengths goes further."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Race preview talk is about what to watch for on Sunday."
+            }
+          },
+          {
+            "id": "live-01-fg-distance",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "current-season"
+            ],
+            "payload": {
+              "prompt": "A half-mile track needs {{laps}} laps to cover a 250-mile race.",
+              "template": "A half-mile track needs {{laps}} laps to cover a 250-mile race.",
+              "gaps": [
+                {
+                  "id": "laps",
+                  "options": [
+                    "250",
+                    "500",
+                    "1,000"
+                  ],
+                  "correct": "500"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. 250 miles divided by a half-mile per lap is 500 laps. Shorter tracks mean more laps, more traffic and more chances to pit.",
+                "incorrect": "Divide the distance by the track length: 250 miles at half a mile per lap is 500 laps. Short tracks pack in a lot of laps."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "live-02",
+        "title": "Last race, explained",
+        "objective": "Explain what happened last weekend in plain English.",
+        "estimatedMinutes": 11,
+        "conceptIds": [
+          "current-season",
+          "track-position"
+        ],
+        "live": {
+          "dataKind": "results",
+          "refreshHint": "minutes after race ends"
+        },
+        "activities": [
+          {
+            "id": "live-02-mc-winner",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "current-season"
+            ],
+            "payload": {
+              "prompt": "A driver has a strong finish. What does that do for their points?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "It earns race points by finishing position, plus any stage points."
+                },
+                {
+                  "id": "b",
+                  "text": "Nothing until the end of the season."
+                },
+                {
+                  "id": "c",
+                  "text": "Only the winner scores points."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Finishing position sets race points (55 for a win, 35 for second and down to 1 for 40th), and the top ten at each stage end earn stage points.",
+                "incorrect": "Points are awarded every race, not at the season's end, and far more than the winner scores: every finisher gets race points, and stage points go to the top ten at each stage end."
+              }
+            }
+          },
+          {
+            "id": "live-02-ds-race-call",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "track-position"
+            ],
+            "payload": {
+              "prompt": "A team stays out on old tires late and wins. Was it a brilliant call?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Strategy",
+                    "value": "Stayed out under caution instead of pitting"
+                  },
+                  {
+                    "label": "Outcome",
+                    "value": "Won with older tires"
+                  },
+                  {
+                    "label": "Alternative",
+                    "value": "Other teams pitted for fresh tires"
+                  },
+                  {
+                    "label": "Key factor",
+                    "value": "Track position held up against fresh rubber"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "lucky",
+                  "label": "Good call, helped by how the race played out.",
+                  "verdict": "best",
+                  "consequence": "Track position can beat fresh tires, but a late caution or a long run had to cooperate. Judge the call and the luck separately.",
+                  "considerations": [
+                    "Track position is powerful.",
+                    "The caution timing helped.",
+                    "The decision was reasonable."
+                  ]
+                },
+                {
+                  "id": "yes",
+                  "label": "Pure genius; staying out always wins.",
+                  "verdict": "poor",
+                  "consequence": "It does not always work. The same call can fail if the caution comes at the wrong time or the tires fade.",
+                  "considerations": [
+                    "Outcomes can flatter a call.",
+                    "Tire falloff can punish it.",
+                    "It is a gamble with good odds."
+                  ]
+                }
+              ],
+              "expertNote": "Stay-out calls look brilliant when they work and foolish when they do not. A fair fan credits the plan and the timing."
+            }
+          },
+          {
+            "id": "live-02-st-key-moment",
+            "type": "say-this",
+            "conceptIds": [
+              "current-season",
+              "track-position"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "The pit crew won that race on that four-tire stop."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "A quick stop gained track position and set up the finish."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "The pit crew has no impact on race results."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "Pit stops only matter at superspeedways."
+                }
+              ],
+              "translation": "A fast stop can be the difference between a win and a loss.",
+              "followUps": [
+                {
+                  "line": "How did that stop compare to the others around them?",
+                  "why": "It shows you are paying attention to the details."
+                },
+                {
+                  "line": "Is that crew usually that quick?",
+                  "why": "It starts a conversation about consistent team strength."
+                }
+              ]
+            }
+          },
+          {
+            "id": "live-02-ds-finish",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "current-season"
+            ],
+            "payload": {
+              "prompt": "A driver was 15th with five laps to go and finished 12th. Good drive?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Position with 5 laps left",
+                    "value": "15th"
+                  },
+                  {
+                    "label": "Final position",
+                    "value": "12th"
+                  },
+                  {
+                    "label": "Change",
+                    "value": "Gained three positions late"
+                  },
+                  {
+                    "label": "Context",
+                    "value": "No crashes, a steady drive"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "solid",
+                  "label": "Solid; they finished strong.",
+                  "verdict": "best",
+                  "consequence": "Passing is hard, especially late, so gaining three spots shows racecraft and a car with speed left.",
+                  "considerations": [
+                    "Passing is tough.",
+                    "Late moves matter.",
+                    "Momentum is a good sign."
+                  ]
+                },
+                {
+                  "id": "nothing",
+                  "label": "It is just a 12th; not special.",
+                  "verdict": "acceptable",
+                  "consequence": "A fair point, since 12th is mid-pack. But the late gains show they had something for the last run.",
+                  "considerations": [
+                    "The finish is the result.",
+                    "The direction matters too.",
+                    "They were moving forward."
+                  ]
+                }
+              ],
+              "expertNote": "How a car is running at the end tells you about its speed and its momentum going into next week."
+            }
+          },
+          {
+            "id": "live-02-tt-recap",
+            "type": "talk-track",
+            "conceptIds": [
+              "current-season"
+            ],
+            "payload": {
+              "title": "Last race debrief",
+              "setting": "She wants to talk about a pit call from last week's race.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "That race was wild. I am still mad about the pit call.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "Which stop cost them? Was it the tires, the speed or a penalty?",
+                      "smoothDelta": 26,
+                      "theirResponse": "The first one. They got caught for a pit road penalty.",
+                      "coachNote": "You asked what went wrong and where. That is the right level."
+                    },
+                    {
+                      "id": "b",
+                      "text": "Yeah, that was rough.",
+                      "smoothDelta": 2,
+                      "theirResponse": "It really was. We could have won.",
+                      "coachNote": "Sympathy is fine, but dig into the specific pit issue."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "We recovered, but we lost like six spots on that stop.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "Did they make up ground on track after that, or was it too much to recover?",
+                      "smoothDelta": 25,
+                      "theirResponse": "They were faster the last stage, but it was not enough time.",
+                      "coachNote": "You are tracking the pit loss against the recovery."
+                    },
+                    {
+                      "id": "b",
+                      "text": "At least they stayed on the lead lap.",
+                      "smoothDelta": 5,
+                      "theirResponse": "True, but we should have been better with that car.",
+                      "coachNote": "A silver lining is nice, but acknowledge the frustration first."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Debrief last week to understand what matters heading into the next race."
+            }
+          }
+        ]
+      },
+      {
+        "id": "live-03",
+        "title": "Chase picture",
+        "objective": "Read the Chase standings and explain where {{driver}} stands.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "chase-2026",
+          "points-reset"
+        ],
+        "live": {
+          "dataKind": "standings",
+          "refreshHint": "daily"
+        },
+        "activities": [
+          {
+            "id": "live-03-mc-seed",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "points-reset"
+            ],
+            "payload": {
+              "prompt": "In the 2026 Chase reset, how far ahead of seed 2 does seed 1 start?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "100 points."
+                },
+                {
+                  "id": "b",
+                  "text": "25 points."
+                },
+                {
+                  "id": "c",
+                  "text": "None; everyone starts equal."
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. Seed 1 starts the Chase at 2,100 and seed 2 at 2,075. The reset then drops 5 points per seed below that, down to 2,000 for 16th.",
+                "incorrect": "Seeds do not start equal, and 100 points is the gap between first and 16th (2,100 and 2,000). Seed 1 is 25 points ahead of seed 2 (2,100 to 2,075)."
+              }
+            }
+          },
+          {
+            "id": "live-03-es-seed-gap",
+            "type": "estimate-slider",
+            "conceptIds": [
+              "chase-2026",
+              "points-reset"
+            ],
+            "payload": {
+              "prompt": "Seed 1 starts the Chase at 2,100 and seed 16 at 2,000. How big is the gap?",
+              "unit": "points",
+              "min": 0,
+              "max": 200,
+              "step": 10,
+              "correctValue": 100,
+              "tolerance": {
+                "full": 10,
+                "partial": 30
+              },
+              "explanation": {
+                "correct": "Right. 2,100 minus 2,000 is a 100-point gap, about two race wins' worth, so the top seed has a real head start but nobody is out.",
+                "incorrect": "2,100 minus 2,000 is 100 points. A win is worth 55, so that gap is under two wins, which is why all 16 drivers have a path."
+              }
+            }
+          },
+          {
+            "id": "live-03-fg-chase-math",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "chase-2026"
+            ],
+            "payload": {
+              "prompt": "The Chase is {{races}} races long, and the driver with the most points after the {{when}} wins the title.",
+              "template": "The Chase is {{races}} races long, and the driver with the most points after the {{when}} wins the title.",
+              "gaps": [
+                {
+                  "id": "races",
+                  "options": [
+                    "eight",
+                    "ten",
+                    "twelve"
+                  ],
+                  "correct": "ten"
+                },
+                {
+                  "id": "when",
+                  "options": [
+                    "finale",
+                    "first Chase race",
+                    "regular season"
+                  ],
+                  "correct": "finale"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. The 2026 Chase is ten races, and the champion is whoever has the most points after the finale. No eliminations along the way.",
+                "incorrect": "The Chase runs ten races and the title goes to the driver with the most points after the last one, the finale."
+              }
+            }
+          },
+          {
+            "id": "live-03-ds-chase-position",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "chase-2026"
+            ],
+            "payload": {
+              "prompt": "A driver is 45 points behind with eight races left. Is the title alive?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Gap to leader",
+                    "value": "45 points"
+                  },
+                  {
+                    "label": "Races remaining",
+                    "value": "8, including the finale"
+                  },
+                  {
+                    "label": "Points for a win",
+                    "value": "55, plus stage points"
+                  },
+                  {
+                    "label": "Leader",
+                    "value": "Finishing in the top ten most weeks"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "yes",
+                  "label": "Alive, but they need a couple of big days.",
+                  "verdict": "best",
+                  "consequence": "A win gains about 28 points on a leader who finishes tenth, before stage points. Two strong days and a steady rest can close 45 points over eight races.",
+                  "considerations": [
+                    "A win is worth 55.",
+                    "The leader still scores.",
+                    "Eight races is a lot of time."
+                  ]
+                },
+                {
+                  "id": "unlikely",
+                  "label": "Dead; nobody recovers from 45 points.",
+                  "verdict": "poor",
+                  "consequence": "Too gloomy. With 55 for a win and eight races left, a 45-point gap is within reach.",
+                  "considerations": [
+                    "Wins are worth a lot.",
+                    "Leaders have bad days too.",
+                    "Eight races is plenty."
+                  ]
+                }
+              ],
+              "expertNote": "Chase math is about points swings: a win against a top-ten finish is roughly a 30-point swing, so a gap of 45 is about two good days."
+            }
+          },
+          {
+            "id": "live-03-st-standings",
+            "type": "say-this",
+            "conceptIds": [
+              "chase-2026"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "He is not in the Chase yet. He needs to be in the top 16 when the regular season ends."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "Only the top 16 in points after the 26-race regular season make the Chase; wins do not guarantee a spot."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "All 40 drivers are automatically in the Chase."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "Only the top three are invited to the Chase."
+                }
+              ],
+              "translation": "The Chase is for the top 16 in points after 26 races. Drivers outside that line keep racing but cannot win the title.",
+              "followUps": [
+                {
+                  "line": "How many points is he from the cutoff right now?",
+                  "why": "It shows you are tracking the cushion above the line."
+                },
+                {
+                  "line": "How many races are left until the cutoff?",
+                  "why": "It reminds you that the regular season has a deadline."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "live-04",
+        "title": "{{driver}} this week",
+        "objective": "Explain how your driver is performing and what matters for them.",
+        "estimatedMinutes": 11,
+        "conceptIds": [
+          "driver-focus"
+        ],
+        "live": {
+          "dataKind": "roster,standings",
+          "refreshHint": "daily"
+        },
+        "activities": [
+          {
+            "id": "live-04-st-driver-form",
+            "type": "say-this",
+            "conceptIds": [
+              "driver-focus"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "{{driver|My driver}} has been good at intermediates this year. That is why I am hopeful this week."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "Track-type strengths matter; knowing where a driver shines helps you predict races."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "All drivers perform the same at all tracks."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "Track type does not affect racing."
+                }
+              ],
+              "translation": "Some drivers shine on certain track types. Knowing the pattern tells you when to be excited.",
+              "followUps": [
+                {
+                  "line": "Which track types are not their strength?",
+                  "why": "It invites you to think about weaknesses too."
+                },
+                {
+                  "line": "Why do you think they are good at intermediates?",
+                  "why": "It starts a conversation about handling, setup or racecraft."
+                }
+              ]
+            }
+          },
+          {
+            "id": "live-04-ds-driver-decision",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "driver-focus"
+            ],
+            "payload": {
+              "prompt": "A driver was running top five, then had three bad-luck weeks. Expect a rebound?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Before the streak",
+                    "value": "Running top five consistently"
+                  },
+                  {
+                    "label": "Last three races",
+                    "value": "A crash, a mechanical issue and a pit penalty"
+                  },
+                  {
+                    "label": "Team status",
+                    "value": "No major changes to car or crew"
+                  },
+                  {
+                    "label": "Speed",
+                    "value": "The car was quick all three weeks"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "yes",
+                  "label": "Likely, if the speed is still there.",
+                  "verdict": "best",
+                  "consequence": "Bad luck does not carry over. If the car was fast and nothing changed, results usually follow the speed.",
+                  "considerations": [
+                    "Speed was there.",
+                    "The causes were one-off.",
+                    "Nothing structural changed."
+                  ]
+                },
+                {
+                  "id": "no",
+                  "label": "Three bad weeks means they have lost it.",
+                  "verdict": "poor",
+                  "consequence": "Too quick a conclusion. The facts say the car was fast and the problems were one-offs, not a decline.",
+                  "considerations": [
+                    "Small samples happen.",
+                    "The causes were varied.",
+                    "Speed is the better signal."
+                  ]
+                }
+              ],
+              "expertNote": "Before judging a bad stretch, ask what caused it. One-off problems fade; a slow car does not."
+            }
+          },
+          {
+            "id": "live-04-mc-driver-strength",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "driver-focus"
+            ],
+            "payload": {
+              "prompt": "How can you guess where {{driver|their driver}} might run well this week?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Match their strengths (short track, road course, superspeedway) to this week's track."
+                },
+                {
+                  "id": "b",
+                  "text": "Check which car number is luckiest."
+                },
+                {
+                  "id": "c",
+                  "text": "Only look at last week's result."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. A driver's best weeks often come at the track types that suit them, so pairing strengths with the track type is a smart preview.",
+                "incorrect": "Numbers are not lucky and one result is not a pattern. Fit between the driver's strengths and the track type is the solid signal."
+              }
+            }
+          },
+          {
+            "id": "live-04-tt-driver-chat",
+            "type": "talk-track",
+            "conceptIds": [
+              "driver-focus"
+            ],
+            "payload": {
+              "title": "Talk about {{driver}}",
+              "setting": "She wants to talk about how {{driver|her driver}} is doing and what they need to do.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "{{driver|My driver}} has been solid, but not in the conversation for the title yet.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "How far back are they? Can they make up ground with a few big weeks?",
+                      "smoothDelta": 27,
+                      "theirResponse": "It is a big gap. Possible, but it needs to be nearly perfect.",
+                      "coachNote": "You asked about the gap and the math. That is real championship talk."
+                    },
+                    {
+                      "id": "b",
+                      "text": "Yeah, too far back.",
+                      "smoothDelta": 3,
+                      "theirResponse": "I think so. But one good race can change things.",
+                      "coachNote": "Agree with her reasoning, then ask about the upside."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "The next few races are supposed to suit them.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "What do you mean by suit them? The track type, or the car's strengths?",
+                      "smoothDelta": 28,
+                      "theirResponse": "Both. They love those tracks and the car is quick there.",
+                      "coachNote": "You asked her to explain her reasoning, which deepens the talk."
+                    },
+                    {
+                      "id": "b",
+                      "text": "That would be awesome.",
+                      "smoothDelta": 4,
+                      "theirResponse": "Right? Do you think they can win any of them?",
+                      "coachNote": "Enthusiasm is good. Ask her for a prediction based on track fit."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Knowing a driver's strengths tells you which weeks to be most hopeful."
+            }
+          }
+        ]
+      },
+      {
+        "id": "live-05",
+        "title": "Why are fans talking about this?",
+        "objective": "Understand the current storyline everyone is discussing.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "current-season",
+          "playoff-debate"
+        ],
+        "live": {
+          "dataKind": "news,standings",
+          "refreshHint": "hourly"
+        },
+        "activities": [
+          {
+            "id": "live-05-st-storyline",
+            "type": "say-this",
+            "conceptIds": [
+              "current-season"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "Everyone is talking about that pit call. I think it was wrong."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "Pit calls split fans, so it is smart to ask what she saw before you agree."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "Pit calls are never controversial."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "Everyone always agrees on strategy decisions."
+                }
+              ],
+              "translation": "When a high-stakes call goes wrong, fans debate it. Join in without pretending you know more than you do.",
+              "followUps": [
+                {
+                  "line": "What would you have done instead?",
+                  "why": "It invites her to explain her own reasoning."
+                },
+                {
+                  "line": "Did it change who won, or was the outcome already set?",
+                  "why": "It asks her to think about how much the call mattered."
+                }
+              ]
+            }
+          },
+          {
+            "id": "live-05-mc-controversy",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "current-season"
+            ],
+            "payload": {
+              "prompt": "A driver publicly says a rule is unfair. What is a fair way to see it?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Driver feedback can influence rule changes, but NASCAR makes the final call."
+                },
+                {
+                  "id": "b",
+                  "text": "Drivers write the rules themselves."
+                },
+                {
+                  "id": "c",
+                  "text": "It is always just talk and never matters."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Drivers, teams and fans can push for changes, and NASCAR has adjusted rules in response, but the decision is NASCAR's.",
+                "incorrect": "Drivers do not write the rules, and feedback is not always ignored. It can shape changes, with NASCAR deciding in the end."
+              }
+            }
+          },
+          {
+            "id": "live-05-ds-debate",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "current-season",
+              "playoff-debate"
+            ],
+            "payload": {
+              "prompt": "Fans are split over a recent rule. Who is right?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Rule change",
+                    "value": "Affects pit stops or cautions"
+                  },
+                  {
+                    "label": "Supporters say",
+                    "value": "More action, fairer racing"
+                  },
+                  {
+                    "label": "Critics say",
+                    "value": "Artificial, hurts the best teams"
+                  },
+                  {
+                    "label": "Status",
+                    "value": "Recently changed"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "both",
+                  "label": "Both sides have a real point.",
+                  "verdict": "best",
+                  "consequence": "Rule debates rarely have one right answer. One side values fairness and action; the other values tradition and earned results.",
+                  "considerations": [
+                    "Trade-offs exist.",
+                    "Action versus tradition.",
+                    "Both views are reasonable."
+                  ]
+                },
+                {
+                  "id": "one",
+                  "label": "One side is obviously right.",
+                  "verdict": "poor",
+                  "consequence": "You may lean one way, but calling it obvious ends the conversation. Fans enjoy hearing your reasons, not a verdict.",
+                  "considerations": [
+                    "Opinions differ.",
+                    "Values matter here.",
+                    "A question works better than a verdict."
+                  ]
+                }
+              ],
+              "expertNote": "Rule debates are never fully settled. The sport keeps trading off action, fairness, tradition and innovation."
+            }
+          },
+          {
+            "id": "live-05-tt-debate",
+            "type": "talk-track",
+            "conceptIds": [
+              "current-season"
+            ],
+            "payload": {
+              "title": "Debate talk",
+              "setting": "There is a hot debate about something in racing, and she wants to know what you think.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "That new rule is going to ruin the sport. Everyone is mad.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "Why do you think it is bad? What is wrong with it?",
+                      "smoothDelta": 26,
+                      "theirResponse": "It takes away strategy. Now it is just chaos.",
+                      "coachNote": "You asked her to explain instead of agreeing, which keeps the talk real."
+                    },
+                    {
+                      "id": "b",
+                      "text": "Yeah, I hate it too.",
+                      "smoothDelta": 2,
+                      "theirResponse": "Right? I thought you would.",
+                      "coachNote": "Agreeing this fast skips the conversation. Ask why first."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "But some fans think it makes racing better.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "What do you think they mean? How could it be better?",
+                      "smoothDelta": 25,
+                      "theirResponse": "More passing, I guess. More action.",
+                      "coachNote": "You explored both sides, which is real conversation."
+                    },
+                    {
+                      "id": "b",
+                      "text": "So there are real people on both sides of this?",
+                      "smoothDelta": 8,
+                      "theirResponse": "Yeah, half the fans want action; half want tradition.",
+                      "coachNote": "Acknowledging both sides shows balance, even if you lean one way."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Learn to hold both sides of a debate; NASCAR fans are split on most big questions."
+            }
+          }
+        ]
+      },
+      {
+        "id": "live-06",
+        "title": "What to say Monday",
+        "objective": "Prepare to talk about the race and what it means.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "conversation-basics",
+          "current-season"
+        ],
+        "live": {
+          "dataKind": "results,news",
+          "refreshHint": "minutes after race ends"
+        },
+        "activities": [
+          {
+            "id": "live-06-st-monday-opener",
+            "type": "say-this",
+            "conceptIds": [
+              "conversation-basics"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "Did you see the race? That ending was something."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "Be honest about what you saw, then ask her to walk you through the ending."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "Claim you watched every lap, even if you did not."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "Change the subject to something else."
+                }
+              ],
+              "translation": "Start with the truth. Honest curiosity beats pretending, and fans love explaining the race they loved.",
+              "followUps": [
+                {
+                  "line": "I caught the last few laps. What happened at the end?",
+                  "why": "It is honest and gives her the floor."
+                },
+                {
+                  "line": "What did you think of the pit calls?",
+                  "why": "It moves to strategy, which fans love to discuss."
+                }
+              ]
+            }
+          },
+          {
+            "id": "live-06-mc-read-the-room",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "current-season"
+            ],
+            "payload": {
+              "prompt": "{{driver|Her driver}} had a bad race and she is upset. What is the right move?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Tell her it is just one race and not to worry."
+                },
+                {
+                  "id": "b",
+                  "text": "Listen to her feelings and ask what made it tough."
+                },
+                {
+                  "id": "c",
+                  "text": "Change the subject to something happier."
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. When she is frustrated, she needs to vent first. Listen, ask what went wrong, and leave the big picture for later.",
+                "incorrect": "Brushing it off or changing the subject can feel dismissive. Reading the room means letting her frustration count."
+              }
+            }
+          },
+          {
+            "id": "live-06-ds-tough-loss",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "current-season"
+            ],
+            "payload": {
+              "prompt": "A driver lost by half a car length on the last lap. How do you talk about it Monday?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Finish",
+                    "value": "Second by half a car length"
+                  },
+                  {
+                    "label": "Driver effort",
+                    "value": "Did everything right"
+                  },
+                  {
+                    "label": "Team mood",
+                    "value": "Heartbroken, but the car was fast"
+                  },
+                  {
+                    "label": "Your job",
+                    "value": "Be sympathetic, not fix it"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "sympathy",
+                  "label": "Say how close it was and how well they drove.",
+                  "verdict": "best",
+                  "consequence": "That honors the effort and the pain. Second place stings more when you nearly won.",
+                  "considerations": [
+                    "Losses hurt.",
+                    "Close losses show speed.",
+                    "She knows they drove well."
+                  ]
+                },
+                {
+                  "id": "silver",
+                  "label": "Look on the bright side; the car was fast.",
+                  "verdict": "acceptable",
+                  "consequence": "True, but timing matters. Let the disappointment breathe first, then share the silver lining.",
+                  "considerations": [
+                    "The car was fast.",
+                    "Monday is for feeling.",
+                    "Perspective comes later."
+                  ]
+                }
+              ],
+              "expertNote": "The best Monday conversations honor the disappointment first, then find the good in it."
+            }
+          },
+          {
+            "id": "live-06-fg-monday-line",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "conversation-basics"
+            ],
+            "payload": {
+              "prompt": "A good Monday opener is an open {{kind}}, such as 'What did you think of that last restart?'",
+              "template": "A good Monday opener is an open {{kind}}, such as 'What did you think of that last restart?'",
+              "gaps": [
+                {
+                  "id": "kind",
+                  "options": [
+                    "question",
+                    "lecture",
+                    "rumor"
+                  ],
+                  "correct": "question"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. An open question about something specific invites her to share what she saw, and it keeps you honest about what you know.",
+                "incorrect": "A lecture talks at her and a rumor is not something you can back up. An open, specific question starts a real conversation."
+              }
+            }
+          },
+          {
+            "id": "live-06-tt-monday-chat",
+            "type": "talk-track",
+            "conceptIds": [
+              "conversation-basics",
+              "current-season"
+            ],
+            "payload": {
+              "title": "Monday after a big race",
+              "setting": "The race just ended yesterday. It was huge and she is still processing. You both watched.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "That finish was insane. I can not believe how close it was.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "Yeah. Do you think they had the car to win, or did the leader just out-drive them at the end?",
+                      "smoothDelta": 28,
+                      "theirResponse": "They had it. That last pit stop put us behind.",
+                      "coachNote": "You asked her to weigh speed against strategy, which is the right question."
+                    },
+                    {
+                      "id": "b",
+                      "text": "Yeah, so close.",
+                      "smoothDelta": 4,
+                      "theirResponse": "I know, right? I am so mad.",
+                      "coachNote": "Sympathy is good. Asking for her reasoning goes deeper."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "But at least the car is fast going into next week.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "Right. Does that speed carry to the next track, or is this one special?",
+                      "smoothDelta": 27,
+                      "theirResponse": "I think so. The last few weeks have been solid.",
+                      "coachNote": "You moved from last week to what comes next, which is forward-looking talk."
+                    },
+                    {
+                      "id": "b",
+                      "text": "Yeah, there is still time.",
+                      "smoothDelta": 3,
+                      "theirResponse": "True. But we need more wins.",
+                      "coachNote": "Acknowledge the bigger picture, then get specific about what is needed."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Monday conversations honor the emotion of Sunday, then look ahead to next week."
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
