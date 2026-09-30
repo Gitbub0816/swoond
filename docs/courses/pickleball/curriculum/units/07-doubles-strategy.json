@@ -19,30 +19,24 @@
             "type": "hotspot-tap",
             "conceptIds": ["court-positioning"],
             "payload": {
-              "prompt": "Tap to mark where each player should be in a 'two up' formation.",
-              "image": {
-                "asset": "dbl-01-two-up-position.svg",
-                "alt": "Doubles court from above, showing the two-up formation with both partners at the kitchen line",
-                "license": "original-swoond"
+              "prompt": "Tap to mark the two-up formation.",
+              "diagram": {
+                "diagramId": "pickleball-court-top",
+                "aspectRatio": 0.72,
+                "alt": "Doubles court from above with the two-up formation highlighted"
               },
-              "spots": [
+              "hotspots": [
                 {
-                  "id": "spot-1",
-                  "label": "Partner 1 at kitchen line",
-                  "x": 35,
-                  "y": 30
-                },
-                {
-                  "id": "spot-2",
-                  "label": "Partner 2 at kitchen line",
-                  "x": 65,
-                  "y": 30
+                  "id": "kitchen-line",
+                  "label": "Kitchen line",
+                  "shape": {"kind": "rect", "x": 0.1, "y": 0.23, "w": 0.8, "h": 0.08}
                 }
               ],
+              "correctHotspotIds": ["kitchen-line"],
               "explanation": {
-                "correct": "Two-up is the ideal position in doubles: both partners at the kitchen line, close to the net, ready to volley and control the point.",
-                "incorrect": "Two-up means both partners close to the kitchen line, not spread out or back at the baseline.",
-                "sayThisLine": "Two up is the winning position: both players at the net."
+                "correct": "Two-up is the ideal position: both partners at the kitchen line, ready to volley and control.",
+                "incorrect": "Two-up means both at the kitchen line, not spread out or at the baseline.",
+                "sayThisLine": "Two up: both at the net."
               }
             }
           },
@@ -182,9 +176,9 @@
                 },
                 {
                   "id": "attack-immediately",
-                  "label": "Attack immediately, assume it's a weak ball",
-                  "verdict": "risky",
-                  "consequence": "You might get smashed. Most third shots are soft drops that you cannot attack from the baseline.",
+                  "label": "Attack immediately, assume it's weak",
+                  "verdict": "poor",
+                  "consequence": "Risky. Most third shots are soft drops that you cannot attack from the baseline.",
                   "considerations": [
                     "A hard drive from baseline can hurt",
                     "Assume soft until proven otherwise",
@@ -263,7 +257,9 @@
             "conceptIds": ["third-shot-drop", "transition-zone", "advance-to-kitchen-line"],
             "payload": {
               "simulationId": "pickleball.third-shot.drop-and-advance.v1",
-              "prompt": "Watch the third-shot drop and team advance. Time your movement to reach the kitchen line safely."
+              "simulationVersion": "1.0.0",
+              "difficulty": 2,
+              "configuration": {}
             }
           },
           {
@@ -306,6 +302,37 @@
                 "correct": "The transition zone is mid-court, the riskiest area. That's why the drop buys time: to cross it safely.",
                 "incorrect": "The transition zone (mid-court between baseline and kitchen line) is what you must cross after a soft drop.",
                 "sayThisLine": "Crossing the transition zone after a soft drop gives you time."
+              }
+            }
+          },
+          {
+            "id": "dbl-03-fg-1",
+            "type": "fill-the-gap",
+            "conceptIds": ["third-shot-drop", "advance-to-kitchen-line"],
+            "payload": {
+              "prompt": "Complete the third-shot drop strategy.",
+              "template": "The {{shot-type}} lands in the kitchen and {{what-happens}}, so your team has time to {{action}}.",
+              "gaps": [
+                {
+                  "id": "shot-type",
+                  "options": ["drop", "drive"],
+                  "correct": "drop"
+                },
+                {
+                  "id": "what-happens",
+                  "options": ["takes time to get there", "ends the point"],
+                  "correct": "takes time to get there"
+                },
+                {
+                  "id": "action",
+                  "options": ["advance to the kitchen", "retreat to baseline"],
+                  "correct": "advance to the kitchen"
+                }
+              ],
+              "explanation": {
+                "correct": "The drop takes time, giving your team a window to advance from baseline to the kitchen line.",
+                "incorrect": "Drop into kitchen gives time; use that moment to advance.",
+                "sayThisLine": "Soft drop buys time to advance to the net."
               }
             }
           }
@@ -448,7 +475,9 @@
             "conceptIds": ["moving-as-a-team", "court-positioning"],
             "payload": {
               "simulationId": "pickleball.doubles.court-coverage.v1",
-              "prompt": "Watch two players move as a unit. As the ball moves, see how they shift together to cover gaps."
+              "simulationVersion": "1.0.0",
+              "difficulty": 2,
+              "configuration": {}
             }
           },
           {

@@ -551,3 +551,553 @@ Each sample has a planned lesson id. Payloads are the exact contract shape.
   "sayThisLine": "Renting one for the weekend sounds smart."
 }
 ```
+
+### 2.7 `talk-track`
+
+The nine full Talk Track scenarios in section 4 are the sample payloads for this type (each validates against `talk-track.schema.json`); the launch roster of 16 is in section 5.
+
+### 2.8 `timing-tap`
+
+**Sample 1** (lesson `str-05`)
+
+```json
+{
+  "prompt": "Tap at the peak of the jump.",
+  "theme": { "label": "Decisive moment", "resultUnit": "points" },
+  "rounds": [
+    { "zoneStartPct": 44, "zoneEndPct": 58, "sweepSeconds": 1.6 },
+    { "zoneStartPct": 46, "zoneEndPct": 56, "sweepSeconds": 1.3 },
+    { "zoneStartPct": 48, "zoneEndPct": 55, "sweepSeconds": 1.0 }
+  ],
+  "explanation": {
+    "correct": "You pressed at the top of the action. Street and sports photographers learn to anticipate the peak, and to press a hair early to beat their own reaction time.",
+    "incorrect": "The peak is brief, and reaction time eats a fraction of a second. Watch the action build and press just before it arrives.",
+    "sayThisLine": "I pressed just before the peak; that's the decisive moment."
+  },
+  "accessibilityAlternative": "tap-to-stop-slow"
+}
+```
+
+**Sample 2** (lesson `mot-04`)
+
+```json
+{
+  "prompt": "Tap as the cyclist crosses the centre.",
+  "theme": { "label": "Panning", "resultUnit": "points" },
+  "rounds": [
+    { "zoneStartPct": 42, "zoneEndPct": 58, "sweepSeconds": 2.0 },
+    { "zoneStartPct": 44, "zoneEndPct": 56, "sweepSeconds": 1.6 },
+    { "zoneStartPct": 45, "zoneEndPct": 55, "sweepSeconds": 1.3 }
+  ],
+  "explanation": {
+    "correct": "Panning works when the camera follows the subject and you press as they cross your planned spot. The subject stays sharp while the background streaks.",
+    "incorrect": "Pick your spot, follow the subject smoothly and press as they arrive there. Stopping the pan when you press ruins the streaks.",
+    "sayThisLine": "Follow through the shot, the way you do when you pan."
+  },
+  "accessibilityAlternative": "hold-and-release"
+}
+```
+
+**Sample 3** (lesson `wild-02`)
+
+```json
+{
+  "prompt": "Tap the instant the wings are raised.",
+  "theme": { "label": "Wingbeat", "resultUnit": "points" },
+  "rounds": [
+    { "zoneStartPct": 60, "zoneEndPct": 72, "sweepSeconds": 1.4 },
+    { "zoneStartPct": 62, "zoneEndPct": 71, "sweepSeconds": 1.1 },
+    { "zoneStartPct": 64, "zoneEndPct": 70, "sweepSeconds": 0.9 }
+  ],
+  "explanation": {
+    "correct": "Wing positions come and go in fractions of a second. A high burst rate helps, but knowing the rhythm lets you time the frame you want.",
+    "incorrect": "Birds change pose faster than you react. Learn the rhythm of a wingbeat and press a beat early; a fast burst catches the rest.",
+    "sayThisLine": "I shoot a burst so I catch the wing up."
+  },
+  "accessibilityAlternative": "tap-to-stop-slow"
+}
+```
+
+### 2.9 `say-this`
+
+**Sample 1** (lesson `conv-01`)
+
+```json
+{
+  "statement": { "speaker": "Her", "text": "I got up at 5 for golden hour and it clouded over. Total flat light." },
+  "question": "What is she talking about?",
+  "options": [
+    { "id": "gh", "text": "The warm low-sun hour after sunrise", "isCorrect": true, "explanation": "Golden hour is the soft, warm light near sunrise and sunset." },
+    { "id": "flat", "text": "Cloud cover made soft, shadowless light", "isCorrect": true, "explanation": "Flat light means little contrast or shadow shape, often on overcast days." },
+    { "id": "iso", "text": "Her camera's ISO setting", "isCorrect": false, "explanation": "ISO was not mentioned." },
+    { "id": "lens", "text": "A lens she bought", "isCorrect": false, "explanation": "Nothing about lenses here." }
+  ],
+  "translation": "She got up early to shoot in the beautiful warm light after sunrise, but clouds covered the sun and the light turned dull and even, without the dramatic shadows she wanted.",
+  "followUps": [
+    { "line": "Was the flat light still workable, or did you pack up?", "why": "Shows you understand flat light and invites her story." },
+    { "line": "Did anything look good in that soft light?", "why": "Honest curiosity that treats the trip as worthwhile." }
+  ],
+  "noFakeExpertNote": "You do not need to know f-stops here. Ask what she saw and what she would do differently."
+}
+```
+
+**Sample 2** (lesson `cam-05`)
+
+```json
+{
+  "statement": { "speaker": "Her", "text": "I keep going back and forth on full frame or APS-C. Do I need the bigger sensor?" },
+  "question": "What is she weighing?",
+  "options": [
+    { "id": "size", "text": "A bigger sensor versus a smaller, cheaper, lighter one", "isCorrect": true, "explanation": "Full frame is larger, usually costlier and heavier." },
+    { "id": "noise", "text": "Cleaner low-light images and a shallower depth of field", "isCorrect": true, "explanation": "The usual benefits of a larger sensor." },
+    { "id": "film", "text": "Whether to switch to film", "isCorrect": false, "explanation": "Film is not mentioned." },
+    { "id": "flash", "text": "Which flash to buy", "isCorrect": false, "explanation": "Not related." }
+  ],
+  "translation": "She is choosing between a larger sensor, which tends to be cleaner in low light and blurs backgrounds more easily but costs more and weighs more, and a smaller, lighter, cheaper sensor.",
+  "followUps": [
+    { "line": "What do you mostly shoot? That might decide it.", "why": "Turns gear talk into shooting talk, where she is the expert." },
+    { "line": "Is weight or low light the bigger deal for you?", "why": "Shows you understand the trade without pretending to pick for her." }
+  ],
+  "noFakeExpertNote": "Do not recommend a camera. Ask what she shoots; the answer usually settles the debate."
+}
+```
+
+**Sample 3** (lesson `gear-05`)
+
+```json
+{
+  "statement": { "speaker": "Her", "text": "I'm resisting GAS. I do NOT need another prime." },
+  "question": "What is she joking about?",
+  "options": [
+    { "id": "gas", "text": "Gear acquisition syndrome, the urge to keep buying kit", "isCorrect": true, "explanation": "GAS is photographers' joke about endless gear buying." },
+    { "id": "prime", "text": "A fixed-focal-length lens she already has enough of", "isCorrect": true, "explanation": "A prime does not zoom." },
+    { "id": "petrol", "text": "Petrol prices", "isCorrect": false, "explanation": "GAS in photography is not fuel." },
+    { "id": "mount", "text": "A broken lens mount", "isCorrect": false, "explanation": "Not mentioned." }
+  ],
+  "translation": "She wants another fixed lens but is telling herself she has enough. It is a self-teasing way of saying she is tempted.",
+  "followUps": [
+    { "line": "Which one is tempting you?", "why": "Invites the fun part: what she wants and why." },
+    { "line": "What would that lens let you shoot that you can't now?", "why": "Moves from gear to what she wants to make." }
+  ],
+  "noFakeExpertNote": "You can laugh with her. Do not egg her on with prices or brand claims you cannot back up."
+}
+```
+
+**Sample 4** (lesson `ed-05`)
+
+```json
+{
+  "statement": { "speaker": "Her", "text": "This one's SOOC, no edits. I just love what the camera does with reds." },
+  "question": "What does SOOC tell you?",
+  "options": [
+    { "id": "sooc", "text": "Straight out of camera: the JPEG as shot", "isCorrect": true, "explanation": "SOOC means no editing afterwards." },
+    { "id": "colour", "text": "She likes the camera's colour rendering", "isCorrect": true, "explanation": "Colour science and film simulations shape the look." },
+    { "id": "raw", "text": "She shot RAW and edited a lot", "isCorrect": false, "explanation": "The opposite of SOOC." },
+    { "id": "film", "text": "It is a film photograph", "isCorrect": false, "explanation": "SOOC is about digital files." }
+  ],
+  "translation": "She is showing a photo exactly as the camera produced it and praising how the camera renders red, which enthusiasts often treat as part of a brand's colour character.",
+  "followUps": [
+    { "line": "Do you have a favourite colour setting on it?", "why": "Shows you know cameras have looks, and asks about her taste." },
+    { "line": "Do you ever edit that look further?", "why": "Invites her workflow without judgment." }
+  ],
+  "noFakeExpertNote": "You do not need to know brand colour science. Ask what she loves about the colour."
+}
+```
+
+**Sample 5** (lesson `foc-05`)
+
+```json
+{
+  "statement": { "speaker": "Her", "text": "The bokeh on that lens is creamy. Look at the highlights!" },
+  "question": "What is she praising?",
+  "options": [
+    { "id": "blur", "text": "How pleasant the out-of-focus areas look", "isCorrect": true, "explanation": "Bokeh is about the character of blur." },
+    { "id": "discs", "text": "Smooth, round highlight circles in the background", "isCorrect": true, "explanation": "Highlights blur into discs; smooth ones are prized." },
+    { "id": "sharp", "text": "How sharp the subject is", "isCorrect": false, "explanation": "Bokeh refers to blur, not sharpness." },
+    { "id": "iso", "text": "Low noise", "isCorrect": false, "explanation": "Not related." }
+  ],
+  "translation": "She is delighted by how smoothly the lens turns the background into soft blur and round, gentle highlights.",
+  "followUps": [
+    { "line": "Was that wide open?", "why": "Aperture affects bokeh; the question is natural and informed." },
+    { "line": "What was the light in the background?", "why": "Lights behind make the discs she is talking about." }
+  ],
+  "noFakeExpertNote": "Do not claim to judge bokeh quality. Ask what she likes about it and where she shot it."
+}
+```
+
+**Sample 6** (lesson `cul-05`)
+
+```json
+{
+  "statement": { "speaker": "Her", "text": "Do you think AI denoise counts as editing, or is it cheating?" },
+  "question": "What is she really asking?",
+  "options": [
+    { "id": "honesty", "text": "Where the line is between editing and misrepresenting", "isCorrect": true, "explanation": "The debate is honesty, not editing itself." },
+    { "id": "denoise", "text": "Whether software noise reduction changes the photo's truth", "isCorrect": true, "explanation": "AI denoise reconstructs detail; opinions differ." },
+    { "id": "camera", "text": "Which camera has less noise", "isCorrect": false, "explanation": "She is asking about software." },
+    { "id": "film", "text": "Whether grain is bad", "isCorrect": false, "explanation": "A different topic." }
+  ],
+  "translation": "She is asking whether using AI to clean up grainy photos is a normal part of editing or crosses a line into something dishonest.",
+  "followUps": [
+    { "line": "Where do you draw the line?", "why": "Invites her real view and keeps you honest about not having one yet." },
+    { "line": "Would you tell people you used it?", "why": "Touches disclosure, the heart of the debate." }
+  ],
+  "noFakeExpertNote": "It is fine to say you have not made up your mind. Curiosity beats a hot take."
+}
+```
+
+### 2.10 `fill-the-gap`
+
+**Sample 1** (lesson `exp-06`)
+
+```json
+{
+  "prompt": "Complete the exposure rule.",
+  "template": "Opening the aperture by one stop lets in {{light}} the light, so you can use a {{shutter}} shutter speed.",
+  "gaps": [
+    { "id": "light", "options": ["half", "double", "four times"], "correct": "double" },
+    { "id": "shutter", "options": ["faster", "slower"], "correct": "faster" }
+  ],
+  "explanation": {
+    "correct": "Each stop is a doubling or halving. More light through the lens lets you halve the exposure time and keep the same brightness.",
+    "incorrect": "A wider aperture by one stop doubles the light. To keep exposure equal you can double your shutter speed, which is a faster setting.",
+    "sayThisLine": "One stop wider means one stop faster."
+  }
+}
+```
+
+**Sample 2** (lesson `cam-04`)
+
+```json
+{
+  "prompt": "Fill in the lens words.",
+  "template": "A {{wide}} lens shows more of the scene, while a {{tele}} lens magnifies distant subjects.",
+  "gaps": [
+    { "id": "wide", "options": ["wide-angle", "telephoto", "macro"], "correct": "wide-angle" },
+    { "id": "tele", "options": ["wide-angle", "telephoto", "fisheye"], "correct": "telephoto" }
+  ],
+  "explanation": {
+    "correct": "Short focal lengths see wide; long ones see narrow and magnify. The millimetre number is about field of view.",
+    "incorrect": "Wide-angle lenses have short focal lengths and show more; telephoto lenses have long ones and magnify.",
+    "sayThisLine": "Wide for the room, tele for the far shore."
+  }
+}
+```
+
+**Sample 3** (lesson `lf-03`)
+
+```json
+{
+  "prompt": "Complete the softness rule.",
+  "template": "A light looks {{soft}} when it is {{big}} compared with the subject, and moving it {{closer}} makes it look bigger.",
+  "gaps": [
+    { "id": "soft", "options": ["harder", "softer"], "correct": "softer" },
+    { "id": "big", "options": ["small", "large"], "correct": "large" },
+    { "id": "closer", "options": ["closer", "farther"], "correct": "closer" }
+  ],
+  "explanation": {
+    "correct": "Softness is about how large the light appears from the subject. A larger source, or the same source closer, wraps light around and blurs shadow edges.",
+    "incorrect": "Big and close means soft. A small or faraway light is hard, no matter how bright it is.",
+    "sayThisLine": "Bigger or closer means softer."
+  }
+}
+```
+
+**Sample 4** (lesson `mot-05`)
+
+```json
+{
+  "prompt": "Complete the ND filter sentence.",
+  "template": "A neutral density filter {{does}} the light entering the lens, so you can use a {{shutter}} shutter speed in daylight.",
+  "gaps": [
+    { "id": "does", "options": ["reduces", "increases", "colours"], "correct": "reduces" },
+    { "id": "shutter", "options": ["slower", "faster"], "correct": "slower" }
+  ],
+  "explanation": {
+    "correct": "An ND filter is sunglasses for the lens. It cuts light without changing colour so you can use a long exposure, for silky water, even at noon.",
+    "incorrect": "ND filters darken the scene evenly, which allows slower shutter speeds. Nothing about them adds light or colour.",
+    "sayThisLine": "I put an ND on for the silky water."
+  }
+}
+```
+
+### 2.11 `listening-id`
+
+**Sample 1** (lesson `film-01`)
+
+```json
+{
+  "prompt": "Which shutter did you just hear?",
+  "audio": {
+    "asset": "photography/audio/shutter-focal-plane-01.m4a",
+    "durationMs": 2400,
+    "license": "original-swoond",
+    "description": "A crisp two-part mechanical click: a sharp clack followed by a lower, quieter clack about a tenth of a second later.",
+    "maxPlays": 3
+  },
+  "options": [
+    { "id": "focal", "text": "Mechanical focal-plane shutter" },
+    { "id": "leaf", "text": "Leaf shutter" },
+    { "id": "electronic", "text": "Silent electronic shutter" }
+  ],
+  "correctOptionId": "focal",
+  "explanation": {
+    "correct": "The double clack is curtains opening and closing, the classic sound of a mirrorless or DSLR in mechanical shutter mode.",
+    "incorrect": "A leaf shutter is a soft, single 'snick', and a fully electronic shutter is silent. Two distinct clacks mean mechanical curtains.",
+    "sayThisLine": "That double click is the mechanical shutter."
+  },
+  "listenFor": ["Two distinct clacks", "A short gap between them", "A dry mechanical texture"]
+}
+```
+
+**Sample 2** (lesson `cam-07`)
+
+```json
+{
+  "prompt": "What kind of shutter makes this sound?",
+  "audio": {
+    "asset": "photography/audio/shutter-leaf-01.m4a",
+    "durationMs": 1600,
+    "license": "original-swoond",
+    "description": "A soft, quiet, single 'snick' with almost no vibration afterwards.",
+    "maxPlays": 3
+  },
+  "options": [
+    { "id": "focal", "text": "Mechanical focal-plane shutter" },
+    { "id": "leaf", "text": "Leaf shutter" },
+    { "id": "advance", "text": "Film advance lever" }
+  ],
+  "correctOptionId": "leaf",
+  "explanation": {
+    "correct": "A leaf shutter sits in the lens and opens like a small iris. It is quiet and can sync with flash at very high speeds, which is why compact and medium-format cameras use it.",
+    "incorrect": "A film advance is a ratchet sound and focal-plane shutters make a louder double clack. The quiet single snick is a leaf shutter.",
+    "sayThisLine": "That soft snick is a leaf shutter."
+  },
+  "listenFor": ["A single soft sound", "Very little vibration", "Quiet compared with a DSLR"]
+}
+```
+
+**Sample 3** (lesson `film-01`)
+
+```json
+{
+  "prompt": "What is that ratcheting sound?",
+  "audio": {
+    "asset": "photography/audio/film-advance-01.m4a",
+    "durationMs": 2000,
+    "license": "original-swoond",
+    "description": "A quick, rising ratchet click of a lever being wound, then a small stop.",
+    "maxPlays": 3
+  },
+  "options": [
+    { "id": "advance", "text": "Advancing the film to the next frame" },
+    { "id": "focal", "text": "A mechanical shutter firing" },
+    { "id": "leaf", "text": "A leaf shutter" }
+  ],
+  "correctOptionId": "advance",
+  "explanation": {
+    "correct": "A ratchet is the lever winding the film to the next frame and cocking the shutter. It is part of the ritual that film shooters say slows them down in a good way.",
+    "incorrect": "The shutter sounds are clacks or snicks. A rising ratchet with a small stop is a lever winding film.",
+    "sayThisLine": "I love the wind-on sound; it slows me down."
+  },
+  "listenFor": ["A ratchet rising in pitch", "A stop at the end", "Mechanical, metallic tone"]
+}
+```
+
+### 2.12 `estimate-slider`
+
+**Sample 1** (lesson `exp-05`)
+
+```json
+{
+  "prompt": "How many stops from f/2 to f/8?",
+  "unit": "stops",
+  "min": 0,
+  "max": 8,
+  "step": 1,
+  "correctValue": 4,
+  "tolerance": { "full": 0, "partial": 1 },
+  "explanation": {
+    "correct": "f/2, f/2.8, f/4, f/5.6, f/8 is four steps: each stop halves the light, so f/8 lets in one sixteenth of what f/2 does.",
+    "incorrect": "Count the row: 2, 2.8, 4, 5.6, 8. That is four stops, which is sixteen times less light.",
+    "sayThisLine": "That's four stops. Sixteen times less light."
+  }
+}
+```
+
+**Sample 2** (lesson `see-05`)
+
+```json
+{
+  "prompt": "Roughly what Kelvin is midday daylight?",
+  "unit": "K",
+  "min": 1500,
+  "max": 9000,
+  "step": 100,
+  "correctValue": 5500,
+  "tolerance": { "full": 500, "partial": 1200 },
+  "explanation": {
+    "correct": "Daylight is about 5200 to 5600 K, which is why camera daylight white balance sits near 5500. Candle and tungsten are warmer and lower; shade and overcast are cooler and higher.",
+    "incorrect": "Low numbers are warm (candle about 1900 K, tungsten about 3200 K) and high numbers are cool (shade about 7000 K). Midday sun sits in the middle, near 5500 K.",
+    "sayThisLine": "Daylight is around 5500 Kelvin."
+  }
+}
+```
+
+**Sample 3** (lesson `cam-05`)
+
+```json
+{
+  "prompt": "A 35mm lens on APS-C: equivalent field of view?",
+  "unit": "mm",
+  "min": 20,
+  "max": 100,
+  "step": 1,
+  "correctValue": 52,
+  "tolerance": { "full": 3, "partial": 10 },
+  "explanation": {
+    "correct": "APS-C crops the image by about 1.5 times, so a 35mm lens looks like roughly a 52mm lens on full frame (about 56mm on Canon's 1.6 crop).",
+    "incorrect": "Multiply the focal length by the crop factor, about 1.5 for most APS-C: 35 times 1.5 is roughly 52mm.",
+    "sayThisLine": "A 35 on crop is about a 50 on full frame."
+  }
+}
+```
+
+**Sample 4** (lesson `lf-03`)
+
+```json
+{
+  "prompt": "Double the light's distance: how many stops darker?",
+  "unit": "stops",
+  "min": 0,
+  "max": 6,
+  "step": 1,
+  "correctValue": 2,
+  "tolerance": { "full": 0, "partial": 1 },
+  "explanation": {
+    "correct": "Light spreads over a larger area: double the distance and it falls to a quarter, which is two stops. This is the inverse-square law.",
+    "incorrect": "Light follows the inverse-square law. Twice as far means one quarter the light, and a quarter is two stops.",
+    "sayThisLine": "Double the distance, quarter the light."
+  }
+}
+```
+
+**Sample 5** (lesson `film-03`)
+
+```json
+{
+  "prompt": "Sunny 16 at ISO 100: shutter speed denominator?",
+  "unit": "1/x s",
+  "min": 30,
+  "max": 1000,
+  "step": 10,
+  "correctValue": 100,
+  "tolerance": { "full": 20, "partial": 60 },
+  "explanation": {
+    "correct": "On a bright sunny day at f/16, set the shutter speed to about one over the ISO: 1/100 s at ISO 100. It is the film shooter's back-pocket rule.",
+    "incorrect": "The Sunny 16 rule says f/16 with a shutter speed of about 1 over the ISO, so 1/100 s at ISO 100 in bright sun.",
+    "sayThisLine": "Sunny 16: one over ISO at f/16."
+  }
+}
+```
+
+### 2.13 `hotspot-tap`
+
+**Sample 1** (lesson `cam-02`)
+
+```json
+{
+  "prompt": "Tap the full frame sensor.",
+  "diagram": {
+    "diagramId": "sensor-sizes-nested",
+    "aspectRatio": 1.5,
+    "alt": "Four nested rectangles centred on each other, labelled by size from smallest to largest: Micro Four Thirds, APS-C, full frame, medium format."
+  },
+  "hotspots": [
+    { "id": "mft", "label": "Micro Four Thirds", "shape": { "kind": "rect", "x": 0.36, "y": 0.34, "w": 0.28, "h": 0.32 } },
+    { "id": "apsc", "label": "APS-C", "shape": { "kind": "rect", "x": 0.30, "y": 0.28, "w": 0.06, "h": 0.44 } },
+    { "id": "ff", "label": "Full frame", "shape": { "kind": "rect", "x": 0.22, "y": 0.20, "w": 0.08, "h": 0.60 } },
+    { "id": "mf", "label": "Medium format", "shape": { "kind": "rect", "x": 0.10, "y": 0.12, "w": 0.12, "h": 0.76 } }
+  ],
+  "correctHotspotIds": ["ff"],
+  "explanation": {
+    "correct": "Full frame is the same size as a 35mm film frame, 36 by 24 mm. Smaller sensors crop the view; larger ones, like medium format, gather more.",
+    "incorrect": "Full frame is the third from the smallest: it matches 35mm film at 36 by 24 mm. APS-C and Micro Four Thirds are smaller; medium format is bigger.",
+    "sayThisLine": "Full frame is the same size as a 35mm film frame."
+  }
+}
+```
+
+**Sample 2** (lesson `mot-01`)
+
+```json
+{
+  "prompt": "Tap where this histogram is clipped.",
+  "diagram": {
+    "diagramId": "histogram-clipped-highlights",
+    "aspectRatio": 1.6,
+    "alt": "A histogram with shadows on the left and highlights on the right. The graph has a tall spike squeezed against the far right edge; the left and middle are low."
+  },
+  "hotspots": [
+    { "id": "shadows", "label": "Shadows (left edge)", "shape": { "kind": "rect", "x": 0.02, "y": 0.10, "w": 0.16, "h": 0.80 } },
+    { "id": "mids", "label": "Midtones (middle)", "shape": { "kind": "rect", "x": 0.35, "y": 0.10, "w": 0.30, "h": 0.80 } },
+    { "id": "highs", "label": "Highlights (right edge)", "shape": { "kind": "rect", "x": 0.82, "y": 0.10, "w": 0.16, "h": 0.80 } }
+  ],
+  "correctHotspotIds": ["highs"],
+  "explanation": {
+    "correct": "A spike jammed against the right wall means bright pixels hit the maximum and lost detail. That is clipped highlights: the info is gone, so expose a little darker.",
+    "incorrect": "The left edge shows shadows, the right shows highlights. The spike pressing on the right edge is clipping; the sensor recorded pure white there.",
+    "sayThisLine": "The histogram's piled up on the right; I'm clipping."
+  }
+}
+```
+
+**Sample 3** (lesson `lf-02`)
+
+```json
+{
+  "prompt": "Tap where the light goes for Rembrandt.",
+  "diagram": {
+    "diagramId": "top-down-light-ring",
+    "aspectRatio": 1,
+    "alt": "A top-down diagram with a circle for the subject in the middle and the camera at the bottom. Eight positions marked around a ring: front, front-left, left, back-left, behind, back-right, right, front-right."
+  },
+  "hotspots": [
+    { "id": "front", "label": "In front, by the camera", "shape": { "kind": "circle", "cx": 0.5, "cy": 0.88, "r": 0.07 } },
+    { "id": "front-left", "label": "Front-left, about 45 degrees", "shape": { "kind": "circle", "cx": 0.24, "cy": 0.76, "r": 0.07 } },
+    { "id": "left", "label": "Left, 90 degrees", "shape": { "kind": "circle", "cx": 0.12, "cy": 0.5, "r": 0.07 } },
+    { "id": "behind", "label": "Behind the subject", "shape": { "kind": "circle", "cx": 0.5, "cy": 0.12, "r": 0.07 } }
+  ],
+  "correctHotspotIds": ["front-left"],
+  "explanation": {
+    "correct": "Rembrandt lighting comes from about 45 degrees to one side, and also about 45 degrees up. From the front it goes flat; at 90 degrees it becomes split lighting.",
+    "incorrect": "Rembrandt sits between front and side: about 45 degrees off the camera axis, and raised about 45 degrees. Straight front is flat; full side is split; behind is rim.",
+    "sayThisLine": "About 45 degrees to the side and 45 up."
+  }
+}
+```
+
+**Sample 4** (lesson `com-02`)
+
+```json
+{
+  "prompt": "Tap the strongest rule-of-thirds power point.",
+  "diagram": {
+    "diagramId": "thirds-grid-dune-scene",
+    "aspectRatio": 1.5,
+    "alt": "A simple dune landscape with a small figure standing near the lower right intersection of a thirds grid; a low sun disc sits near the upper left intersection."
+  },
+  "hotspots": [
+    { "id": "ul", "label": "Upper-left intersection (sun)", "shape": { "kind": "circle", "cx": 0.333, "cy": 0.333, "r": 0.06 } },
+    { "id": "ur", "label": "Upper-right intersection", "shape": { "kind": "circle", "cx": 0.667, "cy": 0.333, "r": 0.06 } },
+    { "id": "ll", "label": "Lower-left intersection", "shape": { "kind": "circle", "cx": 0.333, "cy": 0.667, "r": 0.06 } },
+    { "id": "lr", "label": "Lower-right intersection (figure)", "shape": { "kind": "circle", "cx": 0.667, "cy": 0.667, "r": 0.06 } }
+  ],
+  "correctHotspotIds": ["lr"],
+  "explanation": {
+    "correct": "The figure sits on a power point, with the sun on the opposite one to balance it. That diagonal tension makes the frame feel considered.",
+    "incorrect": "The intersections of the thirds lines are the power points. The figure, the story here, is on the lower right, and the sun balances it from the upper left.",
+    "sayThisLine": "The figure's on a third, balanced by the sun."
+  }
+}
+```

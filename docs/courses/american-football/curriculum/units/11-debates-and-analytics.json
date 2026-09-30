@@ -1,0 +1,813 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "american-football",
+  "unit": {
+    "id": "debates-and-analytics",
+    "title": "Debates and analytics",
+    "layer": "enthusiast",
+    "order": 11,
+    "prerequisiteUnitIds": ["situational-football", "scheme-literacy"],
+    "personalizationSlots": [],
+    "lessons": [
+      {
+        "id": "epa-01",
+        "title": "Expected points",
+        "objective": "You can say what EPA measures without a math degree.",
+        "estimatedMinutes": 12,
+        "conceptIds": ["epa", "success-rate"],
+        "activities": [
+          {
+            "id": "epa-01-mc-what",
+            "type": "multiple-choice",
+            "conceptIds": ["epa"],
+            "payload": {
+              "prompt": "EPA (expected points added) measures what?",
+              "options": [
+                {"id": "a", "text": "How much a single play changes the team's expected scoring probability"},
+                {"id": "b", "text": "The total yards gained in a game"},
+                {"id": "c", "text": "The quarterback's salary"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "EPA is a predictive stat. Every play moves the needle on what the offense will likely score from that field position.",
+                "incorrect": "EPA is not about yards or money. It measures how much each play helps or hurts the team's scoring chance."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "epa-01-es-value",
+            "type": "estimate-slider",
+            "conceptIds": ["epa"],
+            "payload": {
+              "prompt": "A 10-yard gain on first and 10 from midfield has how much EPA?",
+              "unit": "points",
+              "min": 0,
+              "max": 1,
+              "step": 0.1,
+              "correctValue": 0.4,
+              "tolerance": {"full": 0.15, "partial": 0.25},
+              "explanation": {
+                "correct": "A 10-yard gain on first down from midfield is a good drive continuation—roughly 0.4 points added. The offense is now much closer and has four downs left.",
+                "incorrect": "Field position and play type matter. A 10-yard gain early in a drive gains about 0.3 to 0.5 EPA depending on starting position."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "epa-01-bc-positive",
+            "type": "binary-call",
+            "conceptIds": ["epa"],
+            "payload": {
+              "prompt": "A quarterback with a high EPA per play is playing better than one with low EPA, all else equal. True or false?",
+              "scene": {"kind": "none", "alt": "A quarterback with high EPA per play, improving his team's expected scoring on each snap."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. Higher EPA per play means the QB is creating more value on every snap. It is one of the best indicators of quarterback performance.",
+                "incorrect": "Yes, EPA per play is one of the most predictive stats for quarterback quality."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "epa-01-tm-concepts",
+            "type": "term-match",
+            "conceptIds": ["epa", "success-rate"],
+            "payload": {
+              "prompt": "Match each stat to what it tells you.",
+              "pairs": [
+                {"id": "epa", "term": "EPA per play", "definition": "How much value each play adds to the offense's expected score."},
+                {"id": "success", "term": "Success rate", "definition": "The share of plays that keep the offense on schedule (40% of needed yards on first, 60% on second, all on third)."},
+                {"id": "combo", "term": "EPA + success rate", "definition": "Together they show if an offense is both efficient (EPA) and consistent (success rate)."}
+              ],
+              "explanation": {
+                "summary": "EPA is value created per play. Success rate is consistency. Both matter.",
+                "sayThisLine": "High EPA? Efficient. High success rate? Reliable. Both? Elite."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "epa-01-st-analyst",
+            "type": "say-this",
+            "conceptIds": ["epa"],
+            "payload": {
+              "statement": {"speaker": "Analyst", "text": "His EPA per play is elite, but his success rate is below average. He is getting yards, just not consistently."},
+              "question": "What is the analyst saying?",
+              "options": [
+                {"id": "a", "text": "The player is playing great all around", "isCorrect": false},
+                {"id": "b", "text": "The player creates value per play but is inconsistent; some plays are huge, some fail", "isCorrect": true},
+                {"id": "c", "text": "The player should be benched", "isCorrect": false},
+                {"id": "d", "text": "The player is not a good fit for this team", "isCorrect": false}
+              ],
+              "translation": "A high EPA with low success rate means explosive plays mixed with stalls. The offense is streaky, not steady.",
+              "followUps": [
+                {"line": "Is a high-EPA, low-success player good or bad?", "why": "Tests understanding: both stats matter. Explosive plays are valuable but inconsistency is risky."},
+                {"line": "What would make this player elite?", "why": "If he adds both EPA per play (efficiency) and consistency (success rate), he is a superstar."}
+              ],
+              "noFakeExpertNote": "If unsure, think about the difference between 'good plays' (EPA) and 'reliable plays' (success rate)."
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "fourth-analytics-02",
+        "title": "The go-for-it revolution",
+        "objective": "You can explain why analytics pushed fourth-down aggression.",
+        "estimatedMinutes": 12,
+        "conceptIds": ["fourth-down-decision", "epa"],
+        "activities": [
+          {
+            "id": "fourth-analytics-02-ds-decision",
+            "type": "decision-scenario",
+            "conceptIds": ["fourth-down-decision", "epa"],
+            "payload": {
+              "prompt": "Fourth and two, down by three, two minutes left. Analytics say go for it. Old school says punt. Who is right?",
+              "situation": {
+                "narrative": "Late game situation.",
+                "facts": [
+                  {"label": "Down", "value": "Four and two"},
+                  {"label": "Score", "value": "Down three"},
+                  {"label": "Time", "value": "Two minutes left"},
+                  {"label": "Field position", "value": "Own 40-yard line"},
+                  {"label": "Momentum", "value": "Offense playing well"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "go",
+                  "label": "Go for it",
+                  "verdict": "best",
+                  "consequence": "Analytics show go-for-it has better win probability than punt. If you get two yards, you live. If you miss, game is still likely lost.",
+                  "considerations": [
+                    "EPA models show going for it at four and two has higher win probability than punting.",
+                    "You need a touchdown anyway, so field position is secondary.",
+                    "The offense is hot; strike now."
+                  ]
+                },
+                {
+                  "id": "punt",
+                  "label": "Punt and hope",
+                  "verdict": "poor",
+                  "consequence": "Punting is safe but it lowers your win probability. Analytics changed this calculus.",
+                  "considerations": [
+                    "Punting has been the default for decades.",
+                    "But the math now favors going for it in most fourth-down situations.",
+                    "Fear of failure is why coaches still punt."
+                  ]
+                }
+              ],
+              "expertNote": "Fourth-down analytics is the biggest coaching revolution in 20 years. Modern teams go for it more often because the math says it wins more games."
+            },
+            "xp": 10
+          },
+          {
+            "id": "fourth-analytics-02-st-coach",
+            "type": "say-this",
+            "conceptIds": ["fourth-down-decision"],
+            "payload": {
+              "statement": {"speaker": "Coach", "text": "Analytics say we should have gone for it on fourth and three last week. We would have won."},
+              "question": "What is the coach saying?",
+              "options": [
+                {"id": "a", "text": "Analytics are always right", "isCorrect": false},
+                {"id": "b", "text": "The numbers show going for it increased their win probability more than punting", "isCorrect": true},
+                {"id": "c", "text": "Fourth down is always a go-for-it", "isCorrect": false},
+                {"id": "d", "text": "The defensive line played badly", "isCorrect": false}
+              ],
+              "translation": "The expected-points model says trying for the conversion would have given them a better chance to win than punting.",
+              "followUps": [
+                {"line": "Does analytics say always go for it on fourth down?", "why": "No. Context matters: score, time, field position, down and distance all change the math."},
+                {"line": "Why do coaches still punt if analytics say go?", "why": "Tests your understanding: fear, tradition, and not trusting the model sometimes overrule the math."}
+              ],
+              "noFakeExpertNote": "If unsure, think: analytics weigh the risk of losing the ball against the benefit of keeping the drive alive."
+            },
+            "xp": 10
+          },
+          {
+            "id": "fourth-analytics-02-mc-why",
+            "type": "multiple-choice",
+            "conceptIds": ["epa", "fourth-down-decision"],
+            "payload": {
+              "prompt": "Why did analytics change fourth-down strategy?",
+              "options": [
+                {"id": "a", "text": "The math showed that going for it has higher win probability than punting in many situations"},
+                {"id": "b", "text": "Running backs became faster"},
+                {"id": "c", "text": "Defenses could not tackle as well"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "EPA models showed that punting surrenders too much value. Going for it, even with modest conversion rates, often improves win probability.",
+                "incorrect": "The analytics revolution is about win probability, not physical talent. Better modeling changed strategy."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "fourth-analytics-02-bc-math",
+            "type": "binary-call",
+            "conceptIds": ["fourth-down-decision"],
+            "payload": {
+              "prompt": "A team that goes for it more often on fourth down should win more games, all else equal. True or false?",
+              "scene": {"kind": "none", "alt": "A team going for it on fourth down and converting, improving their win probability."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. Going for it when the math favors it improves expected win probability. Over a season, this compounds.",
+                "incorrect": "Yes, the teams that adjusted fastest to go-for-it analytics won more in the 2020s."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "fourth-analytics-02-es-threshold",
+            "type": "estimate-slider",
+            "conceptIds": ["fourth-down-decision"],
+            "payload": {
+              "prompt": "At what conversion rate does fourth and one become a better bet than punting?",
+              "unit": "%",
+              "min": 40,
+              "max": 75,
+              "step": 5,
+              "correctValue": 55,
+              "tolerance": {"full": 10, "partial": 15},
+              "explanation": {
+                "correct": "Around 55% conversion rate, going for it on fourth and one has higher win probability than punting. At 50%, it is breakeven.",
+                "incorrect": "The threshold depends on score, time and field position, but roughly 55% is the breakpoint for fourth and one."
+              }
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "rb-value-03",
+        "title": "Are running backs worth it?",
+        "objective": "You can argue both sides of the running back debate.",
+        "estimatedMinutes": 12,
+        "conceptIds": ["rb-value-debate", "salary-cap"],
+        "activities": [
+          {
+            "id": "rb-value-03-mc-debate",
+            "type": "multiple-choice",
+            "conceptIds": ["rb-value-debate"],
+            "payload": {
+              "prompt": "The running back value debate is about whether?",
+              "options": [
+                {"id": "a", "text": "RBs deserve big contracts given short careers, injuries, and easy replacement by committee or younger backs"},
+                {"id": "b", "text": "RBs should wear different uniforms"},
+                {"id": "c", "text": "The running back position is not important"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Teams now ask: is paying a star RB $10M a year worth it when a veteran minimum back and a young backup can do 80% of the work? The debate is about cap allocation.",
+                "incorrect": "The debate is really about money and value. Star running backs are expensive and have short peak years."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "rb-value-03-tt-debate",
+            "type": "talk-track",
+            "conceptIds": ["rb-value-debate", "salary-cap"],
+            "payload": {
+              "title": "The running back contract argument",
+              "setting": "Debating a friend on whether your team should pay a star RB.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "We should sign that running back. He is the best in the league.",
+                  "replies": [
+                    {
+                      "id": "afford",
+                      "text": "He is great, but can we afford him and still build the rest of the team?",
+                      "smoothDelta": 25,
+                      "theirResponse": "That is fair. We are cap-strapped already.",
+                      "coachNote": "Shows you know salary cap matters more than talent alone."
+                    },
+                    {
+                      "id": "agree",
+                      "text": "Yeah, he is incredible.",
+                      "smoothDelta": 5,
+                      "theirResponse": "He is, but is it worth it?",
+                      "coachNote": "Agreeing is fine. Add a follow-up about the tradeoff next time."
+                    },
+                    {
+                      "id": "zone",
+                      "text": "RBs are easy to replace with committee backups anyway.",
+                      "smoothDelta": -15,
+                      "theirResponse": "Not that easy, but okay.",
+                      "coachNote": "Over-reaching. Some backs are generational. Ask about value, not dismiss the position."
+                    }
+                  ]
+                }
+              ]
+            },
+            "xp": 10
+          },
+          {
+            "id": "rb-value-03-st-analyst",
+            "type": "say-this",
+            "conceptIds": ["rb-value-debate"],
+            "payload": {
+              "statement": {"speaker": "Analyst", "text": "Yes, he is elite. But his career arc is steep and short. By year four of a five-year deal he will be a backup, and you are still paying like he is elite."},
+              "question": "What is the analyst saying?",
+              "options": [
+                {"id": "a", "text": "Elite running backs never decline", "isCorrect": false},
+                {"id": "b", "text": "Running backs decline quickly; you might overpay for years when they are not producing", "isCorrect": true},
+                {"id": "c", "text": "The player should be cut immediately", "isCorrect": false},
+                {"id": "d", "text": "Running backs should make more money", "isCorrect": false}
+              ],
+              "translation": "The running back position has a steep learning curve (starts young) and early decline (peaks around 25-28, falls off by 30). Contracts often extend past the peak.",
+              "followUps": [
+                {"line": "Why do running backs decline faster than, say, quarterbacks?", "why": "Tests understanding: RBs rely on burst and quickness; QBs rely on intelligence and accuracy, which age slower."},
+                {"line": "Is this debate just about running backs?", "why": "It is similar for other positions: receivers, edge rushers. But RB decline is steepest and most predictable."}
+              ],
+              "noFakeExpertNote": "If unsure, think about the age curve of a typical running back versus other positions."
+            },
+            "xp": 10
+          },
+          {
+            "id": "rb-value-03-ds-cap",
+            "type": "decision-scenario",
+            "conceptIds": ["rb-value-debate", "salary-cap"],
+            "payload": {
+              "prompt": "Sign a star RB to a five-year, $50M deal, or build depth with veteran backups?",
+              "situation": {
+                "facts": [
+                  {"label": "Cap space", "value": "$50M available"},
+                  {"label": "Needs", "value": "Offense needs help at multiple spots"},
+                  {"label": "RB position", "value": "Current starter is declining"},
+                  {"label": "Defensive priorities", "value": "Defense is weaker than offense"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "depth",
+                  "label": "Build depth with cheaper backs",
+                  "verdict": "best",
+                  "consequence": "A committee of younger and veteran minimum RBs can handle 90% of the production at 20% of the cost. Use the cap elsewhere.",
+                  "considerations": [
+                    "Modern teams have moved toward committee backs.",
+                    "Cap efficiency matters more than star power at RB.",
+                    "With $50M, you can fix multiple holes."
+                  ]
+                },
+                {
+                  "id": "star",
+                  "label": "Sign the star RB",
+                  "verdict": "acceptable",
+                  "consequence": "Elite talent does matter. But you sacrifice flexibility for other positions and are vulnerable to injury.",
+                  "considerations": [
+                    "A true elite RB is still a weapon.",
+                    "You are limited elsewhere on the roster."
+                  ]
+                }
+              ],
+              "expertNote": "The RB value debate is really about cap allocation. Modern economics favor depth and flexibility over one expensive star at a position with easy replacement."
+            },
+            "xp": 10
+          },
+          {
+            "id": "rb-value-03-bc-star",
+            "type": "binary-call",
+            "conceptIds": ["rb-value-debate"],
+            "payload": {
+              "prompt": "A committee of veteran backups can often replicate 85-90% of a star RB's production at 20% of the cost. True or false?",
+              "scene": {"kind": "none", "alt": "Multiple running backs sharing carries, achieving solid production without a star player."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. The RB position benefits from fresh legs and is less reliant on a single standout talent than WR or QB.",
+                "incorrect": "Yes, this is the core of the modern value debate. You can build a productive RB room without breaking the cap."
+              }
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "qb-wins-04",
+        "title": "The quarterback wins myth",
+        "objective": "You can say why quarterback wins is a shaky stat.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["qb-wins", "quarterback"],
+        "activities": [
+          {
+            "id": "qb-wins-04-st-saying",
+            "type": "say-this",
+            "conceptIds": ["qb-wins"],
+            "payload": {
+              "statement": {"speaker": "Fan", "text": "His record is 120-90, so he must be one of the top winning quarterbacks ever."},
+              "question": "What is wrong with this logic?",
+              "options": [
+                {"id": "a", "text": "Records are a team stat, not a QB stat. Defense, kicking, and running game matter a lot", "isCorrect": true},
+                {"id": "b", "text": "He obviously never won anything", "isCorrect": false},
+                {"id": "c", "text": "Records do not mean anything", "isCorrect": false},
+                {"id": "d", "text": "He is not a real quarterback", "isCorrect": false}
+              ],
+              "translation": "Quarterback wins (the QB's record) credits wins entirely to the QB, but team wins are a team statistic. The defense, running game, coaching and luck all matter enormously.",
+              "followUps": [
+                {"line": "Can a great QB on a bad team have a losing record?", "why": "Yes, absolutely. A Hall of Famer on a weak team can go 8-9. A mediocre QB on a great team can go 12-1."},
+                {"line": "What is a better stat than QB wins?", "why": "EPA per play, yards per attempt, touchdown-to-interception ratio, decision-making in clutch time. Any stat that isolates QB performance."}
+              ],
+              "noFakeExpertNote": "If unsure, think about a great QB on a bad team versus a mediocre QB on a great team. Who has the better record?"
+            },
+            "xp": 10
+          },
+          {
+            "id": "qb-wins-04-mc-team",
+            "type": "multiple-choice",
+            "conceptIds": ["qb-wins"],
+            "payload": {
+              "prompt": "Why is a quarterback's win-loss record misleading?",
+              "options": [
+                {"id": "a", "text": "It credits everything to one player when wins depend on offense, defense, special teams and coaching"},
+                {"id": "b", "text": "Quarterbacks do not actually affect games"},
+                {"id": "c", "text": "Records are kept incorrectly"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "A QB can play great and lose, or play poorly and win. Wins are a team outcome, not a QB outcome.",
+                "incorrect": "QB wins is a surface stat. Deeper stats like EPA, yards per attempt and TD-to-INT ratio isolate individual performance."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "qb-wins-04-bc-metric",
+            "type": "binary-call",
+            "conceptIds": ["qb-wins"],
+            "payload": {
+              "prompt": "A quarterback with a 90-70 record is automatically better than one with an 85-75 record. True or false?",
+              "scene": {"kind": "none", "alt": "Two quarterbacks with different win-loss records, showing that team composition matters."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "false",
+              "explanation": {
+                "correct": "False. The 85-75 QB might have done more with less (worse team). Record alone does not show individual quality.",
+                "incorrect": "Yes, context matters. One QB might have had a better team around him."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "qb-wins-04-ds-argue",
+            "type": "decision-scenario",
+            "conceptIds": ["qb-wins"],
+            "payload": {
+              "prompt": "Someone argues a QB with a 105-60 record is better than one with 95-70. How do you counter?",
+              "situation": {
+                "facts": [
+                  {"label": "QB A record", "value": "105-60"},
+                  {"label": "QB B record", "value": "95-70"},
+                  {"label": "QB A defense", "value": "Top 5 most years"},
+                  {"label": "QB B defense", "value": "Bottom 10 most years"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "context",
+                  "label": "Explain team context",
+                  "verdict": "best",
+                  "consequence": "You show that QB A played on great teams while QB B played on weak ones. Record is misleading without context.",
+                  "considerations": [
+                    "Defense matters hugely to team wins.",
+                    "Same-era defenses are not equal.",
+                    "Better context = better argument."
+                  ]
+                },
+                {
+                  "id": "stats",
+                  "label": "Quote EPA or yards per attempt",
+                  "verdict": "acceptable",
+                  "consequence": "Comparing individual stats works, but requires knowing those numbers.",
+                  "considerations": [
+                    "Individual stats are cleaner than records.",
+                    "Not everyone knows EPA."
+                  ]
+                },
+                {
+                  "id": "agree",
+                  "label": "Agree that records matter",
+                  "verdict": "poor",
+                  "consequence": "You lose the argument if you concede that wins are a pure QB stat.",
+                  "considerations": [
+                    "Winning matters, but team wins do not isolate QB play."
+                  ]
+                }
+              ],
+              "expertNote": "QB wins is a trap stat. Always contextualize with team defense and offense quality before comparing records."
+            },
+            "xp": 10
+          },
+          {
+            "id": "qb-wins-04-tm-stats",
+            "type": "term-match",
+            "conceptIds": ["qb-wins", "quarterback"],
+            "payload": {
+              "prompt": "Match each stat to whether it isolates QB performance.",
+              "pairs": [
+                {"id": "wins", "term": "QB wins (record)", "definition": "Team statistic; heavily influenced by defense, running game and special teams. Misleading for comparing QBs."},
+                {"id": "epa", "term": "EPA per play", "definition": "Isolates QB efficiency. One of the best indicators of individual QB performance."},
+                {"id": "ypa", "term": "Yards per attempt", "definition": "Isolates QB decision-making and arm talent. Less affected by defense than wins."}
+              ],
+              "explanation": {
+                "summary": "Use individual stats to compare QBs, not records. Records tell you about the team.",
+                "sayThisLine": "Wins are about the team. EPA is about the QB. Compare apples to apples."
+              }
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "tush-kick-05",
+        "title": "Tush push and the kickoff",
+        "objective": "You can explain two live rule fights.",
+        "estimatedMinutes": 12,
+        "conceptIds": ["tush-push-debate", "kickoff-debate", "dynamic-kickoff"],
+        "activities": [
+          {
+            "id": "tush-kick-05-ds-tush",
+            "type": "decision-scenario",
+            "conceptIds": ["tush-push-debate"],
+            "payload": {
+              "prompt": "Fourth and one. Your QB sneaks with teammates pushing. Illegal or genius?",
+              "situation": {
+                "facts": [
+                  {"label": "Play", "value": "QB sneak with tush push"},
+                  {"label": "Outcome", "value": "Gets the first down easily"},
+                  {"label": "Legal status", "value": "Legal as of 2026 (ban vote failed 22-10)"},
+                  {"label": "Fan reaction", "value": "Half say genius, half say unfair"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "legal",
+                  "label": "It is legal, so it is fair game",
+                  "verdict": "best",
+                  "consequence": "The rule book says it is legal. Teams that exploit it win more on short yardage. That is football evolution.",
+                  "considerations": [
+                    "The ban vote failed 22-10; 32 teams could not agree it was wrong.",
+                    "If it is legal, use it.",
+                    "Fans will argue, but the league has ruled."
+                  ]
+                },
+                {
+                  "id": "unfair",
+                  "label": "It is nearly unstoppable and should be banned",
+                  "verdict": "acceptable",
+                  "consequence": "A reasonable opinion. The play does seem to violate the spirit of individual competition.",
+                  "considerations": [
+                    "Some fans feel the assist defeats the purpose of short yardage.",
+                    "But defenders could also push to stop it."
+                  ]
+                }
+              ],
+              "expertNote": "The tush push is a perfect example of a rule debate: legal but controversial. The 2025 ban vote failed because teams are split on fairness versus innovation."
+            },
+            "xp": 10
+          },
+          {
+            "id": "tush-kick-05-tt-debate",
+            "type": "talk-track",
+            "conceptIds": ["tush-push-debate", "kickoff-debate"],
+            "payload": {
+              "title": "The tush push and kickoff debates",
+              "setting": "Debating rule changes with a friend who has opinions.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "The tush push is ruining football. It should be banned.",
+                  "replies": [
+                    {
+                      "id": "both",
+                      "text": "I get it. Some love the creativity, others think it breaks the spirit of short yardage. What would you ban?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Just that one play. Everything else is fine.",
+                      "coachNote": "Shows you understand both sides and respect her view."
+                    },
+                    {
+                      "id": "legal",
+                      "text": "It is legal though, so it is fair.",
+                      "smoothDelta": 5,
+                      "theirResponse": "Yeah, but should it be?",
+                      "coachNote": "True, but it does not end the conversation. Acknowledge the debate."
+                    },
+                    {
+                      "id": "dismiss",
+                      "text": "That rule is fine, stop complaining.",
+                      "smoothDelta": -15,
+                      "theirResponse": "Wow, okay.",
+                      "coachNote": "Dismissing her opinion ends the conversation. Show curiosity instead."
+                    }
+                  ]
+                }
+              ]
+            },
+            "xp": 10
+          },
+          {
+            "id": "tush-kick-05-mc-rule",
+            "type": "multiple-choice",
+            "conceptIds": ["tush-push-debate"],
+            "payload": {
+              "prompt": "The tush push controversy is really about?",
+              "options": [
+                {"id": "a", "text": "Whether a sneak with an assist is unfairly powerful or creative innovation"},
+                {"id": "b", "text": "Whether the quarterback should wear padding"},
+                {"id": "c", "text": "Whether short yardage plays should exist"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "It is a fairness debate. Is the play so good it breaks short-yardage as a test, or is it brilliant design? Both sides are reasonable.",
+                "incorrect": "The tush push is about whether the league will let this version of the QB sneak stand."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "tush-kick-05-st-debate",
+            "type": "say-this",
+            "conceptIds": ["kickoff-debate", "dynamic-kickoff"],
+            "payload": {
+              "statement": {"speaker": "Analyst", "text": "The dynamic kickoff is too wild. We do not know what the rule will be next year. It kills tradition."},
+              "question": "What is the analyst worried about?",
+              "options": [
+                {"id": "a", "text": "The kickoff is too dangerous even with the new rule", "isCorrect": false},
+                {"id": "b", "text": "Rule changes make the kickoff unpredictable and tradition matters in football", "isCorrect": true},
+                {"id": "c", "text": "Kickoffs are not important to the game", "isCorrect": false},
+                {"id": "d", "text": "The league is broken", "isCorrect": false}
+              ],
+              "translation": "Football has traditions (the kickoff is over a century old), but the league keeps tweaking it for safety and entertainment. Some fans want consistency.",
+              "followUps": [
+                {"line": "Is the dynamic kickoff safer than the old one?", "why": "Yes, statistically. But some fans hate that the league keeps changing it."},
+                {"line": "Will the kickoff rule keep changing?", "why": "Likely. The league will try different setups to balance returns, collisions and entertainment."}
+              ],
+              "noFakeExpertNote": "If unsure, think about what the analyst values: tradition or safety innovation."
+            },
+            "xp": 10
+          },
+          {
+            "id": "tush-kick-05-bc-debate",
+            "type": "binary-call",
+            "conceptIds": ["kickoff-debate"],
+            "payload": {
+              "prompt": "Rule changes every few years are necessary for safety, even if they disrupt tradition. True or false?",
+              "scene": {"kind": "none", "alt": "A kickoff play showing the evolution of the rule over time for safety."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. The kickoff is the most injury-prone play. The league has tweaked it repeatedly to reduce harm while keeping returns alive.",
+                "incorrect": "Yes, player health is the league's stated reason for the kickoff changes."
+              }
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "safety-06",
+        "title": "Player safety and load",
+        "objective": "You can talk about concussions and rule changes with respect.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["concussion-protocol", "hip-drop-tackle", "targeting"],
+        "activities": [
+          {
+            "id": "safety-06-mc-protocol",
+            "type": "multiple-choice",
+            "conceptIds": ["concussion-protocol"],
+            "payload": {
+              "prompt": "The concussion protocol is designed to?",
+              "options": [
+                {"id": "a", "text": "Remove and clear a player after a suspected head injury, preventing return-to-play too soon"},
+                {"id": "b", "text": "Make the game softer"},
+                {"id": "c", "text": "Keep star players on the bench all season"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "The protocol is a medical safeguard. A player is removed, checked by independent doctors, and must pass tests before returning.",
+                "incorrect": "Concussion protocols are a player health measure, not a competitive tool."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "safety-06-st-player",
+            "type": "say-this",
+            "conceptIds": ["hip-drop-tackle", "targeting"],
+            "payload": {
+              "statement": {"speaker": "Player", "text": "That hip-drop tackle was the only way to bring him down. Now it is 15 yards. The league is changing how we play defense."},
+              "question": "What is the player saying?",
+              "options": [
+                {"id": "a", "text": "Hip-drop tackles are the best way to tackle", "isCorrect": false},
+                {"id": "b", "text": "Rule changes eliminate techniques defenders have used, causing frustration", "isCorrect": true},
+                {"id": "c", "text": "The league is targeting him personally", "isCorrect": false},
+                {"id": "d", "text": "He is a bad tackler", "isCorrect": false}
+              ],
+              "translation": "The NFL banned hip-drop tackles starting in 2024 because of injury risk. Defenders now have to adjust their technique, which is difficult for veteran players.",
+              "followUps": [
+                {"line": "Does banning a tackle technique actually reduce injuries?", "why": "Data suggest yes, though some defenders argue other tackles are equally risky."},
+                {"line": "Is it fair to change rules mid-career for veteran players?", "why": "Legitimate question. Players trained for decades in old techniques and now must retrain."}
+              ],
+              "noFakeExpertNote": "If unsure, think about a rule you grow up with suddenly becoming illegal."
+            },
+            "xp": 10
+          },
+          {
+            "id": "safety-06-bc-load",
+            "type": "binary-call",
+            "conceptIds": ["concussion-protocol"],
+            "payload": {
+              "prompt": "Reducing the number of practices and full-contact drills helps prevent injuries and overload. True or false?",
+              "scene": {"kind": "none", "alt": "Players recovering during reduced-contact practices, managing workload and injury risk."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. The league and teams now manage practice intensity to reduce cumulative head impacts and other injuries. It is an emerging safety frontier.",
+                "incorrect": "Yes, practice contact reduction is part of modern player health management."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "safety-06-ds-tackle",
+            "type": "decision-scenario",
+            "conceptIds": ["hip-drop-tackle"],
+            "payload": {
+              "prompt": "A defender tackles a runner by dropping his hips and driving his legs. Hip-drop or wrap?",
+              "situation": {
+                "facts": [
+                  {"label": "Tackle type", "value": "Swivel hips, drive legs into runner"},
+                  {"label": "Rule", "value": "Hip-drop banned since 2024"},
+                  {"label": "Defender intent", "value": "Bring down the runner safely"},
+                  {"label": "Result", "value": "Tackle is effective"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "wrap",
+                  "label": "Wrap technique instead",
+                  "verdict": "best",
+                  "consequence": "Wrap your arms around the runner's torso. Takes more practice but legal and generally safer.",
+                  "considerations": [
+                    "Wrapping is the league's preferred technique now.",
+                    "Defenders are retraining after years of hip-drops."
+                  ]
+                },
+                {
+                  "id": "hip-drop",
+                  "label": "Use hip-drop (risky)",
+                  "verdict": "poor",
+                  "consequence": "You get flagged and hurt your team. 15 yards is not worth the penalty and injury risk.",
+                  "considerations": [
+                    "The rule is in place for a reason."
+                  ]
+                }
+              ],
+              "expertNote": "Rule changes feel awkward at first. Defenders who adapt fastest to wrap tackles thrive; those who cling to old techniques get flagged."
+            },
+            "xp": 10
+          },
+          {
+            "id": "safety-06-tm-rules",
+            "type": "term-match",
+            "conceptIds": ["concussion-protocol", "hip-drop-tackle", "targeting"],
+            "payload": {
+              "prompt": "Match each safety rule to what it addresses.",
+              "pairs": [
+                {"id": "concuss", "term": "Concussion protocol", "definition": "Medical assessment and clearance after a suspected head injury; prevents early return-to-play."},
+                {"id": "hip", "term": "Hip-drop tackle ban", "definition": "Banned in 2024; defenders must use wrap or other techniques to reduce leg-driven impacts."},
+                {"id": "target", "term": "Targeting (college)", "definition": "Forcible contact to the head or neck area of a defenseless player; automatic ejection if confirmed."}
+              ],
+              "explanation": {
+                "summary": "Modern football prioritizes player health. Rules address head impacts, tackle technique and unnecessary contact.",
+                "sayThisLine": "Concussion protocol: check a player. Hip-drop: change your technique. Targeting: no head shots."
+              }
+            },
+            "xp": 10
+          }
+        ]
+      }
+    ]
+  }
+}

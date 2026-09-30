@@ -1,0 +1,1170 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "basketball",
+  "unit": {
+    "id": "league-machine",
+    "title": "How the League Works",
+    "layer": "intermediate",
+    "order": 8,
+    "prerequisiteUnitIds": ["the-game"],
+    "lessons": [
+      {
+        "id": "lea-01",
+        "title": "NBA structure and the 82-game season",
+        "objective": "Describe conferences, divisions and the shape of a season.",
+        "estimatedMinutes": 9,
+        "conceptIds": ["nba-structure", "conference-division", "eighty-two-game-season"],
+        "activities": [
+          {
+            "id": "lea-01-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": ["nba-structure"],
+            "payload": {
+              "prompt": "How many teams are in the NBA?",
+              "options": [
+                {"id": "correct", "text": "30 teams divided into two conferences of 15 teams each."},
+                {"id": "dist-1", "text": "24 teams in one league."},
+                {"id": "dist-2", "text": "32 teams split evenly by division."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. The NBA has 30 teams: 15 in the Eastern Conference and 15 in the Western Conference.",
+                "incorrect": "Not quite. The NBA has 30 teams divided into two conferences of 15 teams each."
+              }
+            }
+          },
+          {
+            "id": "lea-01-bc-1",
+            "type": "binary-call",
+            "conceptIds": ["conference-division"],
+            "payload": {
+              "prompt": "Conferences and divisions are the same thing. True?",
+              "scene": {"kind": "none", "alt": "NBA conferences and divisions structure."},
+              "choices": [
+                {"id": "yes", "label": "Yes, same thing."},
+                {"id": "no", "label": "No, divisions are within conferences."}
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Right. A conference has multiple divisions inside it. Each conference has three divisions with five teams each.",
+                "incorrect": "Not quite. Divisions are sub-groups within a conference. Each of the two conferences has three divisions of five teams."
+              }
+            }
+          },
+          {
+            "id": "lea-01-mc-2",
+            "type": "multiple-choice",
+            "conceptIds": ["eighty-two-game-season"],
+            "payload": {
+              "prompt": "How many regular-season games does each NBA team play?",
+              "options": [
+                {"id": "correct", "text": "82 games, nearly all against other conference teams or division rivals."},
+                {"id": "dist-1", "text": "72 games and then playoffs start."},
+                {"id": "dist-2", "text": "100 games in a calendar year."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Exactly. Each team plays 82 games from October through April, then playoffs begin.",
+                "incorrect": "Not quite. Each NBA team plays 82 regular-season games, a schedule designed to give every team balance and many matchups against rivals."
+              }
+            }
+          },
+          {
+            "id": "lea-01-ftg-1",
+            "type": "fill-the-gap",
+            "conceptIds": ["nba-structure"],
+            "payload": {
+              "prompt": "Fill in the NBA's conference and playoff structure.",
+              "template": "The NBA has two {{conf}}: the {{east}} and {{west}}, each with {{teams}} teams across {{divs}} divisions.",
+              "gaps": [
+                {
+                  "id": "conf",
+                  "options": ["conferences", "districts", "brackets"],
+                  "correct": "conferences"
+                },
+                {
+                  "id": "east",
+                  "options": ["Eastern Conference", "Atlantic Division", "Boston Celtics"],
+                  "correct": "Eastern Conference"
+                },
+                {
+                  "id": "west",
+                  "options": ["Western Conference", "Pacific Division", "Los Angeles Lakers"],
+                  "correct": "Western Conference"
+                },
+                {
+                  "id": "teams",
+                  "options": ["15", "10", "20"],
+                  "correct": "15"
+                },
+                {
+                  "id": "divs",
+                  "options": ["3", "5", "2"],
+                  "correct": "3"
+                }
+              ],
+              "explanation": {
+                "correct": "Perfect. The NBA structure: two conferences of 15 teams, three divisions per conference, five teams per division.",
+                "incorrect": "Not quite. The NBA has two conferences (East and West) of 15 teams each, divided into three divisions with five teams per division."
+              }
+            }
+          },
+          {
+            "id": "lea-01-es-1",
+            "type": "estimate-slider",
+            "conceptIds": ["eighty-two-game-season"],
+            "payload": {
+              "prompt": "Roughly how many months does the NBA regular season last?",
+              "unit": "months",
+              "min": 3,
+              "max": 12,
+              "step": 0.5,
+              "correctValue": 6,
+              "tolerance": {"full": 0.5, "partial": 1},
+              "explanation": {
+                "correct": "Right. The season runs roughly six months, October through April, then playoffs take over.",
+                "incorrect": "Not quite. The NBA regular season lasts about six months, from October through mid-April."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "lea-02",
+        "title": "Standings, seeds and tiebreakers",
+        "objective": "Explain seeding and why the 7th seed matters.",
+        "estimatedMinutes": 9,
+        "conceptIds": ["seeding", "tiebreaker", "standings-reading"],
+        "activities": [
+          {
+            "id": "lea-02-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": ["seeding"],
+            "payload": {
+              "prompt": "What determines playoff seeding?",
+              "options": [
+                {"id": "correct", "text": "Win-loss record; the best team in each conference is the 1-seed, and seeding continues by record."},
+                {"id": "dist-1", "text": "How many All-Stars a team has."},
+                {"id": "dist-2", "text": "Alphabetical order of city names."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. Seeding is purely based on win-loss record. Best record in the conference gets the 1-seed; second-best gets 2-seed, and so on.",
+                "incorrect": "Not quite. Seeds are determined strictly by win-loss record within each conference."
+              }
+            }
+          },
+          {
+            "id": "lea-02-tm-1",
+            "type": "term-match",
+            "conceptIds": ["seeding", "tiebreaker"],
+            "payload": {
+              "prompt": "Match each seed position to its playoff importance.",
+              "pairs": [
+                {"id": "one", "term": "1-seed", "definition": "The best record in the conference, hosts all series games in round one and beyond if won."},
+                {"id": "two", "term": "2-8 seeds", "definition": "Remaining playoff teams seeded by record, home-court advantage goes to the higher seed."},
+                {"id": "tie", "term": "Tiebreaker", "definition": "Head-to-head record or division record breaks ties when two teams have identical records."}
+              ],
+              "distractorDefinitions": [
+                "Teams that did not make the playoffs.",
+                "The worst team in the league."
+              ],
+              "explanation": {
+                "summary": "Seeding is all about record; tiebreakers decide teams with equal records. Higher seeds have home-court advantage."
+              }
+            }
+          },
+          {
+            "id": "lea-02-so-1",
+            "type": "sequence-order",
+            "conceptIds": ["standings-reading"],
+            "payload": {
+              "prompt": "Order the process of how standings are determined during the season.",
+              "items": [
+                {"id": "play", "text": "Teams play games throughout the season.", "why": "This happens continuously from October through April."},
+                {"id": "track", "text": "The league tracks wins and losses in the standings.", "why": "Each win moves a team up, losses impact their position and seed."},
+                {"id": "seed", "text": "Seeds are determined by final record when the season ends.", "why": "Only after all 82 games are played are playoff seeds finalized."}
+              ],
+              "explanation": {
+                "correct": "Exactly. Teams play, their records accumulate, and final seeding comes from the final standings.",
+                "incorrect": "Not quite. Seeds come from win-loss record. Teams play all season, standings are updated, then final seeds are set."
+              }
+            }
+          },
+          {
+            "id": "lea-02-st-1",
+            "type": "say-this",
+            "conceptIds": ["seeding"],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "If we win out, we might jump from 6 to 2 in the standings."
+              },
+              "question": "What is she saying?",
+              "options": [
+                {"id": "correct", "text": "Wins and losses change a team's seed position based on record and the playoff race.", "isCorrect": true},
+                {"id": "dist-1", "text": "The team is jumping between different conference divisions.", "isCorrect": false},
+                {"id": "dist-2", "text": "The team skips the 4th and 5th seeds.", "isCorrect": false},
+                {"id": "dist-3", "text": "Seeds are assigned by the league for television.", "isCorrect": false}
+              ],
+              "translation": "She is saying that more wins improve the team's record and could move them up the standings to a better playoff seed.",
+              "followUps": [
+                {
+                  "line": "But that depends on what other teams do.",
+                  "why": "A good follow-up recognizing that seeding is relative and depends on other teams' records too."
+                },
+                {
+                  "line": "How many games are left?",
+                  "why": "A good follow-up asking about the feasibility of the jump in remaining games."
+                }
+              ],
+              "noFakeExpertNote": "Seeds just follow the standings. Win more, move up in the playoff race."
+            }
+          }
+        ]
+      },
+      {
+        "id": "lea-03",
+        "title": "The Play-In Tournament",
+        "objective": "Walk through the 7-10 seed play-in bracket.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["play-in", "seventh-eighth-game", "ninth-tenth-game"],
+        "activities": [
+          {
+            "id": "lea-03-so-1",
+            "type": "sequence-order",
+            "conceptIds": ["play-in"],
+            "payload": {
+              "prompt": "Order the Play-In Tournament games from start to finish.",
+              "items": [
+                {"id": "one", "text": "The 7-seed plays the 8-seed; winner gets the 7th playoff seed.", "why": "This is the first game; higher seeds play first."},
+                {"id": "two", "text": "The 9-seed plays the 10-seed; winner gets to play the loser of game one.", "why": "Lower seeds need to win to advance."},
+                {"id": "three", "text": "The winner of 9-10 plays the loser of 7-8; winner becomes the 8th seed.", "why": "This determines the final playoff spot."}
+              ],
+              "explanation": {
+                "correct": "Perfect. That is the exact Play-In structure for 2026-27.",
+                "incorrect": "Not quite. The Play-In has three games: 7-8 (winner is 7-seed), 9-10 (winner plays loser of 7-8 for the 8-seed)."
+              }
+            }
+          },
+          {
+            "id": "lea-03-so-2",
+            "type": "sequence-order",
+            "conceptIds": ["seventh-eighth-game", "ninth-tenth-game"],
+            "payload": {
+              "prompt": "Order who plays whom in the Play-In based on seeding.",
+              "items": [
+                {"id": "high", "text": "The two highest seeds (7 and 8) play each other first.", "why": "Higher seeds get first dibs and home-court advantage in the play-in."},
+                {"id": "low", "text": "The two lowest seeds (9 and 10) play each other in the second game.", "why": "Lower seeds play after the higher seeds."},
+                {"id": "decider", "text": "The loser of the 7-8 game faces the winner of the 9-10 game.", "why": "This final game decides who takes the 8th playoff spot."}
+              ],
+              "explanation": {
+                "correct": "Exactly. Higher seeds are rewarded with playing later and better positioning.",
+                "incorrect": "Not quite. Seeds 7 and 8 play first; 9 and 10 play after. The winner of 9-10 faces the loser of 7-8."
+              }
+            }
+          },
+          {
+            "id": "lea-03-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": ["play-in"],
+            "payload": {
+              "prompt": "What is the Play-In Tournament?",
+              "options": [
+                {"id": "correct", "text": "An extra tournament between seeds 7-10 to determine the final two playoff spots."},
+                {"id": "dist-1", "text": "A tournament to decide the NBA champion."},
+                {"id": "dist-2", "text": "A warmup for All-Star weekend."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. The Play-In is for teams that barely missed the top six. They play for the 7th and 8th playoff seeds.",
+                "incorrect": "Not quite. The Play-In is a tournament for teams seeded 7-10, determining who gets the 7th and 8th playoff spots."
+              }
+            }
+          },
+          {
+            "id": "lea-03-mc-2",
+            "type": "multiple-choice",
+            "conceptIds": ["play-in"],
+            "payload": {
+              "prompt": "Why do teams want to be the 6-seed or better?",
+              "options": [
+                {"id": "correct", "text": "To skip the Play-In and go straight to the playoffs as a top-six seed."},
+                {"id": "dist-1", "text": "To get a trophy early in the season."},
+                {"id": "dist-2", "text": "Because the 7-seed never wins."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Exactly. The top six seeds avoid the Play-In and go directly to round one of the playoffs.",
+                "incorrect": "Not quite. The 1-6 seeds skip the Play-In and go straight to the playoffs. Seeds 7-10 must win their way in."
+              }
+            }
+          },
+          {
+            "id": "lea-03-bc-1",
+            "type": "binary-call",
+            "conceptIds": ["seventh-eighth-game"],
+            "payload": {
+              "prompt": "In the Play-In, can the 8-seed beat the 7-seed and become the 7-seed? True?",
+              "scene": {"kind": "none", "alt": "Play-In tournament seeding and advancement."},
+              "choices": [
+                {"id": "yes", "label": "Yes, the winner becomes the 7-seed."},
+                {"id": "no", "label": "No, seeds never change."}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Right. In the Play-In, the winner of the 7-8 game gets the 7-seed in the playoffs, regardless of which team won.",
+                "incorrect": "Not quite. The Play-In winner becomes the 7-seed in the playoffs, so an 8-seed can absolutely jump to 7 if they win."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "lea-04",
+        "title": "The playoffs",
+        "objective": "Explain the four best-of-seven rounds and playoff vocabulary.",
+        "estimatedMinutes": 9,
+        "conceptIds": ["playoff-format", "best-of-seven", "sweep", "conference-finals", "nba-finals"],
+        "activities": [
+          {
+            "id": "lea-04-so-1",
+            "type": "sequence-order",
+            "conceptIds": ["playoff-format"],
+            "payload": {
+              "prompt": "Order the playoff rounds from start to finish.",
+              "items": [
+                {"id": "round1", "text": "Round 1: Four matchups per conference (1 vs 8, 2 vs 7, 3 vs 6, 4 vs 5).", "why": "First round is seeded by record from the regular season."},
+                {"id": "round2", "text": "Conference Semifinals: Winners advance to play each other.", "why": "Winners from round one play each other in the second round."},
+                {"id": "round3", "text": "Conference Finals: One winner from each conference advances.", "why": "Winners of the semifinals play for the conference crown."},
+                {"id": "finals", "text": "NBA Finals: Eastern Conference champion vs Western Conference champion.", "why": "The two conference winners play for the championship."}
+              ],
+              "explanation": {
+                "correct": "Perfect. That is the exact playoff structure from round one through the Finals.",
+                "incorrect": "Not quite. The playoffs go: Round 1 (seeded matchups), Conference Semifinals, Conference Finals, then the NBA Finals."
+              }
+            }
+          },
+          {
+            "id": "lea-04-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": ["best-of-seven"],
+            "payload": {
+              "prompt": "What does 'best-of-seven' mean in the NBA playoffs?",
+              "options": [
+                {"id": "correct", "text": "The first team to win four games wins the series; series ends when one team gets four wins."},
+                {"id": "dist-1", "text": "All seven games must be played no matter what."},
+                {"id": "dist-2", "text": "Teams play seven games total in the season."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. Best-of-seven means the first to win four games takes the series. If one team wins 4-0, the series is over in four games.",
+                "incorrect": "Not quite. Best-of-seven series ends as soon as one team wins four games. They do not always play all seven."
+              }
+            }
+          },
+          {
+            "id": "lea-04-mc-2",
+            "type": "multiple-choice",
+            "conceptIds": ["sweep"],
+            "payload": {
+              "prompt": "What is a sweep in the playoffs?",
+              "options": [
+                {"id": "correct", "text": "One team wins four games in a row (4-0) without losing a single game in the series."},
+                {"id": "dist-1", "text": "Cleaning the court between games."},
+                {"id": "dist-2", "text": "Winning the championship."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Exactly. A sweep is when a team wins four straight games without any losses (4-0).",
+                "incorrect": "Not quite. A sweep is winning every game in a series, going 4-0 without a loss."
+              }
+            }
+          },
+          {
+            "id": "lea-04-ftg-1",
+            "type": "fill-the-gap",
+            "conceptIds": ["best-of-seven"],
+            "payload": {
+              "prompt": "Fill in playoff series outcomes.",
+              "template": "In a best-of-seven series, a team must win {{wins}} games to win the series. A {{sweep}} means winning {{clean}} games in a row.",
+              "gaps": [
+                {
+                  "id": "wins",
+                  "options": ["4", "5", "7"],
+                  "correct": "4"
+                },
+                {
+                  "id": "sweep",
+                  "options": ["sweep", "upset", "blowout"],
+                  "correct": "sweep"
+                },
+                {
+                  "id": "clean",
+                  "options": ["4", "3", "6"],
+                  "correct": "4"
+                }
+              ],
+              "explanation": {
+                "correct": "Perfect. First to four wins takes the series; a 4-0 sweep is the cleanest possible series.",
+                "incorrect": "Not quite. In a best-of-seven, the first team to win four games wins. A sweep is winning all four straight."
+              }
+            }
+          },
+          {
+            "id": "lea-04-st-1",
+            "type": "say-this",
+            "conceptIds": ["conference-finals"],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "They are in the Conference Finals now."
+              },
+              "question": "What does she mean?",
+              "options": [
+                {"id": "correct", "text": "The team won their first two playoff rounds and is now competing for their conference championship.", "isCorrect": true},
+                {"id": "dist-1", "text": "The team lost in the first round.", "isCorrect": false},
+                {"id": "dist-2", "text": "The team won the NBA championship.", "isCorrect": false},
+                {"id": "dist-3", "text": "The team tied with another conference.", "isCorrect": false}
+              ],
+              "translation": "She means the team has won their way through rounds one and two (Conference Semifinals) and is now playing for the right to go to the Finals.",
+              "followUps": [
+                {
+                  "line": "One more series away from the championship.",
+                  "why": "A good recognition that the Conference Finals winner gets to the NBA Finals."
+                },
+                {
+                  "line": "Who are they playing?",
+                  "why": "A good follow-up asking about their opponent in that round."
+                }
+              ],
+              "noFakeExpertNote": "Conference Finals means the team is two wins away from the championship; they play the other conference champion next."
+            }
+          }
+        ]
+      },
+      {
+        "id": "lea-05",
+        "title": "The NBA Cup",
+        "objective": "Explain in-season tournament groups, knockout and what counts.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["nba-cup", "cup-group-play", "cup-knockout"],
+        "activities": [
+          {
+            "id": "lea-05-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": ["nba-cup"],
+            "payload": {
+              "prompt": "What is the NBA Cup (In-Season Tournament)?",
+              "options": [
+                {"id": "correct", "text": "A tournament held during the regular season where teams compete for a trophy and prize money, games count in the regular-season record."},
+                {"id": "dist-1", "text": "The playoff championship."},
+                {"id": "dist-2", "text": "A tournament only for teams below .500."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. The NBA Cup is played during the regular season, and the wins and losses count toward each team's regular-season record.",
+                "incorrect": "Not quite. The NBA Cup is an in-season tournament; the games count as regular-season games and teams compete for a championship and prize pool."
+              }
+            }
+          },
+          {
+            "id": "lea-05-bc-1",
+            "type": "binary-call",
+            "conceptIds": ["cup-group-play"],
+            "payload": {
+              "prompt": "In the 2026-27 NBA Cup, teams are divided into groups by conference. True?",
+              "scene": {"kind": "none", "alt": "NBA Cup group play structure."},
+              "choices": [
+                {"id": "yes", "label": "Yes, group play by conference."},
+                {"id": "no", "label": "No, all 30 teams in one bracket."}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Right. The 2026-27 NBA Cup has six groups: three in each conference, five teams per group.",
+                "incorrect": "Not quite. Teams are divided into groups within their conference for the group stage of the Cup."
+              }
+            }
+          },
+          {
+            "id": "lea-05-mc-2",
+            "type": "multiple-choice",
+            "conceptIds": ["cup-knockout"],
+            "payload": {
+              "prompt": "After group play, how many teams advance to the NBA Cup knockout stage?",
+              "options": [
+                {"id": "correct", "text": "Six group winners plus one wild card from each conference (8 teams total)."},
+                {"id": "dist-1", "text": "All 30 teams continue playing."},
+                {"id": "dist-2", "text": "Only the top two teams."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Exactly. The six group winners and one wild card per conference (based on record) advance to knockout rounds.",
+                "incorrect": "Not quite. The Cup has eight teams in the knockout stage: six group winners and one wild card per conference."
+              }
+            }
+          },
+          {
+            "id": "lea-05-tm-1",
+            "type": "term-match",
+            "conceptIds": ["nba-cup", "cup-group-play"],
+            "payload": {
+              "prompt": "Match the NBA Cup structure to how it works.",
+              "pairs": [
+                {"id": "group", "term": "Group play", "definition": "Teams play within their group; wins and losses count toward the regular season record."},
+                {"id": "knockout", "term": "Knockout stage", "definition": "Single-elimination games starting with group winners and advancing through semifinals to the final."},
+                {"id": "prize", "term": "NBA Cup prize pool", "definition": "Prize money and a trophy awarded to the winning team and players."}
+              ],
+              "distractorDefinitions": [
+                "A tournament held before the regular season starts.",
+                "Replacement for the All-Star Game."
+              ],
+              "explanation": {
+                "summary": "The NBA Cup has group play during the regular season, then knockout rounds determine the champion."
+              }
+            }
+          },
+          {
+            "id": "lea-05-st-1",
+            "type": "say-this",
+            "conceptIds": ["nba-cup"],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "We won our group, so we are in the Cup knockout now."
+              },
+              "question": "What is she excited about?",
+              "options": [
+                {"id": "correct", "text": "The team won their group and is advancing to single-elimination games in the NBA Cup.", "isCorrect": true},
+                {"id": "dist-1", "text": "The team is out of the tournament.", "isCorrect": false},
+                {"id": "dist-2", "text": "They are playing exhibition games.", "isCorrect": false},
+                {"id": "dist-3", "text": "The group stage is the end of the NBA Cup.", "isCorrect": false}
+              ],
+              "translation": "She means the team topped its group and earned a spot in the knockout rounds where teams play single-elimination matches for the trophy.",
+              "followUps": [
+                {
+                  "line": "The prize pool is huge for the winner.",
+                  "why": "A good recognition that NBA Cup winners and their players receive significant prize money."
+                },
+                {
+                  "line": "Who else advanced from your conference?",
+                  "why": "A good follow-up asking about other qualifiers to the knockout stage."
+                }
+              ],
+              "noFakeExpertNote": "Winning the group means advancing to knockout play. Teams want in the Cup for the trophy and prize money."
+            }
+          }
+        ]
+      },
+      {
+        "id": "lea-06",
+        "title": "The draft and the lottery",
+        "objective": "Explain the lottery, rookie scale and tanking.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["nba-draft", "draft-lottery", "tanking", "rookie-scale", "two-way-contract"],
+        "activities": [
+          {
+            "id": "lea-06-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": ["draft-lottery"],
+            "payload": {
+              "prompt": "What is the NBA draft lottery?",
+              "options": [
+                {"id": "correct", "text": "A weighted draw where the worst teams have the best odds to get the 1st pick, but any lottery team could win it."},
+                {"id": "dist-1", "text": "The worst team automatically gets the first pick."},
+                {"id": "dist-2", "text": "Fans vote on which player the worst team drafts."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. The lottery gives the worst teams better odds, but it is a draw. The 1st pick is not guaranteed to the worst team.",
+                "incorrect": "Not quite. The lottery is weighted; the worst record has the best odds but is not guaranteed the 1st pick."
+              }
+            }
+          },
+          {
+            "id": "lea-06-ftg-1",
+            "type": "fill-the-gap",
+            "conceptIds": ["draft-lottery"],
+            "payload": {
+              "prompt": "Fill in the draft lottery rules.",
+              "template": "The {{num}} worst teams enter the lottery. The worst team cannot fall below {{floor}} in the lottery odds.",
+              "gaps": [
+                {
+                  "id": "num",
+                  "options": ["14", "10", "20"],
+                  "correct": "14"
+                },
+                {
+                  "id": "floor",
+                  "options": ["5th", "3rd", "4th"],
+                  "correct": "5th"
+                }
+              ],
+              "explanation": {
+                "correct": "Perfect. 14 teams enter the lottery, and the worst team cannot fall below the 5th pick.",
+                "incorrect": "Not quite. The 14 worst-record teams are in the lottery. The worst team is guaranteed a top-5 pick but could get 2nd-5th."
+              }
+            }
+          },
+          {
+            "id": "lea-06-mc-2",
+            "type": "multiple-choice",
+            "conceptIds": ["tanking"],
+            "payload": {
+              "prompt": "What is tanking in basketball?",
+              "options": [
+                {"id": "correct", "text": "A team intentionally losing games late in the season to get a worse record and higher lottery odds."},
+                {"id": "dist-1", "text": "Trading all star players early in the season."},
+                {"id": "dist-2", "text": "Playing defensive-heavy basketball."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Exactly. Tanking is losing on purpose to improve lottery odds. It is controversial but legal.",
+                "incorrect": "Not quite. Tanking is intentionally losing games to secure a worse record and better lottery odds for the draft."
+              }
+            }
+          },
+          {
+            "id": "lea-06-tm-1",
+            "type": "term-match",
+            "conceptIds": ["nba-draft", "rookie-scale", "two-way-contract"],
+            "payload": {
+              "prompt": "Match draft concepts to what they mean.",
+              "pairs": [
+                {"id": "draft", "term": "NBA Draft", "definition": "Teams select college and international players to join the league; two rounds of 30 picks each."},
+                {"id": "rookie", "term": "Rookie-scale contract", "definition": "A standardized multi-year deal for draft picks where salary is set by where they were drafted (1st pick pays most)."},
+                {"id": "two-way", "term": "Two-way contract", "definition": "A deal allowing a player to move between the NBA and G League, used for young or undrafted players."}
+              ],
+              "distractorDefinitions": [
+                "A contract that lasts for one game only.",
+                "Undrafted free agents signing immediately."
+              ],
+              "explanation": {
+                "summary": "Draft picks get rookie-scale contracts; lower picks and undrafted can get two-way deals to split time between NBA and G League."
+              }
+            }
+          },
+          {
+            "id": "lea-06-st-1",
+            "type": "say-this",
+            "conceptIds": ["draft-lottery"],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "Their lottery odds got worse because they won too many games."
+              },
+              "question": "What happened?",
+              "options": [
+                {"id": "correct", "text": "The team won games when they were expected to lose, which hurts their draft odds.", "isCorrect": true},
+                {"id": "dist-1", "text": "Winning games improves lottery odds.", "isCorrect": false},
+                {"id": "dist-2", "text": "The lottery was unfair to them.", "isCorrect": false},
+                {"id": "dist-3", "text": "The team is now in the playoffs.", "isCorrect": false}
+              ],
+              "translation": "She is observing that the team's win total has climbed, pushing them up the standings and worsening their lottery position.",
+              "followUps": [
+                {
+                  "line": "They should have tanked harder.",
+                  "why": "A sarcastic comment about teams trying to lose for better picks."
+                },
+                {
+                  "line": "At least they are closer to playoffs.",
+                  "why": "A good follow-up recognizing the trade-off between lottery positioning and playoff race."
+                }
+              ],
+              "noFakeExpertNote": "The worse your record, the better your lottery odds. Winning games hurts your draft position."
+            }
+          },
+          {
+            "id": "lea-06-st-2",
+            "type": "say-this",
+            "conceptIds": ["nba-draft"],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "They traded their first-round pick for a veteran."
+              },
+              "question": "What did they do?",
+              "options": [
+                {"id": "correct", "text": "The team gave up their draft pick rights to select a young player in return for an experienced player from another team.", "isCorrect": true},
+                {"id": "dist-1", "text": "They drafted a veteran player.", "isCorrect": false},
+                {"id": "dist-2", "text": "They released a veteran from the team.", "isCorrect": false},
+                {"id": "dist-3", "text": "They hired a new coach.", "isCorrect": false}
+              ],
+              "translation": "She means the team sent their draft pick to another team in exchange for a player who is already in the league.",
+              "followUps": [
+                {
+                  "line": "A win-now move, I guess.",
+                  "why": "Recognizing that trading draft picks is typical for contenders trying to win immediately."
+                },
+                {
+                  "line": "Who did they get back?",
+                  "why": "A good follow-up asking about the veteran player received in return."
+                }
+              ],
+              "noFakeExpertNote": "Teams trade draft picks for current players when trying to win now instead of rebuild for the future."
+            }
+          }
+        ]
+      },
+      {
+        "id": "lea-07",
+        "title": "The salary cap in plain English",
+        "objective": "Explain a soft cap, luxury tax, aprons and max contracts.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["salary-cap", "luxury-tax", "first-apron", "second-apron", "soft-cap", "max-contract", "supermax", "mid-level-exception", "bird-rights"],
+        "activities": [
+          {
+            "id": "lea-07-tm-1",
+            "type": "term-match",
+            "conceptIds": ["salary-cap", "soft-cap"],
+            "payload": {
+              "prompt": "Match cap concepts to how the NBA money limit works.",
+              "pairs": [
+                {"id": "cap", "term": "Salary cap", "definition": "A team's maximum total player payroll; about $154M in 2025-26, reset annually."},
+                {"id": "soft", "term": "Soft cap", "definition": "Teams can exceed the cap using exceptions (Bird Rights, mid-level); unlike hard caps, going over is allowed with penalties."},
+                {"id": "tax", "term": "Luxury tax", "definition": "A penalty tax teams pay for every dollar spent above the tax line; about $188M in 2025-26."}
+              ],
+              "distractorDefinitions": [
+                "The absolute maximum a team must not spend.",
+                "A reward for staying under the cap."
+              ],
+              "explanation": {
+                "summary": "The NBA has a soft cap (teams can exceed it), a luxury tax line (penalty zone), and exceptions allowing spending above the cap."
+              }
+            }
+          },
+          {
+            "id": "lea-07-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": ["salary-cap"],
+            "payload": {
+              "prompt": "What is the salary cap in the NBA?",
+              "options": [
+                {"id": "correct", "text": "The target payroll for teams; teams can exceed it but face luxury tax penalties for each dollar over."},
+                {"id": "dist-1", "text": "The highest salary any single player can make."},
+                {"id": "dist-2", "text": "The total revenue the NBA makes each year."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. The cap is a soft limit; teams can spend above it using exceptions but pay a luxury tax penalty.",
+                "incorrect": "Not quite. The salary cap is the team payroll limit. Going over means luxury tax penalties."
+              }
+            }
+          },
+          {
+            "id": "lea-07-es-1",
+            "type": "estimate-slider",
+            "conceptIds": ["salary-cap"],
+            "payload": {
+              "prompt": "Roughly how much is the 2025-26 NBA salary cap?",
+              "unit": "millions",
+              "min": 100,
+              "max": 200,
+              "step": 5,
+              "correctValue": 155,
+              "tolerance": {"full": 10, "partial": 20},
+              "explanation": {
+                "correct": "About right. The 2025-26 cap is approximately $154.6M, tied to league revenue.",
+                "incorrect": "Not quite. The 2025-26 NBA salary cap is roughly $155 million per team."
+              }
+            }
+          },
+          {
+            "id": "lea-07-tm-2",
+            "type": "term-match",
+            "conceptIds": ["first-apron", "second-apron", "max-contract"],
+            "payload": {
+              "prompt": "Match spending thresholds to their names and effects.",
+              "pairs": [
+                {"id": "first", "term": "First apron", "definition": "Spending threshold around $195.9M; teams over it cannot add free agents, only trade-eligible players."},
+                {"id": "second", "term": "Second apron", "definition": "Spending threshold around $207.8M; the hardest cap; teams cannot exceed it without special circumstances."},
+                {"id": "max", "term": "Max contract", "definition": "The highest salary allowed for a player based on years of service; superstars sign max deals."}
+              ],
+              "distractorDefinitions": [
+                "A discount for undrafted players.",
+                "A bonus for winning the playoffs."
+              ],
+              "explanation": {
+                "summary": "The aprons are spending checkpoints above the cap that restrict team moves. Max contracts are the salary ceiling for players."
+              }
+            }
+          },
+          {
+            "id": "lea-07-mc-2",
+            "type": "multiple-choice",
+            "conceptIds": ["luxury-tax"],
+            "payload": {
+              "prompt": "What happens when a team goes over the luxury tax line?",
+              "options": [
+                {"id": "correct", "text": "The team pays a penalty tax to the league for every dollar over; repeated luxury tax can trigger a repeater tax."},
+                {"id": "dist-1", "text": "The team is immediately kicked out of the league."},
+                {"id": "dist-2", "text": "The team loses draft picks."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. Going over the luxury tax line means paying penalties. Teams that do it repeatedly pay even more.",
+                "incorrect": "Not quite. Teams pay a luxury tax penalty per dollar over the tax line. Repeated luxury tax years trigger higher penalties."
+              }
+            }
+          },
+          {
+            "id": "lea-07-es-2",
+            "type": "estimate-slider",
+            "conceptIds": ["luxury-tax"],
+            "payload": {
+              "prompt": "About how much is the 2025-26 luxury tax line?",
+              "unit": "millions",
+              "min": 150,
+              "max": 220,
+              "step": 5,
+              "correctValue": 188,
+              "tolerance": {"full": 10, "partial": 20},
+              "explanation": {
+                "correct": "About right. The 2025-26 luxury tax line is approximately $187.9M, well above the salary cap.",
+                "incorrect": "Not quite. The 2025-26 NBA luxury tax line is roughly $188 million per team."
+              }
+            }
+          },
+          {
+            "id": "lea-07-st-1",
+            "type": "say-this",
+            "conceptIds": ["salary-cap", "first-apron"],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "They are right at the first apron, so they have to make a move."
+              },
+              "question": "What is she describing?",
+              "options": [
+                {"id": "correct", "text": "The team is at a spending threshold where free agent acquisitions are restricted unless they use trades.", "isCorrect": true},
+                {"id": "dist-1", "text": "The team has too much money and should spend it.", "isCorrect": false},
+                {"id": "dist-2", "text": "The team is below the salary cap and can do anything.", "isCorrect": false},
+                {"id": "dist-3", "text": "The team is trading for a player.", "isCorrect": false}
+              ],
+              "translation": "She means the team has spent up to the first apron threshold, which prevents them from signing free agents directly and forces difficult choices about trades.",
+              "followUps": [
+                {
+                  "line": "Yeah, they are stuck without trading.",
+                  "why": "A good recognition that being in the apron restricts a team's flexibility."
+                },
+                {
+                  "line": "Are they trying to get under?",
+                  "why": "A good follow-up asking if the team plans to cut salary to regain flexibility."
+                }
+              ],
+              "noFakeExpertNote": "The first apron limits free agent signings. Being there means cap flexibility is tight."
+            }
+          }
+        ]
+      },
+      {
+        "id": "lea-08",
+        "title": "Trades, free agency and contract types",
+        "objective": "Decode player options, sign-and-trades and buyouts.",
+        "estimatedMinutes": 9,
+        "conceptIds": ["trade", "free-agency", "restricted-free-agent", "player-option", "team-option", "sign-and-trade", "trade-exception", "buyout"],
+        "activities": [
+          {
+            "id": "lea-08-tm-1",
+            "type": "term-match",
+            "conceptIds": ["trade", "free-agency"],
+            "payload": {
+              "prompt": "Match the offseason moves to how they work.",
+              "pairs": [
+                {"id": "trade", "term": "Trade", "definition": "One team sends a player to another team; both teams must agree, and the league must approve."},
+                {"id": "free-agent", "term": "Free agency", "definition": "A player becomes unrestricted and can sign with any team; happens when a contract expires."},
+                {"id": "sign-and-trade", "term": "Sign-and-trade", "definition": "A player agrees to a new contract with a new team via trade to provide more cap flexibility."}
+              ],
+              "distractorDefinitions": [
+                "A player is released and must sit out a year.",
+                "A coach decides which players to keep."
+              ],
+              "explanation": {
+                "summary": "Trades happen anytime; free agency is when contracts end. Sign-and-trades combine both to help cap situations."
+              }
+            }
+          },
+          {
+            "id": "lea-08-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": ["restricted-free-agent"],
+            "payload": {
+              "prompt": "What is a restricted free agent?",
+              "options": [
+                {"id": "correct", "text": "A player whose contract expires but whose team can offer a contract and match any offer from another team."},
+                {"id": "dist-1", "text": "A player who is injured and cannot play."},
+                {"id": "dist-2", "text": "A player banned for violating league rules."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. Restricted free agents are not truly free; their original team can match any outside offer.",
+                "incorrect": "Not quite. A restricted free agent can get offers from other teams, but their original team can match any offer to keep them."
+              }
+            }
+          },
+          {
+            "id": "lea-08-tm-2",
+            "type": "term-match",
+            "conceptIds": ["player-option", "team-option"],
+            "payload": {
+              "prompt": "Match contract options to who controls them.",
+              "pairs": [
+                {"id": "player", "term": "Player option", "definition": "The player decides whether to accept the contract for next year or become a free agent."},
+                {"id": "team", "term": "Team option", "definition": "The team decides whether to keep the player for the next year or release them."},
+                {"id": "buyout", "term": "Buyout", "definition": "A team pays a player to terminate their contract early so both can part ways."}
+              ],
+              "distractorDefinitions": [
+                "A mutual agreement that lasts forever.",
+                "An option only for rookies."
+              ],
+              "explanation": {
+                "summary": "Player options let the player choose to opt out; team options let the team decide. Buyouts are negotiated exits."
+              }
+            }
+          },
+          {
+            "id": "lea-08-mc-2",
+            "type": "multiple-choice",
+            "conceptIds": ["trade-exception"],
+            "payload": {
+              "prompt": "What is a trade exception in the salary cap rules?",
+              "options": [
+                {"id": "correct", "text": "Credit a team earns when losing salary in a trade; used to absorb salary from another team later."},
+                {"id": "dist-1", "text": "Permission to trade with any team without league approval."},
+                {"id": "dist-2", "text": "A player who is exempt from the salary cap."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Exactly. A trade exception is earned salary flexibility. If you trade away a big contract, you can use that exception later.",
+                "incorrect": "Not quite. A trade exception lets a team absorb salary in a future trade. It is cap flexibility earned from a previous trade."
+              }
+            }
+          },
+          {
+            "id": "lea-08-ds-1",
+            "type": "decision-scenario",
+            "conceptIds": ["trade", "free-agency"],
+            "payload": {
+              "prompt": "A star player's contract expires this summer. Should the team trade him now or let him hit free agency?",
+              "situation": {
+                "narrative": "The team wants to keep the star but knows he might leave in free agency.",
+                "facts": [
+                  {"label": "Player status", "value": "Contract expires; team has no match rights"},
+                  {"label": "Team goal", "value": "Get the best assets (picks or young players) if he leaves"},
+                  {"label": "Market", "value": "Other teams are interested in trading for him"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "trade",
+                  "label": "Trade him now for draft picks",
+                  "verdict": "acceptable",
+                  "consequence": "The team gets assets instead of losing him for nothing. Risk: he might have re-signed.",
+                  "considerations": [
+                    "Trade brings immediate return (picks, young players)",
+                    "No guarantee he re-signs in free agency",
+                    "Gets something vs. potentially nothing"
+                  ]
+                },
+                {
+                  "id": "extend",
+                  "label": "Offer a big extension to keep him",
+                  "verdict": "best",
+                  "consequence": "If he accepts, the star stays and the team commits to contending. Risk: he might leave anyway.",
+                  "considerations": [
+                    "Keeps the star if he wants to stay",
+                    "Shows loyalty and commitment",
+                    "Could backfire if he still leaves"
+                  ]
+                },
+                {
+                  "id": "wait",
+                  "label": "Wait for free agency and see what he wants",
+                  "verdict": "poor",
+                  "consequence": "If he leaves, the team gets nothing. Lost leverage and assets.",
+                  "considerations": [
+                    "Loses negotiating leverage",
+                    "No return if he chooses another team",
+                    "Risky if losing him weakens the team"
+                  ]
+                }
+              ],
+              "expertNote": "Contending teams offer extensions to keep stars. Teams rebuilding trade for assets. Letting a free agent walk for nothing is rarely the best choice."
+            }
+          },
+          {
+            "id": "lea-08-st-1",
+            "type": "say-this",
+            "conceptIds": ["trade", "trade-exception"],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "They have a big trade exception they can use this summer."
+              },
+              "question": "What does she mean?",
+              "options": [
+                {"id": "correct", "text": "The team has salary-cap flexibility from a previous trade and can absorb a big contract from another team.", "isCorrect": true},
+                {"id": "dist-1", "text": "The team can trade anyone without approval.", "isCorrect": false},
+                {"id": "dist-2", "text": "The team is allowed one trade per year.", "isCorrect": false},
+                {"id": "dist-3", "text": "The team can trade for a player who is injured.", "isCorrect": false}
+              ],
+              "translation": "She means the team earned trade exception flexibility in an earlier trade and can use it to acquire a player from another team, absorbing salary that would normally put them over the cap.",
+              "followUps": [
+                {
+                  "line": "Perfect chance to get a star.",
+                  "why": "Recognizing that trade exceptions give teams flexibility to make mid-market acquisitions."
+                },
+                {
+                  "line": "How long does the exception last?",
+                  "why": "A good follow-up; trade exceptions expire, so timing matters."
+                }
+              ],
+              "noFakeExpertNote": "Trade exceptions are cap flexibility earned from past trades. Use them to absorb salary without exceeding your cap."
+            }
+          },
+          {
+            "id": "lea-08-st-2",
+            "type": "say-this",
+            "conceptIds": ["sign-and-trade", "buyout"],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "They bought him out instead of trading him."
+              },
+              "question": "What happened?",
+              "options": [
+                {"id": "correct", "text": "The team paid part of the player's remaining contract to release him and end their relationship.", "isCorrect": true},
+                {"id": "dist-1", "text": "The team sold their ownership stake.", "isCorrect": false},
+                {"id": "dist-2", "text": "The team purchased the player's house.", "isCorrect": false},
+                {"id": "dist-3", "text": "The team signed a new player.", "isCorrect": false}
+              ],
+              "translation": "She means the team and player agreed to mutually end the contract early. The team paid part of what he was owed so he could leave and sign elsewhere.",
+              "followUps": [
+                {
+                  "line": "So he is free to sign anywhere now.",
+                  "why": "Recognizing that a bought-out player becomes a free agent."
+                },
+                {
+                  "line": "That costs them money to lose him.",
+                  "why": "A good follow-up understanding that buyouts are expensive for teams."
+                }
+              ],
+              "noFakeExpertNote": "A buyout is when a team pays a player to leave. It costs money but gives both sides a clean break."
+            }
+          }
+        ]
+      },
+      {
+        "id": "lea-09",
+        "title": "The calendar: deadline to summer",
+        "objective": "Place the trade deadline, draft, free agency and summer league on the year.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["trade-deadline", "summer-league", "offseason-calendar"],
+        "activities": [
+          {
+            "id": "lea-09-so-1",
+            "type": "sequence-order",
+            "conceptIds": ["offseason-calendar"],
+            "payload": {
+              "prompt": "Order the offseason events from spring through summer.",
+              "items": [
+                {"id": "deadline", "text": "Trade deadline in February: last day teams can make mid-season trades.", "why": "Happens during the regular season, last chance to add or subtract before playoffs."},
+                {"id": "lottery", "text": "NBA draft lottery in May: lottery teams find out draft order.", "why": "Held after regular season ends; determines which team gets which pick."},
+                {"id": "draft", "text": "NBA draft in June: teams select college and international players.", "why": "Happens right before free agency; new rookies and draft picks are announced."},
+                {"id": "free-agent", "text": "Free agency begins in June: unrestricted players can sign with new teams.", "why": "Starts right after draft; free agents negotiate with new teams."},
+                {"id": "summer", "text": "Summer League in July: rookies and young players play exhibition games.", "why": "Happens last; develops young talent and evaluates draft picks and roster moves."}
+              ],
+              "explanation": {
+                "correct": "Perfect. That is the exact offseason calendar from trade deadline through summer league.",
+                "incorrect": "Not quite. The offseason order is: trade deadline, lottery, draft, free agency, then summer league."
+              }
+            }
+          },
+          {
+            "id": "lea-09-so-2",
+            "type": "sequence-order",
+            "conceptIds": ["trade-deadline"],
+            "payload": {
+              "prompt": "Order the urgency of trades relative to the deadline.",
+              "items": [
+                {"id": "early", "text": "Early season trades: teams explore moves to add star power or depth.", "why": "Happens when the team is still evaluating; less urgent."},
+                {"id": "mid", "text": "Mid-season moves: contenders add players to boost playoff odds.", "why": "Happens as teams solidify their playoff position; moderate urgency."},
+                {"id": "late", "text": "Deadline day trades: frantic last-minute moves by contenders and sellers.", "why": "Last day to trade; highest urgency as buyers and sellers make final deals."}
+              ],
+              "explanation": {
+                "correct": "Exactly. Trade deadline urgency builds as February arrives and teams make final pushes.",
+                "incorrect": "Not quite. Trades happen all season, but urgency peaks near the February deadline as contenders and sellers make their moves."
+              }
+            }
+          },
+          {
+            "id": "lea-09-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": ["trade-deadline"],
+            "payload": {
+              "prompt": "When is the NBA trade deadline?",
+              "options": [
+                {"id": "correct", "text": "Mid-February; the last day teams can make trades before the playoffs start."},
+                {"id": "dist-1", "text": "June 15, before free agency."},
+                {"id": "dist-2", "text": "October 1, before the season starts."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. The trade deadline is typically mid-February, giving contenders a last chance to add pieces.",
+                "incorrect": "Not quite. The trade deadline is in mid-February, during the regular season. It is the last day teams can trade."
+              }
+            }
+          },
+          {
+            "id": "lea-09-mc-2",
+            "type": "multiple-choice",
+            "conceptIds": ["summer-league"],
+            "payload": {
+              "prompt": "What is NBA Summer League?",
+              "options": [
+                {"id": "correct", "text": "Exhibition games in July featuring draft picks, young players and free agents to develop talent and evaluate rosters."},
+                {"id": "dist-1", "text": "The official championship tournament."},
+                {"id": "dist-2", "text": "Weekend games for fans only."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Exactly. Summer League is where rookies and young players debut, develop skills and compete for roster spots.",
+                "incorrect": "Not quite. Summer League is an exhibition series in July where draft picks and young players play in a real-game environment."
+              }
+            }
+          },
+          {
+            "id": "lea-09-st-1",
+            "type": "say-this",
+            "conceptIds": ["offseason-calendar"],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "The trade deadline is coming up and they might make a move."
+              },
+              "question": "What is she anticipating?",
+              "options": [
+                {"id": "correct", "text": "The team is approaching mid-February and might trade for another player to improve the team's chances.", "isCorrect": true},
+                {"id": "dist-1", "text": "The season is ending.", "isCorrect": false},
+                {"id": "dist-2", "text": "The draft happens tomorrow.", "isCorrect": false},
+                {"id": "dist-3", "text": "Free agency just opened.", "isCorrect": false}
+              ],
+              "translation": "She means the team is nearing the February trade deadline and might add or subtract players to position themselves for a playoff push or rebuild.",
+              "followUps": [
+                {
+                  "line": "Yeah, they need a scorer.",
+                  "why": "Recognizing a specific need the team might address by trading."
+                },
+                {
+                  "line": "Or they might sell if they are out of it.",
+                  "why": "A good follow-up understanding that contenders buy and non-contenders sell at the deadline."
+                }
+              ],
+              "noFakeExpertNote": "The trade deadline in February is when contenders add and rebuilding teams sell. It is the last chance to trade mid-season."
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

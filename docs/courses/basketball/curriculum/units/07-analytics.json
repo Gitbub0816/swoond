@@ -109,20 +109,20 @@
             }
           },
           {
-            "id": "ana-01-bc-1",
-            "type": "binary-call",
-            "conceptIds": ["offensive-rating"],
+            "id": "ana-01-mc-3",
+            "type": "multiple-choice",
+            "conceptIds": ["defensive-rating"],
             "payload": {
-              "prompt": "A team's offensive rating of 108 means they score 108 points per game. True or false?",
-              "scene": {"kind": "none", "alt": "A team's offensive rating stat."},
-              "choices": [
-                {"id": "yes", "label": "True, they score 108 per game."},
-                {"id": "no", "label": "False, that is per 100 possessions."}
+              "prompt": "What does a defensive rating tell you?",
+              "options": [
+                {"id": "correct", "text": "Points allowed per 100 possessions by the defense, measuring how efficiently the team limits opponent scoring."},
+                {"id": "dist-1", "text": "The total points allowed in a season by the team."},
+                {"id": "dist-2", "text": "How many defensive possessions a team creates per game."}
               ],
-              "correctChoiceId": "no",
+              "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. A 108 offensive rating means 108 points per 100 possessions, not per game. Pace matters: a team with 102 pace and 108 ORtg scores roughly 110 points per game.",
-                "incorrect": "Not quite. Offensive rating is always per 100 possessions, not per game. It adjusts for how fast the team plays."
+                "correct": "Right. Defensive rating (DRtg) is points per 100 possessions allowed. A great defense is 105 or below; 110+ is poor.",
+                "incorrect": "Not quite. Defensive rating is points per 100 possessions allowed. It shows how well the defense controls scoring."
               }
             }
           }
@@ -366,14 +366,13 @@
             "payload": {
               "prompt": "Match each advanced metric to what it means.",
               "pairs": [
-                {"id": "bpm", "term": "Box Plus-Minus (BPM)", "definition": "A player's estimated point contribution per 100 possessions based on box-score stats. A +5 BPM means the team is 5 points better with that player."},
-                {"id": "vorp", "term": "VORP (Value Over Replacement Player)", "definition": "The number of additional wins a player's performance added compared to a replacement-level player. A player with 2 VORP added 2 wins to the team."},
-                {"id": "onoff", "term": "On-Off Differential", "definition": "The point differential per 100 possessions when a player is on the court versus off. Shows a player's direct impact on the game's flow."}
+                {"id": "bpm", "term": "Box Plus-Minus", "definition": "Estimated points per 100 possessions a player adds via box-score stats."},
+                {"id": "vorp", "term": "VORP", "definition": "Estimated wins a player's performance added vs. a replacement-level player."},
+                {"id": "onoff", "term": "On-Off Differential", "definition": "The per-100-possession point swing when a player is on vs. off the court."}
               ],
               "distractorDefinitions": [
                 "How many points a player scores per game.",
-                "The percentage of possessions a player handles the ball.",
-                "The player's ranking among all players."
+                "The percentage of possessions a player handles the ball."
               ],
               "explanation": {
                 "summary": "BPM is per-100-possession impact from box-score stats; VORP converts it to estimated wins; On-Off is the direct per-100 differential."
@@ -594,7 +593,7 @@
             "payload": {
               "prompt": "What is player tracking data?",
               "options": [
-                {"id": "correct", "text": "Second-by-second data from cameras and sensors showing each player's position, speed and distance to opponents, used to analyze movement and spacing."},
+                {"id": "correct", "text": "Second-by-second camera and sensor data showing positions and spacing."},
                 {"id": "dist-1", "text": "The number of steals a player makes per game."},
                 {"id": "dist-2", "text": "A list of games a player has participated in."}
               ],
@@ -612,7 +611,7 @@
             "payload": {
               "prompt": "What is a play-type analysis?",
               "options": [
-                {"id": "correct", "text": "Breaking down a team's possessions into categories (pick-and-roll, iso, post-up, etc.) to see which plays are most efficient and which teams favor."},
+                {"id": "correct", "text": "Categorizing possessions (pick-and-roll, iso, post-up) to measure efficiency."},
                 {"id": "dist-1", "text": "Identifying the type of shot a player takes."},
                 {"id": "dist-2", "text": "Counting how many fouls are called."}
               ],
@@ -741,7 +740,7 @@
                 {
                   "id": "trust",
                   "label": "He is on fire; trust the new rate",
-                  "verdict": "risky",
+                  "verdict": "acceptable",
                   "consequence": "Overweighting recent performance. Small samples are noise. In the next series, he might drop to 32%.",
                   "considerations": [
                     "Hot streaks happen in small samples",
@@ -800,7 +799,7 @@
               },
               "question": "What does she mean?",
               "options": [
-                {"id": "correct", "text": "Advanced stats may not fully capture defense or intangibles; the eye test (watching games) revealed defensive weaknesses the MVP voting missed.", "isCorrect": true},
+                {"id": "correct", "text": "Stats do not capture defense. Watching revealed defensive gaps the votes missed.", "isCorrect": true},
                 {"id": "dist-1", "text": "Statistics are always wrong.", "isCorrect": false},
                 {"id": "dist-2", "text": "She saw him fouling constantly.", "isCorrect": false},
                 {"id": "dist-3", "text": "He is a poor defensive player overall.", "isCorrect": false}
@@ -854,29 +853,34 @@
             "type": "talk-track",
             "conceptIds": ["analytics-vs-eye-test"],
             "payload": {
-              "line": "The stats do not match what I saw.",
-              "translation": "You are telling a fan the box score or advanced stats do not match your observation from watching the game.",
-              "context": "A player had a big scoring line (20 pts) but looked sluggish; or an assist rate does not reflect play-making you saw.",
-              "replies": [
+              "title": "Stats vs. eye test",
+              "setting": "Texting after watching your crush's team play.",
+              "exchanges": [
                 {
-                  "line": "Stats are one piece. What did you see?",
-                  "isCorrect": true,
-                  "why": "You are inviting their observation without dismissing stats. Good balance."
-                },
-                {
-                  "line": "Yeah, stats always lie.",
-                  "isCorrect": false,
-                  "why": "Dismissing stats entirely is wrong. Stats are useful; just not complete."
-                },
-                {
-                  "line": "His actual plus-minus was terrible.",
-                  "isCorrect": true,
-                  "why": "Offering a stat that might explain the gap (plus-minus captures overall impact)."
-                },
-                {
-                  "line": "You probably misremembered the game.",
-                  "isCorrect": false,
-                  "why": "Dismissing their eye test is wrong. Both matter."
+                  "theirMessage": "The stats do not match what I saw in the game.",
+                  "replies": [
+                    {
+                      "id": "reply-1",
+                      "text": "Stats are one piece. What did you see?",
+                      "smoothDelta": 15,
+                      "theirResponse": "He had 20 points but was sluggish on defense.",
+                      "coachNote": "You balanced stats and eye test. Well done."
+                    },
+                    {
+                      "id": "reply-2",
+                      "text": "Yeah, stats always lie.",
+                      "smoothDelta": -10,
+                      "theirResponse": "Not really, his numbers looked fine to me.",
+                      "coachNote": "Dismissing stats entirely is wrong. Both matter."
+                    },
+                    {
+                      "id": "reply-3",
+                      "text": "Check his plus-minus for context.",
+                      "smoothDelta": 15,
+                      "theirResponse": "Oh, I did not think about that.",
+                      "coachNote": "Good: offering a stat to bridge the gap."
+                    }
+                  ]
                 }
               ]
             }
