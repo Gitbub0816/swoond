@@ -1125,7 +1125,7 @@
               "prompt": "If a caution is thrown with one lap left, does the race go to overtime?",
               "scene": {
                 "kind": "none",
-                "alt": "Three laps to go, yellow flag waves, race extends for green-white-checkered finish."
+                "alt": "One lap to go, yellow flag waves, and the race is extended for a green-white-checkered finish."
               },
               "choices": [
                 {
@@ -1139,8 +1139,8 @@
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Yes. Overtime gives the race a chance to finish under green. Green-white-checkered.",
-                "incorrect": "Overtime kicks in if a caution is near the end. The race extends for a green-flag finish."
+                "correct": "Yes. NASCAR wants the race to end under green, so it adds laps: a green-white-checkered restart.",
+                "incorrect": "A late caution does not end the race under yellow. The race is extended so it can finish under green."
               }
             }
           },
@@ -1230,7 +1230,7 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "Minutes for lightning, hours if a storm passes."
+                  "text": "It varies: a short wait for repairs, hours for a big storm."
                 },
                 {
                   "id": "b",
@@ -1245,8 +1245,8 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Exactly. Lightning might clear in minutes, but a major storm can stop a race for hours.",
-                "incorrect": "Red-flag duration depends on the cause. Lightning might clear quickly, but rain could stop a race for hours."
+                "correct": "Right. A quick barrier repair may take minutes, while a big storm can stop a race for hours.",
+                "incorrect": "Red-flag length depends on the cause. A repair may be quick, but weather can stop a race for hours, and there is no fixed timer."
               }
             }
           },
@@ -1257,8 +1257,8 @@
               "red-flag"
             ],
             "payload": {
-              "prompt": "A red flag {{reason}}, and {{action}} happens.",
-              "template": "A red flag {{reason}}, and {{action}} happens.",
+              "prompt": "Finish the red flag rule.",
+              "template": "A red flag {{reason}}, and the field waits until the track is {{fix}}.",
               "gaps": [
                 {
                   "id": "reason",
@@ -1270,18 +1270,18 @@
                   "correct": "stops the race"
                 },
                 {
-                  "id": "action",
+                  "id": "fix",
                   "options": [
-                    "cars park on pit road",
-                    "cars park on track",
-                    "drivers go to garage"
+                    "made safe again",
+                    "timed for qualifying",
+                    "repaved for next week"
                   ],
-                  "correct": "cars park on pit road"
+                  "correct": "made safe again"
                 }
               ],
               "explanation": {
-                "correct": "Right. Red flag halts everything\u2014all cars come to pit road and engines off.",
-                "incorrect": "Red flags stop the race. All cars come to pit road. Engines off. Everyone waits."
+                "correct": "Right. Red means stop: cars park, on pit road or on the track depending on why, until the track is repaired, cleared or dry.",
+                "incorrect": "A red flag stops the race completely. Nobody races until officials say the track is safe again, whether that means a repair, cleanup or weather."
               }
             }
           },
@@ -1309,8 +1309,8 @@
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Yes. If the race is halted and cannot restart, NASCAR makes it official at that point.",
-                "incorrect": "NASCAR can declare a race official even if it does not finish, as long as at least half the distance ran safely."
+                "correct": "Yes. If enough of the race has been run for it to count and it cannot restart, NASCAR ends it and the leader at that point wins.",
+                "incorrect": "A race that has run far enough to be official can be ended early, for example by weather. It does not have to run every scheduled lap."
               }
             }
           }
@@ -1346,12 +1346,12 @@
                 {
                   "id": "f",
                   "term": "Free pass (lucky dog)",
-                  "definition": "First lapped car gets to rejoin the lead lap without pitting under caution."
+                  "definition": "First car one lap down gets its lap back under caution."
                 },
                 {
                   "id": "w",
                   "term": "Wave-around",
-                  "definition": "Lapped cars pass the pace car to unlap and rejoin the lead-lap group."
+                  "definition": "Other lapped cars pass the pace car to unlap under caution."
                 },
                 {
                   "id": "e",
@@ -1375,62 +1375,63 @@
               "free-pass"
             ],
             "payload": {
-              "prompt": "Yellow flag just waved on lap 150 of 200. You are one lap down. What do you do?",
+              "prompt": "You are the free-pass car. Pit or stay out?",
               "situation": {
-                "narrative": "You are the first car one lap down, eligible for free pass.",
+                "narrative": "Caution on lap 150 of 200. You are the first car one lap down, so you get your lap back and restart at the tail of the lead lap.",
                 "facts": [
                   {
-                    "label": "Current situation",
-                    "value": "Yellow flag on lap 150."
+                    "label": "Laps to go",
+                    "value": "50"
                   },
                   {
                     "label": "Your status",
-                    "value": "One lap down, first in line for free pass."
+                    "value": "First car one lap down: free pass"
                   },
                   {
-                    "label": "Free pass benefit",
-                    "value": "You rejoin the lead lap without pitting."
+                    "label": "Tires",
+                    "value": "About 45 laps old"
                   },
                   {
-                    "label": "Restart position",
-                    "value": "You will restart at the tail of the field."
+                    "label": "Fuel",
+                    "value": "Enough for about 25 more laps"
                   }
                 ]
               },
               "options": [
                 {
-                  "id": "accept",
-                  "label": "Take the free pass",
+                  "id": "pit-both",
+                  "label": "Pit for fresh tires and fuel",
                   "verdict": "best",
-                  "consequence": "You rejoin the lead lap and are back in the race to win.",
+                  "consequence": "You restart at the tail anyway, so you give up little track position and have speed and fuel for 50 laps.",
                   "considerations": [
-                    "Get your lap back",
-                    "Restart position will sort itself",
-                    "You are back in contention"
+                    "The free pass already put you on the lead lap",
+                    "Fuel for 25 laps is not enough for 50",
+                    "Worn tires lose grip and the field will catch you"
                   ]
                 },
                 {
-                  "id": "pit",
-                  "label": "Pit anyway for fresh tires",
-                  "verdict": "poor",
-                  "consequence": "You stay one lap down and lose the free pass opportunity.",
+                  "id": "pit-fuel",
+                  "label": "Pit for fuel only",
+                  "verdict": "acceptable",
+                  "consequence": "You make it to the end on fuel, but 95 laps on one set of tires will fade badly.",
                   "considerations": [
-                    "You negate the free pass advantage",
-                    "Fresh tires do not help if you are still lapped"
+                    "Saves a few seconds in the pits",
+                    "Tires this old will cost far more than that"
                   ]
                 },
                 {
-                  "id": "decline",
-                  "label": "Decline and stay on track",
+                  "id": "stay-out",
+                  "label": "Stay out on what you have",
                   "verdict": "poor",
-                  "consequence": "You stay one lap down and waste the free pass.",
+                  "consequence": "You run short of fuel long before lap 200 and have to pit under green, which drops you a lap down again.",
                   "considerations": [
-                    "No upside to declining",
-                    "This is the prize for being first lapped car"
+                    "Fuel for 25 laps cannot cover 50",
+                    "A green-flag stop costs far more than a caution stop"
                   ]
                 }
               ],
-              "expertNote": "Free pass is pure momentum\u2014one lap for free and a reset. It is always taken."
+              "expertNote": "The free pass only gives you the lap back. What you do with it, tires, fuel and restart, is still a strategy call.",
+              "sayThisLine": "He got the free pass, then pitted for tires and fuel."
             }
           },
           {
@@ -1448,7 +1449,7 @@
                 },
                 {
                   "id": "b",
-                  "text": "All lapped cars can pass to rejoin the lead lap."
+                  "text": "Lapped cars in general, not just the free-pass car."
                 },
                 {
                   "id": "c",
@@ -1459,8 +1460,8 @@
                 "b"
               ],
               "explanation": {
-                "correct": "Right. Wave-around is open to all lapped cars\u2014they pass and rejoin.",
-                "incorrect": "Wave-arounds let every lapped car pass the pace car and get back on the lead lap."
+                "correct": "Right. The free pass is for one car; the wave-around lets the other lapped cars pass the pace car and rejoin too.",
+                "incorrect": "Wave-arounds are for lapped cars in general, not just the first car down. They pass the pace car and catch the tail of the field."
               }
             }
           },
@@ -1489,8 +1490,8 @@
               ],
               "correctChoiceId": "no",
               "explanation": {
-                "correct": "Exactly. Free pass goes to the first lapped car; wave-around is for all lapped cars.",
-                "incorrect": "Free pass is exclusive; wave-around is general. Different rules, same goal: get back on lead lap."
+                "correct": "Exactly. The free pass goes to the first car one lap down; the wave-around is for other lapped cars.",
+                "incorrect": "The free pass goes to one car; the wave-around is for lapped cars more broadly. Different rules, same goal: get back on the lead lap."
               }
             }
           },
@@ -1509,7 +1510,7 @@
                 },
                 {
                   "id": "b",
-                  "text": "Yes, if they unlap and pass all lead-lap cars."
+                  "text": "Yes, but only after getting the lap back."
                 },
                 {
                   "id": "c",
@@ -1520,8 +1521,8 @@
                 "b"
               ],
               "explanation": {
-                "correct": "Right. A lapped car can unlap and race back to the front.",
-                "incorrect": "Being lapped is not a death sentence. If they unlap, they can race their way back."
+                "correct": "Right. A lapped car cannot win while a lap down, but a free pass or wave-around can put it back on the lead lap and in the fight, which is rare.",
+                "incorrect": "Being a lap down is not the end of the day. A free pass or wave-around can put the car back on the lead lap and racing for position."
               }
             }
           },
@@ -1532,7 +1533,7 @@
               "wave-around"
             ],
             "payload": {
-              "prompt": "Under wave-around, lapped cars pass the {{location}} to rejoin the {{status}}.",
+              "prompt": "Complete the wave-around rule.",
               "template": "Under wave-around, lapped cars pass the {{location}} to rejoin the {{status}}.",
               "gaps": [
                 {

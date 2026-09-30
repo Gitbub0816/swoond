@@ -135,6 +135,28 @@ struct PersonalizationTests {
         #expect(PersonalizationResolver(values: [:]).resolve("broken {{team") == "broken {{team")
         #expect(PersonalizationResolver(values: [:]).resolve("no tokens") == "no tokens")
     }
+    @Test func inlineDefaultUsedWhenValueAbsent() {
+        let r = PersonalizationResolver(values: [:])
+        #expect(r.resolve("Ask about {{team|the home team}}.") == "Ask about the home team.")
+        #expect(r.resolve("{{team|the team\u{2019}s coach}} / {{x|Nick's pick}}") == "the team\u{2019}s coach / Nick's pick")
+    }
+    @Test func inlineDefaultIgnoredWhenValuePresent() {
+        let r = PersonalizationResolver(values: ["team": "Eagles"])
+        #expect(r.resolve("{{team|the home team}}") == "Eagles")
+    }
+    @Test func absentWithoutDefaultKeepsExistingBehaviour() {
+        let r = PersonalizationResolver(values: [:], fallbacks: ["league": "the league"])
+        #expect(r.resolve("{{team}} {{league}} {{league|x}}") == "their team the league x")
+        #expect(PersonalizationResolver(values: [:]).resolve("{{team|}}") == "their team")
+    }
+    @Test func multipleTokensMixDefaultsAndValues() {
+        let r = PersonalizationResolver(values: ["driver": "Lando"])
+        #expect(r.resolve("{{driver|a driver}} at {{team|the team}}, {{driver}}.") == "Lando at the team, Lando.")
+    }
+    @Test func whitespaceAroundNameAndDefaultTrimmed() {
+        let r = PersonalizationResolver(values: ["a": "A"])
+        #expect(r.resolve("{{  team  |   the home team  }}|{{ a | z }}") == "the home team|A")
+    }
     @Test func buildsFromInterest() {
         let i = PersonInterest(courseId: "c", personalization: ["driver": "Lando"])
         #expect(PersonalizationResolver(interest: i).resolve("{{driver}}") == "Lando")

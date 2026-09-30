@@ -48,6 +48,8 @@ A course is an ongoing programme (D-007): dozens of lessons across the layers. T
 
 Authored strings may contain `{{dimension}}` (e.g. `{{team}}`) resolved from the Person's personalization; the unit must list the dimension in `personalizationSlots`. Provide a generic fallback by writing the sentence to make sense when the token is replaced by the course's default value (declared in the CDS).
 
+Default syntax: `{{dimension|default text}}` resolves to the Person's value when present, else the literal default text (trimmed), e.g. `{{team|the home team}}`. The default may contain spaces and straight or curly apostrophes but not `}}` or `|`. `{{dimension}}` with no default is unchanged (app-level fallback, else "their dimension"). This is a text convention only; the schema does not constrain token syntax.
+
 ## Validation
 
 `node tools/validate/validate.mjs` checks schema (split layout: root and unit schemas per file, then the merged curriculum), unique ids, prerequisite references, concept references and each activity payload. Example: `examples/american-football-sample.json`.

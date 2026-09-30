@@ -23,34 +23,34 @@
               "diagram": {
                 "diagramId": "pickleball-court-top",
                 "aspectRatio": 0.72,
-                "alt": "Top-down pickleball court. A player stands at the right baseline, ready to serve."
+                "alt": "Top-down pickleball court. A player stands behind the near baseline on the right side of the centerline, ready to serve."
               },
               "hotspots": [
                 {
                   "id": "box-left-far",
-                  "label": "Left service box (far)",
-                  "shape": {"kind": "rect", "x": 0.03, "y": 0.05, "w": 0.47, "h": 0.19}
+                  "label": "Far box on the left of the screen",
+                  "shape": {"kind": "rect", "x": 0.03, "y": 0.04, "w": 0.47, "h": 0.3}
                 },
                 {
                   "id": "box-right-far",
-                  "label": "Right service box (far)",
-                  "shape": {"kind": "rect", "x": 0.5, "y": 0.05, "w": 0.47, "h": 0.19}
+                  "label": "Far box on the right of the screen",
+                  "shape": {"kind": "rect", "x": 0.5, "y": 0.04, "w": 0.47, "h": 0.3}
                 },
                 {
                   "id": "box-left-near",
-                  "label": "Left service box (near)",
-                  "shape": {"kind": "rect", "x": 0.03, "y": 0.81, "w": 0.47, "h": 0.19}
+                  "label": "Near box on the left of the screen",
+                  "shape": {"kind": "rect", "x": 0.03, "y": 0.66, "w": 0.47, "h": 0.3}
                 },
                 {
                   "id": "box-right-near",
-                  "label": "Right service box (near)",
-                  "shape": {"kind": "rect", "x": 0.5, "y": 0.81, "w": 0.47, "h": 0.19}
+                  "label": "Near box on the right of the screen",
+                  "shape": {"kind": "rect", "x": 0.5, "y": 0.66, "w": 0.47, "h": 0.3}
                 }
               ],
               "correctHotspotIds": ["box-left-far"],
               "explanation": {
-                "correct": "From the right side, you serve cross-court (diagonal) into the left box on the far side. That's diagonal serving.",
-                "incorrect": "Serves go diagonal: from the right, aim for the far left box. Serving to the same side as you're standing is illegal.",
+                "correct": "Serving from the right, you aim diagonally across the net, into the far box on the opposite side of the centerline. The receiver stands in their own right-hand box, which looks like the left on screen.",
+                "incorrect": "A serve never goes straight ahead. It crosses the net diagonally into the box opposite yours, and it has to clear the kitchen.",
                 "sayThisLine": "Serves are always diagonal, cross-court."
               }
             }
@@ -60,15 +60,15 @@
             "type": "binary-call",
             "conceptIds": ["serve-foot-fault"],
             "payload": {
-              "prompt": "You stand with your back foot over the baseline, serving.",
+              "prompt": "Your toe is on the baseline as you hit the serve.",
               "scene": {
                 "kind": "court-diagram",
                 "diagramId": "pickleball-court",
                 "markers": [
-                  {"role": "player", "x": 0.5, "y": 0.98},
-                  {"role": "ball", "x": 0.5, "y": 0.95}
+                  {"role": "player", "x": 0.75, "y": 0.96},
+                  {"role": "ball", "x": 0.75, "y": 0.9}
                 ],
-                "alt": "You stand with a foot on or past the baseline, about to serve."
+                "alt": "You stand with a toe on the baseline at the moment you hit the serve."
               },
               "choices": [
                 {"id": "legal", "label": "Legal serve"},
@@ -76,9 +76,9 @@
               ],
               "correctChoiceId": "fault",
               "explanation": {
-                "correct": "Foot fault. You must be behind the baseline when you serve. Stepping on or over it is a fault.",
-                "incorrect": "The baseline is sacred on a serve. Any part of your feet touching or crossing it is a foot fault.",
-                "sayThisLine": "Foot fault, you were over the line."
+                "correct": "Foot fault. At the moment you hit the serve, your feet must be behind the baseline, not touching it or the court.",
+                "incorrect": "The baseline counts as court for the server. A toe on the line at contact is a foot fault. Stepping in after you hit the ball is fine.",
+                "sayThisLine": "Foot fault, your toe was on the line."
               },
               "ruleTag": "Serve foot fault"
             }
@@ -88,18 +88,18 @@
             "type": "multiple-choice",
             "conceptIds": ["underhand-serve"],
             "payload": {
-              "prompt": "What makes a serve 'underhand'?",
+              "prompt": "What makes a volley serve 'underhand'?",
               "options": [
                 {"id": "a", "text": "You toss the ball low"},
-                {"id": "b", "text": "You hit it below your waist with an upward motion"},
+                {"id": "b", "text": "You hit it below your waist with an upward swing"},
                 {"id": "c", "text": "You hit it while crouching"},
                 {"id": "d", "text": "You use a slice grip"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Underhand means the paddle contacts the ball below your waist and the motion is upward. It's a rule, not a style.",
-                "incorrect": "The rule is about paddle contact: below waist, upward motion. It controls the serve's speed and style.",
-                "sayThisLine": "Underhand serve is below the waist and moving up."
+                "correct": "For a volley serve, the paddle meets the ball below your waist and the swing travels upward. It is a rule about contact, not a style choice.",
+                "incorrect": "Crouching, tossing low or gripping a certain way does not make it underhand. The rule looks at where you contact the ball and which way the paddle is moving.",
+                "sayThisLine": "An underhand serve is hit below the waist, swinging up."
               }
             }
           },

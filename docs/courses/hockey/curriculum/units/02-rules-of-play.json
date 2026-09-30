@@ -62,12 +62,12 @@
               "options": [
                 {"id": "a", "text": "Yes, exactly the same rule"},
                 {"id": "b", "text": "No. Hockey is about the blue line and skates; soccer is about the last defender and involvement."},
-                {"id": "c", "text": "Similar but slightly different"}
+                {"id": "c", "text": "Yes, both are about the last defender"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. Hockey offside is mechanical (blue line + both skates). Soccer offside is about players and involvement. Do not mix them up.",
-                "incorrect": "These are completely different rules. Hockey: blue line and skates. Soccer: last defender and active play. Know the difference.",
+                "correct": "Right. Hockey offside is mechanical: it's the blue line, the puck and both skates. Soccer offside is about the last defender and involvement in the play. The shared word fools a lot of people.",
+                "incorrect": "They only share a name. In hockey it's about the blue line, the puck and both skates; in soccer it's about the last defender and being involved in the play.",
                 "sayThisLine": "Hockey offside is the blue line, not like soccer at all."
               }
             }
@@ -84,7 +84,7 @@
                 {"id": "skates", "term": "Both skates", "definition": "The offside rule requires both to cross completely for the violation to occur."}
               ],
               "explanation": {
-                "summary": "Offside prevents pure cherry-picking near the goal; you must enter with or after the puck.",
+                "summary": "Offside stops goal-hanging: the puck has to enter the zone first, or at least not behind a skater who is already all the way in.",
                 "sayThisLine": "Offside is about the blue line and when your skates cross it."
               }
             }
@@ -125,7 +125,9 @@
               "simulationVersion": "1.0.0",
               "difficulty": 2,
               "configuration": {
-                "scenarioCount": 5
+                "scenarioSetId": "offside-starter",
+                "rounds": 3,
+                "showLeadingEdge": true
               }
             }
           },
@@ -137,14 +139,14 @@
               "prompt": "When does the linesman blow the whistle for offside?",
               "options": [
                 {"id": "a", "text": "After the offside player touches the puck"},
-                {"id": "b", "text": "Immediately when the rule is violated (both skates over before puck)"},
+                {"id": "b", "text": "Right away, once the puck crosses the line with a player already offside"},
                 {"id": "c", "text": "Only if the offside player tries to score"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. The linesman calls it as soon as it happens, stopping play immediately.",
-                "incorrect": "Offside is called the moment both skates cross before the puck, not after. The linesman stops it right away.",
-                "sayThisLine": "Blow it when it happens, don't wait for the touch."
+                "correct": "Right. The violation happens at the blue line, so the linesman whistles it then. The one exception is delayed offside, where play continues while the defense can bring the puck out.",
+                "incorrect": "The call doesn't wait for a touch or a shot. It's made at the blue line, the moment the puck enters with a player already offside. (Delayed offside is the one exception.)",
+                "sayThisLine": "It's dead at the blue line, no touch needed."
               }
             }
           },
@@ -161,8 +163,8 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. Position is everything in offside calls. The linesman moves to get the clearest sight line.",
-                "incorrect": "Linesman positioning is critical. They move to the side to see if skates have crossed the line."
+                "correct": "True. Linesmen skate along the boards near the blue line so they look straight across it, which is the clearest view of skates and puck.",
+                "incorrect": "Linesmen work along the boards beside the blue line. From there they look straight across it to see whether skates or puck are over."
               }
             }
           },
@@ -175,10 +177,10 @@
               "pairs": [
                 {"id": "lines", "term": "Linesman", "definition": "One of two officials stationed on the sides who watch for offside and icing."},
                 {"id": "entry", "term": "Offside entry", "definition": "When an attacker enters the offensive zone before the puck with both skates over the blue line."},
-                {"id": "flag", "term": "Flag signal", "definition": "Linesman raises the flag to indicate offside; the referee confirms and stops play."}
+                {"id": "arm", "term": "Arm up", "definition": "Linesman's raised arm: delayed offside, play continues until the zone is cleared or the puck is touched."}
               ],
               "explanation": {
-                "summary": "The linesman is the expert on offside because position is everything; they see it first.",
+                "summary": "Linesmen call offside and icing; referees handle penalties. No flags in hockey: it's a whistle, or an arm for a delay.",
                 "sayThisLine": "The linesman calls offside, not the ref."
               }
             }
@@ -196,8 +198,8 @@
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. Offside is purely about skate position and the puck timing. It does not matter if you touch it.",
-                "incorrect": "Offside is positional. You can be offside and not touch the puck. The rule is automatic based on positioning."
+                "correct": "Right. Offside is about where skates and puck are at the blue line. Whether the player touches the puck or helps the play doesn't matter; that's the soccer habit talking.",
+                "incorrect": "Hockey offside is decided by skates and puck at the blue line, not by who touches what afterward. A player can be offside without ever touching the puck."
               }
             }
           }
@@ -215,17 +217,17 @@
             "type": "sequence-order",
             "conceptIds": ["delayed-offside"],
             "payload": {
-              "prompt": "Order the delayed offside events correctly.",
+              "prompt": "Order a delayed offside from entry to restart.",
               "items": [
-                {"id": "enter-early", "text": "Attacker enters zone early (both skates over)"},
-                {"id": "def-control", "text": "Defense gains control of the puck"},
-                {"id": "whistle-delay", "text": "Linesman does not blow whistle immediately"},
-                {"id": "tag-up", "text": "Attacker tags up and can re-enter"}
+                {"id": "enter-early", "text": "An attacker is over the blue line early as the puck enters"},
+                {"id": "whistle-delay", "text": "The linesman raises an arm and lets play continue"},
+                {"id": "def-control", "text": "The defense gains control of the puck"},
+                {"id": "tag-up", "text": "Every attacker skates back and touches the blue line"}
               ],
               "explanation": {
-                "correct": "Perfect. That is delayed offside: let play go while defense has the puck.",
-                "incorrect": "Delayed offside happens when defense controls after early entry. Linesman waits to see if attacking team gets it.",
-                "sayThisLine": "Defense has it, so delayed offside, no whistle yet."
+                "correct": "That's the flow. The early entry is noted with a raised arm, play continues while the defense has the puck, and the delay ends once the attackers tag up at the blue line.",
+                "incorrect": "The early entry comes first, then the raised arm. The defense gets the puck, and only after all attackers tag up at the blue line does the offside disappear.",
+                "sayThisLine": "Arm's up, just tag up and it's fine."
               }
             }
           },
@@ -238,8 +240,9 @@
               "simulationVersion": "1.0.0",
               "difficulty": 3,
               "configuration": {
-                "scenarioCount": 5,
-                "includeDelayedOffside": true
+                "scenarioSetId": "offside-advanced",
+                "rounds": 4,
+                "allowDelayed": true
               }
             }
           },
