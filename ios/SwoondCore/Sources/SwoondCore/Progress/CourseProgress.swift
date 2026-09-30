@@ -7,6 +7,9 @@ public struct CourseProgress: Codable, Sendable, Equatable {
         public var correctCount: Int
         public var totalCount: Int
         public var xpEarned: Int
+        public init(completedAt: Date, correctCount: Int, totalCount: Int, xpEarned: Int) {
+            self.completedAt = completedAt; self.correctCount = correctCount; self.totalCount = totalCount; self.xpEarned = xpEarned
+        }
     }
     public var schemaVersion = 1
     public var personId: PersonID

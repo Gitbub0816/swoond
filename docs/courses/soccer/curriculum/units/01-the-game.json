@@ -1,0 +1,476 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "soccer",
+  "unit": {
+    "id": "the-game",
+    "title": "The game in ninety minutes",
+    "layer": "foundations",
+    "order": 0,
+    "lessons": [
+      {
+        "id": "game-01",
+        "title": "Two halves, no stopping",
+        "objective": "You can explain how long a match is and why the clock does not stop.",
+        "estimatedMinutes": 5,
+        "conceptIds": ["match-length", "stoppage-time"],
+        "activities": [
+          {
+            "id": "game-01-mc-length",
+            "type": "multiple-choice",
+            "conceptIds": ["match-length"],
+            "payload": {
+              "prompt": "How long is a football match?",
+              "options": [
+                {"id": "a", "text": "80 minutes"},
+                {"id": "b", "text": "90 minutes"},
+                {"id": "c", "text": "100 minutes"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. Two halves of 45 minutes each, plus the referee adds stoppage time at the end.",
+                "incorrect": "It's 90 minutes total: two 45-minute halves. The clock never actually stops though, so there's extra time added.",
+                "sayThisLine": "Ninety minutes is what they call regulation time."
+              }
+            }
+          },
+          {
+            "id": "game-01-es-stoppage",
+            "type": "estimate-slider",
+            "conceptIds": ["stoppage-time"],
+            "payload": {
+              "prompt": "Guess: how many extra minutes did the ref add today?",
+              "unit": "minutes",
+              "min": 1,
+              "max": 10,
+              "step": 1,
+              "correctValue": 5,
+              "tolerance": {"full": 1, "partial": 2},
+              "explanation": {
+                "correct": "Close. Refs typically add between three and eight minutes per half for injuries, goals and delays.",
+                "incorrect": "Typically three to eight minutes depending on how much time was lost to injuries and celebrations.",
+                "sayThisLine": "Six added on and there's still two minutes of injury time coming."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "game-02",
+        "title": "What counts as a goal",
+        "objective": "You can tell a goal from a near miss by the whole-ball-over-the-line rule.",
+        "estimatedMinutes": 6,
+        "conceptIds": ["goal", "out-of-play"],
+        "activities": [
+          {
+            "id": "game-02-bc-whole-ball",
+            "type": "binary-call",
+            "conceptIds": ["goal"],
+            "payload": {
+              "prompt": "The whole ball crossed the line between the posts, no bounce before. Goal?",
+              "scene": {"kind": "none", "alt": "The ball is played forward and the whole ball crosses the goal line between the posts at waist height."},
+              "choices": [
+                {"id": "yes", "label": "Goal"},
+                {"id": "no", "label": "No goal"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes. When the whole ball crosses the whole line, it's a goal.",
+                "incorrect": "If the whole ball crosses the whole line between the posts and under the crossbar, it is a goal.",
+                "sayThisLine": "Whole ball over the line, that's a goal."
+              },
+              "ruleTag": "Goal rule"
+            }
+          },
+          {
+            "id": "game-02-mc-part",
+            "type": "multiple-choice",
+            "conceptIds": ["goal", "out-of-play"],
+            "payload": {
+              "prompt": "Half the ball is over the line. Is it a goal?",
+              "options": [
+                {"id": "a", "text": "Yes, any part crossing counts"},
+                {"id": "b", "text": "No, the whole ball must cross"},
+                {"id": "c", "text": "Only if a player touched it"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Correct. The whole ball must completely cross the whole line for it to count.",
+                "incorrect": "The whole ball has to fully cross for it to count. A half-ball situation is not a goal.",
+                "sayThisLine": "The whole ball, the whole line. That's the rule."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "game-03",
+        "title": "Getting the ball back into play",
+        "objective": "You can say who restarts play after the ball goes out.",
+        "estimatedMinutes": 7,
+        "conceptIds": ["out-of-play", "throw-in", "goal-kick", "corner-kick"],
+        "activities": [
+          {
+            "id": "game-03-tm-restarts",
+            "type": "term-match",
+            "conceptIds": ["throw-in", "goal-kick", "corner-kick"],
+            "payload": {
+              "prompt": "Match the restart to what caused it.",
+              "pairs": [
+                {"id": "ti", "term": "Throw-in", "definition": "Attacker put it over the touchline; the opponent restarts with hands over head."},
+                {"id": "gk", "term": "Goal kick", "definition": "Attacker put it over the goal line; the defending goalkeeper or defender restarts from the six-yard box."},
+                {"id": "ck", "term": "Corner kick", "definition": "Defender put it over their own goal line; attacker restarts from the corner arc."}
+              ],
+              "explanation": {
+                "summary": "Who touched it last and which line it crossed decides the restart.",
+                "sayThisLine": "Ball goes out, the other team restarts it."
+              }
+            }
+          },
+          {
+            "id": "game-03-ht-restarts",
+            "type": "hotspot-tap",
+            "conceptIds": ["pitch-markings"],
+            "payload": {
+              "prompt": "Tap the corner arc, where corner kicks are taken.",
+              "diagram": {
+                "diagramId": "soccer-pitch-full",
+                "aspectRatio": 0.65,
+                "alt": "A full pitch with the corner arc highlighted at each corner."
+              },
+              "hotspots": [
+                {"id": "corner-a", "label": "Corner arc", "shape": {"kind": "circle", "cx": 0.05, "cy": 0.05, "r": 0.03}},
+                {"id": "corner-b", "label": "Corner arc", "shape": {"kind": "circle", "cx": 0.95, "cy": 0.05, "r": 0.03}},
+                {"id": "corner-c", "label": "Corner arc", "shape": {"kind": "circle", "cx": 0.05, "cy": 0.95, "r": 0.03}},
+                {"id": "corner-d", "label": "Corner arc", "shape": {"kind": "circle", "cx": 0.95, "cy": 0.95, "r": 0.03}},
+                {"id": "center", "label": "Centre circle", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.5, "r": 0.05}}
+              ],
+              "correctHotspotIds": ["corner-a", "corner-b", "corner-c", "corner-d"],
+              "explanation": {
+                "correct": "Right. A corner is taken from the arc in the corner, and you can score straight from it.",
+                "incorrect": "The corner arc is a small quarter-circle in each corner, where the ball is placed for a corner kick."
+              }
+            }
+          },
+          {
+            "id": "game-03-mc-who",
+            "type": "multiple-choice",
+            "conceptIds": ["out-of-play"],
+            "payload": {
+              "prompt": "The ball goes out off a defender's foot. Who restarts it?",
+              "options": [
+                {"id": "a", "text": "The defender"},
+                {"id": "b", "text": "The attacker"},
+                {"id": "c", "text": "The goalkeeper"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. The team that did NOT touch the ball last restarts it.",
+                "incorrect": "The attacking team restarts because the defending team put it out.",
+                "sayThisLine": "Out off them, so we get the restart."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "game-04",
+        "title": "Free kicks and penalties",
+        "objective": "You can explain direct vs indirect free kicks and when a penalty is given.",
+        "estimatedMinutes": 6,
+        "conceptIds": ["direct-indirect-free-kick", "penalty-kick", "pitch-markings"],
+        "activities": [
+          {
+            "id": "game-04-ht-box",
+            "type": "hotspot-tap",
+            "conceptIds": ["pitch-markings"],
+            "payload": {
+              "prompt": "Tap the penalty area (the 18-yard box).",
+              "diagram": {
+                "diagramId": "soccer-pitch-attacking-third",
+                "aspectRatio": 1.2,
+                "alt": "The attacking third showing the penalty area, six-yard box, and penalty spot."
+              },
+              "hotspots": [
+                {"id": "area", "label": "Penalty area", "shape": {"kind": "rect", "x": 0.25, "y": 0.02, "w": 0.5, "h": 0.28}},
+                {"id": "six", "label": "Six-yard box", "shape": {"kind": "rect", "x": 0.4, "y": 0.02, "w": 0.2, "h": 0.1}},
+                {"id": "spot", "label": "Penalty spot", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.2, "r": 0.04}},
+                {"id": "arc", "label": "Penalty arc", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.34, "r": 0.06}}
+              ],
+              "correctHotspotIds": ["area"],
+              "explanation": {
+                "correct": "Right. A foul inside this area is a penalty kick.",
+                "incorrect": "The penalty area is the larger rectangle; the six-yard box is inside it. Fouls in the penalty area are penalties."
+              }
+            }
+          },
+          {
+            "id": "game-04-bc-direct",
+            "type": "binary-call",
+            "conceptIds": ["direct-indirect-free-kick"],
+            "payload": {
+              "prompt": "A defender deliberately holds an attacker. Direct or indirect free kick?",
+              "scene": {"kind": "none", "alt": "A holding foul in the middle of the pitch. The attacker is held by the shoulder."},
+              "choices": [
+                {"id": "direct", "label": "Direct free kick"},
+                {"id": "indirect", "label": "Indirect free kick"}
+              ],
+              "correctChoiceId": "direct",
+              "explanation": {
+                "correct": "Direct. A holding foul is a direct free kick, so the shooter can score straight from it.",
+                "incorrect": "Dangerous contact like holding, pushing or dangerous play is a direct free kick. You can score straight from it.",
+                "sayThisLine": "That's a direct foul, he can just shoot it in."
+              },
+              "ruleTag": "Direct free kicks"
+            }
+          },
+          {
+            "id": "game-04-mc-penalty",
+            "type": "multiple-choice",
+            "conceptIds": ["penalty-kick"],
+            "payload": {
+              "prompt": "When is a penalty awarded?",
+              "options": [
+                {"id": "a", "text": "A foul anywhere on the pitch"},
+                {"id": "b", "text": "A foul by a defender in their penalty area"},
+                {"id": "c", "text": "A foul by an attacker in their own half"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Exactly. A foul inside the defender's penalty area is a penalty kick from 12 yards.",
+                "incorrect": "A foul by the defending team inside their own penalty area gives a penalty kick.",
+                "sayThisLine": "Foul in the box, that's a penalty."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "game-05",
+        "title": "Points, tables and drama",
+        "objective": "You can read a league table and explain what a win, draw and goal difference do.",
+        "estimatedMinutes": 7,
+        "conceptIds": ["three-points", "goal-difference", "clean-sheet"],
+        "activities": [
+          {
+            "id": "game-05-fg-points",
+            "type": "fill-the-gap",
+            "conceptIds": ["three-points"],
+            "payload": {
+              "prompt": "Complete the points rule.",
+              "template": "A win gets {{win}} points, a draw gets {{draw}}, and a loss gets {{loss}}.",
+              "gaps": [
+                {"id": "win", "options": ["three", "two", "one"], "correct": "three"},
+                {"id": "draw", "options": ["two", "one", "zero"], "correct": "one"},
+                {"id": "loss", "options": ["one", "zero", "-1"], "correct": "zero"}
+              ],
+              "explanation": {
+                "correct": "Right. Three for a win, one for a draw, zero for a loss. The table ranks teams by points.",
+                "incorrect": "Three points for a win, one for a draw, none for a loss."
+              }
+            }
+          },
+          {
+            "id": "game-05-mc-difference",
+            "type": "multiple-choice",
+            "conceptIds": ["goal-difference"],
+            "payload": {
+              "prompt": "Two teams have the same points. What breaks the tie?",
+              "options": [
+                {"id": "a", "text": "The total number of goals"},
+                {"id": "b", "text": "Goal difference (goals for minus goals against)"},
+                {"id": "c", "text": "The result of their head-to-head"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. Goal difference is the first tiebreaker in most leagues.",
+                "incorrect": "When teams have the same points, goal difference (how many more they scored than conceded) is the first tiebreaker.",
+                "sayThisLine": "Same points but we're third because our goal difference is better."
+              }
+            }
+          },
+          {
+            "id": "game-05-st-clean",
+            "type": "say-this",
+            "conceptIds": ["clean-sheet"],
+            "payload": {
+              "statement": {"speaker": "Maya", "text": "Fourth clean sheet in a row, that back line is locked in."},
+              "question": "What does 'clean sheet' mean?",
+              "options": [
+                {"id": "a", "text": "A fresh team sheet for the new season", "isCorrect": false},
+                {"id": "b", "text": "A match with no goals allowed", "isCorrect": true},
+                {"id": "c", "text": "When a team doesn't score", "isCorrect": false},
+                {"id": "d", "text": "When a team doesn't concede", "isCorrect": true}
+              ],
+              "translation": "Her team hasn't let in a goal in the last four matches; the defence is playing well.",
+              "followUps": [
+                {"line": "Who's been the standout defender?", "why": "Asks for the specific player."},
+                {"line": "Is the goalkeeper getting a lot of action?", "why": "Shows you know defences need support."}
+              ],
+              "noFakeExpertNote": "If you don't watch often, ask who's playing well lately."
+            }
+          }
+        ]
+      },
+      {
+        "id": "game-06",
+        "title": "Knockouts, extra time and shootouts",
+        "objective": "You can follow a knockout tie, including two-legged ties and shootouts.",
+        "estimatedMinutes": 7,
+        "conceptIds": ["extra-time-shootout", "aggregate-tie", "shootout-format"],
+        "activities": [
+          {
+            "id": "game-06-so-tiebreak",
+            "type": "sequence-order",
+            "conceptIds": ["extra-time-shootout"],
+            "payload": {
+              "prompt": "Order the knockout tiebreak from start to finish.",
+              "items": [
+                {"id": "regular", "text": "90 minutes of regulation play", "why": "Two halves of 45 minutes plus stoppage time."},
+                {"id": "et", "text": "30 minutes of extra time", "why": "Two 15-minute periods if level after 90 minutes."},
+                {"id": "shootout", "text": "Penalty shootout (five each)", "why": "Alternating penalties if still level after extra time."},
+                {"id": "sudden", "text": "Sudden-death penalties", "why": "If level after five each, one miss decides it."}
+              ],
+              "explanation": {
+                "correct": "That is the path: 90 minutes, then 30 of extra time, then five penalties each, then sudden death.",
+                "incorrect": "First 90 minutes, then two 15-minute periods of extra time, then a shootout with five penalties each, then sudden death.",
+                "sayThisLine": "It went to sudden death and they finally scored."
+              }
+            }
+          },
+          {
+            "id": "game-06-mc-aggregate",
+            "type": "multiple-choice",
+            "conceptIds": ["aggregate-tie"],
+            "payload": {
+              "prompt": "A two-legged tie: first leg 2-1, second leg 1-1. Who goes through?",
+              "options": [
+                {"id": "a", "text": "The first team (won 2-1)"},
+                {"id": "b", "text": "The second team (drew 1-1 at home)"},
+                {"id": "c", "text": "It's 3-2 on aggregate, so the first team"}
+              ],
+              "correctOptionIds": ["c"],
+              "explanation": {
+                "correct": "Right. It's 3-2 on aggregate (combined score), so the first team advances.",
+                "incorrect": "You add the goals from both legs. If it's level on aggregate, extra time and penalties are played.",
+                "sayThisLine": "It's 3-2 on aggregate so they're through."
+              }
+            }
+          },
+          {
+            "id": "game-06-st-shootout",
+            "type": "say-this",
+            "conceptIds": ["shootout-format"],
+            "payload": {
+              "statement": {"speaker": "Maya", "text": "It'll go to penalties, I can't watch."},
+              "question": "What does she mean?",
+              "options": [
+                {"id": "a", "text": "The match is being decided by individual penalty kicks", "isCorrect": true},
+                {"id": "b", "text": "The referee will give out a lot of yellows", "isCorrect": false},
+                {"id": "c", "text": "They're losing and it's stressful", "isCorrect": true},
+                {"id": "d", "text": "Extra time is about to start", "isCorrect": false}
+              ],
+              "translation": "After extra time, if it's still level, both teams take five penalty kicks each to decide it. She's nervous.",
+              "followUps": [
+                {"line": "How many does each team get before sudden death?", "why": "Tests understanding of the format."},
+                {"line": "Is your keeper good at penalties?", "why": "Asks a genuine question about her team's strength."}
+              ],
+              "noFakeExpertNote": "You can say you find shootouts stressful too."
+            }
+          }
+        ]
+      },
+      {
+        "id": "game-07",
+        "title": "Eleven, the bench and the armband",
+        "objective": "You can explain who plays, how substitutions work and what a captain does.",
+        "estimatedMinutes": 5,
+        "conceptIds": ["squad-substitutes", "captain-armband"],
+        "activities": [
+          {
+            "id": "game-07-mc-eleven",
+            "type": "multiple-choice",
+            "conceptIds": ["squad-substitutes"],
+            "payload": {
+              "prompt": "How many players start on the pitch per team?",
+              "options": [
+                {"id": "a", "text": "10"},
+                {"id": "b", "text": "11"},
+                {"id": "c", "text": "12"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. Eleven on the pitch at the start: one goalkeeper and ten outfield players.",
+                "incorrect": "Each team starts with 11 players on the pitch.",
+                "sayThisLine": "Eleven on the pitch, and five subs they can use."
+              }
+            }
+          },
+          {
+            "id": "game-07-fg-subs",
+            "type": "fill-the-gap",
+            "conceptIds": ["squad-substitutes"],
+            "payload": {
+              "prompt": "Complete the substitution rule.",
+              "template": "Modern football allows up to {{num}} substitutions per match in {{windows}} windows, plus half-time.",
+              "gaps": [
+                {"id": "num", "options": ["three", "five", "seven"], "correct": "five"},
+                {"id": "windows", "options": ["two", "three", "four"], "correct": "three"}
+              ],
+              "explanation": {
+                "correct": "Right. Five subs in three windows: one before the game, one at half-time, and one after.",
+                "incorrect": "Five substitutions across three tactical windows (typically one before half-time, at half-time, and in the second half)."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "game-08",
+        "title": "Scoring milestones fans cheer",
+        "objective": "You can use hat-trick and brace correctly and know the fan talk around them.",
+        "estimatedMinutes": 5,
+        "conceptIds": ["hat-trick", "clean-sheet"],
+        "activities": [
+          {
+            "id": "game-08-tm-milestones",
+            "type": "term-match",
+            "conceptIds": ["hat-trick"],
+            "payload": {
+              "prompt": "Match the scoring term to its meaning.",
+              "pairs": [
+                {"id": "brace", "term": "Brace", "definition": "Two goals scored by one player in a single match"},
+                {"id": "hattrick", "term": "Hat-trick", "definition": "Three goals scored by one player in a single match"},
+                {"id": "four", "term": "Poker", "definition": "Four goals by one player, a rarer achievement"}
+              ],
+              "explanation": {
+                "summary": "These terms celebrate individual goal-scoring feats in a single match.",
+                "sayThisLine": "He got a brace in the first half and finished with a hat-trick."
+              }
+            }
+          },
+          {
+            "id": "game-08-st-hatrick",
+            "type": "say-this",
+            "conceptIds": ["hat-trick"],
+            "payload": {
+              "statement": {"speaker": "Maya", "text": "He got a hat-trick in the first half, absolutely ridiculous."},
+              "question": "What is she talking about?",
+              "options": [
+                {"id": "a", "text": "Three goals in one match", "isCorrect": true},
+                {"id": "b", "text": "A hat passed to him three times", "isCorrect": false},
+                {"id": "c", "text": "Three assists", "isCorrect": false},
+                {"id": "d", "text": "An unusually fast performance", "isCorrect": true}
+              ],
+              "translation": "One player scored three goals in just the first 45 minutes, which is exceptional.",
+              "followUps": [
+                {"line": "Is that a common scoreline?", "why": "Shows genuine surprise at the rarity."},
+                {"line": "What did the team do in the second half?", "why": "Asks a real follow-up question."}
+              ],
+              "noFakeExpertNote": "If it's unfamiliar, ask if that's a rare thing."
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
