@@ -42,6 +42,8 @@ struct GameLaunch: Identifiable, Hashable {
     var kind: Kind
     /// Set when the session is the answer to a friend challenge.
     var challenge: FriendChallenge?
+    /// "Practice to earn one" from the hearts sheet: finishing the session earns a heart.
+    var earnsHeart = false
 }
 
 enum PaywallContext: Hashable {

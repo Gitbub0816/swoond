@@ -92,8 +92,4 @@ final class HomeViewModel {
                         footer: "3 min \u{B7} +\(XPValues.finishedGame) XP", kind: .review)
         }
     }
-
-    func launch(_ kind: GameLaunch.Kind, courseId: CourseID, personId: PersonID) -> GameLaunch {
-        GameLaunch(personId: personId, courseId: courseId, kind: kind)
-    }
 }
