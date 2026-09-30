@@ -200,8 +200,8 @@
                 "alt": "Third-shot scenario: hard aggressive shot from the baseline."
               },
               "choices": [
-                {"id": "yes-standard", "label": "Yes, that's a normal third shot"},
-                {"id": "no-risky", "label": "No, that's risky and not the primary choice"}
+                {"id": "yes-standard", "label": "Yes, standard play"},
+                {"id": "no-risky", "label": "No, risky choice"}
               ],
               "correctChoiceId": "no-risky",
               "explanation": {
@@ -349,22 +349,22 @@
             "type": "hotspot-tap",
             "conceptIds": ["transition-zone"],
             "payload": {
-              "prompt": "Tap to mark the transition zone (no-man's-land) on the court.",
-              "image": {
-                "asset": "dbl-04-transition-zone.svg",
-                "alt": "Doubles court showing the mid-court area between baseline and kitchen line highlighted",
-                "license": "original-swoond"
+              "prompt": "Tap the transition zone.",
+              "diagram": {
+                "diagramId": "pickleball-court-top",
+                "aspectRatio": 0.72,
+                "alt": "Doubles court showing mid-court area"
               },
-              "spots": [
+              "hotspots": [
                 {
-                  "id": "transition-area",
+                  "id": "transition",
                   "label": "Transition zone",
-                  "x": 50,
-                  "y": 50
+                  "shape": {"kind": "rect", "x": 0.15, "y": 0.35, "w": 0.7, "h": 0.3}
                 }
               ],
+              "correctHotspotIds": ["transition"],
               "explanation": {
-                "correct": "The transition zone is the risky mid-court area. The soft third-shot drop buys time to cross it.",
+                "correct": "The transition zone is the risky mid-court area. The soft drop buys time to cross it.",
                 "incorrect": "The transition zone is mid-court, where a fast ball can catch you off-guard.",
                 "sayThisLine": "Transition zone: cross it after a soft drop."
               }
@@ -578,18 +578,18 @@
             "type": "binary-call",
             "conceptIds": ["middle-ball", "communication-calls"],
             "payload": {
-              "prompt": "A ball comes right down the middle between you and your partner. Without calling, you both go for it. Is this a good strategy?",
+              "prompt": "A ball comes down the middle between you and your partner. You both go for it without calling. Good?",
               "scene": {
                 "kind": "none",
                 "alt": "Doubles scenario: ball comes down the middle between partners."
               },
               "choices": [
-                {"id": "bad-collision", "label": "No, you might collide or miss it"},
-                {"id": "good-both", "label": "Yes, two chances to hit it"}
+                {"id": "bad-collision", "label": "No, collision or miss"},
+                {"id": "good-both", "label": "Yes, two chances"}
               ],
               "correctChoiceId": "bad-collision",
               "explanation": {
-                "correct": "Middle balls create confusion. Call 'mine' clearly to claim it and avoid collisions.",
+                "correct": "Middle balls create confusion. Call 'mine' to claim it and avoid collisions.",
                 "incorrect": "Without a call, both players go for it, risking collision or a missed ball.",
                 "sayThisLine": "Middle ball: call 'mine' to claim it."
               },
@@ -701,24 +701,24 @@
             "type": "hotspot-tap",
             "conceptIds": ["stacking"],
             "payload": {
-              "prompt": "Tap to mark where both partners would start in a 'stacked' formation (same side).",
-              "image": {
-                "asset": "dbl-07-stacking-formation.svg",
-                "alt": "Doubles court showing both partners starting on the right side (stacking), ready to adjust during play",
-                "license": "original-swoond"
+              "prompt": "Tap the stacked position (both on one side).",
+              "diagram": {
+                "diagramId": "pickleball-court-top",
+                "aspectRatio": 0.72,
+                "alt": "Doubles court showing both partners on same side"
               },
-              "spots": [
+              "hotspots": [
                 {
-                  "id": "stack-right",
-                  "label": "Both on right side",
-                  "x": 70,
-                  "y": 50
+                  "id": "right-side",
+                  "label": "Right side (stacked)",
+                  "shape": {"kind": "rect", "x": 0.5, "y": 0.2, "w": 0.45, "h": 0.6}
                 }
               ],
+              "correctHotspotIds": ["right-side"],
               "explanation": {
-                "correct": "Stacking is both partners on the same side (usually the side with a stronger player) to position strengths.",
+                "correct": "Stacking is both partners on the same side to position strengths and maintain advantage.",
                 "incorrect": "Stacking means starting on the same side, not the standard split formation.",
-                "sayThisLine": "Stacking: both on one side to keep strengths aligned."
+                "sayThisLine": "Stacking: both on one side."
               }
             }
           },
@@ -830,8 +830,8 @@
                 {
                   "id": "poach",
                   "label": "Poach: step across to volley it aggressively",
-                  "verdict": "situational",
-                  "consequence": "If you're confident and the timing is right, a poach can end the rally. But if you miss, it's a gap.",
+                  "verdict": "acceptable",
+                  "consequence": "A poach can end the rally if you're confident in timing. But if you miss, it's a gap.",
                   "considerations": [
                     "Poaching surprises opponents",
                     "Timing and communication are key",
@@ -841,8 +841,8 @@
                 {
                   "id": "let-her",
                   "label": "Let her take it; she's closer",
-                  "verdict": "safe",
-                  "consequence": "Safe; she takes her shot and you back her up from your side.",
+                  "verdict": "best",
+                  "consequence": "Best; she takes her shot and you back her up from your side.",
                   "considerations": [
                     "She's positioned for it",
                     "Backing up is a solid strategy",
@@ -888,18 +888,18 @@
             "type": "binary-call",
             "conceptIds": ["target-weak-side"],
             "payload": {
-              "prompt": "One opponent is clearly better at volleys; the other struggles on backhand side. Should you target the weaker player's backhand?",
+              "prompt": "One opponent is strong at volleys; the other struggles on backhand. Target the weaker player's weakness?",
               "scene": {
                 "kind": "none",
                 "alt": "Doubles scenario: choosing which opponent to target."
               },
               "choices": [
-                {"id": "yes-weak", "label": "Yes, target the weaker player's weakness"},
-                {"id": "no-stronger", "label": "No, always go to the stronger player"}
+                {"id": "yes-weak", "label": "Yes, target weakness"},
+                {"id": "no-stronger", "label": "No, always hit stronger player"}
               ],
               "correctChoiceId": "yes-weak",
               "explanation": {
-                "correct": "Targeting the weaker side or weaker player is smart doubles strategy; it's where they struggle most.",
+                "correct": "Target the weaker side or weaker player; it's where they struggle most.",
                 "incorrect": "Targeting weakness is the offensive strategy; hit to the opponent's backhand and weaker player.",
                 "sayThisLine": "Target the weaker side and weaker player."
               },

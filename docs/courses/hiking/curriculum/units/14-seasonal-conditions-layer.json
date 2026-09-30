@@ -1,0 +1,1232 @@
+{
+  "contractVersion": "1.2.0",
+  "courseId": "hiking",
+  "unit": {
+    "id": "seasonal-conditions-layer",
+    "title": "This season on the trail",
+    "layer": "current-season",
+    "order": 14,
+    "prerequisiteUnitIds": ["weather-and-conditions", "judgment-and-emergencies"],
+    "personalizationSlots": ["region"],
+    "live": {
+      "dataKind": "weather,alerts,closures,conditions,events",
+      "adapterKey": "hiking.conditions",
+      "refreshHint": "daily-weekly"
+    },
+    "lessons": [
+      {
+        "id": "lv-01",
+        "title": "This week on the trail",
+        "objective": "You can read this week's alerts and closures for {{region}}.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["trail-report", "alerts-and-closures"],
+        "live": {
+          "dataKind": "alerts,closures",
+          "adapterKey": "hiking.conditions",
+          "refreshHint": "hourly; daily in fire season"
+        },
+        "activities": [
+          {
+            "id": "lv-01-mc-alert-first",
+            "type": "multiple-choice",
+            "conceptIds": ["alerts-and-closures"],
+            "payload": {
+              "prompt": "A park's alert page lists a closure on your trail. What should you do first?",
+              "options": [
+                {
+                  "id": "read-official",
+                  "text": "Open the land manager's own alert and read what is closed, why and until when",
+                  "explanation": "The official page is the source of record. It names the exact section, the reason and any detour."
+                },
+                {
+                  "id": "trust-app",
+                  "text": "Trust a trail app's route line and go anyway",
+                  "explanation": "Apps often lag behind closures, and a route line says nothing about whether the trail is open today."
+                },
+                {
+                  "id": "ask-friend",
+                  "text": "Rely on a friend who hiked it last month",
+                  "explanation": "Conditions and closures change week to week, so last month's trip is not a current source."
+                },
+                {
+                  "id": "skip-read",
+                  "text": "Ignore it, since closures are usually short",
+                  "explanation": "Closures can protect people from fire, flood or hazard trees. Never assume one does not apply to you."
+                }
+              ],
+              "correctOptionIds": ["read-official"],
+              "explanation": {
+                "correct": "Start with the land manager's own alert. It says what is closed, why, and when it is expected to reopen, and that detail is what lets you plan a good alternative.",
+                "incorrect": "Closures are set by the land manager, so their alert page is the source to read first. Check what is closed, why and until when before you plan anything.",
+                "sayThisLine": "\"Let me check the park's alert page before we pick a trail.\""
+              }
+            }
+          },
+          {
+            "id": "lv-01-tm-alert-levels",
+            "type": "term-match",
+            "conceptIds": ["alerts-and-closures"],
+            "payload": {
+              "prompt": "Match each alert level to what it usually signals:",
+              "pairs": [
+                {
+                  "id": "closure",
+                  "term": "Closure",
+                  "definition": "An area or trail is off limits until the land manager reopens it"
+                },
+                {
+                  "id": "danger",
+                  "term": "Danger",
+                  "definition": "A serious hazard that could hurt visitors right now"
+                },
+                {
+                  "id": "caution",
+                  "term": "Caution",
+                  "definition": "Conditions that call for extra care, such as a washed-out bridge"
+                },
+                {
+                  "id": "info",
+                  "term": "Information",
+                  "definition": "Useful notice about services or changes that is not a hazard"
+                }
+              ],
+              "explanation": {
+                "summary": "Closures mean stay out, danger means a serious hazard, caution means slow down and plan around it, and information keeps you up to date. Read the full text either way, since the label is only the headline.",
+                "sayThisLine": "\"It's a caution, not a closure, but I want to read the details first.\""
+              }
+            }
+          },
+          {
+            "id": "lv-01-bc-stale-report",
+            "type": "binary-call",
+            "conceptIds": ["trail-report"],
+            "payload": {
+              "prompt": "The only trail report you found is from three weeks ago. Enough to plan on?",
+              "scene": {
+                "kind": "none",
+                "alt": "A phone showing an old trail report with a date at the top, held in front of a trailhead sign."
+              },
+              "choices": [
+                { "id": "enough", "label": "Yes, it says all clear" },
+                { "id": "recheck", "label": "No, check current sources" }
+              ],
+              "correctChoiceId": "recheck",
+              "explanation": {
+                "correct": "Weeks-old reports miss new closures, storm damage and snow. Use them for background, then confirm with the land manager's current alerts before you go.",
+                "incorrect": "Trail conditions can change in a single storm. An old report is background at best, so check the current official alerts before you go.",
+                "sayThisLine": "\"That report is a few weeks old. Let me check what's current.\""
+              },
+              "ruleTag": "Old report is background, not clearance"
+            }
+          },
+          {
+            "id": "lv-01-ftg-alert-source",
+            "type": "fill-the-gap",
+            "conceptIds": ["alerts-and-closures", "trail-report"],
+            "payload": {
+              "prompt": "Finish the habit for reading any conditions card:",
+              "template": "Check the {{when}} it was updated, read it as context rather than {{clear}}, and confirm with the {{who}}.",
+              "gaps": [
+                {
+                  "id": "when",
+                  "options": ["time", "color", "author"],
+                  "correct": "time"
+                },
+                {
+                  "id": "clear",
+                  "options": ["clearance", "a forecast", "a rumor"],
+                  "correct": "clearance"
+                },
+                {
+                  "id": "who",
+                  "options": ["land manager", "loudest reviewer", "app company"],
+                  "correct": "land manager"
+                }
+              ],
+              "explanation": {
+                "correct": "A conditions card is only as fresh as its update time. It informs your plan but does not clear you to go, and the land manager has the final word.",
+                "incorrect": "Look at when the card was updated, treat it as context and not permission, and confirm with the land manager, who sets the rules for the area.",
+                "sayThisLine": "\"It was updated this morning, but I'll still confirm with the ranger station.\""
+              }
+            }
+          },
+          {
+            "id": "lv-01-st-closed-trail",
+            "type": "say-this",
+            "conceptIds": ["alerts-and-closures", "trail-report"],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "Bummer, the alerts page says our trail has a partial closure past the second bridge. I'm checking whether there's a shorter loop that stays open."
+              },
+              "question": "What is she doing?",
+              "options": [
+                {
+                  "id": "adapting",
+                  "text": "Reading the closure and looking for an open alternative",
+                  "isCorrect": true,
+                  "explanation": "Yes. A partial closure means part of the route is off limits, so a good plan swaps in an open trail."
+                },
+                {
+                  "id": "ignoring",
+                  "text": "Planning to hike past the bridge anyway",
+                  "isCorrect": false,
+                  "explanation": "She is looking for a loop that stays open, which is the opposite of going anyway."
+                },
+                {
+                  "id": "cancel",
+                  "text": "Cancelling hiking for the whole season",
+                  "isCorrect": false,
+                  "explanation": "She only mentioned one closure and is already looking for another route."
+                },
+                {
+                  "id": "gossip",
+                  "text": "Repeating a rumor she heard from someone",
+                  "isCorrect": false,
+                  "explanation": "She named the alerts page as her source, which is the kind of check we want."
+                }
+              ],
+              "translation": "Part of her planned trail is closed, so she is checking the official alert and finding a route that is still open.",
+              "followUps": [
+                {
+                  "line": "Does the alert say when it reopens?",
+                  "why": "It shows you understand closures have an end date that the land manager posts."
+                },
+                {
+                  "line": "Want me to look at the shorter loop with you?",
+                  "why": "A warm offer that helps her solve it without taking over."
+                }
+              ],
+              "noFakeExpertNote": "If you do not know the trail, say so and ask what the alert says."
+            }
+          }
+        ]
+      },
+      {
+        "id": "lv-02",
+        "title": "Is it hikeable today?",
+        "objective": "You can weigh forecast, heat and wind for a real trail.",
+        "estimatedMinutes": 12,
+        "conceptIds": ["point-forecast", "heat-risk", "wind-chill"],
+        "live": {
+          "dataKind": "weather,alerts",
+          "adapterKey": "hiking.conditions",
+          "refreshHint": "hourly"
+        },
+        "activities": [
+          {
+            "id": "lv-02-ds-hot-afternoon",
+            "type": "decision-scenario",
+            "conceptIds": ["heat-risk", "point-forecast"],
+            "payload": {
+              "prompt": "The heat forecast for your hike is high by afternoon. What is your plan?",
+              "situation": {
+                "narrative": "You planned a moderate exposed hike in the afternoon. The official forecast shows a high heat risk for later in the day, and your trail has little shade and no reliable water.",
+                "facts": [
+                  { "label": "Heat risk", "value": "High for the afternoon", "emphasis": "warning" },
+                  { "label": "Shade", "value": "Very little" },
+                  { "label": "Water on route", "value": "None reliable" },
+                  { "label": "Flexibility", "value": "Can shift the day or the trail" }
+                ]
+              },
+              "options": [
+                {
+                  "id": "shift",
+                  "label": "Move to a cooler day, or a shaded trail, or start at dawn and finish early",
+                  "verdict": "best",
+                  "consequence": "You keep the plan and lower the risk by avoiding the hottest hours on an exposed trail with no water.",
+                  "considerations": [
+                    "Heat risk builds through the day, so early hours are gentler.",
+                    "Carry extra water and know the early signs of heat illness."
+                  ]
+                },
+                {
+                  "id": "short",
+                  "label": "Shorten the route to a short, shaded out-and-back",
+                  "verdict": "acceptable",
+                  "consequence": "A shorter, shaded trail lowers your exposure, though you still need extra water and a firm turn-back rule.",
+                  "considerations": [
+                    "Choose shade and a short exit, not just fewer miles.",
+                    "Turn back if anyone feels unwell."
+                  ]
+                },
+                {
+                  "id": "push",
+                  "label": "Go at noon as planned and drink more",
+                  "verdict": "poor",
+                  "consequence": "Drinking more helps but does not fix a long exposed climb in the hottest hours with no water on route.",
+                  "considerations": [
+                    "Heat illness can escalate quickly.",
+                    "Confusion or collapse is an emergency: cool the person and call for help."
+                  ]
+                },
+                {
+                  "id": "ignore",
+                  "label": "Ignore the forecast because the trail is short",
+                  "verdict": "poor",
+                  "consequence": "Short trails can still be dangerous in high heat, especially with no shade or water.",
+                  "considerations": [
+                    "Distance is only one part of the risk.",
+                    "Forecasts exist so you can adjust before you leave."
+                  ]
+                }
+              ],
+              "expertNote": "Experienced hikers read heat risk as a reason to change the time of day, the route or the day itself, and they treat any confusion in a hiker as an emergency.",
+              "sayThisLine": "\"The heat risk is high this afternoon. Can we start at dawn instead?\"",
+              "safetyNote": "Check the official forecast and heat products for the trailhead area and follow land manager guidance. Confusion, stumbling or collapse means call emergency services and cool the person now."
+            }
+          },
+          {
+            "id": "lv-02-bc-grid-elevation",
+            "type": "binary-call",
+            "conceptIds": ["point-forecast"],
+            "payload": {
+              "prompt": "The point forecast is for a town far below the trail's high point. Same weather up top?",
+              "scene": {
+                "kind": "none",
+                "alt": "A mountain trail climbing above a valley town, with clouds gathering around the higher ridges."
+              },
+              "choices": [
+                { "id": "same", "label": "Yes, about the same" },
+                { "id": "colder", "label": "No, usually colder and windier" }
+              ],
+              "correctChoiceId": "colder",
+              "explanation": {
+                "correct": "Higher ground is typically colder and windier, and storms can build there first. A point forecast belongs to one spot at one elevation, so check for the elevation you will actually be at.",
+                "incorrect": "A forecast for a low town does not describe the high point of your trail. Temperature falls with elevation and wind often rises, so look for a forecast that matches your elevation.",
+                "sayThisLine": "\"That forecast is for the valley. It'll be colder up top.\""
+              },
+              "ruleTag": "Forecast the elevation you will actually hike"
+            }
+          },
+          {
+            "id": "lv-02-tm-heat-risk-levels",
+            "type": "term-match",
+            "conceptIds": ["heat-risk"],
+            "payload": {
+              "prompt": "Match each NWS HeatRisk color to its level:",
+              "pairs": [
+                {
+                  "id": "green",
+                  "term": "Green (0)",
+                  "definition": "Little to no risk from the heat"
+                },
+                {
+                  "id": "yellow",
+                  "term": "Yellow (1)",
+                  "definition": "Minor risk, mainly for people sensitive to heat"
+                },
+                {
+                  "id": "orange",
+                  "term": "Orange (2)",
+                  "definition": "Moderate risk, affecting many people without cooling and hydration"
+                },
+                {
+                  "id": "red",
+                  "term": "Red (3)",
+                  "definition": "Major risk, affecting anyone outdoors without cooling and hydration"
+                },
+                {
+                  "id": "magenta",
+                  "term": "Magenta (4)",
+                  "definition": "Extreme risk, dangerous for everyone without effective cooling"
+                }
+              ],
+              "explanation": {
+                "summary": "HeatRisk runs from 0 to 4, green to magenta. On a hike, even orange means you should adjust your timing, shade, water and pace, and red or magenta is a strong reason to change the plan.",
+                "sayThisLine": "\"It's orange for the afternoon, so let's start early and carry extra water.\""
+              }
+            }
+          },
+          {
+            "id": "lv-02-ftg-wind-cold",
+            "type": "fill-the-gap",
+            "conceptIds": ["wind-chill", "point-forecast"],
+            "payload": {
+              "prompt": "Finish the idea about wind on a cool day:",
+              "template": "Wind makes exposed skin lose heat {{faster}}, so the wind chill feels {{colder}} than the air temperature, especially on an {{exposed}} ridge.",
+              "gaps": [
+                {
+                  "id": "faster",
+                  "options": ["faster", "slower", "no differently"],
+                  "correct": "faster"
+                },
+                {
+                  "id": "colder",
+                  "options": ["colder", "warmer", "the same"],
+                  "correct": "colder"
+                },
+                {
+                  "id": "exposed",
+                  "options": ["exposed", "sheltered", "forested"],
+                  "correct": "exposed"
+                }
+              ],
+              "explanation": {
+                "correct": "Moving air carries heat away from your skin, so the wind chill feels colder than the thermometer. An exposed ridge gets the most wind, so pack a windproof layer and extra warmth.",
+                "incorrect": "Wind speeds up heat loss from exposed skin, which is why wind chill feels colder than the air temperature. Ridges and open ground get the most wind.",
+                "sayThisLine": "\"The air is mild, but the wind chill up on the ridge will bite. Let's pack the shell.\""
+              }
+            }
+          },
+          {
+            "id": "lv-02-seq-morning-check",
+            "type": "sequence-order",
+            "conceptIds": ["point-forecast", "heat-risk", "wind-chill"],
+            "payload": {
+              "prompt": "Put a smart morning-of conditions check in order:",
+              "items": [
+                {
+                  "id": "alerts",
+                  "text": "Read current alerts and closures from the land manager",
+                  "why": "A closure or warning can end the plan before anything else matters."
+                },
+                {
+                  "id": "forecast",
+                  "text": "Read the hourly forecast for the trail's elevation",
+                  "why": "Timing of heat, wind and storms tells you when the window is good."
+                },
+                {
+                  "id": "heat-wind",
+                  "text": "Check heat risk and wind for the hours you will be out",
+                  "why": "These decide how much water, shade and insulation you need."
+                },
+                {
+                  "id": "adjust",
+                  "text": "Adjust the start time, route or day if the forecast looks poor",
+                  "why": "A plan that can flex is safer than one that must go ahead."
+                },
+                {
+                  "id": "tell",
+                  "text": "Tell your contact the plan and when you expect to be back",
+                  "why": "The final plan is the one someone should know about."
+                }
+              ],
+              "explanation": {
+                "correct": "Alerts first, then the forecast for your elevation, then heat and wind for your hours, then adjust, then share the final plan.",
+                "incorrect": "Start with official alerts, read the forecast at your elevation, look at heat and wind for your hours, adjust if needed and share the final plan with a contact.",
+                "sayThisLine": "\"Alerts, then forecast, then heat and wind. Then we decide.\""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "lv-03",
+        "title": "Smoke and fire watch",
+        "objective": "You can read fire closures, AQI and red flags together.",
+        "estimatedMinutes": 12,
+        "conceptIds": ["air-quality-index", "fire-closure", "red-flag-warning"],
+        "live": {
+          "dataKind": "alerts,conditions,closures",
+          "adapterKey": "hiking.conditions",
+          "refreshHint": "hourly; daily in fire season"
+        },
+        "activities": [
+          {
+            "id": "lv-03-mc-aqi-levels",
+            "type": "multiple-choice",
+            "conceptIds": ["air-quality-index"],
+            "payload": {
+              "prompt": "Which AQI range is labeled Unhealthy for everyone?",
+              "options": [
+                {
+                  "id": "151-200",
+                  "text": "151 to 200",
+                  "explanation": "Yes. This is the Unhealthy range, where everyone may begin to feel effects."
+                },
+                {
+                  "id": "51-100",
+                  "text": "51 to 100",
+                  "explanation": "That is Moderate. Only unusually sensitive people may notice it."
+                },
+                {
+                  "id": "101-150",
+                  "text": "101 to 150",
+                  "explanation": "That is Unhealthy for Sensitive Groups, such as people with asthma or heart or lung conditions."
+                },
+                {
+                  "id": "301-up",
+                  "text": "301 and above",
+                  "explanation": "That is Hazardous, an emergency level above Very Unhealthy."
+                }
+              ],
+              "correctOptionIds": ["151-200"],
+              "explanation": {
+                "correct": "AQI 151 to 200 is Unhealthy. The scale runs Good, Moderate, Unhealthy for Sensitive Groups, Unhealthy, Very Unhealthy and Hazardous, and hard exertion outdoors makes smoke exposure worse.",
+                "incorrect": "The scale runs Good (0 to 50), Moderate (51 to 100), Unhealthy for Sensitive Groups (101 to 150), Unhealthy (151 to 200), Very Unhealthy (201 to 300) and Hazardous (301 and up).",
+                "sayThisLine": "\"It's in the unhealthy range today, so I'd rather skip the big climb.\""
+              }
+            }
+          },
+          {
+            "id": "lv-03-tm-fire-words",
+            "type": "term-match",
+            "conceptIds": ["red-flag-warning", "fire-closure", "air-quality-index"],
+            "payload": {
+              "prompt": "Match each fire-season term to what it means:",
+              "pairs": [
+                {
+                  "id": "red-flag",
+                  "term": "Red Flag Warning",
+                  "definition": "Weather likely to spread fire fast: strong wind, dry air and dry fuels"
+                },
+                {
+                  "id": "watch",
+                  "term": "Fire weather watch",
+                  "definition": "Those conditions may develop in the next day or two"
+                },
+                {
+                  "id": "closure",
+                  "term": "Fire closure",
+                  "definition": "The land manager has closed an area for fire safety or fire activity"
+                },
+                {
+                  "id": "aqi",
+                  "term": "AQI",
+                  "definition": "A number that shows how healthy or unhealthy the air is to breathe"
+                }
+              ],
+              "explanation": {
+                "summary": "A Red Flag Warning is about fire weather, a watch is an earlier heads-up, a fire closure is a land-manager decision, and AQI is about what you breathe. Each is a separate signal, so read them together.",
+                "sayThisLine": "\"There's a red flag warning, so I'm checking for fire closures too.\""
+              }
+            }
+          },
+          {
+            "id": "lv-03-bc-red-flag-fire",
+            "type": "binary-call",
+            "conceptIds": ["red-flag-warning"],
+            "payload": {
+              "prompt": "A Red Flag Warning is in effect. Does it mean a fire is burning near your trail?",
+              "scene": {
+                "kind": "none",
+                "alt": "Dry grass and brush bending in strong wind on a hillside under a hazy sky."
+              },
+              "choices": [
+                { "id": "burning", "label": "Yes, a fire is burning" },
+                { "id": "weather", "label": "No, it is about fire weather" }
+              ],
+              "correctChoiceId": "weather",
+              "explanation": {
+                "correct": "A Red Flag Warning means conditions are ripe for fast-spreading fire, not that one is burning. It still matters, because a spark can grow quickly, and campfire and fire restrictions often tighten.",
+                "incorrect": "A Red Flag Warning describes the weather and fuels, not an active fire. It still calls for extra care, and you should check for fire restrictions and closures.",
+                "sayThisLine": "\"Red flag means fire weather, not a fire. Let's check the restrictions.\""
+              },
+              "ruleTag": "Red flag means fire weather, not a fire"
+            }
+          },
+          {
+            "id": "lv-03-ds-smoky-day",
+            "type": "decision-scenario",
+            "conceptIds": ["air-quality-index", "fire-closure", "red-flag-warning"],
+            "payload": {
+              "prompt": "Smoke is drifting in and the AQI is climbing. Do you hike?",
+              "situation": {
+                "narrative": "You planned a long day on a ridge trail. Wildfire smoke has drifted into your region, the AQI for your area is in the unhealthy range, and a Red Flag Warning is posted for tomorrow. A fire closure covers another trail nearby.",
+                "facts": [
+                  { "label": "AQI", "value": "Unhealthy range", "emphasis": "warning" },
+                  { "label": "Tomorrow", "value": "Red Flag Warning" },
+                  { "label": "Nearby trail", "value": "Closed for fire" },
+                  { "label": "Plan", "value": "Long, hard ridge day" }
+                ]
+              },
+              "options": [
+                {
+                  "id": "postpone",
+                  "label": "Postpone the hard hike and pick an indoor plan until the air improves",
+                  "verdict": "best",
+                  "consequence": "You protect your lungs and avoid heavy exertion in smoke, and you leave the fire area to people who need it.",
+                  "considerations": [
+                    "Hard exercise makes you breathe more smoke.",
+                    "Air can change by the hour, so recheck official AQI before you go."
+                  ]
+                },
+                {
+                  "id": "easy",
+                  "label": "Take a short, easy walk in a cleaner area and stop if you cough or feel unwell",
+                  "verdict": "acceptable",
+                  "consequence": "A short, gentle outing lowers your exposure, though anyone with asthma or heart or lung conditions should skip it.",
+                  "considerations": [
+                    "Ask your doctor if you have a health condition.",
+                    "Cloth and surgical masks do not filter smoke well."
+                  ]
+                },
+                {
+                  "id": "go",
+                  "label": "Do the long ridge hike, since the smoke looks thin",
+                  "verdict": "poor",
+                  "consequence": "Thin-looking smoke can still carry harmful particles, and a long effort means many more breaths of it.",
+                  "considerations": [
+                    "Your eyes are not an air monitor.",
+                    "Fire weather can also grow a new fire."
+                  ]
+                },
+                {
+                  "id": "closed",
+                  "label": "Go around the closure signs to reach the trail, since the fire is far away",
+                  "verdict": "poor",
+                  "consequence": "Closures protect you and firefighters. Entering one can be dangerous and illegal, and can slow the response.",
+                  "considerations": [
+                    "Fire behavior can change fast.",
+                    "Follow land manager closures without exception."
+                  ]
+                }
+              ],
+              "expertNote": "Experienced hikers treat smoke as a health decision. They read the official AQI, respect closures and restrictions, and choose lower effort or a different day.",
+              "sayThisLine": "\"The air is bad today. Let's save the big ridge for a clear day.\"",
+              "safetyNote": "Check official AQI sources such as AirNow and the land manager's fire closures and restrictions. This is not medical advice; talk to a clinician if you have heart or lung conditions."
+            }
+          },
+          {
+            "id": "lv-03-ftg-fire-rules",
+            "type": "fill-the-gap",
+            "conceptIds": ["fire-closure", "red-flag-warning"],
+            "payload": {
+              "prompt": "Finish the fire-season habit:",
+              "template": "In fire season, check for fire {{restrictions}} before you go, respect every {{closure}}, and if you see smoke or flames, leave the area and {{report}} it.",
+              "gaps": [
+                {
+                  "id": "restrictions",
+                  "options": ["restrictions", "rumors", "reviews"],
+                  "correct": "restrictions"
+                },
+                {
+                  "id": "closure",
+                  "options": ["closure", "shortcut", "detour sign"],
+                  "correct": "closure"
+                },
+                {
+                  "id": "report",
+                  "options": ["report", "ignore", "photograph"],
+                  "correct": "report"
+                }
+              ],
+              "explanation": {
+                "correct": "Restrictions can limit campfires and stoves, closures keep people away from danger, and reporting smoke or flames to emergency services or the land manager helps fire crews respond sooner.",
+                "incorrect": "Check fire restrictions, respect closures and, if you see smoke or flames, get to safety first and report it to emergency services or the land manager.",
+                "sayThisLine": "\"We'll check the fire restrictions before we bring the stove.\""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "lv-04",
+        "title": "Snow and water this season",
+        "objective": "You can read snowpack and water reliability.",
+        "estimatedMinutes": 12,
+        "conceptIds": ["snowpack", "water-source-reliability"],
+        "live": {
+          "dataKind": "conditions",
+          "adapterKey": "hiking.conditions",
+          "refreshHint": "daily"
+        },
+        "activities": [
+          {
+            "id": "lv-04-mc-percent-median",
+            "type": "multiple-choice",
+            "conceptIds": ["snowpack"],
+            "payload": {
+              "prompt": "A snow station reads 140 percent of median. What does that tell you?",
+              "options": [
+                {
+                  "id": "more-than-typical",
+                  "text": "There is more snow than typical for that date, so high routes may hold snow longer",
+                  "explanation": "Yes. Percent of median compares today's snowpack with the usual for this date at that station."
+                },
+                {
+                  "id": "less",
+                  "text": "There is less snow than typical, so passes will clear early",
+                  "explanation": "The number is above 100 percent, which means more than typical."
+                },
+                {
+                  "id": "safe",
+                  "text": "The pass is safe to cross now",
+                  "explanation": "Percent of median cannot tell you if any route is passable or safe. Ask the land manager."
+                },
+                {
+                  "id": "depth",
+                  "text": "There is exactly 140 inches of snow on the ground",
+                  "explanation": "Percent of median is a comparison, not a depth. Snow depth is a separate reading."
+                }
+              ],
+              "correctOptionIds": ["more-than-typical"],
+              "explanation": {
+                "correct": "140 percent of median means more snow than usual for the date at that station. It is one clue that high routes may stay snowy longer, but it says nothing about a specific trail being passable.",
+                "incorrect": "Percent of median compares snowpack with the usual for that date. Above 100 percent means more than typical, and only the land manager can tell you whether a route is open and safe.",
+                "sayThisLine": "\"It's a big snow year, so the high passes may hold snow later.\""
+              }
+            }
+          },
+          {
+            "id": "lv-04-ds-snowy-pass",
+            "type": "decision-scenario",
+            "conceptIds": ["snowpack"],
+            "payload": {
+              "prompt": "It's a big snow year and your high pass is still snowy. What is your plan?",
+              "situation": {
+                "narrative": "You planned a high-country route over a pass. This year's snowpack is well above median, recent reports mention lingering snow, and neither of you has training in snow travel.",
+                "facts": [
+                  { "label": "Snowpack", "value": "Well above median" },
+                  { "label": "Reports", "value": "Lingering snow on the pass", "emphasis": "warning" },
+                  { "label": "Snow skills", "value": "None yet" },
+                  { "label": "Other trails", "value": "Lower routes are open" }
+                ]
+              },
+              "options": [
+                {
+                  "id": "lower",
+                  "label": "Pick a lower, snow-free trail and ask the land manager about the pass",
+                  "verdict": "best",
+                  "consequence": "You enjoy a good day, stay within your skills and hear the official view on when the pass is a good bet.",
+                  "considerations": [
+                    "Snow travel needs skills and gear you do not have yet.",
+                    "The land manager knows current conditions on the ground."
+                  ]
+                },
+                {
+                  "id": "wait",
+                  "label": "Postpone the pass until later in summer, after checking current reports",
+                  "verdict": "acceptable",
+                  "consequence": "Waiting is reasonable, and you will need to check again because melt-out timing varies each year.",
+                  "considerations": [
+                    "Recheck reports the week you go.",
+                    "Have a plan B if it is still snowy."
+                  ]
+                },
+                {
+                  "id": "buy-gear",
+                  "label": "Buy microspikes and an ice axe and try it this weekend",
+                  "verdict": "poor",
+                  "consequence": "Gear alone is not skill. Steep snow without training risks a slide or fall.",
+                  "considerations": [
+                    "Learn from a qualified course first.",
+                    "Follow the land manager's guidance on the pass."
+                  ]
+                },
+                {
+                  "id": "follow-tracks",
+                  "label": "Follow the boot tracks of the last hiker, since someone made it",
+                  "verdict": "poor",
+                  "consequence": "Tracks can lead the wrong way, over unstable snow or into a hazard.",
+                  "considerations": [
+                    "Old tracks are not a route.",
+                    "Snow can hide cliffs and streams."
+                  ]
+                }
+              ],
+              "expertNote": "Seasoned hikers treat a big snow year as a reason to adjust timing and choose lower routes. They ask the land manager and build skills before they take on snow.",
+              "sayThisLine": "\"It's a big snow year. Let's do a lower trail and check the pass later.\"",
+              "safetyNote": "Awareness is not avalanche or snow-travel training. Ask the land manager about current conditions and take a qualified course before you go on steep snow."
+            }
+          },
+          {
+            "id": "lv-04-bc-creek-reliable",
+            "type": "binary-call",
+            "conceptIds": ["water-source-reliability"],
+            "payload": {
+              "prompt": "A creek was flowing in spring. Assume it still flows there in late summer?",
+              "scene": {
+                "kind": "none",
+                "alt": "A dry, rocky creek bed crossing a summer trail, with a small pool of water farther downstream."
+              },
+              "choices": [
+                { "id": "assume", "label": "Yes, water is water" },
+                { "id": "check", "label": "No, check current reports" }
+              ],
+              "correctChoiceId": "check",
+              "explanation": {
+                "correct": "Many small creeks and springs dry up as the season goes on. Ask for a current water report or the land manager's advice, and carry enough to reach a source you know is flowing.",
+                "incorrect": "Seasonal creeks can be gone by late summer. Check current water reports and carry enough for the dry stretches, without counting on any single source.",
+                "sayThisLine": "\"That creek flows in spring, but let's check if it's still running.\""
+              },
+              "ruleTag": "Seasonal water needs a current check"
+            }
+          },
+          {
+            "id": "lv-04-ftg-water-plan",
+            "type": "fill-the-gap",
+            "conceptIds": ["water-source-reliability"],
+            "payload": {
+              "prompt": "Finish the water-planning idea:",
+              "template": "Springs and small creeks can be {{seasonal}}, so carry enough water to reach a {{reliable}} source, and treat any {{wild}} water you drink.",
+              "gaps": [
+                {
+                  "id": "seasonal",
+                  "options": ["seasonal", "permanent", "guaranteed"],
+                  "correct": "seasonal"
+                },
+                {
+                  "id": "reliable",
+                  "options": ["reliable", "distant", "muddy"],
+                  "correct": "reliable"
+                },
+                {
+                  "id": "wild",
+                  "options": ["wild", "bottled", "tap"],
+                  "correct": "wild"
+                }
+              ],
+              "explanation": {
+                "correct": "Small sources come and go with the season, so plan your carry around one you know is flowing, and treat any water you take from the wild.",
+                "incorrect": "Many springs and small creeks are seasonal. Carry enough to reach a source you know is reliable, and treat water from the wild before you drink it.",
+                "sayThisLine": "\"We'll carry enough to reach the reliable spring, and filter whatever we take.\""
+              }
+            }
+          },
+          {
+            "id": "lv-04-seq-water-check",
+            "type": "sequence-order",
+            "conceptIds": ["water-source-reliability", "snowpack"],
+            "payload": {
+              "prompt": "Put a seasonal water check in order:",
+              "items": [
+                {
+                  "id": "map",
+                  "text": "Mark the water sources on your route on the map",
+                  "why": "You need to know where water could be before you can check it."
+                },
+                {
+                  "id": "report",
+                  "text": "Read current trail reports and the land manager's water notes",
+                  "why": "Current notes tell you which sources are flowing this season."
+                },
+                {
+                  "id": "snow",
+                  "text": "Consider this year's snowpack for how long streams may run",
+                  "why": "Snowpack is a clue about seasonal flow, not a guarantee."
+                },
+                {
+                  "id": "carry",
+                  "text": "Decide how much water to carry between reliable sources",
+                  "why": "Your carry plan comes from the checks above."
+                },
+                {
+                  "id": "treat",
+                  "text": "Pack a treatment method for any wild water",
+                  "why": "Even clear water can carry germs, so treat it."
+                }
+              ],
+              "explanation": {
+                "correct": "Map the sources, read current notes, consider snowpack, plan your carry, and pack treatment. Each step feeds the next.",
+                "incorrect": "Find the sources first, check current notes, weigh the snowpack, then plan how much to carry and how to treat it.",
+                "sayThisLine": "\"Sources marked, reports read, and we carry enough between springs.\""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "lv-05",
+        "title": "The season's window",
+        "objective": "You can explain what makes now a good time for a hike, and how permit windows work.",
+        "estimatedMinutes": 12,
+        "conceptIds": ["seasonal-window", "permit-lottery", "timed-entry"],
+        "live": {
+          "dataKind": "events",
+          "adapterKey": "hiking.conditions",
+          "refreshHint": "seasonal"
+        },
+        "activities": [
+          {
+            "id": "lv-05-mc-good-window",
+            "type": "multiple-choice",
+            "conceptIds": ["seasonal-window"],
+            "payload": {
+              "prompt": "What makes a good seasonal window for a particular hike?",
+              "options": [
+                {
+                  "id": "fits",
+                  "text": "Conditions that fit the trail: trail clear of snow, water flowing, manageable heat and storms, and access open",
+                  "explanation": "Yes. A window is when the many conditions for a hike line up, and it differs by trail."
+                },
+                {
+                  "id": "calendar",
+                  "text": "A single calendar date that is the same every year",
+                  "explanation": "Windows shift with snow, fire and weather, so a fixed date is only a rough guide."
+                },
+                {
+                  "id": "crowds",
+                  "text": "Whichever day has the most people, since that means it is safe",
+                  "explanation": "Crowds show popularity, not safety, and they do not replace checking conditions."
+                },
+                {
+                  "id": "sunny",
+                  "text": "Any sunny day",
+                  "explanation": "Sunny days can still be hot, smoky or snowy at elevation. Check the actual conditions."
+                }
+              ],
+              "correctOptionIds": ["fits"],
+              "explanation": {
+                "correct": "A seasonal window is when the things that matter for a specific hike line up. It moves from year to year, so treat any calendar guide as a rough starting point and confirm with the land manager.",
+                "incorrect": "Windows depend on the trail and the year: snow, water, heat, storms, fire and access all count. A fixed date or a crowd is not a substitute for checking.",
+                "sayThisLine": "\"Late summer is usually the window, but I'll check this year's conditions.\""
+              }
+            }
+          },
+          {
+            "id": "lv-05-tm-permit-words",
+            "type": "term-match",
+            "conceptIds": ["permit-lottery", "timed-entry"],
+            "payload": {
+              "prompt": "Match each permit word to how it works:",
+              "pairs": [
+                {
+                  "id": "lottery",
+                  "term": "Permit lottery",
+                  "definition": "You apply during a window and permits are awarded by random draw"
+                },
+                {
+                  "id": "timed",
+                  "term": "Timed entry",
+                  "definition": "You reserve an arrival window to enter an area on a given day"
+                },
+                {
+                  "id": "quota",
+                  "term": "Quota",
+                  "definition": "A cap on how many people or groups may enter each day"
+                },
+                {
+                  "id": "official",
+                  "term": "Official page",
+                  "definition": "The land manager's or reservation site's own rules, dates and fees"
+                }
+              ],
+              "explanation": {
+                "summary": "Lotteries, timed entry and quotas are ways to limit crowds, and each area sets its own rules. Dates, fees and steps change, so use the official page for the current details.",
+                "sayThisLine": "\"It's a lottery, so I'll check the application window on the official page.\""
+              }
+            }
+          },
+          {
+            "id": "lv-05-bc-lottery-first-come",
+            "type": "binary-call",
+            "conceptIds": ["permit-lottery"],
+            "payload": {
+              "prompt": "A permit uses a lottery. Is it the same as first come, first served?",
+              "scene": {
+                "kind": "none",
+                "alt": "A laptop showing a permit application form beside a calendar with an application window marked."
+              },
+              "choices": [
+                { "id": "same", "label": "Yes, the same" },
+                { "id": "different", "label": "No, it is a random draw" }
+              ],
+              "correctChoiceId": "different",
+              "explanation": {
+                "correct": "A lottery awards permits by random draw among the people who applied in the window. Read that area's official rules for dates, group size, fees and whether there are leftover permits.",
+                "incorrect": "In a lottery, being fast is not the point: you apply during the window and a draw picks winners. First come, first served is a different system, so read the area's rules.",
+                "sayThisLine": "\"It's a lottery, so I'll apply in the window and have a backup plan.\""
+              },
+              "ruleTag": "Lottery is a draw, not a race"
+            }
+          },
+          {
+            "id": "lv-05-ftg-permit-plan",
+            "type": "fill-the-gap",
+            "conceptIds": ["permit-lottery", "seasonal-window"],
+            "payload": {
+              "prompt": "Finish the permit-planning habit:",
+              "template": "Check the official {{dates}} for a permit window well before your trip, apply during the {{window}}, and have a {{backup}} plan in case you are not selected.",
+              "gaps": [
+                {
+                  "id": "dates",
+                  "options": ["dates", "rumors", "photos"],
+                  "correct": "dates"
+                },
+                {
+                  "id": "window",
+                  "options": ["window", "last minute", "wrong week"],
+                  "correct": "window"
+                },
+                {
+                  "id": "backup",
+                  "options": ["backup", "secret", "skipped"],
+                  "correct": "backup"
+                }
+              ],
+              "explanation": {
+                "correct": "Windows can open months ahead of a trip and rules change, so read the official dates, apply in the window and plan an alternative for the day you are not picked.",
+                "incorrect": "Find the official dates early, apply during the window and always keep a backup plan, since not every applicant is selected.",
+                "sayThisLine": "\"I'm marking the application window on the calendar, and we'll pick a backup hike.\""
+              }
+            }
+          },
+          {
+            "id": "lv-05-st-good-time",
+            "type": "say-this",
+            "conceptIds": ["seasonal-window"],
+            "payload": {
+              "statement": {
+                "speaker": "He",
+                "text": "The wildflowers are usually best in a short window, and it shifts every year with the snowmelt. I check the park's page the week before."
+              },
+              "question": "What is he telling you?",
+              "options": [
+                {
+                  "id": "shifting",
+                  "text": "The best time moves each year, so he confirms current conditions before going",
+                  "isCorrect": true,
+                  "explanation": "Yes. Seasonal windows shift with snow and weather, and he checks an official page close to the trip."
+                },
+                {
+                  "id": "fixed",
+                  "text": "The best time is the same date every single year",
+                  "isCorrect": false,
+                  "explanation": "He said it shifts with the snowmelt."
+                },
+                {
+                  "id": "anytime",
+                  "text": "Any weekend is as good as any other",
+                  "isCorrect": false,
+                  "explanation": "He described a short window, so timing matters."
+                },
+                {
+                  "id": "skip",
+                  "text": "He never checks anything before a hike",
+                  "isCorrect": false,
+                  "explanation": "He said he checks the park's page the week before."
+                }
+              ],
+              "translation": "The peak time for wildflowers is short and changes every year with snowmelt, so he confirms with the park close to the date.",
+              "followUps": [
+                {
+                  "line": "What does the park page say about it this week?",
+                  "why": "It invites him to share and shows you understand the window is a current question."
+                },
+                {
+                  "line": "What's your favorite flower you have seen up there?",
+                  "why": "A warm, curious question that lets him share what he loves."
+                }
+              ],
+              "noFakeExpertNote": "If you do not know the local flowers, say so and ask him to show you."
+            }
+          }
+        ]
+      },
+      {
+        "id": "lv-06",
+        "title": "What her group chat is saying",
+        "objective": "You can decode current trail chatter.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["trail-report", "seasonal-window"],
+        "live": {
+          "dataKind": "alerts,events",
+          "adapterKey": "hiking.conditions",
+          "refreshHint": "weekly"
+        },
+        "activities": [
+          {
+            "id": "lv-06-st-smoke-chat",
+            "type": "say-this",
+            "conceptIds": ["trail-report"],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "The group chat says the smoke rolled in overnight, so half of us are bumping Saturday's hike. I'm checking the air quality page."
+              },
+              "question": "What is going on?",
+              "options": [
+                {
+                  "id": "aqi",
+                  "text": "Smoke is affecting the air, so they may postpone and she is checking the official air quality data",
+                  "isCorrect": true,
+                  "explanation": "Yes. Smoke changes plans, and the air quality page is the right place to check."
+                },
+                {
+                  "id": "cancel-forever",
+                  "text": "The whole group quit hiking",
+                  "isCorrect": false,
+                  "explanation": "They are only bumping one hike."
+                },
+                {
+                  "id": "gossip",
+                  "text": "They are trading rumors and not checking anything",
+                  "isCorrect": false,
+                  "explanation": "She said she is checking the air quality page."
+                },
+                {
+                  "id": "fire",
+                  "text": "A fire has closed every trail in the state",
+                  "isCorrect": false,
+                  "explanation": "Nobody said anything about closures."
+                }
+              ],
+              "translation": "Smoke arrived, some of the group want to move Saturday's hike, and she is looking at official air quality before deciding.",
+              "followUps": [
+                {
+                  "line": "What's the number looking like now?",
+                  "why": "A simple question that shows you know AQI is the thing to check."
+                },
+                {
+                  "line": "Want to pick a backup day together?",
+                  "why": "It is helpful and makes it easy for her to say yes."
+                }
+              ],
+              "noFakeExpertNote": "You do not need to know the AQI scale by heart. Asking what the number says is a great follow-up."
+            }
+          },
+          {
+            "id": "lv-06-st-trail-report-chat",
+            "type": "say-this",
+            "conceptIds": ["trail-report"],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "Someone posted a trail report saying there's downed trees past the junction. I'll ask the ranger station before we drive out."
+              },
+              "question": "What is she doing?",
+              "options": [
+                {
+                  "id": "verify",
+                  "text": "Treating a trail report as a clue and confirming with the land manager",
+                  "isCorrect": true,
+                  "explanation": "Yes. Reports from other hikers are useful, and the land manager confirms what is open."
+                },
+                {
+                  "id": "dismiss",
+                  "text": "Ignoring the report because it came from a stranger",
+                  "isCorrect": false,
+                  "explanation": "She is taking it seriously enough to ask the ranger station."
+                },
+                {
+                  "id": "go-anyway",
+                  "text": "Deciding to go anyway and see what happens",
+                  "isCorrect": false,
+                  "explanation": "She plans to check first, before driving out."
+                },
+                {
+                  "id": "map",
+                  "text": "Redrawing the trail on a paper map",
+                  "isCorrect": false,
+                  "explanation": "Nothing she said is about maps."
+                }
+              ],
+              "translation": "A hiker reported downed trees, and she wants to confirm with the ranger station before making the drive.",
+              "followUps": [
+                {
+                  "line": "Good call. Want me to check the alerts page too?",
+                  "why": "It supports her plan and offers a small, useful piece of help."
+                },
+                {
+                  "line": "Do downed trees usually close a trail?",
+                  "why": "An honest question that lets her explain without you bluffing."
+                }
+              ]
+            }
+          },
+          {
+            "id": "lv-06-st-window-chat",
+            "type": "say-this",
+            "conceptIds": ["seasonal-window", "trail-report"],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "Everyone's saying the high trails are finally melting out. I'll wait for a report before I trust it, though."
+              },
+              "question": "What does she mean?",
+              "options": [
+                {
+                  "id": "cautious",
+                  "text": "Snow is clearing on high trails, and she wants a recent report before she plans around it",
+                  "isCorrect": true,
+                  "explanation": "Yes. Melt-out is uneven, so a recent report and the land manager's word matter more than chatter."
+                },
+                {
+                  "id": "all-clear",
+                  "text": "All high trails are officially open and clear",
+                  "isCorrect": false,
+                  "explanation": "She said she is waiting for a report, not that they are open."
+                },
+                {
+                  "id": "closed",
+                  "text": "The high trails have permanently closed",
+                  "isCorrect": false,
+                  "explanation": "Melting out means snow is going away, not a closure."
+                },
+                {
+                  "id": "rain",
+                  "text": "It is raining across the whole region",
+                  "isCorrect": false,
+                  "explanation": "She talked about snow melting, not rain."
+                }
+              ],
+              "translation": "People say the snow is clearing from the high trails, but she wants a current report before treating it as true.",
+              "followUps": [
+                {
+                  "line": "Which trail are you hoping to do first?",
+                  "why": "It shows interest in her plans and lets her share what she is excited about."
+                },
+                {
+                  "line": "Where do you find the best reports?",
+                  "why": "It invites her expertise and helps you learn where to check."
+                }
+              ],
+              "noFakeExpertNote": "Chat is a hint, not a source. You are free to say you are new to reading conditions."
+            }
+          },
+          {
+            "id": "lv-06-bc-chat-clearance",
+            "type": "binary-call",
+            "conceptIds": ["trail-report"],
+            "payload": {
+              "prompt": "The chat says the road is open. Skip the official check?",
+              "scene": {
+                "kind": "none",
+                "alt": "A phone group chat with several friends sharing trail photos and messages about the weekend plan."
+              },
+              "choices": [
+                { "id": "skip", "label": "Yes, the chat is enough" },
+                { "id": "check", "label": "No, check the official source" }
+              ],
+              "correctChoiceId": "check",
+              "explanation": {
+                "correct": "Chats are good for ideas, but only the land manager or road authority can tell you what is open right now. Take two minutes to check the official source before you drive.",
+                "incorrect": "Group chats are a helpful clue and not clearance. Check the official alerts before you drive out, since roads and trails can close without warning.",
+                "sayThisLine": "\"Thanks for the heads-up. I'll confirm on the official page before we go.\""
+              },
+              "ruleTag": "Chatter is a clue, official source is the answer"
+            }
+          },
+          {
+            "id": "lv-06-mc-chat-reply",
+            "type": "multiple-choice",
+            "conceptIds": ["trail-report", "seasonal-window"],
+            "payload": {
+              "prompt": "She says the trail is 'probably fine' but she hasn't checked. Best reply?",
+              "options": [
+                {
+                  "id": "offer",
+                  "text": "\"Want to check the alerts page together before we head out?\"",
+                  "explanation": "Warm, low pressure and it turns her hunch into a quick check."
+                },
+                {
+                  "id": "lecture",
+                  "text": "\"You should always check first. That's how people get hurt.\"",
+                  "explanation": "It is a lecture, and it makes her feel judged instead of supported."
+                },
+                {
+                  "id": "shrug",
+                  "text": "\"Sure, probably fine. Let's just go.\"",
+                  "explanation": "It skips the check and leaves you both to find any closure at the trailhead."
+                },
+                {
+                  "id": "fake",
+                  "text": "\"I know this area, it's always open.\"",
+                  "explanation": "Claiming knowledge you do not have can lead you both astray."
+                }
+              ],
+              "correctOptionIds": ["offer"],
+              "explanation": {
+                "correct": "A friendly offer to look together keeps things warm and gets the check done. It respects her plans and models a habit without lecturing.",
+                "incorrect": "Skip the lecture and the bluff. A light offer to check together is kind, honest and gets you the current information.",
+                "sayThisLine": "\"Let's look at the alerts together. It'll only take a minute.\""
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

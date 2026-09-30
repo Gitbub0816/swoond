@@ -1,0 +1,1311 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "nascar",
+  "unit": {
+    "id": "racecraft",
+    "title": "Racecraft & Restarts",
+    "layer": "intermediate",
+    "order": 8,
+    "lessons": [
+      {
+        "id": "craft-01",
+        "title": "Passing lines",
+        "objective": "Choose the passing line on the track.",
+        "estimatedMinutes": 11,
+        "conceptIds": [
+          "passing-lines",
+          "racing-groove"
+        ],
+        "activities": [
+          {
+            "id": "craft-01-ht-passing-lanes",
+            "type": "hotspot-tap",
+            "conceptIds": [
+              "passing-lines",
+              "racing-groove"
+            ],
+            "payload": {
+              "prompt": "Where can a pass happen? Tap.",
+              "diagram": {
+                "diagramId": "nascar-turn-grooves",
+                "alt": "Overhead view of a turn with low, middle and high lanes."
+              },
+              "hotspots": [
+                {
+                  "id": "low",
+                  "label": "Low groove",
+                  "shape": {
+                    "kind": "rect",
+                    "x": 0.1,
+                    "y": 0.3,
+                    "w": 0.8,
+                    "h": 0.15
+                  }
+                },
+                {
+                  "id": "mid",
+                  "label": "Mid groove",
+                  "shape": {
+                    "kind": "rect",
+                    "x": 0.1,
+                    "y": 0.5,
+                    "w": 0.8,
+                    "h": 0.15
+                  }
+                },
+                {
+                  "id": "high",
+                  "label": "High groove",
+                  "shape": {
+                    "kind": "rect",
+                    "x": 0.1,
+                    "y": 0.7,
+                    "w": 0.8,
+                    "h": 0.15
+                  }
+                }
+              ],
+              "correctHotspotIds": [
+                "low",
+                "mid",
+                "high"
+              ],
+              "explanation": {
+                "correct": "Right. All three grooves are used for passes depending on track position and momentum.",
+                "incorrect": "Passes happen in all lanes. The low line is fastest, but the middle and high grooves work too."
+              }
+            }
+          },
+          {
+            "id": "craft-01-mc-pass-when",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "passing-lines"
+            ],
+            "payload": {
+              "prompt": "When is the best time to pass?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "In the middle of the straightaway."
+                },
+                {
+                  "id": "b",
+                  "text": "On turn entry with a draft run."
+                },
+                {
+                  "id": "c",
+                  "text": "Whenever the other driver errs."
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. A run from drafting sets up a turn-entry pass, where extra speed lets you dive inside.",
+                "incorrect": "The best pass setup is a run off the draft into a turn. Extra speed lets you dive to the inside line."
+              }
+            }
+          },
+          {
+            "id": "craft-01-bc-high-groove",
+            "type": "binary-call",
+            "conceptIds": [
+              "racing-groove"
+            ],
+            "payload": {
+              "prompt": "Can you pass on the high groove?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two cars racing side-by-side on the high groove of a turn."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, high works sometimes."
+                },
+                {
+                  "id": "no",
+                  "label": "No, only low works."
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Right. The high line is slower but can work for a pass if conditions are right.",
+                "incorrect": "The high groove is not the fast lane, but it can be used for a pass if you have momentum or if rubber has built there."
+              }
+            }
+          },
+          {
+            "id": "craft-01-tm-groove-terms",
+            "type": "term-match",
+            "conceptIds": [
+              "racing-groove",
+              "passing-lines"
+            ],
+            "payload": {
+              "prompt": "Match the groove to its role.",
+              "pairs": [
+                {
+                  "id": "low",
+                  "term": "Low groove",
+                  "definition": "The inside line; often fastest where rubber has built."
+                },
+                {
+                  "id": "mid",
+                  "term": "Middle groove",
+                  "definition": "Between low and high; used when low is blocked."
+                },
+                {
+                  "id": "high",
+                  "term": "High groove",
+                  "definition": "Outside line; slower but open for a run."
+                }
+              ],
+              "distractorDefinitions": [
+                "The pit road route.",
+                "The banking at Talladega."
+              ],
+              "explanation": {
+                "summary": "Three grooves offer three passing zones; the fast one shifts as rubber builds."
+              }
+            }
+          },
+          {
+            "id": "craft-01-fg-line-choice",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "passing-lines"
+            ],
+            "payload": {
+              "prompt": "Most passes happen on {{timing}} into a turn.",
+              "template": "Most passes happen on {{timing}} into a turn.",
+              "gaps": [
+                {
+                  "id": "timing",
+                  "options": [
+                    "straights",
+                    "entry",
+                    "exit"
+                  ],
+                  "correct": "entry"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. Turn entry is where a draft run gives the best shot.",
+                "incorrect": "Most passes succeed on turn entry, where speed from a draft run lets the trailing car dive inside."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "craft-02",
+        "title": "Restart lane and jump",
+        "objective": "Pick the restart lane and gain spots on the jump.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "restart-strategy",
+          "choose-rule",
+          "restart"
+        ],
+        "activities": [
+          {
+            "id": "craft-02-unity-restart",
+            "type": "unity-sim",
+            "conceptIds": [
+              "restart-strategy",
+              "choose-rule",
+              "restart"
+            ],
+            "payload": {
+              "simulationId": "nascar.restart.choose-lane.v1",
+              "simulationVersion": "1.0.0",
+              "difficulty": 2,
+              "configuration": {
+                "prompt": "Green restart: inside or outside? Choose and watch the lanes.",
+                "setup": "Caution restart: pick inside (safe) or outside (risky). See how both lanes stack on the restart."
+              }
+            }
+          },
+          {
+            "id": "craft-02-mc-restart-rule",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "restart"
+            ],
+            "payload": {
+              "prompt": "What is a restart?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Racing resumes after caution in double file."
+                },
+                {
+                  "id": "b",
+                  "text": "When an engine restarts during a pit stop."
+                },
+                {
+                  "id": "c",
+                  "text": "When the green flag waves at the start."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Exactly. A restart is racing resumption after caution, in a two-abreast lineup.",
+                "incorrect": "The restart is when racing resumes after a caution. Cars line up in double file and race on the green flag."
+              }
+            }
+          },
+          {
+            "id": "craft-02-bc-choose-rule",
+            "type": "binary-call",
+            "conceptIds": [
+              "choose-rule"
+            ],
+            "payload": {
+              "prompt": "Does the leader choose their restart lane?",
+              "scene": {
+                "kind": "none",
+                "alt": "Restart lineup with two lanes and the leader ahead."
+              },
+              "choices": [
+                {
+                  "id": "no",
+                  "label": "No, the second-place car chooses."
+                },
+                {
+                  "id": "yes",
+                  "label": "Yes, leader picks first."
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Right. The choose rule: drivers in running order pick lanes in sequence, starting behind the leader.",
+                "incorrect": "The choose rule means drivers in order pick their lane (inside or outside). The leader does not choose; second-place chooses first."
+              }
+            }
+          },
+          {
+            "id": "craft-02-ds-restart-lane",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "restart-strategy",
+              "choose-rule"
+            ],
+            "payload": {
+              "prompt": "You are second. Inside or outside lane?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Position",
+                    "value": "Second, one car-length back"
+                  },
+                  {
+                    "label": "Tire age",
+                    "value": "Both drivers have fresh tires"
+                  },
+                  {
+                    "label": "Lane momentum",
+                    "value": "Outside lane looked strong"
+                  },
+                  {
+                    "label": "Laps left",
+                    "value": "45 to go"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "inside",
+                  "label": "Choose inside lane.",
+                  "verdict": "acceptable",
+                  "consequence": "Safe, nose-to-tail position. You stay close but behind.",
+                  "considerations": ["Inside is safe.", "You stay close to leader.", "No early advantage though."]
+                },
+                {
+                  "id": "outside",
+                  "label": "Choose outside lane.",
+                  "verdict": "best",
+                  "consequence": "If outside has run, you out-accelerate into turn 1 and gain the lead.",
+                  "considerations": ["Practice showed momentum.", "You can out-accelerate.", "Risk if blocked."]
+                }
+              ],
+              "expertNote": "Lane choice is a judgment call. The best lane often rewards the bold."
+            }
+          }
+        ]
+      },
+      {
+        "id": "craft-03",
+        "title": "Getting clean air",
+        "objective": "Explain how to pass in clean air.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "clean-air-pass",
+          "clean-air"
+        ],
+        "activities": [
+          {
+            "id": "craft-03-bc-clean-air-def",
+            "type": "binary-call",
+            "conceptIds": [
+              "clean-air-pass"
+            ],
+            "payload": {
+              "prompt": "Can you pass in dirty air?",
+              "scene": {
+                "kind": "none",
+                "alt": "Follower in dirty air trying to pass the leader."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, but it is harder."
+                },
+                {
+                  "id": "no",
+                  "label": "No, dirty air stops passes."
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Right. Dirty air makes passing hard, but not impossible. You need more speed or ideal conditions.",
+                "incorrect": "You can pass in dirty air if your car is faster, but dirty air reduces grip and makes passes very difficult. Most clean-air passes happen when the trailing car exits dirty air."
+              }
+            }
+          },
+          {
+            "id": "craft-03-st-clean-air",
+            "type": "say-this",
+            "conceptIds": [
+              "clean-air-pass"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "driver",
+                "text": "Once I got clean air, I had a shot."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "Out of disturbed air behind the leader, I had grip to pass."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "When the weather cleared up, I raced harder."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "When the pit crew fixed the air vents."
+                }
+              ],
+              "translation": "When I moved out of disturbed air, my car had grip to attempt a pass.",
+              "followUps": [
+                {
+                  "line": "Clean air gives front grip because no car disrupts the airflow.",
+                  "why": "Aerodynamics decide whether a pass is even possible."
+                },
+                {
+                  "line": "Clean-air passes often happen three-wide when the inside car clears.",
+                  "why": "Once you have grip, you can turn and dive to a different line."
+                }
+              ]
+            }
+          },
+          {
+            "id": "craft-03-mc-dirty-air-effect",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "clean-air"
+            ],
+            "payload": {
+              "prompt": "What does dirty air do?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "It slows the engine by restricting intake airflow."
+                },
+                {
+                  "id": "b",
+                  "text": "It reduces front grip and makes the car pushy."
+                },
+                {
+                  "id": "c",
+                  "text": "It creates a slipstream that speeds up the car."
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. Dirty air reduces front grip, making you push (understeer) and turn poorly.",
+                "incorrect": "Dirty air disrupts airflow over your splitter and nose, reducing downforce and front grip. You push and cannot turn."
+              }
+            }
+          },
+          {
+            "id": "craft-03-fg-pass-opportunity",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "clean-air-pass"
+            ],
+            "payload": {
+              "prompt": "A clean-air pass is easiest when {{condition}}.",
+              "template": "A clean-air pass is easiest when {{condition}}.",
+              "gaps": [
+                {
+                  "id": "condition",
+                  "options": [
+                    "the trailing car exits dirty air",
+                    "the track is wet",
+                    "the leader pits"
+                  ],
+                  "correct": "the trailing car exits dirty air"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. Exiting dirty air suddenly gives grip. That is the moment to attack.",
+                "incorrect": "A pass occurs when the trailing car moves from dirty to clean air and gains grip. That grip delta opens the passing window."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "craft-04",
+        "title": "Blocking and being blocked",
+        "objective": "Judge whether a block is legal.",
+        "estimatedMinutes": 11,
+        "conceptIds": [
+          "blocking"
+        ],
+        "activities": [
+          {
+            "id": "craft-04-bc-block-legal",
+            "type": "binary-call",
+            "conceptIds": [
+              "blocking"
+            ],
+            "payload": {
+              "prompt": "Is blocking a legal move?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two cars, one moving to block the other."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, one block per attempt."
+                },
+                {
+                  "id": "no",
+                  "label": "No, never block."
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Right. One block per attempt is legal and expected. Repeated blocks anger rivals.",
+                "incorrect": "Blocking is legal. A leading car can move once to defend. Multiple blocks or very late blocks may be penalized or draw retaliation."
+              }
+            }
+          },
+          {
+            "id": "craft-04-ds-block-call",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "blocking"
+            ],
+            "payload": {
+              "prompt": "He blocks low, you go high, he goes high. What now?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Laps left",
+                    "value": "8"
+                  },
+                  {
+                    "label": "Your position",
+                    "value": "Third, trying to pass second"
+                  },
+                  {
+                    "label": "The block",
+                    "value": "Back-and-forth blocking"
+                  },
+                  {
+                    "label": "History",
+                    "value": "Neutral, no prior issues"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "accept",
+                  "label": "Accept and wait.",
+                  "verdict": "acceptable",
+                  "consequence": "Clean racing, you earn respect, but lose this battle.",
+                  "considerations": ["Shows respect.", "But you might not get another chance.", "Only 8 laps left."]
+                },
+                {
+                  "id": "bump",
+                  "label": "Bump him off his line.",
+                  "verdict": "best",
+                  "consequence": "Fair payback for repeated blocks. He loses momentum and you dive past.",
+                  "considerations": ["Repeated blocks invite a response.", "Bump is within bounds.", "Might be the only way."]
+                },
+                {
+                  "id": "wreck",
+                  "label": "Wreck him.",
+                  "verdict": "poor",
+                  "consequence": "Both of you DNF. Not worth 8 laps.",
+                  "considerations": ["You both crash.", "Reputation suffers.", "Not worth it."]
+                }
+              ],
+              "expertNote": "Repeated blocking—moving back and forth—crosses from defense into aggression and invites retaliation."
+            }
+          },
+          {
+            "id": "craft-04-tm-blocking-rules",
+            "type": "term-match",
+            "conceptIds": [
+              "blocking"
+            ],
+            "payload": {
+              "prompt": "Match the block type to its meaning.",
+              "pairs": [
+                {
+                  "id": "one",
+                  "term": "One block",
+                  "definition": "A single move to defend your line; legal and expected."
+                },
+                {
+                  "id": "repeat",
+                  "term": "Repeated blocks",
+                  "definition": "Moving back-and-forth to defend; can be penalized or provoke retaliation."
+                },
+                {
+                  "id": "late",
+                  "term": "Late block",
+                  "definition": "Blocking at the last moment; often dirty and draws anger."
+                }
+              ],
+              "distractorDefinitions": [
+                "Blocking the pit road entrance.",
+                "Blocking radio signals."
+              ],
+              "explanation": {
+                "summary": "One block is racing. Multiple blocks are not and earn a dirty reputation."
+              }
+            }
+          },
+          {
+            "id": "craft-04-mc-block-penalty",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "blocking"
+            ],
+            "payload": {
+              "prompt": "When is a block penalized?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Every time you defend your line."
+                },
+                {
+                  "id": "b",
+                  "text": "For repeated or very late blocks."
+                },
+                {
+                  "id": "c",
+                  "text": "Never; blocks are always legal."
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. One block is clean. Multiple blocks or a very late block may be flagged.",
+                "incorrect": "Blocking is legal, but excessive blocking or blocking very late into the corner may draw a penalty. The line between racing and wrecking matters."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "craft-05",
+        "title": "Road course racecraft",
+        "objective": "Explain road-course passing and braking.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "road-course-racecraft",
+          "braking-zone"
+        ],
+        "activities": [
+          {
+            "id": "craft-05-vi-braking",
+            "type": "visual-id",
+            "conceptIds": [
+              "braking-zone"
+            ],
+            "payload": {
+              "prompt": "Where is the braking zone? Tap the area.",
+              "image": {
+                "asset": "nascar/road-course-turn.png",
+                "alt": "Road-course turn with approach, braking zone and apex.",
+                "license": "original-swoond"
+              },
+              "options": [
+                {
+                  "id": "straight",
+                  "text": "Straight approach",
+                  "explanation": "You are at full throttle here; braking has not started."
+                },
+                {
+                  "id": "brake",
+                  "text": "Braking zone",
+                  "explanation": "The braking zone is where drivers slow down. A pass often happens here (out-braking)."
+                },
+                {
+                  "id": "apex",
+                  "text": "Apex (turn center)",
+                  "explanation": "The apex is too late; the pass must happen on entry, in the braking zone."
+                }
+              ],
+              "correctOptionId": "brake",
+              "explanation": {
+                "correct": "Right. Passes on road courses often happen in the braking zone, where the trailing car out-brakes the leader.",
+                "incorrect": "Passes on a road course happen in the braking zone, where the trailing car out-brakes the leader and gains inside position."
+              }
+            }
+          },
+          {
+            "id": "craft-05-mc-road-pass",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "road-course-racecraft"
+            ],
+            "payload": {
+              "prompt": "What is key to passing on a road course?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Out-braking into the corner and diving inside."
+                },
+                {
+                  "id": "b",
+                  "text": "Drafting down the straightaway."
+                },
+                {
+                  "id": "c",
+                  "text": "Having higher top speed."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Exactly. A road-course pass is about braking: out-brake the leader into a corner and take the inside line. Skill and patience win.",
+                "incorrect": "Road-course racing is about braking precision. A trailing car passes by braking later, diving inside and carrying more speed through the apex."
+              }
+            }
+          },
+          {
+            "id": "craft-05-ds-road-pass-call",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "road-course-racecraft",
+              "braking-zone"
+            ],
+            "payload": {
+              "prompt": "You brake better. Dive for the inside?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Position",
+                    "value": "Second place"
+                  },
+                  {
+                    "label": "Your skill",
+                    "value": "Better braking than leader"
+                  },
+                  {
+                    "label": "Turn",
+                    "value": "Tight 90-degree right-hander"
+                  },
+                  {
+                    "label": "Laps left",
+                    "value": "20 remaining"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "dive",
+                  "label": "Dive inside in braking zone.",
+                  "verdict": "best",
+                  "consequence": "Out-braking the leader gains inside position. If you nail the turn, you are past. Road-course passing is about braking.",
+                  "considerations": ["You have braking edge.", "Inside is open.", "20 laps for attempts."]
+                },
+                {
+                  "id": "wait",
+                  "label": "Wait for a mistake.",
+                  "verdict": "acceptable",
+                  "consequence": "Conservative. You might never get a cleaner shot.",
+                  "considerations": ["No crash risk.", "But the leader is fast.", "Mistake might not come."]
+                }
+              ],
+              "expertNote": "Road-course specialists pass in the braking zone. Out-braking is how passes happen when skill separates drivers."
+            }
+          },
+          {
+            "id": "craft-05-st-apex",
+            "type": "say-this",
+            "conceptIds": [
+              "road-course-racecraft"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "driver",
+                "text": "I out-braked him into the chicane."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "I braked later than he did, diving inside the quick left-right section."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "I used better brakes than he had."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "I forced his brakes to fail."
+                }
+              ],
+              "translation": "I braked later than the leader, gaining inside position into the chicane.",
+              "followUps": [
+                {
+                  "line": "Out-braking means braking later than your rival; it is the signature road-course pass.",
+                  "why": "On road courses, braking point is where passes are made."
+                },
+                {
+                  "line": "A failed out-braking attempt can result in a crash at the apex if you run out of room.",
+                  "why": "Road-course racecraft is about knowing the limit and executing perfectly."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "craft-06",
+        "title": "Lapped traffic",
+        "objective": "Explain how lapped cars affect racing.",
+        "estimatedMinutes": 11,
+        "conceptIds": [
+          "lapped-traffic",
+          "lap-down"
+        ],
+        "activities": [
+          {
+            "id": "craft-06-ds-traffic-move",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "lapped-traffic"
+            ],
+            "payload": {
+              "prompt": "You are fourth; lapped car is in your way. Pass it?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Position",
+                    "value": "Fourth, hunting third"
+                  },
+                  {
+                    "label": "Traffic",
+                    "value": "Lapped car is in the way"
+                  },
+                  {
+                    "label": "Gap to third",
+                    "value": "Half second back"
+                  },
+                  {
+                    "label": "Laps left",
+                    "value": "35 to go"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "pass",
+                  "label": "Pass the lapped car.",
+                  "verdict": "best",
+                  "consequence": "Overtaking clears your line and lets you chase third.",
+                  "considerations": ["Just in the way.", "Passing opens your path.", "35 laps to chase."]
+                },
+                {
+                  "id": "wait",
+                  "label": "Wait for it to clear.",
+                  "verdict": "acceptable",
+                  "consequence": "The car might yield. You save fuel and tires.",
+                  "considerations": ["Car might give up.", "You save fuel.", "But might stay in way."]
+                }
+              ],
+              "expertNote": "Lapped traffic is a hazard for leaders but a tool for others; passing or using them can change the race."
+            }
+          },
+          {
+            "id": "craft-06-mc-lap-down",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "lap-down"
+            ],
+            "payload": {
+              "prompt": "What does 'a lap down' mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "One fewer lap than the leader, out of contention."
+                },
+                {
+                  "id": "b",
+                  "text": "Three seconds behind the leader."
+                },
+                {
+                  "id": "c",
+                  "text": "Still has pit stops remaining."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. A lapped car has one full lap fewer than the leader. Out of contention but still racing.",
+                "incorrect": "Being a lap down means the leader has lapped you—you are one full lap behind. Still racing, but cannot win unless the leader crashes or pits late."
+              }
+            }
+          },
+          {
+            "id": "craft-06-bc-traffic-help",
+            "type": "binary-call",
+            "conceptIds": [
+              "lapped-traffic"
+            ],
+            "payload": {
+              "prompt": "Can lapped traffic help a chasing driver?",
+              "scene": {
+                "kind": "none",
+                "alt": "Leader slowing for lapped car while chaser runs free."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, it can slow the leader."
+                },
+                {
+                  "id": "no",
+                  "label": "No, it only hurts the chaser."
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes. Lapped traffic might slow the leader more than the chaser, closing the gap.",
+                "incorrect": "Lapped traffic usually hurts the leader more than a chaser who can navigate around it better. Smart drivers use traffic to gain time."
+              }
+            }
+          },
+          {
+            "id": "craft-06-st-traffic",
+            "type": "say-this",
+            "conceptIds": [
+              "lapped-traffic"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "driver",
+                "text": "We got held up by traffic."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "Slower, lapped cars blocked our path and cost us speed."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "The pit crew was stuck in the stall."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "Road construction delayed the race start."
+                }
+              ],
+              "translation": "We had to navigate around or slow for lapped cars in our way.",
+              "followUps": [
+                {
+                  "line": "Lapped traffic is both a hazard and a factor; it can help or hurt depending on who is faster.",
+                  "why": "On a restart, lapped cars can shuffle the running order."
+                },
+                {
+                  "line": "Free passes and wave-arounds manage lapped car disruption and keep racing close.",
+                  "why": "Letting a lapped car get back on the lead lap reduces frustration."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "craft-07",
+        "title": "Payback",
+        "objective": "Explain payback and racing code.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "payback",
+          "wreck-vs-race"
+        ],
+        "activities": [
+          {
+            "id": "craft-07-st-payback",
+            "type": "say-this",
+            "conceptIds": [
+              "payback"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "driver",
+                "text": "He will get some payback for that."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "He will face retaliation on track in a future race."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "He will receive a financial refund."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "He will be fined by NASCAR."
+                }
+              ],
+              "translation": "He will face retaliation or a bump if he crossed the line; it is part of the driver code.",
+              "followUps": [
+                {
+                  "line": "Payback is a NASCAR tradition; if you wreck someone or block dirty, expect a bump later.",
+                  "why": "Drivers police themselves and each other on track. Respect and consequences shape behavior."
+                },
+                {
+                  "line": "Payback does not have to be a wreck; it can be a bump, blocking, or passing that costs position.",
+                  "why": "There is a spectrum from clean racing to dirty; payback can stay within that spectrum."
+                }
+              ]
+            }
+          },
+          {
+            "id": "craft-07-tk-payback-code",
+            "type": "talk-track",
+            "conceptIds": [
+              "payback",
+              "wreck-vs-race"
+            ],
+            "payload": {
+              "title": "She expects payback",
+              "setting": "After a wreck caused by her driver's rival.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "He just wrecked my guy. Next race, he is getting a bump.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "Do you think that settles it, or does it keep going?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Depends on what the bump does. If it is clean, maybe.",
+                      "coachNote": "You acknowledged payback and asked if it ends the feud."
+                    },
+                    {
+                      "id": "b",
+                      "text": "That seems fair.",
+                      "smoothDelta": 10,
+                      "theirResponse": "It is, but I hope he understands.",
+                      "coachNote": "Empathy is good, but ask about the outcome."
+                    },
+                    {
+                      "id": "c",
+                      "text": "That is just how it is.",
+                      "smoothDelta": -5,
+                      "theirResponse": "Yeah, but nobody wants it out of hand.",
+                      "coachNote": "True, but show you get the stakes."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Payback is tradition, but drivers also know when to let it go."
+            }
+          },
+          {
+            "id": "craft-07-bc-payback-wreck",
+            "type": "binary-call",
+            "conceptIds": [
+              "payback"
+            ],
+            "payload": {
+              "prompt": "Is payback the same as a wreck?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two-car contact showing a bump vs a crash."
+              },
+              "choices": [
+                {
+                  "id": "no",
+                  "label": "No, payback can be clean."
+                },
+                {
+                  "id": "yes",
+                  "label": "Yes, always a wreck."
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Right. Payback is retaliation, but does not have to be a wreck. A bump, block or pass can be payback.",
+                "incorrect": "Payback is the tradition of responding to a wrong, but it does not always mean wrecking. A bump that costs position, a block, or beating someone fair can all be payback."
+              }
+            }
+          },
+          {
+            "id": "craft-07-ds-payback-move",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "payback",
+              "wreck-vs-race"
+            ],
+            "payload": {
+              "prompt": "He wrecked you last week. He is now behind you. Wreck him?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "What happened",
+                    "value": "He dumped you last week at race end"
+                  },
+                  {
+                    "label": "Today",
+                    "value": "He is in sixth, you are fourth"
+                  },
+                  {
+                    "label": "Laps left",
+                    "value": "50 to go"
+                  },
+                  {
+                    "label": "Points",
+                    "value": "You are close; a DNF hurts"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "race",
+                  "label": "Race him clean and beat him.",
+                  "verdict": "best",
+                  "consequence": "You earn respect and keep racing. A clean win is better. You can race him later.",
+                  "considerations": ["You take high road.", "Clean win is sweeter.", "Both cars run."]
+                },
+                {
+                  "id": "bump",
+                  "label": "Bump him if he tries to pass.",
+                  "verdict": "acceptable",
+                  "consequence": "Fair payback. You cost him track position. He gets the message.",
+                  "considerations": ["Bump is within bounds.", "He will feel it.", "Does not guarantee he learns."]
+                },
+                {
+                  "id": "wreck",
+                  "label": "Wreck him like he wrecked you.",
+                  "verdict": "poor",
+                  "consequence": "You might both DNF. You now look like the dirty driver. Feuds escalate.",
+                  "considerations": ["Revenge feels good now.", "Risk your race and image.", "Feuds escalate when you trade wrecks."]
+                }
+              ],
+              "expertNote": "Payback is tradition, but wreck-for-wreck turns a grudge into a feud. Smart racers respond with a bump or a clean beat, then move on."
+            }
+          }
+        ]
+      },
+      {
+        "id": "craft-08",
+        "title": "Racing vs wrecking",
+        "objective": "Judge whether contact is racing or wrecking.",
+        "estimatedMinutes": 11,
+        "conceptIds": [
+          "wreck-vs-race"
+        ],
+        "activities": [
+          {
+            "id": "craft-08-bc-racing-contact",
+            "type": "binary-call",
+            "conceptIds": [
+              "wreck-vs-race"
+            ],
+            "payload": {
+              "prompt": "Is all contact in NASCAR wrecking?",
+              "scene": {
+                "kind": "none",
+                "alt": "Controlled bump vs hard crash side-by-side."
+              },
+              "choices": [
+                {
+                  "id": "no",
+                  "label": "No, some is hard racing."
+                },
+                {
+                  "id": "yes",
+                  "label": "Yes, all contact is wrecking."
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Right. A bump or controlled contact is racing. A wreck is reckless contact that destroys a car.",
+                "incorrect": "Contact happens in close racing. A bump to move someone or slight tap to pass is racing. A wreck is when someone loses control or a car is heavily damaged."
+              }
+            }
+          },
+          {
+            "id": "craft-08-st-racing-line",
+            "type": "say-this",
+            "conceptIds": [
+              "wreck-vs-race"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "driver",
+                "text": "That was just hard racing."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "The contact was aggressive but within bounds of racing."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "The car broke down due to engine trouble."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "The pit crew worked very hard."
+                }
+              ],
+              "translation": "The bump or contact was aggressive but not malicious; it is part of the sport.",
+              "followUps": [
+                {
+                  "line": "Hard racing includes bumps, tight passes and defensive moves that do not ruin a car.",
+                  "why": "Drivers accept some contact as the cost of trying to pass or defend position."
+                },
+                {
+                  "line": "Wrecking is when the contact is reckless, intentional or ends in a crash; fans and drivers draw that line.",
+                  "why": "The culture polices itself: wreck someone and payback or a bad reputation follows."
+                }
+              ]
+            }
+          },
+          {
+            "id": "craft-08-tm-racing-terms",
+            "type": "term-match",
+            "conceptIds": [
+              "wreck-vs-race"
+            ],
+            "payload": {
+              "prompt": "Match the contact type to what it is.",
+              "pairs": [
+                {
+                  "id": "race",
+                  "term": "Racing",
+                  "definition": "Aggressive contact: bumps, blocks and tight passes within the bounds of the sport."
+                },
+                {
+                  "id": "wreck",
+                  "term": "Wrecking",
+                  "definition": "Reckless or intentional contact that destroys a car or ends a race."
+                },
+                {
+                  "id": "intentional",
+                  "term": "Intentional wrecking",
+                  "definition": "Deliberately crashing another driver; penalized and draws fines or suspensions."
+                }
+              ],
+              "distractorDefinitions": [
+                "Losing grip and sliding off track.",
+                "Changing lanes slowly."
+              ],
+              "explanation": {
+                "summary": "Racing and wrecking are separated by intent and outcome. A bump is racing; a hard crash is wrecking."
+              }
+            }
+          },
+          {
+            "id": "craft-08-ds-contact-call",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "wreck-vs-race"
+            ],
+            "payload": {
+              "prompt": "He defends, you both slide. Racing or wrecking?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "The move",
+                    "value": "You pass low, he defends low"
+                  },
+                  {
+                    "label": "Result",
+                    "value": "Both cars slide, no damage"
+                  },
+                  {
+                    "label": "Your speed",
+                    "value": "Committed to the pass"
+                  },
+                  {
+                    "label": "His move",
+                    "value": "Moved to defend his line"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "racing",
+                  "label": "That was racing.",
+                  "verdict": "best",
+                  "consequence": "Clean battle. No one wrecked; you both knew the risk.",
+                  "considerations": ["Both cars survived.", "Fair fight.", "No one over the top."]
+                },
+                {
+                  "id": "wreck",
+                  "label": "He wrecked you.",
+                  "verdict": "poor",
+                  "consequence": "He defended his line. If you complain to NASCAR, they will laugh.",
+                  "considerations": ["He moved to defend.", "You were passing.", "Sliding is part of the game."]
+                }
+              ],
+              "expertNote": "Racing means everyone knows the risk. If you commit to a pass and the driver defends, slides happen and that is racing."
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

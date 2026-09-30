@@ -1101,3 +1101,370 @@ The nine full Talk Track scenarios in section 4 are the sample payloads for this
   }
 }
 ```
+
+## 3. Playbook terms (72)
+
+Each entry: term, plain-English definition, and an example line in the enthusiast's voice (so the learner recognises it when she says it). Concept ids are in the CDS appendix.
+
+| # | Term | Definition | "She might say" |
+|---|---|---|---|
+| 1 | Exposure | How much light reaches the sensor for one picture. | "I nailed the exposure on that one." |
+| 2 | Aperture | The adjustable opening in the lens that controls how much light passes and how thin the sharp zone is. | "I shot it at a wide aperture." |
+| 3 | f-number / f-stop | The ratio that labels the aperture; small number, big opening. | "It's an f/1.8 lens." |
+| 4 | Shutter speed | How long the sensor is exposed to light. | "I needed a faster shutter speed to freeze her." |
+| 5 | ISO | Sensor sensitivity setting; higher means brighter and noisier. | "I had to bump the ISO." |
+| 6 | Stop | A doubling or halving of light; the shared unit of exposure. | "I'm two stops underexposed." |
+| 7 | Exposure triangle | Aperture, shutter and ISO traded off against each other. | "It's all the triangle: I gave up ISO for speed." |
+| 8 | Reciprocity | Changing one setting by a stop and another the opposite way keeps exposure the same. | "Open up a stop, speed up a stop." |
+| 9 | Wide open | Using the lens's largest aperture. | "Wide open it gets a little soft." |
+| 10 | Stopping down | Using a smaller aperture (larger f-number). | "Stopped down to f/8 it's crisp." |
+| 11 | Fast lens | A lens with a wide maximum aperture, like f/1.4. | "That's a really fast lens." |
+| 12 | Noise / grain | Random speckle that grows with ISO or underexposure. | "The noise was bad at 6400." |
+| 13 | Dynamic range | The span from darkest to brightest a camera can hold detail in. | "That sensor has great dynamic range." |
+| 14 | Blown highlights | Bright areas that lost all detail. | "My highlights were blown." |
+| 15 | Crushed shadows | Dark areas clipped to pure black. | "The shadows are crushed." |
+| 16 | Histogram | A graph of tones in an image from shadows to highlights. | "I checked the histogram, it's pushed right." |
+| 17 | Exposure compensation | A dial that tells the camera to expose brighter or darker than its meter says. | "I dialled in plus one compensation." |
+| 18 | Metering | How the camera measures the scene's brightness. | "I used spot metering on her face." |
+| 19 | Middle grey | The average tone that meters aim for. | "The meter wants everything middle grey." |
+| 20 | Expose to the right (ETTR) | Exposing brighter, without clipping, to keep digital noise low. | "I ETTR'd it and pulled it down." |
+| 21 | Bracketing | Shooting several exposures at different brightness. | "I bracketed three frames for the sky." |
+| 22 | HDR | Combining exposures to fit more range than one frame holds. | "It's a subtle HDR, not a crunchy one." |
+| 23 | Depth of field (DoF) | The zone of distance that looks acceptably sharp. | "I wanted a shallow depth of field." |
+| 24 | Bokeh | The look of the out-of-focus areas. | "The bokeh is creamy." |
+| 25 | Focal length | The lens number in millimetres; sets field of view and magnification. | "I shot it at 85 millimetres." |
+| 26 | Field of view | How much of the scene the camera sees. | "That's a wide field of view." |
+| 27 | Wide-angle | A short focal length that shows a lot. | "Wide-angle for interiors." |
+| 28 | Telephoto | A long focal length that magnifies distant subjects. | "I brought the telephoto for the birds." |
+| 29 | Prime lens | A lens with one fixed focal length. | "I only carry primes." |
+| 30 | Zoom lens | A lens with adjustable focal length. | "The zoom's convenient for events." |
+| 31 | Perspective compression | The look of layers stacked close together, caused by shooting from far away. | "That telephoto compression is dreamy." |
+| 32 | Full frame | A sensor the size of a 35mm film frame (36 by 24 mm). | "I'm thinking about going full frame." |
+| 33 | Crop sensor / APS-C | A smaller sensor that crops the view (about 1.5 to 1.6 times). | "It's an APS-C body, so a 1.5 crop." |
+| 34 | Crop factor | The multiplier for a sensor's field of view compared with full frame. | "35 on crop is like 52 on full frame." |
+| 35 | Micro Four Thirds (MFT) | A small sensor system with a 2 times crop. | "She loves the light MFT kit." |
+| 36 | Medium format | A sensor or film larger than full frame. | "Medium format has a beautiful look." |
+| 37 | Mirrorless | A camera without a mirror; you view the image on a screen or electronic viewfinder. | "I switched to mirrorless." |
+| 38 | DSLR | A camera with a mirror and an optical viewfinder. | "My old DSLR is still great." |
+| 39 | Mount | The physical and electronic connection between body and lens. | "It's a different mount, so I need an adapter." |
+| 40 | Glass | Slang for lenses. | "I'd rather spend on glass than a new body." |
+| 41 | Sharpness | How crisp fine detail looks. | "It's tack sharp." |
+| 42 | Autofocus (AF) | The camera focusing for you. | "Eye AF locked right on." |
+| 43 | Eye AF | Autofocus that finds and tracks the eye. | "Eye AF is a game changer." |
+| 44 | Back-button focus | Assigning focus to a rear button instead of the shutter. | "I use back-button focus." |
+| 45 | Diffraction | Softening from very small apertures. | "Past f/16 you get diffraction." |
+| 46 | Hyperfocal distance | The focus distance that makes near-to-infinity acceptably sharp. | "I focused at the hyperfocal distance." |
+| 47 | RAW | The unprocessed sensor file with maximum editing room. | "I always shoot RAW." |
+| 48 | JPEG | A processed, compressed file the camera makes. | "The JPEGs from that camera are great." |
+| 49 | SOOC | Straight out of camera; unedited. | "That's SOOC." |
+| 50 | White balance | Setting the colour cast so whites look white. | "The white balance was off, everything's orange." |
+| 51 | Colour temperature | Light's warmth, in Kelvin. | "That's about 3000 Kelvin, so warm." |
+| 52 | Golden hour | The warm, soft light near sunrise and sunset. | "I'm chasing golden hour." |
+| 53 | Blue hour | The deep blue twilight just before sunrise or after sunset. | "Blue hour is my favourite." |
+| 54 | Hard light | Small-looking source; crisp shadows. | "Noon sun is hard light." |
+| 55 | Soft light | Large-looking source; gentle shadows. | "The window gives lovely soft light." |
+| 56 | Rembrandt lighting | Side-and-above light leaving a triangle on the shadow cheek. | "I went for a Rembrandt look." |
+| 57 | Catchlight | The reflection of the light in the eyes. | "I love the catchlights." |
+| 58 | Rim light | A light from behind that outlines the subject. | "A rim light separated her from the wall." |
+| 59 | Fill light / reflector | Adding light to lift shadows. | "I used a reflector for fill." |
+| 60 | Long exposure | A slow shutter speed that blurs motion or gathers light. | "It's a thirty-second exposure." |
+| 61 | ND filter | A filter that darkens the scene evenly. | "I put a ten-stop ND on." |
+| 62 | Rule of thirds | A grid that divides the frame into thirds for placing subjects. | "I put her on the third." |
+| 63 | Leading lines | Lines in the scene that guide the eye. | "The fence is a leading line." |
+| 64 | Negative space | Empty space that gives the subject room. | "I left lots of negative space." |
+| 65 | Decisive moment | The instant when action and composition align. | "I waited for the decisive moment." |
+| 66 | Keeper | A photo that survives the cull. | "Out of 300, I got five keepers." |
+| 67 | Cull | Choosing the best photos from a shoot. | "I'm culling last weekend's shoot." |
+| 68 | Preset | Saved editing settings applied in one click. | "I made my own preset." |
+| 69 | Grading | Stylising the colours and tones of an image. | "I'm grading it warm and moody." |
+| 70 | Portra | A popular Kodak colour negative film known for skin tones (brand names for this stock may change; see live layer). | "Portra 400 is perfect for skin." |
+| 71 | GAS | Gear acquisition syndrome; the urge to keep buying gear. | "I have GAS for that new lens." |
+| 72 | Content credentials (C2PA) | Signed metadata recording how an image was made and edited. | "Some cameras sign photos with content credentials now." |
+
+## 4. Talk Track scenarios (9)
+
+Each scenario has: the enthusiast line, what it means, and three replies in each exchange labelled good, meh and cringe (in the payload, by `smoothDelta`: good +18 to +24, meh 0 to +6, cringe -12 to -20). Coach notes are in Swoon'd's voice. All validate against `talk-track.schema.json`.
+
+Meaning table:
+
+| Track | Her opening line | What it means |
+|---|---|---|
+| `tt-golden-hour` | "Got up at five for golden hour. It clouded over." | The best light didn't happen; she got flat, dull light and some disappointment. |
+| `tt-shows-photo` | "Here, this is my favourite from the weekend." | She trusts you enough to show a photo; the reaction matters. |
+| `tt-new-lens` | "I'm resisting GAS. I do NOT need another prime." | She wants a lens and is teasing herself. |
+| `tt-film-roll` | "I finally sent off that roll of Portra." | She shot film, is waiting on a lab, and is a bit nervous. |
+| `tt-iso` | "The light was awful, I had to crank the ISO and it's grainy." | Low light, high ISO, noise; a mild frustration. |
+| `tt-meteors` | "If the sky clears Saturday I'm shooting the meteor shower." | A planned night-sky shoot, weather-dependent. |
+| `tt-ai-denoise` | "Is AI denoise cheating?" | A genuine debate about editing honesty. |
+| `tt-street-stranger` | "A guy got upset when I shot the street today." | A street-photography etiquette moment; she is rattled. |
+| `tt-lost-shoot` | "I think I lost the whole shoot. The card corrupted." | Real distress; empathy matters more than tips. |
+
+### 4.1 After the clouded sunrise (`tt-golden-hour`)
+
+```json
+{
+  "title": "The clouded sunrise",
+  "setting": "Texting after her early photo trip",
+  "exchanges": [
+    {
+      "theirMessage": "Got up at five for golden hour. It clouded over. Total flat light.",
+      "replies": [
+        { "id": "a", "text": "Ugh, that's rough. Was anything still worth shooting in that soft light?", "smoothDelta": 22, "theirResponse": "Honestly, a bit. Fog on the water looked lovely. I'll show you.", "coachNote": "Empathy plus a real question. You reopened the story." },
+        { "id": "b", "text": "Bummer. Next time check the weather.", "smoothDelta": 2, "theirResponse": "I did. Clouds don't read forecasts. Anyway.", "coachNote": "True, and a little scolding. She knew." },
+        { "id": "c", "text": "Just fix it in Photoshop, you can replace the sky.", "smoothDelta": -16, "theirResponse": "That's... not really the point of being there.", "coachNote": "Cringe: you skipped the feeling and offered a shortcut she may find hollow." }
+      ]
+    },
+    {
+      "theirMessage": "Flat light can be nice for portraits, actually. Just not for what I wanted.",
+      "replies": [
+        { "id": "a", "text": "Right, because there are no harsh shadows? What did you want the light to do?", "smoothDelta": 20, "theirResponse": "Yes! I wanted long warm shadows across the dunes. Different picture entirely.", "coachNote": "You reflected her point and asked what she was after. Curiosity wins." },
+        { "id": "b", "text": "Interesting.", "smoothDelta": 0, "theirResponse": "Mm. Anyway, I'll try again next weekend.", "coachNote": "Polite, but a conversation exit." },
+        { "id": "c", "text": "So what f-stop should you have used?", "smoothDelta": -14, "theirResponse": "It wasn't an f-stop problem. It was the sky.", "coachNote": "Cringe: aperture doesn't fix clouds. Ask about light, not settings." }
+      ]
+    }
+  ],
+  "closingNote": "Light is the heart of photography. Ask what she wanted it to do, not which setting she should have used."
+}
+```
+
+### 4.2 She shows you a photo (`tt-shows-photo`)
+
+```json
+{
+  "title": "She shows you a photo",
+  "setting": "Sitting together, she hands you her phone",
+  "exchanges": [
+    {
+      "theirMessage": "Here, this is my favourite from the weekend. Tell me honestly.",
+      "replies": [
+        { "id": "a", "text": "The light on the left side of her face is lovely. Where was that?", "smoothDelta": 24, "theirResponse": "By a window in her kitchen! I moved her a metre closer to it.", "coachNote": "Specific and kind. You noticed a real thing and asked about it." },
+        { "id": "b", "text": "It's really good.", "smoothDelta": 4, "theirResponse": "Thanks! Anything in particular?", "coachNote": "Kind but vague. She will want one specific thing." },
+        { "id": "c", "text": "What camera did you use? It must be a great one.", "smoothDelta": -18, "theirResponse": "It's the photographer, not the camera, you know.", "coachNote": "Cringe: the classic backhanded compliment. Talk about the picture, not the gear." }
+      ]
+    },
+    {
+      "theirMessage": "I wasn't sure about the crop. Too tight?",
+      "replies": [
+        { "id": "a", "text": "I like that it's tight; it feels close. What did you think it lost?", "smoothDelta": 20, "theirResponse": "A bit of the window behind her. I liked that context.", "coachNote": "Honest, kind, and you handed the question back. She is the expert." },
+        { "id": "b", "text": "Looks fine to me.", "smoothDelta": 2, "theirResponse": "Okay, good to know.", "coachNote": "Reassuring but doesn't say why." },
+        { "id": "c", "text": "It's totally off; you should never crop like that.", "smoothDelta": -16, "theirResponse": "Oh. Okay.", "coachNote": "Cringe: rules stated as laws hurt. Say what you feel, not what she should never do." }
+      ]
+    }
+  ],
+  "closingNote": "Say one specific, true thing you saw in the picture, then ask a question about it."
+}
+```
+
+### 4.3 The lens she is resisting (`tt-new-lens`)
+
+```json
+{
+  "title": "GAS and the new lens",
+  "setting": "Chatting about her wishlist",
+  "exchanges": [
+    {
+      "theirMessage": "I'm resisting GAS. I do NOT need another prime.",
+      "replies": [
+        { "id": "a", "text": "Ha, which one is tempting you?", "smoothDelta": 22, "theirResponse": "A 35 millimetre. I keep circling it in every shop. Send help.", "coachNote": "You joined the joke and asked the fun question." },
+        { "id": "b", "text": "Just buy it, you deserve it.", "smoothDelta": 3, "theirResponse": "Not helping. But thanks for the enabling.", "coachNote": "Friendly, but you added nothing about her photography." },
+        { "id": "c", "text": "The 85 f/1.2 is objectively the best lens ever made.", "smoothDelta": -18, "theirResponse": "Uh huh. Have you used it?", "coachNote": "Cringe: faking expertise. You have not used it, and she can tell." }
+      ]
+    },
+    {
+      "theirMessage": "It'd be for street stuff. Small and quick.",
+      "replies": [
+        { "id": "a", "text": "Makes sense. What does it let you do that your zoom doesn't?", "smoothDelta": 20, "theirResponse": "It's lighter and I can shoot wide open in dim streets. Different mood.", "coachNote": "Asked what she would make with it. That's what gear talk is really about." },
+        { "id": "b", "text": "Okay, cool.", "smoothDelta": 0, "theirResponse": "Mm-hmm.", "coachNote": "Not wrong, but the question was an invitation." },
+        { "id": "c", "text": "Lenses are basically all the same these days.", "smoothDelta": -14, "theirResponse": "They really aren't.", "coachNote": "Cringe: dismissing something she cares about." }
+      ]
+    }
+  ],
+  "closingNote": "Gear talk is really about what she wants to make. Ask about that."
+}
+```
+
+### 4.4 The roll at the lab (`tt-film-roll`)
+
+```json
+{
+  "title": "The roll at the lab",
+  "setting": "She dropped off her first roll of film",
+  "exchanges": [
+    {
+      "theirMessage": "I finally sent off that roll of Portra. I have no idea what's on it.",
+      "replies": [
+        { "id": "a", "text": "The suspense! How long since you shot the first frame?", "smoothDelta": 22, "theirResponse": "Like eight months. Half of it is a trip I barely remember.", "coachNote": "You leaned into the film ritual: waiting, not knowing." },
+        { "id": "b", "text": "Cool. Hope it turns out.", "smoothDelta": 4, "theirResponse": "Me too. Thanks.", "coachNote": "Kind, though the story is in the waiting." },
+        { "id": "c", "text": "Why not just use digital? You'd see it instantly.", "smoothDelta": -16, "theirResponse": "That's kind of the whole point.", "coachNote": "Cringe: the anti-film reflex. She chose this on purpose." }
+      ]
+    },
+    {
+      "theirMessage": "I overexposed some frames on purpose. Negatives like extra light.",
+      "replies": [
+        { "id": "a", "text": "Oh, that's a thing? Why do negatives like more light?", "smoothDelta": 20, "theirResponse": "They have lots of latitude, so a bit of over keeps shadow detail. Skin looks amazing.", "coachNote": "Honest curiosity with a real term in it. Nice." },
+        { "id": "b", "text": "So they'll be a bit bright?", "smoothDelta": 3, "theirResponse": "A bit, but the lab can adjust.", "coachNote": "A fair guess, but you skipped why." },
+        { "id": "c", "text": "That's just wasting film.", "smoothDelta": -12, "theirResponse": "It's a technique, not waste.", "coachNote": "Cringe: judging a deliberate choice you don't yet understand." }
+      ]
+    }
+  ],
+  "closingNote": "Film is about patience and rituals. Ask about the process; skip the comparisons."
+}
+```
+
+### 4.5 The grainy night (`tt-iso`)
+
+```json
+{
+  "title": "Cranked the ISO",
+  "setting": "After a dim indoor gig she photographed",
+  "exchanges": [
+    {
+      "theirMessage": "The light was awful. I had to crank the ISO and it's so grainy.",
+      "replies": [
+        { "id": "a", "text": "Did you go up so you could keep the shutter fast? Better a bit of grain than blur, right?", "smoothDelta": 22, "theirResponse": "Exactly! The singer was moving. I'll take grain over blur any day.", "coachNote": "You showed you get the trade-off, and framed it kindly." },
+        { "id": "b", "text": "Can't you just fix the grain in editing?", "smoothDelta": 2, "theirResponse": "Sort of. There's software for it. It's never quite the same.", "coachNote": "Reasonable, but a shortcut answer." },
+        { "id": "c", "text": "You should have used a flash.", "smoothDelta": -14, "theirResponse": "At a gig? The band would have thrown me out.", "coachNote": "Cringe: a solution that ignores the situation." }
+      ]
+    },
+    {
+      "theirMessage": "I did use a fast prime, f/1.8, and the ISO was still 6400.",
+      "replies": [
+        { "id": "a", "text": "So it was properly dark. Is 6400 normal for that kind of room?", "smoothDelta": 20, "theirResponse": "For a small venue, yeah. Modern sensors handle it better than they used to.", "coachNote": "You noticed the numbers and asked what's normal, not what's wrong." },
+        { "id": "b", "text": "Wow, okay.", "smoothDelta": 0, "theirResponse": "Yeah.", "coachNote": "Not wrong, just closed." },
+        { "id": "c", "text": "That's way too high, you'd never see that on a good camera.", "smoothDelta": -18, "theirResponse": "It is a good camera. It was a dark room.", "coachNote": "Cringe: bluffing a rule you don't know and insulting her camera." }
+      ]
+    }
+  ],
+  "closingNote": "A sharp, grainy photo beats a clean, blurry one. Ask about the trade she made."
+}
+```
+
+### 4.6 The meteor shower (`tt-meteors`)
+
+```json
+{
+  "title": "Meteor shower plans",
+  "setting": "Planning the weekend",
+  "exchanges": [
+    {
+      "theirMessage": "If the sky clears Saturday I'm shooting the meteor shower.",
+      "replies": [
+        { "id": "a", "text": "Fingers crossed! Do you need a tripod and a wide lens for that?", "smoothDelta": 22, "theirResponse": "Yes! Wide, fast, on a tripod, long exposures. And a warm jacket.", "coachNote": "You guessed the kit sensibly and asked, without bluffing." },
+        { "id": "b", "text": "That sounds cool.", "smoothDelta": 3, "theirResponse": "It will be, if the clouds cooperate.", "coachNote": "Warm, but a missed chance to ask." },
+        { "id": "c", "text": "You'll get 100 meteors in one shot, easily.", "smoothDelta": -14, "theirResponse": "Ha. Even a great night is a handful in a frame.", "coachNote": "Cringe: overpromising with made-up numbers." }
+      ]
+    },
+    {
+      "theirMessage": "The moon's a problem. It's bright that night.",
+      "replies": [
+        { "id": "a", "text": "Oh, a bright moon washes out the faint ones? Is there a better time to look?", "smoothDelta": 20, "theirResponse": "Right. After the moon sets, it's darker. I'll go late.", "coachNote": "You linked moonlight to washing out faint meteors and offered a useful question." },
+        { "id": "b", "text": "Can't you just edit it out?", "smoothDelta": -2, "theirResponse": "You can't edit in what the sky washed out.", "coachNote": "A common hope. You can't recover light that wasn't recorded." },
+        { "id": "c", "text": "The moon isn't a big deal for astro.", "smoothDelta": -16, "theirResponse": "For deep sky it's a huge deal.", "coachNote": "Cringe: you asserted something you don't know." }
+      ]
+    }
+  ],
+  "closingNote": "Sky events depend on weather and moon. Ask about conditions, not about numbers you cannot know."
+}
+```
+
+### 4.7 The AI denoise question (`tt-ai-denoise`)
+
+```json
+{
+  "title": "Is AI denoise cheating?",
+  "setting": "Discussing editing over coffee",
+  "exchanges": [
+    {
+      "theirMessage": "Do you think AI denoise counts as editing, or is it cheating?",
+      "replies": [
+        { "id": "a", "text": "I'm still working that out. Where do you draw the line?", "smoothDelta": 24, "theirResponse": "For me: cleaning noise is fine, inventing things that weren't there isn't. Grey zone, though.", "coachNote": "Honest, curious, and you handed her the floor." },
+        { "id": "b", "text": "Everything's edited anyway, so who cares.", "smoothDelta": 2, "theirResponse": "True, but some people care a lot about what's real.", "coachNote": "Not wrong, but it closes the door on a real question." },
+        { "id": "c", "text": "It's definitely cheating. Real photographers don't use it.", "smoothDelta": -16, "theirResponse": "Wow. I use it a lot.", "coachNote": "Cringe: a hot take that judges her." }
+      ]
+    },
+    {
+      "theirMessage": "Contests are strict about it. Some ban anything generative.",
+      "replies": [
+        { "id": "a", "text": "That makes sense; a contest is about what the camera saw. Would you tell people you used it?", "smoothDelta": 20, "theirResponse": "Yes. Disclosure is basically the whole ethical thing.", "coachNote": "You connected purpose to rules and asked about disclosure." },
+        { "id": "b", "text": "Ah, okay.", "smoothDelta": 0, "theirResponse": "Yeah, they're pretty firm.", "coachNote": "Neutral. Fine, but not very engaged." },
+        { "id": "c", "text": "That seems silly. Nobody can tell.", "smoothDelta": -12, "theirResponse": "That is exactly why the rules exist.", "coachNote": "Cringe: honesty rules are for cases nobody can tell." }
+      ]
+    }
+  ],
+  "closingNote": "It's fine not to have an opinion yet. Curiosity about where she draws the line is a compliment."
+}
+```
+
+### 4.8 The upset stranger (`tt-street-stranger`)
+
+```json
+{
+  "title": "A stranger got upset",
+  "setting": "She texts after a street shoot",
+  "exchanges": [
+    {
+      "theirMessage": "A guy got upset when I shot the street today. I felt awful.",
+      "replies": [
+        { "id": "a", "text": "That sounds stressful. What happened? Did you get a chance to talk to him?", "smoothDelta": 22, "theirResponse": "I apologised and deleted it. He softened. I just felt rattled.", "coachNote": "Empathy first, then a gentle question." },
+        { "id": "b", "text": "You have every right to shoot in public.", "smoothDelta": 2, "theirResponse": "Legally maybe. It's not that simple for me.", "coachNote": "Legally true, emotionally beside the point." },
+        { "id": "c", "text": "You should have told him off.", "smoothDelta": -18, "theirResponse": "I would never do that.", "coachNote": "Cringe: escalation is the opposite of the street ethic she practises." }
+      ]
+    },
+    {
+      "theirMessage": "I always wonder if I should ask first, even in a crowd.",
+      "replies": [
+        { "id": "a", "text": "It sounds like you care about the people in your photos. How do you usually decide?", "smoothDelta": 20, "theirResponse": "If someone's the clear subject, I ask or smile. Crowds I'm more relaxed about. Kids, never.", "coachNote": "You named her values and invited her rules." },
+        { "id": "b", "text": "Probably a good idea.", "smoothDelta": 2, "theirResponse": "Yeah.", "coachNote": "Agreeable, but you can go further." },
+        { "id": "c", "text": "Asking ruins the candid shot. Don't ask.", "smoothDelta": -16, "theirResponse": "I don't agree.", "coachNote": "Cringe: a rule that isn't yours, told to someone who has thought about it." }
+      ]
+    }
+  ],
+  "closingNote": "Consent and kindness are part of good street photography. Listen before you advise."
+}
+```
+
+### 4.9 The lost shoot (`tt-lost-shoot`)
+
+```json
+{
+  "title": "The corrupted card",
+  "setting": "She texts, upset",
+  "exchanges": [
+    {
+      "theirMessage": "I think I lost the whole shoot. The card corrupted.",
+      "replies": [
+        { "id": "a", "text": "Oh no, I'm so sorry. Do you want to talk it through, or shall I just listen?", "smoothDelta": 24, "theirResponse": "Thank you. I'm just sick about it. It was the sunrise trip.", "coachNote": "Empathy with a choice. Exactly right for real distress." },
+        { "id": "b", "text": "Can you recover the files?", "smoothDelta": 4, "theirResponse": "I'll try. But I'm bummed.", "coachNote": "Practical, but she needed you first." },
+        { "id": "c", "text": "That's why you should back everything up. Rookie mistake.", "smoothDelta": -20, "theirResponse": "Not helpful right now.", "coachNote": "Cringe: lecturing someone who is upset." }
+      ]
+    },
+    {
+      "theirMessage": "I've got recovery software running. Fingers crossed.",
+      "replies": [
+        { "id": "a", "text": "Fingers crossed for you. Is there a keeper you'd hate to lose most?", "smoothDelta": 20, "theirResponse": "A silhouette with the sun through the reeds. I hope it survives.", "coachNote": "You asked about what matters to her, not the technology." },
+        { "id": "b", "text": "Hope it works.", "smoothDelta": 3, "theirResponse": "Me too.", "coachNote": "Kind. Short. That's fine." },
+        { "id": "c", "text": "Just re-shoot it tomorrow.", "smoothDelta": -14, "theirResponse": "The light will never be the same.", "coachNote": "Cringe: light isn't repeatable, and neither is that morning." }
+      ]
+    }
+  ],
+  "closingNote": "When she is upset, feelings first, fixes second, questions about what mattered third."
+}
+```
+
+## 5. Talk Track roster at launch (16)
+
+`tt-golden-hour`, `tt-shows-photo`, `tt-new-lens`, `tt-film-roll`, `tt-iso`, `tt-meteors`, `tt-ai-denoise`, `tt-street-stranger`, `tt-lost-shoot` (the nine above), plus seven more authored with the curriculum: `tt-backlit-portrait` (exposure and metering), `tt-full-frame-dilemma` (sensor choice), `tt-photo-walk-invite` (invitation), `tt-edit-look` (presets and grading), `tt-wide-open` (depth of field), `tt-gallery-visit` (an exhibition; talking about work without faking history), `tt-bad-review` (someone criticised her photo). Branch tracks added after launch: portrait (posing, consent), landscape (permits and crowds), wildlife (ethics of distance), film (lab prices), street (a great candid).
+
+## 6. Asset needs (all `original-swoond`)
+
+- **Images (`visual-id`, `binary-call`):** ~120 procedural or vector illustrations and in-house photographs: exposure strips, light pattern busts (rendered from the Light Direction sim), compression and depth-of-field pairs (rendered from the sim scenes), composition scenes, film-look illustrations. Bundle path prefix `photography/img/`, with SVG for diagrams and WebP for photographs; every image has full `alt` text that describes features without giving away the answer.
+- **Diagrams (`hotspot-tap`):** `sensor-sizes-nested`, `histogram-clipped-highlights`, `top-down-light-ring`, `thirds-grid-dune-scene`, plus about 20 more (lens diagram, exposure dial, shutter curtain, film path). Procedural.
+- **Audio (`listening-id`):** `shutter-focal-plane-01`, `shutter-leaf-01`, `film-advance-01`, plus mirror slap, electronic shutter with its fake sound, medium-format leaf. Recorded in-house with releases from the recordist or synthesised.
+- **No** photograph by a third party, no manufacturer image, no AI-generated photograph.
+
+## 7. Voice and safety notes
+
+- Voice: cheeky coach, one joke per screen, jokes at the learner's expense ("f-stop is not a tequila order"), never at photographers, brands, or the crush.
+- Praise-language rule: model exercises reward specific compliments ("the light on her left cheek") over gear talk ("what camera?").
+- Safety copy: solar warning on any sun item, tide and edge warnings on outdoor items, animal-first on wildlife, consent-first on portrait and street items (never covert, never children, delete on request); film chemistry at awareness level.
+- No exercise says "always" or "never" about composition or settings; rules are tools.
