@@ -72,7 +72,7 @@
           {
             "id": "review-01-tm-1",
             "type": "term-match",
-            "conceptIds": ["volley-in-kitchen-fault", "reset"],
+            "conceptIds": ["volley-in-kitchen-fault", "reset", "attackable-ball"],
             "payload": {
               "prompt": "Match the terms.",
               "pairs": [
@@ -85,6 +85,11 @@
                   "id": "reset-def",
                   "term": "Reset",
                   "definition": "A soft defensive shot that neutralizes pace and lands in the kitchen."
+                },
+                {
+                  "id": "attackable-def",
+                  "term": "Attackable ball",
+                  "definition": "A ball high enough to hit down at aggressively."
                 }
               ],
               "distractorDefinitions": [
@@ -92,8 +97,8 @@
                 "When the score ties at 11"
               ],
               "explanation": {
-                "summary": "Volley in kitchen = fault. Reset = soft defensive shot.",
-                "sayThisLine": "Kitchen volleys are faults; resets save you from getting attacked."
+                "summary": "Volley in kitchen = fault. Reset = soft defense. Attackable = high ball you can hit.",
+                "sayThisLine": "Kitchen volleys are faults; resets save you from attacks."
               }
             }
           },
@@ -208,7 +213,7 @@
                 {
                   "id": "hard-drive",
                   "label": "Hard drive at them",
-                  "verdict": "risky",
+                  "verdict": "acceptable",
                   "consequence": "Could work but you're starting behind; better to be patient.",
                   "considerations": [
                     "You need time to reach net",
@@ -274,14 +279,23 @@
         ],
         "activities": [
           {
-            "id": "review-03-sim-1",
-            "type": "unity-sim",
+            "id": "review-03-bc-3",
+            "type": "binary-call",
             "conceptIds": ["kitchen-momentum"],
             "payload": {
-              "simulationId": "pickleball.kitchen.momentum-call.v1",
-              "simulationVersion": "1.0.0",
-              "difficulty": 2,
-              "configuration": {}
+              "prompt": "Volleying from just outside the kitchen, your momentum pulls you across the line.",
+              "scene": {"kind": "none", "alt": "Player with forward momentum at kitchen."},
+              "choices": [
+                {"id": "yes-fault", "label": "Fault - momentum violation"},
+                {"id": "no-legal", "label": "Legal - you were outside"}
+              ],
+              "correctChoiceId": "yes-fault",
+              "explanation": {
+                "correct": "Momentum carrying you into the kitchen after volleying outside is a fault.",
+                "incorrect": "Even if you start outside, momentum into the zone on the follow-through is a fault.",
+                "sayThisLine": "Momentum counts; don't let it carry you in."
+              },
+              "ruleTag": "Kitchen momentum"
             }
           },
           {
@@ -410,7 +424,7 @@
           {
             "id": "review-04-tm-1",
             "type": "term-match",
-            "conceptIds": ["erne", "atp"],
+            "conceptIds": ["erne", "atp", "bert"],
             "payload": {
               "prompt": "Match the showy shots.",
               "pairs": [
@@ -423,6 +437,11 @@
                   "id": "atp-pair",
                   "term": "ATP",
                   "definition": "A shot that goes around the net post rather than over it."
+                },
+                {
+                  "id": "bert-pair",
+                  "term": "Bert",
+                  "definition": "A partner runs behind you to hit the ball instead."
                 }
               ],
               "distractorDefinitions": [
@@ -430,8 +449,8 @@
                 "A type of grip"
               ],
               "explanation": {
-                "summary": "Erne = around the post by you. ATP = around the post by the ball.",
-                "sayThisLine": "Erne is you going around; ATP is the ball going around."
+                "summary": "Erne = you go around. ATP = ball goes around. Bert = partner behind.",
+                "sayThisLine": "Erne and ATP are around the post; Bert is partner behind."
               }
             }
           },

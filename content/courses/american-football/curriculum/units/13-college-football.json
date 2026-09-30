@@ -37,27 +37,32 @@
               "college-overtime"
             ],
             "payload": {
-              "prompt": "Match each college rule difference to what it means.",
+              "prompt": "Match each college rule to what it means.",
               "pairs": [
                 {
                   "id": "catch",
                   "term": "One-foot catch",
-                  "definition": "A college receiver needs only one foot inbounds to catch it, not two like in the NFL."
+                  "definition": "A college receiver needs only one foot inbounds; the NFL needs two."
                 },
                 {
-                  "id": "clock",
-                  "term": "Clock running",
-                  "definition": "The clock keeps running after incompletions and out-of-bounds plays, speeding up college games."
+                  "id": "two",
+                  "term": "Two-point try",
+                  "definition": "Snapped from the 3-yard line in college, the 2 in the NFL."
                 },
                 {
                   "id": "ot",
-                  "term": "Overtime",
-                  "definition": "Both teams start at the opponent's 25-yard line and get alternate possessions; from round three, teams must go for two."
+                  "term": "College overtime",
+                  "definition": "Each team starts at the opponent's 25; later rounds become alternating two-point tries."
+                },
+                {
+                  "id": "target",
+                  "term": "Targeting",
+                  "definition": "Forcible contact to the head or neck of a defenseless player: penalty and ejection."
                 }
               ],
               "explanation": {
-                "summary": "College uses a one-foot catch, a running clock and a shootout overtime. These rules create a faster, more explosive game.",
-                "sayThisLine": "One foot, clock runs, shootout overtime. That is college ball."
+                "summary": "One foot, the 3-yard two-point try, a possession-based overtime and ejection for targeting are the headline differences. The plays and positions are the same.",
+                "sayThisLine": "One foot is enough in college."
               }
             },
             "xp": 10
@@ -99,27 +104,27 @@
               "college-clock-rules"
             ],
             "payload": {
-              "prompt": "What happens to the college clock when a receiver goes out of bounds on an incomplete pass?",
+              "prompt": "Which clock fact is true in both college and the NFL?",
               "options": [
                 {
                   "id": "a",
-                  "text": "The clock stops until the next snap"
+                  "text": "An incomplete pass stops the clock until the next snap"
                 },
                 {
                   "id": "b",
-                  "text": "The clock keeps running until the next play starts"
+                  "text": "An incomplete pass lets the clock keep running"
                 },
                 {
                   "id": "c",
-                  "text": "The clock stops for two seconds then resumes"
+                  "text": "The clock never stops in the last two minutes"
                 }
               ],
               "correctOptionIds": [
-                "b"
+                "a"
               ],
               "explanation": {
-                "correct": "The clock keeps running. That is the college rule: fewer stops, faster game, and teams manage time differently than in the NFL.",
-                "incorrect": "In college, the clock runs after incompletions and out-of-bounds plays. Only certain plays stop it: timeouts, the end of quarters, and a few penalties."
+                "correct": "Incomplete passes stop the clock at every level, which is why passing teams save time. College and NFL clock rules differ in smaller details, like some first-down and late-game situations, so check before you claim a difference.",
+                "incorrect": "An incomplete pass stops the clock in both games. The differences are in finer details, not that big a split."
               }
             },
             "xp": 10
@@ -133,7 +138,7 @@
             "payload": {
               "statement": {
                 "speaker": "Analyst",
-                "text": "They took it to overtime. From the third overtime on, both teams have to go for two. That completely changes the strategy."
+                "text": "Third overtime. No more drives, just alternating two-point tries from the 3."
               },
               "question": "What is the analyst saying?",
               "options": [
@@ -144,7 +149,7 @@
                 },
                 {
                   "id": "b",
-                  "text": "After two full rounds of overtime, teams must go for two instead of kicking, making it riskier and faster",
+                  "text": "From the third overtime, each team just gets alternating two-point tries",
                   "isCorrect": true
                 },
                 {
@@ -158,72 +163,49 @@
                   "isCorrect": false
                 }
               ],
-              "translation": "College overtime is a shootout. Start at the 25, alternate possessions, kick the first two tries, but from round three every touchdown requires a two-point attempt. It is sudden-death strategy.",
+              "translation": "College overtime starts with each team getting the ball at the opponent's 25. After two rounds still tied, teams stop running drives and alternate two-point tries from the 3-yard line until someone leads after a full round.",
               "followUps": [
                 {
-                  "line": "Why would a team go for two on the third round instead of kicking?",
-                  "why": "Tests understanding: if both teams go for two, a failed kick and a failed two-point try both end the game, but two-point tries are riskier and higher-reward."
+                  "line": "Is that the same as NFL overtime?",
+                  "why": "No. The NFL plays a timed period with regular possessions. College uses a possession-based format that shifts to two-point tries later."
                 },
                 {
-                  "line": "Is this the same as NFL overtime?",
-                  "why": "No. The NFL has regular sudden-death with a twist: both teams get a possession in the regular season. College is a completely different system."
+                  "line": "Why do people love college overtime?",
+                  "why": "Every possession is high stakes, and the later rounds are pure pressure."
                 }
               ],
-              "noFakeExpertNote": "If unsure, think about why the analyst emphasized the third overtime. It is because the mandatory two-point rule kicks in."
+              "noFakeExpertNote": "If unsure, say it gets down to two-point tries in the third overtime and ask what they think of the format."
             },
             "xp": 10
           },
           {
             "id": "college-01-ds-2pt",
-            "type": "decision-scenario",
+            "type": "binary-call",
             "conceptIds": [
               "college-catch-rule",
               "college-overtime"
             ],
             "payload": {
-              "prompt": "Tied in overtime, third round. Your team scores a touchdown. Kick or go for two?",
-              "situation": {
-                "narrative": "Third round of college overtime, both teams tied.",
-                "facts": [
-                  {
-                    "label": "Round",
-                    "value": "Third overtime"
-                  },
-                  {
-                    "label": "Rule",
-                    "value": "Must go for two from the 3-yard line"
-                  },
-                  {
-                    "label": "Your team",
-                    "value": "Just scored"
-                  },
-                  {
-                    "label": "Score",
-                    "value": "Tied before the touchdown"
-                  }
-                ]
+              "prompt": "From the third overtime on, teams alternate two-point tries instead of drives. True or false?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two teams alternating short two-point tries from the 3-yard line."
               },
-              "options": [
+              "choices": [
                 {
-                  "id": "two",
-                  "label": "Go for two",
-                  "verdict": "best",
-                  "consequence": "You must go for two by rule. Your two-point play is your best bet to win. If you fail, the other team has a chance to also score and continue.",
-                  "considerations": [
-                    "The rule mandates two-point tries from round three."
-                  ]
+                  "id": "true",
+                  "label": "True"
                 },
                 {
-                  "id": "kick",
-                  "label": "Kick the extra point",
-                  "verdict": "poor",
-                  "consequence": "You cannot. College overtime rules require a two-point attempt from the third round onward.",
-                  "considerations": [
-                    "Knowing the rule is essential to understanding college football's intensity."
-                  ]
+                  "id": "false",
+                  "label": "False"
                 }
               ],
-              "expertNote": "College overtime forces aggression from round three. It is why college overtime games are so wild and unpredictable."
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. After two full rounds, college overtime shifts to alternating two-point tries from the 3-yard line.",
+                "incorrect": "Yes. The drives stop and the two-point tries start once it is the third overtime."
+              }
             },
             "xp": 10
           }
@@ -246,7 +228,7 @@
               "polls-rankings"
             ],
             "payload": {
-              "prompt": "Which poll matters most for getting into the College Football Playoff?",
+              "prompt": "Which ranking decides the College Football Playoff field?",
               "options": [
                 {
                   "id": "a",
@@ -254,19 +236,19 @@
                 },
                 {
                   "id": "b",
-                  "text": "The Coaches poll, which is coaches voting on quality"
+                  "text": "The Coaches poll, in which coaches vote on quality"
                 },
                 {
                   "id": "c",
-                  "text": "The CFP committee rankings, which are kept secret until late season"
+                  "text": "The CFP committee rankings, released weekly starting in November"
                 }
               ],
               "correctOptionIds": [
                 "c"
               ],
               "explanation": {
-                "correct": "The CFP committee is what matters. Their rankings in November and December decide who gets in. AP and Coaches polls are historical but less official now.",
-                "incorrect": "The committee rankings are what actually decide the 12-team field. They start revealing rankings in November and update weekly."
+                "correct": "The CFP committee picks and seeds the field. Its rankings start coming out in November and update weekly. The AP and Coaches polls still drive talk but do not pick the field.",
+                "incorrect": "The committee rankings decide the 12-team field. They start in early November and update weekly."
               }
             },
             "xp": 10
@@ -278,28 +260,28 @@
               "cfp-format"
             ],
             "payload": {
-              "prompt": "Put the CFP selection order in the right sequence.",
+              "prompt": "Put the CFP selection steps in order.",
               "items": [
                 {
-                  "id": "auto",
-                  "text": "Four conference champions and the highest-ranked non-champion from a Power Five get automatic bids"
+                  "id": "champs",
+                  "text": "Conference champions are decided in championship weekend"
                 },
                 {
                   "id": "rank",
-                  "text": "The remaining eight spots go to the best-ranked teams from any conference"
+                  "text": "The committee publishes its final ranking"
+                },
+                {
+                  "id": "field",
+                  "text": "The automatic-bid champions plus at-large teams fill the twelve spots"
                 },
                 {
                   "id": "seeds",
-                  "text": "The top four seeds get byes in the first round; five through twelve play in the first round"
-                },
-                {
-                  "id": "final",
-                  "text": "The four winners advance to the semifinals to determine the national champion"
+                  "text": "Seeds 1 to 12 are set by ranking; the top four get byes"
                 }
               ],
               "explanation": {
-                "correct": "The 12-team format guarantees conference champions a shot but fills the rest by ranking. Seeds one through four rest.",
-                "incorrect": "The playoff seeding prioritizes automatic bids for power conferences, then fills remaining spots by ranking."
+                "correct": "Champions are crowned, then the committee ranks, then the field is set: five automatic bids plus seven at-large teams, seeded by ranking. The top four seeds get byes.",
+                "incorrect": "Champions are crowned first, then the final ranking, then the field, then seeding and byes."
               }
             },
             "xp": 10
@@ -346,7 +328,7 @@
             "payload": {
               "statement": {
                 "speaker": "Fan",
-                "text": "We dropped to number five but the committee has us at two. The media does not respect us at all."
+                "text": "We are number five in the AP poll but the committee has us at two. That is what matters."
               },
               "question": "What is the fan saying?",
               "options": [
@@ -371,15 +353,15 @@
                   "isCorrect": false
                 }
               ],
-              "translation": "The fan is relieved that the official committee (CFP) ranks their team higher than the AP poll. The committee is what matters for playoff seeding, not media opinion.",
+              "translation": "The fan is saying the committee, which picks the playoff field, ranks their team higher than the media poll does, so they feel better about their chances.",
               "followUps": [
                 {
-                  "line": "Why would the committee rank a team higher than the media?",
-                  "why": "Tests understanding: the committee watches games and has specific criteria; the media polls are a popularity contest."
+                  "line": "Why would the committee and the AP poll differ?",
+                  "why": "They use different voters and criteria, and the committee looks at schedule strength and results."
                 },
                 {
-                  "line": "Does a team get in on AP poll ranking or committee ranking?",
-                  "why": "Committee. Only the CFP committee rankings matter for playoff selection."
+                  "line": "Which ranking picks the playoff field?",
+                  "why": "The committee. The AP poll is influential but does not decide."
                 }
               ],
               "noFakeExpertNote": "If unsure, remember that the committee is the official selector; media rankings are influential but not binding."
@@ -393,10 +375,10 @@
               "cfp-format"
             ],
             "payload": {
-              "prompt": "Every Power Five conference champion gets an automatic bid to the CFP. True or false?",
+              "prompt": "The ACC, Big 12, Big Ten and SEC champions get automatic CFP bids. True or false?",
               "scene": {
                 "kind": "none",
-                "alt": "A conference champion's celebration after earning a CFP bid."
+                "alt": "A conference champion celebrating a playoff berth."
               },
               "choices": [
                 {
@@ -410,8 +392,8 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. Every Power Five conference champion gets in. Plus the best non-champion Group of Five champion. That is six auto bids guaranteed.",
-                "incorrect": "Yes, auto bids to all Power Five champs is a core rule. It is why winning your conference matters so much."
+                "correct": "True for the 2026-27 format: those four champions plus the highest-ranked Group of 6 champion get automatic bids. The other seven spots are at-large.",
+                "incorrect": "Yes, four conference champions plus the top Group of 6 champion are automatic. The format gets re-checked each season."
               }
             },
             "xp": 10
@@ -487,8 +469,8 @@
                 "a"
               ],
               "explanation": {
-                "correct": "The number-one seed rests while seeds five through twelve play. That rest and the bye are huge advantages.",
-                "incorrect": "The bye is the advantage. Seeds one through four get a first-round rest; seeds five through twelve play immediately."
+                "correct": "Seeds one through four skip the first round. They play fewer games and arrive rested. The first-round games are hosted on campus by seeds five through eight.",
+                "incorrect": "The bye is the advantage. Seeds one through four skip the first round, which is played at campus sites."
               }
             },
             "xp": 10
@@ -500,48 +482,49 @@
               "cfp-format"
             ],
             "payload": {
-              "prompt": "You are a fan of the number-eight seed. You barely made the field. What are your chances?",
+              "prompt": "You back the eight seed. What is your path to the quarterfinals?",
               "situation": {
                 "facts": [
                   {
                     "label": "Seed",
-                    "value": "Number eight"
+                    "value": "Number eight (hosts number nine)"
                   },
                   {
                     "label": "First round",
-                    "value": "Play number five seed immediately"
+                    "value": "Play the nine seed on campus"
                   },
                   {
                     "label": "If you win",
-                    "value": "Face number one or four seed in the quarterfinals"
+                    "value": "Face the one seed in a bowl"
                   },
                   {
-                    "label": "Rest disadvantage",
-                    "value": "The one seed has had two weeks off"
+                    "label": "Rest gap",
+                    "value": "The one seed had a bye"
                   }
                 ]
               },
               "options": [
                 {
                   "id": "tough",
-                  "label": "Acknowledge it is an uphill climb",
+                  "label": "Beat nine, then take on a rested one seed",
                   "verdict": "best",
-                  "consequence": "Your team is in because of ranking, not a bye. You face the five seed immediately and, if you win, jump to a rested top-four team. That is the eight-seed story.",
+                  "consequence": "You host the nine seed in round one. If you win, you face the top seed, who is rested. That is the eight-seed story: a real shot, but a tough path.",
                   "considerations": [
-                    "Cinderella runs happen but it is a tough path."
+                    "The eight-nine game is close to a coin flip.",
+                    "The one seed has a rest edge."
                   ]
                 },
                 {
                   "id": "easy",
-                  "label": "Think you are guaranteed to advance",
+                  "label": "Assume a deep run is guaranteed",
                   "verdict": "poor",
-                  "consequence": "The five seed is strong, and every match-up in the first round is competitive. Nothing is guaranteed.",
+                  "consequence": "Nothing is guaranteed. Even the first game is competitive and the next opponent is the top seed.",
                   "considerations": [
-                    "Making the playoff is hard. Winning from eight is harder."
+                    "Making the field is one thing; winning four games is another."
                   ]
                 }
               ],
-              "expertNote": "Being an eight seed is both an honor and a huge disadvantage. You have to play to survive; the top four get to rest."
+              "expertNote": "The eight seed is in the field on merit and gets a home game. The price is an extra game and a rested top seed next."
             },
             "xp": 10
           },
@@ -558,22 +541,22 @@
                 {
                   "id": "first",
                   "term": "First round",
-                  "definition": "Seeds five through twelve play in four games at campus sites; the bye teams (one through four) rest."
+                  "definition": "Seeds five through twelve play at campus sites; seeds one through four rest."
                 },
                 {
                   "id": "quart",
                   "term": "Quarterfinals",
-                  "definition": "The four bye teams play the four first-round winners in four games, often at major bowl stadiums."
+                  "definition": "The four bye teams play the four first-round winners in major bowl games."
                 },
                 {
                   "id": "semi",
                   "term": "Semifinals",
-                  "definition": "The four quarterfinal winners play in two games in bowl venues. Tradition: the Orange Bowl and Cotton Bowl (or others)."
+                  "definition": "The four quarterfinal winners play in two games at bowl sites."
                 }
               ],
               "explanation": {
-                "summary": "First round is for seeds five-twelve at home fields. Quarterfinals bring the bye teams in. Semifinals are bowls with the final four.",
-                "sayThisLine": "Five through twelve first, then bye teams play them, then go to bowls."
+                "summary": "First round is five through twelve on campus. Quarterfinals bring the bye teams in, semifinals take the four survivors, then the title game.",
+                "sayThisLine": "Five through twelve first, then the bye teams join."
               }
             },
             "xp": 10
@@ -587,7 +570,7 @@
             "payload": {
               "statement": {
                 "speaker": "Coach",
-                "text": "We have to finish in the top four or we are playing an extra game. Every team playing eight games in the playoffs instead of seven is a huge difference."
+                "text": "We have to finish in the top four or we play an extra game. Four games to a title instead of three is a big difference."
               },
               "question": "What is the coach saying?",
               "options": [
@@ -612,15 +595,15 @@
                   "isCorrect": false
                 }
               ],
-              "translation": "The coach is emphasizing that the bye (seeds one through four not playing the first round) is a strategic advantage. His team plays seven games if it gets a bye but eight if it plays first round.",
+              "translation": "A bye means skipping the first round. A team with a bye needs three wins for the title, while a team that plays in round one needs four.",
               "followUps": [
                 {
-                  "line": "How does rest affect playoff performance?",
-                  "why": "Tests understanding: extra rest means fresher players, more time to prepare, and mental recovery from the regular season."
+                  "line": "How much does a bye help?",
+                  "why": "Rest and prep time help, and one fewer win is needed, but teams still have to win the games."
                 },
                 {
-                  "line": "Is the bye worth giving up a higher seed?",
-                  "why": "Maybe not. A two seed with a bye is good, but a four seed with a bye is marginal. Context matters."
+                  "line": "Is a seed-four bye worth chasing?",
+                  "why": "Yes, it saves a game, though the quarterfinal opponent can still be tough."
                 }
               ],
               "noFakeExpertNote": "If unsure, think about the value of a week off in sports. Every team wants extra rest."
@@ -708,12 +691,12 @@
               "translation": "The fan is upset that his school's traditional rival left for another conference, likely ending the annual game that had been played for decades. Realignment has broken many historic rivalries.",
               "followUps": [
                 {
-                  "line": "Can rivalries survive conference realignment?",
-                  "why": "Sometimes, but out-of-conference games are harder to schedule. The tradition matters less than TV money now."
+                  "line": "Can rivalries survive realignment?",
+                  "why": "Sometimes, as non-conference games, but they are harder to schedule."
                 },
                 {
                   "line": "Is this good or bad for college football?",
-                  "why": "Opinion. Fans miss traditions; schools get more money and better playoff access. Both are true."
+                  "why": "It is debated. Fans miss traditions; schools get more money and access."
                 }
               ],
               "noFakeExpertNote": "If unsure, think about what realignment means: schools splitting apart, traditional rivals separated, new conferences formed."
@@ -760,10 +743,10 @@
               "rivalry-game"
             ],
             "payload": {
-              "prompt": "Tradition and history are the main reasons schools stay in conferences. True or false?",
+              "prompt": "Bigger TV money and better playoff access are major reasons schools switch conferences. True or false?",
               "scene": {
                 "kind": "none",
-                "alt": "A historic rivalry matchup with crowds and tradition."
+                "alt": "A big stadium crowd at a rivalry game, with a conference logo."
               },
               "choices": [
                 {
@@ -775,10 +758,10 @@
                   "label": "False"
                 }
               ],
-              "correctChoiceId": "false",
+              "correctChoiceId": "true",
               "explanation": {
-                "correct": "False. Money is the main driver. Schools leave historic conferences for bigger TV deals and better playoff positioning.",
-                "incorrect": "Tradition matters to fans, but not to university boards. Money and competitive access drive realignment."
+                "correct": "True. Media-rights money, playoff positioning and brand drive realignment.",
+                "incorrect": "Tradition matters to fans, but money and access are the big drivers."
               }
             },
             "xp": 10
@@ -790,7 +773,7 @@
               "conference-realignment"
             ],
             "payload": {
-              "prompt": "Your school is offered a $30M annual raise to join a new conference. You lose your 80-year rivalry. Worth it?",
+              "prompt": "Your school is offered $30M a year more to switch conferences. Your rivalry game is at risk. Worth it?",
               "situation": {
                 "facts": [
                   {
@@ -814,24 +797,36 @@
               "options": [
                 {
                   "id": "money",
-                  "label": "Take the money and join",
+                  "label": "Take the money and try to keep the rival on the schedule",
                   "verdict": "best",
-                  "consequence": "Schools make this choice almost every time. Money funds scholarships, facilities and programs. Rivalries are emotions; budgets are real.",
+                  "consequence": "You capture the money and work to keep the rivalry alive as a non-conference game.",
                   "considerations": [
-                    "$30M is enormous. It affects player compensation, facilities, and program quality."
+                    "$30M funds scholarships and facilities.",
+                    "Keeping the game takes effort and agreement."
+                  ]
+                },
+                {
+                  "id": "money2",
+                  "label": "Take the money and let the rivalry go",
+                  "verdict": "acceptable",
+                  "consequence": "Many schools have chosen this. The revenue is real, and fans may lose a tradition.",
+                  "considerations": [
+                    "Budgets are real.",
+                    "Fans often feel the loss."
                   ]
                 },
                 {
                   "id": "tradition",
-                  "label": "Keep the rivalry and tradition",
-                  "verdict": "poor",
-                  "consequence": "Few schools choose this. Tradition matters to fans, not enough to turn down tens of millions of dollars.",
+                  "label": "Stay put for tradition",
+                  "verdict": "acceptable",
+                  "consequence": "You keep the game and the identity, but fall behind financially.",
                   "considerations": [
-                    "In the current climate, this is a losing strategy."
+                    "Tradition matters to fans.",
+                    "Revenue gaps are hard to close."
                   ]
                 }
               ],
-              "expertNote": "Realignment is about money, not history. Schools overwhelmingly choose revenue over tradition when forced to choose."
+              "expertNote": "Money drives realignment, but smart schools try to protect the games that matter to fans."
             },
             "xp": 10
           }
@@ -854,7 +849,7 @@
               "transfer-portal"
             ],
             "payload": {
-              "prompt": "You are a college quarterback benched after three games. The transfer portal opens in a week. Stay or leave?",
+              "prompt": "You were benched for a veteran. The transfer portal window opens. Stay or leave?",
               "situation": {
                 "facts": [
                   {
@@ -862,16 +857,16 @@
                     "value": "Benched for a veteran starter"
                   },
                   {
-                    "label": "Portal timing",
-                    "value": "Opens for free transfer immediately"
+                    "label": "Portal",
+                    "value": "A window opens after the season"
                   },
                   {
                     "label": "New school",
-                    "value": "Likely can play right away"
+                    "value": "Likely eligible to play right away"
                   },
                   {
                     "label": "Current team",
-                    "value": "Might get you back in eventually"
+                    "value": "Starter may graduate"
                   }
                 ]
               },
@@ -880,22 +875,24 @@
                   "id": "leave",
                   "label": "Enter the portal",
                   "verdict": "best",
-                  "consequence": "Most players do this now. No sit-out rule means you can play immediately for a new team. One bench game ends your season if you wait.",
+                  "consequence": "With immediate eligibility at a new school, many players in your position leave for a better shot at playing time.",
                   "considerations": [
-                    "The portal gives players power. Coaches lost leverage."
+                    "Players now have real power to move.",
+                    "Immediate eligibility removes the old sit-out penalty."
                   ]
                 },
                 {
                   "id": "stay",
                   "label": "Stay and compete",
                   "verdict": "acceptable",
-                  "consequence": "Possible, but risky. You are behind on the depth chart and might not get a chance. Few choose to wait anymore.",
+                  "consequence": "Possible if the veteran is leaving soon. You keep your team and scholarship, but you risk sitting another year.",
                   "considerations": [
-                    "Patience is rare when immediate playing time is available elsewhere."
+                    "Patience can pay off.",
+                    "Playing time elsewhere is tempting."
                   ]
                 }
               ],
-              "expertNote": "The transfer portal changed college football completely. Players are free agents after the season ends. Rosters turn over overnight."
+              "expertNote": "The transfer portal changed college football. Players can enter during set windows and usually play right away, so rosters turn over every year."
             },
             "xp": 10
           },
@@ -933,7 +930,7 @@
                   "isCorrect": false
                 }
               ],
-              "translation": "The coach is frustrated that half his team is new portal transfers. Building chemistry and a stable roster is harder now that players can leave anytime.",
+              "translation": "The coach is frustrated that half his team is new portal transfers. Building chemistry is harder now that players can move between seasons.",
               "followUps": [
                 {
                   "line": "Why would a top recruit leave after signing?",
@@ -961,7 +958,7 @@
                 {
                   "id": "portal",
                   "term": "Transfer portal",
-                  "definition": "Lets players transfer freely with no sit-out. They play immediately."
+                  "definition": "Lets players transfer, usually with no sit-out year."
                 },
                 {
                   "id": "nil",
@@ -971,12 +968,12 @@
                 {
                   "id": "share",
                   "term": "Revenue sharing",
-                  "definition": "Colleges share athletic revenue directly with athletes since 2025."
+                  "definition": "Since 2025-26, schools can pay athletes directly under a legal settlement."
                 }
               ],
               "explanation": {
-                "summary": "Portal lets players move. NIL lets them earn from their name. Revenue sharing gives them a cut of the pie. Together they transform college recruiting.",
-                "sayThisLine": "Free to move, paid for your name, given a share of the money. That is modern college ball."
+                "summary": "Portal lets players move. NIL lets them earn from their name. Revenue sharing adds direct payment from schools. Together they reshaped college recruiting.",
+                "sayThisLine": "Free to move, paid for your name, and a share of the revenue."
               }
             },
             "xp": 10
@@ -988,10 +985,10 @@
               "transfer-portal"
             ],
             "payload": {
-              "prompt": "A college player can transfer and play immediately for a new team without sitting out. True or false?",
+              "prompt": "A college player can now usually transfer and play right away. True or false?",
               "scene": {
                 "kind": "none",
-                "alt": "A transfer player joining a new team and stepping onto the field."
+                "alt": "A transfer player joining a new team."
               },
               "choices": [
                 {
@@ -1005,8 +1002,8 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. The portal allows immediate eligibility. No sit-out penalty. That is why transfers happen so quickly.",
-                "incorrect": "Yes, players can transfer and be eligible right away. The sit-out rule is gone."
+                "correct": "True. Under the current rules, players can generally transfer and be eligible immediately, which is why rosters churn.",
+                "incorrect": "Yes, the old sit-out penalty mostly went away."
               }
             },
             "xp": 10
@@ -1038,8 +1035,8 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Portal + NIL is the earthquake. Players can leave at any time, earn from their name, and play immediately. That is unprecedented freedom.",
-                "incorrect": "The portal and NIL are the dual disruptions. Together they gave players power they never had before."
+                "correct": "Portal plus NIL is the earthquake. Players can move during windows, earn from their name and usually play right away.",
+                "incorrect": "The portal and NIL together gave players power they never had before."
               }
             },
             "xp": 10
@@ -1068,22 +1065,22 @@
                 {
                   "id": "star",
                   "term": "Five-star recruit",
-                  "definition": "Highest-ranked high school player; expected NFL star."
+                  "definition": "A top-rated high school player, per recruiting services."
                 },
                 {
                   "id": "class",
                   "term": "Recruiting class",
-                  "definition": "All prospects signed by a team that year, ranked together."
+                  "definition": "All prospects signed by a team in a year, ranked together."
                 },
                 {
                   "id": "sign",
-                  "term": "National signing day",
-                  "definition": "When high school seniors sign with college teams."
+                  "term": "Signing day",
+                  "definition": "When recruits sign to join a college team."
                 }
               ],
               "explanation": {
-                "summary": "Recruiting is about landing high school talent. Stars are rated on a scale; classes are ranked as a group; signing day is the spectacle.",
-                "sayThisLine": "Five stars are elite, classes are groups, signing day is the show."
+                "summary": "Stars are ratings, classes are ranked groups and signing day is the spectacle.",
+                "sayThisLine": "Five stars are top-rated, classes are groups, signing day is the show."
               }
             },
             "xp": 10
@@ -1233,22 +1230,24 @@
                   "id": "play",
                   "label": "Go to School B for immediate playing time",
                   "verdict": "best",
-                  "consequence": "Five-stars choose playing time and NIL money now. A national title at School B or a backup role at School A? Players choose B.",
+                  "consequence": "Playing time matters a lot for development and NFL exposure, and School B also offers NIL money. Many top recruits weigh this heavily.",
                   "considerations": [
-                    "Playing time is currency in modern recruiting."
+                    "Playing time is valuable currency.",
+                    "Sitting behind a senior could cost you a year."
                   ]
                 },
                 {
                   "id": "brand",
                   "label": "Go to School A for the prestigious name",
                   "verdict": "acceptable",
-                  "consequence": "Some still do this. School A's brand and NFL pipeline are valuable. But you risk a bench year and portal transfer later.",
+                  "consequence": "School A's brand and NFL pipeline are real advantages, but you may sit or end up in the portal.",
                   "considerations": [
-                    "Prestige matters, but not enough if you do not play."
+                    "Prestige matters.",
+                    "Playing time matters more to many players."
                   ]
                 }
               ],
-              "expertNote": "Modern recruiting is about playing time, portal flexibility, and NIL money. The storied names still matter but not as much as before."
+              "expertNote": "Modern recruiting weighs playing time, portal flexibility and NIL. Storied names still matter, but they are no longer automatic."
             },
             "xp": 10
           }
@@ -1275,7 +1274,7 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "The annual award for the most outstanding player in college football, voted on by fans and media"
+                  "text": "The annual award for the most outstanding college player, voted by media, past winners and fans"
                 },
                 {
                   "id": "b",
@@ -1290,8 +1289,8 @@
                 "a"
               ],
               "explanation": {
-                "correct": "The Heisman is the individual player award, not a team award. It goes to the best player that year, any position.",
-                "incorrect": "Heisman is the Oscars of college football. One player, any position, voted by voters in December."
+                "correct": "The Heisman is an individual award for the best college player in any position. Media members and past winners vote, and fans get one collective vote.",
+                "incorrect": "Heisman is the Oscars of college football: one player, any position, voted on in December."
               }
             },
             "xp": 10
@@ -1334,11 +1333,11 @@
               "followUps": [
                 {
                   "line": "Who votes for the Heisman?",
-                  "why": "Tests understanding: fans, coaches, media, and former players. It is a huge voter base."
+                  "why": "Media members, past winners and one fan vote. Campaigns aim at the media voters."
                 },
                 {
-                  "line": "Can a player on a bad team win a Heisman?",
-                  "why": "Rarely. The award usually goes to a star on a winning team. Individual excellence matters but team context helps a lot."
+                  "line": "Can a player on a bad team win?",
+                  "why": "Rarely. Winning teams and big moments help a lot."
                 }
               ],
               "noFakeExpertNote": "If unsure, think about the Oscars: campaigning, highlighting performances, and voting. The Heisman is very similar."
@@ -1385,10 +1384,10 @@
               "heisman"
             ],
             "payload": {
-              "prompt": "Winning a Heisman almost always means a player will be drafted high in the NFL draft. True or false?",
+              "prompt": "A Heisman winner is guaranteed a top-ten NFL draft pick. True or false?",
               "scene": {
                 "kind": "none",
-                "alt": "A Heisman winner being drafted by an NFL team."
+                "alt": "A Heisman trophy beside a draft board."
               },
               "choices": [
                 {
@@ -1400,10 +1399,10 @@
                   "label": "False"
                 }
               ],
-              "correctChoiceId": "true",
+              "correctChoiceId": "false",
               "explanation": {
-                "correct": "True. Heisman winners are consistently top-ten NFL draft picks. The award is a strong indicator of NFL readiness.",
-                "incorrect": "Yes, the Heisman comes with huge draft stock. It is the college football credential for the next level."
+                "correct": "False. Many winners go high, but some, such as Johnny Manziel at 22nd, went outside the top ten.",
+                "incorrect": "The Heisman is a strong signal, not a guarantee."
               }
             },
             "xp": 10
@@ -1416,7 +1415,7 @@
               "polls-rankings"
             ],
             "payload": {
-              "prompt": "You are a star running back on a five-loss team. Can you win a Heisman?",
+              "prompt": "You are a star running back on a losing team. Can you win the Heisman?",
               "situation": {
                 "facts": [
                   {
@@ -1442,22 +1441,22 @@
                   "id": "unlikely",
                   "label": "Very unlikely",
                   "verdict": "best",
-                  "consequence": "Heisman almost always goes to a star on a winning team. Your elite stats are hurt by your team's record and playoff irrelevance.",
+                  "consequence": "Voters heavily favor stars on winning teams. Elite stats alone usually are not enough.",
                   "considerations": [
-                    "Individual excellence on a bad team rarely wins the award."
+                    "A losing record hurts a Heisman case."
                   ]
                 },
                 {
                   "id": "likely",
                   "label": "You are a lock",
                   "verdict": "poor",
-                  "consequence": "Not true. Voters factor in team success and national relevance. Your 5-7 team is a drag on your resume.",
+                  "consequence": "Not true. Voters weigh team success and national attention heavily.",
                   "considerations": [
                     "Context matters hugely for the Heisman."
                   ]
                 }
               ],
-              "expertNote": "Heisman voters reward individuals on winning teams. A star on a losing team does not get the award, no matter how great the stats."
+              "expertNote": "Heisman voters reward stars on winning teams. A losing record hurts even great stats."
             },
             "xp": 10
           }
@@ -1507,15 +1506,15 @@
                   "isCorrect": false
                 }
               ],
-              "translation": "The fan means that in a rivalry, a 3-9 team can beat a 12-0 team because the matchup and history override everything else. Rivalry games are unpredictable because passion trumps skill.",
+              "translation": "The fan means the standings matter less in this game. Fans say a 3-9 team can beat a 12-0 team because the history and pride are so strong.",
               "followUps": [
                 {
-                  "line": "Do rivalry games follow predictable patterns?",
-                  "why": "No. Upsets are common. A bad team plays like a dynasty when pride and tradition are on the line."
+                  "line": "Do rivalry games really go by form?",
+                  "why": "Not always. Upsets happen often enough to feed the legend, though the better team still wins more often."
                 },
                 {
-                  "line": "Why do rivalries matter if they are just regular games?",
-                  "why": "They are not just games. They are cultural events. Losing a rivalry stings for a year."
+                  "line": "Why do rivalries matter if they are just games?",
+                  "why": "They are cultural events. A loss stings until next year."
                 }
               ],
               "noFakeExpertNote": "If unsure, think about why fans care so much about rivalry games beyond just winning or losing."
@@ -1535,17 +1534,17 @@
                 {
                   "id": "ancient",
                   "term": "Historic rivalry",
-                  "definition": "Game played for decades; Ohio State-Michigan (1897)."
+                  "definition": "A game played for generations, like Ohio State-Michigan, first played in 1897."
                 },
                 {
                   "id": "game",
                   "term": "Rivalry game",
-                  "definition": "Annual match where records don't matter; pride does."
+                  "definition": "An annual game where fans say the records get thrown out."
                 },
                 {
                   "id": "gate",
                   "term": "Rivalry tailgate",
-                  "definition": "Pre-game party where both fans gather. Part of tradition."
+                  "definition": "A pre-game party where fans gather. Part of the tradition."
                 }
               ],
               "explanation": {
@@ -1571,24 +1570,24 @@
                   "replies": [
                     {
                       "id": "listen",
-                      "text": "Why does this year feel different? What have you seen that makes you optimistic?",
+                      "text": "Why does this year feel different? What have you seen?",
                       "smoothDelta": 25,
                       "theirResponse": "Our quarterback has been amazing this season and their defense is banged up.",
-                      "coachNote": "Shows you care about her reasoning, not just her emotion."
+                      "coachNote": "Shows you care about their reasoning, not just emotion."
                     },
                     {
                       "id": "agree",
                       "text": "Yeah, rivalries are always intense.",
                       "smoothDelta": 5,
                       "theirResponse": "They are. I hope we finally beat them.",
-                      "coachNote": "True, but vague. Dig into her specific prediction."
+                      "coachNote": "True, but vague. Dig into their specific prediction."
                     },
                     {
                       "id": "mock",
                       "text": "You always say that and you always lose.",
                       "smoothDelta": -15,
                       "theirResponse": "Wow, thanks for the support.",
-                      "coachNote": "Do not laugh at her optimism. She is sharing her hope."
+                      "coachNote": "Do not laugh at their hope. They are sharing something they care about."
                     }
                   ]
                 }
@@ -1622,8 +1621,8 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Rivalry losses hurt differently. Fans are frustrated for weeks, recruiting is affected, and the team dreams of next year's revenge.",
-                "incorrect": "Rivalry losses are not just losses. They carry cultural weight that lasts until next season's matchup."
+                "correct": "A rivalry loss stings more than an ordinary one, and the next meeting becomes bigger for it.",
+                "incorrect": "Rivalry losses carry cultural weight that lasts until the next meeting."
               }
             },
             "xp": 10
@@ -1661,22 +1660,23 @@
                   "id": "upset",
                   "label": "Your team has a real shot to upset them",
                   "verdict": "best",
-                  "consequence": "In a rivalry, a 3-9 team can absolutely beat a 9-3 team. Pride, tradition and no pressure are powerful. Upsets happen constantly in rivalries.",
+                  "consequence": "In a rivalry, a 3-9 team can beat a 9-3 team. Pride and nothing to lose are powerful, even if the better team is still favored.",
                   "considerations": [
-                    "The better team does not always win in rivalries."
+                    "Rivalries feed the upset legend.",
+                    "The better team still wins more often."
                   ]
                 },
                 {
                   "id": "sure",
                   "label": "The 9-3 team is guaranteed to win",
                   "verdict": "poor",
-                  "consequence": "No guarantee in a rivalry. Your team might be motivated precisely because they have nothing to lose.",
+                  "consequence": "No guarantee in a rivalry. Your team may play loose because it has nothing to lose.",
                   "considerations": [
                     "Desperation plus tradition is dangerous."
                   ]
                 }
               ],
-              "expertNote": "Rivalry upsets are famous because they happen so often. A bad team can absolutely upset a good rival when tradition and pride matter."
+              "expertNote": "Rivalry upsets are famous because they feel like they happen often. The better team is still favored, but not safe."
             },
             "xp": 10
           }
