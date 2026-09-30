@@ -310,19 +310,18 @@
         "activities": [
           {
             "id": "rules-icing-basics-01-mc-definition",
-            "type": "multiple-choice",
+            "type": "fill-the-gap",
             "conceptIds": ["icing"],
             "payload": {
-              "prompt": "What is icing?",
-              "options": [
-                {"id": "a", "text": "A penalty for hitting someone"},
-                {"id": "b", "text": "Shooting from behind center ice to the goal line untouched"},
-                {"id": "c", "text": "Deliberately shooting over the glass"}
+              "prompt": "Complete the definition of icing.",
+              "template": "Icing is shooting the puck from your own half across the opposing {{line}}, and it only counts if the puck is {{state}}.",
+              "gaps": [
+                {"id": "line", "options": ["blue line", "goal line", "crease"], "correct": "goal line"},
+                {"id": "state", "options": ["frozen", "untouched", "airborne"], "correct": "untouched"}
               ],
-              "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. Icing is a desperation clear from your own side of center to the goal line.",
-                "incorrect": "Icing: shoot from your side of center to the opponent's goal line without anyone touching it."
+                "correct": "Right. It's a clear from your own half that slides all the way past the far goal line with nobody touching it. Teams do it to relieve pressure, and it costs them.",
+                "incorrect": "Icing needs two things: the puck goes from your own half across the opposing goal line, and nobody touches it on the way."
               }
             }
           },
@@ -356,8 +355,8 @@
                 {"id": "tired", "term": "Tired legs", "definition": "The same players stay on the ice, creating fatigue and pressure in your own end."}
               ],
               "explanation": {
-                "summary": "Icing is self-inflicted pain: bad restart plus no fresh legs.",
-                "sayThisLine": "They iced it and now they can't change, so they are stuck."
+                "summary": "Icing isn't a penalty, but it stings: a faceoff in your own end and no fresh legs to defend it.",
+                "sayThisLine": "They iced it, so they can't change."
               }
             }
           },
@@ -366,16 +365,16 @@
             "type": "multiple-choice",
             "conceptIds": ["icing"],
             "payload": {
-              "prompt": "When is icing most dangerous for your team?",
+              "prompt": "Your team leads late and ices the puck. What's the biggest problem?",
               "options": [
-                {"id": "a", "text": "Any time, icing is always bad"},
-                {"id": "b", "text": "When you're losing late in the game and need to score"},
-                {"id": "c", "text": "During a power play when you are already down a player"}
+                {"id": "a", "text": "The other team gets a power play"},
+                {"id": "b", "text": "You defend a faceoff in your own zone with tired skaters who can't change"},
+                {"id": "c", "text": "You automatically lose your lead"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. Late in a losing game, icing wastes time and forces a defensive restart.",
-                "incorrect": "Icing hurts most when you are losing and need offensive time. It stops your momentum."
+                "correct": "Right. The clear bought a moment, but the same tired skaters must defend a faceoff in their own end. That's why teams try hard not to ice it at the end of a shift.",
+                "incorrect": "Icing is a stoppage, not a penalty, so there's no power play and no change to the score. The cost is a defensive-zone faceoff with the same tired skaters."
               }
             }
           },
@@ -384,16 +383,16 @@
             "type": "binary-call",
             "conceptIds": ["icing"],
             "payload": {
-              "prompt": "Shooting the puck off the glass behind the goal line counts as icing if it goes untouched. True or false?",
-              "scene": {"kind": "none", "alt": "A puck bounces off the glass behind the goal line."},
+              "prompt": "A clear from your half bounces off the side boards, then crosses the far goal line untouched. Icing?",
+              "scene": {"kind": "none", "alt": "A puck shot from the defensive half bounces off the side boards and slides across the far goal line."},
               "choices": [
-                {"id": "true", "label": "True"},
-                {"id": "false", "label": "False"}
+                {"id": "true", "label": "Icing"},
+                {"id": "false", "label": "Not icing"}
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. Where it comes off (glass or ice) doesn't matter. Untouched past the goal line is icing.",
-                "incorrect": "Icing is icing whether the puck bounces or slides. The key is: untouched to the goal line."
+                "correct": "Icing. The boards don't count as a touch. What matters is that it left your half and crossed the far goal line with nobody playing it.",
+                "incorrect": "A bounce off the boards isn't a touch by a player. Untouched from your half to the far goal line is still icing."
               }
             }
           }
@@ -415,8 +414,9 @@
               "simulationVersion": "1.0.0",
               "difficulty": 2,
               "configuration": {
-                "scenarioCount": 5,
-                "racingStyle": "hybrid"
+                "scenarioSetId": "icing-starter",
+                "rounds": 3,
+                "ruleset": "hybrid"
               }
             }
           },

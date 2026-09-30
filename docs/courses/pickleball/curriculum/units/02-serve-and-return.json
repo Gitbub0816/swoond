@@ -151,13 +151,13 @@
                 {"id": "a", "text": "The paddle head must be above the wrist"},
                 {"id": "b", "text": "Contact must be below the waist with an upward arc"},
                 {"id": "c", "text": "The serve can be hit overhand"},
-                {"id": "d", "text": "The ball can be in your hand when you hit it"}
+                {"id": "d", "text": "The ball must bounce before you hit it"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Three requirements: paddle head below wrist, contact below waist, and upward arc. The 2026 wording: each must be 'clear'.",
-                "incorrect": "All three have to be true: below-wrist grip, below-waist contact, and upward arc. Even borderline serves are faults in officiated play.",
-                "sayThisLine": "Volley serve has three rules: below the wrist, below the waist, upward motion."
+                "correct": "A volley serve has three requirements: paddle head not above the wrist, contact below the waist, and an upward arc. The 2026 rulebook says each must be clear.",
+                "incorrect": "A volley serve is hit before the ball bounces, with a low, upward swing and the paddle head not above the wrist. Overhand is never legal, and a bounce first is the drop serve, which is a different serve.",
+                "sayThisLine": "A volley serve is below the waist, swinging up, paddle head not above the wrist."
               }
             }
           },
@@ -167,12 +167,12 @@
             "conceptIds": ["volley-serve-rule"],
             "payload": {
               "prompt": "Complete the volley-serve rule.",
-              "template": "The paddle head must stay {{wrist}} the wrist, contact must be {{waist}} the waist, and the arc must be {{arc}}.",
+              "template": "On a volley serve the paddle head must not be {{wrist}} the wrist, contact must be {{waist}} the waist, and the arc must be {{arc}}.",
               "gaps": [
                 {
                   "id": "wrist",
                   "options": ["above", "below"],
-                  "correct": "below"
+                  "correct": "above"
                 },
                 {
                   "id": "waist",
@@ -186,8 +186,8 @@
                 }
               ],
               "explanation": {
-                "correct": "Below wrist, below waist, upward arc. Remember all three or the serve is a fault.",
-                "incorrect": "The rules keep serves controlled: no slamming, paddle stays compact, and motion is upward.",
+                "correct": "Paddle head not above the wrist, contact below the waist, upward arc. All three have to hold or the serve is a fault.",
+                "incorrect": "These three rules keep the serve low and controlled: no overhead slam, paddle head level with or below the wrist, and a swing that travels upward.",
                 "sayThisLine": "Below the wrist, below the waist, moving up."
               }
             }
@@ -197,28 +197,33 @@
             "type": "sequence-order",
             "conceptIds": ["volley-serve-rule"],
             "payload": {
-              "prompt": "Put the volley-serve checklist in order (how an official sees it).",
+              "prompt": "Put one volley serve in order.",
               "items": [
                 {
-                  "id": "paddle-head",
-                  "text": "Paddle head is not above the wrist",
-                  "why": "Checked first: the grip and arm position."
+                  "id": "call-score",
+                  "text": "Server calls the score out loud",
+                  "why": "The server announces the score before serving so everyone agrees on it."
                 },
                 {
-                  "id": "contact",
-                  "text": "Contact is below the waist",
-                  "why": "Checked second: where the ball is struck."
+                  "id": "position",
+                  "text": "Server sets up behind the baseline",
+                  "why": "Feet stay behind the baseline until the ball is struck."
                 },
                 {
-                  "id": "arc",
-                  "text": "Arc is upward",
-                  "why": "Checked third: the motion at contact."
+                  "id": "swing",
+                  "text": "Server swings low and upward, contact below the waist",
+                  "why": "This is the moment the three volley-serve requirements are judged."
+                },
+                {
+                  "id": "land",
+                  "text": "Ball clears the kitchen and lands in the diagonal box",
+                  "why": "The serve only counts if it clears the net and kitchen, including its line, and lands in the box."
                 }
               ],
               "explanation": {
-                "correct": "An official looks at grip, then contact height, then motion. All three have to be 'clear' per 2026 rules.",
-                "incorrect": "The three checks happen in sequence: paddle position, then ball contact point, then the direction of swing.",
-                "sayThisLine": "The three-part volley-serve check keeps it fair."
+                "correct": "Call the score, set up behind the baseline, serve with a low upward swing, and watch it land past the kitchen in the diagonal box.",
+                "incorrect": "A serve runs in this order: call the score, set up, swing, land. The swing is judged at contact, and the landing is judged last.",
+                "sayThisLine": "Call the score, set up behind the line, swing low, land it past the kitchen."
               }
             }
           },
@@ -233,23 +238,23 @@
               },
               "question": "What should you say?",
               "options": [
-                {"id": "a", "text": "Was it close to the rules? Borderline serves are faults now.", "isCorrect": true},
+                {"id": "a", "text": "Did they say why? If it isn't clearly legal, it can be called.", "isCorrect": true},
                 {"id": "b", "text": "That's just bad officiating.", "isCorrect": false},
                 {"id": "c", "text": "You probably stepped over the line.", "isCorrect": false},
                 {"id": "d", "text": "Don't worry about it.", "isCorrect": false}
               ],
-              "translation": "The 2026 wording is strict: 'clearly below wrist', 'clearly below waist', and an 'upward arc'. Borderline is a fault when officiated.",
+              "translation": "The 2026 rulebook asks that the paddle position, contact height and upward arc all be clear. In officiated play, a serve that is not clearly legal can be faulted.",
               "followUps": [
                 {
-                  "line": "Borderline serves are faults in officiated play. Was your motion clearly upward?",
-                  "why": "Explains the rule and asks a specific question."
+                  "line": "Did they say which part? I've heard borderline ones can be called when an official is watching.",
+                  "why": "Asks a specific question and is honest about what you know."
                 },
                 {
-                  "line": "Could have been the paddle position or the contact height. The 2026 rules tightened it.",
-                  "why": "Acknowledges the change without dismissing her."
+                  "line": "Could be the paddle position or the contact height. Want to film one and look together?",
+                  "why": "Offers help without claiming to have seen the fault."
                 }
               ],
-              "noFakeExpertNote": "You don't need to diagnose the fault; just remind her of the rule."
+              "noFakeExpertNote": "You did not see the serve, so do not diagnose it. Ask what they called and listen."
             }
           }
         ]

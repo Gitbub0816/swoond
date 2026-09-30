@@ -60,15 +60,15 @@
             "payload": {
               "prompt": "A player is fouled while shooting a three-pointer and misses. How many free throws?",
               "options": [
-                {"id": "correct", "text": "Two free throws."},
-                {"id": "dist-1", "text": "Three free throws, because it was a three."},
-                {"id": "dist-2", "text": "One free throw, the standard."}
+                {"id": "correct", "text": "Three free throws."},
+                {"id": "dist-1", "text": "Two free throws, like any shooting foul."},
+                {"id": "dist-2", "text": "One free throw, then the ball goes back."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Correct. A non-shooting foul on a shooter (called a shooting foul) gives two free throws if the shot misses, or one free throw (plus the made basket) if it goes in. The arc distance does not change that.",
-                "incorrect": "Not quite. Shooting fouls always give two free throws on a miss, regardless of how far away the shooter was. If the shot goes in, it is one more (the and-one).",
-                "sayThisLine": "Shooting foul on a miss: two shots."
+                "correct": "A shooter fouled on a missed three gets one free throw for each point the shot was worth: three. If the three goes in, the basket counts and there is one bonus free throw, the and-one.",
+                "incorrect": "The shooter gets one free throw for every point the missed shot was worth. A missed two earns two shots, a missed three earns three. A made shot plus a foul earns a single extra free throw.",
+                "sayThisLine": "\"He got fouled on the three, so he is going to the line for three.\""
               }
             }
           },
@@ -170,21 +170,21 @@
             "type": "hotspot-tap",
             "conceptIds": ["three-point-line"],
             "payload": {
-              "prompt": "Tap the three-point arc.",
+              "prompt": "Tap the three-point line at the top of the arc.",
               "diagram": {
-                "diagramId": "basketball-court",
-                "alt": "A basketball court with the three-point line highlighted as an arc beyond the painted lane."
+                "diagramId": "bball-half-court",
+                "alt": "Half-court diagram. The three-point arc curves around the painted lane, highest above the free-throw line. The half-court line runs across the top."
               },
               "hotspots": [
-                {"id": "three-point", "label": "Three-point line", "shape": {"kind": "rect", "x": 0, "y": 0, "w": 1, "h": 0.15}},
-                {"id": "paint", "label": "Paint", "shape": {"kind": "rect", "x": 0.35, "y": 0.15, "w": 0.3, "h": 0.3}},
-                {"id": "foul-circle", "label": "Foul circle", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.25, "r": 0.12}},
-                {"id": "center-court", "label": "Center court", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.5, "r": 0.08}}
+                {"id": "three-point", "label": "Three-point line", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.383, "r": 0.05}},
+                {"id": "paint", "label": "Paint", "shape": {"kind": "rect", "x": 0.34, "y": 0.64, "w": 0.32, "h": 0.3}},
+                {"id": "free-throw-line", "label": "Free-throw line", "shape": {"kind": "rect", "x": 0.34, "y": 0.57, "w": 0.32, "h": 0.05}},
+                {"id": "center-line", "label": "Half-court line", "shape": {"kind": "rect", "x": 0, "y": 0, "w": 1, "h": 0.05}}
               ],
               "correctHotspotIds": ["three-point"],
               "explanation": {
-                "correct": "Exactly! The three-point line is the arc that circles the court at a distance (23 ft 9 in at the top in the NBA). Shots from beyond this line count 3.",
-                "incorrect": "Not that area. The three-point line is the arc on the perimeter; shots from beyond it are worth 3 points.",
+                "correct": "The three-point line is the arc around the basket, 23 ft 9 in out at the top in the NBA. A shot taken from behind it counts 3; a foot on the line counts only 2.",
+                "incorrect": "That is not the arc. The three-point line curves around the basket far outside the lane, and a shot from behind it is worth 3.",
                 "sayThisLine": "Beyond the arc is three points."
               }
             }
@@ -196,20 +196,20 @@
             "payload": {
               "prompt": "Tap the paint (the key).",
               "diagram": {
-                "diagramId": "basketball-court",
-                "alt": "A basketball court with the painted lane highlighted under the basket."
+                "diagramId": "bball-half-court",
+                "alt": "Half-court diagram. The painted lane is the rectangle under the basket, running from the baseline to the free-throw line. Wing areas sit out to each side beyond the arc."
               },
               "hotspots": [
-                {"id": "paint", "label": "Paint", "shape": {"kind": "rect", "x": 0.35, "y": 0.15, "w": 0.3, "h": 0.35}},
-                {"id": "three-point", "label": "Three-point arc", "shape": {"kind": "rect", "x": 0, "y": 0, "w": 1, "h": 0.15}},
-                {"id": "baseline", "label": "Baseline", "shape": {"kind": "rect", "x": 0, "y": 0, "w": 1, "h": 0.05}},
-                {"id": "wings", "label": "Wings", "shape": {"kind": "rect", "x": 0, "y": 0.25, "w": 0.35, "h": 0.3}}
+                {"id": "paint", "label": "Paint", "shape": {"kind": "rect", "x": 0.34, "y": 0.64, "w": 0.32, "h": 0.3}},
+                {"id": "three-point", "label": "Top of the arc", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.383, "r": 0.06}},
+                {"id": "baseline", "label": "Baseline", "shape": {"kind": "rect", "x": 0, "y": 0.96, "w": 1, "h": 0.04}},
+                {"id": "wings", "label": "Wing", "shape": {"kind": "circle", "cx": 0.15, "cy": 0.55, "r": 0.1}}
               ],
               "correctHotspotIds": ["paint"],
               "explanation": {
-                "correct": "Right! The paint is the rectangular area under the basket from the baseline to the free-throw line. It is called the paint because of its bright color.",
-                "incorrect": "Not that spot. The paint is the painted lane directly under the basket, the most congested area where big men operate.",
-                "sayThisLine": "The paint is where the action happens inside."
+                "correct": "The paint is the painted rectangle under the basket, from the baseline to the free-throw line. It is where the biggest bodies, the most contact and the easiest shots live.",
+                "incorrect": "That is not the lane. The paint is the painted rectangle directly under the basket, where the contact is heaviest and the shots are closest.",
+                "sayThisLine": "\"They are getting too many touches in the paint.\""
               }
             }
           },
@@ -222,7 +222,7 @@
               "pairs": [
                 {"id": "ftl", "term": "Free-throw line", "definition": "The line 15 feet from the backboard where players shoot free throws."},
                 {"id": "baseline", "term": "Baseline", "definition": "The line at each end of the court marking the end of play."},
-                {"id": "restricted", "term": "Restricted area", "definition": "A 4-foot arc under the basket where defenders cannot draw charges."}
+                {"id": "restricted", "term": "Restricted area", "definition": "A small arc under the basket where a help defender cannot draw a charge."}
               ],
               "distractorDefinitions": [
                 "The line that divides the court in half.",
