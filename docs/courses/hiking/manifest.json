@@ -1,0 +1,279 @@
+{
+  "contractVersion": "1.0.0",
+  "courseId": "hiking",
+  "displayName": "Hiking",
+  "category": "Outdoors > Hiking",
+  "family": "Outdoors & Adventure",
+  "status": "cds-draft",
+  "wave": 1,
+  "simulationPrefix": "hiking",
+  "branches": [
+    {
+      "id": "national-parks",
+      "displayName": "National Parks and Permits",
+      "description": "Permit lotteries, timed entry, shuttles, passes and park alerts.",
+      "personalizationDimension": "destination"
+    },
+    {
+      "id": "desert-and-canyon",
+      "displayName": "Desert and Canyon Country",
+      "description": "Heat, dry routes, water caches, slot canyons and flash floods.",
+      "personalizationDimension": "region"
+    },
+    {
+      "id": "alpine-and-high-country",
+      "displayName": "Alpine and High Country",
+      "description": "Treeline, altitude, storms, late snow and avalanche awareness (not training).",
+      "personalizationDimension": "region"
+    }
+  ],
+  "curriculumVersion": "0.1.0",
+  "foundationalModules": [
+    {
+      "id": "trail-basics",
+      "title": "Trail basics",
+      "summary": "What a hike is, how routes are shaped, how trails are marked, and how to share them."
+    },
+    {
+      "id": "gear-and-clothing",
+      "title": "Gear and clothing",
+      "summary": "Why hikers carry what they carry: the ten essentials, layering, feet and packs."
+    },
+    {
+      "id": "water-food-and-body",
+      "title": "Water, food and your body",
+      "summary": "Hydration, fuel, heat and altitude: how the body behaves on a climb."
+    },
+    {
+      "id": "reading-a-trail",
+      "title": "Reading a trail description",
+      "summary": "Miles, gain, grade, pace and the vocabulary of difficulty."
+    }
+  ],
+  "interactionTypes": [
+    "multiple-choice",
+    "binary-call",
+    "term-match",
+    "sequence-order",
+    "visual-id",
+    "decision-scenario",
+    "talk-track",
+    "say-this",
+    "fill-the-gap",
+    "estimate-slider",
+    "hotspot-tap",
+    "unity-sim"
+  ],
+  "unitySimulations": [
+    {
+      "simulationId": "hiking.navigation.topo-terrain.v1",
+      "specPath": "docs/courses/hiking/sims/hiking.navigation.topo-terrain.v1.md",
+      "status": "spec-draft",
+      "lessonIds": [
+        "nv-03",
+        "nv-04",
+        "nv-08",
+        "ah-05",
+        "rv-03"
+      ]
+    }
+  ],
+  "nativeExercises": [
+    {
+      "exerciseType": "multiple-choice",
+      "specPath": "docs/courses/hiking/exercises.md",
+      "estimatedCount": 232
+    },
+    {
+      "exerciseType": "binary-call",
+      "specPath": "docs/courses/hiking/exercises.md",
+      "estimatedCount": 28
+    },
+    {
+      "exerciseType": "term-match",
+      "specPath": "docs/courses/hiking/exercises.md",
+      "estimatedCount": 22
+    },
+    {
+      "exerciseType": "sequence-order",
+      "specPath": "docs/courses/hiking/exercises.md",
+      "estimatedCount": 20
+    },
+    {
+      "exerciseType": "visual-id",
+      "specPath": "docs/courses/hiking/exercises.md",
+      "estimatedCount": 32
+    },
+    {
+      "exerciseType": "decision-scenario",
+      "specPath": "docs/courses/hiking/exercises.md",
+      "estimatedCount": 126
+    },
+    {
+      "exerciseType": "talk-track",
+      "specPath": "docs/courses/hiking/exercises.md",
+      "estimatedCount": 13
+    },
+    {
+      "exerciseType": "say-this",
+      "specPath": "docs/courses/hiking/exercises.md",
+      "estimatedCount": 90
+    },
+    {
+      "exerciseType": "fill-the-gap",
+      "specPath": "docs/courses/hiking/exercises.md",
+      "estimatedCount": 52
+    },
+    {
+      "exerciseType": "estimate-slider",
+      "specPath": "docs/courses/hiking/exercises.md",
+      "estimatedCount": 52
+    },
+    {
+      "exerciseType": "hotspot-tap",
+      "specPath": "docs/courses/hiking/exercises.md",
+      "estimatedCount": 24
+    }
+  ],
+  "dynamicData": [
+    {
+      "kind": "weather",
+      "providerCandidates": [
+        "NWS API (api.weather.gov)",
+        "Open-Meteo or commercial forecast (secondary)"
+      ],
+      "refreshFrequency": "hourly",
+      "notes": "Point forecasts by grid point and elevation; custom User-Agent required by NWS. See live-data.md."
+    },
+    {
+      "kind": "alerts",
+      "providerCandidates": [
+        "NWS alerts",
+        "NPS API alerts",
+        "AirNow"
+      ],
+      "refreshFrequency": "hourly",
+      "notes": "Red flag, flood, heat and air quality alerts; show source and age."
+    },
+    {
+      "kind": "closures",
+      "providerCandidates": [
+        "NPS API",
+        "NIFC and InciWeb",
+        "USFS and BLM alert pages"
+      ],
+      "refreshFrequency": "daily",
+      "notes": "Trail and area closures; hourly in fire season; link to the official page."
+    },
+    {
+      "kind": "conditions",
+      "providerCandidates": [
+        "NRCS SNOTEL (AWDB REST)",
+        "USGS Water Data OGC API",
+        "AirNow",
+        "NIFC Open Data"
+      ],
+      "refreshFrequency": "daily",
+      "notes": "Snowpack, streamflow, smoke, fire perimeters. USGS legacy WaterServices retires Q1 2027: use the OGC API."
+    },
+    {
+      "kind": "events",
+      "providerCandidates": [
+        "Swoon'd editorial calendar",
+        "Agency pages (links)"
+      ],
+      "refreshFrequency": "seasonal",
+      "notes": "Permit lottery windows, wildflower and fall color windows, with lastVerified dates."
+    },
+    {
+      "kind": "news",
+      "providerCandidates": [
+        "Agency press-release RSS (NPS, USFS)",
+        "Licensed news API (TBD, DECISIONS Q-3)"
+      ],
+      "refreshFrequency": "daily",
+      "notes": "Link-only at launch; explain in our own words."
+    }
+  ],
+  "editorial": {
+    "approach": "explain-and-link",
+    "sources": [
+      "Agency alerts and press releases (NPS, USFS, BLM)",
+      "NWS forecast discussions (linked)",
+      "Avalanche center forecasts (linked)",
+      "Outdoor publications and trip reports (headline and link only)"
+    ],
+    "topicsWeExplain": [
+      "why a trail or area is closed",
+      "what a red flag warning or flood watch means",
+      "why permit lotteries and quotas exist",
+      "what snowpack means for a pass",
+      "why smoke changes plans"
+    ],
+    "copyrightPolicy": "Publisher and trip-report article text is never copied; Swoon'd writes its own explanation and links to the original. Agency media is linked with credit, not assumed redistributable."
+  },
+  "personalizationDimensions": [
+    "region",
+    "destination",
+    "equipment",
+    "skill-level"
+  ],
+  "conversationScenarios": {
+    "count": 24,
+    "path": "docs/courses/hiking/curriculum/"
+  },
+  "masteryModel": {
+    "type": "concept-mastery-v1",
+    "passThreshold": 0.8,
+    "usefulCompetenceStatement": "Can follow her trail talk, sanity-check a day's plan for time, weather and water, and ask a real follow-up question, without pretending to be an expert or a safety authority."
+  },
+  "licensingConstraints": [
+    {
+      "area": "imagery",
+      "constraint": "Original illustrations and procedural diagrams only at launch; NPS/USGS images only after per-image credit review; no AllTrails, Gaia or onX imagery."
+    },
+    {
+      "area": "logos-trademarks",
+      "constraint": "Brand, agency and trail-emblem names as text only; AT/PCT/CDT emblems and retailer logos are not reproduced; Leave No Trace and Ten Essentials credited descriptively."
+    },
+    {
+      "area": "data-provider-terms",
+      "constraint": "NWS custom User-Agent; NPS API key and 1,000 requests/hour default; RIDB 50 requests/minute; AirNow attribution; USGS credit; OSM ODbL attribution. No unofficial or reverse-engineered AllTrails API; AllTrails is deep-link only."
+    },
+    {
+      "area": "article-text",
+      "constraint": "Never copy publisher, trip-report or outdoor-publication text; explain in our own words and link."
+    },
+    {
+      "area": "audio",
+      "constraint": "No audio at launch; any bird or weather audio requires original or licensed recordings with a license id."
+    },
+    {
+      "area": "other",
+      "constraint": "Map data: USGS public domain (credit); OSM under ODbL. The Unity sim uses synthetic terrain and no real place names."
+    }
+  ],
+  "safetyConstraints": [
+    "Swoon'd teaches appreciation and understanding, not safety training; it is no substitute for wilderness first aid, navigation, avalanche or swiftwater training, or local ranger guidance.",
+    "Every decision-scenario carries a safetyNote and never asserts that a route, crossing, time or condition is safe; the conservative option is always the best answer when risk rises.",
+    "Never imply a scenario or the Contour Flyover sim replaces real-world navigation or survival skills; the sim uses synthetic terrain.",
+    "No gamified pressure on hazards: no timers, streak bonuses or speed rewards on lightning, flood, crossing, wildlife, altitude, heat, snow or lost-hiker scenarios; no mileage, elevation or summit leaderboards.",
+    "Live conditions are informational only; always show source and age and link to the official land manager or agency.",
+    "No medical procedures beyond recognition and descend-or-seek-help; wildlife guidance is principles only and defers to local rangers; avalanche content is awareness only.",
+    "Safety-critical lessons are reviewed by a qualified reviewer (e.g. Wilderness First Responder and Leave No Trace trainer) before release."
+  ],
+  "relatedCourses": [
+    {
+      "courseId": "camping",
+      "relationship": "adjacent"
+    },
+    {
+      "courseId": "climbing",
+      "relationship": "adjacent"
+    },
+    {
+      "courseId": "photography",
+      "relationship": "sibling-independent"
+    }
+  ]
+}
