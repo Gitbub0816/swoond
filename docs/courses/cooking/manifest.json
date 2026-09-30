@@ -1,0 +1,104 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "cooking",
+  "displayName": "Cooking",
+  "category": "Food & Cooking > Cooking",
+  "family": "Food & Cooking",
+  "status": "cds-draft",
+  "wave": 2,
+  "simulationPrefix": "cooking",
+  "branches": [
+    { "id": "everyday", "displayName": "Everyday home cooking", "description": "Weeknight dinners, pantry cooking, cooking for two. Default branch; the shared core units are its curriculum." },
+    { "id": "baking", "displayName": "Baking and pastry", "description": "Weight-based precision, leaveners, gluten, creaming, lamination, bread and sourdough; raw flour and dough safety.", "personalizationDimension": "cuisine" },
+    { "id": "italian", "displayName": "Italian", "description": "Restraint, soffritto, pasta logic, regional identity.", "personalizationDimension": "cuisine" },
+    { "id": "french", "displayName": "French", "description": "Mother sauces, butter and wine reductions, brigade heritage, bistro classics.", "personalizationDimension": "cuisine" },
+    { "id": "mexican", "displayName": "Mexican", "description": "Corn and masa, nixtamalization, dried chiles, salsas and moles, regional Mexico.", "personalizationDimension": "cuisine" },
+    { "id": "chinese", "displayName": "Chinese", "description": "The wok and wok hei, velveting, the pantry, regional cuisines, Sichuan mala.", "personalizationDimension": "cuisine" },
+    { "id": "japanese", "displayName": "Japanese", "description": "Dashi and umami, rice, knife culture, seasonality, izakaya and ramen-shop food.", "personalizationDimension": "cuisine" },
+    { "id": "indian", "displayName": "Indian", "description": "Tadka and spice blooming, regional staples, ghee, dal, breads and biryani, the word curry.", "personalizationDimension": "cuisine" },
+    { "id": "bbq-grilling", "displayName": "BBQ and grilling", "description": "Fire management, direct vs indirect heat, low-and-slow smoking, the stall, regional styles, carbon monoxide and fire safety.", "personalizationDimension": "cuisine" }
+  ],
+  "curriculumVersion": "0.1.0",
+  "foundationalModules": [
+    { "id": "kitchen-basics", "title": "The Kitchen and Its Language", "summary": "Mise en place, weighing, tools, cookware, stove language, kitchen verbs." },
+    { "id": "heat", "title": "Heat: The First Ingredient", "summary": "Conduction, convection, radiation; dry vs moist heat; Maillard and caramelization; preheating and crowding; carryover; smoke points." },
+    { "id": "salt-fat-acid", "title": "Salt, Fat, Acid, Water", "summary": "What salt does and when, kosher salts, fat, acid, balance, starchy water." },
+    { "id": "knife-skills", "title": "Knife Skills", "summary": "Anatomy, grip and claw, sharp is safer, dice an onion, cut vocabulary, knife types and care." },
+    { "id": "food-safety", "title": "Food Safety That Actually Matters", "summary": "Danger zone, thermometers, USDA temperatures, cross-contamination, thawing, leftovers, cooking for others." }
+  ],
+  "interactionTypes": [
+    "multiple-choice", "binary-call", "term-match", "sequence-order", "visual-id", "decision-scenario",
+    "talk-track", "timing-tap", "say-this", "fill-the-gap", "listening-id", "estimate-slider", "hotspot-tap"
+  ],
+  "unitySimulations": [],
+  "nativeExercises": [
+    { "exerciseType": "multiple-choice", "specPath": "docs/courses/cooking/exercises.md", "estimatedCount": 190 },
+    { "exerciseType": "binary-call", "specPath": "docs/courses/cooking/exercises.md", "estimatedCount": 55 },
+    { "exerciseType": "term-match", "specPath": "docs/courses/cooking/exercises.md", "estimatedCount": 30 },
+    { "exerciseType": "sequence-order", "specPath": "docs/courses/cooking/exercises.md", "estimatedCount": 45 },
+    { "exerciseType": "visual-id", "specPath": "docs/courses/cooking/exercises.md", "estimatedCount": 50 },
+    { "exerciseType": "decision-scenario", "specPath": "docs/courses/cooking/exercises.md", "estimatedCount": 130 },
+    { "exerciseType": "talk-track", "specPath": "docs/courses/cooking/exercises.md", "estimatedCount": 20 },
+    { "exerciseType": "timing-tap", "specPath": "docs/courses/cooking/exercises.md", "estimatedCount": 8 },
+    { "exerciseType": "say-this", "specPath": "docs/courses/cooking/exercises.md", "estimatedCount": 70 },
+    { "exerciseType": "fill-the-gap", "specPath": "docs/courses/cooking/exercises.md", "estimatedCount": 30 },
+    { "exerciseType": "listening-id", "specPath": "docs/courses/cooking/exercises.md", "estimatedCount": 15 },
+    { "exerciseType": "estimate-slider", "specPath": "docs/courses/cooking/exercises.md", "estimatedCount": 35 },
+    { "exerciseType": "hotspot-tap", "specPath": "docs/courses/cooking/exercises.md", "estimatedCount": 35 }
+  ],
+  "dynamicData": [
+    { "kind": "conditions", "providerCandidates": ["USDA and state Extension seasonal-produce guides (curated by Swoon'd)", "Swoon'd editorial seasonal table by region and month"], "refreshFrequency": "monthly", "notes": "Seasonal produce near the learner's region. Curated facts with attribution, no images. Fallback: national seasonal table." },
+    { "kind": "events", "providerCandidates": ["Swoon'd editorial holiday and awards calendar", "James Beard Foundation and Michelin Guide event pages (link-only)"], "refreshFrequency": "seasonal", "notes": "Holiday cooking cards (food safety of the season), awards moments. Curated; link-out to official pages." },
+    { "kind": "new-media", "providerCandidates": ["Swoon'd editorial media calendar (curated)", "Publisher and network press pages (link-only)", "TVmaze / TMDB (only after licence review)"], "refreshFrequency": "monthly", "notes": "New seasons of cooking shows, notable cookbook releases. Works are discussed, never redistributed (spec section 40)." },
+    { "kind": "schedules", "providerCandidates": ["Network schedules for cooking shows (curated, link-out)"], "refreshFrequency": "monthly", "notes": "Optional 'what is on this month' card; hidden when no reliable source." },
+    { "kind": "alerts", "providerCandidates": ["USDA FSIS recalls (public API or feed)", "FDA recalls and openFDA food enforcement (public)"], "refreshFrequency": "daily", "notes": "Food recall explainer cards, link-out to the agency notice; Swoon'd never gives medical advice. Verify terms and rate limits at adapter build." },
+    { "kind": "weather", "providerCandidates": ["National Weather Service API (public, US)"], "refreshFrequency": "hourly", "notes": "Optional grilling-weather card for the bbq-grilling branch; only when a region is set. NWS requires a custom User-Agent." },
+    { "kind": "news", "providerCandidates": ["Publisher headlines (link-only)", "USDA FSIS and FDA news (link-out)"], "refreshFrequency": "daily", "notes": "Identify topics; Swoon'd writes the explainer and links. Editorial provider decision is open (L-01)." }
+  ],
+  "editorial": {
+    "approach": "explain-and-link",
+    "sources": ["USDA FSIS and FoodSafety.gov", "FDA (recalls, Food Code)", "University Extension services", "James Beard Foundation and Michelin Guide (link-only)", "Cooking media publishers (link-only)", "Network and show pages (link-only)"],
+    "topicsWeExplain": [
+      "why a food recall matters and what a cook should do",
+      "why a food-safety warning is repeated every holiday",
+      "why everyone is arguing about a technique or myth",
+      "what a chef award or star means",
+      "what is in season and how to cook it",
+      "why a show or finale is being discussed"
+    ],
+    "copyrightPolicy": "Recipes, cookbook text, publisher articles, show clips and photographs are never copied or redistributed; Swoon'd writes its own examples and explanations, names works and authors as facts, and links to the original."
+  },
+  "personalizationDimensions": ["cuisine", "skill-level", "equipment", "region", "style"],
+  "conversationScenarios": {
+    "count": 20,
+    "path": "docs/courses/cooking/curriculum/course.json"
+  },
+  "masteryModel": {
+    "type": "concept-mastery-v1",
+    "passThreshold": 0.8,
+    "usefulCompetenceStatement": "She can talk about her cooking, understand why she does what she does, cook a safe, simple meal beside her, ask a couple of good questions about technique, and say 'okay, I get why you love this' without faking it."
+  },
+  "licensingConstraints": [
+    { "area": "imagery", "constraint": "Procedural or original illustrations only (license original-swoond); no third-party food, chef, restaurant, show or product photography." },
+    { "area": "audio", "constraint": "Original or synthesized kitchen sounds (sizzle, boil, oil crackle) only; no TV, video or podcast audio." },
+    { "area": "logos-trademarks", "constraint": "Cookware, salt and knife brands, Michelin, James Beard and TV titles appear as text mentions and link-outs only, no logos." },
+    { "area": "video", "constraint": "No embedded show or clip video; deep-link to official pages." },
+    { "area": "article-text", "constraint": "Recipe text, cookbook chapters and publisher articles are never copied; Swoon'd writes its own examples and links to sources (spec sections 11 and 40)." },
+    { "area": "data-provider-terms", "constraint": "USDA FSIS, FDA and NWS are public US-government sources; verify current terms and rate limits at adapter build; TVmaze and TMDB need licence review before any commercial use." },
+    { "area": "player-likeness", "constraint": "Real chefs, authors and hosts are named as facts only; no likeness, no fabricated quotes, no endorsement implication." }
+  ],
+  "safetyConstraints": [
+    "Food safety follows USDA FSIS and FoodSafety.gov for home cooks (danger zone 40 to 140 F, two-hour rule with one hour above 90 F, USDA minimum internal temperatures: poultry 165 F, ground meats 160 F, whole cuts of beef, pork, lamb and veal 145 F with a 3-minute rest, fish 145 F, egg dishes 160 F, leftovers 165 F); FDA Food Code (2022) is cited only for food-business context. Verify at release.",
+    "Color and juices are never taught as safety indicators; a food thermometer is. Never coach serving undercooked meat, poultry, eggs or fish to children, older adults, pregnant people or immunocompromised people.",
+    "Raw eggs, raw flour and raw dough carry risk; never encourage eating them raw. Do not wash raw poultry; thaw only in the refrigerator, in cold water changed every 30 minutes, or in the microwave; refrigerate perishable food within 2 hours (1 hour above 90 F).",
+    "Allergens: teach ask-first and label reading; no medical advice, and never imply an allergen is safe in small amounts.",
+    "Knife, hot oil and fire safety: no speed-scored knife content; never grill or burn charcoal indoors or in enclosed spaces (carbon monoxide); dried red kidney beans must be boiled vigorously at least 10 minutes.",
+    "No nutrition, diet, weight-loss or medical claims. Alcohol appears only as an ingredient, with a note that cooking does not remove all alcohol.",
+    "Swoon'd builds appreciation and understanding, not a substitute for a cooking class or food-safety training; never encourage the learner to fake skill or claim credit for food they did not make."
+  ],
+  "relatedCourses": [
+    { "courseId": "coffee", "relationship": "adjacent" },
+    { "courseId": "wine", "relationship": "adjacent" },
+    { "courseId": "camping", "relationship": "adjacent" }
+  ]
+}

@@ -1,0 +1,476 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "soccer",
+  "unit": {
+    "id": "perpetual-review",
+    "title": "Perpetual review",
+    "layer": "review",
+    "order": 19,
+    "lessons": [
+      {
+        "id": "review-01",
+        "title": "Daily bite",
+        "objective": "You can recall today's due concepts in three minutes.",
+        "estimatedMinutes": 3,
+        "conceptIds": ["match-length", "offside-position", "xg"],
+        "activities": [
+          {
+            "id": "review-01-mc-stoppage",
+            "type": "multiple-choice",
+            "conceptIds": ["match-length"],
+            "payload": {
+              "prompt": "Why do referees add stoppage time instead of stopping the clock?",
+              "options": [
+                {"id": "a", "text": "To keep the flow of the game continuous"},
+                {"id": "b", "text": "Because stopping the clock would be unfair to attackers"},
+                {"id": "c", "text": "It's tradition from the early days of football"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Right. The clock runs the whole ninety minutes; time lost is added back at the end to keep play flowing.",
+                "incorrect": "Football keeps the clock running constantly. Time lost to injuries and fouls is added at the end of each half.",
+                "sayThisLine": "The clock never stops, they just add the time on."
+              }
+            }
+          },
+          {
+            "id": "review-01-bc-offside-moment",
+            "type": "binary-call",
+            "conceptIds": ["offside-position"],
+            "payload": {
+              "prompt": "At the moment the pass is played, the receiver's shoulder is level with the second-last defender. Offside?",
+              "scene": {"kind": "none", "alt": "A passer plays the ball forward at the moment the receiver's shoulder is level with the second-last opponent."},
+              "choices": [
+                {"id": "yes", "label": "Offside"},
+                {"id": "no", "label": "Onside"}
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "No, he's onside. Level with the second-last defender counts as onside; the attacker gets the benefit.",
+                "incorrect": "Being level is onside. You have to be completely ahead to be in an offside position.",
+                "sayThisLine": "Level is onside, so the goal stands."
+              },
+              "ruleTag": "Offside rule"
+            }
+          },
+          {
+            "id": "review-01-fg-xg-concept",
+            "type": "fill-the-gap",
+            "conceptIds": ["xg"],
+            "payload": {
+              "prompt": "Complete the xG definition.",
+              "template": "Expected goals (xG) measures the {{quality}} of shots, not {{outcome}}.",
+              "gaps": [
+                {"id": "quality", "options": ["effort", "quality", "accuracy"], "correct": "quality"},
+                {"id": "outcome", "options": ["outcome", "finishing", "result"], "correct": "outcome"}
+              ],
+              "explanation": {
+                "correct": "Right. xG rates the quality of chances based on position and angle; the actual finish is separate.",
+                "incorrect": "xG measures the probability that a shot becomes a goal based on distance and angle, independent of whether it actually went in."
+              }
+            }
+          },
+          {
+            "id": "review-01-st-xg-use",
+            "type": "say-this",
+            "conceptIds": ["xg"],
+            "payload": {
+              "statement": {"speaker": "Jordan", "text": "We lost 1-0 but won the xG 2.1 to 0.3, so we played better."},
+              "question": "What is he saying?",
+              "options": [
+                {"id": "a", "text": "His team created better chances but didn't finish", "isCorrect": true},
+                {"id": "b", "text": "His team lost unfairly", "isCorrect": false},
+                {"id": "c", "text": "The xG explains why they underperformed", "isCorrect": true},
+                {"id": "d", "text": "The opponent got lucky", "isCorrect": false}
+              ],
+              "translation": "His team created chances worth 2.1 expected goals against the opponent's 0.3; the final score doesn't reflect who played better.",
+              "followUps": [
+                {"line": "Do you think they'll score more next time?", "why": "Shows you understand regression to the mean."},
+                {"line": "What was the big chance they missed?", "why": "Asks for the specific moment."}
+              ],
+              "noFakeExpertNote": "xG is a tool to talk about luck and finishing; don't use it to argue the scoreline didn't matter."
+            }
+          },
+          {
+            "id": "review-01-tm-time-concepts",
+            "type": "term-match",
+            "conceptIds": ["match-length"],
+            "payload": {
+              "prompt": "Match the time concepts.",
+              "pairs": [
+                {"id": "reg", "term": "Regulation time", "definition": "The standard 90 minutes of a match (two 45-minute halves)."},
+                {"id": "added", "term": "Added time", "definition": "Minutes the referee adds at the end of each half to compensate for stoppages."},
+                {"id": "extra", "term": "Extra time", "definition": "Thirty minutes (two 15-minute periods) played after a knockout match if still level after ninety."}
+              ],
+              "explanation": {
+                "summary": "Most matches end at 90 minutes plus added time. Only knockouts that are tied go to extra time.",
+                "sayThisLine": "It went to extra time and they won it in the second period."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "review-02",
+        "title": "Weekly rewind",
+        "objective": "You can revisit last week's concepts at a slower pace.",
+        "estimatedMinutes": 7,
+        "conceptIds": ["formation-numbers", "pressing", "corner-routine"],
+        "activities": [
+          {
+            "id": "review-02-mc-formation-read",
+            "type": "multiple-choice",
+            "conceptIds": ["formation-numbers"],
+            "payload": {
+              "prompt": "A team plays a 4-2-3-1. What does the '2' represent?",
+              "options": [
+                {"id": "a", "text": "Two strikers"},
+                {"id": "b", "text": "Two holding midfielders in front of the defence"},
+                {"id": "c", "text": "Two wingers"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. The 4-2-3-1 has four at the back, then two deep midfielders screening, three in the middle, and one striker.",
+                "incorrect": "The numbers read from defence to attack: four defenders, two holding mids (the 'six' and 'eight'), three attacking players, and one striker.",
+                "sayThisLine": "In a 4-2-3-1 the twos sit in front of the back four."
+              }
+            }
+          },
+          {
+            "id": "review-02-bc-pressing-trigger",
+            "type": "binary-call",
+            "conceptIds": ["pressing-trigger"],
+            "payload": {
+              "prompt": "A midfielder plays a short pass back to the goalkeeper. A pressing team instantly closes down. This is a pressing trigger. True or false?",
+              "scene": {"kind": "none", "alt": "A midfielder passes backward to the goalkeeper, and the opposing team immediately presses together."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. A back pass is a classic pressing trigger; it signals danger and the team jumps.",
+                "incorrect": "Yes, a backwards pass is a sign of danger and a trigger for a coordinated press.",
+                "sayThisLine": "Back pass, that's the trigger, they all go together."
+              },
+              "ruleTag": "Tactical cue"
+            }
+          },
+          {
+            "id": "review-02-fg-corner-defence",
+            "type": "fill-the-gap",
+            "conceptIds": ["corner-routine"],
+            "payload": {
+              "prompt": "Complete the corner idea.",
+              "template": "A corner routine is a {{type}} plan where the team decides {{what}}.",
+              "gaps": [
+                {"id": "type", "options": ["rehearsed", "random", "basic"], "correct": "rehearsed"},
+                {"id": "what", "options": ["who scores", "where the ball goes", "who touches it"], "correct": "where the ball goes"}
+              ],
+              "explanation": {
+                "correct": "Right. A corner routine is a set play: the team practises where the ball will go and who runs where.",
+                "incorrect": "A corner routine is a planned set piece. The attacking team rehearses the delivery, near-post runs, and far-post targets."
+              }
+            }
+          },
+          {
+            "id": "review-02-tm-pressing-types",
+            "type": "term-match",
+            "conceptIds": ["pressing"],
+            "payload": {
+              "prompt": "Match the pressing type to where it happens.",
+              "pairs": [
+                {"id": "high", "term": "High press", "definition": "Closing opponents down in their own half, winning the ball close to their goal."},
+                {"id": "mid", "term": "Mid-block", "definition": "Defending in the middle third, then pressing when the ball enters your zone."},
+                {"id": "low", "term": "Low block", "definition": "Defending deep near your box, inviting possession while staying compact."}
+              ],
+              "explanation": {
+                "summary": "These three defensive approaches describe where and how aggressively you close opponents down.",
+                "sayThisLine": "They pressed high, but we played out the back and broke it."
+              }
+            }
+          },
+          {
+            "id": "review-02-st-corner-routine",
+            "type": "say-this",
+            "conceptIds": ["corner-routine"],
+            "payload": {
+              "statement": {"speaker": "Sophie", "text": "That near post flick was so well drilled, the far post man was waiting."},
+              "question": "What is she describing?",
+              "options": [
+                {"id": "a", "text": "A lucky corner goal", "isCorrect": false},
+                {"id": "b", "text": "A planned set-piece move with two players", "isCorrect": true},
+                {"id": "c", "text": "A rehearsed near-post flick and a waiting far-post player", "isCorrect": true},
+                {"id": "d", "text": "Spontaneous attacking play", "isCorrect": false}
+              ],
+              "translation": "Her team has a corner routine where a player flicks the ball at the near post and a teammate times their run to tap in at the far post. It's a planned move, not luck.",
+              "followUps": [
+                {"line": "How many corner goals does your team score?", "why": "Asks for a real stat."},
+                {"line": "Do they practise corner routines a lot?", "why": "Shows you know set pieces are coached."}
+              ],
+              "noFakeExpertNote": "Set-piece coaching is real and often hidden; it's fine to ask."
+            }
+          }
+        ]
+      },
+      {
+        "id": "review-03",
+        "title": "Say-this lightning round",
+        "objective": "You can decode fan lines quickly.",
+        "estimatedMinutes": 5,
+        "conceptIds": ["worldie", "bottled-it", "clinical"],
+        "activities": [
+          {
+            "id": "review-03-st-worldie",
+            "type": "say-this",
+            "conceptIds": ["worldie"],
+            "payload": {
+              "statement": {"speaker": "Marcus", "text": "That was a worldie, top bins from thirty yards."},
+              "question": "What does 'worldie' mean?",
+              "options": [
+                {"id": "a", "text": "A spectacular goal from distance or an unlikely angle", "isCorrect": true},
+                {"id": "b", "text": "A goal in the World Cup", "isCorrect": false},
+                {"id": "c", "text": "The best goal of the season", "isCorrect": false},
+                {"id": "d", "text": "A goal that was impossible to save", "isCorrect": true}
+              ],
+              "translation": "He scored an incredible goal from thirty yards out, striking it into the top corner. A 'worldie' is a spectacular, audacious goal.",
+              "followUps": [
+                {"line": "Do you have a favourite worldie from this season?", "why": "Asks for a shared memory."},
+                {"line": "Was that from open play or a set piece?", "why": "Asks for a real detail."}
+              ],
+              "noFakeExpertNote": "If you don't remember it, ask him to describe it; that keeps the conversation real."
+            }
+          },
+          {
+            "id": "review-03-st-bottled",
+            "type": "say-this",
+            "conceptIds": ["bottled-it"],
+            "payload": {
+              "statement": {"speaker": "Keisha", "text": "We bottled it in the second half, we had it wrapped up."},
+              "question": "What does she mean?",
+              "options": [
+                {"id": "a", "text": "Her team collapsed under pressure when they should have won", "isCorrect": true},
+                {"id": "b", "text": "Her team played conservatively", "isCorrect": false},
+                {"id": "c", "text": "Her team lost their nerve in the final minutes", "isCorrect": true},
+                {"id": "d", "text": "Her team didn't try hard enough", "isCorrect": false}
+              ],
+              "translation": "Her team was winning comfortably but lost focus, made mistakes and the opponent came back. They had the game in their hands and let it slip away.",
+              "followUps": [
+                {"line": "What changed in the second half?", "why": "Asks for the turning point."},
+                {"line": "Was it a defensive lapse or losing the ball?", "why": "Shows you're thinking tactically."}
+              ],
+              "noFakeExpertNote": "Bottling happens to every team; don't minimise it but ask what went wrong."
+            }
+          },
+          {
+            "id": "review-03-st-clinical",
+            "type": "say-this",
+            "conceptIds": ["clinical"],
+            "payload": {
+              "statement": {"speaker": "Amara", "text": "They were clinical, one chance, one goal. We wasted ours."},
+              "question": "What is she saying?",
+              "options": [
+                {"id": "a", "text": "The opponent took their few chances efficiently while her team missed theirs", "isCorrect": true},
+                {"id": "b", "text": "The opponent had a doctor on the sideline", "isCorrect": false},
+                {"id": "c", "text": "Her team created more chances but wasn't efficient", "isCorrect": true},
+                {"id": "d", "text": "The opponent got lucky", "isCorrect": false}
+              ],
+              "translation": "The opponent finished their limited opportunities whereas her team created more chances but couldn't capitalise. Clinical means taking chances with precision.",
+              "followUps": [
+                {"line": "Did your striker have a bad game?", "why": "Asks about the player's form."},
+                {"line": "How many shots did each team have?", "why": "Shows you're tracking chances."}
+              ],
+              "noFakeExpertNote": "Clinical finishing is a skill; it's fair to ask if the striker is normally sharp."
+            }
+          },
+          {
+            "id": "review-03-st-nutmeg",
+            "type": "say-this",
+            "conceptIds": ["nutmeg-rabona"],
+            "payload": {
+              "statement": {"speaker": "Dev", "text": "He nutmegged the full-back and cut it back for the tap-in."},
+              "question": "What does 'nutmeg' mean here?",
+              "options": [
+                {"id": "a", "text": "Passing the ball between an opponent's legs", "isCorrect": true},
+                {"id": "b", "text": "A skill move involving a spin", "isCorrect": false},
+                {"id": "c", "text": "A sharp, quick dribble", "isCorrect": false},
+                {"id": "d", "text": "Beating an opponent with low technique", "isCorrect": true}
+              ],
+              "translation": "The winger flicked the ball through the full-back's legs (between their feet), beat him and then played a cutback pass for an easy finish.",
+              "followUps": [
+                {"line": "Is that a high-risk move?", "why": "Shows you understand the reward-risk trade."},
+                {"line": "Which full-back got beaten?", "why": "Asks a real question about the player."}
+              ],
+              "noFakeExpertNote": "Skill moves are flashy; acknowledge the audacity without overdoing it."
+            }
+          },
+          {
+            "id": "review-03-st-scrappy",
+            "type": "say-this",
+            "conceptIds": ["scrappy-win"],
+            "payload": {
+              "statement": {"speaker": "Liam", "text": "It was ugly but we got the three points, and that's what matters."},
+              "question": "What kind of win is he describing?",
+              "options": [
+                {"id": "a", "text": "A win without dominance or pretty play", "isCorrect": true},
+                {"id": "b", "text": "A controversial win", "isCorrect": false},
+                {"id": "c", "text": "A win that showed character and a champion mentality", "isCorrect": true},
+                {"id": "d", "text": "A lucky win", "isCorrect": false}
+              ],
+              "translation": "His team didn't play well but got a win anyway. It wasn't a flowing, dominant performance, but the result is what counts.",
+              "followUps": [
+                {"line": "Was it 1-0 or did you score more?", "why": "Asks for detail."},
+                {"line": "Do you expect to improve next week?", "why": "Looks forward positively."}
+              ],
+              "noFakeExpertNote": "Champions don't need to play beautifully every week; sometimes you win ugly and move on."
+            }
+          },
+          {
+            "id": "review-03-st-diesel",
+            "type": "say-this",
+            "conceptIds": ["clinical"],
+            "payload": {
+              "statement": {"speaker": "Priya", "text": "We were wasteful, six shots on target and one goal, when we should have been ruthless."},
+              "question": "What is she frustrated about?",
+              "options": [
+                {"id": "a", "text": "Her team didn't finish their chances efficiently", "isCorrect": true},
+                {"id": "b", "text": "The goalkeeper was poor", "isCorrect": false},
+                {"id": "c", "text": "Her team lacked clinical finishing", "isCorrect": true},
+                {"id": "d", "text": "The match was boring", "isCorrect": false}
+              ],
+              "translation": "Her team had six decent opportunities on target but only converted one. They were wasteful (missing chances they should score) instead of being ruthless (clinical).",
+              "followUps": [
+                {"line": "Who should have buried at least one more?", "why": "Asks about individual responsibility."},
+                {"line": "Is the striker in a rough patch?", "why": "Shows empathy for form dips."}
+              ],
+              "noFakeExpertNote": "Missing chances frustrates everyone; it's a real tactical and psychological issue."
+            }
+          }
+        ]
+      },
+      {
+        "id": "review-04",
+        "title": "Season recap",
+        "objective": "You can explain the season's big stories.",
+        "estimatedMinutes": 6,
+        "conceptIds": ["title-race", "relegation-scrap", "world-cup-2026"],
+        "activities": [
+          {
+            "id": "review-04-mc-title-race",
+            "type": "multiple-choice",
+            "conceptIds": ["title-race"],
+            "payload": {
+              "prompt": "Two teams are level on points with five games left. What decides the title?",
+              "options": [
+                {"id": "a", "text": "The team that wins the most games in their final five"},
+                {"id": "b", "text": "Head-to-head record if one team has played both"},
+                {"id": "c", "text": "Goal difference and sometimes a playoff"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Right. With the same points, the team that accumulates more in the run-in wins the title, or goal difference breaks the tie.",
+                "incorrect": "In a title race, the team with the best record over the final stretch usually wins. If they finish level on points, goal difference is the tiebreaker."
+              }
+            }
+          },
+          {
+            "id": "review-04-fg-relegation-drama",
+            "type": "fill-the-gap",
+            "conceptIds": ["relegation-scrap"],
+            "payload": {
+              "prompt": "Complete the relegation idea.",
+              "template": "The {{bottom}} teams go down each season; the {{scrap}} is the fight for {{survival}}.",
+              "gaps": [
+                {"id": "bottom", "options": ["last three", "bottom five", "lowest four"], "correct": "last three"},
+                {"id": "scrap", "options": ["drama", "race", "scrap"], "correct": "scrap"},
+                {"id": "survival", "options": ["points", "safety", "promotion"], "correct": "safety"}
+              ],
+              "explanation": {
+                "correct": "Right. In most leagues, the three lowest-placed teams are relegated. The race to avoid those spots is intense.",
+                "incorrect": "The three teams at the bottom are relegated; the fight to escape that zone is called the relegation battle or scrap."
+              }
+            }
+          },
+          {
+            "id": "review-04-bc-world-cup-2026",
+            "type": "binary-call",
+            "conceptIds": ["world-cup-2026"],
+            "payload": {
+              "prompt": "The 2026 World Cup had 48 teams and was won by Spain, who beat Argentina 1-0 in extra time. True or false?",
+              "scene": {"kind": "none", "alt": "The 2026 World Cup final score: Spain 1 Argentina 0 (AET), with Spain celebrating."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. Ferran Torres scored in the 106th minute in the 2026 final.",
+                "incorrect": "Yes, Spain's Ferran Torres scored in extra time to win the 48-team 2026 World Cup."
+              },
+              "ruleTag": "2026 World Cup fact"
+            }
+          },
+          {
+            "id": "review-04-st-title-drama",
+            "type": "say-this",
+            "conceptIds": ["title-race"],
+            "payload": {
+              "statement": {"speaker": "Ines", "text": "It's a three-horse race and we've got the best run-in of all of them."},
+              "question": "What is she saying?",
+              "options": [
+                {"id": "a", "text": "Three teams are fighting for the title", "isCorrect": true},
+                {"id": "b", "text": "Her team has an easier fixture list at the end", "isCorrect": true},
+                {"id": "c", "text": "Her team will definitely win", "isCorrect": false},
+                {"id": "d", "text": "The other two teams are weaker", "isCorrect": false}
+              ],
+              "translation": "Three teams are level or close on points at the top. Her team has the advantage of facing easier opponents in their final matches, which could be crucial.",
+              "followUps": [
+                {"line": "Who are the other contenders?", "why": "Asks for the specific rivals."},
+                {"line": "Do you think you'll hold on?", "why": "Asks her prediction."}
+              ],
+              "noFakeExpertNote": "The run-in (fixture list) can decide a title. Ask who they're playing and gauge difficulty."
+            }
+          },
+          {
+            "id": "review-04-tm-season-stakes",
+            "type": "term-match",
+            "conceptIds": ["title-race", "relegation-scrap"],
+            "payload": {
+              "prompt": "Match the season-end battle to its stakes.",
+              "pairs": [
+                {"id": "title", "term": "Title race", "definition": "The fight between the top teams for the league championship, decided by points and goal difference."},
+                {"id": "europe", "term": "European spots", "definition": "Teams battle for top-four (or top-six) places to qualify for the Champions League next season."},
+                {"id": "relegation", "term": "Relegation scrap", "definition": "Teams near the bottom fight to avoid being relegated; every point is survival."}
+              ],
+              "explanation": {
+                "summary": "The season has three overlapping dramas: who wins, who goes to Europe, and who gets relegated.",
+                "sayThisLine": "It's tight at the top and tight at the bottom, the whole season's up for grabs."
+              }
+            }
+          },
+          {
+            "id": "review-04-st-wc-memory",
+            "type": "say-this",
+            "conceptIds": ["world-cup-2026"],
+            "payload": {
+              "statement": {"speaker": "Carlos", "text": "Ferran Torres in the 106th minute. I still get chills thinking about it."},
+              "question": "What is he talking about?",
+              "options": [
+                {"id": "a", "text": "The 2026 World Cup final goal", "isCorrect": true},
+                {"id": "b", "text": "A personal memory tied to a Spain goal", "isCorrect": true},
+                {"id": "c", "text": "The winning goal of a major tournament", "isCorrect": true},
+                {"id": "d", "text": "A recent club goal", "isCorrect": false}
+              ],
+              "translation": "Torres' goal in the 106th minute won the 2026 World Cup final for Spain (against Argentina). It's a big memory for fans.",
+              "followUps": [
+                {"line": "Where did you watch it?", "why": "Opens up a personal memory."},
+                {"line": "Are you Spanish or just a Torres fan?", "why": "Asks a genuine question."}
+              ],
+              "noFakeExpertNote": "The 2026 final is recent history; sharing where you watched it connects you both."
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

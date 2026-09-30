@@ -39,9 +39,10 @@
             "type": "fill-the-gap",
             "conceptIds": ["ucl-league-phase"],
             "payload": {
-              "prompt": "In the Champions League league phase, the top {{topPlaces}} go straight to the last 16.",
+              "prompt": "In the Champions League league phase, the top {{top-places}} go straight to the last 16.",
+              "template": "In the Champions League league phase, the top {{top-places}} go straight to the last 16.",
               "gaps": [
-                {"id": "topPlaces", "options": ["four", "six", "eight"], "correct": "eight"}
+                {"id": "top-places", "options": ["four", "six", "eight"], "correct": "eight"}
               ],
               "explanation": {
                 "correct": "Exactly. The top eight teams skip the playoffs and go straight to the knockout last 16.",
@@ -50,13 +51,20 @@
             }
           },
           {
-            "id": "ucl-01-es-teams",
+            "id": "ucl-01-es-playoff-winners",
             "type": "estimate-slider",
             "conceptIds": ["ucl-league-phase"],
             "payload": {
               "prompt": "How many teams from places 9 to 24 make it to the knockout stage after the playoff round?",
-              "estimateRange": [8, 16],
-              "correctAnswer": 8,
+              "unit": "teams",
+              "min": 4,
+              "max": 16,
+              "step": 1,
+              "correctValue": 8,
+              "tolerance": {
+                "full": 0,
+                "partial": 2
+              },
               "explanation": {
                 "correct": "Exactly 8. Places 9-24 play a two-leg playoff; the 8 winners join the top 8 for a knockout of 16 teams.",
                 "incorrect": "Eight teams from the playoff round join the top eight in the last 16. Sixteen qualify total for knockouts."
@@ -82,24 +90,6 @@
             }
           },
           {
-            "id": "ucl-01-mc-matches",
-            "type": "multiple-choice",
-            "conceptIds": ["ucl-league-phase"],
-            "payload": {
-              "prompt": "In the new league phase, how many matches does each team play?",
-              "options": [
-                {"id": "a", "text": "Six matches in one group"},
-                {"id": "b", "text": "Eight matches against different opponents"},
-                {"id": "c", "text": "Ten matches to decide the top 8"}
-              ],
-              "correctOptionIds": ["b"],
-              "explanation": {
-                "correct": "Right. Each team plays exactly eight matches; no groups, no repeats.",
-                "incorrect": "Every team plays eight matches against eight different opponents. It's a single, level playing field."
-              }
-            }
-          },
-          {
             "id": "ucl-01-st-qualifying",
             "type": "say-this",
             "conceptIds": ["ucl-league-phase", "continental-competitions"],
@@ -119,6 +109,23 @@
               ],
               "noFakeExpertNote": "It's okay to ask which league he's talking about; that's a genuine question."
             }
+          },
+          {
+            "id": "ucl-01-tm-positions",
+            "type": "term-match",
+            "conceptIds": ["ucl-league-phase"],
+            "payload": {
+              "prompt": "Match the league phase position to the next stage.",
+              "pairs": [
+                {"id": "top-eight", "term": "Top 8 teams", "definition": "Skip the playoff round and go straight to the last 16."},
+                {"id": "nine-twenty-four", "term": "Positions 9-24", "definition": "Play a two-leg playoff to reach the last 16."},
+                {"id": "bottom-twelve", "term": "Positions 25-36", "definition": "Eliminated from the competition and drop to the Europa League."}
+              ],
+              "explanation": {
+                "summary": "The league phase has three tiers: automatic last-16 entry, playoff contenders and exit to a lower European cup.",
+                "sayThisLine": "Top eight goes through; nine through twenty-four plays playoffs; the rest is Europe League."
+              }
+            }
           }
         ]
       },
@@ -136,15 +143,14 @@
             "payload": {
               "prompt": "Order these stages of a team's Champions League knockout path.",
               "items": [
-                {"id": "league", "label": "League phase: play 8 matches, aim for top 8"},
-                {"id": "playoff", "label": "Playoff round (if 9-24): two legs to reach last 16"},
-                {"id": "knockout", "label": "Last 16, quarter-finals, semi-finals"},
-                {"id": "final", "label": "Final: one match to win it all"}
+                {"id": "league", "text": "League phase: play 8 matches, aim for top 8", "why": "The first stage where all 36 clubs compete."},
+                {"id": "playoff", "text": "Playoff round (if 9-24): two legs to reach last 16", "why": "Only for the 16 teams that finish outside the top eight."},
+                {"id": "knockout", "text": "Last 16, quarter-finals, semi-finals", "why": "Two-leg knockout matches."},
+                {"id": "final", "text": "The final", "why": "One match to decide the champion."}
               ],
-              "correctOrder": ["league", "playoff", "knockout", "final"],
               "explanation": {
-                "summary": "The league phase feeds the playoff (if needed), then a knockout ladder from 16 to the final.",
-                "sayThisLine": "League phase, playoffs if needed, then a ladder of two-leg ties until the final."
+                "correct": "Right. League phase, then playoff if needed, then a knockout ladder to the final.",
+                "incorrect": "The path is league phase, then playoff for teams 9-24, then the knockout rounds leading to the final."
               }
             }
           },
@@ -228,7 +234,7 @@
             "type": "binary-call",
             "conceptIds": ["aggregate-tie"],
             "payload": {
-              "prompt": "Team A wins 2-1 away, then 0-1 at home. They're out. True or false?",
+              "prompt": "Team A wins 2-1 away, then loses 0-1 at home. They're out. True or false?",
               "scene": {"kind": "none", "alt": "A team scoreboard showing results from two legs."},
               "choices": [
                 {"id": "true", "label": "True"},
@@ -265,24 +271,6 @@
               "explanation": {
                 "correct": "Right. European nights mean facing clubs from across the continent with different styles, histories and fans. It's a step up in scale.",
                 "incorrect": "Champions League matches are often played at night under lights, with foreign fans, different tactics and the weight of continental competition. It's a different atmosphere."
-              }
-            }
-          },
-          {
-            "id": "ucl-03-mc-history",
-            "type": "multiple-choice",
-            "conceptIds": ["continental-competitions", "derby-history"],
-            "payload": {
-              "prompt": "Which of these is NOT typically known as a big Champions League night?",
-              "options": [
-                {"id": "a", "text": "A domestic league match between rivals in your country"},
-                {"id": "b", "text": "Playing a famous European club with decades of European history"},
-                {"id": "c", "text": "A knockout round against a rival from another league"}
-              ],
-              "correctOptionIds": ["a"],
-              "explanation": {
-                "correct": "Exactly. Domestic derbies are big, but Champions League nights are special because they're European, intercontinental and rare.",
-                "incorrect": "Champions League nights are defined by European scale: foreign fans, different cultures, knock-out drama and the weight of continental competition."
               }
             }
           },

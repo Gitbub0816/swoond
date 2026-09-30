@@ -226,3 +226,383 @@ Personalization tokens use the curriculum syntax `{{team}}`, `{{player}}`, `{{le
 - **Useful competence statement:** "She can follow a baseball game or a broadcast, read the scoreboard and the box score, understand the count and the modern rules, ask a couple of good questions about a bullpen or a lineup, and say 'okay, I get why you love this' without faking it."
 
 ---
+
+## 11. Curriculum map (ongoing course)
+
+Course version target at launch: `curriculumVersion 0.1.0` (structure + first units). **19 units, 116 lessons** across all six layers (a learner sees 16 core units plus at most the units of the branch(es) they choose; branch units are tagged `branchId`). Activity legend: `mc` multiple-choice, `bc` binary-call, `tm` term-match, `so` sequence-order, `vi` visual-id, `ds` decision-scenario, `tk` talk-track, `tt` timing-tap, `st` say-this, `fg` fill-the-gap, `li` listening-id, `es` estimate-slider, `ht` hotspot-tap, `SIM` unity-sim. The Activities column names the activity *families* the lesson uses; each lesson has 4 or more activities in curriculum JSON (validator rule `thin-lesson`) and ends with a "line you could say out loud" and 1-2 Playbook additions. Every unit's final lesson is a mixed-review capstone that includes one `tk` or `st` beat.
+
+Concept ids are listed in the Appendix (generated from these tables; every id below appears there).
+
+### Layer 1: Foundations (5 units, 35 lessons)
+
+**Unit `the-game`: The Game in One Sitting** (prereq: none). 7 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `game-01` | Two teams, one long story | Say in one breath what baseball is and why it feels slow. | game-objective, baseball-pace | mc, st, fg |
+| `game-02` | Innings and outs | Explain three outs, top and bottom, and why nine innings. | inning, half-inning, out | mc, so, bc |
+| `game-03` | The diamond, mapped | Locate the bases, mound, plate, foul lines and infield/outfield. | diamond, infield, outfield, foul-line, fair-foul-territory | ht, tm, mc |
+| `game-04` | Nine defenders, nine numbers | Name the positions and their numbers. | pitcher, catcher, infielder, outfielder, position-numbers | ht, tm, vi |
+| `game-05` | The batting order | Explain the lineup and why batting order matters. | batting-order, leadoff-hitter, cleanup-hitter, designated-hitter | mc, ds, fg |
+| `game-06` | How a game ends | Handle nine innings, walk-offs and extra innings with the automatic runner. | nine-innings, walk-off, extra-innings, automatic-runner, home-team-bats-last | bc, mc, so |
+| `game-07` | The long season | Understand 162 games, series, and why one loss barely matters. | season-162, series, games-behind, winning-percentage | es, mc, tk |
+
+**Unit `the-count`: The Count and the At-Bat** (prereq: `the-game`). 7 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `count-01` | Balls and strikes | Define ball, strike and the strike zone. | ball, strike, strike-zone | mc, ht, bc |
+| `count-02` | The count is a language | Read "3-2", "0-2" and know who has the advantage. | count, full-count, hitters-count, pitchers-count | fg, mc, ds |
+| `count-03` | Three ways to strike out | Tell swinging, looking, and dropped third strike apart. | strikeout, swinging-strike, called-strike-three, dropped-third-strike | bc, mc, st |
+| `count-04` | Fouls and near-misses | Know when a foul is a strike and when it is not. | foul-ball, foul-tip, checked-swing | bc, mc, ds |
+| `count-05` | Walks and hit-by-pitch | Explain how a batter reaches without a hit. | walk, hit-by-pitch, intentional-walk | mc, bc, ds |
+| `count-06` | Ball in play | Recognize grounder, liner, fly, popup, and hit types. | ground-ball, line-drive, fly-ball, pop-up, single, double, triple, home-run, ground-rule-double | vi, tm, mc |
+| `count-07` | One plate appearance, start to finish | Order a plate appearance; at-bat versus plate appearance. | plate-appearance, at-bat, pitch-sequencing | so, tk, st |
+
+**Unit `on-the-bases`: Running the Bases** (prereq: `the-count`). 7 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `base-01` | Safe or out | Define safe, out and the tag. | safe, tag | bc, mc, vi |
+| `base-02` | Force plays and tag plays | Decide whether a runner must be forced. | force-play, tag-play | ds, bc, ht |
+| `base-03` | Advancing | Explain how runners move on hits, walks, errors and fielder's choices. | advance, fielders-choice | mc, so, bc |
+| `base-04` | Leads, steals and pickoffs | Describe leading off, stealing, pickoffs and balks. | lead-off, stolen-base, caught-stealing, pickoff, balk | bc, mc, ds |
+| `base-05` | Tagging up | Explain why runners hold on a fly ball. | tag-up, sacrifice-fly | ds, bc, mc |
+| `base-06` | Read it and go | Decide go or hold as a ball drops and the throw comes. | send-or-hold, third-base-coach, read-and-go, two-outs-running | SIM `baseball.baserunning.read-and-go.v1`, bc, ds |
+| `base-07` | Double plays and rundowns | Follow a 6-4-3 and a rundown. | double-play, rundown, triple-play | so, mc, tk |
+
+**Unit `the-defense`: The Defense** (prereq: `on-the-bases`). 7 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `def-01` | Who covers what | Say who covers which base and who backs up. | covering-bases, backing-up | ht, mc, ds |
+| `def-02` | Hit or error? | Explain the scorer's decision; passed ball versus wild pitch. | error, hit-vs-error, wild-pitch, passed-ball | mc, bc, ds |
+| `def-03` | Cutoffs and relays | Explain the cutoff man and the relay. | cutoff-man, relay-throw | ht, ds, mc |
+| `def-04` | The infield fly rule | Say what it is, when it applies, and why it exists. | infield-fly-rule | bc, mc, ds |
+| `def-05` | The catcher | Explain blocking, framing and calling a game. | catcher-duties, pitch-framing, pitch-calling | mc, st, vi |
+| `def-06` | Where do they stand? | Choose depth and alignment for the situation. | infield-in, double-play-depth, no-doubles-defense, guarding-the-line, outfield-depth | SIM `baseball.defense.alignment-read.v1`, ht, ds |
+| `def-07` | Range, arm and Gold Glove | Talk about defense: range, arm, Gold Glove. | range, arm-strength, gold-glove | mc, tm, tk |
+
+**Unit `scoreboard-and-stats`: Scoreboards, Box Scores and Stats** (prereq: `the-count`). 7 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `score-01` | Reading a scoreboard | Read a line score and R-H-E. | line-score | vi, mc, fg |
+| `score-02` | The box score | Read a batter's and pitcher's row. | box-score, earned-run | vi, ht, mc |
+| `score-03` | The batting line | Define AVG, OBP, SLG, OPS, RBI. | batting-average, on-base-percentage, slugging-percentage, ops, rbi | tm, fg, es |
+| `score-04` | The pitching line | Define ERA, WHIP, W-L, save, hold, quality start. | era, whip, win-loss-record, save, hold, quality-start, strikeout-to-walk | mc, tm, bc |
+| `score-05` | Scorekeeping shorthand | Read K, backwards K, 6-4-3, F8. | scorekeeping-symbols | so, fg, ht |
+| `score-06` | Feats and milestones | Recognize no-hitter, perfect game, cycle, triple crown. | no-hitter, perfect-game, cycle, triple-crown, complete-game, shutout | mc, st, bc |
+| `score-07` | Reading the standings | Read W-L, PCT, GB, run differential, magic number. | standings, run-differential, magic-number, wild-card-race | vi, mc, tk |
+
+### Layer 2: Intermediate (4 units, 28 lessons)
+
+**Unit `pitching`: Pitching** (prereq: `the-count`). 7 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `pit-01` | The fastball family | Tell four-seam, sinker and cutter apart. | four-seam-fastball, sinker, cutter, velocity | vi, mc, tm |
+| `pit-02` | Breaking balls | Tell curveball, slider and sweeper apart. | curveball, slider, sweeper | vi, mc, tm |
+| `pit-03` | Reading the pitch | Read a pitch from its early flight. | changeup, splitter, pitch-movement, tunneling, pitch-mix | SIM `baseball.pitching.pitch-shapes.v1`, mc, ds |
+| `pit-04` | Starters and relievers | Explain rotation, bullpen, closer, setup, opener. | starting-pitcher, rotation, reliever, bullpen, closer, setup-man, opener | mc, tm, ds |
+| `pit-05` | Pitch counts and workload | Explain pitch counts and the third time through the order. | pitch-count, times-through-the-order, tommy-john, injured-list | mc, ds, es |
+| `pit-06` | Stuff versus command | Distinguish stuff from command. | command, stuff, spin-rate | mc, ds, fg |
+| `pit-07` | The pitchers' duel | Talk through a pitching duel and a bullpen day. | pitchers-duel | mc, st, tk |
+
+**Unit `hitting`: Hitting** (prereq: `the-count`). 7 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `hit-01` | Contact, power, discipline | Separate the three hitting skills. | contact-hitting, power-hitting, plate-discipline, chase-rate, whiff | mc, vi, tm |
+| `hit-02` | Exit velocity and launch angle | Explain what a barrel is. | exit-velocity, launch-angle, barrel, hard-hit | es, mc, ht |
+| `hit-03` | Approach | Explain pull, opposite-field and two-strike approaches. | pull-hitter, opposite-field, spray-chart, situational-hitting, two-strike-approach | mc, ds, ht |
+| `hit-04` | Bunts and sacrifices | Decide when a bunt or sac fly helps. | bunt, sacrifice-bunt, squeeze-play, productive-out | ds, bc, mc |
+| `hit-05` | Platoon and handedness | Explain lefty-righty matchups. | platoon-advantage, switch-hitter, lefty-righty-split | ds, mc, bc |
+| `hit-06` | Types of hitter | Recognize slugger, contact hitter, five-tool, three true outcomes. | five-tool-player, three-true-outcomes | tm, vi, mc |
+| `hit-07` | Why he bats second | Read a lineup card. | lineup-construction, protection | ds, mc, tk |
+
+**Unit `strategy`: Strategy and the Manager** (prereq: `pitching`, `hitting`). 7 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `strat-01` | The manager's toolbox | Explain pinch hitters, pinch runners, double switches. | pinch-hitter, pinch-runner, defensive-replacement, double-switch | mc, ds, tm |
+| `strat-02` | The bullpen decision | Explain leverage and save situations. | matchup-pitching, leverage, save-situation | ds, mc, bc |
+| `strat-03` | Walk him on purpose | Explain intentional walks and pitching around a hitter. | pitching-around, first-base-open | ds, bc, mc |
+| `strat-04` | Steal, hit-and-run, squeeze | Explain the break-even steal rate and hit-and-run. | hit-and-run, delayed-steal, steal-break-even | ds, mc, bc |
+| `strat-05` | The shift, then and now | Explain the shift and its restrictions. | defensive-shift, shift-restrictions | ds, ht, mc |
+| `strat-06` | Win expectancy | Read a win-probability swing. | win-expectancy | es, mc, ds |
+| `strat-07` | Second-guessing the manager | Discuss "the book" without being a know-it-all. | the-book, analytics-vs-gut | ds, tk, st |
+
+**Unit `modern-rules`: The Modern Game (2023 to 2026)** (prereq: `the-count`, `on-the-bases`). 7 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `mod-01` | The pitch clock | State the 15/18-second clock and the batter rule. | pitch-clock, batter-timer | mc, tt, es, fg |
+| `mod-02` | Two pickoffs, then a balk | Explain the disengagement limit. | disengagement-limit | bc, mc, ds |
+| `mod-03` | Bigger bases, fewer shifts | Explain 18-inch bases and infield alignment limits. | bigger-bases | ht, mc, bc |
+| `mod-04` | The ABS challenge | Explain how an ABS challenge works and who may call one. | abs-challenge, hawk-eye | bc, ds, mc |
+| `mod-05` | The zone in numbers | Explain the ABS zone scaled to the batter. | abs-zone | ht, es, mc |
+| `mod-06` | DH, ghost runner, three-batter minimum | Explain universal DH, automatic runner, three-batter rule. | universal-dh, three-batter-minimum, roster-limits | mc, tm, ds |
+| `mod-07` | Did the rules fix baseball? | Discuss what the changes did without being a know-it-all. | replay-review, managers-challenge, rule-change-effects | mc, ds, tk |
+
+### Layer 3: Enthusiast depth (4 units, 24 lessons)
+
+**Unit `analytics`: Analytics Without the Headache** (prereq: `scoreboard-and-stats`). 6 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `ana-01` | Beyond batting average | Explain OPS+, wOBA, wRC+ in one sentence each. | ops-plus, woba, wrc-plus | tm, mc, es |
+| `ana-02` | WAR, gently | Explain WAR and its limits. | war, replacement-level | mc, ds, es |
+| `ana-03` | Pitching beyond ERA | Explain FIP, xERA, BABIP luck. | fip, xera, babip | mc, tm, ds |
+| `ana-04` | Statcast in one sitting | Read Statcast terms on a broadcast. | statcast, xba, xwoba, sprint-speed | vi, mc, tm |
+| `ana-05` | Defense and running by the numbers | Read OAA, DRS and baserunning runs. | outs-above-average, defensive-runs-saved, baserunning-runs | mc, tm, ds |
+| `ana-06` | Analytics versus the eye test | Talk about Moneyball, small samples, regression. | moneyball, sample-size, regression-to-mean | ds, tk, st |
+
+**Unit `front-office`: The Front Office** (prereq: `scoreboard-and-stats`). 6 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `front-01` | How MLB is organised | Explain leagues, divisions and interleague. | american-league, national-league, division, interleague | mc, tm, so |
+| `front-02` | The farm system | Explain the minors, call-ups, options and the Rule 5 draft. | minor-leagues, prospect, call-up, option, rule-5-draft | so, mc, tm |
+| `front-03` | The draft and international signings | Explain the draft, lottery and prospect ranking. | mlb-draft, draft-lottery, international-signing | mc, so, ds |
+| `front-04` | Contracts and free agency | Explain arbitration, free agency, opt-outs and no-trade clauses. | free-agency, arbitration, service-time, qualifying-offer, opt-out, no-trade-clause | tm, ds, mc |
+| `front-05` | Payroll, tax and trades | Explain the luxury tax, deadline, DFA and rentals. | luxury-tax, payroll, trade-deadline, dfa, waivers, rental | ds, mc, tm |
+| `front-06` | The CBA and the lockout | Explain the CBA, lockout versus strike, and the salary-cap fight. | cba, lockout, salary-cap-debate | mc, ds, tk |
+
+**Unit `october-and-history`: October and Baseball's Long Memory** (prereq: `scoreboard-and-stats`). 6 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `oct-01` | The 12-team playoff | Order the wild card, division series, LCS and World Series. | wild-card-series, bye, division-series, lcs, world-series | so, mc, ht |
+| `oct-02` | Why October is different | Explain short-series variance and the hot hand. | home-field-advantage, hot-hand, short-series-variance | ds, mc, st |
+| `oct-03` | Baseball's long memory | Place the dead-ball era, Babe Ruth and the Negro leagues. | dead-ball-era, babe-ruth, negro-leagues, jackie-robinson | mc, so, st |
+| `oct-04` | Eras and scandals | Talk about the steroid era without a hot take. | steroid-era, reserve-clause | mc, ds, tk |
+| `oct-05` | The Hall of Fame debate | Explain voting, 75 percent and the character clause. | hall-of-fame, bbwaa-vote, character-clause | mc, ds, tk |
+| `oct-06` | Droughts and dynasties | Talk about famous droughts ending and dynasties. | curse-drought, dynasty | mc, st, tk |
+
+**Unit `ballpark-culture`: Ballpark Culture and Fan Life** (prereq: `the-game`). 6 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `cult-01` | Why it is a hangout sport | Explain the rhythm of a game and its rituals. | seventh-inning-stretch, ballpark-rituals | mc, st, fg |
+| `cult-02` | Unwritten rules and bat flips | Talk about unwritten rules without taking a side. | unwritten-rules, bat-flip, benches-clearing, beanball | ds, mc, tk |
+| `cult-03` | Ballparks with personality | Explain park factors and famous parks. | park-factors, green-monster, wrigley-ivy | mc, vi, ht |
+| `cult-04` | Baseball slang | Decode dinger, can of corn, ribbie, Mendoza line. | baseball-slang, mendoza-line | tm, fg, st |
+| `cult-05` | Going to a game | Score a game, foul-ball etiquette, arriving, heckling. | scoring-at-the-park, foul-ball-etiquette, heckling | ds, mc, tk |
+| `cult-06` | Rivalries and loyalty | Talk about rivalries kindly. | rivalry, fan-loyalty | ds, st, tk |
+
+### Layer 4: Branches and personalization (3 units, 15 lessons)
+
+Branch units (`layer: branch`, unit `branchId`) are shown only when the branch is selected. Shared lessons carry branch-tagged activities (`branchId`) for rules that differ (e.g. `mod-01` for college's 2027 timer; `game-06` for NPB ties). The `mlb` branch has no unit of its own (it is the default course).
+
+**Unit `branch-college`: College Baseball** (branch `college`; prereq: `the-game`, `the-count`). 5 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `col-01` | College baseball at a glance | Explain the season, BBCOR bat and conferences. | ncaa-baseball, bbcor-bat, conference-baseball | mc, tm, fg |
+| `col-02` | The road to Omaha | Order regionals, super regionals and the College World Series. | regionals-to-omaha, cws | so, mc, ht |
+| `col-03` | College versus pro rules | Compare DH, bats, timers and the coming ABS. | college-rule-differences | bc, mc, ds |
+| `col-04` | Draft, NIL and the portal | Explain the transfer portal, NIL and draft eligibility. | transfer-portal, nil, draft-eligibility | mc, ds, tm |
+| `col-05` | Talking college baseball | Practice conversation about a college team. | convo-college-talk | tk, st, mc |
+
+**Unit `branch-npb`: Nippon Professional Baseball** (branch `npb`; prereq: `the-game`). 5 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `npb-01` | NPB at a glance | Explain 12 teams, two leagues and the season. | npb-structure, cl-vs-pl | mc, tm, es |
+| `npb-02` | How the game feels different | Explain ties, the 12-inning cap and small ball. | ties-npb, small-ball-npb | mc, bc, ds |
+| `npb-03` | Oendan and stadium culture | Explain organised cheering. | oendan | mc, st, li |
+| `npb-04` | Climax Series and Japan Series | Order NPB's postseason. | climax-series, japan-series | so, mc, ht |
+| `npb-05` | From Japan to MLB | Explain the posting system and the pipeline. | posting-system, foreign-player-limit | mc, ds, tk |
+
+**Unit `branch-kbo`: KBO League** (branch `kbo`; prereq: `the-game`). 5 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `kbo-01` | KBO at a glance | Explain 10 teams and the season. | kbo-structure | mc, tm, es |
+| `kbo-02` | Bat flips and cheer squads | Explain bat-flip culture and cheerleaders. | bat-flip-culture, cheer-squads | mc, st, li |
+| `kbo-03` | KBO rules and ABS | Explain ties, ABS in every park and import limits. | abs-kbo, kbo-imports | bc, mc, ds |
+| `kbo-04` | The KBO postseason | Order the KBO playoffs. | kbo-postseason, korean-series | so, mc, ht |
+| `kbo-05` | From Korea to MLB | Explain the KBO-MLB pipeline. | kbo-to-mlb | mc, ds, tk |
+
+### Layer 5: Current season / live (1 unit, 5 lessons)
+
+Templates instantiated weekly from live data and editorial (see `live-data.md`); the lessons are shells with `live` hooks, and their exercises are generated from Swoon'd's own explainer text and entity data, never hard-coded scores.
+
+**Unit `season-now`: This Season** (layer `current-season`; prereq: `scoreboard-and-stats`; `live` hook on the unit, `refreshHint` daily in-season). 5 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `live-01` | This week in baseball | Read this week's schedule and yesterday's results with {{team}}. | live-weekly-context | mc, st, tk, fg |
+| `live-02` | The race | Read the standings and the wild-card picture. | season-race, magic-number | vi, mc, ds, tk |
+| `live-03` | Why is everyone talking about this? | Explain trades, injuries and news in plain words. | transaction-explainer, rule-news-explainer | mc, st, ds, tk |
+| `live-04` | Awards and milestones | Understand MVP/Cy Young talk and milestones in progress. | award-season, milestone-watch | mc, st, fg, tk |
+| `live-05` | The hot stove | Understand the offseason (free agency, Winter Meetings, CBA news). | hot-stove, cba-news-explainer, season-rollover | mc, ds, tk, st |
+
+### Layer 6: Conversation practice and perpetual review (2 units, 9 lessons)
+
+**Unit `conversation-lab`: Conversation Lab** (prereq: any three foundation units; content grows with mastery). 6 lessons; also feeds the Talk tab.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `talk-01` | Decoding her recap | Respond with curiosity to a game recap. | convo-recap, convo-follow-up-questions | tk, st, mc, fg |
+| `talk-02` | The bullpen meltdown | Handle "the bullpen blew it again". | convo-bullpen-talk, bullpen, blown-save | tk, st, ds, mc |
+| `talk-03` | She hates the manager | Listen to a rant without piling on. | convo-manager-rant, convo-team-loss | tk, st, ds, mc |
+| `talk-04` | At the park | Small talk at a game: what to ask, what to skip. | convo-at-the-park | tk, st, ds, fg |
+| `talk-05` | The new rules debate | Talk pitch clock and ABS without lecturing. | convo-rule-change-talk | tk, st, mc, ds |
+| `talk-06` | Say-this gauntlet | Decode five lines in a row and admit what you do not know. | convo-admit-what-you-dont-know | st, tk, mc, ds |
+
+**Unit `review-loop`: Perpetual Review** (always available after the first lesson). 3 lesson templates driven by the review policy.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `rev-01` | Daily Bite | One card (mc/fg/tm) from due concepts. | (due concepts) | mc, fg, tm, bc |
+| `rev-02` | Weekly mix | Three-round session sampled by weakness. | (weak concepts) | mc, bc, ds, tk |
+| `rev-03` | Box-score and rules boss | Mastery check on the two most misunderstood areas (force/tag/tag-up and reading a box score). | force-play, tag-up, box-score, infield-fly-rule | SIM `baseball.baserunning.read-and-go.v1` (hard), vi, bc, ds |
+
+**Review policy:** intervals 1d, 3d, 7d, 14d, 30d, 60d; max 12 items per session; new concepts enter after first correct use; concept below 0.6 re-enters at 1d. Sim results contribute masterySignals with the same weights as native (halved when hints used).
+
+### Concept targets, personalization slots, release plan
+
+- **Concept count target:** see the Appendix (330 ids; `exercises.md` writes the first 72 Playbook entries with definitions and example lines, the rest are authored with each unit).
+- **Personalization slots:** `{{team}}`, `{{player}}`, `{{league}}`, `{{skillLevel}}`, `{{region}}` (section 8).
+- **Release plan:**
+  - **Launch (v0.1 to 1.0):** branch `mlb`; units `the-game` to `scoreboard-and-stats`, `pitching`, `hitting`, `strategy`, `modern-rules`, `conversation-lab`, `review-loop`; sims 1 and 2 (baserunning, alignment) are last in the Astra order.
+  - **Fast follow (1.1):** `analytics`, `front-office`, `october-and-history`, `season-now` (live cards), sim 3 (`pitch-shapes`); `college` branch after the college season starts (Feb 2027).
+  - **1.2:** `ballpark-culture`, `npb` and `kbo` branches (timed to their seasons, March 2027).
+  - **Ongoing:** new `season-now` cards weekly; rule-change refresh each off-season; new talk tracks weekly in-season; a "post-CBA" refresh once the December 2026 situation resolves.
+- **Branch pacing note:** a learner never sees all 19 units; the 16 core units plus the chosen branch unit(s).
+
+
+### Appendix: Playbook concepts (ids)
+
+Each id is first introduced in the unit shown; later lessons reuse it. Total: 330.
+
+`the-game` (28): `game-objective`, `baseball-pace`, `inning`, `half-inning`, `out`, `diamond`, `infield`, `outfield`, `foul-line`, `fair-foul-territory`, `pitcher`, `catcher`, `infielder`, `outfielder`, `position-numbers`, `batting-order`, `leadoff-hitter`, `cleanup-hitter`, `designated-hitter`, `nine-innings`, `walk-off`, `extra-innings`, `automatic-runner`, `home-team-bats-last`, `season-162`, `series`, `games-behind`, `winning-percentage`.
+
+`the-count` (29): `ball`, `strike`, `strike-zone`, `count`, `full-count`, `hitters-count`, `pitchers-count`, `strikeout`, `swinging-strike`, `called-strike-three`, `dropped-third-strike`, `foul-ball`, `foul-tip`, `checked-swing`, `walk`, `hit-by-pitch`, `intentional-walk`, `ground-ball`, `line-drive`, `fly-ball`, `pop-up`, `single`, `double`, `triple`, `home-run`, `ground-rule-double`, `plate-appearance`, `at-bat`, `pitch-sequencing`.
+
+`on-the-bases` (20): `safe`, `tag`, `force-play`, `tag-play`, `advance`, `fielders-choice`, `lead-off`, `stolen-base`, `caught-stealing`, `pickoff`, `balk`, `tag-up`, `sacrifice-fly`, `send-or-hold`, `third-base-coach`, `read-and-go`, `two-outs-running`, `double-play`, `rundown`, `triple-play`.
+
+`the-defense` (20): `covering-bases`, `backing-up`, `error`, `hit-vs-error`, `wild-pitch`, `passed-ball`, `cutoff-man`, `relay-throw`, `infield-fly-rule`, `catcher-duties`, `pitch-framing`, `pitch-calling`, `infield-in`, `double-play-depth`, `no-doubles-defense`, `guarding-the-line`, `outfield-depth`, `range`, `arm-strength`, `gold-glove`.
+
+`scoreboard-and-stats` (26): `line-score`, `box-score`, `earned-run`, `batting-average`, `on-base-percentage`, `slugging-percentage`, `ops`, `rbi`, `era`, `whip`, `win-loss-record`, `save`, `hold`, `quality-start`, `strikeout-to-walk`, `scorekeeping-symbols`, `no-hitter`, `perfect-game`, `cycle`, `triple-crown`, `complete-game`, `shutout`, `standings`, `run-differential`, `magic-number`, `wild-card-race`.
+
+`pitching` (27): `four-seam-fastball`, `sinker`, `cutter`, `velocity`, `curveball`, `slider`, `sweeper`, `changeup`, `splitter`, `pitch-movement`, `tunneling`, `pitch-mix`, `starting-pitcher`, `rotation`, `reliever`, `bullpen`, `closer`, `setup-man`, `opener`, `pitch-count`, `times-through-the-order`, `tommy-john`, `injured-list`, `command`, `stuff`, `spin-rate`, `pitchers-duel`.
+
+`hitting` (25): `contact-hitting`, `power-hitting`, `plate-discipline`, `chase-rate`, `whiff`, `exit-velocity`, `launch-angle`, `barrel`, `hard-hit`, `pull-hitter`, `opposite-field`, `spray-chart`, `situational-hitting`, `two-strike-approach`, `bunt`, `sacrifice-bunt`, `squeeze-play`, `productive-out`, `platoon-advantage`, `switch-hitter`, `lefty-righty-split`, `five-tool-player`, `three-true-outcomes`, `lineup-construction`, `protection`.
+
+`strategy` (17): `pinch-hitter`, `pinch-runner`, `defensive-replacement`, `double-switch`, `matchup-pitching`, `leverage`, `save-situation`, `pitching-around`, `first-base-open`, `hit-and-run`, `delayed-steal`, `steal-break-even`, `defensive-shift`, `shift-restrictions`, `win-expectancy`, `the-book`, `analytics-vs-gut`.
+
+`modern-rules` (13): `pitch-clock`, `batter-timer`, `disengagement-limit`, `bigger-bases`, `abs-challenge`, `hawk-eye`, `abs-zone`, `universal-dh`, `three-batter-minimum`, `roster-limits`, `replay-review`, `managers-challenge`, `rule-change-effects`.
+
+`analytics` (18): `ops-plus`, `woba`, `wrc-plus`, `war`, `replacement-level`, `fip`, `xera`, `babip`, `statcast`, `xba`, `xwoba`, `sprint-speed`, `outs-above-average`, `defensive-runs-saved`, `baserunning-runs`, `moneyball`, `sample-size`, `regression-to-mean`.
+
+`front-office` (27): `american-league`, `national-league`, `division`, `interleague`, `minor-leagues`, `prospect`, `call-up`, `option`, `rule-5-draft`, `mlb-draft`, `draft-lottery`, `international-signing`, `free-agency`, `arbitration`, `service-time`, `qualifying-offer`, `opt-out`, `no-trade-clause`, `luxury-tax`, `payroll`, `trade-deadline`, `dfa`, `waivers`, `rental`, `cba`, `lockout`, `salary-cap-debate`.
+
+`october-and-history` (19): `wild-card-series`, `bye`, `division-series`, `lcs`, `world-series`, `home-field-advantage`, `hot-hand`, `short-series-variance`, `dead-ball-era`, `babe-ruth`, `negro-leagues`, `jackie-robinson`, `steroid-era`, `reserve-clause`, `hall-of-fame`, `bbwaa-vote`, `character-clause`, `curse-drought`, `dynasty`.
+
+`ballpark-culture` (16): `seventh-inning-stretch`, `ballpark-rituals`, `unwritten-rules`, `bat-flip`, `benches-clearing`, `beanball`, `park-factors`, `green-monster`, `wrigley-ivy`, `baseball-slang`, `mendoza-line`, `scoring-at-the-park`, `foul-ball-etiquette`, `heckling`, `rivalry`, `fan-loyalty`.
+
+`branch-college` (10): `ncaa-baseball`, `bbcor-bat`, `conference-baseball`, `regionals-to-omaha`, `cws`, `college-rule-differences`, `transfer-portal`, `nil`, `draft-eligibility`, `convo-college-talk`.
+
+`branch-npb` (9): `npb-structure`, `cl-vs-pl`, `ties-npb`, `small-ball-npb`, `oendan`, `climax-series`, `japan-series`, `posting-system`, `foreign-player-limit`.
+
+`branch-kbo` (8): `kbo-structure`, `bat-flip-culture`, `cheer-squads`, `abs-kbo`, `kbo-imports`, `kbo-postseason`, `korean-series`, `kbo-to-mlb`.
+
+`season-now` (9): `live-weekly-context`, `season-race`, `transaction-explainer`, `rule-news-explainer`, `award-season`, `milestone-watch`, `hot-stove`, `cba-news-explainer`, `season-rollover`.
+
+`conversation-lab` (9): `convo-recap`, `convo-follow-up-questions`, `convo-bullpen-talk`, `blown-save`, `convo-manager-rant`, `convo-team-loss`, `convo-at-the-park`, `convo-rule-change-talk`, `convo-admit-what-you-dont-know`.
+
+`review-loop` (0): .
+
+---
+
+## 12. Interaction plan
+
+Tier rubric (CLAUDE.md section 4): Unity only where spatial reasoning, movement, physics, timing in a scene, or camera perspective materially improves learning and a native exercise would teach it clearly worse. Baseball is mostly *knowledge and judgment over static situations* (count, outs, runners, score), which native `decision-scenario` handles well; only three concepts need to be seen moving.
+
+| Lesson / activity family | Concepts | Type | Justification (why this and not the alternative) | Tier | Est. count |
+|---|---|---|---|---|---|
+| `base-06`, `rev-03`: Read it and go | send-or-hold, tag-up, two-outs-running, third-base-coach, read-and-go, sacrifice-fly | `unity-sim` `baseball.baserunning.read-and-go.v1` (spec `sims/baseball.baserunning.read-and-go.v1.md`) | Rubric: **movement over time and timing in a scene**: a runner's decision is a *race* between his speed and a throw whose flight time depends on where the ball was fielded and who has the arm. Closest native: `decision-scenario` with a facts table (arm rating, distance); it teaches the heuristic ("tag up on a deep fly with less than two outs") but cannot let the learner see the throw arrive half a step late, which is what fans mean by "he was thrown out by a mile". Native `bc`/`ds` still teaches the static rules in `base-01` to `base-05`. | A | 1 sim, 12 scenarios |
+| `def-06`: Where do they stand? | infield-in, double-play-depth, no-doubles-defense, guarding-the-line, outfield-depth | `unity-sim` `baseball.defense.alignment-read.v1` | Rubric: **spatial reasoning**: alignment is a picture (depth, angles, lines), and the payoff shows only when the ball is hit into the gap you left. Closest native: `hotspot-tap` on a standard-alignment diagram (used in `game-04`, `mod-03`) teaches names, not trade-offs. | A | 1 sim, 12 scenarios |
+| `pit-03`: Reading the pitch | pitch-movement, tunneling, velocity, four-seam-fastball, slider, curveball, changeup, abs-zone | `unity-sim` `baseball.pitching.pitch-shapes.v1` | Rubric: **physics and camera perspective**: break, spin and tunneling are only visible in motion from the hitter's view; a diagram or photo shows one frame. Closest native: `visual-id` on original art teaches pitch *names* (`pit-01`, `pit-02`). Fallback native lesson `pit-03-native`. | A | 1 sim, 12 scenarios |
+| Field map, positions, box-score reading, batter's zone | diamond, position-numbers, box-score, strike-zone | `hotspot-tap` (procedural diagrams `baseball-diamond`, `box-score-sample`, `strike-zone`) | Fixed diagram, no motion (native catalog `hotspot-tap`). | B | ~50 |
+| Rule calls (foul or fair, force or tag, is the infield fly on, ABS in or out) | force-play, infield-fly-rule, foul-ball, abs-challenge | `binary-call` | Two-way judgment on a static situation. | B | ~80 |
+| Manager decisions (walk him? pinch-hit? bunt?) and rules-in-context | intentional-walk, sacrifice-bunt, leverage, save-situation | `decision-scenario` with facts (inning, outs, runners, score, handedness) | Judgment with consequences and an expert note; the situation is a state, not motion. | B | ~90 |
+| Vocabulary, stats definitions, slang | ERA, OBP, dinger, ribbie | `term-match`, `fill-the-gap`, `multiple-choice` | Recall and recognition. | B | ~250 |
+| Ordering (a plate appearance, the postseason, scorekeeping) | plate-appearance, wild-card-series, scorekeeping-symbols | `sequence-order` | Order is the concept. | B | ~30 |
+| Pitch-type, park and field recognition (original illustrations) | four-seam-fastball, slider, green-monster | `visual-id` (procedural or original vector art, `original-swoond`) | Recognition; no photos. | B | ~35 |
+| Pitch-clock feel; swing timing; stealing a base rhythm | pitch-clock, delayed-steal | `timing-tap` | 1D timing bar suffices ("Simple 1D timing bar: No Unity", CLAUDE.md rubric). | B | ~10 |
+| Magnitudes (90 feet, 15 seconds, 162 games, 53.5 percent) | season-162, pitch-clock, abs-zone | `estimate-slider` | Numeric intuition. | B | ~25 |
+| Sounds of the ballpark (bat crack vs clank, crowd, umpire signals as words) | bbcor-bat, oendan | `listening-id` (original recordings or synthesised, `original-swoond`; skip option always) | The *sound* of a barrel and the sound of a metal bat are an experience; college and NPB/KBO cheering are audio-driven. | B | ~8 |
+| Conversation | all | `talk-track`, `say-this` | Native conversation practice (Talk tab and unit ends). | B | 24 talk tracks + ~80 say-this |
+
+All 13 native types and `unity-sim` are used. Accessibility fallback: each sim has a native fallback lesson (a designed `decision-scenario`/`hotspot-tap` set) named in its spec section 16 (`base-06-native`, `def-06-native`, `pit-03-native`).
+
+---
+
+## 13. Licensing & safety
+
+**Licensing (spec sections 39-40 and rule 10):**
+
+| Area | Handling |
+|---|---|
+| Imagery | Procedural or original illustrations (`original-swoond`) only. No MLB, team or player photos, no ballpark photography, no baseball-card images. |
+| Logos / trademarks | MLB, the 30 team names and marks, "World Series", "Statcast", "Gold Glove", "Hall of Fame" (institution), NCAA, "College World Series", NPB, KBO and team marks are trademarks: **plain-text mentions and link-outs only**; no logos, wordmarks or colours-as-branding in lesson art. Team names as facts, with a non-affiliation footer. |
+| Audio | Original recordings or synthesised only (bat crack, crowd, glove pop, organ-style stings created in-house). No broadcast audio, no licensed songs; "Take Me Out to the Ball Game" (1908) is public domain, but recordings and arrangements are not: text only. |
+| Video | No embedded broadcast or highlight video; deep-link to official sources. MLB clips are licensed content: link out only. |
+| Data terms | MLB Stats API (`statsapi.mlb.com`) and Baseball Savant are MLB Advanced Media properties with non-commercial or restricted terms: **not used in production without a licence**; FanGraphs and Baseball-Reference are link-out only (terms forbid scraping). Retrosheet requires its attribution notice; Lahman database is CC BY-SA 3.0 (share-alike implications for any derived database, legal check needed); Chadwick Bureau register is openly licensed with attribution [verify]. NCAA statistics and D1Baseball rankings are link-out only. |
+| Article text | Never copy publisher text; paraphrase and link (spec section 11). |
+| Player likeness | Names as facts only; no likenesses, endorsements, or invented quotes. Historical figures (e.g. Jackie Robinson) are discussed factually and respectfully; no fabricated speech. |
+| Sensitive content | Baseball history includes segregation, labour disputes, PED scandals and player deaths/injuries. Use factual, respectful copy; the `oct-03` to `oct-05` lessons are reviewed for sensitivity before release. Gambling: no betting content; Pete Rose/gambling is mentioned only as a factual Hall of Fame governance topic. |
+
+**Safety:** Baseball is not a high-risk subject for the learner. Constraints (also in the manifest): generic, conservative youth-baseball notes only (pitch counts and rest days are taught as league safety rules, not medical advice); Tommy John surgery and arm injuries are explained as context, never as a "will he be OK?" prediction; never coach confrontation with umpires, opponents or fans; heckling lessons teach good-natured cheer only; foul-ball awareness at the ballpark is a safety note ("watch the ball, look up when the crowd shouts, children away from the dugout side"); never encourage faking knowledge with the person she cares about.
+
+---
+
+## 14. Content assets
+
+| Asset | Source | Notes |
+|---|---|---|
+| Field diagram (`baseball-diamond`), positions overlay, strike-zone diagram (`strike-zone`), box-score art (`box-score-sample`, `line-score-sample`), scorecard art, standings table art | Procedural diagrams drawn natively (SwiftUI) from coordinate data in feet; license `original-swoond` | Coordinates: x across from third-base side (negative) to first-base side (positive), y from home plate toward center field; see sim specs section 6 |
+| Pitch-type illustrations (grips, flight arcs) | Original vector art, `original-swoond` | `visual-id` |
+| Ballpark illustrations (stylised Green Monster, ivy wall) | Original vector art; no photos | Generic "park with a tall left-field wall" allowed |
+| Audio: bat crack, metal-bat ping, glove pop, crowd, cheer chants (NPB/KBO style, original) | Synthesised or recorded in-house | Cheer chants must be new melodies, not team fight songs |
+| Unity: field, mound, bases, 9 fielders, runner, ball, ABS zone frame | Procedural low-poly, `original-swoond`, no team colours | Per sim spec section 18 |
+
+Every image/audio asset carries a `license` id (`original-swoond`).
+
+---
+
+## 15. Section 47 quality checklist (must be all answered before release)
+
+- [x] 1. **What does a beginner need to understand?** The count, force versus tag, how runs score, the scoreboard and box score, positions, and pitch types (sections 2, 3).
+- [x] 2. **What do enthusiasts care about?** Bullpens, managers' decisions, lineups, the standings race, prospects, trades, money and the CBA, umpires and ABS, analytics vs eye test, ballpark culture (section 4).
+- [x] 3. **What current information matters?** Schedule and yesterday's result, standings and wild-card picture, transactions and injuries, postseason bracket, rule changes, the CBA/lockout situation (section 6).
+- [x] 4. **What should be interactive?** Three sims (baserunning, alignment, pitch shapes) plus native decision-scenarios for manager calls, hotspot-tap on diagrams, and conversation practice (section 5, 12).
+- [x] 5. **What should NOT be gamified?** History, injuries, labour disputes, betting (none), any mockery of fans (section 5).
+- [x] 6. **How should it personalize?** Team, player, league (branch), region, skill level (section 8).
+- [x] 7. **What does conversational competence look like?** She decodes a recap, asks about the bullpen or lineup, and follows the game (sections 9, 10).
+- [x] 8. **What data providers are needed?** TheSportsDB to start; Sportradar/SportsDataIO upgrade; curated rules and CBA editorial; no MLB Stats API in production without licence (section 6, `live-data.md`).
+- [x] 9. **What licensing constraints apply?** Section 13.
+- [x] 10. **How will Swoon'd measure useful understanding?** Concept mastery 0.8, talk-track "smooth" score, and conversation-lab completion (section 10).
+
+Additional gates: [ ] manifest validates; [ ] curriculum validates (curriculum not authored yet); [ ] every Unity sim has an approved spec (three `spec-draft`); [ ] every image/audio asset has a license id; [ ] voice review (cheeky coach, never mean, never about the crush); [ ] no copied publisher text; [ ] 2026-rule facts re-verified (section 16 and NOTES).
+
+---
+
+## 16. Open questions
+
+| # | Question | Owner | Blocking? |
+|---|---|---|---|
+| 1 | The December 1 2026 CBA expiry is expected to produce a lockout; when it does, `season-now` and `front-06` need a neutral, dated explainer. Ship `front-06` before or after the CBA outcome? Recommendation: ship after the first week of December with a dated card, evergreen definitions before. | Product | No |
+| 2 | Provider and licence for MLB data (TheSportsDB coverage of MLB; Sportradar or SportsDataIO upgrade; MLB Stats API terms). Overlaps L-02. | Product / Data | Blocks the live layer only |
+| 3 | Unit count is 19 (16 core plus 3 branch units), above the 8-14 guidance (P-04 pattern). Approve, or fold `ballpark-culture` into `october-and-history` and drop `analytics` to 4 lessons? | Product | No |
+| 4 | Branch roll-out: `college` (v1.1) and `npb`/`kbo` (v1.2) timing vs the seasons; whether NPB and KBO should be a single "Asia" branch. Recommendation: two branches, separate units, shared `asia-crossover` talk track. | Product | No |
+| 5 | Lahman database licence (CC BY-SA 3.0) share-alike impact on any derived Swoon'd dataset; Retrosheet notice text. | Legal | No |
+| 6 | Baseball SME review of the three sim reference models (runner speed, throw times, alignment outcome table, pitch flight). Recommendation: one pass before `spec-approved`. | Product / SME | Yes for sim approval |
+| 7 | Whether to teach the "Manfred runner" name (commissioner's name) or only "automatic runner". Recommendation: teach "automatic runner", mention "ghost runner" and "Manfred runner" as the nicknames fans use. | Content | No |
+| 8 | 2026 facts to re-verify before release (see NOTES): ABS challenge details (2 challenges, extra innings), pitch clock, pickoff limit, mound visits, postseason results, division winners, NCAA ABS 2027, NPB/KBO 2027 rule changes, CBA developments. | Content | Yes before release |
+| 9 | Voice review: which mild in-jokes about specific teams (Cubs' drought, Yankees payroll) are allowed? Recommendation: light, historical, never about a current player or the learner's team; product owner voice-passes a sample. | Product | No |
+| 10 | Sim `baseball.pitching.pitch-shapes.v1` needs a `PitchFlight` primitive (spin-based flight); may not be worth building before the other two. Astra to size. | Astra | No |

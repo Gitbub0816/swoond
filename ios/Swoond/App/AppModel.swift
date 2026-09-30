@@ -33,8 +33,18 @@ final class AppModel {
     private(set) var people: [Person] = []
     private(set) var courses: [CourseSummary] = []
     private(set) var learner = LearnerSnapshot()
+    /// Backing storage (tracked by `@Observable`). Use `settings`, which persists and applies side effects on change.
+    private var storedSettings: AppSettings
+
+    /// Bindable from views (`$model.settings.appearance`). A computed wrapper rather than a `didSet` property, because
+    /// property observers and the `@Observable` macro's storage rewriting do not reliably compose.
     var settings: AppSettings {
-        didSet { settingsDidChange(from: oldValue) }
+        get { storedSettings }
+        set {
+            let old = storedSettings
+            storedSettings = newValue
+            settingsDidChange(from: old)
+        }
     }
 
     var selectedTab: AppTab = .learn
@@ -45,7 +55,7 @@ final class AppModel {
 
     init(env: AppEnvironment) {
         self.env = env
-        self.settings = env.settingsStore.load()
+        self.storedSettings = env.settingsStore.load()
         Haptics.shared.isEnabled = settings.soundsAndHaptics
     }
 

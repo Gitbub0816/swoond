@@ -331,7 +331,8 @@ test('type-monoculture: warns when activity type >40% of a ≥12-activity unit',
   try {
     const u1 = join(cur, 'units', '01-the-basics.json');
     edit(u1, (j) => {
-      // Add 5 multiple-choice + 8 other types = 13 activities total (6/13 = 46% > 40% and <= 50%)
+      // Original 4 + add 5 mc + 3 ftg + 2 est + 1 tm = 15 total (6/15 = 40% is not > 40%, need 14 for 6/14=42%)
+      // So: 4 + 5 mc + 2 ftg + 2 est + 1 tm = 14 total (6/14 = 42.86% > 40% and < 50%)
       const mc = j.unit.lessons[0].activities.find((a) => a.type === 'multiple-choice');
       const ftg = j.unit.lessons[0].activities.find((a) => a.type === 'fill-the-gap');
       const est = j.unit.lessons[0].activities.find((a) => a.type === 'estimate-slider');
@@ -353,7 +354,7 @@ test('type-monoculture: warns when activity type >40% of a ≥12-activity unit',
         clone.id = `est-extra-${i}`;
         j.unit.lessons[0].activities.push(clone);
       }
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < 1; i++) {
         const clone = JSON.parse(JSON.stringify(tm));
         clone.id = `tm-extra-${i}`;
         j.unit.lessons[0].activities.push(clone);

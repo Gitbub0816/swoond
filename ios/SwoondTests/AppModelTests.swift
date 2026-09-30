@@ -213,7 +213,7 @@ struct DesignSystemTests {
     @Test func diagramStyleFollowsHints() {
         #expect(DiagramBackground.style(kind: .courtDiagram, diagramId: "pickleball-court") == .pickleball)
         #expect(DiagramBackground.style(kind: nil, diagramId: "football-formation-cover-3") == .field)
-        #expect(DiagramBackground.style(kind: .none, diagramId: nil) == .plain)
+        #expect(DiagramBackground.style(kind: nil, diagramId: nil) == .plain)
     }
 
     @Test func quotesAreTrimmedBeforeTheUIAddsItsOwn() {
