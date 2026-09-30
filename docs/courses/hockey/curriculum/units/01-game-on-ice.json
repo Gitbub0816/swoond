@@ -430,7 +430,7 @@
               ],
               "explanation": {
                 "correct": "Right. Up to two players can be credited with an assist on a goal: typically the player who made the primary pass and the player who made the second-to-last pass.",
-                "incorrect": "An assist goes to a player who passed to the goalscorer (primary assist) or to the player who passed to the passer (secondary assist). Usually two assists per goal, sometimes one."
+                "incorrect": "An assist goes to a player who passed to the goalscorer (primary assist) or to the player who passed to the passer (secondary assist). A goal can have two assists, one, or none (an unassisted goal)."
               }
             }
           },
@@ -477,7 +477,7 @@
               "prompt": "Why is scoring three goals called a 'hat trick'?",
               "options": [
                 {"id": "a", "text": "Players throw their hats on the ice to celebrate"},
-                {"id": "b", "text": "It comes from a cricket tradition where a bowler who took three wickets was given a hat by sponsors"},
+                {"id": "b", "text": "It comes from a cricket tradition where a bowler who took three wickets with three balls was awarded a hat by his club"},
                 {"id": "c", "text": "The player wears a special trick hat during the game"}
               ],
               "correctOptionIds": ["b"],
@@ -540,7 +540,7 @@
               "prompt": "Match the term to what happens.",
               "pairs": [
                 {"id": "lc", "term": "Line change (on the fly)", "definition": "When fresh players hop over the boards to replace tired ones during play, without stopping the game."},
-                {"id": "tmm", "term": "Too many men on ice", "definition": "A bench penalty when more than six skaters are on the ice at once; results in a power play for the opposing team."},
+                {"id": "tmm", "term": "Too many men on ice", "definition": "A bench minor penalty when a team has more than five skaters (six players with the goalie) on the ice; the other team gets a power play."},
                 {"id": "shift", "term": "Shift", "definition": "The time one player or group spends on the ice before getting replaced by a fresh line."}
               ],
               "explanation": {
@@ -574,7 +574,7 @@
               "correctChoiceId": "false",
               "explanation": {
                 "correct": "False. Most line changes happen 'on the fly' during live play. Players sub themselves out and fresh legs jump in. This is a core tactical skill.",
-                "incorrect": "Hockey is unique in that line changes happen constantly during play, not just at stoppages. This is called changing 'on the fly' and requires timing."
+                "incorrect": "Hockey teams change lines constantly during live play, not just at stoppages. This is called changing 'on the fly' and requires timing."
               }
             }
           },
@@ -583,15 +583,15 @@
             "type": "say-this",
             "conceptIds": ["line-change"],
             "payload": {
-              "statement": {"speaker": "Analyst", "text": "They had a bad change down there and now they're defending on a long change."},
+              "statement": {"speaker": "Analyst", "text": "They got caught on a bad change, and that long change in the second period is brutal."},
               "question": "What does she mean?",
               "options": [
-                {"id": "a", "text": "The team's players are far from their bench, so they're tired", "isCorrect": true},
-                {"id": "b", "text": "Fresh players couldn't get on the ice to relieve tired ones", "isCorrect": true},
-                {"id": "c", "text": "The team is about to get scored on because of poor positioning", "isCorrect": true},
-                {"id": "d", "text": "A line change took a penalty", "isCorrect": false}
+                {"id": "a", "text": "Tired players were stuck out because the bench was far from the action", "isCorrect": true},
+                {"id": "b", "text": "The coach called a timeout to change the goalie", "isCorrect": false},
+                {"id": "c", "text": "The team took a penalty for changing too early", "isCorrect": false},
+                {"id": "d", "text": "The clock ran long because of a review", "isCorrect": false}
               ],
-              "translation": "When a line change doesn't work smoothly, the wrong players might be stuck defending far from their bench (a 'long change'). This is why bad changes are dangerous.",
+              "translation": "In the second period each team defends the end farthest from its bench, so changes take longer (the 'long change'). A badly timed one leaves tired players on the ice, and that is when goals against happen.",
               "followUps": [
                 {"line": "How did they recover from that?", "why": "Asks if the team survived the bad change."},
                 {"line": "Did the opponent score?", "why": "Tests if you're tracking the consequence."}
@@ -613,17 +613,17 @@
             "type": "sequence-order",
             "conceptIds": ["stoppage"],
             "payload": {
-              "prompt": "Order these events from most to least common during a game.",
+              "prompt": "Put a goal and its restart in order.",
               "items": [
-                {"id": "shot-miss", "text": "A shot misses the net and goes over the glass (puck out of play)", "why": "Happens frequently; out-of-play stops are common."},
-                {"id": "penalty", "text": "A penalty is called; the penalized player sits in the box", "why": "Penalties are regular but less frequent than out-of-play stops."},
-                {"id": "goal", "text": "A goal is scored and play restarts with a faceoff", "why": "Goals are the rarest stoppages in most games."},
-                {"id": "icing", "text": "A team shoots the puck down the ice from behind the red line (icing)", "why": "Icing is the least common; only happens when desperate or making a clearing play."}
+                {"id": "goal", "text": "The puck fully crosses the goal line and the goal light goes on", "why": "The goal happens first; everything else follows from it."},
+                {"id": "whistle", "text": "The whistle blows and the clock stops", "why": "Play is dead once the goal is scored, so the clock freezes."},
+                {"id": "lineup", "text": "Teams skate back to center ice and line up", "why": "After a goal, play restarts from center, not where the puck went in."},
+                {"id": "drop", "text": "An official drops the puck at the center circle", "why": "The faceoff restarts play and the clock starts again."}
               ],
               "explanation": {
-                "correct": "Right order. Pucks going over the glass happen most often. Then penalties, goals, and icing.",
-                "incorrect": "Pucks leaving the ice are the most common stoppage. Then penalties, goals, and icing follow in frequency.",
-                "sayThisLine": "Pucks over the glass all night; that's why they say manage the puck."
+                "correct": "That's it. A goal stops play, the clock freezes, both teams reset, and a center-ice faceoff starts things again.",
+                "incorrect": "Think of it as goal, whistle, reset, draw. The clock stays stopped until the puck is dropped at the center circle.",
+                "sayThisLine": "Goal, then back to center for the draw."
               }
             }
           },
@@ -632,16 +632,16 @@
             "type": "multiple-choice",
             "conceptIds": ["delay-of-game"],
             "payload": {
-              "prompt": "What happens when a player shoots the puck over the glass from anywhere?",
+              "prompt": "A defender flips the puck from his own zone straight over the glass. What happens?",
               "options": [
-                {"id": "a", "text": "It's a delay-of-game penalty"},
-                {"id": "b", "text": "Play stops and the other team gets the puck"},
-                {"id": "c", "text": "It's icing and no penalty"}
+                {"id": "a", "text": "A two-minute delay-of-game penalty"},
+                {"id": "b", "text": "A faceoff with no penalty"},
+                {"id": "c", "text": "Icing and a faceoff in his own zone"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. Shooting the puck over the glass from anywhere on the ice is a delay-of-game penalty and the player sits for two minutes.",
-                "incorrect": "Shooting the puck out of play (over the glass) is a delay-of-game penalty. It's intentional stalling and the team loses the puck and a player."
+                "correct": "Right. Sending the puck directly over the glass from your own defensive zone is a delay-of-game minor, so your team plays two minutes shorthanded. A deflected puck or a shot from elsewhere is just a stoppage.",
+                "incorrect": "A puck shot directly out of play from your own zone is a delay-of-game minor, not icing. Your team skates two minutes a man down. Only if it was deflected or shot from elsewhere is it a simple stoppage and faceoff."
               }
             }
           },
@@ -653,7 +653,7 @@
               "prompt": "Match the stoppage type to the result.",
               "pairs": [
                 {"id": "covered", "term": "Puck covered in crease", "definition": "A player (usually the goalie) covers the puck with their glove or body; play stops and a faceoff is held."},
-                {"id": "high", "term": "Puck over the glass (high shot)", "definition": "A shot or pass leaves the playing surface; play stops and the other team gets possession in their zone."},
+                {"id": "high", "term": "Puck over the glass (high shot)", "definition": "The puck leaves the playing surface; play stops and a faceoff follows, unless it came straight from your own zone, which is a penalty."},
                 {"id": "injury", "term": "Player injury", "definition": "A player is hurt during play; the referee stops the game so trainers can help."}
               ],
               "explanation": {
@@ -675,8 +675,8 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. The referee blows the whistle immediately when the goalie has control of the puck (glove save). This gives the team time to regroup.",
-                "incorrect": "Yes, when the goalie has the puck covered with their glove or body, the referee stops play. This allows the team to catch their breath and set up for the faceoff."
+                "correct": "True. The officials blow the whistle when the goalie freezes the puck, and a faceoff follows. That's why goalies smother pucks under pressure.",
+                "incorrect": "Play does stop. Once the goalie has the puck covered with a glove or body, the officials whistle it dead and a faceoff follows, which also gives the defense a breather."
               }
             }
           },
@@ -685,16 +685,16 @@
             "type": "multiple-choice",
             "conceptIds": ["stoppage"],
             "payload": {
-              "prompt": "What is a common reason play stops in today's modern hockey (beyond injuries and penalties)?",
+              "prompt": "Which of these does NOT stop play by itself?",
               "options": [
-                {"id": "a", "text": "Video review of a potential goal or penalty"},
-                {"id": "b", "text": "Equipment malfunction (broken stick, helmet off)"},
-                {"id": "c", "text": "All of the above"}
+                {"id": "a", "text": "The puck hits the protective netting above the glass"},
+                {"id": "b", "text": "A line change on the fly"},
+                {"id": "c", "text": "The goalie freezing the puck"}
               ],
-              "correctOptionIds": ["c"],
+              "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Correct. Modern hockey stops for reviews (is it a goal?), for broken equipment (player safety), and for other safety reasons.",
-                "incorrect": "Play can stop for video review, broken sticks, a helmet coming loose (player safety), or other issues that need to be fixed before play resumes."
+                "correct": "Right. Teams change players while the puck is live, so a legal line change never stops the game. Pucks leaving play, frozen pucks, penalties, injuries and goal reviews do.",
+                "incorrect": "Line changes happen on the fly, so they don't stop play. A puck hitting the netting (out of play) or a frozen puck both bring a whistle and a faceoff."
               }
             }
           }
@@ -726,26 +726,26 @@
                   "id": "yes",
                   "label": "Pull the goalie and send a sixth attacker",
                   "verdict": "best",
-                  "consequence": "You add an attacker, increasing offensive chances. The risk is an empty-net goal that makes it 3–1, but you're already losing.",
+                  "consequence": "You add an attacker, increasing offensive chances. The risk is an empty-net goal that makes it 3–1, but a one-goal loss and a two-goal loss count the same in the standings.",
                   "considerations": [
-                    "You're down, so you have everything to gain by pulling.",
-                    "An extra attacker increases the chance of scoring the tying goal.",
-                    "An empty-net goal is bad, but you're losing anyway."
+                    "You're down one, so a tying goal is worth far more than the risk.",
+                    "An extra attacker gives you a 6-on-5 edge against their skaters.",
+                    "An empty-net goal hurts, but the loss is the same either way."
                   ]
                 },
                 {
                   "id": "no",
                   "label": "Keep the goalie in and play it safe",
                   "verdict": "poor",
-                  "consequence": "You stay 6-on-5 defensively. This makes scoring harder for your team and very likely means you lose.",
+                  "consequence": "You keep five skaters against five, and the clock keeps draining. Scoring a tying goal gets harder with every second.",
                   "considerations": [
-                    "Keeping the goalie in is too defensive when you're already behind.",
-                    "You need scoring chances, not safety, with two minutes left.",
-                    "Most coaches pull in this situation."
+                    "Playing it safe doesn't help when you need a goal.",
+                    "Time is working against you, so the extra attacker gets more valuable the earlier you use it.",
+                    "Most coaches do pull at some point in this situation; the debate is how early."
                   ]
                 }
               ],
-              "expertNote": "When you're down late in the game, pulling the goalie is almost always the right move. You're losing anyway, and the empty-net risk is worth the offensive upside.",
+              "expertNote": "Trailing by a goal late, nearly every coach pulls the goalie. Tradition says around the last minute or so; analytics folks argue for going earlier, which is the goalie-pull debate.",
               "sayThisLine": "Pull it and throw everyone forward. You need a goal."
             }
           },
@@ -762,7 +762,7 @@
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. Pulling the goalie swaps the goaltender for a sixth skater, creating a 6-on-5 advantage in forwards. This increases offensive chances but risks an empty-net goal.",
+                "correct": "Right. Pulling the goalie swaps the goaltender for a sixth skater, creating a 6-on-5 skater advantage. This increases offensive chances but risks an empty-net goal.",
                 "incorrect": "Pulling the goalie trades defense for offense. Instead of a goaltender, you put an extra attacker on the ice. You're gambling that you score before they do an empty-net goal."
               }
             }
@@ -798,7 +798,7 @@
               "correctChoiceId": "true",
               "explanation": {
                 "correct": "True. An empty-net goal is just a goal. It scores one point and can end the game in a close match. This is the gamble coaches take when they pull the goalie.",
-                "incorrect": "An empty-net goal counts as a regular goal: one point on the score. The only difference is the opponent's puck goes into an undefended net."
+                "incorrect": "An empty-net goal counts as a regular goal: one goal on the scoreboard, whether it goes into an empty net or past a goalie. That risk is why coaches choose their moment to pull the goalie."
               }
             }
           },

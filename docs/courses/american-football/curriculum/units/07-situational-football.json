@@ -19,18 +19,32 @@
           {
             "id": "third-down-01-mc-why",
             "type": "multiple-choice",
-            "conceptIds": ["third-down", "down-and-distance"],
+            "conceptIds": [
+              "third-down",
+              "down-and-distance"
+            ],
             "payload": {
               "prompt": "Why is third down so important to both offense and defense?",
               "options": [
-                {"id": "a", "text": "It is the last chance to make a new set of downs; convert and you live, fail and the defense gets the ball"},
-                {"id": "b", "text": "The offense always throws on third down"},
-                {"id": "c", "text": "The defense cannot blitz on third down"}
+                {
+                  "id": "a",
+                  "text": "It is usually the last real chance to keep the drive going before a punt or kick"
+                },
+                {
+                  "id": "b",
+                  "text": "The offense always throws on third down"
+                },
+                {
+                  "id": "c",
+                  "text": "The defense cannot blitz on third down"
+                }
               ],
-              "correctOptionIds": ["a"],
+              "correctOptionIds": [
+                "a"
+              ],
               "explanation": {
-                "correct": "Exactly. Third down is the make-or-break moment. Win it and your drive continues. Lose it and you punt or go for it on fourth.",
-                "incorrect": "Third down decides the drive. Convert and keep going. Stall and hand the ball to the other team."
+                "correct": "Exactly. Third down is the make-or-break moment. Convert and the drive continues. Miss and the offense usually punts or kicks.",
+                "incorrect": "Third down decides the drive. Convert and keep going. Stall and the team usually has to hand the ball over or kick."
               }
             },
             "xp": 10
@@ -38,14 +52,23 @@
           {
             "id": "third-down-01-ds-call",
             "type": "decision-scenario",
-            "conceptIds": ["third-down", "down-and-distance"],
+            "conceptIds": [
+              "third-down",
+              "down-and-distance"
+            ],
             "payload": {
               "prompt": "Second and eight, gain only three. What's the result?",
               "situation": {
                 "narrative": "You're on offense.",
                 "facts": [
-                  {"label": "Down", "value": "Second and eight"},
-                  {"label": "Play result", "value": "Gain three yards"}
+                  {
+                    "label": "Down",
+                    "value": "Second and eight"
+                  },
+                  {
+                    "label": "Play result",
+                    "value": "Gain three yards"
+                  }
                 ]
               },
               "options": [
@@ -53,9 +76,9 @@
                   "id": "new-set",
                   "label": "New set of downs",
                   "verdict": "poor",
-                  "consequence": "You need ten yards to reset to first. Three yards doesn't reset the marker.",
+                  "consequence": "Three yards is short of the eight you needed, so there is no new set of downs yet.",
                   "considerations": [
-                    "Progress counts, but only ten yards or more resets the down counter."
+                    "A new set of downs comes only when the ball reaches the first-down line."
                   ]
                 },
                 {
@@ -68,25 +91,36 @@
                   ]
                 }
               ],
-              "expertNote": "Down and distance math is simple: yards gained reduce yardage needed. You only reset to first down when you reach or exceed the ten-yard marker."
+              "expertNote": "Down and distance math is simple: yards gained reduce the yardage needed, and you only reset to first down when you reach the line to gain."
             },
             "xp": 10
           },
           {
             "id": "third-down-01-bc-defense",
             "type": "binary-call",
-            "conceptIds": ["third-down"],
+            "conceptIds": [
+              "third-down"
+            ],
             "payload": {
               "prompt": "On third and long, the defense can call any coverage knowing the offense probably needs to throw. True or false?",
-              "scene": {"kind": "none", "alt": "A defense stacking coverage players deep on third and long yardage, preventing deep completions."},
+              "scene": {
+                "kind": "none",
+                "alt": "A defense stacking coverage players deep on third and long yardage, preventing deep completions."
+              },
               "choices": [
-                {"id": "true", "label": "True"},
-                {"id": "false", "label": "False"}
+                {
+                  "id": "true",
+                  "label": "True"
+                },
+                {
+                  "id": "false",
+                  "label": "False"
+                }
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. Third and long is a passing down where the defense can gear up for a throw and leave run support for help.",
-                "incorrect": "Yes, when the yard marker is far away, defenses stack pass coverage because they know a throw is coming."
+                "correct": "True. Third and long is usually a passing down, so the defense can drop extra defenders into coverage and send its best pass rushers.",
+                "incorrect": "Yes. When the marker is far away the offense usually has to throw, so defenses play for the pass."
               }
             },
             "xp": 10
@@ -103,7 +137,7 @@
                 {"id": "long", "term": "Third and ten", "definition": "Passing down; defense plays tight coverage on receivers and may not worry about the run."}
               ],
               "explanation": {
-                "summary": "Third down yardage tells both teams a lot: short means sneak or dive; medium could go either way; long means throw.",
+                "summary": "Third down yardage tells both teams a lot: short means sneak or run, medium could go either way, long usually means a pass.",
                 "sayThisLine": "Third and short: stuff the box. Third and long: guard the receiver."
               }
             },
@@ -131,18 +165,37 @@
           {
             "id": "third-down-01-so-sequence",
             "type": "sequence-order",
-            "conceptIds": ["third-down", "down-and-distance"],
+            "conceptIds": [
+              "third-down",
+              "down-and-distance"
+            ],
             "payload": {
-              "prompt": "Arrange these plays in order of desperation on third down.",
+              "prompt": "Order these third downs from shortest to longest.",
               "items": [
-                {"id": "short", "text": "Third and one: sneak or dive"},
-                {"id": "med", "text": "Third and four: power run or quick pass"},
-                {"id": "long", "text": "Third and twelve: deep route or screen to save yards"},
-                {"id": "goal", "text": "Third and goal from the two: goal-line package"}
+                {
+                  "id": "short",
+                  "text": "Third and one: sneak or dive",
+                  "why": "One yard is the shortest, often a quarterback sneak."
+                },
+                {
+                  "id": "med",
+                  "text": "Third and four: power run or quick pass",
+                  "why": "Four yards is a medium-short gap."
+                },
+                {
+                  "id": "mid",
+                  "text": "Third and eight: a pass with some depth",
+                  "why": "Eight yards usually means a throw past the line to gain."
+                },
+                {
+                  "id": "long",
+                  "text": "Third and twelve: deep route or screen",
+                  "why": "Twelve yards is the longest, a true passing down."
+                }
               ],
               "explanation": {
-                "correct": "Third and short is almost automatic. Third and goal is urgent. Third and long is near punt territory.",
-                "incorrect": "Match the yardage to how desperate the situation is: short is safe, long is urgent."
+                "correct": "The longer the distance, the more the offense has to throw. One yard can be a sneak, twelve usually means a pass.",
+                "incorrect": "Put the yardage in order from one yard up to twelve. Short yardage favors the run, and long yardage favors the pass."
               }
             },
             "xp": 10
@@ -159,16 +212,32 @@
           {
             "id": "fourth-02-ds-go",
             "type": "decision-scenario",
-            "conceptIds": ["fourth-down-decision", "field-position"],
+            "conceptIds": [
+              "fourth-down-decision",
+              "field-position"
+            ],
             "payload": {
-              "prompt": "Fourth and two at the 35. Down three, two minutes. Go?",
+              "prompt": "Fourth and two at the 35. Down four, two minutes. Go?",
               "situation": {
                 "narrative": "Late-game situation.",
                 "facts": [
-                  {"label": "Down and distance", "value": "Fourth and two"},
-                  {"label": "Field position", "value": "Opponent's 35"},
-                  {"label": "Score", "value": "Down by 3"},
-                  {"label": "Time left", "value": "2 minutes", "emphasis": "warning"}
+                  {
+                    "label": "Down and distance",
+                    "value": "Fourth and two"
+                  },
+                  {
+                    "label": "Field position",
+                    "value": "Opponent's 35"
+                  },
+                  {
+                    "label": "Score",
+                    "value": "Down by 4"
+                  },
+                  {
+                    "label": "Time left",
+                    "value": "2 minutes",
+                    "emphasis": "warning"
+                  }
                 ]
               },
               "options": [
@@ -178,19 +247,19 @@
                   "verdict": "best",
                   "consequence": "Aggressive but modern. Convert and you're near the goal. Fail and give the ball away.",
                   "considerations": [
-                    "Down 3 with time running out requires a touchdown.",
-                    "Field goal makes it one-point down, still requiring another score.",
-                    "Analytics favor going for it on fourth and two."
+                    "Down 4 with time running out requires a touchdown.",
+                    "A field goal would leave you down one, so you would still need a touchdown.",
+                    "Fourth and two is a good bet to convert."
                   ]
                 },
                 {
                   "id": "kick-fg",
                   "label": "Kick field goal",
                   "verdict": "acceptable",
-                  "consequence": "Makes it one point down, but you still need another score. Gamble on overtime or a second drive.",
+                  "consequence": "A field goal makes it one point down, so you still need a touchdown, and the defense gets the ball back.",
                   "considerations": [
-                    "Safer play but leaves you behind.",
-                    "Uses up precious time."
+                    "Safer, but it still leaves you behind.",
+                    "It uses precious time."
                   ]
                 },
                 {
@@ -203,25 +272,30 @@
                   ]
                 }
               ],
-              "expertNote": "Late-game math changes everything. You need a touchdown anyway, so going for it on fourth and short is the modern, mathematically sound choice."
+              "expertNote": "Late-game math changes everything. A field goal does not win the game, so you need a touchdown anyway, and going for it on fourth and short is a sound choice."
             },
             "xp": 10
           },
           {
             "id": "fourth-02-es-win-prob",
             "type": "estimate-slider",
-            "conceptIds": ["fourth-down-decision"],
+            "conceptIds": [
+              "fourth-down-decision"
+            ],
             "payload": {
-              "prompt": "A team that converts fourth down 50 percent of the time on fourth and two has roughly what win probability?",
+              "prompt": "About how often do NFL offenses convert on fourth and two?",
               "unit": "%",
               "min": 20,
               "max": 100,
               "step": 5,
               "correctValue": 55,
-              "tolerance": {"full": 5, "partial": 10},
+              "tolerance": {
+                "full": 5,
+                "partial": 10
+              },
               "explanation": {
-                "correct": "Fifty-fifty on fourth and two means you likely get the first down and keep the drive alive. That raises your win odds above 50 percent.",
-                "incorrect": "Fourth and two is a high-convert situation; 50 percent success implies you are doing well."
+                "correct": "A little over half the time. That is high enough that many coaches now go for it in the right spots.",
+                "incorrect": "NFL teams convert fourth and two a little more than half the time. That is why analysts say going for it is often worth it."
               }
             },
             "xp": 10
@@ -229,15 +303,28 @@
           {
             "id": "fourth-02-mc-factors",
             "type": "multiple-choice",
-            "conceptIds": ["fourth-down-decision"],
+            "conceptIds": [
+              "fourth-down-decision"
+            ],
             "payload": {
               "prompt": "Which is NOT a factor in a fourth-down decision?",
               "options": [
-                {"id": "a", "text": "The score and time left"},
-                {"id": "b", "text": "Your team's record and jersey colors"},
-                {"id": "c", "text": "Field position and the opponent's strength"}
+                {
+                  "id": "a",
+                  "text": "The score and time left"
+                },
+                {
+                  "id": "b",
+                  "text": "The color of your jerseys"
+                },
+                {
+                  "id": "c",
+                  "text": "Field position and the opponent's strength"
+                }
               ],
-              "correctOptionIds": ["b"],
+              "correctOptionIds": [
+                "b"
+              ],
               "explanation": {
                 "correct": "Jersey colors do not matter in fourth-down math. Score, time, field position, and matchups do.",
                 "incorrect": "Fourth-down decisions depend on the game situation and your team's ability on fourth and short, not what they are wearing."
@@ -248,18 +335,29 @@
           {
             "id": "fourth-02-bc-early",
             "type": "binary-call",
-            "conceptIds": ["fourth-down-decision"],
+            "conceptIds": [
+              "fourth-down-decision"
+            ],
             "payload": {
               "prompt": "Modern analytics say coaches should go for it on fourth and short early in the game, not just at the end. True or false?",
-              "scene": {"kind": "none", "alt": "A coach pointing to analytics sheets showing fourth-down win probability."},
+              "scene": {
+                "kind": "none",
+                "alt": "A coach pointing to analytics sheets showing fourth-down win probability."
+              },
               "choices": [
-                {"id": "true", "label": "True"},
-                {"id": "false", "label": "False"}
+                {
+                  "id": "true",
+                  "label": "True"
+                },
+                {
+                  "id": "false",
+                  "label": "False"
+                }
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. Analytics shows that going for it on fourth and one or two any time is better for win probability than punting.",
-                "incorrect": "Yes, modern coaches use data to go for it earlier in games, not just when desperate."
+                "correct": "True. Analytics models often favor going for it on fourth and short, even early, depending on field position and how good the team is at converting.",
+                "incorrect": "Yes. Modern coaches use data to go for it earlier in games, not just when desperate."
               }
             },
             "xp": 10
@@ -271,13 +369,13 @@
             "payload": {
               "prompt": "Match each situation to the call.",
               "pairs": [
-                {"id": "goal", "term": "Fourth and goal at the 2", "definition": "Go for it; defenses are built for goal-line stands."},
-                {"id": "midfield", "term": "Fourth and 4 at midfield", "definition": "Likely punt; 4 yards is far and you'd give the ball away ahead."},
-                {"id": "late-close", "term": "Fourth and 2, down 3, 2 min", "definition": "Go for it; you need a touchdown anyway."}
+                {"id": "goal", "term": "Fourth and goal at the 2", "definition": "Often go for it; a touchdown is worth far more than a short field goal."},
+                {"id": "midfield", "term": "Fourth and 4 at own 30", "definition": "Usually punt; a failed try hands them a short field."},
+                {"id": "late-close", "term": "Fourth and 2, down 4, 2 min", "definition": "Go for it; a field goal would not be enough."}
               ],
               "explanation": {
-                "summary": "Field position and game time decide fourth-down calls. Goal-line and late favor going for it.",
-                "sayThisLine": "Goal-line: go. Midfield: punt. Late and close: aggressive."
+                "summary": "Field position and game situation decide fourth-down calls. Short yardage near the goal line and late in a trailing game favor going for it.",
+                "sayThisLine": "Goal line: often go. Deep in your own end: punt. Trailing late: aggressive."
               }
             },
             "xp": 10
@@ -332,7 +430,9 @@
           {
             "id": "red-zone-03-hs-line",
             "type": "hotspot-tap",
-            "conceptIds": ["red-zone"],
+            "conceptIds": [
+              "red-zone"
+            ],
             "payload": {
               "prompt": "Tap the red zone on this field.",
               "diagram": {
@@ -344,23 +444,43 @@
                 {
                   "id": "redzone",
                   "label": "Red zone (inside the 20)",
-                  "shape": {"kind": "rect", "x": 0.2, "y": 0.05, "w": 0.6, "h": 0.15}
+                  "shape": {
+                    "kind": "rect",
+                    "x": 0.2,
+                    "y": 0.05,
+                    "w": 0.6,
+                    "h": 0.15
+                  }
                 },
                 {
                   "id": "endzone",
                   "label": "End zone",
-                  "shape": {"kind": "rect", "x": 0.2, "y": 0.0, "w": 0.6, "h": 0.05}
+                  "shape": {
+                    "kind": "rect",
+                    "x": 0.2,
+                    "y": 0,
+                    "w": 0.6,
+                    "h": 0.05
+                  }
                 },
                 {
                   "id": "midfield",
                   "label": "Midfield",
-                  "shape": {"kind": "rect", "x": 0.35, "y": 0.45, "w": 0.3, "h": 0.05}
+                  "shape": {
+                    "kind": "rect",
+                    "x": 0.35,
+                    "y": 0.45,
+                    "w": 0.3,
+                    "h": 0.05
+                  }
                 }
               ],
-              "correctHotspotIds": ["redzone"],
+              "correctHotspotIds": [
+                "redzone"
+              ],
               "explanation": {
-                "correct": "The red zone is from your team's attack down to inside the opponent's 20-yard line. Inside the 20, the end zone is close and cramped.",
-                "incorrect": "The red zone is inside the opponent's 20. That is where field goals become easier but touchdowns get tougher because there is no room."
+                "correct": "The red zone is the area inside the opponent's 20-yard line. Inside it, the end zone is close and the space is cramped.",
+                "incorrect": "The red zone is inside the opponent's 20. Field goals get easier, but touchdowns get tougher because there is no room."
               }
             },
             "xp": 10
@@ -368,18 +488,30 @@
           {
             "id": "red-zone-03-bc-scoring",
             "type": "binary-call",
-            "conceptIds": ["red-zone", "field-goal"],
+            "conceptIds": [
+              "red-zone",
+              "field-goal"
+            ],
             "payload": {
-              "prompt": "The red zone is why field goals are so common inside the 20. True or false?",
-              "scene": {"kind": "none", "alt": "An offense in the red zone settling for a field goal instead of pushing for a touchdown."},
+              "prompt": "Red-zone drives sometimes end in a field goal instead of a touchdown. True or false?",
+              "scene": {
+                "kind": "none",
+                "alt": "An offense in the red zone settling for a field goal instead of pushing for a touchdown."
+              },
               "choices": [
-                {"id": "true", "label": "True"},
-                {"id": "false", "label": "False"}
+                {
+                  "id": "true",
+                  "label": "True"
+                },
+                {
+                  "id": "false",
+                  "label": "False"
+                }
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. Getting to the red zone is half the battle; getting in the end zone is half of that. Field goals are the safety net.",
-                "incorrect": "Yes, the red zone is where defenses tighten up and offenses often settle for three points instead of six."
+                "correct": "True. With so little room, defenses tighten up, and offenses often settle for three points.",
+                "incorrect": "Yes. Inside the 20 the defense has less field to cover, so stalled drives often end in field goals."
               }
             },
             "xp": 10
@@ -387,40 +519,63 @@
           {
             "id": "red-zone-03-ds-play",
             "type": "decision-scenario",
-            "conceptIds": ["red-zone", "field-goal", "touchdown"],
+            "conceptIds": [
+              "red-zone",
+              "field-goal",
+              "touchdown"
+            ],
             "payload": {
-              "prompt": "In the red zone at the 15, three downs left. Run or throw?",
+              "prompt": "At the opponent's 15 with three downs. Which plan?",
               "situation": {
                 "facts": [
-                  {"label": "Location", "value": "Opponent's 15-yard line"},
-                  {"label": "Downs left", "value": "Three tries"},
-                  {"label": "Field", "value": "Compressed, tight coverage"}
+                  {
+                    "label": "Location",
+                    "value": "Opponent's 15-yard line"
+                  },
+                  {
+                    "label": "Downs left",
+                    "value": "Three tries"
+                  },
+                  {
+                    "label": "Field",
+                    "value": "Compressed, tight coverage"
+                  }
                 ]
               },
               "options": [
                 {
-                  "id": "run-ball",
-                  "label": "Run the ball",
+                  "id": "mix",
+                  "label": "Mix runs with quick passes",
                   "verdict": "best",
-                  "consequence": "Safer in the red zone. Limited space makes it hard for receivers to create separation anyway.",
+                  "consequence": "The defense cannot sit on one thing, and short throws and runs both work in tight space.",
                   "considerations": [
-                    "The red zone compresses routes and coverage.",
-                    "Runs gain yards reliably in short-yardage situations.",
-                    "Three tries is enough to punch it in with power runs."
+                    "The red zone compresses routes and coverage",
+                    "A mix keeps the defense guessing",
+                    "Three tries allows both"
+                  ]
+                },
+                {
+                  "id": "run-ball",
+                  "label": "Run every down",
+                  "verdict": "acceptable",
+                  "consequence": "Runs gain reliable yards, but the defense can load up once it knows what is coming.",
+                  "considerations": [
+                    "Runs are dependable in short space",
+                    "The defense stacks up if it is predictable"
                   ]
                 },
                 {
                   "id": "throw-deep",
-                  "label": "Throw deep",
+                  "label": "Throw long every down",
                   "verdict": "poor",
-                  "consequence": "Receivers have nowhere to hide. Tight coverage and end-zone depth make deep throws risky.",
+                  "consequence": "There is almost no deep space to throw into, and covered receivers make this a risky throw.",
                   "considerations": [
-                    "Receivers can't separate in a compressed red zone.",
-                    "You risk an interception in a smaller area."
+                    "The end zone is only ten yards deep",
+                    "Receivers have little room to separate"
                   ]
                 }
               ],
-              "expertNote": "The red zone favors the run. The field is so compressed that passes are tight and receivers can't create separation. Power football wins here."
+              "expertNote": "Space is tight in the red zone, so offenses lean on short passes, runs and misdirection. There is no single best call, but doing the same thing every down is predictable."
             },
             "xp": 10
           },
@@ -432,12 +587,12 @@
               "prompt": "Match each zone to what it means for scoring.",
               "pairs": [
                 {"id": "rz", "term": "Red zone", "definition": "Inside the opponent's 20-yard line; where every yard matters and defenses tighten up."},
-                {"id": "goal", "term": "Goal line", "definition": "Right at the end zone boundary; the toughest one to cross but worth six points."},
-                {"id": "range", "term": "Field goal range", "definition": "Roughly inside the 35; kickers make most attempts from here, so take the three if uncertain."}
+                {"id": "goal", "term": "Goal line", "definition": "The front edge of the end zone. The ball crossing it for a touchdown is worth six."},
+                {"id": "range", "term": "Field goal range", "definition": "Roughly inside the opponent's 35 for a strong kicker; a closer kick is a safer three points."}
               ],
               "explanation": {
                 "summary": "The closer to the end zone, the harder it gets to move the ball but the bigger the payoff.",
-                "sayThisLine": "Red zone: harder field position. Goal line: hardest defense. Field goal range: easy three."
+                "sayThisLine": "Red zone: tight space. Goal line: the end zone edge. Field goal range: a kick is realistic."
               }
             },
             "xp": 10
@@ -445,18 +600,31 @@
           {
             "id": "red-zone-03-mc-defense",
             "type": "multiple-choice",
-            "conceptIds": ["red-zone"],
+            "conceptIds": [
+              "red-zone"
+            ],
             "payload": {
               "prompt": "In the red zone, the defense has the advantage because?",
               "options": [
-                {"id": "a", "text": "Less field to defend; coverage is tighter and receivers have nowhere to hide"},
-                {"id": "b", "text": "The offense is not allowed to use running backs"},
-                {"id": "c", "text": "The defense gets an extra player for red zone plays"}
+                {
+                  "id": "a",
+                  "text": "Less field to defend; coverage is tighter and receivers have nowhere to hide"
+                },
+                {
+                  "id": "b",
+                  "text": "The offense is not allowed to use running backs"
+                },
+                {
+                  "id": "c",
+                  "text": "The defense gets an extra player for red zone plays"
+                }
               ],
-              "correctOptionIds": ["a"],
+              "correctOptionIds": [
+                "a"
+              ],
               "explanation": {
-                "correct": "The red zone is small, which is why defenses play better there. Receivers can not get separation and plays are compressed.",
-                "incorrect": "The red zone compresses everything. Every route is covered tight and separation is impossible, so defenses thrive."
+                "correct": "The red zone is small, so defenses have less ground to cover. Receivers find it harder to get separation and plays are compressed.",
+                "incorrect": "The red zone compresses everything. Every route is tighter and separation is harder, which helps the defense."
               }
             },
             "xp": 10
@@ -473,14 +641,30 @@
           {
             "id": "two-point-04-ds-math",
             "type": "decision-scenario",
-            "conceptIds": ["two-point-conversion", "extra-point"],
+            "conceptIds": [
+              "two-point-conversion",
+              "extra-point"
+            ],
             "payload": {
-              "prompt": "Just scored, down 8, three min left. Kick or go for two?",
+              "prompt": "Down 8 before your touchdown. Kick for one or go for two?",
               "situation": {
                 "facts": [
-                  {"label": "Score", "value": "Down by 8 points"},
-                  {"label": "Just happened", "value": "Scored a touchdown"},
-                  {"label": "Time left", "value": "3 minutes"}
+                  {
+                    "label": "Before the touchdown",
+                    "value": "Down by 8"
+                  },
+                  {
+                    "label": "After the touchdown",
+                    "value": "Down by 2"
+                  },
+                  {
+                    "label": "Time left",
+                    "value": "3 minutes"
+                  },
+                  {
+                    "label": "The choice",
+                    "value": "Kick for 1 or try for 2"
+                  }
                 ]
               },
               "options": [
@@ -488,44 +672,55 @@
                   "id": "kick-one",
                   "label": "Kick for one",
                   "verdict": "poor",
-                  "consequence": "Down 8 minus 7 = still down 1. You still need another score with limited time.",
+                  "consequence": "After the touchdown you are down 2. The kick makes it 1, so you still need another score.",
                   "considerations": [
-                    "Math: 8 - 7 = 1 point down.",
-                    "You use up time and need to score again.",
-                    "Leaves you behind."
+                    "A kick leaves you down 1",
+                    "You would need another score",
+                    "You give up the chance to tie right away"
                   ]
                 },
                 {
                   "id": "go-for-two",
                   "label": "Go for two",
                   "verdict": "best",
-                  "consequence": "Down 8 minus 8 = tied! Better math. If you succeed, the game is even.",
+                  "consequence": "After the touchdown you are down 2. A successful two-point try ties the game.",
                   "considerations": [
-                    "Math: 8 - 8 = 0 (tied).",
-                    "52% success rate from the 2-yard line makes this good odds.",
-                    "Two-point tries are only worth it in odd-score situations like this."
+                    "Success ties the game",
+                    "A conversion works about half the time",
+                    "If it fails you are down 2 and need a score anyway"
                   ]
                 }
               ],
-              "expertNote": "Two-point conversion math: go for it when it helps your score math more than kicking does. Down 8, going for 2 ties it. That's the call."
+              "expertNote": "Two-point math: go for it when it changes the score more than a kick does. Down 2 after the touchdown, one point still leaves you behind, so two to tie makes sense."
             },
             "xp": 10
           },
           {
             "id": "two-point-04-bc-gamble",
             "type": "binary-call",
-            "conceptIds": ["two-point-conversion"],
+            "conceptIds": [
+              "two-point-conversion"
+            ],
             "payload": {
               "prompt": "Going for two is always a fifty-fifty gamble and never a good idea early in the game. True or false?",
-              "scene": {"kind": "none", "alt": "A short-yardage play from the two-yard line where the offense attempts a two-point conversion."},
+              "scene": {
+                "kind": "none",
+                "alt": "A short-yardage play from the two-yard line where the offense attempts a two-point conversion."
+              },
               "choices": [
-                {"id": "true", "label": "True"},
-                {"id": "false", "label": "False"}
+                {
+                  "id": "true",
+                  "label": "True"
+                },
+                {
+                  "id": "false",
+                  "label": "False"
+                }
               ],
               "correctChoiceId": "false",
               "explanation": {
-                "correct": "False. From the two-yard line, teams convert two-point plays about 52 percent of the time, better than 50-50. Early analytics may favor going for two even at friendly scores.",
-                "incorrect": "Two-point conversions from the two are slightly above 50-50 odds, so they are not always bad math."
+                "correct": "False. Two-point tries work about half the time, which is worth roughly the same as a kick on average. So they are a real option, especially when the score makes one point matter less than two.",
+                "incorrect": "Not always. Two-point conversions succeed about half the time, close to the value of a kick, so they can be good math."
               }
             },
             "xp": 10
@@ -533,18 +728,31 @@
           {
             "id": "two-point-04-mc-situations",
             "type": "multiple-choice",
-            "conceptIds": ["two-point-conversion"],
+            "conceptIds": [
+              "two-point-conversion"
+            ],
             "payload": {
-              "prompt": "Which situation is the BEST for going for two?",
+              "prompt": "Which situation favors going for two?",
               "options": [
-                {"id": "up", "text": "You are up by 10 with 30 seconds left"},
-                {"id": "down", "text": "You are down by 7 late in the game and just scored"},
-                {"id": "tied", "text": "You are tied with five minutes left"}
+                {
+                  "id": "up",
+                  "text": "You lead by 16 late in the fourth quarter"
+                },
+                {
+                  "id": "down",
+                  "text": "You trail by 2 after a late touchdown, before the try"
+                },
+                {
+                  "id": "tied",
+                  "text": "You lead by 14 in the first quarter"
+                }
               ],
-              "correctOptionIds": ["down"],
+              "correctOptionIds": [
+                "down"
+              ],
               "explanation": {
-                "correct": "Down 7, you go for two because making it ties the game. Kicking leaves you down one and needing another possession.",
-                "incorrect": "Down by 7, going for two makes math sense: get it and you are tied. Kick and you stay down."
+                "correct": "Trailing by 2 after the touchdown, a good try ties the game. A kick only makes it a one-point deficit.",
+                "incorrect": "Going for two helps when it changes the result of the game, like tying it. Big leads or early games rarely call for it."
               }
             },
             "xp": 10
@@ -552,17 +760,36 @@
           {
             "id": "two-point-04-fg-template",
             "type": "fill-the-gap",
-            "conceptIds": ["two-point-conversion", "extra-point"],
+            "conceptIds": [
+              "two-point-conversion",
+              "extra-point"
+            ],
             "payload": {
               "prompt": "Complete this about two-point decisions.",
-              "template": "Down {{score}}, kick makes it {{worse}}. Go for two to tie instead.",
+              "template": "Trailing by {{score}} after a touchdown, a kick leaves you {{result}}. A successful two-point try ties it.",
               "gaps": [
-                {"id": "score", "options": ["3 points", "5 points", "7 points"], "correct": "5 points"},
-                {"id": "worse", "options": ["2 points down", "still down", "worse"], "correct": "2 points down"}
+                {
+                  "id": "score",
+                  "options": [
+                    "1 point",
+                    "2 points",
+                    "7 points"
+                  ],
+                  "correct": "2 points"
+                },
+                {
+                  "id": "result",
+                  "options": [
+                    "down 1 point",
+                    "tied",
+                    "ahead by 1 point"
+                  ],
+                  "correct": "down 1 point"
+                }
               ],
               "explanation": {
-                "correct": "Down 5, kick makes it down 2. Go for two and you're tied. That's why odd scores favor going for two.",
-                "incorrect": "Two-point math is simple: does kicking leave you better off than going for it? On odd scores, go for two."
+                "correct": "Trailing by 2 after the touchdown, a kick leaves you down 1, while a made two-point try ties the game.",
+                "incorrect": "Do the math: down 2, a kick adds one (down 1), a two-point try adds two (tied)."
               }
             },
             "xp": 10
@@ -575,8 +802,8 @@
               "prompt": "Match each scoring option after a touchdown to its reward.",
               "pairs": [
                 {"id": "kick", "term": "Extra point (kick)", "definition": "Snap from the 15-yard line; a 33-yard kick; nearly automatic and usually safe."},
-                {"id": "two", "term": "Two-point conversion", "definition": "Snap from the 2-yard line; run or pass; 52 percent success from the two; two points if good."},
-                {"id": "choice", "term": "When to choose", "definition": "Go for two only when the math demands it: trailing by odd scores (3, 5, 7, etc.)"}
+                {"id": "two", "term": "Two-point conversion", "definition": "Snap from the 2-yard line; run or pass; succeeds about half the time; two points if good."},
+                {"id": "choice", "term": "When to choose", "definition": "Usually kick; go for two when the score makes the extra point matter, like trailing by two."}
               ],
               "explanation": {
                 "summary": "Extra points are safe. Two-point tries are risky but sometimes necessary for game math.",
@@ -588,18 +815,31 @@
           {
             "id": "two-point-04-mc-trailing",
             "type": "multiple-choice",
-            "conceptIds": ["two-point-conversion"],
+            "conceptIds": [
+              "two-point-conversion"
+            ],
             "payload": {
-              "prompt": "You are down 4 points and just scored a touchdown with one minute left. Kick or go for two?",
+              "prompt": "Your touchdown cut the gap to 5 before the try. One minute left. Kick or two?",
               "options": [
-                {"id": "kick", "text": "Kick to make it down 3 and chase one more score"},
-                {"id": "two", "text": "Go for two; if you get it you are only down 2"},
-                {"id": "onside", "text": "Kick and try an onside kick"}
+                {
+                  "id": "kick",
+                  "text": "Kick; you are down 4 and need a touchdown"
+                },
+                {
+                  "id": "two",
+                  "text": "Go for two; if you get it a field goal ties"
+                },
+                {
+                  "id": "onside",
+                  "text": "Kick and then try an onside kick"
+                }
               ],
-              "correctOptionIds": ["kick"],
+              "correctOptionIds": [
+                "two"
+              ],
               "explanation": {
-                "correct": "Down 4, kicking makes it 4 minus 7 equals down 3. You get the ball back with one minute; one more score wins. Kick for one.",
-                "incorrect": "Down 4 favors kicking one because you are likely to get the ball back with time for another possession."
+                "correct": "Down 5, a kick leaves you down 4, and only a touchdown wins. A made two-pointer leaves you down 3, where a field goal ties. That is why late, down 5 is a classic go-for-two spot.",
+                "incorrect": "Kick and you are down 4, needing a touchdown. Go for two and a field goal would tie. Two-point tries change what you need."
               }
             },
             "xp": 10
@@ -616,18 +856,37 @@
           {
             "id": "two-minute-05-so-order",
             "type": "sequence-order",
-            "conceptIds": ["two-minute-drill", "clock-management"],
+            "conceptIds": [
+              "two-minute-drill",
+              "clock-management"
+            ],
             "payload": {
-              "prompt": "Arrange these plays in the order an offense might call them on a two-minute drive needing a touchdown.",
+              "prompt": "Order this two-minute sequence after an in-bounds catch.",
               "items": [
-                {"id": "deep", "text": "Deep pass to the sideline to get out of bounds"},
-                {"id": "check", "text": "Check down to the running back for a safer gain"},
-                {"id": "spike", "text": "Call timeout or spike the ball to stop the clock"},
-                {"id": "goal", "text": "Short pass inside the 20 to set up a field goal or two-point try"}
+                {
+                  "id": "deep",
+                  "text": "Receiver catches a pass and is tackled in bounds",
+                  "why": "The clock keeps running after an in-bounds catch."
+                },
+                {
+                  "id": "check",
+                  "text": "Offense hurries to the line without a huddle",
+                  "why": "There is no time to waste with the clock running."
+                },
+                {
+                  "id": "spike",
+                  "text": "Quarterback spikes the ball to stop the clock",
+                  "why": "A spike stops the clock at the cost of a down."
+                },
+                {
+                  "id": "goal",
+                  "text": "Offense runs its next play with the clock stopped",
+                  "why": "The offense can now take a breath and call a real play."
+                }
               ],
               "explanation": {
-                "correct": "The two-minute drill is a balance: gain yards with sideline throws and checkdowns, spike to save time, and get close enough for a score.",
-                "incorrect": "In the two-minute drill, you gain yards quickly and save the clock with out-of-bounds plays and timeouts."
+                "correct": "The clock runs on an in-bounds catch, so the offense hurries up, spikes to stop the clock, then runs a real play.",
+                "incorrect": "Start with the in-bounds catch, then the hurry-up, the spike, and finally the next real play."
               }
             },
             "xp": 10
@@ -635,24 +894,27 @@
           {
             "id": "two-minute-05-tt-tap",
             "type": "timing-tap",
-            "conceptIds": ["two-minute-drill", "clock-management"],
+            "conceptIds": [
+              "two-minute-drill",
+              "clock-management"
+            ],
             "payload": {
-              "prompt": "At the 30, 1:45 left. Incomplete pass. Time burned?",
+              "prompt": "Snap quickly: tap with about 30 seconds left on the play clock.",
               "theme": {
                 "label": "Clock management",
                 "resultUnit": "seconds"
               },
               "rounds": [
                 {
-                  "zoneStartPct": 40,
-                  "zoneEndPct": 60,
-                  "sweepSeconds": 1.5
+                  "zoneStartPct": 20,
+                  "zoneEndPct": 30,
+                  "sweepSeconds": 40
                 }
               ],
               "explanation": {
-                "correct": "Each play burns roughly 15 seconds. Incomplete stops the clock briefly but the play clock ticks from snap to incompletion.",
-                "incorrect": "The clock runs most plays. Even incompletions lose time to the play clock.",
-                "sayThisLine": "Play clock burns seconds even on incomplete passes."
+                "correct": "Quick snap. When the game clock is running, every second before the snap comes off the game clock.",
+                "incorrect": "Too slow or too early. In a two-minute drill, offenses want to snap quickly while the clock runs.",
+                "sayThisLine": "When the clock is running, a quick snap saves time."
               }
             },
             "xp": 10
@@ -679,15 +941,35 @@
           {
             "id": "two-minute-05-ds-call",
             "type": "decision-scenario",
-            "conceptIds": ["two-minute-drill", "timeout"],
+            "conceptIds": [
+              "two-minute-drill",
+              "timeout"
+            ],
             "payload": {
               "prompt": "At the 40, 1:00 left, down 3, one timeout. Spike or timeout?",
               "situation": {
                 "facts": [
-                  {"label": "Position", "value": "Opponent's 40"},
-                  {"label": "Time", "value": "1:00 left", "emphasis": "warning"},
-                  {"label": "Score", "value": "Down 3"},
-                  {"label": "Timeouts", "value": "1 left"}
+                  {
+                    "label": "Position",
+                    "value": "Opponent's 40"
+                  },
+                  {
+                    "label": "Down",
+                    "value": "First down, clock running"
+                  },
+                  {
+                    "label": "Time",
+                    "value": "1:00 left",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Score",
+                    "value": "Down 3"
+                  },
+                  {
+                    "label": "Timeouts",
+                    "value": "1 left"
+                  }
                 ]
               },
               "options": [
@@ -695,11 +977,11 @@
                   "id": "spike-first",
                   "label": "Spike first",
                   "verdict": "best",
-                  "consequence": "Spike stops the clock and costs nothing. Saves the timeout for a crucial moment.",
+                  "consequence": "The spike stops the clock and saves your timeout, at the cost of one down.",
                   "considerations": [
-                    "Spike is a free incomplete pass.",
-                    "Costs a down but not a timeout.",
-                    "Use timeouts only when you need to regroup."
+                    "A spike is an intentional incomplete pass.",
+                    "It costs a down but not a timeout.",
+                    "Use timeouts when you need to regroup."
                   ]
                 },
                 {
@@ -713,7 +995,7 @@
                   ]
                 }
               ],
-              "expertNote": "Spike first: it's free and stops the clock. Timeouts are precious. Use the spike, save the timeout for when you need to draw up a play."
+              "expertNote": "Spike first: it saves your timeout and costs only a down. You have downs to spare on first down, so the spike is the cheaper way to stop the clock."
             },
             "xp": 10
           },
@@ -745,7 +1027,7 @@
               "pairs": [
                 {"id": "sideline", "term": "Sideline throw", "definition": "A route where the receiver can step out of bounds to stop the clock instantly."},
                 {"id": "spike", "term": "Spike", "definition": "The quarterback throws the ball on the ground to stop the clock and reset; costs a down."},
-                {"id": "timeout", "term": "Timeout", "definition": "Stops the clock for one minute to regroup; each team gets three per half."}
+                {"id": "timeout", "term": "Timeout", "definition": "Stops the clock so the team can regroup; each team gets three per half."}
               ],
               "explanation": {
                 "summary": "The two-minute drill is about managing every second. Sidelines, spikes and timeouts are your weapons.",
@@ -766,41 +1048,57 @@
           {
             "id": "clock-06-ds-finish",
             "type": "decision-scenario",
-            "conceptIds": ["clock-management"],
+            "conceptIds": [
+              "clock-management"
+            ],
             "payload": {
-              "prompt": "Up 3, opponent at midfield, 1:30 left. Force run or pass?",
+              "prompt": "Up 3 with the ball at midfield, 1:30 left. Run or pass?",
               "situation": {
+                "narrative": "You are on offense and leading by three. The opponent has one timeout left.",
                 "facts": [
-                  {"label": "You", "value": "Up by 3"},
-                  {"label": "Them", "value": "At midfield"},
-                  {"label": "Time", "value": "1:30 left", "emphasis": "warning"},
-                  {"label": "Their timeouts", "value": "1 left"}
+                  {
+                    "label": "You",
+                    "value": "Up by 3"
+                  },
+                  {
+                    "label": "Ball",
+                    "value": "At midfield"
+                  },
+                  {
+                    "label": "Time",
+                    "value": "1:30 left",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Their timeouts",
+                    "value": "1 left"
+                  }
                 ]
               },
               "options": [
                 {
                   "id": "force-run",
-                  "label": "Force them to run",
+                  "label": "Run the ball",
                   "verdict": "best",
-                  "consequence": "Runs burn the clock faster. Clock keeps moving on rushing plays.",
+                  "consequence": "A run keeps the clock moving and makes them spend timeouts.",
                   "considerations": [
-                    "Running plays use more clock time.",
-                    "Incomplete passes stop the clock.",
-                    "Make them use running plays to waste time."
+                    "Runs in bounds keep the clock running",
+                    "Incomplete passes stop the clock",
+                    "A run avoids turnovers"
                   ]
                 },
                 {
                   "id": "let-pass",
-                  "label": "Let them throw",
+                  "label": "Throw it",
                   "verdict": "poor",
-                  "consequence": "Passes stop the clock on incompletions. They save time with each incomplete.",
+                  "consequence": "An incomplete pass stops the clock for free, and an interception gives them the ball with time left.",
                   "considerations": [
-                    "Passing gives them clock control.",
-                    "Incompletions reset the clock."
+                    "Passing can stop the clock",
+                    "Turnovers risk the lead"
                   ]
                 }
               ],
-              "expertNote": "When ahead late, force the other team to run. Runs burn the clock. Passing lets them save time with incompletions."
+              "expertNote": "When ahead late, run the ball and keep the clock moving. Passing gives the other team free stoppages and risks a turnover."
             },
             "xp": 10
           },
@@ -826,18 +1124,31 @@
           {
             "id": "clock-06-mc-trailing",
             "type": "multiple-choice",
-            "conceptIds": ["clock-management"],
+            "conceptIds": [
+              "clock-management"
+            ],
             "payload": {
               "prompt": "When trailing late, what is the worst clock mistake?",
               "options": [
-                {"id": "a", "text": "Running the ball instead of passing and stopping the clock with incompletions"},
-                {"id": "b", "text": "Throwing sideline routes to get out of bounds"},
-                {"id": "c", "text": "Taking a timeout between plays"}
+                {
+                  "id": "a",
+                  "text": "Running up the middle so the clock keeps moving"
+                },
+                {
+                  "id": "b",
+                  "text": "Throwing sideline routes to get out of bounds"
+                },
+                {
+                  "id": "c",
+                  "text": "Taking a timeout between plays"
+                }
               ],
-              "correctOptionIds": ["a"],
+              "correctOptionIds": [
+                "a"
+              ],
               "explanation": {
-                "correct": "Running wastes time when trailing. Passing stops the clock on incompletions and sideline throws stop it on contact.",
-                "incorrect": "Trailing late? You need stops to save the clock. Pass plays with sideline routes are clock-savers."
+                "correct": "Running in bounds keeps the clock moving, which hurts a trailing team. Incompletions and sideline catches stop it.",
+                "incorrect": "Trailing late, you want the clock stopped. Passes that fall incomplete or end out of bounds stop it."
               }
             },
             "xp": 10
@@ -871,13 +1182,13 @@
             "payload": {
               "prompt": "Match each clock situation to the right strategy.",
               "pairs": [
-                {"id": "ahead", "term": "Ahead late", "definition": "Run the ball, use the full play clock, burn timeouts by stopping short of the sticks."},
+                {"id": "ahead", "term": "Ahead late", "definition": "Run the ball, stay in bounds and use the full play clock."},
                 {"id": "behind", "term": "Behind late", "definition": "Pass quickly, throw sidelines to stop the clock, use timeouts to regroup only when needed."},
                 {"id": "victory", "term": "Victory formation", "definition": "Kneel down to waste the final seconds safely without risking a fumble or turnover."}
               ],
               "explanation": {
-                "summary": "Clock management is opposite depending on the score. Ahead: slow it down. Behind: speed it up. Won: just kneel.",
-                "sayThisLine": "Ahead: run and waste time. Behind: pass and save time. Up by a ton: kneel down."
+                "summary": "Clock management depends on the score. Ahead: slow it down. Behind: speed it up. Game in hand: kneel.",
+                "sayThisLine": "Ahead: run and use the clock. Behind: pass and save time. Late lead: kneel."
               }
             },
             "xp": 10
@@ -917,13 +1228,13 @@
             "payload": {
               "prompt": "In NFL regular-season overtime as of 2025, what changed?",
               "options": [
-                {"id": "a", "text": "Each team gets a possession, not just first-score wins"},
+                {"id": "a", "text": "Each team gets a possession, like the playoffs"},
                 {"id": "b", "text": "Overtime is now five minutes instead of ten"},
                 {"id": "c", "text": "Field goals do not count in overtime"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Since 2025, both teams get at least one possession in NFL regular-season OT, like the playoffs. First-score no longer wins automatically.",
+                "correct": "Since 2025, both teams get a possession in NFL regular-season overtime, like the playoffs. A touchdown on the first drive no longer ends the game immediately.",
                 "incorrect": "The 2025 rule change let both teams get the ball in overtime. It applies to regular season now too."
               }
             },
@@ -932,18 +1243,38 @@
           {
             "id": "overtime-07-so-sequence",
             "type": "sequence-order",
-            "conceptIds": ["overtime", "field-goal", "touchdown"],
+            "conceptIds": [
+              "overtime",
+              "field-goal",
+              "touchdown"
+            ],
             "payload": {
-              "prompt": "Arrange these OT scenarios by which ends first.",
+              "prompt": "Put the steps of NFL overtime in order.",
               "items": [
-                {"id": "first-td", "text": "Receive, score touchdown on first drive"},
-                {"id": "first-fg", "text": "Receive field goal, defense scores touchdown"},
-                {"id": "second-td", "text": "Both FGs, then one team scores TD"},
-                {"id": "mutual-fg", "text": "Both teams score two field goals each"}
+                {
+                  "id": "first-td",
+                  "text": "Coin toss: the winner picks to receive or defer",
+                  "why": "The toss decides who gets the first possession."
+                },
+                {
+                  "id": "first-fg",
+                  "text": "The first team gets a possession",
+                  "why": "It can score, punt or turn it over."
+                },
+                {
+                  "id": "second-td",
+                  "text": "The second team gets a possession to answer",
+                  "why": "Both teams get a chance to score."
+                },
+                {
+                  "id": "mutual-fg",
+                  "text": "If still tied, the next score wins",
+                  "why": "After both possessions it becomes sudden death."
+                }
               ],
               "explanation": {
-                "correct": "In modern OT, both teams get the ball. Whoever has more points after possessions wins.",
-                "incorrect": "Since both teams get a possession, the game ends when one team has more points after both have had their chance."
+                "correct": "Toss, then a possession each, and if it is still tied the next score wins.",
+                "incorrect": "The order is the toss, the first possession, the answering possession, and then sudden death if it is tied."
               }
             },
             "xp": 10
@@ -951,13 +1282,21 @@
           {
             "id": "overtime-07-ds-sudden",
             "type": "decision-scenario",
-            "conceptIds": ["overtime"],
+            "conceptIds": [
+              "overtime"
+            ],
             "payload": {
-              "prompt": "Coin flip winner in OT. Take the ball or defer?",
+              "prompt": "You won the overtime coin toss. Receive or defer?",
               "situation": {
                 "facts": [
-                  {"label": "Situation", "value": "Coin flip winner"},
-                  {"label": "OT rule", "value": "Both teams get a possession"}
+                  {
+                    "label": "Situation",
+                    "value": "Won the toss"
+                  },
+                  {
+                    "label": "OT rule",
+                    "value": "Both teams get a possession"
+                  }
                 ]
               },
               "options": [
@@ -965,42 +1304,54 @@
                   "id": "take-ball",
                   "label": "Take the ball",
                   "verdict": "acceptable",
-                  "consequence": "Score first but the other team knows what they need to answer or win.",
+                  "consequence": "You set the target, and the other team knows what it needs to answer.",
                   "considerations": [
-                    "Old sudden-death thinking favored taking the ball.",
-                    "Modern rule: both teams get the ball anyway."
+                    "You control the first drive",
+                    "You put the pressure on their answer",
+                    "Most teams still choose this"
                   ]
                 },
                 {
                   "id": "defer",
                   "label": "Defer possession",
-                  "verdict": "best",
-                  "consequence": "Let them score first, then you know exactly what you need. You get the last possession.",
+                  "verdict": "acceptable",
+                  "consequence": "You see their result before your drive, so you know exactly what you need.",
                   "considerations": [
-                    "You get the final possession advantage.",
-                    "Information advantage: see their score, then respond."
+                    "You have the last possession",
+                    "You know the target before you play"
                   ]
                 }
               ],
-              "expertNote": "Modern OT: both teams get the ball. Deferring lets you see what they score, then respond. Possession advantage shifts from first to last."
+              "expertNote": "Coaches disagree about this choice. Receiving first sets the target and is still the usual pick. Deferring gives you information but not the first punch."
             },
             "xp": 10
           },
           {
             "id": "overtime-07-bc-sudden",
             "type": "binary-call",
-            "conceptIds": ["overtime"],
+            "conceptIds": [
+              "overtime"
+            ],
             "payload": {
-              "prompt": "Sudden-death overtime means the first team to score any points wins. True or false?",
-              "scene": {"kind": "none", "alt": "An overtime game where one team scores and the game ends immediately."},
+              "prompt": "In NFL overtime today, a first-drive touchdown ends the game at once. True or false?",
+              "scene": {
+                "kind": "none",
+                "alt": "An overtime game where one team scores and the game ends immediately."
+              },
               "choices": [
-                {"id": "true", "label": "True"},
-                {"id": "false", "label": "False"}
+                {
+                  "id": "true",
+                  "label": "True"
+                },
+                {
+                  "id": "false",
+                  "label": "False"
+                }
               ],
               "correctChoiceId": "false",
               "explanation": {
-                "correct": "False. In NFL OT now, both teams get a possession. The team with more points after both possessions wins, not sudden-death.",
-                "incorrect": "Modern overtime is not sudden-death anymore. Both teams get the ball, then whoever has more points wins."
+                "correct": "False. The other team now gets a possession to answer. After both possessions, the next score wins.",
+                "incorrect": "Not anymore. Both teams get a possession, then it becomes sudden death if the game is still tied."
               }
             },
             "xp": 10
@@ -1008,17 +1359,31 @@
           {
             "id": "overtime-07-tm-formats",
             "type": "term-match",
-            "conceptIds": ["overtime"],
+            "conceptIds": [
+              "overtime"
+            ],
             "payload": {
               "prompt": "Match each OT format to how it works.",
               "pairs": [
-                {"id": "nfl-reg", "term": "NFL regular season OT (2025)", "definition": "Both teams get a possession; more points wins."},
-                {"id": "nfl-playoff", "term": "NFL playoff OT", "definition": "Both teams get the ball; TD wins if other can't answer."},
-                {"id": "college-ot", "term": "College OT", "definition": "One untimed possession from 25-yard line, alternating."}
+                {
+                  "id": "nfl-reg",
+                  "term": "NFL regular season OT (2025)",
+                  "definition": "Ten-minute period; both teams get a possession, then sudden death. A tie is possible."
+                },
+                {
+                  "id": "nfl-playoff",
+                  "term": "NFL playoff OT",
+                  "definition": "Fifteen-minute periods; both teams get a possession, then sudden death. Plays to a winner."
+                },
+                {
+                  "id": "college-ot",
+                  "term": "College OT",
+                  "definition": "Each team starts at the opponent's 25 and they trade possessions until one team leads."
+                }
               ],
               "explanation": {
-                "summary": "NFL OT is fair: both teams. College OT is a shootout.",
-                "sayThisLine": "NFL both get the ball. College is alternating possessions."
+                "summary": "NFL overtime is timed and both teams get a possession. College overtime is a shootout from the 25.",
+                "sayThisLine": "NFL overtime is timed. College overtime is a shootout."
               }
             },
             "xp": 10
@@ -1026,18 +1391,31 @@
           {
             "id": "overtime-07-mc-advantage",
             "type": "multiple-choice",
-            "conceptIds": ["overtime"],
+            "conceptIds": [
+              "overtime"
+            ],
             "payload": {
-              "prompt": "Getting the ball second in NFL overtime is now an advantage because?",
+              "prompt": "What is the main benefit of having the ball second in NFL overtime?",
               "options": [
-                {"id": "a", "text": "You know the score and can plan accordingly; if they score, you can match or beat them"},
-                {"id": "b", "text": "The defense is tired from the first possession"},
-                {"id": "c", "text": "The second team always gets a two-point conversion"}
+                {
+                  "id": "a",
+                  "text": "You know the score and can plan accordingly; if they score, you can match or beat them"
+                },
+                {
+                  "id": "b",
+                  "text": "The defense is tired from the first possession"
+                },
+                {
+                  "id": "c",
+                  "text": "The second team always gets a two-point conversion"
+                }
               ],
-              "correctOptionIds": ["a"],
+              "correctOptionIds": [
+                "a"
+              ],
               "explanation": {
-                "correct": "Knowing what you need before you score is huge. Go second, see their result, then execute with a plan.",
-                "incorrect": "The second possession in modern OT has the information advantage: you know the score before your drive."
+                "correct": "You know the score before you play, so you can decide how aggressive to be. It is an information edge, not a guarantee.",
+                "incorrect": "The benefit is knowing what you need before your drive. That does not make the second possession easier."
               }
             },
             "xp": 10
