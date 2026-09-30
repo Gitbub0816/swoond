@@ -119,6 +119,12 @@ Toolchain: **Xcode 27, Swift 6.4 (Swift 6 language mode), iOS SDK 27, deployment
 - Subagents must not commit or push unless instructed; the orchestrator commits. Commit messages end with the attribution lines the harness provides.
 - Subagent briefs must be self-contained: goal, files to read, files to write, constraints, validation command, and required report format.
 
+## 9a. Curriculum quality pipeline (D-018)
+
+- Haiku authors per-unit curriculum JSON for non-safety-critical courses only. Orchestrator validates; Sonnet does accuracy review of all units before release.
+- Safety-critical courses (hiking, camping, climbing, food-safety, fitness) authored by Sonnet; require human domain-expert review.
+- Every unit: no schema/lint errors (orchestrator re-runs validator); no templated content; no invented fields; factually correct explanations.
+
 ## 10. How to validate
 
 | What | Command | When |
@@ -160,12 +166,11 @@ Xcode 27; Swift 6.4; iOS SDK 27.0; iOS deployment target 18.0; Unity 6.3 LTS (60
 *(The orchestrator updates this section after each work session.)*
 
 **Status (2026-09-30):**
-- Foundation done: product decisions (D-001 to D-017), glossary, architecture, all contracts with validated examples (bridge v1, course manifest 1.1, curriculum 1.2, 13 native exercise schemas, sim-definition v1), native exercise catalog, Astra handoff docs, validator with content lint and sim-spec checks (`npm test` green).
+- Foundation done: product decisions (D-001 to D-018), glossary, architecture, all contracts with validated examples (bridge v1, course manifest 1.1, curriculum 1.2, 13 native exercise schemas, sim-definition v1), native exercise catalog, Astra handoff docs, validator with content lint and sim-spec checks (`npm test` green).
 - SwoondCore done: domain, ProgressEngine, ContentLoader (single-file and split layouts, branch-aware), bridge types and BridgeSession, exercise engines, mock providers; `swift test` passes on Linux.
-- SwiftUI app (`ios/Swoond`) in progress; needs Mac verification (Xcode 27). It must handle `Layer.branch` and activity `branchId` (contract 1.2).
-- Wave 1 documentation done for all 8 courses (`cds-draft`): CDS, manifest, exercise and live-data plans, and 41 Astra sim specs (football 5, NASCAR 6, F1 6, pickleball 5, hiking 1, basketball 6, hockey 6, soccer 6), all `spec-draft`. Catalog: `docs/courses/CATALOG.md`.
-- Game Kit: sport modules now specified beyond football and racing (Hockey, Soccer, Basketball, Pickleball court pattern, shared Racing for NASCAR + F1, Terrain for hiking). Consolidated requests (20 generic primitives) in `docs/astra/GAME_KIT.md` section 5; recommended build order in `docs/astra/ROADMAP.md`. Nothing built in Unity yet.
-- Curriculum authoring is moving to the split per-unit layout (one file per unit, hand-authored, content lint enforced: no placeholders, no duplicates, lessons of 4+ activities). Hiking and soccer are in progress; the other six await curriculum.
+- iOS app written; CI building on macOS; content pack at `content/courses`.
+- Soccer curriculum complete (20 units, reviewed). Wave 1 other courses in progress (hiking, basketball, F1, football, NASCAR, hockey, pickleball). Wave 2 specs 12/13 done (books pending). Wave 3 started (horror-films).
+- Game Kit: sport modules specified (Hockey, Soccer, Basketball, Pickleball court pattern, shared Racing for NASCAR + F1, Terrain for hiking). Consolidated requests (20 generic primitives) in `docs/astra/GAME_KIT.md` section 5; build order in `docs/astra/ROADMAP.md`. Nothing built in Unity yet.
 - Consolidated open questions (45: product, licensing/legal, SME, facts to re-verify): `docs/product/OPEN_QUESTIONS.md`.
 
 **Next steps (suggested order):**

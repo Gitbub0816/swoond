@@ -1,0 +1,1472 @@
+{
+  "contractVersion": "1.2.0",
+  "courseId": "hiking",
+  "unit": {
+    "id": "gear-nerd-debates",
+    "title": "Gear nerd debates",
+    "layer": "enthusiast",
+    "order": 11,
+    "prerequisiteUnitIds": ["gear-and-clothing", "judgment-and-emergencies"],
+    "personalizationSlots": ["equipment"],
+    "lessons": [
+      {
+        "id": "gn-01",
+        "title": "Base weight and the big three",
+        "objective": "You can define base weight and name the big three.",
+        "estimatedMinutes": 11,
+        "conceptIds": ["base-weight", "big-three"],
+        "activities": [
+          {
+            "id": "gn-01-es-water-weight",
+            "type": "estimate-slider",
+            "conceptIds": ["base-weight"],
+            "payload": {
+              "prompt": "About how many pounds does 3 liters of water weigh?",
+              "unit": "pounds",
+              "min": 0,
+              "max": 15,
+              "step": 0.5,
+              "correctValue": 6.5,
+              "tolerance": { "full": 0.5, "partial": 1.5 },
+              "explanation": {
+                "correct": "A liter of water weighs about 2.2 pounds, so 3 liters is roughly 6.6 pounds. That is exactly why base weight leaves water out: it changes all day and would hide the gear you actually chose.",
+                "incorrect": "One liter of water weighs about 2.2 pounds, so 3 liters is close to 6.6. Water is heavy enough to swamp a base weight number, which is why gear nerds count it separately.",
+                "sayThisLine": "\"Water is over two pounds a liter, so I count it separately.\""
+              }
+            }
+          },
+          {
+            "id": "gn-01-tm-weight-words",
+            "type": "term-match",
+            "conceptIds": ["base-weight", "big-three"],
+            "payload": {
+              "prompt": "Match each pack-weight word to what it means:",
+              "pairs": [
+                {
+                  "id": "base",
+                  "term": "Base weight",
+                  "definition": "Your pack contents without food, water and fuel"
+                },
+                {
+                  "id": "big-three",
+                  "term": "Big three",
+                  "definition": "The three heaviest items: pack, shelter and sleep system"
+                },
+                {
+                  "id": "consumables",
+                  "term": "Consumables",
+                  "definition": "Food, water and fuel that get used up along the way"
+                },
+                {
+                  "id": "skin-out",
+                  "term": "Skin-out weight",
+                  "definition": "Everything on your body and in your pack, added together"
+                }
+              ],
+              "explanation": {
+                "summary": "Base weight ignores consumables so the number stays comparable from trip to trip. Skin-out weight is the honest total, and the big three are where most of the savings usually hide.",
+                "sayThisLine": "\"Is that base weight or skin-out? Big difference.\""
+              }
+            }
+          },
+          {
+            "id": "gn-01-mc-big-three",
+            "type": "multiple-choice",
+            "conceptIds": ["big-three"],
+            "payload": {
+              "prompt": "Which trio makes up the big three?",
+              "options": [
+                {
+                  "id": "pack-shelter-sleep",
+                  "text": "Pack, shelter and sleep system",
+                  "explanation": "These are usually the heaviest and most expensive items, so they are the first place gear nerds look for savings."
+                },
+                {
+                  "id": "food-water-fuel",
+                  "text": "Food, water and fuel",
+                  "explanation": "Those are consumables, the exact things base weight leaves out."
+                },
+                {
+                  "id": "boots-poles-stove",
+                  "text": "Boots, trekking poles and stove",
+                  "explanation": "Useful gear, but not the three heaviest categories in most packs."
+                },
+                {
+                  "id": "phone-map-compass",
+                  "text": "Phone, map and compass",
+                  "explanation": "That is a navigation kit, and a light one. It is not what people mean by the big three."
+                }
+              ],
+              "correctOptionIds": ["pack-shelter-sleep"],
+              "explanation": {
+                "correct": "The big three are your pack, your shelter and your sleep system (bag or quilt plus pad). They tend to be the heaviest gear you carry, so a swap here saves more than trimming small items.",
+                "incorrect": "The big three are pack, shelter and sleep system. They are usually the heaviest items, so changing one often saves more weight than cutting ten small things.",
+                "sayThisLine": "\"Which of the big three did you swap first?\""
+              }
+            }
+          },
+          {
+            "id": "gn-01-bc-water-in-base",
+            "type": "binary-call",
+            "conceptIds": ["base-weight"],
+            "payload": {
+              "prompt": "Her base weight is 12 lb. Does that include today's water?",
+              "scene": {
+                "kind": "none",
+                "alt": "A hiker's pack on a hanging scale at a trailhead with a full water bottle sitting beside it on the ground."
+              },
+              "choices": [
+                { "id": "yes", "label": "Yes, water counts" },
+                { "id": "no", "label": "No, water is extra" }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Base weight leaves out consumables: food, water and fuel. Her real load on the trail will be heavier, especially on a long dry stretch where she carries extra water.",
+                "incorrect": "By convention, base weight is the pack without food, water and fuel. Water is a consumable, so her true carried weight is higher than 12 pounds.",
+                "sayThisLine": "\"Twelve pounds base, so what's it with food and water?\""
+              },
+              "ruleTag": "Base weight leaves out consumables"
+            }
+          },
+          {
+            "id": "gn-01-ftg-base-weight",
+            "type": "fill-the-gap",
+            "conceptIds": ["base-weight", "big-three"],
+            "payload": {
+              "prompt": "Finish the definition the way gear nerds say it:",
+              "template": "Base weight leaves out {{out}}. The big three are your pack, your shelter and your {{third}}.",
+              "gaps": [
+                {
+                  "id": "out",
+                  "options": ["food, water and fuel", "your first-aid kit", "your rain jacket"],
+                  "correct": "food, water and fuel"
+                },
+                {
+                  "id": "third",
+                  "options": ["sleep system", "camp shoes", "stove"],
+                  "correct": "sleep system"
+                }
+              ],
+              "explanation": {
+                "correct": "Base weight is everything except consumables, so safety gear like a first-aid kit and rain jacket stay in the count. The third of the big three is your sleep system.",
+                "incorrect": "Base weight leaves out only food, water and fuel, never safety items like first aid or a rain layer. The big three are pack, shelter and sleep system.",
+                "sayThisLine": "\"Base weight skips consumables, not safety gear.\""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "gn-02",
+        "title": "Ultralight trade-offs",
+        "objective": "You can explain what ultralight gains and gives up.",
+        "estimatedMinutes": 13,
+        "conceptIds": ["ultralight", "shakedown-hike"],
+        "activities": [
+          {
+            "id": "gn-02-mc-what-gained",
+            "type": "multiple-choice",
+            "conceptIds": ["ultralight"],
+            "payload": {
+              "prompt": "What is the fair way to describe the ultralight trade-off?",
+              "options": [
+                {
+                  "id": "trade",
+                  "text": "Less weight and easier miles, in exchange for less comfort, durability and margin",
+                  "explanation": "Both sides are real: lighter gear is often more delicate, less roomy and less forgiving when conditions turn."
+                },
+                {
+                  "id": "free-lunch",
+                  "text": "Lighter is always better, with no downside",
+                  "explanation": "Every ounce cut usually costs something in comfort, durability, cost or skill."
+                },
+                {
+                  "id": "pointless",
+                  "text": "Ultralight is a fad that never actually helps anyone",
+                  "explanation": "Many hikers find lighter packs mean less fatigue and fewer aches. The approach works for a lot of people."
+                },
+                {
+                  "id": "only-experts",
+                  "text": "It only matters on thru-hikes of thousands of miles",
+                  "explanation": "A lighter pack can make a day or weekend hike more comfortable too."
+                }
+              ],
+              "correctOptionIds": ["trade"],
+              "explanation": {
+                "correct": "Ultralight is a real trade. You gain comfort while moving and often more miles. You give up some comfort in camp, some durability and some margin, so it asks for more skill and attention.",
+                "incorrect": "Neither \"always better\" nor \"pointless\" is fair. Lighter gear helps many hikers, and it also costs something: durability, comfort, money or safety margin if you cut the wrong thing.",
+                "sayThisLine": "\"What did you give up to get it that light?\""
+              }
+            }
+          },
+          {
+            "id": "gn-02-st-quilt-talk",
+            "type": "say-this",
+            "conceptIds": ["ultralight"],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "I'm ultralight, so no camp chair, no extra clothes, and I sleep under a quilt. But I always keep my rain jacket and first-aid kit."
+              },
+              "question": "What is she telling you?",
+              "options": [
+                {
+                  "id": "philosophy",
+                  "text": "She carries very little on purpose, but keeps her safety basics",
+                  "isCorrect": true,
+                  "explanation": "Yes. Ultralight means cutting comfort items and duplicates, not the gear that protects you."
+                },
+                {
+                  "id": "cheap",
+                  "text": "She cannot afford normal gear",
+                  "isCorrect": false,
+                  "explanation": "Nothing she said is about money. Ultralight is a choice, and light gear often costs more."
+                },
+                {
+                  "id": "no-safety",
+                  "text": "She skips safety gear to save weight",
+                  "isCorrect": false,
+                  "explanation": "She named her rain jacket and first-aid kit as things she never cuts."
+                },
+                {
+                  "id": "beginner",
+                  "text": "She is new and does not know what to pack",
+                  "isCorrect": false,
+                  "explanation": "Her list sounds deliberate. She has decided what to leave behind and what to keep."
+                }
+              ],
+              "translation": "She cuts comfort items to keep her pack very light, but treats rain protection and first aid as non-negotiable.",
+              "noFakeExpertNote": "Ask what she would never leave behind. Curiosity works better than pretending you have opinions about quilts.",
+              "followUps": [
+                {
+                  "line": "What's the one thing you'd never cut, even to save weight?",
+                  "why": "It invites her to share her rules and shows you understand cutting has limits."
+                },
+                {
+                  "line": "Do you miss the camp chair at the end of a long day?",
+                  "why": "It is a friendly, honest question about the comfort trade-off she chose."
+                }
+              ]
+            }
+          },
+          {
+            "id": "gn-02-ds-cut-the-jacket",
+            "type": "decision-scenario",
+            "conceptIds": ["ultralight", "shakedown-hike"],
+            "payload": {
+              "prompt": "You are trimming pack weight the night before a mountain day hike. What do you cut?",
+              "situation": {
+                "narrative": "Your pack weighs more than you like. On the bed: a rain jacket, an insulating layer, a first-aid kit, a headlamp, a camp chair and a second water bottle. The forecast is mostly clear with some afternoon cloud.",
+                "facts": [
+                  { "label": "Trip", "value": "Mountain day hike" },
+                  { "label": "Forecast", "value": "Mostly clear, afternoon clouds" },
+                  { "label": "Pack", "value": "Heavier than you want" },
+                  { "label": "Option to cut", "value": "Comfort items or safety items?", "emphasis": "warning" }
+                ]
+              },
+              "options": [
+                {
+                  "id": "cut-comfort",
+                  "label": "Leave the chair and extra bottle; keep jacket, layer, first aid, headlamp",
+                  "verdict": "best",
+                  "consequence": "You drop weight from things that only add comfort, and you keep the gear that protects you if weather, injury or darkness surprise you.",
+                  "considerations": [
+                    "Cut comfort and duplicates first, safety items last.",
+                    "Mountain weather changes faster than forecasts."
+                  ]
+                },
+                {
+                  "id": "shakedown",
+                  "label": "Weigh it all, then test the lighter setup on a short local hike",
+                  "verdict": "acceptable",
+                  "consequence": "A shakedown catches mistakes cheaply near home. It works best if you still count the safety items as fixed.",
+                  "considerations": [
+                    "Test changes before a big trip, not during one.",
+                    "Note what you truly used, but remember safety items are for the day things go wrong."
+                  ]
+                },
+                {
+                  "id": "cut-jacket",
+                  "label": "Leave the rain jacket and insulating layer since the forecast is mostly clear",
+                  "verdict": "poor",
+                  "consequence": "Wet and wind together can chill you fast, and a forecast is not a promise. Saving a pound is not worth being underdressed high up.",
+                  "considerations": [
+                    "Forecasts miss, especially in the mountains.",
+                    "Insulation and rain protection are core safety gear, not extras."
+                  ]
+                },
+                {
+                  "id": "cut-first-aid",
+                  "label": "Leave the first-aid kit and headlamp since you plan to be back before dark",
+                  "verdict": "poor",
+                  "consequence": "Delays and injuries are exactly when plans slip. A small kit and a light weigh very little compared with what they can do for you.",
+                  "considerations": [
+                    "Plans slip most when you need the gear.",
+                    "These are among the lightest, most valuable items you carry."
+                  ]
+                }
+              ],
+              "expertNote": "Careful ultralight hikers cut duplicates and comfort items and keep the Ten Essentials as systems. A very low weight is a goal, not a reason to skip protection.",
+              "sayThisLine": "\"I'll leave the chair, not the rain jacket.\"",
+              "safetyNote": "Never cut the Ten Essentials to save weight. Follow official guidance and match your kit to the conditions, terrain and your skill."
+            }
+          },
+          {
+            "id": "gn-02-seq-shakedown",
+            "type": "sequence-order",
+            "conceptIds": ["shakedown-hike", "base-weight"],
+            "payload": {
+              "prompt": "Put a shakedown hike in order:",
+              "items": [
+                {
+                  "id": "weigh",
+                  "text": "Lay out and weigh your gear at home",
+                  "why": "You cannot improve a number you have not measured, and laying it out shows duplicates."
+                },
+                {
+                  "id": "swap",
+                  "text": "Make one or two changes, not ten",
+                  "why": "A few changes at a time lets you tell which one helped or hurt."
+                },
+                {
+                  "id": "test",
+                  "text": "Hike or camp with it near home, close to help",
+                  "why": "A cheap test in easy conditions catches problems while a fix is still simple."
+                },
+                {
+                  "id": "review",
+                  "text": "Note what worked, what hurt and what you missed",
+                  "why": "Honest notes turn one trip into information for the next."
+                },
+                {
+                  "id": "keep-safety",
+                  "text": "Adjust, keeping your safety gear fixed",
+                  "why": "Unused does not mean unnecessary. First aid and insulation earn their weight on the bad day."
+                }
+              ],
+              "explanation": {
+                "correct": "Weigh it, change a little, test close to home, review honestly, then adjust while keeping safety gear fixed. The order keeps changes cheap and safe.",
+                "incorrect": "Measure first, change little, test near help, review, then adjust. Keep safety gear fixed even if you never used it, because it is there for the day things go wrong.",
+                "sayThisLine": "\"Test it near home before you bet a big trip on it.\""
+              }
+            }
+          },
+          {
+            "id": "gn-02-bc-unused-item",
+            "type": "binary-call",
+            "conceptIds": ["shakedown-hike", "ultralight"],
+            "payload": {
+              "prompt": "You never touched your first-aid kit on the shakedown. Leave it home?",
+              "scene": {
+                "kind": "none",
+                "alt": "A small first-aid kit sitting unopened on a picnic table beside a laid-out array of camping gear."
+              },
+              "choices": [
+                { "id": "leave", "label": "Leave it home" },
+                { "id": "keep", "label": "Keep carrying it" }
+              ],
+              "correctChoiceId": "keep",
+              "explanation": {
+                "correct": "Safety gear is meant to sit unused. Not needing it on an easy test hike says nothing about the day you do. Trim other items and keep the kit.",
+                "incorrect": "Unused is not the same as unnecessary. First aid, insulation and light are for the unplanned day, so a smooth shakedown does not prove they are dead weight.",
+                "sayThisLine": "\"Safety gear earns its place by staying in the pack.\""
+              },
+              "ruleTag": "Unused is not unnecessary"
+            }
+          }
+        ]
+      },
+      {
+        "id": "gn-03",
+        "title": "Trail runners or boots",
+        "objective": "You can present both sides of the shoe debate.",
+        "estimatedMinutes": 13,
+        "conceptIds": ["trail-runners-debate", "wet-foot-philosophy"],
+        "activities": [
+          {
+            "id": "gn-03-mc-both-sides",
+            "type": "multiple-choice",
+            "conceptIds": ["trail-runners-debate"],
+            "payload": {
+              "prompt": "Which statement gives trail runners fair credit AND names a real trade-off?",
+              "options": [
+                {
+                  "id": "fair",
+                  "text": "They are light and dry fast, but wear out sooner and give less sole protection than boots",
+                  "explanation": "Fair to both sides: the fans have real reasons and the critics have real points."
+                },
+                {
+                  "id": "runners-win",
+                  "text": "They are better than boots for every hiker on every trail",
+                  "explanation": "\"Every\" is the giveaway. Heavy loads, snow and rough ground can change the answer."
+                },
+                {
+                  "id": "boots-win",
+                  "text": "Boots are the only responsible choice and runners are reckless",
+                  "explanation": "Millions of hikers use trail runners sensibly. Calling them reckless is unfair."
+                },
+                {
+                  "id": "same",
+                  "text": "There is no real difference between the two",
+                  "explanation": "There are differences in weight, drying time, durability, protection and warmth."
+                }
+              ],
+              "correctOptionIds": ["fair"],
+              "explanation": {
+                "correct": "Trail runners are lighter, more breathable and need little break-in. Boots often last longer and add sole and ankle protection, plus warmth. Each fits some hikers and some conditions better.",
+                "incorrect": "Both sides have points. Runners win on weight, breathability and quick drying. Boots often win on durability, protection and cold or heavy-load conditions. Absolute claims either way miss that.",
+                "sayThisLine": "\"Runners are light and dry fast, boots are tougher. Depends on the trip.\""
+              }
+            }
+          },
+          {
+            "id": "gn-03-st-ankle-prisons",
+            "type": "say-this",
+            "conceptIds": ["trail-runners-debate"],
+            "payload": {
+              "statement": {
+                "speaker": "Maya",
+                "text": "I'm a trail-runner convert. Boots feel like ankle prisons. Blisters are down, but my ankles do get tired on rocky ground."
+              },
+              "question": "What is Maya really saying?",
+              "options": [
+                {
+                  "id": "preference",
+                  "text": "She prefers light trail shoes and has noticed both benefits and a cost",
+                  "isCorrect": true,
+                  "explanation": "Yes. She likes the freedom and fewer blisters, and she is honest that rough ground tires her ankles."
+                },
+                {
+                  "id": "universal",
+                  "text": "She thinks everyone should give up boots",
+                  "isCorrect": false,
+                  "explanation": "That is her personal experience, not a rule for anyone else."
+                },
+                {
+                  "id": "injured",
+                  "text": "She has a serious ankle injury",
+                  "isCorrect": false,
+                  "explanation": "She only said her ankles get tired on rocky ground. That is not an injury."
+                },
+                {
+                  "id": "runs",
+                  "text": "She only runs and never hikes",
+                  "isCorrect": false,
+                  "explanation": "Trail runners are just the shoe. She is talking about hiking in them."
+                }
+              ],
+              "translation": "She switched to lightweight trail shoes, likes the comfort and fewer blisters, and honestly notes that rocky terrain works her ankles harder.",
+              "noFakeExpertNote": "You do not need a shoe opinion. Ask what changed for her feet, and let her tell the story.",
+              "followUps": [
+                {
+                  "line": "What made you switch from boots?",
+                  "why": "Open and curious. It lets her explain her own experience."
+                },
+                {
+                  "line": "How do you handle wet feet in the morning?",
+                  "why": "Touches the wet-foot trade-off without needing you to have a view."
+                }
+              ]
+            }
+          },
+          {
+            "id": "gn-03-ds-shoes-for-the-trip",
+            "type": "decision-scenario",
+            "conceptIds": ["trail-runners-debate", "wet-foot-philosophy"],
+            "payload": {
+              "prompt": "A cold, wet spring trip is coming. Which shoe plan is sensible?",
+              "situation": {
+                "narrative": "You and a friend plan a two-day trip in the mountains. Highs will be near 40 F with rain likely and old snow patches on the trail. Your friend loves trail runners. You have only ever worn boots.",
+                "facts": [
+                  { "label": "Temperature", "value": "Around 40 F, drops at night", "emphasis": "warning" },
+                  { "label": "Weather", "value": "Rain likely" },
+                  { "label": "Ground", "value": "Mud and old snow patches" },
+                  { "label": "Footwear", "value": "Runners vs boots debate" }
+                ]
+              },
+              "options": [
+                {
+                  "id": "match-conditions",
+                  "label": "Pick footwear for cold, wet conditions and bring spare dry socks",
+                  "verdict": "best",
+                  "consequence": "You treat the debate as a tool choice. In cold and wet, keeping feet warm and having dry socks for camp matters more than any philosophy.",
+                  "considerations": [
+                    "Wet feet plus cold air is a warmth problem, not just a comfort one.",
+                    "Whatever you wear, pack spare dry socks for camp."
+                  ]
+                },
+                {
+                  "id": "runners-anyway",
+                  "label": "Wear trail runners with warm socks and change into dry socks at camp",
+                  "verdict": "acceptable",
+                  "consequence": "Works for many experienced hikers who are comfortable with wet feet, if they stay moving, keep warm and have a dry pair for camp.",
+                  "considerations": [
+                    "Be honest about your own experience in cold and wet.",
+                    "Turn back or add layers if your feet get cold and numb."
+                  ]
+                },
+                {
+                  "id": "wet-is-fine",
+                  "label": "Wet feet are just part of it, so ignore cold or numb toes and keep walking",
+                  "verdict": "poor",
+                  "consequence": "Cold, numb feet are a warning sign. Ignoring them can lead to cold injury and makes it harder to think and move safely.",
+                  "considerations": [
+                    "Wet-foot philosophy is about comfort and blisters, not ignoring cold.",
+                    "Stop, warm up and dry off if your feet go numb."
+                  ]
+                },
+                {
+                  "id": "copy-friend",
+                  "label": "Copy your friend's shoes just because she swears by them",
+                  "verdict": "poor",
+                  "consequence": "Her setup matches her feet, experience and habits, not yours. A new shoe on a cold, wet trip is a bad experiment.",
+                  "considerations": [
+                    "Fit and familiarity matter more than the trend.",
+                    "Break in any new footwear before a real trip."
+                  ]
+                }
+              ],
+              "expertNote": "Experienced hikers use both, depending on conditions. Runners are popular in warm, dry, well-maintained trails. In cold, wet or snowy conditions, many prefer more protective footwear or extra layers for their feet.",
+              "sayThisLine": "\"Runners are great in summer. For a cold, wet trip I'd want to think it through.\"",
+              "safetyNote": "Cold, wet feet can lead to cold injury. Follow official guidance, check the forecast and turn back if your feet go numb."
+            }
+          },
+          {
+            "id": "gn-03-bc-creek-splash",
+            "type": "binary-call",
+            "conceptIds": ["wet-foot-philosophy"],
+            "payload": {
+              "prompt": "A warm afternoon, shallow creek crossing. Wet-foot philosophy says?",
+              "scene": {
+                "kind": "none",
+                "alt": "A hiker in trail shoes splashing straight through a shallow, slow creek on a warm sunny day while another hiker balances on stones."
+              },
+              "choices": [
+                { "id": "splash", "label": "Walk through, let shoes drain" },
+                { "id": "detour", "label": "Long detour to stay dry" }
+              ],
+              "correctChoiceId": "splash",
+              "explanation": {
+                "correct": "In warm weather, shallow, safe crossings are where wet-foot philosophy shines: shoes drain and dry while you walk. Only cross where the water is slow and clearly safe.",
+                "incorrect": "Wet-foot philosophy accepts wet shoes when it is warm. A long detour or a risky rock hop often costs more than a quick, safe splash through a shallow crossing.",
+                "sayThisLine": "\"Shallow and warm? We'll just walk through.\""
+              },
+              "ruleTag": "Wet feet are fine when warm and safe"
+            }
+          },
+          {
+            "id": "gn-03-tm-shoe-words",
+            "type": "term-match",
+            "conceptIds": ["trail-runners-debate", "wet-foot-philosophy"],
+            "payload": {
+              "prompt": "Match each shoe-debate idea to what it means:",
+              "pairs": [
+                {
+                  "id": "wet-foot",
+                  "term": "Wet-foot philosophy",
+                  "definition": "Let shoes get wet and drain instead of fighting to stay dry"
+                },
+                {
+                  "id": "break-in",
+                  "term": "Break-in",
+                  "definition": "Wearing new footwear before a big trip so it fits your feet"
+                },
+                {
+                  "id": "sole-protection",
+                  "term": "Sole protection",
+                  "definition": "Stiffness that shields feet from sharp rock on rough ground"
+                },
+                {
+                  "id": "drain",
+                  "term": "Drainage",
+                  "definition": "How quickly a shoe sheds water after it gets wet"
+                }
+              ],
+              "explanation": {
+                "summary": "Wet-foot philosophy is a choice about drainage. Break-in and sole protection are where the runners-versus-boots debate gets practical, because fit and rough ground matter more than fashion.",
+                "sayThisLine": "\"How well do those drain, and how did you break them in?\""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "gn-04",
+        "title": "Filters compared",
+        "objective": "You can compare filter types by speed, weight and failure modes.",
+        "estimatedMinutes": 14,
+        "conceptIds": ["water-filter-types"],
+        "activities": [
+          {
+            "id": "gn-04-tm-filter-types",
+            "type": "term-match",
+            "conceptIds": ["water-filter-types"],
+            "payload": {
+              "prompt": "Match each water treatment option to its main trade-off:",
+              "pairs": [
+                {
+                  "id": "squeeze",
+                  "term": "Squeeze filter",
+                  "definition": "Light and simple, but can be damaged if it freezes"
+                },
+                {
+                  "id": "gravity",
+                  "term": "Gravity filter",
+                  "definition": "Hang a bag and let it drip; convenient for groups and camp"
+                },
+                {
+                  "id": "pump",
+                  "term": "Pump filter",
+                  "definition": "Heavier and slower, but many can be cleaned in the field"
+                },
+                {
+                  "id": "uv",
+                  "term": "UV purifier",
+                  "definition": "Uses light against germs, but needs clear water and batteries"
+                },
+                {
+                  "id": "chemical",
+                  "term": "Chemical treatment",
+                  "definition": "Very light backup, but needs a wait time and can taste"
+                }
+              ],
+              "explanation": {
+                "summary": "Every option trades speed, weight and a way to fail. Squeeze filters can be ruined by freezing, UV needs batteries and clear water, pumps clog less easily but weigh more, and chemicals need patience.",
+                "sayThisLine": "\"Everything fails somehow. What's your backup?\""
+              }
+            }
+          },
+          {
+            "id": "gn-04-ds-cold-morning",
+            "type": "decision-scenario",
+            "conceptIds": ["water-filter-types", "water-treatment"],
+            "payload": {
+              "prompt": "Your squeeze filter sat outside all night below freezing. Now what?",
+              "situation": {
+                "narrative": "It is a cold camp morning and your bottle of filtered water has a crust of ice. Your hollow-fiber squeeze filter was left in the vestibule overnight, and it may have frozen with water inside. The next water source is a creek 3 miles away.",
+                "facts": [
+                  { "label": "Overnight low", "value": "Below freezing", "emphasis": "warning" },
+                  { "label": "Filter", "value": "Squeeze filter, left outside" },
+                  { "label": "Next source", "value": "Creek, 3 miles ahead" },
+                  { "label": "Backup", "value": "Chemical tablets in your kit" }
+                ]
+              },
+              "options": [
+                {
+                  "id": "use-backup",
+                  "label": "Treat creek water with your backup method, following its instructions",
+                  "verdict": "best",
+                  "consequence": "A frozen filter can have hidden damage you cannot see, so you do not trust it. Your backup gets clean water and you avoid a bad guess.",
+                  "considerations": [
+                    "Damage from freezing may be invisible.",
+                    "Carrying a backup is why backups exist."
+                  ]
+                },
+                {
+                  "id": "boil",
+                  "label": "Boil water at the creek if you have a stove and fuel",
+                  "verdict": "acceptable",
+                  "consequence": "Boiling works when you have the fuel and time. It is slower and uses fuel, but it does not depend on a filter that may be damaged.",
+                  "considerations": [
+                    "Follow current guidance on boiling time, longer at high elevation.",
+                    "Let hot water cool before you drink or pour it."
+                  ]
+                },
+                {
+                  "id": "use-anyway",
+                  "label": "Use the filter anyway; it looks fine and water flows through",
+                  "verdict": "poor",
+                  "consequence": "Flow does not prove the filter still works. Frozen hollow fibers can crack and let germs through with no sign at all.",
+                  "considerations": [
+                    "Water flowing is not proof that it filters.",
+                    "Follow the maker's guidance: a possibly frozen filter is not trustworthy."
+                  ]
+                },
+                {
+                  "id": "drink-clear",
+                  "label": "Drink straight from the creek since the water looks clear",
+                  "verdict": "poor",
+                  "consequence": "Clear water can still carry germs that cause a miserable illness. Looks tell you nothing about safety.",
+                  "considerations": [
+                    "Treat backcountry water even when it looks clean.",
+                    "Illness on trail is a bigger problem than the weight of a backup."
+                  ]
+                }
+              ],
+              "expertNote": "Many hikers sleep with their filter in a sleeping bag or pocket in freezing weather and carry a lightweight backup. Always check your own filter's instructions.",
+              "sayThisLine": "\"My filter might have frozen, so I'm using the backup.\"",
+              "safetyNote": "Follow the manufacturer's instructions and park guidance. If you suspect a filter froze, do not rely on it; use another treatment method."
+            }
+          },
+          {
+            "id": "gn-04-mc-virus-question",
+            "type": "multiple-choice",
+            "conceptIds": ["water-filter-types", "water-treatment"],
+            "payload": {
+              "prompt": "A hiker asks if her squeeze filter handles everything. What is the honest answer?",
+              "options": [
+                {
+                  "id": "check-specs",
+                  "text": "Most hollow-fiber filters catch bacteria and protozoa but not viruses; check the specs for your area",
+                  "explanation": "That is the fair, checkable answer. Some places or situations call for virus treatment."
+                },
+                {
+                  "id": "everything",
+                  "text": "Yes, any filter removes every germ and chemical",
+                  "explanation": "No filter does everything. Filters differ, and none remove every possible hazard."
+                },
+                {
+                  "id": "nothing",
+                  "text": "No, filters do nothing and only boiling works",
+                  "explanation": "Filters do reduce bacteria and protozoa well. Boiling also works but is not the only option."
+                },
+                {
+                  "id": "taste",
+                  "text": "It only improves taste, not safety",
+                  "explanation": "Taste is a side effect. Filters exist to remove harmful microbes."
+                }
+              ],
+              "correctOptionIds": ["check-specs"],
+              "explanation": {
+                "correct": "Most hollow-fiber filters remove bacteria and protozoa such as Giardia, but many do not remove viruses. Check your filter's specs and local guidance, and add a purifier or chemical treatment if viruses are a concern.",
+                "incorrect": "No filter does everything. Read your own filter's specs, know what it removes, and follow park guidance on whether you also need to treat for viruses.",
+                "sayThisLine": "\"Does yours cover viruses, or just bacteria and protozoa?\""
+              }
+            }
+          },
+          {
+            "id": "gn-04-ftg-filter-facts",
+            "type": "fill-the-gap",
+            "conceptIds": ["water-filter-types"],
+            "payload": {
+              "prompt": "Finish the filter care sentences:",
+              "template": "Keep a squeeze filter from {{freezing}}, and treat a possibly frozen one as {{status}}.",
+              "gaps": [
+                {
+                  "id": "freezing",
+                  "options": ["freezing", "sunlight", "shade"],
+                  "correct": "freezing"
+                },
+                {
+                  "id": "status",
+                  "options": ["unreliable", "good as new", "extra strong"],
+                  "correct": "unreliable"
+                }
+              ],
+              "explanation": {
+                "correct": "Ice can crack the tiny fibers in a hollow-fiber filter, and you cannot see the damage. That is why a possibly frozen filter should be treated as unreliable.",
+                "incorrect": "Freezing is the big enemy of a squeeze filter, because it can crack the fibers invisibly. A possibly frozen filter is unreliable, so switch to another treatment method.",
+                "sayThisLine": "\"Keep it warm at night, or don't trust it.\""
+              }
+            }
+          },
+          {
+            "id": "gn-04-bc-silty-uv",
+            "type": "binary-call",
+            "conceptIds": ["water-filter-types", "water-treatment"],
+            "payload": {
+              "prompt": "Silty, cloudy water. UV purifier alone, or strain it first?",
+              "scene": {
+                "kind": "none",
+                "alt": "A hiker holding a bottle of cloudy, silty water beside a muddy stream and a small UV purifier pen."
+              },
+              "choices": [
+                { "id": "uv-alone", "label": "UV alone is fine" },
+                { "id": "pre-filter", "label": "Pre-filter it first" }
+              ],
+              "correctChoiceId": "pre-filter",
+              "explanation": {
+                "correct": "UV works best in clear water because particles can shade germs from the light. Let silt settle or strain the water through a cloth first, then treat it, or use another method.",
+                "incorrect": "Cloudy water blocks UV light from reaching germs. Settle or strain it first, or use a method that handles silt, following your device's instructions.",
+                "sayThisLine": "\"UV needs clear water, so strain that first.\""
+              },
+              "ruleTag": "UV needs clear water"
+            }
+          }
+        ]
+      },
+      {
+        "id": "gn-05",
+        "title": "Paper or phone",
+        "objective": "You can explain why many hikers carry both.",
+        "estimatedMinutes": 13,
+        "conceptIds": ["gps-vs-paper"],
+        "activities": [
+          {
+            "id": "gn-05-ds-dead-phone",
+            "type": "decision-scenario",
+            "conceptIds": ["gps-vs-paper", "offline-maps"],
+            "payload": {
+              "prompt": "Your phone dies at a junction on a cold afternoon. What do you do?",
+              "situation": {
+                "narrative": "You and a friend used your phone map all day. At an unmarked junction, the cold drains your battery and the screen goes dark. There is no signal. You have a paper map and compass in the bottom of your pack.",
+                "facts": [
+                  { "label": "Phone", "value": "Dead, cold battery" },
+                  { "label": "Signal", "value": "None" },
+                  { "label": "Paper map", "value": "In your pack", "emphasis": "warning" },
+                  { "label": "Daylight", "value": "About 3 hours left" }
+                ]
+              },
+              "options": [
+                {
+                  "id": "paper",
+                  "label": "Stop, get out the paper map and compass, and confirm the way before walking",
+                  "verdict": "best",
+                  "consequence": "This is exactly why many hikers carry both. You stay calm, check your location against landmarks and choose the trail on purpose.",
+                  "considerations": [
+                    "Stop first, then decide.",
+                    "A backup only works if you know how to use it."
+                  ]
+                },
+                {
+                  "id": "retrace",
+                  "label": "Retrace your route to the last spot you were sure of",
+                  "verdict": "acceptable",
+                  "consequence": "Going back to the last confirmed point is a sound choice if you are unsure, especially with daylight left. It is slower but keeps you on known ground.",
+                  "considerations": [
+                    "Leave yourself enough daylight to get out.",
+                    "Better than guessing at an unmarked junction."
+                  ]
+                },
+                {
+                  "id": "guess",
+                  "label": "Pick the path that looks most worn and hope for the best",
+                  "verdict": "poor",
+                  "consequence": "A worn path may be a social trail or a shortcut. Guessing at a junction is how small mix-ups become being off route.",
+                  "considerations": [
+                    "Confirm with a map, not a hunch.",
+                    "Unofficial paths can lead the wrong way."
+                  ]
+                },
+                {
+                  "id": "warm-phone",
+                  "label": "Keep trying to restart the phone while daylight burns",
+                  "verdict": "poor",
+                  "consequence": "You lose time and daylight on a device that may not come back. The map you already carry is the faster fix.",
+                  "considerations": [
+                    "Use the tool that works now.",
+                    "Cold batteries often recover briefly when warmed, but do not bet your plan on it."
+                  ]
+                }
+              ],
+              "expertNote": "Sensible hikers treat the phone as the main tool and paper as the backup, or the reverse. What matters is carrying both, downloading offline maps, and practicing with the backup before you need it.",
+              "sayThisLine": "\"Phone is my main, and the paper map is the backup.\"",
+              "safetyNote": "Carry a paper map and compass and learn to use them. If you are unsure of your location, stop, and stay put if you told someone your plan and cannot retrace confidently."
+            }
+          },
+          {
+            "id": "gn-05-mc-why-both",
+            "type": "multiple-choice",
+            "conceptIds": ["gps-vs-paper"],
+            "payload": {
+              "prompt": "Why do many careful hikers carry both a phone and paper?",
+              "options": [
+                {
+                  "id": "different-failures",
+                  "text": "Each fails differently: phones lose battery or break, paper cannot show your live position",
+                  "explanation": "Two different tools with different weak points make a strong pair."
+                },
+                {
+                  "id": "no-signal",
+                  "text": "Because phones never work outdoors at all",
+                  "explanation": "Phone maps with downloaded areas work well without signal. They are not useless."
+                },
+                {
+                  "id": "tradition",
+                  "text": "Only out of tradition; paper adds nothing",
+                  "explanation": "Paper has real strengths: no battery, big-picture view and quick scanning."
+                },
+                {
+                  "id": "rule",
+                  "text": "Because the law requires paper maps on every trail",
+                  "explanation": "There is no such general rule. It is a personal safety choice."
+                }
+              ],
+              "correctOptionIds": ["different-failures"],
+              "explanation": {
+                "correct": "Phones give a live blue dot and easy zoom but rely on a battery and can crack or die in the cold. Paper is bulky and static but always on. Carrying both covers each tool's weak point.",
+                "incorrect": "Neither tool is perfect. A phone can run out of power or break. A paper map cannot show where you are. Together, one covers the other's failure.",
+                "sayThisLine": "\"Paper never runs out of battery, phones never get lost in the wind.\""
+              }
+            }
+          },
+          {
+            "id": "gn-05-bc-airplane-mode",
+            "type": "binary-call",
+            "conceptIds": ["gps-vs-paper", "offline-maps"],
+            "payload": {
+              "prompt": "Long day, no signal. Keep the phone searching for service?",
+              "scene": {
+                "kind": "none",
+                "alt": "A phone on a backpack strap showing a downloaded trail map with no cell bars and the battery indicator steadily dropping."
+              },
+              "choices": [
+                { "id": "search", "label": "Let it search for signal" },
+                { "id": "airplane", "label": "Airplane mode, offline map" }
+              ],
+              "correctChoiceId": "airplane",
+              "explanation": {
+                "correct": "A phone hunting for a signal burns battery quickly. Airplane mode with a downloaded offline map keeps your location working and stretches the battery, and you can still switch back if you need to call for help.",
+                "incorrect": "Constant searching for service drains the battery. Download the map before you go, use airplane mode on the trail, and save the battery for when you truly need it.",
+                "sayThisLine": "\"Offline map, airplane mode, and save the battery.\""
+              },
+              "ruleTag": "Download maps, save battery"
+            }
+          },
+          {
+            "id": "gn-05-seq-phone-prep",
+            "type": "sequence-order",
+            "conceptIds": ["gps-vs-paper", "offline-maps"],
+            "payload": {
+              "prompt": "Put a phone-plus-paper navigation prep in order:",
+              "items": [
+                {
+                  "id": "download",
+                  "text": "At home, download the offline map for the whole area",
+                  "why": "Signal is unreliable in the backcountry, so the map must already be on the phone."
+                },
+                {
+                  "id": "charge",
+                  "text": "Fully charge the phone and pack a small power bank",
+                  "why": "The battery is the weak link, especially in cold weather."
+                },
+                {
+                  "id": "paper",
+                  "text": "Pack a paper map and compass in a handy spot",
+                  "why": "The backup only helps if you can reach it quickly."
+                },
+                {
+                  "id": "airplane",
+                  "text": "On the trail, use airplane mode and check the map at junctions",
+                  "why": "It saves battery and keeps you confirming your route instead of drifting."
+                },
+                {
+                  "id": "practice",
+                  "text": "Practice using the paper map before you need it",
+                  "why": "A backup you have never used may not work when you are stressed."
+                }
+              ],
+              "explanation": {
+                "correct": "Download the map, charge up, pack the backup, use airplane mode, and practice with paper. Preparing before the trip is what makes the backup usable.",
+                "incorrect": "Do the prep at home: offline map, charge, and paper map. Then save battery on trail and practice with the paper map before you ever need it.",
+                "sayThisLine": "\"Download it, charge it, pack the paper, practice with it.\""
+              }
+            }
+          },
+          {
+            "id": "gn-05-st-paper-brag",
+            "type": "say-this",
+            "conceptIds": ["gps-vs-paper"],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "I love my app, but I still bring the paper map. Last winter my phone died in the cold and the map saved us."
+              },
+              "question": "What is she telling you?",
+              "options": [
+                {
+                  "id": "both",
+                  "text": "She uses her phone but carries paper as a backup after a real failure",
+                  "isCorrect": true,
+                  "explanation": "Yes. She likes the app and keeps the paper map because the phone actually let her down."
+                },
+                {
+                  "id": "hates-phones",
+                  "text": "She refuses to use phones outdoors",
+                  "isCorrect": false,
+                  "explanation": "She said she loves her app. She is not anti-phone."
+                },
+                {
+                  "id": "never-lost",
+                  "text": "She has never had any trouble navigating",
+                  "isCorrect": false,
+                  "explanation": "She described a phone failure. The map was what got them through."
+                },
+                {
+                  "id": "advice",
+                  "text": "She thinks you must never use a phone map",
+                  "isCorrect": false,
+                  "explanation": "It is her habit, not a rule. She uses both."
+                }
+              ],
+              "translation": "She uses a phone app as her main tool, keeps paper as a backup because cold weather killed her battery once, and that backup helped.",
+              "noFakeExpertNote": "If you have never navigated with a compass, say so and ask how she learned. That reads better than pretending.",
+              "followUps": [
+                {
+                  "line": "How did you learn to use the paper map?",
+                  "why": "It shows genuine interest in the skill and invites her to share how she learned."
+                },
+                {
+                  "line": "Do you keep the phone in your jacket to save the battery?",
+                  "why": "It is a friendly follow-up about her cold-weather habits."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "gn-06",
+        "title": "Going fast",
+        "objective": "You can explain fastpacking and FKTs without mocking either.",
+        "estimatedMinutes": 13,
+        "conceptIds": ["fastpacking", "fkt"],
+        "activities": [
+          {
+            "id": "gn-06-st-fkt-talk",
+            "type": "say-this",
+            "conceptIds": ["fkt", "fastpacking"],
+            "payload": {
+              "statement": {
+                "speaker": "He",
+                "text": "I'm fastpacking the loop in two days and thinking about logging an FKT attempt. Very light pack, run the flats, hike the climbs."
+              },
+              "question": "What is he describing?",
+              "options": [
+                {
+                  "id": "fast-and-light",
+                  "text": "Moving fast with a light pack, mixing running and hiking, and chasing a record time",
+                  "isCorrect": true,
+                  "explanation": "Yes. Fastpacking is fast, light, multi-day travel, and an FKT is a fastest known time on a route."
+                },
+                {
+                  "id": "race",
+                  "text": "Entering an official, timed race",
+                  "isCorrect": false,
+                  "explanation": "An FKT is an informal, self-reported time, not an organized race."
+                },
+                {
+                  "id": "reckless",
+                  "text": "Skipping safety gear to save weight",
+                  "isCorrect": false,
+                  "explanation": "He did not say that. Fast and light does not have to mean careless."
+                },
+                {
+                  "id": "day",
+                  "text": "A casual day hike with friends",
+                  "isCorrect": false,
+                  "explanation": "Two days, a very light pack and a record attempt are far from a casual stroll."
+                }
+              ],
+              "translation": "He plans to cover the route quickly over two days, running the flat sections and hiking climbs with a very light pack, and may try to set a fastest known time.",
+              "noFakeExpertNote": "You do not need to run trails to be curious. Ask about the planning, not the speed.",
+              "followUps": [
+                {
+                  "line": "How do you plan food and water when you move that fast?",
+                  "why": "It shows you understand that light packs need careful logistics."
+                },
+                {
+                  "line": "What's your bail-out plan if the weather turns?",
+                  "why": "A respectful safety question that fast, light travelers take seriously."
+                }
+              ]
+            }
+          },
+          {
+            "id": "gn-06-mc-fair-take",
+            "type": "multiple-choice",
+            "conceptIds": ["fastpacking", "fkt"],
+            "payload": {
+              "prompt": "Which take on fastpackers and FKT chasers is fair?",
+              "options": [
+                {
+                  "id": "skill-and-tradeoff",
+                  "text": "It takes real fitness and planning, and a lighter kit means a thinner safety margin",
+                  "explanation": "Respects the athleticism and honestly names the risk trade-off."
+                },
+                {
+                  "id": "mock",
+                  "text": "They are just showing off and ruining the trail",
+                  "explanation": "That mocks people without a reason. Most follow the rules like everyone else."
+                },
+                {
+                  "id": "copy",
+                  "text": "Anyone can safely copy their pace and gear list",
+                  "explanation": "Their fitness, experience and support are part of what makes it work. Copying the kit alone is risky."
+                },
+                {
+                  "id": "official",
+                  "text": "An FKT is an official record certified by the park",
+                  "explanation": "FKTs are informal and self-reported, not official park records."
+                }
+              ],
+              "correctOptionIds": ["skill-and-tradeoff"],
+              "explanation": {
+                "correct": "Fastpacking and FKTs ask for fitness, navigation skill and careful planning. A lighter kit trades away margin, so the people who do it well plan for weather, water and bail-outs.",
+                "incorrect": "Skip the mocking and the copying. These athletes bring fitness and experience, and a very light kit thins the safety margin. Both deserve respect and honest caution.",
+                "sayThisLine": "\"That takes real fitness. How do you plan for bad weather?\""
+              }
+            }
+          },
+          {
+            "id": "gn-06-ds-copy-the-pace",
+            "type": "decision-scenario",
+            "conceptIds": ["fastpacking", "fkt"],
+            "payload": {
+              "prompt": "You want to try fastpacking after hearing her stories. How do you start?",
+              "situation": {
+                "narrative": "A friend's fastpacking trip sounded amazing. You are a solid day hiker but have never run with a pack or done a multi-day trip. A mountain loop you like has a storm-prone high section.",
+                "facts": [
+                  { "label": "Your experience", "value": "Solid day hiker" },
+                  { "label": "New to", "value": "Running with a pack, multi-day" },
+                  { "label": "Route", "value": "Storm-prone high section", "emphasis": "warning" },
+                  { "label": "Idea", "value": "Match her pace and light kit" }
+                ]
+              },
+              "options": [
+                {
+                  "id": "build-up",
+                  "label": "Build up gradually: short light trips, then longer, and set a turnaround time",
+                  "verdict": "best",
+                  "consequence": "You gain skills and learn what your body needs before you thin your margin. A pre-set turnaround keeps the storm-prone section honest.",
+                  "considerations": [
+                    "Add one new challenge at a time.",
+                    "Being light works best when you also have skills."
+                  ]
+                },
+                {
+                  "id": "join-her",
+                  "label": "Join her on an easier route and learn how she plans",
+                  "verdict": "acceptable",
+                  "consequence": "Learning from an experienced partner on friendlier terrain is a smart, social way in. Keep your own safety gear and speak up if the pace is too much.",
+                  "considerations": [
+                    "Ask about her planning, not just her kit.",
+                    "Hike at the pace that is right for you."
+                  ]
+                },
+                {
+                  "id": "copy-gear",
+                  "label": "Copy her exact gear list and target her pace on the storm-prone loop",
+                  "verdict": "poor",
+                  "consequence": "Her kit and pace fit her fitness and experience. Copying them without the skills can leave you underprepared in exposed terrain.",
+                  "considerations": [
+                    "The gear list is the visible part of a lot of unseen experience.",
+                    "Storm-prone terrain punishes a thin margin."
+                  ]
+                },
+                {
+                  "id": "skip-safety",
+                  "label": "Drop the rain jacket and headlamp to match her light pack",
+                  "verdict": "poor",
+                  "consequence": "Cutting protection to look light is a weak bargain. If you slow down or the weather turns, you have nothing to fall back on.",
+                  "considerations": [
+                    "Light does not mean missing the essentials.",
+                    "Experienced fastpackers still carry core safety items."
+                  ]
+                }
+              ],
+              "expertNote": "Fast and light is a skill set built over time. It pairs a light kit with good fitness, navigation, weather judgment and a clear turnaround, so the margin is in the skills instead of the pack.",
+              "sayThisLine": "\"I'd love to try it. Can I start small and learn how you plan?\"",
+              "safetyNote": "Build skills gradually, follow official guidance and check the mountain forecast. Do not copy someone else's kit or pace without their experience."
+            }
+          },
+          {
+            "id": "gn-06-tm-fast-words",
+            "type": "term-match",
+            "conceptIds": ["fastpacking", "fkt"],
+            "payload": {
+              "prompt": "Match each go-fast term to its meaning:",
+              "pairs": [
+                {
+                  "id": "fastpacking",
+                  "term": "Fastpacking",
+                  "definition": "Moving quickly with a light pack, mixing hiking and running"
+                },
+                {
+                  "id": "fkt",
+                  "term": "FKT",
+                  "definition": "Fastest known time: an informal record for a route"
+                },
+                {
+                  "id": "bailout",
+                  "term": "Bail-out point",
+                  "definition": "A planned place to leave the route early if things go wrong"
+                },
+                {
+                  "id": "self-supported",
+                  "term": "Self-supported",
+                  "definition": "Carrying or resupplying your own gear without a crew handing help"
+                }
+              ],
+              "explanation": {
+                "summary": "Fastpacking is the style, FKT is the informal goal, and bail-out points are how careful fast movers keep an exit ready. Self-supported means doing it without a crew.",
+                "sayThisLine": "\"Where are your bail-out points on that route?\""
+              }
+            }
+          },
+          {
+            "id": "gn-06-ftg-fast-rules",
+            "type": "fill-the-gap",
+            "conceptIds": ["fastpacking", "fkt"],
+            "payload": {
+              "prompt": "Complete the fair-minded summary:",
+              "template": "An FKT is an {{kind}} record. Fast and light travel still needs weather checks and a {{plan}}.",
+              "gaps": [
+                {
+                  "id": "kind",
+                  "options": ["informal", "government-certified", "legal"],
+                  "correct": "informal"
+                },
+                {
+                  "id": "plan",
+                  "options": ["turnaround time", "bigger pack", "tight deadline"],
+                  "correct": "turnaround time"
+                }
+              ],
+              "explanation": {
+                "correct": "FKTs are informal and self-reported, kept by the community. Speed does not replace judgment: fast movers still check weather and set a turnaround time before they start.",
+                "incorrect": "An FKT is an informal record, not an official one. Fast travelers still need weather checks and a turnaround time, because being quick does not make a storm go away.",
+                "sayThisLine": "\"Fast or slow, we still set a turnaround time.\""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "gn-07",
+        "title": "Hike your own hike",
+        "objective": "You can respect a different style without abandoning safety.",
+        "estimatedMinutes": 13,
+        "conceptIds": ["hyoh", "social-trail"],
+        "activities": [
+          {
+            "id": "gn-07-st-hyoh-line",
+            "type": "say-this",
+            "conceptIds": ["hyoh"],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "Hike your own hike. Some people want heavy comfort and some want to fly. It's all fine unless it puts someone else at risk."
+              },
+              "question": "What is she saying about styles?",
+              "options": [
+                {
+                  "id": "respect-with-limits",
+                  "text": "Respect different styles, but not at the expense of others' safety",
+                  "isCorrect": true,
+                  "explanation": "Yes. HYOH welcomes different pace, gear and style, and she adds the limit herself."
+                },
+                {
+                  "id": "anything",
+                  "text": "Anything goes, safety included",
+                  "isCorrect": false,
+                  "explanation": "She named a limit: no putting others at risk."
+                },
+                {
+                  "id": "one-way",
+                  "text": "There is one right way to hike",
+                  "isCorrect": false,
+                  "explanation": "The opposite of what she said. She welcomes different styles."
+                },
+                {
+                  "id": "gear-only",
+                  "text": "It is only about which gear to buy",
+                  "isCorrect": false,
+                  "explanation": "She mentioned comfort and speed, which are broader than gear."
+                }
+              ],
+              "translation": "She believes in letting people choose their own pace, gear and style, as long as their choices do not endanger anyone else.",
+              "noFakeExpertNote": "Say what you honestly like, and ask about her style. You do not have to pretend to hike like she does.",
+              "followUps": [
+                {
+                  "line": "What's your style: fast, comfy, or somewhere in the middle?",
+                  "why": "Invites her to share her approach without ranking anyone's."
+                },
+                {
+                  "line": "Did you ever change your style after a tough trip?",
+                  "why": "Open and curious. It shows styles can grow and change."
+                }
+              ]
+            }
+          },
+          {
+            "id": "gn-07-tt-different-style",
+            "type": "talk-track",
+            "conceptIds": ["hyoh"],
+            "payload": {
+              "title": "Different gear, same trail",
+              "setting": "Texting after meeting hikers with a very different setup",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "We passed a guy with a huge pack and a camp chair. I carry eight pounds. We just stared at each other.",
+                  "replies": [
+                    {
+                      "id": "hyoh-good",
+                      "text": "Ha. Different styles. Did he seem happy with his setup?",
+                      "smoothDelta": 20,
+                      "theirResponse": "Honestly, yes. He said the chair is his favorite part of the day.",
+                      "coachNote": "Curious and kind. You treat his choice as valid."
+                    },
+                    {
+                      "id": "hyoh-meh",
+                      "text": "That's a lot of weight!",
+                      "smoothDelta": 0,
+                      "theirResponse": "Right? Anyway, he was nice.",
+                      "coachNote": "True, but it puts the focus on judging his gear."
+                    },
+                    {
+                      "id": "hyoh-cringe",
+                      "text": "He should really lighten up. Ultralight is just better.",
+                      "smoothDelta": -15,
+                      "theirResponse": "Hmm, I'd say hike your own hike.",
+                      "coachNote": "Gear snobbery closes the conversation."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "I just wish more people knew to stay on the trail. We saw a bunch of shortcuts cutting the switchbacks.",
+                  "replies": [
+                    {
+                      "id": "social-good",
+                      "text": "Those are social trails, right? They damage the slope. Do rangers mark them?",
+                      "smoothDelta": 20,
+                      "theirResponse": "Sometimes. Cutting switchbacks causes erosion, so it's a real problem.",
+                      "coachNote": "Uses the term correctly and asks a real follow-up."
+                    },
+                    {
+                      "id": "social-meh",
+                      "text": "Yeah, that's annoying.",
+                      "smoothDelta": 5,
+                      "theirResponse": "It is. Small things add up.",
+                      "coachNote": "Agreeable, but you learn nothing."
+                    },
+                    {
+                      "id": "social-cringe",
+                      "text": "It's only a few feet. Nobody cares about a shortcut.",
+                      "smoothDelta": -15,
+                      "theirResponse": "It adds up. That's how erosion starts.",
+                      "coachNote": "Shortcuts are exactly how social trails form."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Respect for other people's style, and for the trail itself, is the same habit."
+            }
+          },
+          {
+            "id": "gn-07-ds-slower-friend",
+            "type": "decision-scenario",
+            "conceptIds": ["hyoh", "social-trail"],
+            "payload": {
+              "prompt": "Your friend's style is slower and heavier than yours. Storms are possible. What now?",
+              "situation": {
+                "narrative": "You and a friend have different styles: you like to move fast and light, and she brings extra layers, food and a camp comfort kit. She is falling behind and a stretch of open ridge is ahead. Clouds are building, and a social trail offers a steep shortcut.",
+                "facts": [
+                  { "label": "Your style", "value": "Fast and light" },
+                  { "label": "Her style", "value": "Slower, well-stocked" },
+                  { "label": "Ahead", "value": "Open ridge, clouds building", "emphasis": "warning" },
+                  { "label": "Shortcut", "value": "Steep social trail" }
+                ]
+              },
+              "options": [
+                {
+                  "id": "group-pace",
+                  "label": "Stay together at her pace, agree on a turnaround, and skip the shortcut",
+                  "verdict": "best",
+                  "consequence": "Hike your own hike does not mean leaving someone behind. The group moves at the slowest pace, keeps a clear turnaround, and stays on the marked trail.",
+                  "considerations": [
+                    "The group hikes at the slowest person's pace.",
+                    "Marked trails protect the land and keep the route clear."
+                  ]
+                },
+                {
+                  "id": "check-in",
+                  "label": "Ask her what she wants, then agree on a regroup point and time",
+                  "verdict": "acceptable",
+                  "consequence": "Talking it through respects both styles. Set a specific regroup point in sight, and do not lose track of each other in building weather.",
+                  "considerations": [
+                    "Pick a clear, close regroup place.",
+                    "Splitting up in a storm setup adds risk."
+                  ]
+                },
+                {
+                  "id": "forge-ahead",
+                  "label": "Go ahead and wait for her at the summit since your style is faster",
+                  "verdict": "poor",
+                  "consequence": "You would be alone on exposed ground as storms build, and she would be alone behind you. HYOH does not cover leaving your partner.",
+                  "considerations": [
+                    "Your style choices should not shift risk onto others.",
+                    "Stay together when weather is uncertain."
+                  ]
+                },
+                {
+                  "id": "take-shortcut",
+                  "label": "Cut the steep social trail to save time and catch up",
+                  "verdict": "poor",
+                  "consequence": "Steep shortcuts erode the slope and can be slippery and unstable. You also add risk of a fall to save a few minutes.",
+                  "considerations": [
+                    "Social trails damage vegetation and soil.",
+                    "Staying on the trail is part of Leave No Trace."
+                  ]
+                }
+              ],
+              "expertNote": "HYOH is generous about pace, gear and style, and firm about two things: nobody's safety gets traded away for someone else's style, and the trail itself is protected.",
+              "sayThisLine": "\"We'll go at your pace, and we'll set a turnaround so we stay safe.\"",
+              "safetyNote": "Groups stay together and move at the slowest member's pace. Follow official guidance, check the forecast, and turn back before storms reach exposed ground."
+            }
+          },
+          {
+            "id": "gn-07-mc-what-is-social-trail",
+            "type": "multiple-choice",
+            "conceptIds": ["social-trail"],
+            "payload": {
+              "prompt": "What is a social trail, and why does it matter?",
+              "options": [
+                {
+                  "id": "informal",
+                  "text": "An informal path worn by repeated foot traffic, often a shortcut, that harms plants and soil",
+                  "explanation": "Yes. Social trails form when people cut corners, and they cause erosion and damage."
+                },
+                {
+                  "id": "official",
+                  "text": "An official trail built for group hikes",
+                  "explanation": "\"Social\" refers to how it formed, not to groups. These are not official."
+                },
+                {
+                  "id": "network",
+                  "text": "A trail that connects to a hiking club website",
+                  "explanation": "Not related to the internet. It is a physical path made by walkers."
+                },
+                {
+                  "id": "scenic",
+                  "text": "A quiet, scenic side trail that is always safe to follow",
+                  "explanation": "Social trails are often steep, unmaintained and unmarked, so they are not always safe."
+                }
+              ],
+              "correctOptionIds": ["informal"],
+              "explanation": {
+                "correct": "A social trail is an unofficial path worn by repeated use, often a switchback shortcut or a route to a viewpoint. It can cause erosion, trample plants and lead you off the planned route.",
+                "incorrect": "Social trails are informal paths that people wear into the land, often cutting corners. They harm soil and plants, and they can mislead you. Stay on the marked trail.",
+                "sayThisLine": "\"That's a social trail. Let's stay on the real one.\""
+              }
+            }
+          },
+          {
+            "id": "gn-07-bc-shortcut",
+            "type": "binary-call",
+            "conceptIds": ["social-trail", "hyoh"],
+            "payload": {
+              "prompt": "Your friend cuts a switchback: \"my hike, my way.\" Is that HYOH?",
+              "scene": {
+                "kind": "none",
+                "alt": "A hiker stepping off the main trail to scramble straight down a raw, eroded shortcut between two switchbacks."
+              },
+              "choices": [
+                { "id": "fine", "label": "Yes, it's her choice" },
+                { "id": "not", "label": "No, it harms the trail" }
+              ],
+              "correctChoiceId": "not",
+              "explanation": {
+                "correct": "HYOH covers your pace, gear and style, not choices that damage the land or put others at risk. Cutting switchbacks erodes the slope and starts social trails, so it falls outside the motto.",
+                "incorrect": "Hike your own hike has limits. Choices that harm the trail or endanger others are not just personal style. Cutting switchbacks causes erosion, so stay on the trail.",
+                "sayThisLine": "\"HYOH is about pace and gear. Not about wearing down the trail.\""
+              },
+              "ruleTag": "HYOH stops at safety and the land"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

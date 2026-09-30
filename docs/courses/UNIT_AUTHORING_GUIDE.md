@@ -1,5 +1,7 @@
 # Unit Authoring Guide (curriculum contract 1.1+ split layout)
 
+**See D-018** (`docs/product/DECISIONS.md`): quality standards and validation requirements.
+
 Rules for any agent hand-writing curriculum content for one unit of a course.
 Layout: `docs/courses/<courseId>/curriculum/course.json` (root: concepts, talkTracks,
 reviewPolicy, unitOrder) + `docs/courses/<courseId>/curriculum/units/NN-<unit-id>.json`.
