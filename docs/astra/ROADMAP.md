@@ -1,8 +1,8 @@
-# Astra Roadmap: Wave 1 build order (41 sims)
+# Astra Roadmap: Wave 1 and Wave 2 build order (58 sims)
 
-Recommended order for building the Swoon Game Kit and the 41 Wave 1 Tier A sims. Inputs: the 41 sim specs (`docs/courses/*/sims/`), the consolidated additions in `GAME_KIT.md` section 5 (GK-1 to GK-20), and the course notes. Astra owns the actual plan; this is our recommendation and the reasoning behind it. All 41 specs are still `spec-draft`: each needs review to `spec-approved` before its build starts (see "Gates").
+Recommended order for building the Swoon Game Kit and the 58 Tier A sims (41 Wave 1 in phases 0-5, 17 Wave 2 in phases 6-8). Inputs: the 58 sim specs (`docs/courses/*/sims/`), the consolidated additions in `GAME_KIT.md` section 5 (GK-1 to GK-20 for Wave 1; GK-21 to GK-26, extensions and modules in section 5.5 for Wave 2), and the course notes. Astra owns the actual plan; this is our recommendation and the reasoning behind it. All 58 specs are still `spec-draft`: each needs review to `spec-approved` before its build starts (see "Gates"). Six Wave 2 courses (cooking, music, pottery, camping, books, fashion) have no sims by design.
 
-Sim counts: American Football 5, NASCAR 6, Formula 1 6, Pickleball 5, Hockey 6, Soccer 6, Basketball 6, Hiking 1 = 41.
+Sim counts: American Football 5, NASCAR 6, Formula 1 6, Pickleball 5, Hockey 6, Soccer 6, Basketball 6, Hiking 1 = 41 (Wave 1). Baseball 3, Golf 4, Tennis 3, Movies 2, Photography 3, Video Games 1, Cars 1 = 17 (Wave 2). Total 58.
 
 ## Ordering principles
 
@@ -42,6 +42,7 @@ Order:
 3. `nascar.restart.choose-lane.v1`: `oval_short`, `road_course_short`; sim-local `RestartFormation`.
 4. `nascar.track.groove-read.v1`: `RubberMap`, `oval_short_banked`, `oval_flat`.
 5. `nascar.handling.tight-loose.v1`: `HandlingBalance`, `SlipArrows`.
+   - **2b (Wave 2, optional here): `cars.handling.drive-layout.v1`** slots right after `tight-loose` because it reuses `HandlingBalance` and `SlipArrows` and adds only `corner_topdown` and `GripMeter`; gated on a playtest against the native `hc-04-native` (P-21) and a vehicle-dynamics plausibility pass (S-11). Can also wait until phase 8 if the playtest is pending.
 6. `nascar.strategy.caution-call.v1`: existing `PitStop`/`TireState`/`FuelState`/`Position`/`Timing` with a sim-local `ProjectionModel`. Gate: NASCAR SME plausibility check of the stylized constants (NASCAR open question 4).
 
 ## Phase 3 - Team-sport spatial kit and four courses (23 sims)
@@ -71,9 +72,31 @@ Why after NASCAR and the team-sport bundle: F1 has the largest racing-specific s
 Order: `f1.racecraft.slipstream-pass` (`DirtyAir`, `Overtake`, `wake_cone` on the NASCAR wake) -> `f1.racecraft.racing-line` with `football.routes.build` (GK-1 `PathEditor`, GK-16 `speed_trace`; one primitive, two consumers) -> `f1.aero.active-modes` (`ActiveAero`, `wing_schematic`) -> `f1.energy.deploy-harvest` (`EnergyStore`, `value_ribbon`) -> `f1.strategy.pit-window` (`RaceSim`, `gap_chart`) -> `f1.strategy.safety-car-call` (`RaceSim` neutralisations, `order_strip`).
 Gates: re-verify 2026 regulation facts and per-circuit Straight Mode zones before copy locks; team-neutral visuals (no logos, liveries, likeness).
 
-## Phase 5 - Hiking (1 sim)
+## Phase 5 - Terrain: Hiking (1 sim) and Golf putting (Wave 2)
 
-`hiking.navigation.topo-terrain.v1` last: it is the only consumer of the Terrain module (GK-20) plus `oblique-low`, `Viewshed`, `SlopeShader`, the biggest isolated cost for one sim, and the course works without it (5 lessons have a native fallback `nv-05`, or `hotspot-tap` replacements). Build it when Wave 2 (camping, climbing, golf) creates a second consumer of `Heightfield`/`ContourOverlay`. Gate: product approval of the sim (hiking CDS open question 1).
+`hiking.navigation.topo-terrain.v1` last: it is the only consumer of the Terrain module (GK-20) plus `oblique-low`, `Viewshed`, `SlopeShader`, the biggest isolated cost for one sim, and the course works without it (5 lessons have a native fallback `nv-05`, or `hotspot-tap` replacements). Wave 2 now supplies the second consumer: `golf.putting.read-the-break.v1` (phase 6c) needs `Heightfield`, `ContourOverlay` at 0.5 in intervals, `water_flow` and the `golf_green` preset, so Terrain is built once for whichever of the two ships first and the other rides on it (camping's revisit-only `camping.site.read.v1` would be a third). Gate: product approval of the hiking sim (hiking CDS open question 1).
+
+
+## Phase 6 - Wave 2 sports (10 sims)
+
+Why after phase 3: tennis and golf reuse the court/ball kit that pickleball, soccer and hockey prove, and baseball needs a new field module but reuses the same spatial bundle (GK-2, 4, 9, 11, 13, 14). None is a Wave 1 prerequisite, so they follow the Wave 1 sports rather than compete with them.
+
+### 6a Tennis (3): cheapest, extends an existing pattern
+Build order: `tennis.serve.place-and-spin.v1` (new `Court` module and `tennis_court`, `TennisServe`, shares `RacquetServe` with pickleball `serve.aim-and-land`, GK-7 `Swing`, GK-13) -> `tennis.rally.arc-and-margin.v1` (sim-local `RallyMargin`, `side-on-tilted`) -> `tennis.court.open-court-recovery.v1` (sim-local `RecoveryOracle`, GK-10, GK-15). Why first in Wave 2: no new kit primitive beyond the Court builder, three sims for one module. Gate: one SME pass (S-06 extension); golden generators for `RallyMargin` and `RecoveryOracle`.
+
+### 6b Baseball (3)
+Build order: `baseball.baserunning.read-and-go.v1` (needs only `BaseballField`, `BaseRunner`, GK-4, GK-9; the course's own recommendation) -> `baseball.defense.alignment-read.v1` (GK-11 alignments, GK-2 `IsLegal`, GK-14 reach circles, GK-13) -> `baseball.pitching.pitch-shapes.v1` last (`PitchFlight` on GK-7, `StrikeZoneOverlay`, `batter-eye`/`catcher-cam`/`orbit` presets, GK-16 break plot; Astra sizes it first, baseball CDS open question 10). Gate: baseball SME pass on all three models (S-07). Timing: MLB data and the December CBA explainer are live-layer items, independent of the sims.
+
+### 6c Golf (4)
+Build order: `golf.ball-flight.shot-shape.v1` (Golf module, `golf_hole`, `FlightModel`, GK-7, `chase-high`/`top-down`) -> `golf.strategy.play-your-miss.v1` (GK-24 `DispersionOverlay`, `DispersionModel`, `StrokesTable`; also pays forward to tennis/pickleball serve targeting) -> `golf.short-game.carry-and-roll.v1` (GK-25 `Ball.Roll`, `ShortGameModel`) -> `golf.putting.read-the-break.v1` (Terrain green preset; ships with phase 5). Gate: PGA professional or coach review of all four models (S-08); golden-generator reproduction of scenario windows.
+
+## Phase 7 - Camera and optics (5 sims)
+
+One shared primitive, GK-21 `PhysicalCamera`, unlocks both the film and photography courses, and none of the five needs a physics system. Order: `film.camera.lens-and-move.v1` (Film module, `FilmCamera`, `film_set_street`, GK-15, `film-frame`/`top-down-inset`; the stronger Tier A case) -> `photo.lens.compression-lab.v1` (reuses `PhysicalCamera` and `photo_stage`) -> `photo.focus.depth-of-field.v1` (GK-22 `DepthOfFieldPass`, `dof_scale`; confirm the URP mobile depth-of-field budget here first) -> `film.camera.axis-line.v1` (`AxisRules`, `film_set_room`, `split-cut`; downgrade candidate vs native `binary-call`, P-21) -> `photo.light.direction-lab.v1` last (GK-23 `SoftLight`; the weakest Tier A case, playtest against native pre-rendered positions). Gates: cinematographer/optics SME pass (S-10, low effort); the photography in-house shoot (L-24) is independent of the sims. Safety review of photography copy (S-15) does not block the sims.
+
+## Phase 8 - Controls (1 sim, last)
+
+`games.controls.aim-assist.v1`: Controls module (`ReticleAim`, `RateStick`, `AimAssist` variants), GK-26 `TrackingObjective`, `drag-relative`, `aim_range`. It needs almost nothing else, so it is scheduled last alongside the isolated hiking sim. Gate: the 20-plus novice playtest against the native `mech-02-alt` with an 8-point concept-check lead; if it fails, drop the sim and rename `mech-02-alt` to `mech-02` (P-21).
 
 ## Summary table
 
@@ -85,11 +108,16 @@ Gates: re-verify 2026 regulation facts and per-circuit Straight Mode zones befor
 | 3a-d | 23 | Court/rink/pitch modules, GK-2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 19 | 33 |
 | 4 | 7 | GK-1, 16, 18, `RaceSim`, `ActiveAero`, `EnergyStore`, `Overtake` | 40 |
 | 5 | 1 | GK-20 Terrain | 41 |
+| 6a-c | 10 | Tennis Court, Baseball module, Golf module, GK-24, GK-25, GK-7 `PitchFlight`, GK-2 `IsLegal`, GK-16/19 extensions (golf putting ships on the phase 5 Terrain build) | 51 |
+| 7 | 5 | GK-21, GK-22, GK-23, Film module | 56 |
+| 8 | 1 | Controls module, GK-26 | 57 |
+| 2b (or after 8) | 1 | `corner_topdown`, `GripMeter` (cars drive-layout, inside the NASCAR cluster if its playtest gate is done) | 58 |
 
 ## Gates checklist (before each sim starts)
 
 - Spec moves from `spec-draft` to `spec-approved` (product + Astra), manifest `unitySimulations[].status` follows.
 - SME reviews listed in `docs/product/OPEN_QUESTIONS.md` (section "SME reviews") for that course.
 - The designed native fallback lesson exists (spec section 16).
+- Wave 2 additions: the cars, aim-assist, photo light-direction and film axis-line sims also pass their playtest-versus-native gate (P-21).
 - Validator green: spec path exists and the configuration schema compiles (`node tools/validate/validate.mjs`).
 - Sim configuration examples in the spec launch in the sim's EditMode tests.

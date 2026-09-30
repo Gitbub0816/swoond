@@ -184,6 +184,18 @@ The reserved "Court" module is now specified by pickleball, first use `picklebal
 ### Terrain (`Swoond.Terrain`, first use `hiking.navigation.topo-terrain.v1`)
 Not a sport module: a map/terrain toolkit for hiking and later camping, climbing, golf (green reading), skiing, cycling. `Heightfield` (deterministic seeded noise + named stamps, sampling, grade/aspect) and `TerrainMesh` (129 x 129, LOD-free), `ContourOverlay` (marching-squares contours with interval, index lines and labels; flat or draped), `SlopeShader` (grade colour ramp with hatching second channel), `Viewshed` (line-of-sight rays and lit-cell viewshed from an eye point), `ProfileChart` (see GK-16). Key `terrain_heightfield`; camera preset `oblique-low`; demonstrate types `terrain_lift`, `water_flow`, `viewshed`, `elevation_profile`; objective `choose_correct_target` (folded into GK-12 `choose_target`).
 
+### Wave 2 modules (Baseball, Golf, Tennis, Film, Photo, Controls; Cars additions to Racing)
+
+Requested by the 17 Wave 2 sim specs; merged and deduplicated in section 5.5. Astra owns signatures.
+
+- **Baseball (`Swoond.Sports.Baseball`)**, first use `baseball.baserunning.read-and-go.v1`, shared by all three baseball sims: `BaseballField` (environment key `baseball_field`: infield, outfield, mound, bases, foul lines, fence; coordinates in feet with origin at home plate, x toward first base, y toward center field, bases 90 ft apart), `BaseRunner` (Character preset with a sprint model: reaction, acceleration, turn cost), `StrikeZoneOverlay` (batter-height-scaled ABS zone frame), `PitchFlight` (specialisation of GK-7 `Ball.Throw` `Swing` with spin-induced acceleration, drag and plate time), `FormationSet` data for alignments (GK-11). Native diagrams share the same coordinate convention.
+- **Golf (`Swoond.Sports.Golf`)**, first use `golf.ball-flight.shot-shape.v1`, shared by all four golf sims: environment keys `golf_hole` (plus short-game preset) and `golf_green` (a GK-20 Terrain preset), pure functions `FlightModel` (face/path to start line and curve), `RollModel` (putt pace and break), `ShortGameModel` (carry and roll), `DispersionModel` and `StrokesTable`. Uses GK-7, GK-20 and the new GK-24 and GK-25.
+- **Tennis (`Swoond.Sports.Tennis`)**, first use `tennis.serve.place-and-spin.v1`, shared by all three tennis sims: `Court` (environment key `tennis_court`, follows the pickleball Court pattern above: dimensions, service boxes, named spots, feet coordinates), `TennisServe` (launch from aim and spin, landing classifier `in|net|long|wide|wrong-box|let`, `ServeOutcomeOracle`; shares one `RacquetServe` base with pickleball `Serve`). Sim-local, golden-generated: `RallyMargin` (net height function, `netMargin/depthMargin/widthMargin`; promote for badminton or pickleball if reused) and `RecoveryOracle`.
+- **Film (`Swoond.Film`)**, first use `film.camera.lens-and-move.v1`, shared by both film sims: `FilmCamera` (built on the generic GK-21 `PhysicalCamera`: `HoldSubjectSize`, `Dolly`, `Pan`, `Tilt`, `Crane`, `Track`, deterministic), `AxisRules` (pure `Side`, `IsLegal`, `LookDir`, `IsConsistentCut`, `EyelineMatches`; reusable for sports broadcast-camera lessons), environment keys `film_set_street` and `film_set_room`, camera presets `film-frame`, `top-down-inset`, `split-cut` (GK-19 family). Sim-local `MeasureBars` (promote if photography needs an exposure meter overlay).
+- **Photo (`Swoond.Photo`)**, first use `photo.lens.compression-lab.v1`: environment key `photo_stage` (backdrop rig presets, studio mode) and the generic GK-21 to GK-23 primitives; sim-local objectives `frame_look` (alias of GK-12 `choose_target`), `dof_goal`, `light_goal`.
+- **Controls (`Swoond.Controls`)**, first use `games.controls.aim-assist.v1`: `ReticleAim` pure functions and variants `Direct`, `RateStick` (deadzone, response curve, ramp), `AimAssist.{Friction, Magnetism, Rotational, LockOn}` for the EditMode oracle and the runtime; environment key `aim_range`; TouchController scheme `drag-relative` (relative delta drag with gain); objective `track_target` (GK-26). Reusable by a steering-assist racing sim and other input-mapping lessons.
+- **Cars (additions to the Racing module)**, first use `cars.handling.drive-layout.v1`: environment key `corner_topdown` (procedural corner patch with surface tints), `GripMeter` (Highlight variant: live two-arc friction-circle usage), sim-local `LayoutHandlingModel` (pure function, golden fixtures). Reuses `SlipArrows` and `HandlingBalance`.
+
 ## 3. Data-driven simulation definitions (spec section 25)
 
 Sims should increasingly be defined as data composed from primitives. The formal schema: `docs/contracts/sim-definition/v1/sim-definition.schema.json` (JSON canonical; YAML authoring allowed). Example: `docs/contracts/sim-definition/v1/examples/racing-drafting.json`; YAML view of the same:
@@ -274,3 +286,50 @@ Ordering rule: (1) anything on the path of every sim, (2) shared bundles that un
 5. **P3 (single sim, each blocks one sim only):** GK-2, GK-5, GK-7, GK-17, GK-20.
 
 Football and the rest of the kit are independent: `football.coverage.read.v1` needs no new primitive and is the recommended first vertical slice.
+
+## 5.5 Requested additions (Wave 2)
+
+Consolidated 2026-09-30 from the "Game Kit additions requested" sections of the 17 Wave 2 sim specs (baseball 3, golf 4, tennis 3, movies 2, photography 3, video-games 1, cars 1; roughly 50 raw line items) and the course notes. Six courses (cooking, music, pottery, camping, books, fashion) request nothing (zero Unity by design). After deduplication: **6 new generic primitives (GK-21 to GK-26), 6 extensions of existing primitives, and 6 new sport/domain modules plus Cars additions** (defined in section 2, "Wave 2 modules"). Camping's `camping.site.read.v1` is revisit-only and would reuse GK-20 (no request). Photography's provisional GK-21 to GK-23 labels are kept and extended by the merges below.
+
+Sim short names (continuing section 5 conventions): **bs** = baseball (`run` = baserunning.read-and-go, `align` = defense.alignment-read, `pitch` = pitching.pitch-shapes); **gf** = golf (`shape` = ball-flight.shot-shape, `putt` = putting.read-the-break, `short` = short-game.carry-and-roll, `miss` = strategy.play-your-miss); **tn** = tennis (`serve`, `rally` = rally.arc-and-margin, `recover` = court.open-court-recovery); **film** (`lens` = camera.lens-and-move, `axis` = camera.axis-line); **ph** = photo (`comp` = lens.compression-lab, `dof` = focus.depth-of-field, `light` = light.direction-lab); **vg.aim** = games.controls.aim-assist; **car.drive** = cars.handling.drive-layout.
+
+### 5.5.1 New generic primitives
+
+| ID | Primitive (merged from) | Req | Reuse | Sims |
+|---|---|---|---|---|
+| GK-21 | **`PhysicalCamera`**: focal length, sensor size, orientation, exact vertical/horizontal FOV, thin-lens subject and background size fractions; wraps Unity's Physical Camera. Merges photography `PhysicalCamera` and the core of film `FilmCamera` (`FilmCamera` adds dolly/pan/tilt/crane/track and `HoldSubjectSize` on top, Film module). | ph.comp, ph.dof, ph.light, film.lens | film.axis, broadcast-camera lessons in sports sims | 4 |
+| GK-22 | **`DepthOfFieldPass`**: analytic circle-of-confusion blur with disc bokeh (URP mobile budget to be confirmed by Astra); demonstrate type `dof_scale` (a GK-16 variant). | ph.dof | film rack focus, portrait lessons | 1 |
+| GK-23 | **`SoftLight`**: light with angular source size, physical penumbra and inverse-square falloff. | ph.light | film three-point lighting | 1 |
+| GK-24 | **`DispersionOverlay`** (Highlight variant; demonstrate type `dispersion_overlay`): anisotropic Gaussian oval with confidence rings around an aim point. | gf.miss | tn.serve (targeting), pb.serve, football throws, archery | 1 (+3) |
+| GK-25 | **`Ball.Roll` phase**: roll distance and surface factor after landing (Ball extension with a per-surface friction table). | gf.short, gf.putt | tennis bounce and skid, pickleball third shot, bowls | 2 |
+| GK-26 | **`TrackingObjective`** (`track_target`): time-on-target, mean error and per-frame error series; with TouchController scheme `drag-relative`. | vg.aim | golf and cycling line-following, film camera tracking | 1 |
+
+### 5.5.2 Extensions of existing primitives (merged, not new IDs)
+
+| Extends | Wave 2 addition | Req |
+|---|---|---|
+| GK-2 `SlotPlacement` | Legal-placement callback `IsLegal(position)` (baseball alignment rules; also hockey line changes and pickleball court coverage) | bs.align |
+| GK-7 `Ball.Throw` `Swing` | `PitchFlight` specialisation: spin-induced acceleration, drag and plate time. Now also wanted by golf `FlightModel` (curve) and tennis `TennisServe` (spin). Consumers: soccer corner, pickleball serve, tennis serve, golf shape, baseball pitch | bs.pitch, gf.shape, tn.serve, tn.rally |
+| GK-12 objectives | `track_target` (GK-26) and `frame_look` as aliases or additions; `dof_goal` and `light_goal` stay sim-local unless reused | vg.aim, ph.comp, ph.dof, ph.light |
+| GK-16 `TraceChart` | Break-plot style (pitch movement), `dof_scale`, two-series variant for `speed_trace`/`value_ribbon` (aim-assist input vs result), fine-interval bar chart overlay (golf strokes gained) | bs.pitch, ph.dof, vg.aim, gf.miss |
+| GK-19 `CameraRig` presets | `batter-eye`, `catcher-cam`, `orbit` (baseball); `film-frame`, `top-down-inset`, `split-cut` (film); `chase-high`, `broadcast-side`, `top-down` (golf; `top-down` also baseball); `broadcast-high-behind`, `oblique-low`, `side-on-tilted` reused | bs.*, film.*, gf.*, tn.* |
+| GK-20 Terrain | Second consumer (golf greens): `ContourOverlay` interval down to 0.5 in, `water_flow` on a small heightfield, `tilt` and `tilt-split` stamps, `SlopeShader` hatch channel. Green presets key `golf_green`. Build Terrain for hiking or golf putting, whichever ships first | gf.putt |
+
+Reuse without new requests: GK-3 chip selector (golf club choice, film and photo chips, aim-assist), GK-4 timed window (bs.run, bs.pitch), GK-9 `RaceEvaluator` (bs.run), GK-10 `InterceptionEvaluator` and GK-11 `FormationSet` (bs.align, tn.recover), GK-13 `DistanceRing`, GK-14 `ResponsibilityOverlay` reach circles (bs.align), GK-15 `ConeOverlay` (tn.recover, film.lens).
+
+### 5.5.3 Registry keys to add (GAME_KIT section 3)
+
+- **Environments:** `baseball_field`, `golf_hole`, `golf_green`, `tennis_court`, `film_set_street`, `film_set_room`, `photo_stage`, `aim_range`, `corner_topdown`.
+- **Objective types:** `track_target` (GK-26); sim-local `frame_look`, `dof_goal`, `light_goal`.
+- **Demonstrate types:** `dispersion_overlay`, `dof_scale`; `water_flow` reused.
+- **Camera presets:** `batter-eye`, `catcher-cam`, `orbit`, `film-frame`, `top-down-inset`, `split-cut`, `chase-high`, `broadcast-side`, `top-down`.
+- **TouchController schemes:** `drag-relative`.
+- **Highlight variants:** `StrikeZoneOverlay`, `GripMeter`.
+
+### 5.5.4 Priority for Astra (Wave 2)
+
+1. **P1c, 5 sims on two shared bundles:** Tennis `Court` (extends the pickleball pattern; 3 sims) and `BaseballField` with GK-2/GK-9/GK-4 reuse (2 sims first).
+2. **P2:** GK-21 `PhysicalCamera` plus Film module (4 sims across film and photo), GK-24 (golf), GK-25 (golf short game), GK-26 and the Controls module (1 sim, gated).
+3. **P3 (single sim each):** GK-22 `DepthOfFieldPass`, GK-23 `SoftLight`, `PitchFlight`, `GripMeter`; GK-20 golf-green extensions ride with the hiking Terrain build.
+
+The build sequence is in `docs/astra/ROADMAP.md` phases 6 to 8.

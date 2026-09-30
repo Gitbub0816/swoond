@@ -364,7 +364,9 @@
                 {"id": "pair2", "term": "PDO", "definition": "Shooting percentage plus save percentage; high PDO often indicates luck."},
                 {"id": "pair3", "term": "Expected goals (xG)", "definition": "A probabilistic model assigning each shot a chance of scoring based on location."}
               ],
-              "explanation": "These stats describe effort (Corsi), luck (PDO), and quality (xG). Knowing the difference helps you interpret what stats actually say."
+              "explanation": {
+                "summary": "These stats describe effort (Corsi), luck (PDO), and quality (xG). Knowing the difference helps interpret what stats actually say."
+              }
             }
           }
         ]
@@ -414,9 +416,9 @@
                 ]
               },
               "options": [
-                {"id": "leave", "label": "Let him keep playing.", "verdict": "poor", "consequence": "Risks serious injury. Concussions worsen if untreated.", "considerations": "Players do not always report symptoms; visible signs require action."},
-                {"id": "pull", "label": "Pull him for assessment.", "verdict": "best", "consequence": "Protects his health. Even if nothing, safety protocol is correct.", "considerations": "Head safety is priority; better to assess and return than miss a concussion."},
-                {"id": "wait", "label": "Wait for his complaint.", "verdict": "poor", "consequence": "Delays risk; concussions can worsen unseen.", "considerations": "Protective protocols do not wait for player-reported symptoms."}
+                {"id": "leave", "label": "Let him keep playing.", "verdict": "poor", "consequence": "Risks serious injury. Concussions worsen if untreated.", "considerations": ["Players do not always report symptoms.","Visible signs require immediate action."]},
+                {"id": "pull", "label": "Pull him for assessment.", "verdict": "best", "consequence": "Protects his health. Even if nothing, safety protocol is correct.", "considerations": ["Head safety is priority over playing time.","Better to assess and return than miss a concussion."]},
+                {"id": "wait", "label": "Wait for his complaint.", "verdict": "poor", "consequence": "Delays risk; concussions can worsen unseen.", "considerations": ["Modern protocols do not wait for player-reported symptoms.","Dazed state is sufficient reason to remove."]},
               ],
               "expertNote": "Modern protocol pulls immediately for any sign of head impact or dazed state. Safety errs toward caution."
             }
@@ -478,9 +480,9 @@
                 ]
               },
               "options": [
-                {"id": "now", "label": "Pull the goalie now.", "verdict": "best", "consequence": "Modern analytics favors this. Extra time increases tie chances.", "considerations": "Short-handed breakaway risk is real but less costly than losing extra minutes."},
-                {"id": "wait90", "label": "Wait until 90 seconds left.", "verdict": "acceptable", "consequence": "Balances risk and time. Traditional approach.", "considerations": "Limits breakaway exposure but reduces scoring chances."},
-                {"id": "never", "label": "Keep the goalie in.", "verdict": "poor", "consequence": "Wastes time without reason. Reduces tie chances.", "considerations": "Hoping for a miracle while the clock runs is not a strategy."}
+                {"id": "now", "label": "Pull the goalie now.", "verdict": "best", "consequence": "Modern analytics favors this. Extra time increases tie chances.", "considerations": ["Short-handed risk is real but manageable.","Extra minutes for offense outweigh the breakaway risk."]},
+                {"id": "wait90", "label": "Wait until 90 seconds left.", "verdict": "acceptable", "consequence": "Balances risk and time. Traditional approach.", "considerations": ["Reduces breakaway exposure.","Still gives time for a chance at the net."]},
+                {"id": "never", "label": "Keep the goalie in.", "verdict": "poor", "consequence": "Wastes time without reason. Reduces tie chances.", "considerations": ["Hoping for a miracle is not strategic.","Limits your chances to score."]},
               ],
               "expertNote": "Data clearly shows pulling with 2:30 is more effective than waiting. Most modern coaches pull by 3 minutes remaining."
             }
@@ -569,20 +571,22 @@
             "type": "decision-scenario",
             "conceptIds": ["last-change"],
             "payload": {
-              "prompt": "Your team has last change. The other team's top scoring line takes the ice. You choose your matchup. What do you send?",
-              "scenario": {
-                "context": "Last change means the home team picks its players after seeing the visitor's choice."
+              "prompt": "Their top line is on the ice. You have last change. Choose your matchup.",
+              "situation": {
+                "narrative": "The visiting team's top scoring line just took the ice. You, as the home team, have last change and see which players they sent.",
+                "facts": [
+                  {"label": "Situation", "value": "Even score, tie game"},
+                  {"label": "Their choice", "value": "Top scoring line"},
+                  {"label": "Your advantage", "value": "You pick after seeing their players."},
+                  {"label": "Stakes", "value": "Tight game; every matchup matters."}
+                ]
               },
-              "choices": [
-                {"id": "top", "label": "Your top line; outscore them.", "consequences": "You are matching offense for offense instead of using defensive advantage."},
-                {"id": "shutdown", "label": "Your shutdown line; shut them down.", "consequences": "This is the classic use of last change: matching your best defense against their best offense."},
-                {"id": "random", "label": "Whoever is fresh.", "consequences": "You are wasting the last change advantage by not being strategic."}
+              "options": [
+                {"id": "top", "label": "Send your top line; trade scoring.", "verdict": "acceptable", "consequence": "You get an offensive matchup but miss the defensive value of last change.", "considerations": ["Could work if you out-score them.","Wastes the defensive advantage of last change."]},
+                {"id": "shutdown", "label": "Send your shutdown defense.", "verdict": "best", "consequence": "Classic last change use: neutralize their stars with your best defense.", "considerations": ["Stops their best threats.","In a tight game, defense matters more than offense."]},
+                {"id": "random", "label": "Send whoever is fresh.", "verdict": "poor", "consequence": "You waste last change's advantage by not being strategic.", "considerations": ["No plan defeats the purpose of last change.","Random matching leaves their stars unguarded."]},
               ],
-              "correctChoiceIds": ["shutdown"],
-              "explanation": {
-                "correct": "Correct. Last change lets you send your best defensive matchup against their best threats.",
-                "incorrect": "Last change advantage is most valuable defensively: sending your shutdown players to neutralize their stars."
-              }
+              "expertNote": "Last change is most valuable defensively. Sending your shutdown pair against their stars is textbook strategy."
             }
           },
           {
@@ -714,20 +718,22 @@
             "type": "decision-scenario",
             "conceptIds": ["neutral-zone-trap"],
             "payload": {
-              "prompt": "Up by one goal with five minutes left. Do you stay aggressive or tighten up defensively?",
-              "scenario": {
-                "context": "Coaches balance controlling the game versus risking a quick counter-goal."
+              "prompt": "Up by one goal with five minutes left. Decide your approach.",
+              "situation": {
+                "narrative": "Your team leads by one goal with five minutes left in the third period.",
+                "facts": [
+                  {"label": "Score", "value": "Up by 1"},
+                  {"label": "Time", "value": "5 minutes left"},
+                  {"label": "Opponent", "value": "Pulling goalie soon if they stay down"},
+                  {"label": "Options", "value": "Aggressive, balanced, or defensive"}
+                ]
               },
-              "choices": [
-                {"id": "aggressive", "label": "Stay aggressive; keep pushing.", "consequences": "You risk breakaways but keep momentum on your side."},
-                {"id": "trap", "label": "Clog the neutral zone; limit scoring chances.", "consequences": "You reduce their chances but give up the puck and bore fans."},
-                {"id": "collapse", "label": "Pack it around the net only.", "consequences": "You block high-danger chances but invite perimeter pressure and tire your defense."}
+              "options": [
+                {"id": "aggressive", "label": "Stay aggressive; keep pushing.", "verdict": "acceptable", "consequence": "Risk breakaways but keep momentum and scoring chances.", "considerations": ["Could backfire with a short-handed goal.","Keeps offense in the game."]},
+                {"id": "trap", "label": "Clog the neutral zone.", "verdict": "best", "consequence": "Middle path: limit their chances without giving up all offense.", "considerations": ["Reduces their scoring opportunities.","Stays competitive in case of a tie."]},
+                {"id": "collapse", "label": "Pack it tight around the net.", "verdict": "acceptable", "consequence": "Stops high-danger chances but invites perimeter pressure and fatigue.", "considerations": ["Blocks the slot.","Tires your defense with constant pressure."]}
               ],
-              "correctChoiceIds": ["trap", "aggressive"],
-              "explanation": {
-                "correct": "Correct. Most teams slightly tighten up but do not fully abandon offense. The trap is a middle path.",
-                "incorrect": "Most coaches find a balance: not fully aggressive, but not completely defensive either. The trap helps limit chances without giving up all offense."
-              }
+              "expertNote": "Most coaches use the trap late: clog the middle to limit quality chances without abandoning all offense."
             }
           },
           {
@@ -851,7 +857,9 @@
                 {"id": "pair2", "term": "Lottery", "definition": "A drawing that gives non-playoff teams a chance at top picks, reducing incentive to tank."},
                 {"id": "pair3", "term": "Prospect", "definition": "A young player drafted or developed but not yet a regular in the NHL."}
               ],
-              "explanation": "Understanding these terms helps you follow draft talk and why teams sell or push for the playoffs."
+              "explanation": {
+                "summary": "Understanding these terms helps you follow draft talk and why teams sell or push for the playoffs."
+              }
             }
           },
           {
@@ -859,20 +867,22 @@
             "type": "decision-scenario",
             "conceptIds": ["tanking"],
             "payload": {
-              "prompt": "Your team is 10-20 in late November, clearly not making the playoffs. Do you sell veterans or try to climb back?",
-              "scenario": {
-                "context": "Selling now maximizes draft assets; trying to climb back keeps fans engaged but risks losing free agents."
+              "prompt": "Record 10-20 in November. Season is lost. What now?",
+              "situation": {
+                "narrative": "Your team is 10-20 in late November. Mathematically, making the playoffs is nearly impossible.",
+                "facts": [
+                  {"label": "Record", "value": "10-20"},
+                  {"label": "Time", "value": "Late November"},
+                  {"label": "Playoff math", "value": "Nearly impossible to recover"},
+                  {"label": "Trade deadline", "value": "Months away"}
+                ]
               },
-              "choices": [
-                {"id": "sell", "label": "Sell veterans for picks and assets; start the rebuild.", "consequences": "You commit to a multi-year rebuild, but you maximize value for departing stars."},
-                {"id": "hold", "label": "Keep veterans and try to climb back.", "consequences": "You risk losing free agents to other teams and getting no return."},
-                {"id": "hybrid", "label": "Trade some, keep your core.", "consequences": "You hedge: picking up prospects while keeping competitive pieces."}
+              "options": [
+                {"id": "sell", "label": "Trade veterans for picks; start the rebuild.", "verdict": "best", "consequence": "Maximize return on departing stars. Build future assets.", "considerations": ["Get the best value while stars still have trade value.","Commits to a multi-year rebuild."]},
+                {"id": "hold", "label": "Keep veterans and push for playoffs.", "verdict": "poor", "consequence": "Risk losing free agents with nothing in return. Sell low at deadline.", "considerations": ["Unlikely to climb back from 10-20.","Free agents walk away in summer for nothing."]},
+                {"id": "hybrid", "label": "Trade some, keep your core.", "verdict": "acceptable", "consequence": "Hedge: add prospects while keeping competitive pieces.", "considerations": ["Balances short and long term.","Can shift direction if the team unexpectedly clicks."]}
               ],
-              "correctChoiceIds": ["sell"],
-              "explanation": {
-                "correct": "Correct. Once a season is lost, trading veterans for picks is the smart play. It is not tanking; it is managing assets wisely.",
-                "incorrect": "Once the season is mathematically lost, trading departing stars for picks and prospects is best practice in rebuilding."
-              }
+              "expertNote": "Once the season is mathematically lost, trading veterans for picks is best practice. It is not tanking; it is asset management."
             }
           }
         ]
