@@ -718,21 +718,27 @@
             "conceptIds": ["cap-hit"],
             "payload": {
               "prompt": "Complete the statement about cap hits.",
-              "template": "A player's cap hit {{definition}}, and it {{impact}} team building.",
+              "template": "A cap hit {{definition}}, {{impact}}.",
               "gaps": [
                 {
                   "id": "definition",
-                  "options": ["is how much he makes", "is the average annual value of his contract", "is his signing bonus", "changes yearly"],
-                  "correct": "is the average annual value of his contract"
+                  "options": ["is salary", "is average value", "is bonus"],
+                  "correct": "is average value"
                 },
                 {
                   "id": "impact",
-                  "options": ["does not affect", "determines which trades are possible", "is irrelevant", "is used by fans only"],
-                  "correct": "determines which trades are possible"
+                  "options": ["helps trades", "limits trades", "is irrelevant"],
+                  "correct": "limits trades"
+                },
+                {
+                  "id": "example",
+                  "options": ["always works", "costs flexibility", "means nothing"],
+                  "correct": "costs flexibility"
                 }
               ],
               "explanation": {
-                "correct": "Yes. A high cap hit limits flexibility. Teams sometimes trade away players to shed cap space."
+                "correct": "Yes. A high cap hit limits flexibility. Teams trade to shed cap space.",
+                "incorrect": "Cap hit is the average annual value. A high hit restricts roster moves."
               }
             }
           },
@@ -741,23 +747,37 @@
             "type": "say-this",
             "conceptIds": ["salary-cap"],
             "payload": {
-              "prompt": "A team wants to sign a star free agent but they are $2 million over the cap. What could they do?",
-              "replies": [
+              "statement": {
+                "speaker": "Her",
+                "text": "They want to sign a star but they're $2M over the cap."
+              },
+              "question": "What can they do?",
+              "options": [
                 {
                   "id": "a",
-                  "text": "Trade or release a player to clear space, or wait for a player's contract to expire.",
-                  "score": 10
+                  "text": "Trade or release a player to make room.",
+                  "isCorrect": true
                 },
                 {
                   "id": "b",
-                  "text": "Break the rule and sign him anyway."
+                  "text": "Ignore the cap rule."
                 },
                 {
                   "id": "c",
-                  "text": "Just exceed the cap by $2M for one year."
+                  "text": "Exceed it for one season."
                 }
               ],
-              "explanation": "The cap is a hard limit. To add payroll, a team must remove payroll. This is why cap management and trades dominate offseason talk."
+              "translation": "The cap is a hard ceiling. To add salary, teams must shed payroll.",
+              "followUps": [
+                {
+                  "line": "Who would they trade?",
+                  "why": "Usually a depth player or someone on an expiring deal."
+                },
+                {
+                  "line": "Could they use LTIR?",
+                  "why": "Some teams use injured reserve to add room (controversial)."
+                }
+              ]
             }
           }
         ]
