@@ -1,0 +1,119 @@
+# XcodeGen spec for the Swoon'd iOS app.
+#   brew install xcodegen && cd ios && xcodegen && open Swoond.xcodeproj
+# (or: make -C ios project)
+name: Swoond
+
+options:
+  bundleIdPrefix: com.swoond
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+  generateEmptyDirectories: false
+  developmentLanguage: en
+  xcodeVersion: "16.0"
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    IPHONEOS_DEPLOYMENT_TARGET: "18.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    # Set your own team in Xcode (Signing & Capabilities) or via `DEVELOPMENT_TEAM=... xcodegen`.
+    CODE_SIGN_STYLE: Automatic
+
+packages:
+  SwoondCore:
+    path: SwoondCore
+
+targets:
+  Swoond:
+    type: application
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - path: Swoond
+        excludes:
+          # Folder references below keep the <courseId>/manifest.json layout; do not flatten them into resources.
+          - "Resources/ContentPacks/**"
+      # Small bundled preview seed (nascar, pickleball, hockey). Used when the full packs are absent and for previews.
+      - path: Swoond/Resources/ContentPacks
+        type: folder
+      # Full authored content packs, when they exist (see docs/courses/README.md). Optional so the project
+      # generates before `content/courses` exists.
+      - path: ../content/courses
+        type: folder
+        optional: true
+    dependencies:
+      - package: SwoondCore
+      # To enable real simulations, add Astra's UnityFramework.framework here (embed and sign) and the
+      # `#if canImport(UnityFramework)` host in Swoond/Unity/UnitySimulationHost.swift compiles in:
+      # - framework: Frameworks/UnityFramework.framework
+      #   embed: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.swoond.app
+        PRODUCT_NAME: Swoond
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        SWIFT_EMIT_LOC_STRINGS: YES
+    info:
+      path: Swoond/Info.plist
+      properties:
+        CFBundleDisplayName: "Swoon’d"
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        ITSAppUsesNonExemptEncryption: false
+        LSRequiresIPhoneOS: true
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UILaunchScreen:
+          UIColorName: LaunchBackground
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UIRequiredDeviceCapabilities:
+          - arm64
+        # Bundled OFL fonts (Swoond/Resources/Fonts). Geist is one variable font (wght 100-900).
+        UIAppFonts:
+          - InstrumentSerif-Regular.ttf
+          - InstrumentSerif-Italic.ttf
+          - Geist-Variable.ttf
+        # Lets the timing-tap marker run at 120 Hz on ProMotion iPhones.
+        CADisableMinimumFrameDurationOnPhone: true
+        # Discreet by default: reminders never contain a Person's name (NotificationComposer).
+        NSUserNotificationsUsageDescription: "Swoon’d sends one daily reminder. It never shows anyone’s name while Discreet mode is on."
+
+  SwoondTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - path: SwoondTests
+    dependencies:
+      - target: Swoond
+      - package: SwoondCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.swoond.app.tests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Swoond.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Swoond"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+
+schemes:
+  Swoond:
+    build:
+      targets:
+        Swoond: all
+        SwoondTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - SwoondTests
+    profile:
+      config: Release
+    archive:
+      config: Release

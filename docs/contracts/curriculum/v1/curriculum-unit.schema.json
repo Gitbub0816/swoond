@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.swoond.app/curriculum/v1/curriculum-unit.schema.json",
+  "title": "Swoon'd Curriculum Unit File (split layout, contract 1.1)",
+  "description": "docs/courses/<id>/curriculum/units/<NN>-<unit-id>.json. One unit (same object as curriculum.schema.json units[]) plus optional unit-local concepts merged into the course concept list.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contractVersion", "courseId", "unit"],
+  "properties": {
+    "contractVersion": { "type": "string", "pattern": "^1\\.[1-9]\\d*\\.\\d+$" },
+    "courseId": { "$ref": "curriculum.schema.json#/$defs/kebabId" },
+    "concepts": {
+      "type": "array",
+      "description": "Optional unit-local concepts, merged into the course concepts. A concept id defined in more than one file is an error.",
+      "items": { "$ref": "curriculum.schema.json#/properties/concepts/items" }
+    },
+    "unit": { "$ref": "curriculum.schema.json#/properties/units/items" }
+  }
+}

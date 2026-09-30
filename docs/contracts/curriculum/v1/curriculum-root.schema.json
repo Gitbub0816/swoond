@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.swoond.app/curriculum/v1/curriculum-root.schema.json",
+  "title": "Swoon'd Curriculum Root (split layout, contract 1.1)",
+  "description": "docs/courses/<id>/curriculum/course.json. Course-level data for the split layout; unit bodies live in units/<NN>-<unit-id>.json (curriculum-unit.schema.json). The validator merges root + units (in unitOrder) into a full curriculum.schema.json object before running cross-checks and lint. Additive to v1.0: single-file curricula stay valid.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contractVersion", "courseId", "curriculumVersion", "unitOrder", "reviewPolicy"],
+  "properties": {
+    "contractVersion": { "type": "string", "pattern": "^1\\.[1-9]\\d*\\.\\d+$", "description": "1.1.0 or later 1.x; the split layout does not exist in 1.0." },
+    "courseId": { "$ref": "curriculum.schema.json#/$defs/kebabId" },
+    "curriculumVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "locale": { "type": "string", "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$", "description": "Optional; defaults to en-US when merged." },
+    "concepts": {
+      "type": "array",
+      "description": "Course-wide concepts. May be empty: units may contribute their own concepts[]. The merged list must be non-empty and free of duplicate ids.",
+      "items": { "$ref": "curriculum.schema.json#/properties/concepts/items" }
+    },
+    "talkTracks": { "$ref": "curriculum.schema.json#/properties/talkTracks" },
+    "reviewPolicy": { "$ref": "curriculum.schema.json#/properties/reviewPolicy" },
+    "unitOrder": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "curriculum.schema.json#/$defs/kebabId" },
+      "description": "Unit ids in course order. Must match exactly the set of unit files under units/."
+    }
+  }
+}
