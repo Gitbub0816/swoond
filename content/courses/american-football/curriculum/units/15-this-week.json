@@ -1,0 +1,1090 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "american-football",
+  "unit": {
+    "id": "this-week",
+    "title": "This week in football",
+    "layer": "current-season",
+    "order": 15,
+    "prerequisiteUnitIds": [
+      "league-machine"
+    ],
+    "personalizationSlots": [
+      "team"
+    ],
+    "live": {
+      "dataKind": "scores,schedules,standings,alerts,news",
+      "refreshHint": "hourly",
+      "adapterKey": "american-football.weekly"
+    },
+    "lessons": [
+      {
+        "id": "preview-01",
+        "title": "Game preview",
+        "objective": "You can explain what to watch for in your team's next game.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "injury-report",
+          "team-identity",
+          "divisional-rivals"
+        ],
+        "live": {
+          "dataKind": "schedules,rosters,alerts",
+          "refreshHint": "daily"
+        },
+        "activities": [
+          {
+            "id": "preview-01-st-matchup",
+            "type": "say-this",
+            "conceptIds": [
+              "team-identity",
+              "divisional-rivals"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Friend",
+                "text": "Your {{team}} plays the division rival this week. That is always different than a regular game."
+              },
+              "question": "What is she saying about division games?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Division games have extra intensity because of rivalry and playoff implications.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "Division games are easier because teams know each other too well.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "Division games do not matter for playoff seeding.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "All games are the same, whether division rivals or not.",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "Division rivalries run deep. Playing the same team twice a year over decades creates history, intensity and playoff stakes.",
+              "followUps": [
+                {
+                  "line": "How many games do teams play in their division?",
+                  "why": "Division teams play each other twice in the 17-game season, so these matchups are critical."
+                },
+                {
+                  "line": "Does beating the division rival feel different?",
+                  "why": "Yes. Division wins are weighted for playoff tiebreakers and bragging rights."
+                }
+              ],
+              "noFakeExpertNote": "If unsure, remember: division games matter more than regular season games because of history and seeding."
+            },
+            "xp": 10
+          },
+          {
+            "id": "preview-01-mc-watch",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "team-identity"
+            ],
+            "payload": {
+              "prompt": "When preparing to watch a game, what should you focus on?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Your team's strengths and how they match up against the opponent."
+                },
+                {
+                  "id": "b",
+                  "text": "Only the final score."
+                },
+                {
+                  "id": "c",
+                  "text": "The commercials during the broadcast."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "The best way to watch is to know what your team does well and whether the opponent can stop it. That is what fans focus on before and during the game.",
+                "incorrect": "The game is more fun when you know what to watch for. Matchups drive the outcome."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "preview-01-ds-prep",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "injury-report"
+            ],
+            "payload": {
+              "prompt": "Your team's star cornerback is on the injury report listed as questionable. What does this tell you?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Player status",
+                    "value": "Questionable (day-to-day)"
+                  },
+                  {
+                    "label": "Opponent",
+                    "value": "Has two talented wide receivers"
+                  },
+                  {
+                    "label": "Game time",
+                    "value": "Five days away"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "game-plan",
+                  "label": "Game plan depends on his status",
+                  "verdict": "best",
+                  "consequence": "If he plays, your secondary is stronger. If he sits, the backup corner gets tested. The team might blitz more or play deeper coverage without him.",
+                  "considerations": [
+                    "Injuries reshape game plans.",
+                    "A star out changes scheme and strategy."
+                  ]
+                },
+                {
+                  "id": "assume-out",
+                  "label": "Assume he is out and adjust",
+                  "verdict": "acceptable",
+                  "consequence": "Conservative but smart. If he plays, you get a pleasant surprise.",
+                  "considerations": [
+                    "Hoping for the best is fine.",
+                    "But preparing for the worst is smarter."
+                  ]
+                }
+              ],
+              "expertNote": "Injury reports are released daily Wed-Fri. 'Questionable' means the player has a real chance of playing, but is not sure. Follow the Friday update closest to game time."
+            },
+            "xp": 10
+          },
+          {
+            "id": "preview-01-bc-opponent",
+            "type": "binary-call",
+            "conceptIds": [
+              "divisional-rivals"
+            ],
+            "payload": {
+              "prompt": "Knowing your team's strengths before the game helps you follow the strategy better. True or false?",
+              "scene": {
+                "kind": "none",
+                "alt": "A fan reading scouting information about the upcoming game."
+              },
+              "choices": [
+                {
+                  "id": "true",
+                  "label": "True"
+                },
+                {
+                  "id": "false",
+                  "label": "False"
+                }
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. If you know your team runs outside zone and their defense is weak against it, you understand why play calls happen. Context makes the game better.",
+                "incorrect": "Yes, understanding your team's identity gives you a lens to watch through. Otherwise it is just random plays."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "preview-01-tm-status",
+            "type": "term-match",
+            "conceptIds": [
+              "injury-report"
+            ],
+            "payload": {
+              "prompt": "Match each injury status to its meaning.",
+              "pairs": [
+                {
+                  "id": "out",
+                  "term": "Out",
+                  "definition": "The player will not play. Usually a week, sometimes longer."
+                },
+                {
+                  "id": "questionable",
+                  "term": "Questionable",
+                  "definition": "The player might play. The decision comes Friday or game day."
+                },
+                {
+                  "id": "doubtful",
+                  "term": "Doubtful",
+                  "definition": "The player is unlikely to play but not ruled out. Rare."
+                }
+              ],
+              "explanation": {
+                "summary": "The injury report has a few standard designations. Coaches are coy; fans read between the lines.",
+                "sayThisLine": "Out means no. Doubtful means probably no. Questionable means ask again Friday."
+              }
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "recap-02",
+        "title": "What happened",
+        "objective": "You can explain why the result happened.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "down-and-distance",
+          "turnover",
+          "epa"
+        ],
+        "live": {
+          "dataKind": "scores,schedules",
+          "refreshHint": "minutes-during-events"
+        },
+        "activities": [
+          {
+            "id": "recap-02-st-result",
+            "type": "say-this",
+            "conceptIds": [
+              "turnover"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Analyst",
+                "text": "The game came down to turnovers. Team A had two interceptions; Team B had zero. That is the whole story."
+              },
+              "question": "What is the analyst saying?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Turnovers often decide close games because they give away possessions and field position.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "Interceptions do not matter in football.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "The offense wins all games by having the ball more.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Turnovers only matter if the score is tied.",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "Turnover margin (how many times each team gave the ball away) is the biggest predictor of outcome. An extra interception is roughly 7 points.",
+              "followUps": [
+                {
+                  "line": "What is turnover margin?",
+                  "why": "Your turnovers minus their turnovers. Teams that win the margin by +2 or more win most games."
+                },
+                {
+                  "line": "Can a team overcome a bad turnover margin?",
+                  "why": "Yes, but it is rare. You need dominant defense or a big lead to survive losing the turnover battle."
+                }
+              ],
+              "noFakeExpertNote": "If unsure, remember: the team that takes care of the ball usually wins."
+            },
+            "xp": 10
+          },
+          {
+            "id": "recap-02-mc-why",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "down-and-distance"
+            ],
+            "payload": {
+              "prompt": "Why do fans look at third-down efficiency after a game?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Third-down efficiency (converting on third down) shows whether the offense moved the ball or got stuck."
+                },
+                {
+                  "id": "b",
+                  "text": "Third down is the only down that counts."
+                },
+                {
+                  "id": "c",
+                  "text": "Third-down efficiency does not matter; only final score does."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Teams that convert third downs stay on the field longer, keep the defense tired and score more. It is a key stat that predicts wins.",
+                "incorrect": "Third-down efficiency is gold. If you convert at 50%+, you usually win."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "recap-02-bc-drives",
+            "type": "binary-call",
+            "conceptIds": [
+              "epa"
+            ],
+            "payload": {
+              "prompt": "A team that keeps drives alive with third-down conversions usually wins. True or false?",
+              "scene": {
+                "kind": "none",
+                "alt": "A team executing in the middle of the field and moving the chains on third down."
+              },
+              "choices": [
+                {
+                  "id": "true",
+                  "label": "True"
+                },
+                {
+                  "id": "false",
+                  "label": "False"
+                }
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. Long drives burn clock, keep the defense off the field and increase scoring chances. Teams that convert third down at high rates win more.",
+                "incorrect": "Yes, drive sustainability wins games. Three-and-out over and over means quick losses."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "recap-02-ds-blame",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "turnover"
+            ],
+            "payload": {
+              "prompt": "The offense threw three interceptions. The defense gave up 500 yards. Who lost the game?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Offense",
+                    "value": "Three interceptions, 350 yards"
+                  },
+                  {
+                    "label": "Defense",
+                    "value": "Gave up 500 yards and 4 touchdowns"
+                  },
+                  {
+                    "label": "Final score",
+                    "value": "Loss by 10"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "both",
+                  "label": "Both lost it",
+                  "verdict": "best",
+                  "consequence": "Turnovers and defensive breakdowns both cost games. The interceptions put the defense in bad spots, but allowing 500 yards is also bad.",
+                  "considerations": [
+                    "Three picks is too many.",
+                    "500 yards given up is bad.",
+                    "Often, both sides struggle in a bad loss."
+                  ]
+                },
+                {
+                  "id": "offense",
+                  "label": "Blame the offense (turnovers)",
+                  "verdict": "acceptable",
+                  "consequence": "Turnovers are a killer, but this defense still gave up a lot.",
+                  "considerations": [
+                    "Takeaways define games.",
+                    "But the defense struggled too."
+                  ]
+                }
+              ],
+              "expertNote": "Good teams usually split the blame. Bad losses are team losses, not one-unit failures."
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "injuries-03",
+        "title": "The injury report",
+        "objective": "You can read the injury report and explain who matters.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "injury-report",
+          "depth-chart"
+        ],
+        "live": {
+          "dataKind": "alerts,rosters",
+          "refreshHint": "daily"
+        },
+        "activities": [
+          {
+            "id": "injuries-03-tm-context",
+            "type": "term-match",
+            "conceptIds": [
+              "injury-report"
+            ],
+            "payload": {
+              "prompt": "Match each injury scenario to its impact.",
+              "pairs": [
+                {
+                  "id": "star-rb",
+                  "term": "Star running back out",
+                  "definition": "The team's run game weakens. Play-action works less. The backup must step in or the team passes more."
+                },
+                {
+                  "id": "edge-out",
+                  "term": "Pass rush edge rusher out",
+                  "definition": "The quarterback gets more time. The team might blitz more or use a linebacker on the edge."
+                },
+                {
+                  "id": "corner-out",
+                  "term": "Starting cornerback out",
+                  "definition": "The secondary weakens. The offense targets the backup corner. Safeties might stay closer to help over the top."
+                }
+              ],
+              "explanation": {
+                "summary": "Position matters. Star players affect game plans. Backups change everything.",
+                "sayThisLine": "Top player out = scheme change. Backup in = the offense exploits him."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "injuries-03-ds-impact",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "depth-chart"
+            ],
+            "payload": {
+              "prompt": "Starting QB is out. Backup is a four-year vet who rarely plays. What changes?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Starting QB",
+                    "value": "Out 1-2 weeks with arm injury"
+                  },
+                  {
+                    "label": "Backup QB",
+                    "value": "Four-year veteran; career 52% completion"
+                  },
+                  {
+                    "label": "Playcalling",
+                    "value": "Designed for mobile QB"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "scheme-shift",
+                  "label": "Simplify the offense and run more",
+                  "verdict": "best",
+                  "consequence": "The backup is less mobile and less accurate, so coaches lean on the run game. Screens and short passes replace deep throws.",
+                  "considerations": [
+                    "Backups often struggle with complex systems.",
+                    "Running the ball is safer.",
+                    "This is the smart adjustment."
+                  ]
+                },
+                {
+                  "id": "same-game",
+                  "label": "Run the same offense",
+                  "verdict": "poor",
+                  "consequence": "You are asking a backup to beat his ceiling. Interceptions and sacks pile up. The team loses.",
+                  "considerations": [
+                    "Backups need simpler calls.",
+                    "Running the same system is not fair to him."
+                  ]
+                }
+              ],
+              "expertNote": "When a backup takes over, the entire offensive identity shifts. Expect more runs, more screens and quicker decisions. Do not expect the same performance."
+            },
+            "xp": 10
+          },
+          {
+            "id": "injuries-03-st-read",
+            "type": "say-this",
+            "conceptIds": [
+              "injury-report"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Beat writer",
+                "text": "The injury report is updated every day at 5 PM. Coaches list players, and the status tells you if they are likely to play."
+              },
+              "question": "What is the writer saying about reading the injury report?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The injury report is released daily and gives clues about who will play, though coaches are coy about final decisions.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "Injuries are never listed publicly.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "The injury report is only released on game day.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "All players listed are definitely out.",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "The NFL injury report is official. It is released daily Wed-Fri with status codes (Out, Questionable, Doubtful, etc.). Friday's is the most telling.",
+              "followUps": [
+                {
+                  "line": "Why do coaches hide injuries?",
+                  "why": "Surprise. If your backup QB is starting, you do not want the opponent adjusting all week."
+                },
+                {
+                  "line": "When is the final word?",
+                  "why": "Sunday morning inactives list (90 minutes before kickoff). That is official."
+                }
+              ],
+              "noFakeExpertNote": "If unsure, check Friday's report. That is closest to game time."
+            },
+            "xp": 10
+          },
+          {
+            "id": "injuries-03-mc-scheme",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "depth-chart"
+            ],
+            "payload": {
+              "prompt": "How do coaches adjust when a key player gets injured?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "They simplify plays for the backup, lean on strength (e.g., run game), and use the backup's skills."
+                },
+                {
+                  "id": "b",
+                  "text": "They run the exact same offense regardless."
+                },
+                {
+                  "id": "c",
+                  "text": "They give up the game."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Smart coaches adjust to their personnel. A backup receiver means fewer deep routes. A backup edge rusher means more nickel packages. Scheme serves the player, not the other way.",
+                "incorrect": "Adjustment is the job. Teams that adapt to injuries win more games with backups than teams that do not."
+              }
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "picture-04",
+        "title": "The playoff picture",
+        "objective": "You can say who is in and what they need.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "playoff-picture",
+          "tiebreakers",
+          "playoff-seeding"
+        ],
+        "live": {
+          "dataKind": "standings,schedules",
+          "refreshHint": "daily"
+        },
+        "activities": [
+          {
+            "id": "picture-04-so-seeds",
+            "type": "sequence-order",
+            "conceptIds": [
+              "playoff-seeding"
+            ],
+            "payload": {
+              "prompt": "Put the NFL playoff seeding process in order.",
+              "items": [
+                {
+                  "id": "div-winners",
+                  "text": "The four division winners in each conference earn seeds 1-4.",
+                  "why": "Division winners are guaranteed a playoff spot and home-field advantage (seed permitting)."
+                },
+                {
+                  "id": "wild-cards",
+                  "text": "The next three best records in each conference become wild cards and earn seeds 5-7.",
+                  "why": "Wild cards make up the rest of the 14-team playoff field (7 per conference)."
+                },
+                {
+                  "id": "matchups",
+                  "text": "Seeds 1-7 play out: #1 seed bye, #2-7 play the wild-card round.",
+                  "why": "The best seed (#1) gets a bye week and waits for the wild-card winners."
+                },
+                {
+                  "id": "divisional",
+                  "text": "The divisional round is seeds #1-2 vs wild cards #5-7 and #3-4 vs #6.",
+                  "why": "The bracket is set once wild-card winners emerge."
+                }
+              ],
+              "partialCredit": true,
+              "explanation": {
+                "correct": "The playoff bracket is simple: four division winners (seeds 1-4), three wild cards (5-7 per conference), 14 teams total. The #1 seed waits at home.",
+                "incorrect": "Seeding is about record first, then tiebreakers. Wild cards are the third-best team from each conference."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "picture-04-bc-bye",
+            "type": "binary-call",
+            "conceptIds": [
+              "playoff-seeding"
+            ],
+            "payload": {
+              "prompt": "The #1 seed in each conference gets a bye week through the wild-card round. True or false?",
+              "scene": {
+                "kind": "none",
+                "alt": "A top seed resting while wild-card teams play."
+              },
+              "choices": [
+                {
+                  "id": "true",
+                  "label": "True"
+                },
+                {
+                  "id": "false",
+                  "label": "False"
+                }
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. Only the #1 seed gets a bye. Seeds #2-7 all play in wild-card round, so #1 gets rest and the divisional round starts them.",
+                "incorrect": "Yes, the top seed's reward is a bye. They sit out and watch three wild-card games, then play in the divisional round."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "picture-04-mc-tiebreaker",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "tiebreakers"
+            ],
+            "payload": {
+              "prompt": "Two teams have the same record. How is the playoff tie broken?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Strength of schedule, head-to-head record, divisional record and other tiebreakers in a set order."
+                },
+                {
+                  "id": "b",
+                  "text": "The team that is more popular gets in."
+                },
+                {
+                  "id": "c",
+                  "text": "Coin flip."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "The NFL has a clear tiebreaker sequence. Head-to-head is first (if the teams played each other). If still tied, divisional record, conference record, strength of schedule, etc. It is complex but set in stone.",
+                "incorrect": "Tiebreakers are published and applied consistently. Common knowledge: division winners sometimes sneak in with lesser records because of head-to-head wins."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "picture-04-st-race",
+            "type": "say-this",
+            "conceptIds": [
+              "playoff-picture"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Analyst",
+                "text": "Your team is in a wild-card race. That means they are fighting for one of three spots with other non-division winners."
+              },
+              "question": "What is the analyst saying?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The team is not guaranteed a playoff spot; they need to earn it via record or tiebreaker.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "Wild cards are teams that have already clinched.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "Wild-card races end before week 10.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "All teams are in a wild-card race.",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "A wild-card race means the team is not in first place in its division but is competing with other non-division-winners for the final spots. Every win matters; every loss hurts.",
+              "followUps": [
+                {
+                  "line": "How many wild-card spots are there?",
+                  "why": "Three per conference (seeds 5, 6, 7). Six total wild cards across both conferences."
+                },
+                {
+                  "line": "Is a wild-card spot better than missing the playoffs?",
+                  "why": "Yes, but it is tougher: you play the #1 or #2 seed in the wild-card round. Division winners get easier matchups."
+                }
+              ],
+              "noFakeExpertNote": "If unsure, remember: wild-card race = still hoping, not yet in."
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "storyline-05",
+        "title": "Why are fans talking about this?",
+        "objective": "You can explain the week's big storyline in your own words.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "power-rankings",
+          "rule-change-of-year"
+        ],
+        "live": {
+          "dataKind": "news,standings,scores",
+          "refreshHint": "hourly"
+        },
+        "activities": [
+          {
+            "id": "storyline-05-st-debate",
+            "type": "say-this",
+            "conceptIds": [
+              "rule-change-of-year"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Commentator",
+                "text": "A new rule this year changed how teams approach the game. Now everyone is debating whether it is good or bad."
+              },
+              "question": "What is the commentator saying about rule changes?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Rule changes have real effects on strategy and are debated by coaches and fans.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "Rules never change in football.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "Rule changes only affect defense.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "All fans agree on rule changes immediately.",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "Every year, the NFL tweaks rules for pace, safety or fairness. When a rule change is new, coaches game it, and fans debate whether it is fair. That debate is part of the fun.",
+              "followUps": [
+                {
+                  "line": "Can a rule change swing games?",
+                  "why": "Absolutely. A rule that allows more holding or bans a tackle type changes how teams practice and play."
+                },
+                {
+                  "line": "Why do some fans hate new rules?",
+                  "why": "Change is hard. Fans are nostalgic. But most rules exist for safety or fairness."
+                }
+              ],
+              "noFakeExpertNote": "If unsure, know that rule changes are debated every year. No rule is final; if fans hate it, it might be voted out next year."
+            },
+            "xp": 10
+          },
+          {
+            "id": "storyline-05-tt-current",
+            "type": "talk-track",
+            "conceptIds": [
+              "power-rankings"
+            ],
+            "payload": {
+              "title": "This week's big storyline",
+              "setting": "Chatting about who is hot and who is not this week.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "Everyone is saying Team X is falling apart. Their power ranking dropped five spots in one week.",
+                  "replies": [
+                    {
+                      "id": "rankings-yes",
+                      "text": "Power rankings react to every win and loss. What do you think is actually wrong with them?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Good question. Injuries plus a brutal schedule coming up.",
+                      "coachNote": "Shows you understand rankings are reactive, and you want the real story."
+                    },
+                    {
+                      "id": "one-game",
+                      "text": "It is just one loss. The rankings overreact.",
+                      "smoothDelta": 10,
+                      "theirResponse": "Maybe, but they have bigger issues than one game.",
+                      "coachNote": "Fair point, but you missed deeper context."
+                    },
+                    {
+                      "id": "agree",
+                      "text": "Yeah, they are done. Their season is over.",
+                      "smoothDelta": -10,
+                      "theirResponse": "That seems harsh. There is a lot of season left.",
+                      "coachNote": "Overreacting to rankings is not thoughtful."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Power rankings are fun but reactive. The real story is usually injury, schedule or scheme adjustment."
+            },
+            "xp": 10
+          },
+          {
+            "id": "storyline-05-mc-story",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "power-rankings"
+            ],
+            "payload": {
+              "prompt": "Power rankings are a weekly ranking of the 32 teams. What should you remember about them?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "They are opinion-based, change weekly, and react heavily to recent games."
+                },
+                {
+                  "id": "b",
+                  "text": "They are official and set for the season."
+                },
+                {
+                  "id": "c",
+                  "text": "They perfectly predict playoff seeding."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Power rankings are fun fan talk, written by beat writers and analysts. They shift based on recent wins, losses and injuries. A team's ranking can swing five spots in one week.",
+                "incorrect": "Power rankings are subjective and volatile. Never mistake them for final standings or actual playoff position."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "storyline-05-bc-plot",
+            "type": "binary-call",
+            "conceptIds": [
+              "rule-change-of-year"
+            ],
+            "payload": {
+              "prompt": "Understanding the week's big storyline makes watching the game more fun. True or false?",
+              "scene": {
+                "kind": "none",
+                "alt": "A fan following news and debates about the week's main story."
+              },
+              "choices": [
+                {
+                  "id": "true",
+                  "label": "True"
+                },
+                {
+                  "id": "false",
+                  "label": "False"
+                }
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. Knowing why fans are talking about something (a rule debate, an injury, a power ranking shift) gives you context. You watch smarter.",
+                "incorrect": "Yes, storylines give the game meaning. Random plays are less fun than plays you understand in context."
+              }
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "offseason-06",
+        "title": "Offseason moves",
+        "objective": "You can follow the draft, free agency and trades.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "draft",
+          "free-agency",
+          "trade-deadline"
+        ],
+        "live": {
+          "dataKind": "events,rosters",
+          "refreshHint": "weekly"
+        },
+        "activities": [
+          {
+            "id": "offseason-06-tm-timing",
+            "type": "term-match",
+            "conceptIds": [
+              "draft",
+              "free-agency",
+              "trade-deadline"
+            ],
+            "payload": {
+              "prompt": "Match each event to its time and impact.",
+              "pairs": [
+                {
+                  "id": "free-agency",
+                  "term": "Free agency (March)",
+                  "definition": "Players whose contracts are up are free to sign with new teams. Teams reload with veteran talent."
+                },
+                {
+                  "id": "draft",
+                  "term": "The draft (April)",
+                  "definition": "Teams pick new players in order based on record. Bad teams pick early; good teams pick late."
+                },
+                {
+                  "id": "deadline",
+                  "term": "Trade deadline (Week 9)",
+                  "definition": "After this date, teams cannot trade players until the offseason. Teams either go all-in or admit defeat."
+                }
+              ],
+              "explanation": {
+                "summary": "The calendar of team-building: free agency first, draft second, midseason trades as a last push.",
+                "sayThisLine": "Free agency fills gaps fast. The draft builds future stars. Trades win now."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "offseason-06-st-move",
+            "type": "say-this",
+            "conceptIds": [
+              "free-agency"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "GM",
+                "text": "We signed a big free agent cornerback. That is our answer to the passing game they throw at us."
+              },
+              "question": "What is the GM saying?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Free-agent signings are designed to fix specific weaknesses the team identified.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "Free agents can only play offense.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "Cornerbacks do not affect the passing game.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Free-agent signings never help.",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "Teams use free agency to add talent where they are weak. A division rival passing a lot? Sign a corner. Running game weak? Sign a guard or back.",
+              "followUps": [
+                {
+                  "line": "Why is free agency in March?",
+                  "why": "The season ends in February. Players are free to negotiate January 15 onward, then sign in March."
+                },
+                {
+                  "line": "Do free agents always work out?",
+                  "why": "No. A big contract does not guarantee production. Context (age, system fit, injury history) matters."
+                }
+              ],
+              "noFakeExpertNote": "If unsure, remember: free agents are the team's chance to fix problems fast before the draft."
+            },
+            "xp": 10
+          },
+          {
+            "id": "offseason-06-mc-plan",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "draft"
+            ],
+            "payload": {
+              "prompt": "Why do bad teams get to pick early in the draft?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The worst record gets the first pick, reward the worst with the best talent to help them improve."
+                },
+                {
+                  "id": "b",
+                  "text": "The best teams pick early to stay dominant."
+                },
+                {
+                  "id": "c",
+                  "text": "Picks are random."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "It is called 'reverse order.' Bad teams get top picks to help them rebuild. Good teams pick at the end (7th round onward). It keeps the league competitive.",
+                "incorrect": "Reverse order is the foundation of competitive balance. It is why no team stays bad forever and no team stays great forever."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "offseason-06-bc-urgency",
+            "type": "binary-call",
+            "conceptIds": [
+              "trade-deadline"
+            ],
+            "payload": {
+              "prompt": "Teams on playoff contention go all-in at the trade deadline, while struggling teams accept their fate. True or false?",
+              "scene": {
+                "kind": "none",
+                "alt": "A contending team trading for a veteran in late October."
+              },
+              "choices": [
+                {
+                  "id": "true",
+                  "label": "True"
+                },
+                {
+                  "id": "false",
+                  "label": "False"
+                }
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. Contenders at 7-1 or 6-2 push hard at the deadline. Losing teams (2-6) sell veterans for picks. It is a clear breakpoint.",
+                "incorrect": "Yes, the deadline splits teams: buyers and sellers. Contenders spend; rebuilders collect picks for next year."
+              }
+            },
+            "xp": 10
+          }
+        ]
+      }
+    ]
+  }
+}

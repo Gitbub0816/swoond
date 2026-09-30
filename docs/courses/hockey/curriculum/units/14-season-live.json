@@ -18,7 +18,7 @@
         "id": "live-this-week",
         "title": "This week's storylines",
         "objective": "Explain what is being discussed in hockey right now.",
-        "estimatedMinutes": 8,
+        "estimatedMinutes": 9,
         "conceptIds": ["this-week"],
         "activities": [
           {
@@ -41,7 +41,25 @@
             }
           },
           {
-            "id": "live-this-week-02-st-storyline",
+            "id": "live-this-week-02-bc-hot-streak",
+            "type": "binary-call",
+            "conceptIds": ["this-week"],
+            "payload": {
+              "prompt": "A player with 6 goals in the last five games is in a slump.",
+              "scene": {"kind": "none", "alt": "A player has scored 6 goals recently."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "false",
+              "explanation": {
+                "correct": "False. Six goals in five games is a hot streak, not a slump. That is exciting news and a story for the week.",
+                "incorrect": "That pace is a hot streak. A slump is when a scorer goes cold."
+              }
+            }
+          },
+          {
+            "id": "live-this-week-03-st-storyline",
             "type": "say-this",
             "conceptIds": ["this-week"],
             "payload": {
@@ -61,6 +79,31 @@
                 {"line": "Who is leading the team in scoring?", "why": "Asks her to name the player, showing you are following the storylines."}
               ],
               "noFakeExpertNote": "Streaks, hot scoring and slumps are the weekly topics fans care about."
+            }
+          },
+          {
+            "id": "live-this-week-04-ftg-injury",
+            "type": "fill-the-gap",
+            "conceptIds": ["this-week"],
+            "payload": {
+              "prompt": "Complete the fan conversation about injuries.",
+              "template": "Our star is out for {{time}}. {{impact}}.",
+              "gaps": [
+                {
+                  "id": "time",
+                  "options": ["the season", "two to three weeks", "one game"],
+                  "correct": "two to three weeks"
+                },
+                {
+                  "id": "impact",
+                  "options": ["This changes nothing", "This is big for the playoff race", "This is disappointing but expected"],
+                  "correct": "This is big for the playoff race"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. A key player out mid-season is a top-of-the-week story; it changes the team's odds.",
+                "incorrect": "An injury to a star is a major talking point; it affects playoff hopes and depth."
+              }
             }
           }
         ]
@@ -218,7 +261,8 @@
                   "consequence": "The team is still in it; sellers give up too early and waste what they have.",
                   "considerations": ["Only 2 points out", "Plenty of season left"]
                 }
-              ]
+              ],
+              "expertNote": "Teams on the bubble make their biggest moves near the trade deadline, not mid-season panic buys."
             }
           },
           {
@@ -242,6 +286,35 @@
                 {"line": "Who's team ahead of them in the race?", "why": "Shows you are tracking the pack."}
               ],
               "noFakeExpertNote": "The bubble is tense; teams fight hard to stay in the race."
+            }
+          },
+          {
+            "id": "live-playoff-race-04-tm-terms",
+            "type": "term-match",
+            "conceptIds": ["playoff-race", "wild-card"],
+            "payload": {
+              "prompt": "Match the playoff race term to its meaning.",
+              "pairs": [
+                {
+                  "id": "bubble",
+                  "term": "On the bubble",
+                  "definition": "A team is skating right at the playoff line, in the race but vulnerable to dropping out."
+                },
+                {
+                  "id": "wild-card",
+                  "term": "Wild card",
+                  "definition": "One of two playoff spots per conference that go to non-division-winners."
+                },
+                {
+                  "id": "out",
+                  "term": "Out of it",
+                  "definition": "A team is too far behind to realistically make the playoffs."
+                }
+              ],
+              "explanation": {
+                "summary": "The playoff race has clear language: bubble, wild card and out.",
+                "sayThisLine": "Ask her where her team sits in the race and use these terms."
+              }
             }
           }
         ]
@@ -311,6 +384,24 @@
               ],
               "noFakeExpertNote": "Momentum is real in games; it is about who is controlling play and who looks tired."
             }
+          },
+          {
+            "id": "live-game-companion-04-bc-pulled-goalie",
+            "type": "binary-call",
+            "conceptIds": ["game-companion"],
+            "payload": {
+              "prompt": "It is 4-3 with 90 seconds left and {{team}} is down. They pull the goalie for an extra skater.",
+              "scene": {"kind": "none", "alt": "The goalie is off the ice and an extra attacker replaces him."},
+              "choices": [
+                {"id": "true", "label": "This is the right move."},
+                {"id": "false", "label": "This is too risky."}
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "Right. With under two minutes left and down one, pulling the goalie is a reasonable gamble for the tie or the go-ahead.",
+                "incorrect": "Late in a tie game down one, pulling the goalie is a standard move. It is an aggressive bet on scoring versus giving up an empty netter."
+              }
+            }
           }
         ]
       },
@@ -353,7 +444,8 @@
                 {"id": "draft", "text": "NHL Draft (late June)"}
               ],
               "explanation": {
-                "summary": "The hockey year flows: preseason warmup, then the long regular season with the deadline mid-way, then playoffs and the draft.",
+                "correct": "Right. Preseason, then regular season with the deadline mid-season, then playoffs and the draft.",
+                "incorrect": "The order is preseason, regular season (with the deadline in March), playoffs, and draft.",
                 "sayThisLine": "The trade deadline is always a big moment; it is when teams show whether they are buying or selling."
               }
             }
@@ -373,6 +465,31 @@
               "explanation": {
                 "correct": "Exactly. Contenders buy, sellers trade away veterans for draft picks. The deadline is the biggest trading day.",
                 "incorrect": "The deadline is a strategic moment: teams race to add depth (rentals) or start rebuilding (selling veterans for picks)."
+              }
+            }
+          },
+          {
+            "id": "live-season-calendar-04-ftg-draft",
+            "type": "fill-the-gap",
+            "conceptIds": ["draft"],
+            "payload": {
+              "prompt": "Complete the statement about the NHL Draft.",
+              "template": "The NHL Draft happens {{when}} and {{result}}.",
+              "gaps": [
+                {
+                  "id": "when",
+                  "options": ["in the playoffs", "late June", "in September"],
+                  "correct": "late June"
+                },
+                {
+                  "id": "result",
+                  "options": ["re-signs stars", "selects young prospects", "trades for rentals"],
+                  "correct": "selects young prospects"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. The draft is where teams pick 18-year-old prospects after the Cup Final.",
+                "incorrect": "Teams hold the draft after the season to add young talent to their system."
               }
             }
           }
@@ -463,6 +580,24 @@
               "explanation": {
                 "correct": "Right. The salary cap counts the cap hit, not the actual salary. That difference can be a tool for trades and contracts.",
                 "incorrect": "Cap hit is the average annual value used by the league's salary cap accounting. A player's salary might be different in different years."
+              }
+            }
+          },
+          {
+            "id": "live-deadline-04-bc-rental-better",
+            "type": "binary-call",
+            "conceptIds": ["free-agency"],
+            "payload": {
+              "prompt": "A rental is always the better choice than a long-term player for the deadline.",
+              "scene": {"kind": "none", "alt": "Two players: one on a rental deal, one under contract long-term."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "false",
+              "explanation": {
+                "correct": "False. It depends on the team's situation. A contender wants a rental for a playoff run. A team rebuilding wants to keep young players.",
+                "incorrect": "Rentals are good for contenders in a playoff push. They are not always the right fit for every team's strategy."
               }
             }
           }
