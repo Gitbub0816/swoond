@@ -946,3 +946,74 @@ Full talk-track payloads are in section 4 (they are the same contract). Three of
 }
 ```
 
+## 3. Playbook terms (64)
+
+Each term has a definition and an example line in the enthusiast's voice. Concept ids are in CDS section 11 (Appendix); these drafts become curriculum `concepts[]` entries.
+
+| # | Concept id | Term | Definition | Example line |
+|---|---|---|---|---|
+| 1 | `coffee-cherry` | Coffee cherry | The small red fruit whose seeds become coffee. | "The cherries were picked at peak ripeness." |
+| 2 | `arabica-vs-robusta` | Arabica and robusta | The two main species: arabica is sweeter and more complex; robusta is bolder, more bitter and higher in caffeine. | "It's 100% arabica." |
+| 3 | `coffee-belt` | Coffee belt | The tropical band between the Tropics where coffee grows. | "Everything on this shelf comes from the coffee belt." |
+| 4 | `specialty-grade` | Specialty grade | Green coffee scoring 80 or more on the SCA scale with very few defects. | "It's specialty grade, 86 points." |
+| 5 | `single-origin-vs-blend` | Single origin | Coffee from one place, as opposed to a blend of several. | "This one's a single origin from Huila." |
+| 6 | `microlot` | Microlot | A small, separately handled batch from one part of a farm. | "It's a microlot from the top of the farm." |
+| 7 | `bag-label-literacy` | Bag label | Origin, process, variety, altitude and roast date printed on a specialty bag. | "I read the bag before I read the price." |
+| 8 | `ethiopia-heirloom` | Heirloom (Ethiopia) | A mix of local landrace varieties grown in Ethiopia. | "Ethiopian heirloom is floral and tea-like." |
+| 9 | `sl28-sl34` | SL28 and SL34 | Kenyan varieties famed for juicy, blackcurrant-like acidity. | "Kenyan SL28 tastes like blackcurrant." |
+| 10 | `altitude-and-density` | Altitude and density | Higher growing altitudes make denser, slower-ripening beans, often with more acidity. | "High-grown, so it's dense and bright." |
+| 11 | `coffee-varieties` | Variety | The plant cultivar, such as Typica, Bourbon, Caturra, SL28 or Geisha. | "What's the variety on this lot?" |
+| 12 | `geisha` | Geisha | A variety prized for floral, tea-like, jasmine flavors, often very expensive. | "The Geisha tasted like jasmine." |
+| 13 | `washed-process` | Washed | Fruit removed before drying; clean, bright, clear cup. | "I prefer washed for clarity." |
+| 14 | `natural-process` | Natural | Dried inside the whole cherry; fruity, jammy, sometimes funky. | "Natural processed, so it's berry-forward." |
+| 15 | `honey-process` | Honey | Some sticky fruit mucilage left on the seed while drying. | "Yellow honey, so a little sweetness." |
+| 16 | `mucilage` | Mucilage | The sticky layer between the skin and the seed. | "The mucilage is what makes honey coffee." |
+| 17 | `anaerobic-fermentation` | Anaerobic | Fermented in a sealed, oxygen-free tank before drying. | "That anaerobic lot was wild." |
+| 18 | `drying-and-defects` | Drying and defects | Careful drying prevents mold and off flavors. | "A bad natural tastes like a fermented mess." |
+| 19 | `roast-levels` | Roast level | How long and hot coffee was roasted: light, medium or dark. | "I'm a light-roast person." |
+| 20 | `first-crack` | First crack | The popping sound as beans expand; a light roast begins here. | "They dropped it just after first crack." |
+| 21 | `second-crack` | Second crack | A later, quieter cracking that marks dark roasts. | "Second crack means it's a dark roast." |
+| 22 | `development-time` | Development time | How long a roast continues after first crack. | "Short development keeps it bright." |
+| 23 | `roast-date` | Roast date | The date coffee was roasted; the real freshness clue. | "I never buy without a roast date." |
+| 24 | `degassing` | Degassing | Release of carbon dioxide after roasting. | "It's still degassing; give it a week." |
+| 25 | `staling-and-storage` | Staling | Flavor loss from oxygen, light, heat and time. | "Airtight, cool and dark." |
+| 26 | `omni-roast` | Omni roast | A roast meant to work for filter and espresso. | "It's an omni roast, so I use it for both." |
+| 27 | `brewing-is-extraction` | Extraction | Dissolving flavors from coffee grounds into water. | "It's all about extraction." |
+| 28 | `dose-and-yield` | Dose and yield | Dose is the coffee weight in; yield is the liquid weight out. | "Eighteen in, thirty-six out." |
+| 29 | `brew-ratio` | Brew ratio | Coffee weight to water weight, e.g. 1:16. | "I brew at one to sixteen." |
+| 30 | `grind-size` | Grind size | How fine or coarse the ground coffee is. | "Go two clicks finer." |
+| 31 | `water-temp-range` | Brew temperature | About 195 to 205 F for most brewing. | "I brew at ninety-four." |
+| 32 | `contact-time` | Contact time | How long water and coffee touch. | "The contact time was too short." |
+| 33 | `water-quality` | Water quality | Minerals and alkalinity shape what water extracts and how the cup tastes. | "Our tap water is too hard." |
+| 34 | `bloom` | Bloom | The first small pour that releases gas and wets the grounds. | "Bloom for thirty seconds." |
+| 35 | `immersion-vs-percolation` | Immersion and percolation | Immersion steeps grounds in water; percolation passes water through grounds. | "French press is immersion." |
+| 36 | `aeropress` | AeroPress | A plunger-style brewer loved for flexibility. | "I travel with my AeroPress." |
+| 37 | `moka-pot` | Moka pot | A stovetop brewer that makes strong, espresso-like coffee (not true espresso). | "My grandmother's moka pot." |
+| 38 | `cold-brew` | Cold brew | Coffee steeped in cold water for many hours. | "Cold brew concentrate, then dilute." |
+| 39 | `under-extraction` | Under-extracted | Too little dissolved: sour, thin, salty. | "It tastes under-extracted." |
+| 40 | `over-extraction` | Over-extracted | Too much dissolved: bitter, dry, astringent. | "That shot's over-extracted." |
+| 41 | `strength-vs-extraction` | Strength vs extraction | Strength is concentration; extraction is how much was pulled out of the grounds. | "Strong and well-extracted are different things." |
+| 42 | `tds` | TDS | Total dissolved solids: how much coffee is dissolved in the cup. | "We hit 1.4 TDS." |
+| 43 | `channeling` | Channeling | Water racing through cracks in the puck, extracting unevenly. | "It channeled; the shot sprayed." |
+| 44 | `dialing-in` | Dialing in | Adjusting grind and recipe until a coffee tastes good. | "I dialed in the new bag." |
+| 45 | `espresso-definition` | Espresso | A concentrated coffee made by forcing hot water through fine grounds under pressure. | "I pull a double every morning." |
+| 46 | `espresso-ratio` | Espresso ratio | Dose to yield, commonly near 1:2. | "One to two in twenty-eight seconds." |
+| 47 | `crema` | Crema | The golden foam on an espresso shot. | "Nice crema, but how's the taste?" |
+| 48 | `pre-infusion` | Pre-infusion | A gentle low-pressure wetting before full pressure. | "The machine has pre-infusion." |
+| 49 | `microfoam` | Microfoam | Steamed milk with tiny, silky bubbles. | "Good microfoam pours like paint." |
+| 50 | `doppio-ristretto-lungo` | Doppio, ristretto, lungo | Double shot; shorter shot; longer shot. | "A ristretto, please." |
+| 51 | `cappuccino-latte-flat-white` | Cappuccino, latte, flat white | Milk espresso drinks differing in milk volume and texture. | "Flat white, no sugar." |
+| 52 | `cortado-macchiato` | Cortado and macchiato | Espresso cut with milk (cortado) or marked with foam (macchiato). | "A cortado, please." |
+| 53 | `americano-long-black` | Americano and long black | Espresso and hot water; the long black pours espresso over the water. | "A long black keeps the crema." |
+| 54 | `third-place` | Third place | A social space that is neither home nor work. | "The café is her third place." |
+| 55 | `acidity-good` | Acidity | A pleasant brightness in tasting, like citrus or apple. | "Bright acidity, cherry notes." |
+| 56 | `body` | Body | The weight and texture of coffee in the mouth. | "Silky body." |
+| 57 | `finish` | Finish | The aftertaste that lingers. | "Long, sweet finish." |
+| 58 | `cupping` | Cupping | A standardized, slurp-and-spit tasting used by professionals. | "We cupped ten coffees this morning." |
+| 59 | `sca-score-80` | SCA score | A 100-point scale; 80 and above is specialty. | "It scored eighty-six." |
+| 60 | `three-waves-model` | Three waves | A story of coffee: commodity, then café culture, then specialty and origin focus. | "Third wave is about origin." |
+| 61 | `direct-trade` | Direct trade | A roaster buys directly from producers, with self-defined terms. | "They're direct trade, but ask how." |
+| 62 | `fair-trade` | Fair Trade | A certification with minimum prices and premiums for cooperatives. | "It's Fair Trade certified." |
+| 63 | `c-price` | C price | The benchmark arabica futures price for commodity coffee. | "The C price jumped again." |
+| 64 | `grinder-importance` | The grinder matters | Enthusiasts often say grinder quality matters more than the brewer. | "Buy the grinder first." |
+
