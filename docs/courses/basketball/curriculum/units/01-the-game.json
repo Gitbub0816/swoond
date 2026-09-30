@@ -447,8 +447,8 @@
               "prompt": "A player shoots and misses. The other team tips the rebound away. Is it still a possession change?",
               "scene": {"kind": "none", "alt": "A rebound scenario where one team shoots and another team gets the rebound."},
               "choices": [
-                {"id": "yes", "label": "Yes, possession changed the moment the rebound was tipped."},
-                {"id": "no", "label": "No, possession does not change on a rebound."}
+                {"id": "yes", "label": "Yes, possession changed on the rebound."},
+                {"id": "no", "label": "No, possession does not change here."}
               ],
               "correctChoiceId": "yes",
               "explanation": {
@@ -615,19 +615,19 @@
           {
             "id": "gam-06-tm-2",
             "type": "term-match",
-            "conceptIds": ["small-forward", "power-forward"],
+            "conceptIds": ["small-forward", "power-forward", "shooting-guard"],
             "payload": {
-              "prompt": "What do the forwards do?",
+              "prompt": "What do the forwards and shooting guard do?",
               "pairs": [
                 {"id": "sf", "term": "Small forward", "definition": "A versatile forward who scores inside and out, defends multiple positions."},
-                {"id": "pf", "term": "Power forward", "definition": "A big man who plays closer to the basket, rebounds and finishes close to the rim."}
+                {"id": "pf", "term": "Power forward", "definition": "A big man who plays closer to the basket, rebounds and finishes close to the rim."},
+                {"id": "sg", "term": "Shooting guard", "definition": "A guard who scores from outside and hits three-pointers, often taller than the point guard."}
               ],
               "distractorDefinitions": [
-                "The forward who is smallest in height.",
-                "The forward who has the most power."
+                "The forward who is smallest in height."
               ],
               "explanation": {
-                "summary": "The two forward positions have different jobs: the small forward is versatile, the power forward is a paint player."
+                "summary": "The forward positions and shooting guard have distinct roles: small forward is versatile, power forward is a paint player, shooting guard is a perimeter scorer."
               }
             }
           },
@@ -843,7 +843,7 @@
             "conceptIds": ["stat-abbreviations"],
             "payload": {
               "prompt": "Fill in the stat abbreviations.",
-              "template": "A player had 18 {{points-abbrev}}, 7 {{rebounds-abbrev}}, 5 {{assists-abbrev}}, and 2 {{steals-abbrev}}.",
+              "template": "A player had 18 {{points-abbrev}}, 7 {{rebounds-abbrev}}, and 5 {{assists-abbrev}}.",
               "gaps": [
                 {
                   "id": "points-abbrev",
@@ -859,16 +859,11 @@
                   "id": "assists-abbrev",
                   "options": ["AST", "A", "AS"],
                   "correct": "AST"
-                },
-                {
-                  "id": "steals-abbrev",
-                  "options": ["ST", "STL", "S"],
-                  "correct": "STL"
                 }
               ],
               "explanation": {
-                "correct": "Perfect. These are the standard abbreviations on a box score: PTS (points), REB (rebounds), AST (assists), STL (steals).",
-                "incorrect": "Not quite. The standard box score abbreviations are PTS, REB, AST, STL, BLK, TO (turnovers), and FG% (field-goal percentage)."
+                "correct": "Perfect. These are the standard abbreviations on a box score: PTS (points), REB (rebounds), AST (assists).",
+                "incorrect": "Not quite. The standard box score abbreviations are PTS, REB, AST, STL (steals), BLK (blocks), TO (turnovers), and FG% (field-goal percentage)."
               }
             }
           },

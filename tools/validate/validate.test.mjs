@@ -313,7 +313,7 @@ test('type-monoculture: warns when activity type >40% of a ≥12-activity unit',
       for (let i = 0; i < 7; i++) {
         const clone = JSON.parse(JSON.stringify(mc));
         clone.id = `mc-extra-${i}`;
-        clone.payload.prompt = `Question ${i}?`;
+        clone.payload.prompt = `What is the meaning of this question number ${i}?`;
         j.unit.lessons[0].activities.push(clone);
       }
       for (let i = 0; i < 1; i++) {
@@ -346,7 +346,7 @@ test('type-monoculture: errors when activity type >50% of a ≥12-activity unit'
       for (let i = 0; i < 14; i++) {
         const clone = JSON.parse(JSON.stringify(mc));
         clone.id = `mc-extra-${i}`;
-        clone.payload.prompt = `Question ${i}?`;
+        clone.payload.prompt = `What is the meaning of this question number ${i}?`;
         j.unit.lessons[0].activities.push(clone);
       }
       for (let i = 0; i < 1; i++) {

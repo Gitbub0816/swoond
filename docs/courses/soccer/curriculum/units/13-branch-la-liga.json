@@ -1,0 +1,270 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "soccer",
+  "unit": {
+    "id": "branch-la-liga",
+    "title": "Branch: La Liga",
+    "layer": "branch",
+    "branchId": "la-liga",
+    "order": 12,
+    "prerequisiteUnitIds": ["competitions-and-clubs"],
+    "personalizationSlots": ["team", "player"],
+    "lessons": [
+      {
+        "id": "ll-01",
+        "title": "The big two and the chasers",
+        "objective": "You can explain El Clásico and why Atlético is the usual third party.",
+        "estimatedMinutes": 9,
+        "conceptIds": ["la-liga-clasico", "derby-history"],
+        "activities": [
+          {
+            "id": "ll-01-mc-clasico",
+            "type": "multiple-choice",
+            "conceptIds": ["la-liga-clasico"],
+            "payload": {
+              "prompt": "What is El Clásico?",
+              "options": [
+                {"id": "a", "text": "A European championship"},
+                {"id": "b", "text": "The match between Real Madrid and Barcelona in La Liga"},
+                {"id": "c", "text": "A Spanish national team tournament"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. El Clásico is the name for matches between Real Madrid and Barcelona, two of the biggest clubs in the world.",
+                "incorrect": "El Clásico is the fixture between Real Madrid and Barcelona, La Liga's two dominant clubs.",
+                "sayThisLine": "When's the Clásico, that's the one everyone watches."
+              }
+            }
+          },
+          {
+            "id": "ll-01-mc-atletico",
+            "type": "multiple-choice",
+            "conceptIds": ["la-liga-clasico"],
+            "payload": {
+              "prompt": "Why is Atlético Madrid usually the third-best team in La Liga?",
+              "options": [
+                {"id": "a", "text": "They play in a smaller stadium"},
+                {"id": "b", "text": "Real Madrid and Barcelona's spending power and history make it hard for anyone else to compete"},
+                {"id": "c", "text": "They have a rule against signing big-name players"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. Real Madrid and Barcelona are among the richest clubs in the world, which gives them an edge in buying the best players and keeping their talent.",
+                "incorrect": "Real Madrid and Barcelona's huge budgets and winning traditions leave Atlético fighting hard for third place, even when they're well managed and competitive.",
+                "sayThisLine": "Atletico always punches above their weight, but Clásico clubs have the money."
+              }
+            }
+          },
+          {
+            "id": "ll-01-st-derby",
+            "type": "say-this",
+            "conceptIds": ["derby-history"],
+            "payload": {
+              "statement": "Clásico weekend is basically a holiday.",
+              "options": [
+                {"id": "a", "text": "El Clásico matches are hugely important and draw massive attention in Spain", "isCorrect": true},
+                {"id": "b", "text": "The teams take Clásico weekend off and do not play other matches", "isCorrect": false},
+                {"id": "c", "text": "There is no real rivalry between the clubs", "isCorrect": false}
+              ],
+              "translation": "El Clásico is so important in Spain that the whole country stops to watch. The passion and history make it feel like more than just a game.",
+              "followUps": [
+                "What kind of rivalry exists between them?",
+                "Has one team dominated the other in recent years?",
+                "Where do your friends or family stand on this one?"
+              ],
+              "noFakeExpertNote": "You don't need to have a take; real fans just name what they saw."
+            }
+          },
+          {
+            "id": "ll-01-tm-spanish-clubs",
+            "type": "term-match",
+            "conceptIds": ["la-liga-clasico"],
+            "payload": {
+              "pairs": [
+                {"id": "rm", "term": "Real Madrid", "definition": "Spanish giant with 15 European titles, dominates La Liga alongside Barcelona"},
+                {"id": "barca", "term": "Barcelona", "definition": "Spanish powerhouse known for tiki-taka, rivals Real Madrid for La Liga and European glory"},
+                {"id": "atletico", "term": "Atlético Madrid", "definition": "The challenger, usually third in La Liga, known for grit and tactical discipline"}
+              ],
+              "distractorDefinitions": [
+                "A team that plays in the Spanish second division",
+                "The Spanish national team's training facility",
+                "A La Liga team based in the Basque region"
+              ]
+            }
+          },
+          {
+            "id": "ll-01-fg-big-two",
+            "type": "fill-the-gap",
+            "conceptIds": ["la-liga-clasico"],
+            "payload": {
+              "prompt": "Complete the statement.",
+              "template": "{{team}} and {{other}} dominate La Liga, and their matches are called {{name}}.",
+              "gaps": [
+                {"id": "team", "options": ["Real Madrid", "Barcelona", "Atlético"], "correct": "Real Madrid"},
+                {"id": "other", "options": ["Barcelona", "Atlético", "Valencia"], "correct": "Barcelona"},
+                {"id": "name", "options": ["El Derbi", "El Clásico", "La Supercopa"], "correct": "El Clásico"}
+              ],
+              "explanation": {
+                "correct": "Right. Real Madrid and Barcelona are Spain's biggest clubs, and their rivalry is one of sport's greatest.",
+                "incorrect": "El Clásico is the name for Real Madrid versus Barcelona, the two clubs that have dominated La Liga for decades."
+              }
+            }
+          },
+          {
+            "id": "ll-01-tt-clasico",
+            "type": "talk-track",
+            "conceptIds": ["derby-history"],
+            "payload": {
+              "exchanges": [
+                {
+                  "theirMessage": "Did you watch the Clásico? It was electric.",
+                  "replies": [
+                    {"id": "a", "text": "I didn't catch it, what happened?", "smoothDelta": 20, "theirResponse": "Real Madrid won 2-1 in a crazy second half. The intensity was something else.", "coachNote": "Asking for what you missed is honest and keeps the conversation real."},
+                    {"id": "b", "text": "Of course, it's always the best match.", "smoothDelta": 5, "theirResponse": "It was great, wasn't it.", "coachNote": "Generic agreement; you could ask what stood out or who impressed them."},
+                    {"id": "c", "text": "Your team never stands a chance against Real Madrid anyway.", "smoothDelta": -15, "theirResponse": "Ouch, that's harsh.", "coachNote": "Trash talk shuts down real conversation. Save the banter for a proper rivals chat."}
+                  ]
+                },
+                {
+                  "theirMessage": "The way they're passing around is so clean, reminds me of the old Barça.",
+                  "replies": [
+                    {"id": "a", "text": "That's that Spanish style right? The possession thing?", "smoothDelta": 20, "theirResponse": "Exactly, they're all about keeping the ball and moving into space.", "coachNote": "Curious question about style—you're showing you want to understand what they see."},
+                    {"id": "b", "text": "Yeah, Barcelona was unbeatable with that.", "smoothDelta": 5, "theirResponse": "They really were at their peak.", "coachNote": "True but pretty surface-level. What specifically impressed you about how they're moving?"},
+                    {"id": "c", "text": "All that passing is boring, just kick it long.", "smoothDelta": -20, "theirResponse": "I guess we see football differently.", "coachNote": "You shut down a chance to learn why they love the style by dismissing it."}
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "ll-02",
+        "title": "Spanish style",
+        "objective": "You can explain how Spanish teams think about possession.",
+        "estimatedMinutes": 9,
+        "conceptIds": ["positional-play", "tiki-taka"],
+        "activities": [
+          {
+            "id": "ll-02-mc-possession",
+            "type": "multiple-choice",
+            "conceptIds": ["positional-play"],
+            "payload": {
+              "prompt": "What is the idea behind positional play in Spanish football?",
+              "options": [
+                {"id": "a", "text": "Kick the ball as far as possible and run to it"},
+                {"id": "b", "text": "Players occupy zones so the ball carrier always has passing options nearby"},
+                {"id": "c", "text": "Only the striker is allowed to move forward"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. Spanish teams create a web of passing angles by putting players in zones where they support each other, not by playing it long.",
+                "incorrect": "Positional play is about placing players so they form a connected network of passes. It's not about distance, it's about angles and support.",
+                "sayThisLine": "It's positional play, not just passing for passing's sake."
+              }
+            }
+          },
+          {
+            "id": "ll-02-mc-tikitaka",
+            "type": "multiple-choice",
+            "conceptIds": ["tiki-taka"],
+            "payload": {
+              "prompt": "What do Barcelona and Spain achieve with tiki-taka?",
+              "options": [
+                {"id": "a", "text": "They wear down opponents by keeping the ball and creating chances through patience and triangles"},
+                {"id": "b", "text": "They confuse the referee by passing the ball quickly"},
+                {"id": "c", "text": "They save time by avoiding tackles"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Right. Tiki-taka is about keeping the ball with short passes and triangles, controlling the game and waiting for openings instead of rushing.",
+                "incorrect": "Tiki-taka uses short passing and movement into space to control the game. By keeping the ball, they tire opponents and create gaps.",
+                "sayThisLine": "It's tiki-taka, endless passing until the gap opens."
+              }
+            }
+          },
+          {
+            "id": "ll-02-st-possession",
+            "type": "say-this",
+            "conceptIds": ["positional-play"],
+            "payload": {
+              "statement": "It's not passing for passing's sake, it's positional play.",
+              "options": [
+                {"id": "a", "text": "Spanish teams pass a lot but with a purpose: to create spaces and angles", "isCorrect": true},
+                {"id": "b", "text": "They pass the ball to avoid playing real football", "isCorrect": false},
+                {"id": "c", "text": "Every pass has to go further up the pitch", "isCorrect": false}
+              ],
+              "translation": "Spanish football looks pretty because every pass sets up the next player. It's not just about quantity of passes; it's about quality of position.",
+              "followUps": [
+                "Have you noticed how the Spanish style uses the width of the pitch differently?",
+                "Do you prefer watching that style or a more direct approach?",
+                "Who else plays positional play besides the Spanish?"
+              ],
+              "noFakeExpertNote": "You can say what you noticed without being an analyst."
+            }
+          },
+          {
+            "id": "ll-02-tm-styles",
+            "type": "term-match",
+            "conceptIds": ["tiki-taka", "positional-play"],
+            "payload": {
+              "pairs": [
+                {"id": "tikitaka", "term": "Tiki-taka", "definition": "Short-passing, high-possession style built on triangles and patient movement, made famous by Barcelona and Spain"},
+                {"id": "pp", "term": "Positional play", "definition": "System where players occupy zones so the ball carrier always has passing options"},
+                {"id": "barca", "term": "Barcelona's dominance", "definition": "Won many trophies using tiki-taka and positional play principles in the 2000s and 2010s"}
+              ],
+              "distractorDefinitions": [
+                "A style where teams attack on the wings only",
+                "The old Italian defensive system",
+                "Direct long-ball football"
+              ]
+            }
+          },
+          {
+            "id": "ll-02-fg-spanish-football",
+            "type": "fill-the-gap",
+            "conceptIds": ["tiki-taka", "positional-play"],
+            "payload": {
+              "prompt": "Describe Spanish football.",
+              "template": "Spanish teams use {{style}} to keep {{item}} and create chances. Players occupy {{placement}} so the ball carrier always has {{option}}.",
+              "gaps": [
+                {"id": "style", "options": ["tiki-taka", "direct passes", "long throws"], "correct": "tiki-taka"},
+                {"id": "item", "options": ["the initiative", "the ball", "the corners"], "correct": "the ball"},
+                {"id": "placement", "options": ["zones", "the wing", "the bench"], "correct": "zones"},
+                {"id": "option", "options": ["a shooter", "a passing option", "an argument"], "correct": "a passing option"}
+              ],
+              "explanation": {
+                "correct": "Right. Spanish football is built on possession and positioning, not just passing speed or distance.",
+                "incorrect": "Spanish style prioritises keeping the ball through short passes and smart positioning, giving the ball carrier multiple options."
+              }
+            }
+          },
+          {
+            "id": "ll-02-tt-spanish-style",
+            "type": "talk-track",
+            "conceptIds": ["positional-play", "tiki-taka"],
+            "payload": {
+              "exchanges": [
+                {
+                  "theirMessage": "I love how Barcelona builds from the back. Zero rush.",
+                  "replies": [
+                    {"id": "a", "text": "How does the slow build help them?", "smoothDelta": 20, "theirResponse": "It tires opponents out and pulls them out of shape. By the time they attack, there's space everywhere.", "coachNote": "Great question—you're curious about the why behind the style, not just the what."},
+                    {"id": "b", "text": "Yeah, they're so good at passing.", "smoothDelta": 5, "theirResponse": "They really are.", "coachNote": "True but basic. What do you notice about where the players move into after the pass?"},
+                    {"id": "c", "text": "That's boring, teams should just shoot.", "smoothDelta": -15, "theirResponse": "I guess we watch for different things.", "coachNote": "You dismissed what they like. Even if you prefer direct play, you can ask why they love the style."}
+                  ]
+                },
+                {
+                  "theirMessage": "The way they move into space after passing is incredible. That's positional play.",
+                  "replies": [
+                    {"id": "a", "text": "So is it like always having a triangle around the ball?", "smoothDelta": 20, "theirResponse": "Exactly. Always three options, always a way out. You get the idea.", "coachNote": "You spotted the pattern they're describing and asked a sharp follow-up."},
+                    {"id": "b", "text": "That's why they're so hard to beat.", "smoothDelta": 5, "theirResponse": "Definitely.", "coachNote": "True, but you could dig deeper—what happens if a team presses them high?"},
+                    {"id": "c", "text": "I don't see what's special about running around.", "smoothDelta": -20, "theirResponse": "You're not really watching the positioning.", "coachNote": "Dismissing what they value makes them feel like you're not listening."}
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

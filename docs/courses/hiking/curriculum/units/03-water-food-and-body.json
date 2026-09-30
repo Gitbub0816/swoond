@@ -135,33 +135,29 @@
             }
           },
           {
-            "id": "wf-01-mc-heat-hydration",
-            "type": "multiple-choice",
+            "id": "wf-01-bc-heat-hydration",
+            "type": "binary-call",
             "conceptIds": ["hydration-rate"],
             "payload": {
-              "prompt": "On a hot day, how does your water need change?",
-              "options": [
-                {
-                  "id": "same",
-                  "text": "It stays about the same"
-                },
-                {
-                  "id": "less",
-                  "text": "You need less water because you sweat less"
-                },
+              "prompt": "It is a hot day. Should you carry more water than usual?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two water bottles in the sun on a hot trail, one full and one nearly empty."
+              },
+              "choices": [
                 {
                   "id": "more",
-                  "text": "You need more water because you sweat more"
+                  "label": "Yes, carry more"
                 },
                 {
-                  "id": "cold-only",
-                  "text": "Heat does not affect it"
+                  "id": "same",
+                  "label": "No, the usual amount"
                 }
               ],
-              "correctOptionIds": ["more"],
+              "correctChoiceId": "more",
               "explanation": {
                 "correct": "Heat makes you sweat more to cool your body, so you lose water faster and should carry noticeably more. Pair it with salty snacks, and drink to thirst.",
-                "incorrect": "Heat increases sweat loss, not decreases it. Plan for more water on hot days.",
+                "incorrect": "Heat increases sweat loss, it does not reduce it. Plan on more water on hot days, and know where you can refill.",
                 "sayThisLine": "\"Desert heat means I carry a lot more water than on a cool day.\""
               }
             }
@@ -211,66 +207,60 @@
             }
           },
           {
-            "id": "wf-02-mc-giardia",
-            "type": "multiple-choice",
+            "id": "wf-02-fg-giardia",
+            "type": "fill-the-gap",
             "conceptIds": ["giardia"],
             "payload": {
-              "prompt": "What is giardia?",
-              "options": [
+              "prompt": "Complete the giardia facts.",
+              "template": "Giardia is a {{what}} that spreads through {{how}} and causes {{result}}.",
+              "gaps": [
                 {
-                  "id": "a",
-                  "text": "A parasite that causes severe stomach illness"
+                  "id": "what",
+                  "options": ["microscopic parasite", "type of algae"],
+                  "correct": "microscopic parasite"
                 },
                 {
-                  "id": "b",
-                  "text": "A type of plant in clean streams"
+                  "id": "how",
+                  "options": ["feces in water", "clean rain"],
+                  "correct": "feces in water"
                 },
                 {
-                  "id": "c",
-                  "text": "A water filter brand"
-                },
-                {
-                  "id": "d",
-                  "text": "A mountain village"
+                  "id": "result",
+                  "options": ["severe cramps and diarrhea", "a mild sunburn"],
+                  "correct": "severe cramps and diarrhea"
                 }
               ],
-              "correctOptionIds": ["a"],
               "explanation": {
                 "correct": "Giardia is a microscopic parasite spread through animal and human feces. It causes severe cramps and diarrhea, often a week or two after you drink it.",
-                "incorrect": "Giardia lives in natural water and causes a nasty illness. Clear-looking water can carry it.",
-                "sayThisLine": "\"Clear water can still carry giardia, so I treat everything.\""
+                "incorrect": "Giardia lives in natural water, even clear water, and causes a nasty stomach illness. Treating water is how you avoid it."
               }
             }
           },
           {
-            "id": "wf-02-mc-clear-water",
-            "type": "multiple-choice",
+            "id": "wf-02-bc-clear-water",
+            "type": "binary-call",
             "conceptIds": ["giardia"],
             "payload": {
-              "prompt": "You see clear, cold stream water. Is it safe to drink without treating?",
-              "options": [
+              "prompt": "You reach a clear, cold mountain stream. Drink it untreated?",
+              "scene": {
+                "kind": "none",
+                "alt": "A clear, fast mountain stream running over rocks."
+              },
+              "choices": [
                 {
                   "id": "yes",
-                  "text": "Yes, clear cold water is always safe"
-                },
-                {
-                  "id": "maybe",
-                  "text": "Only if it flows fast"
+                  "label": "Yes, it looks clean"
                 },
                 {
                   "id": "no",
-                  "text": "No, treat it first. It can carry giardia and other parasites"
-                },
-                {
-                  "id": "sometimes",
-                  "text": "Only if you feel lucky"
+                  "label": "No, treat it first"
                 }
               ],
-              "correctOptionIds": ["no"],
+              "correctChoiceId": "no",
               "explanation": {
-                "correct": "Clear water can carry giardia and other parasites. Clarity does not mean safety. Treat all backcountry water.",
-                "incorrect": "The clearest streams carry invisible parasites. Treating all water prevents illness weeks later.",
-                "sayThisLine": "\"I filter everything. Even the pretty streams.\""
+                "correct": "Clear water can carry giardia, cryptosporidium and bacteria. Clarity does not mean safety, so treat backcountry water and follow park guidance.",
+                "incorrect": "Even the prettiest streams can carry invisible parasites and bacteria. Treating all backcountry water prevents illness days or weeks later.",
+                "sayThisLine": "\"I treat everything. Even the pretty streams.\""
               }
             }
           },
@@ -468,34 +458,32 @@
             }
           },
           {
-            "id": "wf-03-mc-electrolytes",
-            "type": "multiple-choice",
+            "id": "wf-03-fg-electrolytes",
+            "type": "fill-the-gap",
             "conceptIds": ["electrolytes"],
             "payload": {
-              "prompt": "What are electrolytes in the context of hiking?",
-              "options": [
+              "prompt": "Complete the electrolyte fact.",
+              "template": "Electrolytes are {{what}}, like {{ex}}, that you lose in {{where}}.",
+              "gaps": [
                 {
-                  "id": "salts",
-                  "text": "Salts like sodium and potassium that your body needs"
+                  "id": "what",
+                  "options": ["salts and minerals", "extra calories"],
+                  "correct": "salts and minerals"
                 },
                 {
-                  "id": "energy",
-                  "text": "Extra energy from candy"
+                  "id": "ex",
+                  "options": ["sodium and potassium", "sugar and caffeine"],
+                  "correct": "sodium and potassium"
                 },
                 {
-                  "id": "minerals",
-                  "text": "Rocks in water"
-                },
-                {
-                  "id": "none",
-                  "text": "Nothing you need to think about"
+                  "id": "where",
+                  "options": ["sweat", "your sleep"],
+                  "correct": "sweat"
                 }
               ],
-              "correctOptionIds": ["salts"],
               "explanation": {
-                "correct": "Electrolytes are essential salts your body loses in sweat. Replacing them keeps your blood chemistry safe and your muscles working.",
-                "incorrect": "Electrolytes are minerals, mainly sodium and potassium. Sports drinks, salted snacks and even broth replace them.",
-                "sayThisLine": "\"I add electrolyte powder to my water on hot hikes.\""
+                "correct": "Electrolytes are essential salts your body loses in sweat. Replacing them keeps your blood chemistry balanced and your muscles working.",
+                "incorrect": "Electrolytes are minerals, mainly sodium and potassium. Sports drinks, salted snacks and even broth replace them."
               }
             }
           }
@@ -531,33 +519,29 @@
             }
           },
           {
-            "id": "wf-04-mc-snacking",
-            "type": "multiple-choice",
+            "id": "wf-04-bc-snacking",
+            "type": "binary-call",
             "conceptIds": ["calories-per-hour"],
             "payload": {
-              "prompt": "How should you eat trail snacks on a six-hour hike?",
-              "options": [
+              "prompt": "Six-hour hike: one big lunch, or small snacks all day?",
+              "scene": {
+                "kind": "none",
+                "alt": "A trail mix bag and a sandwich on a rock at a viewpoint."
+              },
+              "choices": [
                 {
-                  "id": "one-meal",
-                  "text": "One big lunch in the middle"
+                  "id": "often",
+                  "label": "Small snacks every hour or so"
                 },
                 {
-                  "id": "frequent",
-                  "text": "Small snacks every hour or so"
-                },
-                {
-                  "id": "end",
-                  "text": "All at once at the end"
-                },
-                {
-                  "id": "none",
-                  "text": "Do not eat, it slows you down"
+                  "id": "lunch",
+                  "label": "One big lunch in the middle"
                 }
               ],
-              "correctOptionIds": ["frequent"],
+              "correctChoiceId": "often",
               "explanation": {
-                "correct": "Small, frequent snacks keep your energy steady and prevent bonking. A big lunch in the middle leaves gaps where you feel weak.",
-                "incorrect": "Snacking every hour beats a single large meal. Your body burns fuel continuously, so supply it continuously.",
+                "correct": "Small, frequent snacks keep your energy steady and prevent bonking. One big lunch leaves gaps where you feel weak.",
+                "incorrect": "Your body burns fuel continuously, so supply it continuously. Snacking about hourly beats a single large meal.",
                 "sayThisLine": "\"Snack every hour, not just at lunch.\""
               }
             }
@@ -626,33 +610,36 @@
             }
           },
           {
-            "id": "wf-04-mc-bad-snacks",
-            "type": "multiple-choice",
+            "id": "wf-04-tm-snack-fit",
+            "type": "term-match",
             "conceptIds": ["trail-snacks"],
             "payload": {
-              "prompt": "Which of these is NOT a good trail snack?",
-              "options": [
-                {
-                  "id": "lettuce",
-                  "text": "Lettuce and fresh greens"
-                },
+              "prompt": "Match each snack to how it holds up on trail.",
+              "pairs": [
                 {
                   "id": "nuts",
-                  "text": "Mixed nuts"
-                },
-                {
-                  "id": "dates",
-                  "text": "Dried dates"
+                  "term": "Mixed nuts",
+                  "definition": "Calorie-dense and survives a bouncing pack"
                 },
                 {
                   "id": "jerky",
-                  "text": "Beef jerky"
+                  "term": "Beef jerky",
+                  "definition": "Salty protein that keeps for days"
+                },
+                {
+                  "id": "dates",
+                  "term": "Dried dates",
+                  "definition": "Sweet, quick energy that packs small"
+                },
+                {
+                  "id": "lettuce",
+                  "term": "Fresh lettuce",
+                  "definition": "Bruises, wilts and spoils, and has few calories"
                 }
               ],
-              "correctOptionIds": ["lettuce"],
+              "distractorDefinitions": ["Melts into a mess in a warm pack and needs a fridge"],
               "explanation": {
-                "correct": "Fresh greens bruise, wilt and spoil. They also do not have many calories for the weight.",
-                "incorrect": "Trail food needs calories, durability and lightness. Lettuce fails all three.",
+                "summary": "Good trail food is calorie-dense, durable and light. Fresh greens fail all three tests.",
                 "sayThisLine": "\"I bring dried fruit and nuts, not fresh stuff.\""
               }
             }
@@ -667,34 +654,32 @@
         "conceptIds": ["bonking", "calories-per-hour"],
         "activities": [
           {
-            "id": "wf-05-mc-bonking",
-            "type": "multiple-choice",
+            "id": "wf-05-fg-bonking",
+            "type": "fill-the-gap",
             "conceptIds": ["bonking"],
             "payload": {
-              "prompt": "What is bonking?",
-              "options": [
+              "prompt": "Complete the bonking fact.",
+              "template": "Bonking is running low on {{fuel}}, leaving you {{feel}}. The fix is to {{fix}}.",
+              "gaps": [
                 {
-                  "id": "hitting-head",
-                  "text": "Bumping your head on a low branch"
+                  "id": "fuel",
+                  "options": ["fuel (glycogen)", "oxygen"],
+                  "correct": "fuel (glycogen)"
                 },
                 {
-                  "id": "wall",
-                  "text": "Running out of energy, feeling weak and slow"
+                  "id": "feel",
+                  "options": ["weak, slow and irritable", "overheated and sweaty"],
+                  "correct": "weak, slow and irritable"
                 },
                 {
-                  "id": "noise",
-                  "text": "A loud sound on the trail"
-                },
-                {
-                  "id": "camp",
-                  "text": "Setting up a tent badly"
+                  "id": "fix",
+                  "options": ["eat and rest", "push harder"],
+                  "correct": "eat and rest"
                 }
               ],
-              "correctOptionIds": ["wall"],
               "explanation": {
-                "correct": "Bonking is hitting the wall: your glycogen stores are depleted and you feel weak, shaky and irritable.",
-                "incorrect": "Bonking is an energy crash from not eating enough. You get slow and cranky.",
-                "sayThisLine": "\"I bonked at mile eight. Forgot to eat.\""
+                "correct": "Bonking is hitting the wall: your energy stores are depleted, so you feel weak, shaky and irritable. Food and a short rest usually fix it.",
+                "incorrect": "Bonking is an energy crash from not eating enough. You get slow and cranky, and food is the cure."
               }
             }
           },
@@ -806,33 +791,29 @@
             }
           },
           {
-            "id": "wf-05-mc-prevent",
-            "type": "multiple-choice",
+            "id": "wf-05-bc-prevent",
+            "type": "binary-call",
             "conceptIds": ["calories-per-hour"],
             "payload": {
-              "prompt": "The best way to avoid bonking is to:",
-              "options": [
+              "prompt": "Feeling great early on. Wait to eat until you feel weak?",
+              "scene": {
+                "kind": "none",
+                "alt": "A hiker with a snack in one hand, striding up a sunny trail."
+              },
+              "choices": [
                 {
-                  "id": "snack",
-                  "text": "Eat small snacks every hour"
+                  "id": "wait",
+                  "label": "Yes, hunger is the cue"
                 },
                 {
-                  "id": "big-meal",
-                  "text": "Eat one big meal at the start"
-                },
-                {
-                  "id": "nap",
-                  "text": "Take a two-hour nap midway"
-                },
-                {
-                  "id": "none",
-                  "text": "Do not eat anything, it slows you down"
+                  "id": "early",
+                  "label": "No, eat small amounts early and often"
                 }
               ],
-              "correctOptionIds": ["snack"],
+              "correctChoiceId": "early",
               "explanation": {
-                "correct": "Small, frequent snacks keep your energy steady all day. They prevent the crash.",
-                "incorrect": "Snacking every hour beats any other strategy. Steady fuel beats big meals or going without.",
+                "correct": "Small, frequent snacks keep your energy steady all day. By the time you feel weak, you are already behind.",
+                "incorrect": "Waiting for weakness means you are already bonking. Steady fuel beats big meals or going without.",
                 "sayThisLine": "\"I snack every hour now. Never bonked since.\""
               }
             }
@@ -847,66 +828,62 @@
         "conceptIds": ["heat-illness"],
         "activities": [
           {
-            "id": "wf-06-mc-heat-cramps",
-            "type": "multiple-choice",
+            "id": "wf-06-fg-heat-cramps",
+            "type": "fill-the-gap",
             "conceptIds": ["heat-illness"],
             "payload": {
-              "prompt": "What are heat cramps?",
-              "options": [
+              "prompt": "Complete the heat cramps fact.",
+              "template": "Heat cramps are painful {{what}}, often after heavy {{cause}}. Rest in shade and {{treat}}.",
+              "gaps": [
                 {
-                  "id": "muscles",
-                  "text": "Painful spasms in the legs, usually from salt loss and dehydration"
+                  "id": "what",
+                  "options": ["muscle spasms", "stomach bugs"],
+                  "correct": "muscle spasms"
                 },
                 {
-                  "id": "stomach",
-                  "text": "Stomach pain from eating bad food"
+                  "id": "cause",
+                  "options": ["sweating and salt loss", "sleeping"],
+                  "correct": "sweating and salt loss"
                 },
                 {
-                  "id": "normal",
-                  "text": "Normal leg soreness from hiking"
-                },
-                {
-                  "id": "cold",
-                  "text": "Shivering from cold weather"
+                  "id": "treat",
+                  "options": ["sip water with salt", "hike faster"],
+                  "correct": "sip water with salt"
                 }
               ],
-              "correctOptionIds": ["muscles"],
               "explanation": {
-                "correct": "Heat cramps are sudden, painful muscle spasms, usually in the legs. They happen from sweat loss and electrolyte depletion.",
-                "incorrect": "Heat cramps are a sign of salt and fluid loss. Stop, rest, drink water with salt or sports drink.",
-                "sayThisLine": "\"My calf suddenly cramped, so I sat down and drank some electrolyte mix.\""
+                "correct": "Heat cramps are sudden, painful muscle spasms, usually in the legs, from sweat loss and low electrolytes. Rest, cool off, and sip water with salt or a sports drink.",
+                "incorrect": "Heat cramps are a sign of salt and fluid loss. Stop, rest in shade, and replace water and salt before continuing."
               }
             }
           },
           {
-            "id": "wf-06-mc-exhaustion",
-            "type": "multiple-choice",
+            "id": "wf-06-tm-heat-ladder",
+            "type": "term-match",
             "conceptIds": ["heat-illness"],
             "payload": {
-              "prompt": "What is heat exhaustion?",
-              "options": [
-                {
-                  "id": "tired",
-                  "text": "Fatigue, weakness, nausea and possibly fainting from heat stress"
-                },
+              "prompt": "Match each heat problem to what you would see and do.",
+              "pairs": [
                 {
                   "id": "cramps",
-                  "text": "Painful muscle spasms"
+                  "term": "Heat cramps",
+                  "definition": "Painful muscle spasms: rest in shade, sip water with salt"
                 },
                 {
-                  "id": "fever",
-                  "text": "High fever from infection"
+                  "id": "exhaustion",
+                  "term": "Heat exhaustion",
+                  "definition": "Weak, dizzy, nauseous, sweating heavily: stop, cool down, sip fluids"
                 },
                 {
-                  "id": "cold",
-                  "text": "Shivering and chills"
+                  "id": "stroke",
+                  "term": "Heatstroke",
+                  "definition": "Confusion or collapse with a very hot body: call 911 and cool now"
                 }
               ],
-              "correctOptionIds": ["tired"],
+              "distractorDefinitions": ["Sunburn on exposed skin: reapply sunscreen and cover up"],
               "explanation": {
-                "correct": "Heat exhaustion means your body is struggling to cool: weakness, dizziness, nausea, headache and heavy sweating with pale, clammy skin. Left alone, it can progress to heatstroke.",
-                "incorrect": "Heat exhaustion means your body is overheating. Move to shade, drink water and cool off. It is serious.",
-                "sayThisLine": "\"I felt dizzy and weak on the hot trail, so we sat in the shade and drank water.\""
+                "summary": "Heat problems form a ladder. Cramps and exhaustion mean stop and cool down. Confusion or collapse is heatstroke, an emergency.",
+                "sayThisLine": "\"Dizzy and weak means stop and cool down. Confused means call for help.\""
               }
             }
           },
@@ -1107,33 +1084,32 @@
             }
           },
           {
-            "id": "wf-07-mc-acclimatization",
-            "type": "multiple-choice",
+            "id": "wf-07-fg-acclimatization",
+            "type": "fill-the-gap",
             "conceptIds": ["acclimatization"],
             "payload": {
-              "prompt": "What is acclimatization?",
-              "options": [
+              "prompt": "Complete the acclimatization idea.",
+              "template": "Acclimatization means your body {{what}} by {{how}}, and you sleep {{sleep}} than your high point.",
+              "gaps": [
                 {
-                  "id": "adjust",
-                  "text": "Letting your body adapt to elevation by ascending gradually"
+                  "id": "what",
+                  "options": ["adapts to less oxygen", "gets used to cold"],
+                  "correct": "adapts to less oxygen"
                 },
                 {
-                  "id": "exercise",
-                  "text": "Doing pushups at altitude"
+                  "id": "how",
+                  "options": ["climbing gradually", "climbing fast"],
+                  "correct": "climbing gradually"
                 },
                 {
                   "id": "sleep",
-                  "text": "Sleeping as much as possible"
-                },
-                {
-                  "id": "nothing",
-                  "text": "Not something you can do"
+                  "options": ["lower", "higher"],
+                  "correct": "lower"
                 }
               ],
-              "correctOptionIds": ["adjust"],
               "explanation": {
-                "correct": "Acclimatization is your body adjusting to lower oxygen over time. You do it by ascending gradually, not racing to the top.",
-                "incorrect": "Acclimatization happens naturally with time. Slow ascent and sleeping at an intermediate height help."
+                "correct": "Acclimatization is your body adjusting to lower oxygen over days. You help it by ascending gradually and sleeping lower than the highest point you reached.",
+                "incorrect": "Acclimatization takes time, not effort. Slow ascent and sleeping at a lower elevation give your body room to adjust."
               }
             }
           },
