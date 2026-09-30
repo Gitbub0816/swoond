@@ -1,0 +1,1259 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "hiking",
+  "unit": {
+    "id": "weather-and-conditions",
+    "title": "Weather and conditions",
+    "layer": "intermediate",
+    "order": 6,
+    "prerequisiteUnitIds": ["reading-a-trail"],
+    "personalizationSlots": ["region"],
+    "lessons": [
+      {
+        "id": "wx-01",
+        "title": "Mountains make their own weather",
+        "objective": "You can estimate temperature change with elevation.",
+        "estimatedMinutes": 12,
+        "conceptIds": ["lapse-rate"],
+        "activities": [
+          {
+            "id": "wx-01-es-temp-drop",
+            "type": "estimate-slider",
+            "conceptIds": ["lapse-rate"],
+            "payload": {
+              "prompt": "It is 70°F at the 4,000 ft trailhead. Roughly what temperature at the 10,000 ft summit?",
+              "min": 40,
+              "max": 65,
+              "correctValue": 50,
+              "tolerance": 3,
+              "unit": "°F",
+              "explanation": {
+                "correct": "About right. Air cools roughly 3 to 5°F per 1,000 feet. At 6,000 ft higher, you are looking at 18 to 30°F cooler.",
+                "incorrect": "Temperature drops 3 to 5°F per thousand feet of elevation. Do the math from the trailhead to your target.",
+                "sayThisLine": "\"It was 70 at the start, but probably 50 at the pass.\""
+              }
+            }
+          },
+          {
+            "id": "wx-01-mc-why-temp",
+            "type": "multiple-choice",
+            "conceptIds": ["lapse-rate"],
+            "payload": {
+              "prompt": "Why does temperature drop as you climb?",
+              "options": [
+                {
+                  "id": "air-thin",
+                  "text": "Air is thinner at altitude and holds less heat"
+                },
+                {
+                  "id": "sun-reflect",
+                  "text": "The sun reflects off higher ground"
+                },
+                {
+                  "id": "closer-sky",
+                  "text": "You are closer to the cold sky"
+                },
+                {
+                  "id": "ground-radiates",
+                  "text": "Ground radiates the heat the sun delivered; high altitude has less ground to radiate"
+                }
+              ],
+              "correctOptionIds": ["ground-radiates"],
+              "explanation": {
+                "correct": "The sun warms the ground, and the ground radiates that heat upward. Higher up, there is less ground doing that warming. The air itself is mostly transparent to sunlight.",
+                "incorrect": "The real reason: the sun heats the ground, and the ground warms the air above it through radiation. High altitude has less ground surface, so less heating.",
+                "sayThisLine": "\"The summit is cold because the sun heats the ground, not the air directly.\""
+              }
+            }
+          },
+          {
+            "id": "wx-01-ftg-lapse-rule",
+            "type": "fill-the-gap",
+            "conceptIds": ["lapse-rate"],
+            "payload": {
+              "statement": "As a rule of thumb, air cools about 3 to 5 degrees Fahrenheit per ________ feet of elevation gain.",
+              "correctAnswers": ["thousand", "1000", "1,000"],
+              "explanation": "This is the lapse rate: roughly 3 to 5 degrees F per 1,000 feet. Steep or moist air can vary a little, but 1,000 feet is the standard rule."
+            }
+          },
+          {
+            "id": "wx-01-st-temp-talk",
+            "type": "say-this",
+            "conceptIds": ["lapse-rate"],
+            "payload": {
+              "setting": "Texting a hiking friend about what to pack",
+              "theirMessage": "Might rain at the summit. Will it be as cold as it feels?",
+              "statement": {
+                "text": "It gets about 3 to 5 degrees colder per thousand feet up, so yeah, the summit will feel it more. Rain at altitude gets serious fast."
+              },
+              "followUps": [
+                {
+                  "id": "good-follow",
+                  "text": "Should I bring a heavier layer?",
+                  "coachNote": "They want to know your advice; follow up by asking about the elevation gain."
+                }
+              ],
+              "noFakeExpertNote": "You are naming the rule, not pretending you know mountain weather. That is honest."
+            }
+          },
+          {
+            "id": "wx-01-htap-read-elev",
+            "type": "hotspot-tap",
+            "conceptIds": ["lapse-rate"],
+            "payload": {
+              "prompt": "On a 12-hour forecast, tap the elevation you should use to pick the right temperature for a summit.",
+              "description": "A forecast showing temperature and conditions at sea level, 5,000 ft, and 10,000 ft elevations.",
+              "imageLicense": "swoond-procedural",
+              "correctRegion": "10000ft-box",
+              "explanation": "Pick the elevation closest to your destination, not the town forecast. The summit forecast tells you the actual temperature you will feel up there."
+            }
+          }
+        ]
+      },
+      {
+        "id": "wx-02",
+        "title": "Point forecasts",
+        "objective": "You can use a point forecast at the right elevation.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["point-forecast"],
+        "activities": [
+          {
+            "id": "wx-02-mc-what-point",
+            "type": "multiple-choice",
+            "conceptIds": ["point-forecast"],
+            "payload": {
+              "prompt": "What is a point forecast?",
+              "options": [
+                {
+                  "id": "town-forecast",
+                  "text": "A forecast for the nearest town"
+                },
+                {
+                  "id": "exact-location",
+                  "text": "A forecast for an exact map location and elevation instead of a town"
+                },
+                {
+                  "id": "weekend",
+                  "text": "A forecast for the exact weekend you are planning"
+                },
+                {
+                  "id": "peak-conditions",
+                  "text": "A forecast of the best conditions in your area"
+                }
+              ],
+              "correctOptionIds": ["exact-location"],
+              "explanation": {
+                "correct": "Right. A point forecast pins temperature, wind and rain to your actual destination on the map. Way more useful than town weather.",
+                "incorrect": "A point forecast is location- and elevation-specific. You pick a spot on the map and get the forecast for there, not the town miles away.",
+                "sayThisLine": "\"I checked the point forecast for the pass, not the town. Totally different.\""
+              }
+            }
+          },
+          {
+            "id": "wx-02-ftg-forecast-parts",
+            "type": "fill-the-gap",
+            "conceptIds": ["point-forecast"],
+            "payload": {
+              "statement": "A point forecast gives you temperature, wind speed, precipitation chance, and ________ at the exact elevation you are heading to.",
+              "correctAnswers": ["wind direction", "gusts", "cloud coverage", "sky condition"],
+              "explanation": "Point forecasts include wind direction and gusts (crucial for mountains), cloud cover and whether you will see the summit. Read all of it, not just temperature."
+            }
+          },
+          {
+            "id": "wx-02-st-forecast-lang",
+            "type": "say-this",
+            "conceptIds": ["point-forecast"],
+            "payload": {
+              "setting": "Planning a hike and looking at the forecast together",
+              "theirMessage": "The app says 50% chance of rain. Should we go?",
+              "statement": {
+                "text": "Fifty percent at the summit is worth checking the wind too. What is the wind speed and direction? That matters more than the rain chance up high."
+              },
+              "followUps": [
+                {
+                  "id": "good-follow",
+                  "text": "Good point. Southwest at 25 mph gusting to 35.",
+                  "coachNote": "You asked for detail. Now you can actually decide."
+                }
+              ],
+              "noFakeExpertNote": "You are reading what the forecast says and asking for the pieces you need. That is solid."
+            }
+          },
+          {
+            "id": "wx-02-mc-forecast-changes",
+            "type": "multiple-choice",
+            "conceptIds": ["point-forecast"],
+            "payload": {
+              "prompt": "A point forecast is good for how long before it changes significantly?",
+              "options": [
+                {
+                  "id": "all-day",
+                  "text": "The whole day; forecasts are accurate for 24 hours"
+                },
+                {
+                  "id": "3-6-hours",
+                  "text": "3 to 6 hours; after that, precision degrades"
+                },
+                {
+                  "id": "1-hour",
+                  "text": "Only 1 hour; mountain weather is too variable"
+                },
+                {
+                  "id": "dawn",
+                  "text": "Until dawn breaks and you can see conditions yourself"
+                }
+              ],
+              "correctOptionIds": ["3-6-hours"],
+              "explanation": {
+                "correct": "Weather forecasts get fuzzy beyond 6 hours. Mountains are especially touchy. Check it again the morning of the hike.",
+                "incorrect": "Point forecasts are more precise than town forecasts, but they still degrade after a few hours. Plan as if you have maybe 3 to 6 hours of confidence, then trust your eyes.",
+                "sayThisLine": "\"I check the forecast the morning of, not three days out. Mountain weather moves.\""
+              }
+            }
+          },
+          {
+            "id": "wx-02-ds-forecast-decision",
+            "type": "decision-scenario",
+            "conceptIds": ["point-forecast"],
+            "payload": {
+              "scenario": "You are planning a 6-hour ridge hike for Saturday. Thursday evening the point forecast shows: summit at 10,000 ft, 38°F, 35 mph winds with gusts to 50 mph, 20% rain, skies partly cloudy.",
+              "question": "What should you do?",
+              "choices": [
+                {
+                  "id": "cancel",
+                  "text": "Cancel the hike. Wind that strong is dangerous on a ridge.",
+                  "correct": true,
+                  "explanation": "Right call. Fifty mile-per-hour gusts on a ridge at 10,000 ft with exposed terrain is serious. Wind chill and fatigue compound the risk. Reschedule.",
+                  "safetyNote": "Conservative choice when risk rises. Ridges are wind magnifiers; gusts above 40 mph on exposed ground demand respect."
+                },
+                {
+                  "id": "go",
+                  "text": "Go as planned. Rain is only 20%, the forecast might improve.",
+                  "correct": false,
+                  "explanation": "Fifty mph gusts are the real issue here, not rain. Wind is not going to improve by Saturday; wait for a calmer forecast.",
+                  "safetyNote": "Never gamble that conditions will improve. Forecasts degrade anyway; plan around what is predicted."
+                },
+                {
+                  "id": "lower",
+                  "text": "Switch to a lower, more sheltered trail where wind matters less.",
+                  "correct": true,
+                  "explanation": "Smart pivot. A lower elevation and sheltered terrain reduce wind exposure. You still get a hike, and the risk drops.",
+                  "safetyNote": "Adapting the plan when risk rises is judgment, not failure."
+                },
+                {
+                  "id": "early-start",
+                  "text": "Start earlier Saturday to avoid afternoon wind.",
+                  "correct": false,
+                  "explanation": "Wind does not follow a day cycle on ridges; it builds all day. Starting early does not solve a 50 mph forecast.",
+                  "safetyNote": "Early starts help with afternoon thunderstorms, not wind. Different hazard, different strategy."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "wx-03",
+        "title": "Afternoon storms, early starts",
+        "objective": "You can explain why mountain hikers start early.",
+        "estimatedMinutes": 13,
+        "conceptIds": ["afternoon-thunderstorms", "alpine-start"],
+        "activities": [
+          {
+            "id": "wx-03-ds-alpine-start",
+            "type": "decision-scenario",
+            "conceptIds": ["afternoon-thunderstorms", "alpine-start"],
+            "payload": {
+              "scenario": "You are planning a 10-mile hike with 2,500 ft of gain to a 11,000 ft ridge. Summer forecast: sunny morning, afternoon thunderstorms likely after 2 PM, temp 45°F at summit. Sunset is 8:45 PM. You walk at 2 mph on gentle terrain, 1 mph on steep; expect 4 hours up, 2.5 hours down, plus 30 minutes of rest.",
+              "question": "What start time gives you the best margin?",
+              "choices": [
+                {
+                  "id": "530am",
+                  "text": "5:30 AM (alpine start)",
+                  "correct": true,
+                  "explanation": "Perfect. 5:30 AM means you summit around 1:00 PM, well before thunderstorms. You have daylight margin and avoid afternoon cells.",
+                  "safetyNote": "Alpine starts exist because mountains make their own weather. Afternoon storms are predictable; getting ahead of them saves lives."
+                },
+                {
+                  "id": "8am",
+                  "text": "8:00 AM (normal early start)",
+                  "correct": false,
+                  "explanation": "Eight AM gets you to the summit around 3:30 PM, right into afternoon storm time. The storms have likely started by then.",
+                  "safetyNote": "Being on exposed ridges when thunderstorms develop is the main lightning risk. Start early enough to clear summits by noon or 1 PM."
+                },
+                {
+                  "id": "1030am",
+                  "text": "10:30 AM",
+                  "correct": false,
+                  "explanation": "Too late. You would summit around 5 PM, storms already built. You are exactly where you should not be.",
+                  "safetyNote": "Afternoon storms in mountains are almost guaranteed in summer. Plan around them, not against them."
+                },
+                {
+                  "id": "night",
+                  "text": "Start the night before and camp.",
+                  "correct": false,
+                  "explanation": "Unnecessary complexity. An early morning start solves the problem simply.",
+                  "safetyNote": "Simple plans work best. Alpine start beats building complexity."
+                }
+              ]
+            }
+          },
+          {
+            "id": "wx-03-seq-alpine-prep",
+            "type": "sequence-order",
+            "conceptIds": ["alpine-start"],
+            "payload": {
+              "prompt": "Put these steps in order for an alpine start:",
+              "items": [
+                {
+                  "id": "eat",
+                  "text": "Eat a full breakfast (you need fuel)"
+                },
+                {
+                  "id": "load",
+                  "text": "Load your pack the night before"
+                },
+                {
+                  "id": "wake",
+                  "text": "Wake well before dawn (4 AM or earlier)"
+                },
+                {
+                  "id": "layers",
+                  "text": "Wear more layers; it is cold at 4 AM, you will warm up on the climb"
+                },
+                {
+                  "id": "trail",
+                  "text": "Hit the trail while stars are still out"
+                }
+              ],
+              "correctOrder": ["wake", "load", "eat", "layers", "trail"],
+              "explanation": "Proper order: wake early, pack was ready yesterday, fuel your body, dress warm (but you will shed layers), start before dawn. An alpine start is simple once you plan the night before."
+            }
+          },
+          {
+            "id": "wx-03-bc-early-safe",
+            "type": "binary-call",
+            "conceptIds": ["alpine-start"],
+            "payload": {
+              "prompt": "It is 6 AM on a sunny summer day at 9,000 ft, you can see forever, and only light winds. Early start worked, mission accomplished and push on?",
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, push for the summit"
+                },
+                {
+                  "id": "no",
+                  "label": "No, stick to the turnaround time"
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Stick to the turnaround time you set at home. A beautiful morning is not a pass to ignore the plan. Storms can build fast at altitude. Clouds you do not see yet are coming.",
+                "incorrect": "The whole point of alpine start is to get you off the ridge before storms build. Conditions now do not predict what happens in 3 hours. Honor the turnaround.",
+                "sayThisLine": "\"Perfect weather does not mean ignore the plan. Summits will be there tomorrow.\""
+              },
+              "safetyNote": "Turn around on schedule, not on conditions. The conditions you see now are not the conditions coming at the summit."
+            }
+          },
+          {
+            "id": "wx-03-st-early-talk",
+            "type": "say-this",
+            "conceptIds": ["afternoon-thunderstorms"],
+            "payload": {
+              "setting": "Planning Saturday's hike and she suggests a late start",
+              "theirMessage": "Can we start at 9 instead of 6? I am not a morning person.",
+              "statement": {
+                "text": "Summer mountains build storms in the afternoon. If we start at 9, we could be on an exposed ridge when storms hit. An early start keeps us ahead of the weather."
+              },
+              "followUps": [
+                {
+                  "id": "good-follow",
+                  "text": "I did not know that. Is there a lower option without the summit?",
+                  "coachNote": "She listened and offered a solution. That is good judgment."
+                }
+              ],
+              "noFakeExpertNote": "You are explaining why the timing matters. That is honest conversation."
+            }
+          },
+          {
+            "id": "wx-03-mc-afternoon-why",
+            "type": "multiple-choice",
+            "conceptIds": ["afternoon-thunderstorms"],
+            "payload": {
+              "prompt": "Why do mountains reliably build thunderstorms in the afternoon?",
+              "options": [
+                {
+                  "id": "pressure",
+                  "text": "Afternoon air pressure drops"
+                },
+                {
+                  "id": "heating",
+                  "text": "Morning sun heats the ground and air, creating rising air currents and instability"
+                },
+                {
+                  "id": "wind-shift",
+                  "text": "Afternoon wind shifts and collides with mountains"
+                },
+                {
+                  "id": "jets",
+                  "text": "Jet streams shift in the afternoon"
+                }
+              ],
+              "correctOptionIds": ["heating"],
+              "explanation": {
+                "correct": "Exactly. Sun heats the ground morning through midday, lifting air parcels higher and faster. By afternoon, cumulus clouds build into thunderstorms. It is predictable.",
+                "incorrect": "Mountains amplify heating: more solar energy hits the ground, and the terrain forces air upward. The afternoon is when lifting is strongest.",
+                "sayThisLine": "\"Storms build because of morning heat rising into the afternoon. It is the weather pattern in mountains.\""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "wx-04",
+        "title": "Lightning on the trail",
+        "objective": "You can name lightning precautions and when to make them.",
+        "estimatedMinutes": 13,
+        "conceptIds": ["lightning-safety"],
+        "activities": [
+          {
+            "id": "wx-04-ds-thunder-starts",
+            "type": "decision-scenario",
+            "conceptIds": ["lightning-safety"],
+            "payload": {
+              "scenario": "You are on a 10,000 ft ridge. You hear distant thunder maybe 5 miles away, see dark clouds building on the horizon, but above you the sky is still partly clear. You are 2 miles from the summit and 2.5 miles from tree shelter lower down.",
+              "question": "What is the right call?",
+              "choices": [
+                {
+                  "id": "descend",
+                  "text": "Descend immediately, do not summit.",
+                  "correct": true,
+                  "explanation": "Right. Distant thunder means lightning nearby. Ridges are lightning rods. Get off now, heading down has priority over summiting.",
+                  "safetyNote": "When you hear thunder, you are in lightning range. Descend to tree shelter. The summit will still exist if you return another day."
+                },
+                {
+                  "id": "hunker",
+                  "text": "Stay put, spread out the group, and wait for the storm to pass.",
+                  "correct": false,
+                  "explanation": "No. A ridge in a developing storm is the worst place to hunker. Descend to lower, forested ground. Waiting on a ridge is suicidal.",
+                  "safetyNote": "Spread-out group is a tactic only when you cannot descend. Priority is getting to shelter—lower elevation and trees."
+                },
+                {
+                  "id": "summit-quick",
+                  "text": "Rush to the summit and back before the storm hits.",
+                  "correct": false,
+                  "explanation": "Impossible. If you hear thunder now, lightning is within 15 miles and closing. There is no time to summit and descend.",
+                  "safetyNote": "Speed and summits do not save you in lightning. Descend and live."
+                },
+                {
+                  "id": "shelter-rock",
+                  "text": "Find a big rock to shelter under.",
+                  "correct": false,
+                  "explanation": "A large rock is a lightning target. Never shelter against or directly under rocks. Get low and move to lower terrain with trees.",
+                  "safetyNote": "Rocks and lone trees are lightning conductors. Shelter means forest or flat ground surrounded by trees of similar height."
+                }
+              ]
+            }
+          },
+          {
+            "id": "wx-04-bc-safe-location-1",
+            "type": "binary-call",
+            "conceptIds": ["lightning-safety"],
+            "payload": {
+              "prompt": "You are caught in lightning in thick pine forest at 8,000 ft, trees all around you of similar heights. Safe place to wait it out?",
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, safe enough"
+                },
+                {
+                  "id": "no",
+                  "label": "No, not safe"
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Right. Forest of similar-height trees at lower elevation is one of the safer places to wait out lightning. Crouch on a pad or rock if the ground is wet, avoid touching trees.",
+                "incorrect": "Dense forest of similar-height trees is actually protective. The trees around you draw lightning more than you do. This is one of the few places to shelter.",
+                "sayThisLine": "\"If I get caught in a storm in the forest, crouch down, do not lean on trees.\""
+              }
+            }
+          },
+          {
+            "id": "wx-04-bc-safe-location-2",
+            "type": "binary-call",
+            "conceptIds": ["lightning-safety"],
+            "payload": {
+              "prompt": "You are caught in lightning on a big exposed slab at 11,000 ft, nearest trees 200 yards below you. You need to wait for the storm. Safe to wait on the slab?",
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, it is open and will be fine"
+                },
+                {
+                  "id": "no",
+                  "label": "No, descend to the trees immediately"
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "No. Exposed slabs with no surrounding trees are open to lightning. Descend to the forest fast, even in the storm. The trees below are far safer than the slab.",
+                "incorrect": "Open rock slabs are lightning targets. You are the tallest object on that slab. Descend to forest or lower ground, period.",
+                "sayThisLine": "\"If you are caught on a ridge, get lower and get to trees. Descend in the lightning if the slab is worse.\""
+              },
+              "safetyNote": "Exposed ridges and slabs amplify lightning risk. Descending to forested lower ground is the only way out."
+            }
+          },
+          {
+            "id": "wx-04-tm-lightning-steps",
+            "type": "term-match",
+            "conceptIds": ["lightning-safety"],
+            "payload": {
+              "prompt": "Match each step to its reason:",
+              "pairs": [
+                {
+                  "id": "leave-early",
+                  "term": "Leave summits and ridges early when storms develop",
+                  "definition": "Ridges are lightning rods; get to lower, forested ground before cells hit"
+                },
+                {
+                  "id": "spread-group",
+                  "term": "Spread out the group 50+ feet apart",
+                  "definition": "If lightning strikes one person, others can help; grouping increases total risk"
+                },
+                {
+                  "id": "wait-30",
+                  "term": "Wait 30 minutes after the last thunder before moving",
+                  "definition": "The storm is still producing lightning for at least 30 minutes after the last sound"
+                },
+                {
+                  "id": "crouch",
+                  "term": "Crouch low on an insulating pad in the forest",
+                  "definition": "Lower profile reduces strike risk; dry ground or pad reduces ground current risk"
+                },
+                {
+                  "id": "avoid-lone",
+                  "term": "Avoid lone trees and rock formations",
+                  "definition": "Lone features draw lightning; shelter in dense forest or on open ground surrounded by trees"
+                }
+              ],
+              "explanation": "Lightning safety is about location (get off summits and ridges), isolation (spread out), timing (wait 30 minutes), and shelter (dense forest or low ground). None of these are 100% safe, but they cut risk."
+            }
+          },
+          {
+            "id": "wx-04-st-caught-ridge",
+            "type": "say-this",
+            "conceptIds": ["lightning-safety"],
+            "payload": {
+              "setting": "Talking to a friend who was caught in a storm on a ridge",
+              "theirMessage": "We got caught on the ridge when the storm hit. It was terrifying.",
+              "statement": {
+                "text": "That is scary. What did you do? Did you get down to shelter, or did you have to hunker down on the ridge?"
+              },
+              "followUps": [
+                {
+                  "id": "good-follow",
+                  "text": "We descended into the forest, which felt safer.",
+                  "coachNote": "You asked what they did and recognized the right choice. That is curiosity and knowledge."
+                }
+              ],
+              "noFakeExpertNote": "You are not lecturing. You are asking what happened and showing you understand why shelter matters. That is real."
+            }
+          }
+        ]
+      },
+      {
+        "id": "wx-05",
+        "title": "Wind, wet and hypothermia",
+        "objective": "You can explain how wind and wet turn cool days dangerous.",
+        "estimatedMinutes": 13,
+        "conceptIds": ["wind-chill", "hypothermia"],
+        "activities": [
+          {
+            "id": "wx-05-es-wind-chill",
+            "type": "estimate-slider",
+            "conceptIds": ["wind-chill"],
+            "payload": {
+              "prompt": "It is 45°F with 25 mph winds. What does 45°F feel like (wind chill)?",
+              "min": 20,
+              "max": 45,
+              "correctValue": 33,
+              "tolerance": 3,
+              "unit": "°F",
+              "explanation": {
+                "correct": "Around 33°F. Wind chill does not lower air temperature, but it steals heat from exposed skin fast. 25 mph wind at 45°F feels like freezing.",
+                "incorrect": "Wind chill is the effective temperature your skin feels from wind evaporating moisture and stealing heat. At 45°F and 25 mph, skin feels near freezing.",
+                "sayThisLine": "\"It was 45 but with wind and rain I was shivering before I could get layers on.\""
+              }
+            }
+          },
+          {
+            "id": "wx-05-ds-hypo-risk",
+            "type": "decision-scenario",
+            "conceptIds": ["hypothermia"],
+            "payload": {
+              "scenario": "It is 48°F, light rain has soaked you for the last hour, you are breathing hard climbing at 8,000 ft. You have a shell jacket and are wearing a base layer and a fleece. You are starting to shiver noticeably and your fingers are going numb.",
+              "question": "What do you do?",
+              "choices": [
+                {
+                  "id": "layer-stop",
+                  "text": "Stop, add a dry mid layer if you have one, eat and shelter from the wind.",
+                  "correct": true,
+                  "explanation": "Right. Shivering and numbness are early hypothermia signs. You are soaked, losing heat fast. Get out of the wind, add insulation and get food and warmth in your body.",
+                  "safetyNote": "Hypothermia can kill in cool weather, not just cold. Wet + wind + exertion is the lethal combo. Stop and rewarm before it gets worse."
+                },
+                {
+                  "id": "hike-harder",
+                  "text": "Hike faster to generate more body heat.",
+                  "correct": false,
+                  "explanation": "Sweat will make you wetter. You are already exerting; the problem is moisture, wind and wet clothes, not lack of effort.",
+                  "safetyNote": "Paradoxically, the first sign of hypothermia is intense shivering, but pushing harder makes it worse. Stop, shelter and warm."
+                },
+                {
+                  "id": "descend-fast",
+                  "text": "Descend as fast as possible without stopping.",
+                  "correct": false,
+                  "explanation": "Descending fast means more wind exposure and continued soaking. Stop, layer up, eat, shelter, then descend at a normal pace.",
+                  "safetyNote": "Descending in hypothermia is risky because confusion and poor judgment set in. Rewarm slightly first, then descend carefully."
+                },
+                {
+                  "id": "ignore",
+                  "text": "Push on, it is only a bit of shivering.",
+                  "correct": false,
+                  "explanation": "Shivering is the body's alarm. Hypothermia progresses from shivering to confusion to unconsciousness. Do not ignore it.",
+                  "safetyNote": "Shivering means your core temperature is dropping. It is the moment to act before judgment and coordination go."
+                }
+              ]
+            }
+          },
+          {
+            "id": "wx-05-mc-hypo-signs",
+            "type": "multiple-choice",
+            "conceptIds": ["hypothermia"],
+            "payload": {
+              "prompt": "Which is a sign of hypothermia?",
+              "options": [
+                {
+                  "id": "confusion",
+                  "text": "Confusion, slurred speech and poor decisions"
+                },
+                {
+                  "id": "shivering",
+                  "text": "Uncontrollable shivering"
+                },
+                {
+                  "id": "fumbling",
+                  "text": "Fumbling, clumsy movements and numb fingers"
+                },
+                {
+                  "id": "paradox",
+                  "text": "Feeling warm and taking off clothes despite being cold (paradoxical undressing)"
+                }
+              ],
+              "correctOptionIds": ["confusion", "shivering", "fumbling", "paradox"],
+              "explanation": {
+                "correct": "All of these are signs of hypothermia at different stages. Early: shivering. Middle: fumbling, confusion. Late and dangerous: warm sensation and pulling off clothes despite freezing body.",
+                "incorrect": "Hypothermia has stages. Shivering comes first. Confusion and fumbling come next. If someone feels warm and is undressing, they are in serious danger and need immediate help.",
+                "sayThisLine": "\"If someone stops shivering and says they feel warm, that is critical. That is deep hypothermia.\""
+              }
+            }
+          },
+          {
+            "id": "wx-05-bc-when-descend",
+            "type": "binary-call",
+            "conceptIds": ["hypothermia"],
+            "payload": {
+              "prompt": "It is 52°F and clear, but 35 mph winds are knocking you around on a ridge. You are not wet, but windchill is near freezing. Safe to stay on the ridge?",
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, it is clear and not wet"
+                },
+                {
+                  "id": "no",
+                  "label": "No, descend to shelter"
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Descend. Wind chill at 52°F + 35 mph winds means your skin feels like freezing. Exposure in that wind for hours risks hypothermia. Get to lower, sheltered ground.",
+                "incorrect": "Wind alone is enough. You do not need wet and cold. Wind chill + exertion + fatigue = hypothermia risk even if you are dry.",
+                "sayThisLine": "\"Wind that strong on a ridge means getting down. Weather can change fast.\""
+              }
+            }
+          },
+          {
+            "id": "wx-05-ftg-hypo-rule",
+            "type": "fill-the-gap",
+            "conceptIds": ["hypothermia"],
+            "payload": {
+              "statement": "Hypothermia is dangerous cooling of the body core. It can happen in weather above ________ degrees Fahrenheit when wind, wet and exertion combine.",
+              "correctAnswers": ["freezing", "32", "cold"],
+              "explanation": "Hypothermia kills in temperatures well above freezing when you are wet and exposed to wind for hours. The classic scenario: cool, wet day with wind on a ridge. Be alert."
+            }
+          }
+        ]
+      },
+      {
+        "id": "wx-06",
+        "title": "Heat forecasts",
+        "objective": "You can read a heat risk rating and change a plan.",
+        "estimatedMinutes": 12,
+        "conceptIds": ["heat-risk", "heat-illness"],
+        "activities": [
+          {
+            "id": "wx-06-mc-heat-rating",
+            "type": "multiple-choice",
+            "conceptIds": ["heat-risk"],
+            "payload": {
+              "prompt": "What does a 'high' heat risk forecast mean?",
+              "options": [
+                {
+                  "id": "hot-day",
+                  "text": "It will be a hot day, plan to bring extra water"
+                },
+                {
+                  "id": "danger",
+                  "text": "Heat danger is elevated; outdoor activity should be limited, and vulnerable people are at risk"
+                },
+                {
+                  "id": "broken-record",
+                  "text": "It is a record-breaking temperature day"
+                },
+                {
+                  "id": "warning",
+                  "text": "A warning zone, only for emergencies outdoors"
+                }
+              ],
+              "correctOptionIds": ["danger"],
+              "explanation": {
+                "correct": "High heat risk means conditions are dangerous for outdoor activity. The forecast accounts for temperature, humidity and sun exposure. Limit time, take breaks, and stay hydrated.",
+                "incorrect": "A high heat risk is a danger rating for the public, not just 'bring water'. It means reconsider outdoor plans or do them early/late with extreme caution.",
+                "sayThisLine": "\"High heat risk day? We are doing a dawn hike or skipping it.\""
+              }
+            }
+          },
+          {
+            "id": "wx-06-ds-extreme-heat",
+            "type": "decision-scenario",
+            "conceptIds": ["heat-risk", "heat-illness"],
+            "payload": {
+              "scenario": "The forecast for Saturday shows extreme heat risk: 98°F in the valley, humidity 45%, no clouds. You planned a canyon hike in a slot canyon where it is usually 10–15 degrees cooler. There is limited water on the trail; the one spring is seasonal and might be dry.",
+              "question": "What is the wisest call?",
+              "choices": [
+                {
+                  "id": "skip",
+                  "text": "Skip the hike until the heat wave passes.",
+                  "correct": true,
+                  "explanation": "Right. Extreme heat + slot canyon (even cooler) + uncertain water = real risk. Heat illness can come on fast. Wait a week and do the hike then.",
+                  "safetyNote": "When the forecast shows extreme heat, skip outdoor plans altogether or do a very short dawn hike at low elevation with abundant water. Slot canyons trap heat; do not hike them in heat waves."
+                },
+                {
+                  "id": "early-short",
+                  "text": "Do a dawn start, turn around early, and stay at low elevation.",
+                  "correct": true,
+                  "explanation": "Also smart. Short dawn hike at low elevation with plenty of water and rest spots can work. Avoid the height of heat and do not depend on that seasonal spring.",
+                  "safetyNote": "If you must hike in heat, start before dawn, hike only until mid-morning, stay low, and carry way more water than normal."
+                },
+                {
+                  "id": "slot-canyon",
+                  "text": "Go anyway; the canyon is cooler and that is the point.",
+                  "correct": false,
+                  "explanation": "Do not bank on the canyon being cool enough. Heat illness is fast and serious. And if that spring is dry, you are in a bad place.",
+                  "safetyNote": "Slot canyons in heat waves are traps. Water is unreliable, emergency exit is slow, and heat still builds in narrow space."
+                },
+                {
+                  "id": "lots-water",
+                  "text": "Carry tons of water and go anyway.",
+                  "correct": false,
+                  "explanation": "Carrying 5+ liters of water makes you move slower and hotter. Weight increases heat stress. Better to skip or do a much shorter, lower hike.",
+                  "safetyNote": "More water is good, but it does not solve extreme heat + unreliable springs + a location with limited escape."
+                }
+              ]
+            }
+          },
+          {
+            "id": "wx-06-es-water-needs",
+            "type": "estimate-slider",
+            "conceptIds": ["heat-risk"],
+            "payload": {
+              "prompt": "On a 4-hour hike in a 'high heat risk' day, about how much water do you need (normal hiking in {{region}} is about 2 liters)?",
+              "min": 2,
+              "max": 6,
+              "correctValue": 4,
+              "tolerance": 0.5,
+              "unit": "liters",
+              "explanation": {
+                "correct": "About 4 liters for 4 hours in high heat. Double your normal hydration rate. Heat dramatically increases water needs and sweat loss.",
+                "incorrect": "Heat doubles or triples water needs. At high heat risk, plan for roughly 1 liter per hour or more if you are exerting hard.",
+                "sayThisLine": "\"High heat days? I carry twice the water and go half the distance.\""
+              }
+            }
+          },
+          {
+            "id": "wx-06-bc-illness-vs-dehydration",
+            "type": "binary-call",
+            "conceptIds": ["heat-illness"],
+            "payload": {
+              "prompt": "You are on a hot climb, you have been drinking steadily, you feel dizzy and nauseous, and your skin feels hot and dry. Heat illness or dehydration?",
+              "choices": [
+                {
+                  "id": "dehydration",
+                  "label": "Dehydration"
+                },
+                {
+                  "id": "illness",
+                  "label": "Heat illness (heat exhaustion or early heatstroke)"
+                }
+              ],
+              "correctChoiceId": "illness",
+              "explanation": {
+                "correct": "Heat illness. You are drinking water, so it is not simple dehydration. Dizziness, nausea, hot dry skin, and weakness mean your body is losing the battle against heat. Descend to shade, cool off, rest and eat.",
+                "incorrect": "Drinking water does not prevent heat illness in extreme conditions. Heat illness is the body's core temperature rising dangerously. Descend, cool, rest and seek help if it worsens.",
+                "sayThisLine": "\"If someone is dizzy and nauseous even after drinking, and their skin is hot and dry, get them down and cool them off.\""
+              }
+            }
+          },
+          {
+            "id": "wx-06-st-skip-heat",
+            "type": "say-this",
+            "conceptIds": ["heat-risk"],
+            "payload": {
+              "setting": "She wants to hike Saturday but the forecast is extreme heat",
+              "theirMessage": "The forecast says it will be hot but I still want to hike Saturday.",
+              "statement": {
+                "text": "Extreme heat risk days are not great for hiking, even short ones. Could we do a dawn hike before it heats up, or pick a different day when it is cooler?"
+              },
+              "followUps": [
+                {
+                  "id": "good-follow",
+                  "text": "Good point. How about Sunday instead? The heat breaks.",
+                  "coachNote": "You offered a solid reason and an alternative. She can make a real decision."
+                }
+              ],
+              "noFakeExpertNote": "You are not saying 'no hiking ever'. You are saying 'extreme heat risk is serious, let's shift the day'. That is judgment."
+            }
+          }
+        ]
+      },
+      {
+        "id": "wx-07",
+        "title": "Flash flood logic",
+        "objective": "You can explain why rain miles away can flood a canyon.",
+        "estimatedMinutes": 11,
+        "conceptIds": ["flash-flood"],
+        "activities": [
+          {
+            "id": "wx-07-ds-slot-canyon",
+            "type": "decision-scenario",
+            "conceptIds": ["flash-flood"],
+            "payload": {
+              "scenario": "You are about to enter a narrow slot canyon for a 3-hour hike. The sky above is clear and sunny, but the forecast mentions scattered thunderstorms in the mountains 20 miles upstream (way out of sight). The slot is a narrow drainage; water would have nowhere to go but down the canyon.",
+              "question": "Is it safe to enter the slot?",
+              "choices": [
+                {
+                  "id": "no-skip",
+                  "text": "No, skip it. Thunderstorms upstream mean flash flood risk.",
+                  "correct": true,
+                  "explanation": "Right call. Slot canyons are flash flood death traps. Rain miles away in the drainage feeds a flash flood down this channel. Sunny above you does not matter; the risk is miles away.",
+                  "safetyNote": "Never enter a narrow slot canyon if there is any thunder risk or rain in the watershed upstream. Flash floods kill fast, and slot canyons have no escape."
+                },
+                {
+                  "id": "partial-slot",
+                  "text": "Hike part way but stay ready to exit if it looks dark.",
+                  "correct": false,
+                  "explanation": "No. A flash flood in a slot canyon moves too fast to react. Once you are in, you are committed. By the time you see dark sky, water is likely minutes away.",
+                  "safetyNote": "Flash floods in slot canyons give no warning. The sound and the water arrive within seconds to minutes. There is no 'exiting quickly'."
+                },
+                {
+                  "id": "early-exit",
+                  "text": "Do the hike but establish a turnaround time to exit before storms fully develop.",
+                  "correct": false,
+                  "explanation": "Slot canyons in any rain risk are not negotiable. A turnaround time does not protect you from a flash flood coming from behind.",
+                  "safetyNote": "Canyons funnel water from huge areas upstream. Rain 10–20 miles away can send dangerous water downstream with little warning."
+                },
+                {
+                  "id": "check-radar",
+                  "text": "Check radar before entering and go if it looks clear.",
+                  "correct": false,
+                  "explanation": "Radar is useful, but slot canyons are just too dangerous. If there is any storm risk in the watershed, stay out. No amount of radar-watching is worth the risk.",
+                  "safetyNote": "Slot canyons and narrow drainages: if rain is forecast upstream or nearby, do not enter. Simple rule, it saves lives."
+                }
+              ]
+            }
+          },
+          {
+            "id": "wx-07-bc-upstream-rain",
+            "type": "binary-call",
+            "conceptIds": ["flash-flood"],
+            "payload": {
+              "prompt": "It is sunny and 80°F where you are hiking in a canyon bottom. Five miles upstream in the mountains, a thunderstorm is dumping rain. Is there flood risk?",
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, serious risk"
+                },
+                {
+                  "id": "no",
+                  "label": "No, it is sunny here"
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Absolutely. Water from that storm is flowing downstream toward you, channeled by the drainage. The sunny weather above you means nothing. Get to high ground or exit the canyon.",
+                "incorrect": "Canyons and washes channel water from upstream. Rain falling 5 miles away will reach you if you are in the drainage. Sunny at your location does not protect you.",
+                "sayThisLine": "\"Rain upstream is your problem, not rain above you. Get out of the drainage if there is a thunderstorm anywhere nearby.\""
+              },
+              "safetyNote": "Flash floods are the leading cause of weather deaths in canyon and desert hiking. Rain miles away is enough. Get to high ground."
+            }
+          },
+          {
+            "id": "wx-07-mc-where-water",
+            "type": "multiple-choice",
+            "conceptIds": ["flash-flood"],
+            "payload": {
+              "prompt": "Heavy rain falls 10 miles upstream of a canyon you are in. Where does that water go?",
+              "options": [
+                {
+                  "id": "soaks-ground",
+                  "text": "Most soaks into the ground"
+                },
+                {
+                  "id": "drainage",
+                  "text": "Flows downhill into drainages and creeks, all funneling toward your canyon"
+                },
+                {
+                  "id": "stays-there",
+                  "text": "Stays in the mountains and does not reach lower canyons"
+                },
+                {
+                  "id": "cloud-block",
+                  "text": "The canyon wall blocks it from reaching the bottom"
+                }
+              ],
+              "correctOptionIds": ["drainage"],
+              "explanation": {
+                "correct": "All water flows downhill into drainage systems. Rain 10 miles upstream in the mountains runs downhill into creeks that feed your canyon. It all converges into a flash flood.",
+                "incorrect": "A canyon is a drainage. Water from anywhere in that watershed runs into it. Rock does not hold water; gravity does. All upstream rain reaches downstream canyons.",
+                "sayThisLine": "\"A canyon collects water from the whole area above it. Rain miles away becomes a wall of water down there.\""
+              }
+            }
+          },
+          {
+            "id": "wx-07-ftg-flood-scenario",
+            "type": "fill-the-gap",
+            "conceptIds": ["flash-flood"],
+            "payload": {
+              "statement": "A flash flood is a sudden rise in water caused by rain that may fall miles away. In a narrow canyon, the water has nowhere to go but ________ and can move as fast as a car.",
+              "correctAnswers": ["down", "downstream", "forward"],
+              "explanation": "Flash floods in canyons are traps because the water is confined. It rushes downhill at high speed. There is no escaping by going sideways or up the walls."
+            }
+          },
+          {
+            "id": "wx-07-st-skip-canyon",
+            "type": "say-this",
+            "conceptIds": ["flash-flood"],
+            "payload": {
+              "setting": "Planning a canyon hike and seeing thunderstorms in the forecast",
+              "theirMessage": "There is a forecast of scattered storms but we should be fine in the slot. It is narrow but we will move fast.",
+              "statement": {
+                "text": "Slot canyons are actually the riskiest place to be in a thunderstorm. Flash floods funnel through them, and there is no escape. If storms are in the forecast, we should hike somewhere else."
+              },
+              "followUps": [
+                {
+                  "id": "good-follow",
+                  "text": "I did not think about that. Let us do the ridge hike instead.",
+                  "coachNote": "You explained the real risk and she heard it. That is important."
+                }
+              ],
+              "noFakeExpertNote": "You are not being a safety scold. You are explaining why canyons in storms are different from other terrain. That is real knowledge."
+            }
+          }
+        ]
+      },
+      {
+        "id": "wx-08",
+        "title": "Smoke and fire weather",
+        "objective": "You can read AQI and red flag warnings for a hike.",
+        "estimatedMinutes": 12,
+        "conceptIds": ["air-quality-index", "red-flag-warning"],
+        "activities": [
+          {
+            "id": "wx-08-mc-aqi-meaning",
+            "type": "multiple-choice",
+            "conceptIds": ["air-quality-index"],
+            "payload": {
+              "prompt": "An AQI of 150 means what?",
+              "options": [
+                {
+                  "id": "good",
+                  "text": "Good air quality, safe to hike"
+                },
+                {
+                  "id": "moderate",
+                  "text": "Moderate; some sensitive groups should limit outdoor time"
+                },
+                {
+                  "id": "unhealthy-sensitive",
+                  "text": "Unhealthy for sensitive groups; reduce exertion outdoors"
+                },
+                {
+                  "id": "unhealthy",
+                  "text": "Unhealthy for the general public; outdoor activity should be limited"
+                }
+              ],
+              "correctOptionIds": ["unhealthy"],
+              "explanation": {
+                "correct": "AQI 150 is unhealthy. At that level, wildfire smoke is thick, and outdoor exertion worsens respiratory stress for everyone. Limit time outdoors, do not do hard hikes.",
+                "incorrect": "The AQI scale goes 0–50 (good), 51–100 (moderate), 101–150 (unhealthy for sensitive), 151–200 (unhealthy), 201–300 (very unhealthy), 301+ (hazardous). AQI 150 is at the unhealthy threshold.",
+                "sayThisLine": "\"AQI over 150? Smoke is heavy. We are doing a short, easy trail at low elevation, or not hiking.\""
+              }
+            }
+          },
+          {
+            "id": "wx-08-ds-hike-or-skip-smoke",
+            "type": "decision-scenario",
+            "conceptIds": ["air-quality-index"],
+            "payload": {
+              "scenario": "The AQI in your area is 175 from wildfire smoke. The forecast shows a 6-mile, mostly flat hike with 500 ft of gain. You have no respiratory conditions. There is water and shade on the trail.",
+              "question": "Should you do this hike?",
+              "choices": [
+                {
+                  "id": "skip",
+                  "text": "Skip it; AQI 175 is unhealthy and exertion makes it worse.",
+                  "correct": true,
+                  "explanation": "Right choice. Even without pre-existing conditions, AQI 175 is unhealthy for outdoor exertion. Your breathing effort while hiking pulls more smoke into your lungs. Wait for clearer air.",
+                  "safetyNote": "High AQI + hiking exertion = worsening respiratory stress. This is not about toughness. Respiratory damage is cumulative."
+                },
+                {
+                  "id": "short-easy",
+                  "text": "Do a much shorter, easier hike (2 miles, flat, minimal exertion).",
+                  "correct": true,
+                  "explanation": "Reasonable compromise. Very short, flat hike minimizes exertion and smoke inhalation. Still not ideal, but less stress than the 6-mile plan.",
+                  "safetyNote": "If you hike in high AQI, keep exertion low. Do not do aerobic climbing or fast-paced hiking."
+                },
+                {
+                  "id": "go-anyway",
+                  "text": "Go as planned. You are healthy and it is a moderate hike.",
+                  "correct": false,
+                  "explanation": "Not wise. AQI 175 is unhealthy even for healthy people during exertion. Climbing with heavy breathing in that smoke is asking for respiratory problems.",
+                  "safetyNote": "AQI categories apply to everyone. 'Unhealthy' means do not do sustained exertion outdoors."
+                },
+                {
+                  "id": "mask",
+                  "text": "Do the hike as planned but wear a respirator mask.",
+                  "correct": false,
+                  "explanation": "Even with a mask, hard hiking in AQI 175 is stressing your respiratory system. Better to skip or do very easy walking.",
+                  "safetyNote": "Masks help but do not fully protect during hard exertion. The fundamental rule: skip hard activity in high AQI."
+                }
+              ]
+            }
+          },
+          {
+            "id": "wx-08-tm-alert-types",
+            "type": "term-match",
+            "conceptIds": ["air-quality-index", "red-flag-warning"],
+            "payload": {
+              "prompt": "Match each alert type to its meaning:",
+              "pairs": [
+                {
+                  "id": "aqi-alert",
+                  "term": "AQI alert (high air quality index)",
+                  "definition": "Wildfire smoke or pollution has made air unhealthy. Reduce outdoor exertion."
+                },
+                {
+                  "id": "red-flag",
+                  "term": "Red flag warning",
+                  "definition": "Fire weather alert: warm, dry, windy conditions when fires spread fast. No campfires, high fire danger."
+                },
+                {
+                  "id": "fire-closure",
+                  "term": "Fire closure alert",
+                  "definition": "A specific trail or area is closed due to wildfire or fire danger. Do not enter."
+                },
+                {
+                  "id": "smoke-advisory",
+                  "term": "Air quality or smoke advisory",
+                  "definition": "Smoke is present but not at 'unhealthy' levels yet. Sensitive groups should limit outdoor time."
+                }
+              ],
+              "explanation": "Wildfire alerts come in layers: air quality, fire weather conditions, and trail closures. Read all three to know if your hike is safe."
+            }
+          },
+          {
+            "id": "wx-08-bc-red-flag",
+            "type": "binary-call",
+            "conceptIds": ["red-flag-warning"],
+            "payload": {
+              "prompt": "There is a red flag warning for your area. Can you have a campfire on the hike?",
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, if you are careful"
+                },
+                {
+                  "id": "no",
+                  "label": "No, do not have a campfire"
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "No campfire. A red flag warning means fire danger is extreme. Any spark or unattended fire is a disaster. Follow the alert.",
+                "incorrect": "Red flag warnings are issued for a reason. Fire conditions are dry, hot and windy. Even 'careful' fires become dangerous fast.",
+                "sayThisLine": "\"Red flag warning? No fires, period. The whole forest is kindling.\""
+              }
+            }
+          },
+          {
+            "id": "wx-08-st-smoke-talk",
+            "type": "say-this",
+            "conceptIds": ["air-quality-index"],
+            "payload": {
+              "setting": "She mentions the air is smoky",
+              "theirMessage": "The smoke rolled in today. AQI is like 200.",
+              "statement": {
+                "text": "That is hazardous air. Are you thinking of hiking this week? We might want to wait until it clears, or at least do something flat and super easy."
+              },
+              "followUps": [
+                {
+                  "id": "good-follow",
+                  "text": "Yeah, I was going to cancel. My lungs feel it.",
+                  "coachNote": "You supported the right call. She is listening to her body and the conditions."
+                }
+              ],
+              "noFakeExpertNote": "You are not preaching health. You are reading the alert and suggesting a real alternative. That is smart conversation."
+            }
+          }
+        ]
+      },
+      {
+        "id": "wx-09",
+        "title": "Snow and weather windows",
+        "objective": "You can explain why lingering snow and short windows change trail plans.",
+        "estimatedMinutes": 12,
+        "conceptIds": ["snowpack", "weather-window"],
+        "activities": [
+          {
+            "id": "wx-09-ds-snowpack-timing",
+            "type": "decision-scenario",
+            "conceptIds": ["snowpack"],
+            "payload": {
+              "scenario": "You want to hike a 9,000 ft pass in early July. The SNOTEL (snow data) shows snowpack at 140% of normal. That means much more snow than average lingering at that elevation. The pass is normally snow-free by July 1.",
+              "question": "What should you plan?",
+              "choices": [
+                {
+                  "id": "delay",
+                  "text": "Delay the trip to late July when the pass is clear.",
+                  "correct": true,
+                  "explanation": "Right. Snowpack at 140% means the pass will stay snowed in longer than usual. Mid-July gives you much better odds of clear tread.",
+                  "safetyNote": "High snowpack lingers. Even if a pass is usually clear by July, at 140% snowpack you are looking at mid-July minimum. Plan accordingly."
+                },
+                {
+                  "id": "go-prepared",
+                  "text": "Go as planned but bring microspikes and an ice axe.",
+                  "correct": false,
+                  "explanation": "Equipment helps but does not solve the problem. Steep snow hiding under corn and rocks, creek crossings still raging with melt, postholing—these are not just 'manage with gear'.",
+                  "safetyNote": "High snowpack means complex terrain and hazards, not just steep sections. Postholing all day, hidden moats, unstable cornices: wait for clear tread."
+                },
+                {
+                  "id": "alternative",
+                  "text": "Pick a lower-elevation trail that is clear now.",
+                  "correct": true,
+                  "explanation": "Smart. At 140% snowpack, high passes are not ready. Enjoy lower-elevation trails in July and save the pass for later.",
+                  "safetyNote": "Adapting the plan when conditions are not right is wisdom, not failure."
+                },
+                {
+                  "id": "hope",
+                  "text": "Hope the warm weather this week melts the snow fast.",
+                  "correct": false,
+                  "explanation": "Cannot count on one week of warm weather. Snowpack is what it is; one hot week does not change 140% to clear.",
+                  "safetyNote": "Snowpack data is based on months of accumulation. Plan based on SNOTEL data, not hope."
+                }
+              ]
+            }
+          },
+          {
+            "id": "wx-09-es-snowpack-meaning",
+            "type": "estimate-slider",
+            "conceptIds": ["snowpack"],
+            "payload": {
+              "prompt": "Snowpack is reported at 75% of normal in March. Roughly how many weeks more before the pass is snow-free than a normal year (normal: mid-June)?",
+              "min": 0,
+              "max": 8,
+              "correctValue": 2,
+              "tolerance": 1,
+              "unit": "weeks",
+              "explanation": {
+                "correct": "About 2 weeks later, so late June instead of mid-June. At 75% of normal snowpack, you are still above normal spring melt, so peaks stay snowed longer.",
+                "incorrect": "Low snowpack means melt happens on a similar timeline, just at less volume. 75% of normal means roughly 2 weeks of delay in full melt. At 75%, it is closer to on-time or slightly delayed.",
+                "sayThisLine": "\"Seventy-five percent snowpack is still a lot of snow. Do not expect early clearance just because it is below normal.\""
+              }
+            }
+          },
+          {
+            "id": "wx-09-mc-weather-window",
+            "type": "multiple-choice",
+            "conceptIds": ["weather-window"],
+            "payload": {
+              "prompt": "What is a weather window in hiking?",
+              "options": [
+                {
+                  "id": "window-view",
+                  "text": "A viewpoint along a trail"
+                },
+                {
+                  "id": "forecast-gap",
+                  "text": "A gap in the forecast between storms when you can hike safely"
+                },
+                {
+                  "id": "seasonal-time",
+                  "text": "The season when that pass or trail is normally hikeable"
+                },
+                {
+                  "id": "sun-angle",
+                  "text": "The time of day when sun hits the trail"
+                }
+              ],
+              "correctOptionIds": ["forecast-gap"],
+              "explanation": {
+                "correct": "A weather window is a forecast gap where conditions are stable enough to hike safely. 'We got a weather window from 8 AM to 2 PM.'",
+                "incorrect": "A weather window is a brief period of good conditions between storms or unstable weather. You take it fast because it is temporary.",
+                "sayThisLine": "\"We got a weather window Sunday, so we went for it. Monday it was storming again.\""
+              }
+            }
+          },
+          {
+            "id": "wx-09-ftg-snow-term",
+            "type": "fill-the-gap",
+            "conceptIds": ["snowpack"],
+            "payload": {
+              "statement": "________ is when you sink deeply into soft snow with each step, which slows you down and tires your legs fast.",
+              "correctAnswers": ["Postholing"],
+              "explanation": "Postholing happens in corn snow (refrozen overnight melt) and deep spring snow. It is exhausting. Early season, you are postholing until melt consolidates the snow."
+            }
+          },
+          {
+            "id": "wx-09-st-snow-season",
+            "type": "say-this",
+            "conceptIds": ["snowpack"],
+            "payload": {
+              "setting": "She is eager to do a high pass, but it is still early in the season",
+              "theirMessage": "Can we do the pass next month? It will be snow-free by then, right?",
+              "statement": {
+                "text": "Depends on the snowpack. Let me check SNOTEL for that elevation. If it is high-normal or above, we might be postholing through June. We can wait or pick a lower trail."
+              },
+              "followUps": [
+                {
+                  "id": "good-follow",
+                  "text": "Oh, that makes sense. How do I read SNOTEL?",
+                  "coachNote": "You explained why it matters and she is curious to learn. That is the best outcome."
+                }
+              ],
+              "noFakeExpertNote": "You are not saying 'no, it is too early'. You are offering to check the data and adapt the plan together. That is partnership."
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

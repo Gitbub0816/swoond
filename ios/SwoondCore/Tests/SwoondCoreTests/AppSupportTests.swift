@@ -234,3 +234,44 @@ struct SettingsCompatibilityTests {
         for t in ActivityType.allCases { #expect(!t.displayName.isEmpty) }
     }
 }
+
+@Suite("Branch visibility (contract 1.2)")
+struct BranchVisibilityTests {
+    private func branched() -> Curriculum {
+        func concept(_ id: String) -> Concept { Concept(id: id, term: id, definition: "d", exampleLine: "e", tier: nil, relatedConceptIds: nil, aliases: nil) }
+        func act(_ id: String, _ cids: [String], branch: String?) -> Activity {
+            Activity(id: id, type: .multipleChoice, conceptIds: cids, payload: json(#"{"prompt":"p","options":[{"id":"a","text":"A"},{"id":"b","text":"B"}],"correctOptionIds":["a"],"explanation":{"correct":"c","incorrect":"i"}}"#), branchId: branch)
+        }
+        let shared = Lesson(id: "l1", title: "L1", objective: "o", conceptIds: ["base"], activities: [act("a-shared", ["base"], branch: nil), act("a-nfl", ["nfl-only"], branch: "nfl"), act("a-college", ["college-only"], branch: "college")])
+        let nflUnit = Unit(id: "u-nfl", title: "NFL", layer: .branch, branchId: "nfl", lessons: [Lesson(id: "l-nfl", title: "N", objective: "o", conceptIds: ["nfl-unit"], activities: [act("a-nfl-unit", ["nfl-unit"], branch: nil)])])
+        return Curriculum(courseId: "football", concepts: ["base", "nfl-only", "college-only", "nfl-unit", "glossary"].map(concept),
+                          units: [Unit(id: "u1", title: "U1", layer: .foundations, lessons: [shared]), nflUnit])
+    }
+
+    @Test func lessonActivitiesFilterByBranch() {
+        let lesson = branched().units[0].lessons[0]
+        #expect(lesson.activities(forBranch: "nfl").map(\.id) == ["a-shared", "a-nfl"])
+        #expect(lesson.activities(forBranch: nil).map(\.id) == ["a-shared"])
+    }
+
+    @Test func conceptsFollowTheBranch() {
+        let c = branched()
+        #expect(Set(c.concepts(forBranch: "nfl").map(\.id)) == ["base", "nfl-only", "nfl-unit", "glossary"])
+        #expect(Set(c.concepts(forBranch: "college").map(\.id)) == ["base", "college-only", "glossary"])
+    }
+
+    @Test func sessionPlaysOnlyVisibleActivities() async throws {
+        let c = branched()
+        let repo = StaticContentRepository(curricula: [c])
+        let (engine, _) = Fixtures.engine(clock: ManualClock(Fixtures.date(2026, 9, 30)))
+        let person = Person(id: "p", displayName: "P", relationship: .friend, interests: [PersonInterest(courseId: "football", branchId: "college")])
+        let session = LearningSession(person: person, interest: person.interests[0], content: repo, engine: engine)
+        let p = try await session.startLesson(unitId: "u1", lessonId: "l1")
+        #expect(p.total == 2)   // shared + college
+    }
+
+    @Test func playbookHidesOtherBranchConcepts() {
+        let entries = PlaybookIndex.entries(curricula: [branched()], mastery: [:], now: Date(), branchIds: ["football": "college"])
+        #expect(!entries.map(\.concept.id).contains("nfl-only") && entries.map(\.concept.id).contains("college-only"))
+    }
+}

@@ -57,6 +57,54 @@
                 }
               ]
             }
+          },
+          {
+            "id": "n101-01-bc-rules",
+            "type": "binary-call",
+            "conceptIds": ["stock-car"],
+            "payload": {
+              "prompt": "Are NASCAR stock cars just modified versions of cars you can buy at a dealership?",
+              "scene": {"kind": "none", "alt": "Stock cars follow a rulebook, not street design."},
+              "choices": [
+                {"id": "yes", "label": "Yes, they start as normal cars"},
+                {"id": "no", "label": "No, they are built from scratch to a rulebook"}
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Stock cars are completely purpose-built to NASCAR specifications. The shape mirrors showroom cars, but nothing underneath is stock.",
+                "incorrect": "While the body looks familiar, stock cars are engineered from the ground up to strict NASCAR rules, not modified street cars.",
+                "sayThisLine": "It looks like a Camry but it is built from the rulebook."
+              }
+            }
+          },
+          {
+            "id": "n101-01-tm-parts",
+            "type": "term-match",
+            "conceptIds": ["oval-racing", "stock-car"],
+            "payload": {
+              "prompt": "Match the stock car part to its racing purpose.",
+              "pairs": [
+                {
+                  "id": "chassis",
+                  "term": "Steel-tube chassis",
+                  "definition": "The frame that carries all other parts, built light and stiff for racing."
+                },
+                {
+                  "id": "aero",
+                  "term": "Aerodynamic body",
+                  "definition": "The shaped panels that manage airflow and downforce at high speed."
+                },
+                {
+                  "id": "v8",
+                  "term": "V8 engine",
+                  "definition": "A naturally aspirated eight-cylinder that produces 500+ horsepower for racing."
+                }
+              ],
+              "explanation": {
+                "summary": "A racing car has a light chassis, shaped panels for aero and a powerful engine.",
+                "sayThisLine": "All of it is built for speed and control."
+              }
+            }
           }
         ]
       },
@@ -112,6 +160,70 @@
                 "correct": "Drivers usually start in Trucks to learn the oval, then move to O'Reilly and finally chase Cup.",
                 "incorrect": "The ladder goes Trucks (entry), O'Reilly (middle), Cup (top). It rewards patience and development.",
                 "sayThisLine": "He came up through Trucks first."
+              }
+            }
+          },
+          {
+            "id": "n101-02-so-climb",
+            "type": "sequence-order",
+            "conceptIds": ["series-ladder", "cup-series"],
+            "payload": {
+              "prompt": "Put the typical driver career path in order.",
+              "items": [
+                {
+                  "id": "truck",
+                  "text": "Start in Trucks to learn oval racing fundamentals"
+                },
+                {
+                  "id": "oreilly",
+                  "text": "Graduate to O'Reilly for more competition and full-time racing"
+                },
+                {
+                  "id": "part",
+                  "text": "Run part-time Cup races while still in O'Reilly"
+                },
+                {
+                  "id": "cup",
+                  "text": "Earn a full-time Cup ride if sponsors and talent line up"
+                },
+                {
+                  "id": "goal",
+                  "text": "Stay in Cup as the career goal"
+                }
+              ],
+              "explanation": {
+                "correct": "Drivers climb: Trucks for learning, O'Reilly for development, then Cup part-time, then Cup full-time.",
+                "incorrect": "The progression is Trucks first, then O'Reilly, then Cup, usually with some overlap in the middle."
+              }
+            }
+          },
+          {
+            "id": "n101-02-fg-series",
+            "type": "fill-the-gap",
+            "conceptIds": ["truck-series", "oreilly-series", "cup-series"],
+            "payload": {
+              "prompt": "Fill in the series facts.",
+              "template": "The {{entry}} Series is where drivers learn. The {{middle}} Series is the middle rung. The {{top}} Series is the goal.",
+              "gaps": [
+                {
+                  "id": "entry",
+                  "options": ["Truck", "O'Reilly", "Cup"],
+                  "correct": "Truck"
+                },
+                {
+                  "id": "middle",
+                  "options": ["Truck", "O'Reilly", "Cup"],
+                  "correct": "O'Reilly"
+                },
+                {
+                  "id": "top",
+                  "options": ["Truck", "O'Reilly", "Cup"],
+                  "correct": "Cup"
+                }
+              ],
+              "explanation": {
+                "correct": "The three-series ladder rewards drivers who climb: Trucks builds skills, O'Reilly refines them, Cup is the destination.",
+                "incorrect": "The ladder goes Truck, O'Reilly, Cup in that order."
               }
             }
           }
