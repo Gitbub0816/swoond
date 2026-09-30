@@ -294,16 +294,16 @@
             "type": "binary-call",
             "conceptIds": ["faceoff"],
             "payload": {
-              "prompt": "At the start of the game, the referee asks both teams if they're ready, then drops the puck. True or false?",
-              "scene": {"kind": "none", "alt": "The referee holds the puck above the ice between two centers who are ready to battle for it."},
+              "prompt": "Only a referee ever drops the puck for a faceoff. True or false?",
+              "scene": {"kind": "none", "alt": "An official holds the puck above the ice between two centers who are ready to battle for it."},
               "choices": [
                 {"id": "true", "label": "True"},
                 {"id": "false", "label": "False"}
               ],
-              "correctChoiceId": "true",
+              "correctChoiceId": "false",
               "explanation": {
-                "correct": "True. Before each faceoff, the referee ensures both players are ready and in position, then drops the puck to start play.",
-                "incorrect": "Yes, the referee makes sure both centers are set and ready before dropping the puck. This prevents cheap shots and ensures a fair start."
+                "correct": "False. Referees and linesmen both run faceoffs. Linesmen handle most of them, and they can throw a player out of the circle for cheating the draw.",
+                "incorrect": "Linesmen drop the puck for most faceoffs too. Whoever the official is, the puck drops once both centers are set and their sticks are on the ice."
               }
             }
           }
@@ -325,11 +325,11 @@
               "template": "A {{goal}} is when the puck fully crosses the goal line. A {{shot}} is any attempt at goal. A {{save}} is when the goalie stops the shot.",
               "gaps": [
                 {"id": "goal", "options": ["goal", "shot", "attempt"], "correct": "goal"},
-                {"id": "shot", "options": ["attempt", "pass", "goal"], "correct": "shot"},
-                {"id": "save", "options": ["block", "stop", "save"], "correct": "save"}
+                {"id": "shot", "options": ["pass", "penalty", "shot"], "correct": "shot"},
+                {"id": "save", "options": ["miss", "faceoff", "save"], "correct": "save"}
               ],
               "explanation": {
-                "correct": "Right. A goal ends up in the net, a shot is any attempt, and a save is a goalie stopping it before it becomes a goal.",
+                "correct": "Right. A goal is the whole puck over the line, a shot is an attempt at the net, and a save is a goalie stopping a shot before it becomes a goal.",
                 "incorrect": "A goal counts when the puck fully crosses the line. A shot is any attempt at goal. A save is the goalie making a stop."
               }
             }
@@ -348,7 +348,7 @@
               "correctOptionIds": ["b"],
               "explanation": {
                 "correct": "Exactly. The entire puck must fully cross the goal line between the goalposts and below the crossbar. If any part is still out, it's not a goal.",
-                "incorrect": "The whole puck must completely cross the goal line between the posts and below the crossbar. The puck is in; the goalie is out. That's the rule."
+                "incorrect": "The whole puck has to cross the goal line, between the posts and under the crossbar. Touching the net or crossing the line only partly doesn't count. That is why close ones get reviewed on video."
               }
             }
           },
@@ -383,7 +383,7 @@
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. The score shows goals only: one team scored 4, the other scored 2. The game is over when time runs out or the difference is so large the trailing team gives up.",
+                "correct": "Right. The score shows goals only: one team scored 4, the other scored 2. Shots and power plays are counted separately, and the higher goal total wins when the clock runs out.",
                 "incorrect": "The final score shows the goal total for each team. 4–2 means one team scored 4 goals and the other team scored 2."
               }
             }
@@ -401,7 +401,7 @@
                 {"id": "c", "text": "Shot totals don't always match the final score", "isCorrect": true},
                 {"id": "d", "text": "More shots always means winning", "isCorrect": false}
               ],
-              "translation": "Her team controlled the game and took many more shots, but only converted 2 into goals while the opponent got lucky and scored 1. This shows the difference between shot volume and shot quality.",
+              "translation": "Her team controlled the game and took many more shots, but only scored twice, and the other team scored once on its few chances. Piles of shots don't guarantee goals, because shot quality matters as much as shot volume.",
               "followUps": [
                 {"line": "What's their goalie like?", "why": "Asks if the opposing goalie was strong."},
                 {"line": "Were your shots from the slot or from the outside?", "why": "Shows you know shot quality matters."}

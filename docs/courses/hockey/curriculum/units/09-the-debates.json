@@ -339,17 +339,17 @@
             "type": "multiple-choice",
             "conceptIds": ["corsi"],
             "payload": {
-              "prompt": "A team has 55% Corsi but loses 2-1. What might explain this?",
+              "prompt": "A team has 55% Corsi but loses 2-1. What is the best reading?",
               "options": [
-                {"id": "a", "text": "Their shots were lower quality or from the perimeter."},
-                {"id": "b", "text": "The goalie let in higher-danger shots."},
-                {"id": "c", "text": "Both teams' shot quality differed, or their goalie was off that night."},
-                {"id": "d", "text": "Corsi is meaningless."}
+                {"id": "a", "text": "Corsi counts attempts, not quality, so their chances may have been low-danger."},
+                {"id": "b", "text": "Corsi counts goals, so they must have been outscored all night."},
+                {"id": "c", "text": "A 55% Corsi means they scored 55% of the goals."},
+                {"id": "d", "text": "Corsi is meaningless, so the number tells you nothing."}
               ],
-              "correctOptionIds": ["c"],
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Correct. Corsi counts volume, not quality. A team can out-attempt opponents and still lose if the quality of chances is lopsided.",
-                "incorrect": "Corsi shows volume of attempts, not their danger. More attempts do not guarantee more goals."
+                "correct": "Correct. Corsi counts shot attempts (shots, blocks and misses), which is volume, not danger. A team can out-attempt opponents from the perimeter and still lose to a few good chances. Corsi is useful, just not the whole story.",
+                "incorrect": "Corsi is a share of shot attempts, not goals. It says who had the puck more, not who had the better chances, so a 55% team can still lose 2-1."
               }
             }
           },
@@ -433,8 +433,8 @@
               "choices": [{"id": "true", "label": "True"}, {"id": "false", "label": "False"}],
               "correctChoiceId": "false",
               "explanation": {
-                "correct": "False. Neck protection is required for players with no prior NHL games. Existing players can choose.",
-                "incorrect": "The rule applies to rookies and players new to the league, not veterans. This was a compromise between safety and tradition."
+                "correct": "False. Neck protection is required only for players with no prior NHL games. Players already in the league can still choose.",
+                "incorrect": "The 2026-27 rule applies to players with no prior NHL games, not to veterans. The debate is whether it should go further."
               }
             }
           },
@@ -444,14 +444,14 @@
             "conceptIds": ["head-hits"],
             "payload": {
               "prompt": "Complete the statement about legal versus illegal hits.",
-              "template": "The debate centers on the line between a legal {{legal-type}} and an illegal hit to the {{target}}.",
+              "template": "The debate centers on the line between a legal {{legal-type}} and a hit where the {{target}} is the main point of contact.",
               "gaps": [
-                {"id": "legal-type", "options": ["shoulder check", "body check", "hip check"], "correct": "shoulder check"},
-                {"id": "target", "options": ["back", "neck", "head"], "correct": "head"}
+                {"id": "legal-type", "options": ["body check", "cross-check", "elbow"], "correct": "body check"},
+                {"id": "target", "options": ["back", "skates", "head"], "correct": "head"}
               ],
               "explanation": {
-                "correct": "Right. A legal shoulder-to-shoulder check versus a hit that targets or results in head contact is the core debate.",
-                "incorrect": "Legal body contact versus illegal head contact is the boundary. Refs interpret intent and impact inconsistently."
+                "correct": "Right. Clean body checking is part of hockey; hits that make the head the principal point of contact are the ones that draw penalties and suspensions. Fans argue about where exactly that line sits.",
+                "incorrect": "A body check is legal; a cross-check and an elbow are penalties on their own. The head-contact rule is where most of the arguing happens, because the call depends on how the hit happened."
               }
             }
           }
@@ -475,8 +475,8 @@
                 "facts": [
                   {"label": "Time remaining", "value": "2 minutes 30 seconds"},
                   {"label": "Score", "value": "Down by 1"},
-                  {"label": "Analytics say", "value": "Pull earlier increases tie chance."},
-                  {"label": "Tradition says", "value": "Wait until 60 seconds left."}
+                  {"label": "Analytics say", "value": "An earlier pull gives a better chance to tie."},
+                  {"label": "Tradition says", "value": "Wait until about a minute and a half is left."}
                 ]
               },
               "options": [
