@@ -1,0 +1,1334 @@
+{
+  "contractVersion": "1.2.0",
+  "courseId": "hiking",
+  "unit": {
+    "id": "national-parks-and-permits",
+    "title": "National parks and permits",
+    "layer": "branch",
+    "branchId": "national-parks",
+    "order": 8,
+    "prerequisiteUnitIds": [
+      "trail-basics"
+    ],
+    "personalizationSlots": [
+      "destination"
+    ],
+    "lessons": [
+      {
+        "id": "np-01",
+        "title": "How parks manage crowds",
+        "objective": "You can explain timed entry and shuttles.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "timed-entry",
+          "shuttle-system"
+        ],
+        "activities": [
+          {
+            "id": "np-01-mc-why-timed",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "timed-entry"
+            ],
+            "payload": {
+              "prompt": "Why do some busy parks use timed-entry reservations?",
+              "options": [
+                {
+                  "id": "spread",
+                  "text": "To spread arrivals across the day so roads, lots and trails are not overwhelmed"
+                },
+                {
+                  "id": "profit",
+                  "text": "Mainly to raise money from every visitor"
+                },
+                {
+                  "id": "weather",
+                  "text": "To predict which days will have good weather"
+                },
+                {
+                  "id": "locals",
+                  "text": "To keep people from outside the region away"
+                }
+              ],
+              "correctOptionIds": [
+                "spread"
+              ],
+              "explanation": {
+                "correct": "Timed entry limits how many cars arrive in a given window, which eases traffic, parking and crowding on popular roads and trails.",
+                "incorrect": "The point is crowd control, not revenue or weather. Reserving a window keeps arrivals spread out so the place can handle its visitors.",
+                "sayThisLine": "\"The reservation just spreads people out so the trailhead lot is not a mess.\""
+              }
+            }
+          },
+          {
+            "id": "np-01-tm-crowd-tools",
+            "type": "term-match",
+            "conceptIds": [
+              "timed-entry",
+              "shuttle-system"
+            ],
+            "payload": {
+              "prompt": "Match each crowd tool to what it does.",
+              "pairs": [
+                {
+                  "id": "timed",
+                  "term": "Timed-entry reservation",
+                  "definition": "A booked window during which you may enter a busy park"
+                },
+                {
+                  "id": "shuttle",
+                  "term": "Park shuttle",
+                  "definition": "A bus that carries visitors to trailheads where parking is limited"
+                },
+                {
+                  "id": "quota",
+                  "term": "Quota",
+                  "definition": "A cap on how many people or vehicles are allowed"
+                },
+                {
+                  "id": "lot",
+                  "term": "Full-lot closure",
+                  "definition": "Turning cars away when parking has reached its limit"
+                }
+              ],
+              "distractorDefinitions": [
+                "A discount for visiting on weekdays",
+                "A guided tour you must join"
+              ],
+              "explanation": {
+                "summary": "Parks use several tools together: reservations spread arrivals, shuttles reduce cars, and quotas put a ceiling on use so trails and roads keep working.",
+                "sayThisLine": "\"We're taking the shuttle. Parking up there is basically impossible.\""
+              }
+            }
+          },
+          {
+            "id": "np-01-bc-reservation-time",
+            "type": "binary-call",
+            "conceptIds": [
+              "timed-entry"
+            ],
+            "payload": {
+              "prompt": "Your timed-entry window starts at 9 AM and you roll up at 7:30 AM. Can you assume you will be let in?",
+              "scene": {
+                "kind": "none",
+                "alt": "A car waiting in a line at a national park entrance gate early in the morning."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, early is always fine"
+                },
+                {
+                  "id": "check",
+                  "label": "No, check the park rules"
+                }
+              ],
+              "correctChoiceId": "check",
+              "explanation": {
+                "correct": "Rules differ by park and by season. Some let you in any time after your window opens, and some hold you to it, so read the official park page instead of assuming.",
+                "incorrect": "Do not assume. Each park writes its own entry rules, and a car turned away at the gate can lose the whole morning. Check the official page first.",
+                "sayThisLine": "\"Let me check the park's page for how the entry window works.\""
+              },
+              "ruleTag": "read-park-rules"
+            }
+          },
+          {
+            "id": "np-01-ftg-shuttle-why",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "shuttle-system"
+            ],
+            "payload": {
+              "prompt": "Complete the sentence about park shuttles.",
+              "template": "Shuttles exist because trailhead {{limit}} is limited, and riding one can mean fewer {{effect}} on park roads.",
+              "gaps": [
+                {
+                  "id": "limit",
+                  "options": [
+                    "parking",
+                    "elevation",
+                    "sunlight"
+                  ],
+                  "correct": "parking"
+                },
+                {
+                  "id": "effect",
+                  "options": [
+                    "cars",
+                    "wildflowers",
+                    "trail signs"
+                  ],
+                  "correct": "cars"
+                }
+              ],
+              "explanation": {
+                "correct": "Parking at popular trailheads can hold only so many cars. A shuttle moves more people with fewer vehicles, which protects the road, the trailhead and your patience.",
+                "incorrect": "Shuttles are about parking and traffic. Fewer cars on narrow park roads means less congestion and less wear on the places everyone came to see."
+              }
+            }
+          },
+          {
+            "id": "np-01-st-shuttle-plan",
+            "type": "say-this",
+            "conceptIds": [
+              "timed-entry",
+              "shuttle-system"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "The trail we want has a shuttle and the park needs a timed reservation. I just want to get up there without a headache."
+              },
+              "question": "What is the most helpful thing to say?",
+              "options": [
+                {
+                  "id": "check-both",
+                  "text": "Let's check the park's official page for the reservation window and the shuttle stops, then plan around them.",
+                  "isCorrect": true,
+                  "explanation": "You offer to do the checking with her and you point to the official source."
+                },
+                {
+                  "id": "just-drive",
+                  "text": "We'll just drive up and see if they let us in.",
+                  "isCorrect": false,
+                  "explanation": "That gambles her whole day on a gate she cannot control."
+                },
+                {
+                  "id": "skip",
+                  "text": "Reservations are silly. Let's find somewhere else.",
+                  "isCorrect": false,
+                  "explanation": "It dismisses what she cares about instead of helping her get there."
+                }
+              ],
+              "translation": "She wants a smooth plan for a crowded place. She is not asking you to fix it, just to be a partner who is willing to read the rules and sort out the logistics.",
+              "followUps": [
+                {
+                  "line": "I'll look up the shuttle schedule so we know the last bus back.",
+                  "why": "The last shuttle time is a detail newer hikers forget, and it shows you are thinking about getting home."
+                },
+                {
+                  "line": "Want me to set a reminder for when the reservations open?",
+                  "why": "It turns worry into a small, kind action."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "np-02",
+        "title": "Permit lotteries",
+        "objective": "You can explain why lotteries exist and how to approach them.",
+        "estimatedMinutes": 11,
+        "conceptIds": [
+          "permit-lottery"
+        ],
+        "activities": [
+          {
+            "id": "np-02-mc-why-lottery",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "permit-lottery"
+            ],
+            "payload": {
+              "prompt": "Why do some very popular hikes hand out permits by lottery?",
+              "options": [
+                {
+                  "id": "fair",
+                  "text": "Demand far exceeds the daily quota, and a random draw is a fair way to share limited spots"
+                },
+                {
+                  "id": "reward",
+                  "text": "To reward hikers who have the most experience"
+                },
+                {
+                  "id": "fastest",
+                  "text": "So the fastest clickers get first pick"
+                },
+                {
+                  "id": "random-fun",
+                  "text": "For entertainment, since the trail could hold more people"
+                }
+              ],
+              "correctOptionIds": [
+                "fair"
+              ],
+              "explanation": {
+                "correct": "When many more people want in than the place can handle, a random draw gives everyone who applies the same shot instead of rewarding whoever refreshes the fastest.",
+                "incorrect": "Lotteries are a fairness tool for places with a firm daily cap. They do not test skill and they are not a game; the cap protects the trail and the experience.",
+                "sayThisLine": "\"It's a lottery because way more people want in than the trail can take.\""
+              }
+            }
+          },
+          {
+            "id": "np-02-bc-plan-b",
+            "type": "binary-call",
+            "conceptIds": [
+              "permit-lottery"
+            ],
+            "payload": {
+              "prompt": "You applied for a permit lottery for your dream hike. Should you also plan a backup trip?",
+              "scene": {
+                "kind": "none",
+                "alt": "A phone showing an email that says the permit application was not selected."
+              },
+              "choices": [
+                {
+                  "id": "backup",
+                  "label": "Yes, always have a plan B"
+                },
+                {
+                  "id": "wait",
+                  "label": "No, just wait and hope"
+                }
+              ],
+              "correctChoiceId": "backup",
+              "explanation": {
+                "correct": "Odds are often low for the most sought-after hikes. A backup on a nearby trail keeps the trip alive and keeps the disappointment small.",
+                "incorrect": "Waiting on a long shot leaves you with nothing if the draw goes the other way. A plan B on an unrestricted trail is what seasoned hikers do."
+              },
+              "ruleTag": "plan-b-always"
+            }
+          },
+          {
+            "id": "np-02-ds-lost-lottery",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "permit-lottery"
+            ],
+            "payload": {
+              "prompt": "You did not win the lottery, but she did. What is your move?",
+              "situation": {
+                "narrative": "She won one permit for a famous, quota-limited hike. Your application was not selected and the trip is two weeks away.",
+                "facts": [
+                  {
+                    "label": "Her permit",
+                    "value": "One, for a single named person"
+                  },
+                  {
+                    "label": "Trail",
+                    "value": "Limited daily quota",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Alternatives",
+                    "value": "Nearby trails with no quota"
+                  },
+                  {
+                    "label": "Time",
+                    "value": "14 days out"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "alt-trail",
+                  "label": "Pick a nearby trail with no quota and plan that day together",
+                  "verdict": "best",
+                  "consequence": "You respect the rules and still get a shared day outside. She can tell you about the permit hike afterward.",
+                  "considerations": [
+                    "Choose a trail that needs no permit",
+                    "Do not tag along on a permit that is not yours",
+                    "Celebrate her win"
+                  ]
+                },
+                {
+                  "id": "waitlist",
+                  "label": "Look for a waitlist or last-minute release through the official system",
+                  "verdict": "acceptable",
+                  "consequence": "Some places release a few permits close to the date, but it is not guaranteed. Keep a backup ready in case it does not come through.",
+                  "considerations": [
+                    "Follow the agency's process exactly",
+                    "Have a backup ready",
+                    "Do not pay resellers"
+                  ]
+                },
+                {
+                  "id": "sneak",
+                  "label": "Hike it anyway and hope nobody checks",
+                  "verdict": "poor",
+                  "consequence": "You risk a fine or being turned around. Permits protect a fragile place, and going without one undermines the system that keeps it special.",
+                  "considerations": [
+                    "Rangers do check",
+                    "Quotas protect the trail",
+                    "Not worth the risk"
+                  ]
+                }
+              ],
+              "expertNote": "Experienced hikers treat permit systems as part of the deal: they are why the place still feels wild. A ready plan B makes a missed draw a small thing.",
+              "safetyNote": "Follow the land manager's rules. Hiking a permit-only area without a valid permit can carry fines and may mean you are unprepared for its conditions."
+            }
+          },
+          {
+            "id": "np-02-ftg-lottery-steps",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "permit-lottery"
+            ],
+            "payload": {
+              "prompt": "Complete the sentence about how a lottery usually works.",
+              "template": "You apply during an official {{window}}, the draw is {{how}}, and you should use only the {{source}} reservation page.",
+              "gaps": [
+                {
+                  "id": "window",
+                  "options": [
+                    "application window",
+                    "sunrise hour",
+                    "weather forecast"
+                  ],
+                  "correct": "application window"
+                },
+                {
+                  "id": "how",
+                  "options": [
+                    "random",
+                    "based on hiking speed",
+                    "first-come at the trailhead"
+                  ],
+                  "correct": "random"
+                },
+                {
+                  "id": "source",
+                  "options": [
+                    "official",
+                    "resale",
+                    "social media"
+                  ],
+                  "correct": "official"
+                }
+              ],
+              "explanation": {
+                "correct": "Lotteries open an application window, draw at random, and run on the agency's official reservation page. Exact dates and rules vary by place and year, so confirm them on the official page.",
+                "incorrect": "The pattern is an official window, a random draw and an official page. Resale sites and posts are not part of the system, and dates change, so check the official source."
+              }
+            }
+          },
+          {
+            "id": "np-02-st-lottery-lost",
+            "type": "say-this",
+            "conceptIds": [
+              "permit-lottery"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "I didn't get picked in the lottery again this year. I've been trying for that trail forever."
+              },
+              "question": "Which reply lands best?",
+              "options": [
+                {
+                  "id": "warm-plan",
+                  "text": "That stinks, I know how much you wanted it. Want to find something great nearby and keep entering next year?",
+                  "isCorrect": true,
+                  "explanation": "You acknowledge the disappointment, then offer company and a way forward."
+                },
+                {
+                  "id": "just-go",
+                  "text": "Just go without one. Who would know?",
+                  "isCorrect": false,
+                  "explanation": "It encourages breaking the rules that protect the place she loves."
+                },
+                {
+                  "id": "odds",
+                  "text": "Well, the odds were always terrible.",
+                  "isCorrect": false,
+                  "explanation": "Technically true, but it lands as cold when she is disappointed."
+                }
+              ],
+              "translation": "She is telling you something she has wanted for a long time did not happen. She is looking for warmth first and a plan second.",
+              "followUps": [
+                {
+                  "line": "What is the best nearby hike you have done that felt the same?",
+                  "why": "It invites her to share what she loves about the place."
+                },
+                {
+                  "line": "I'll help you set a reminder for next year's window.",
+                  "why": "A small, concrete offer shows you are in it with her."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "np-03",
+        "title": "Wilderness permits",
+        "objective": "You can describe quotas and what a wilderness permit covers.",
+        "estimatedMinutes": 11,
+        "conceptIds": [
+          "wilderness-permit"
+        ],
+        "activities": [
+          {
+            "id": "np-03-ftg-what-covers",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "wilderness-permit"
+            ],
+            "payload": {
+              "prompt": "Complete the sentence about wilderness permits.",
+              "template": "A wilderness permit is usually needed to {{action}} in the backcountry, and it is tied to a {{tie}} and a limited {{cap}}.",
+              "gaps": [
+                {
+                  "id": "action",
+                  "options": [
+                    "camp overnight",
+                    "buy snacks",
+                    "take photos"
+                  ],
+                  "correct": "camp overnight"
+                },
+                {
+                  "id": "tie",
+                  "options": [
+                    "date and route",
+                    "brand of boots",
+                    "phone number"
+                  ],
+                  "correct": "date and route"
+                },
+                {
+                  "id": "cap",
+                  "options": [
+                    "quota",
+                    "playlist",
+                    "backpack"
+                  ],
+                  "correct": "quota"
+                }
+              ],
+              "explanation": {
+                "correct": "Backcountry permits commonly cover overnight stays on a specific date and route or zone, and the number issued is capped. What exactly a permit covers varies by park, so read its page.",
+                "incorrect": "Think overnight use, a date and a route, and a cap on numbers. Rules vary by park, and some also permit day use, so check the official page for your trip."
+              }
+            }
+          },
+          {
+            "id": "np-03-mc-why-quota",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "wilderness-permit"
+            ],
+            "payload": {
+              "prompt": "What is the main reason backcountry areas set quotas?",
+              "options": [
+                {
+                  "id": "impact",
+                  "text": "To limit impact on the land and keep the experience quiet and wild"
+                },
+                {
+                  "id": "paperwork",
+                  "text": "To create paperwork for rangers"
+                },
+                {
+                  "id": "fitness",
+                  "text": "To make sure only fit hikers can enter"
+                },
+                {
+                  "id": "weather",
+                  "text": "To avoid all storm risk"
+                }
+              ],
+              "correctOptionIds": [
+                "impact"
+              ],
+              "explanation": {
+                "correct": "Quotas hold overnight use to what a place can handle: fewer campsites trampled, less waste, and a wilder feel. A permit also tells the agency where people are.",
+                "incorrect": "Quotas are not a fitness test or a weather system. They are a way to protect fragile land and the experience of being in it.",
+                "sayThisLine": "\"The quota keeps the backcountry from getting loved to death.\""
+              }
+            }
+          },
+          {
+            "id": "np-03-ds-permit-itinerary",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "wilderness-permit"
+            ],
+            "payload": {
+              "prompt": "Your route changes the night before. What should you do about the permit?",
+              "situation": {
+                "narrative": "You hold a backcountry permit for a specific camp zone. Snow has made one pass risky and you would like to end up in a different zone.",
+                "facts": [
+                  {
+                    "label": "Permit",
+                    "value": "Tied to a zone and date"
+                  },
+                  {
+                    "label": "Plan change",
+                    "value": "Different zone from the permit",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Conditions",
+                    "value": "Late snow on the higher route",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Ranger station",
+                    "value": "Reachable by phone before you leave"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "ask-ranger",
+                  "label": "Contact the park and ask what changes are allowed before you go",
+                  "verdict": "best",
+                  "consequence": "You learn what the permit allows and whether a different zone is open. Rangers can also tell you what conditions to expect.",
+                  "considerations": [
+                    "Rules vary by park",
+                    "Rangers know current conditions",
+                    "Get any change in writing if possible"
+                  ]
+                },
+                {
+                  "id": "keep-permit",
+                  "label": "Stick to the permitted zone and adjust your plan around the conditions",
+                  "verdict": "acceptable",
+                  "consequence": "You stay legal, but the conditions may still limit the route. Ask the park about options and be ready to turn around.",
+                  "considerations": [
+                    "Legal, but conditions still matter",
+                    "Have a turnaround plan"
+                  ]
+                },
+                {
+                  "id": "camp-anywhere",
+                  "label": "Camp in the new zone anyway, since it is the same park",
+                  "verdict": "poor",
+                  "consequence": "A permit is tied to specific places to control use. Camping outside it can mean a fine and puts extra pressure on a zone that is not counted.",
+                  "considerations": [
+                    "Permits are zone specific",
+                    "Fines are possible"
+                  ]
+                }
+              ],
+              "expertNote": "A permit is an agreement about where you will be. If plans change, the park is the right first call, and they often know conditions you do not.",
+              "safetyNote": "Follow the park's rules and current guidance on closures and snow. Do not use a permit change to justify a route that conditions make unsafe."
+            }
+          },
+          {
+            "id": "np-03-tm-permit-vocab",
+            "type": "term-match",
+            "conceptIds": [
+              "wilderness-permit"
+            ],
+            "payload": {
+              "prompt": "Match each backcountry term to its meaning.",
+              "pairs": [
+                {
+                  "id": "permit",
+                  "term": "Wilderness permit",
+                  "definition": "Official permission to use a backcountry area, often for overnights"
+                },
+                {
+                  "id": "zone",
+                  "term": "Camp zone",
+                  "definition": "A defined area where a permit allows you to camp"
+                },
+                {
+                  "id": "quota",
+                  "term": "Quota",
+                  "definition": "The limit on how many permits are issued for a date or area"
+                },
+                {
+                  "id": "canister",
+                  "term": "Bear canister",
+                  "definition": "A hard-sided food container some areas require overnight"
+                }
+              ],
+              "distractorDefinitions": [
+                "A trail name given by rangers",
+                "A daily weather report"
+              ],
+              "explanation": {
+                "summary": "A permit ties you to a place and a date, the quota keeps numbers low, and the park may add rules such as food storage. Always read the specific park's requirements.",
+                "sayThisLine": "\"We got the backcountry permit for two nights. The park requires canisters.\""
+              }
+            }
+          },
+          {
+            "id": "np-03-bc-permit-day",
+            "type": "binary-call",
+            "conceptIds": [
+              "wilderness-permit"
+            ],
+            "payload": {
+              "prompt": "A day hike is on your list. Can you assume you need no permit at all because it is not an overnight?",
+              "scene": {
+                "kind": "none",
+                "alt": "A trailhead signboard with a permit notice pinned beside the map."
+              },
+              "choices": [
+                {
+                  "id": "assume",
+                  "label": "Yes, day hikes never need one"
+                },
+                {
+                  "id": "check",
+                  "label": "No, check the trail's official page"
+                }
+              ],
+              "correctChoiceId": "check",
+              "explanation": {
+                "correct": "Some very popular trails require permits or reservations even for day use. Check the official page for the specific trail before you go.",
+                "incorrect": "Do not assume. A handful of trails cap day use too, and turning up without a needed permit can end the trip at the trailhead."
+              },
+              "ruleTag": "check-day-use"
+            }
+          }
+        ]
+      },
+      {
+        "id": "np-04",
+        "title": "Passes and fees",
+        "objective": "You can explain the annual pass and where fees change.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "annual-pass"
+        ],
+        "activities": [
+          {
+            "id": "np-04-mc-what-covers",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "annual-pass"
+            ],
+            "payload": {
+              "prompt": "What does the America the Beautiful annual pass generally cover?",
+              "options": [
+                {
+                  "id": "entrance",
+                  "text": "Entrance fees at national parks and many other federal recreation sites"
+                },
+                {
+                  "id": "everything",
+                  "text": "Every fee, including all permits, reservations and campgrounds"
+                },
+                {
+                  "id": "state",
+                  "text": "Entry to all state parks"
+                },
+                {
+                  "id": "guides",
+                  "text": "Guided tours and rentals"
+                }
+              ],
+              "correctOptionIds": [
+                "entrance"
+              ],
+              "explanation": {
+                "correct": "The pass covers standard entrance and day-use fees at participating federal sites. Separate permits, reservations, campgrounds and some extra fees are usually not included.",
+                "incorrect": "The pass is not a master key. It covers entrance-type fees at federal sites, but permits, campgrounds and reservations often cost extra and state parks are separate.",
+                "sayThisLine": "\"The pass covers entrance, but the backcountry permit is its own thing.\""
+              }
+            }
+          },
+          {
+            "id": "np-04-est-resident-price",
+            "type": "estimate-slider",
+            "conceptIds": [
+              "annual-pass"
+            ],
+            "payload": {
+              "prompt": "What did the standard annual pass cost a U.S. resident as of 2026-09-30?",
+              "min": 40,
+              "max": 160,
+              "step": 5,
+              "correctValue": 80,
+              "tolerance": {
+                "full": 5,
+                "partial": 20
+              },
+              "unit": "$",
+              "explanation": {
+                "correct": "About $80 for U.S. residents as of 2026-09-30 (NPS/DOI). Fees are set by policy and can change, so confirm on the official NPS page.",
+                "incorrect": "The resident annual pass was $80 as of 2026-09-30 (NPS/DOI). It is a policy number that can change, so check the official NPS page before buying.",
+                "sayThisLine": "\"The annual pass was eighty dollars when I checked. I'll confirm on the official page.\""
+              }
+            }
+          },
+          {
+            "id": "np-04-ftg-nonresident-2026",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "annual-pass"
+            ],
+            "payload": {
+              "prompt": "Complete the sentence about 2026 fees, as of 2026-09-30.",
+              "template": "Beginning in 2026, nonresidents pay a ${{surcharge}} per-person surcharge at {{count}} designated parks unless they hold a ${{pass}} nonresident annual pass.",
+              "gaps": [
+                {
+                  "id": "surcharge",
+                  "options": [
+                    "50",
+                    "100",
+                    "150"
+                  ],
+                  "correct": "100"
+                },
+                {
+                  "id": "count",
+                  "options": [
+                    "3",
+                    "11",
+                    "63"
+                  ],
+                  "correct": "11"
+                },
+                {
+                  "id": "pass",
+                  "options": [
+                    "80",
+                    "250",
+                    "400"
+                  ],
+                  "correct": "250"
+                }
+              ],
+              "explanation": {
+                "correct": "As of 2026-09-30 (NPS/DOI): a $100 per-person nonresident surcharge at 11 designated parks, or a $250 nonresident annual pass. These are policy figures that can change, so check the official park page.",
+                "incorrect": "The figures were $100, 11 parks and $250 as of 2026-09-30 (NPS/DOI). Because fee policy changes, the official park page always wins over anything you remember."
+              }
+            }
+          },
+          {
+            "id": "np-04-bc-pass-worth",
+            "type": "binary-call",
+            "conceptIds": [
+              "annual-pass"
+            ],
+            "payload": {
+              "prompt": "Three paid park visits this year. Is it worth checking whether an annual pass saves money?",
+              "scene": {
+                "kind": "none",
+                "alt": "A hiker holding a plastic federal recreation pass at an entrance station."
+              },
+              "choices": [
+                {
+                  "id": "check",
+                  "label": "Yes, compare pass price to total fees"
+                },
+                {
+                  "id": "never",
+                  "label": "No, passes never pay off"
+                }
+              ],
+              "correctChoiceId": "check",
+              "explanation": {
+                "correct": "Whether a pass pays off depends on how many paid entrances you make and the current fees. Add them up, then confirm prices on the official page.",
+                "incorrect": "It depends on your visits and current prices. A few paid entrances can cover the pass, so run the numbers rather than assuming."
+              },
+              "ruleTag": "compare-then-buy"
+            }
+          },
+          {
+            "id": "np-04-mc-where-fees-change",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "annual-pass"
+            ],
+            "payload": {
+              "prompt": "Where should you confirm today's fees and pass rules before a trip?",
+              "options": [
+                {
+                  "id": "official",
+                  "text": "The official NPS or park page for the place you are visiting"
+                },
+                {
+                  "id": "forum",
+                  "text": "A forum post from a few years ago"
+                },
+                {
+                  "id": "friend",
+                  "text": "Whatever a friend paid last time"
+                },
+                {
+                  "id": "reseller",
+                  "text": "A third-party ticket reseller"
+                }
+              ],
+              "correctOptionIds": [
+                "official"
+              ],
+              "explanation": {
+                "correct": "Fees, passes and exemptions are set by policy and change. The official NPS or park page is the current source of truth and the safest place to buy.",
+                "incorrect": "Old posts and memories go stale, and resellers may add markups. Use the official page for the park you are visiting.",
+                "sayThisLine": "\"Let me check the park's official page. Fees change.\""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "np-05",
+        "title": "Reading park alerts",
+        "objective": "You can turn an alert into a decision.",
+        "estimatedMinutes": 11,
+        "conceptIds": [
+          "alerts-and-closures",
+          "fire-closure"
+        ],
+        "activities": [
+          {
+            "id": "np-05-ds-trail-closure",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "alerts-and-closures"
+            ],
+            "payload": {
+              "prompt": "The park page lists your trail as closed. What do you do?",
+              "situation": {
+                "narrative": "The morning of your hike you check the park's alerts page. A washout has closed the trail you planned, and the closure notice is dated yesterday.",
+                "facts": [
+                  {
+                    "label": "Alert",
+                    "value": "Trail closed due to washout",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Posted",
+                    "value": "Yesterday"
+                  },
+                  {
+                    "label": "Alternatives",
+                    "value": "Two open trails nearby"
+                  },
+                  {
+                    "label": "Time",
+                    "value": "Early morning"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "reroute",
+                  "label": "Choose an open trail from the park page and adjust your plan",
+                  "verdict": "best",
+                  "consequence": "You respect the closure and still get out. Check that the alternative is open and matches your fitness and daylight.",
+                  "considerations": [
+                    "Confirm the new trail's status",
+                    "Recheck distance and time",
+                    "Tell someone your new plan"
+                  ]
+                },
+                {
+                  "id": "ask-ranger",
+                  "label": "Ask a ranger or visitor center about options before you commit",
+                  "verdict": "acceptable",
+                  "consequence": "Good instinct. Staff know current conditions, though the alerts page may already list the alternatives.",
+                  "considerations": [
+                    "Ask about the closure's reason",
+                    "Check nearby trail status"
+                  ]
+                },
+                {
+                  "id": "go-around",
+                  "label": "Go anyway, since it is probably fine",
+                  "verdict": "poor",
+                  "consequence": "Closures exist because the hazard is real, such as unstable ground. You risk injury, a fine and a rescue that puts others at risk.",
+                  "considerations": [
+                    "Closures reflect real hazards",
+                    "Fines can apply",
+                    "Not your call to override"
+                  ]
+                }
+              ],
+              "expertNote": "An alert is not a suggestion. Hikers who read alerts first and have a plan B are the ones who still have a great day.",
+              "safetyNote": "Obey closures and posted signs. Follow the park's current guidance and check the official alerts page again just before you go."
+            }
+          },
+          {
+            "id": "np-05-ftg-fire-closure",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "fire-closure"
+            ],
+            "payload": {
+              "prompt": "Complete the sentence about fire closures.",
+              "template": "A fire closure is an {{who}} closure of an area because of wildfire {{why}}, and hikers must {{action}}.",
+              "gaps": [
+                {
+                  "id": "who",
+                  "options": [
+                    "official",
+                    "optional",
+                    "seasonal fashion"
+                  ],
+                  "correct": "official"
+                },
+                {
+                  "id": "why",
+                  "options": [
+                    "risk or activity",
+                    "photography",
+                    "tourism"
+                  ],
+                  "correct": "risk or activity"
+                },
+                {
+                  "id": "action",
+                  "options": [
+                    "stay out",
+                    "sneak in early",
+                    "go up quickly"
+                  ],
+                  "correct": "stay out"
+                }
+              ],
+              "explanation": {
+                "correct": "Fire closures keep people out of areas where fire, smoke, falling trees or firefighting operations are a danger. They are enforced and can last well after visible flames are gone.",
+                "incorrect": "A fire closure is an official order to stay out because of fire risk or activity. Do not enter, even if the trail looks fine from the trailhead."
+              }
+            }
+          },
+          {
+            "id": "np-05-mc-alert-levels",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "alerts-and-closures"
+            ],
+            "payload": {
+              "prompt": "Which alert should change your plan the most?",
+              "options": [
+                {
+                  "id": "danger",
+                  "text": "Danger: an active hazard on your route"
+                },
+                {
+                  "id": "info",
+                  "text": "Information: the visitor center hours changed"
+                },
+                {
+                  "id": "caution",
+                  "text": "Caution: some construction noise near the entrance"
+                },
+                {
+                  "id": "event",
+                  "text": "Event: a ranger talk this weekend"
+                }
+              ],
+              "correctOptionIds": [
+                "danger"
+              ],
+              "explanation": {
+                "correct": "A Danger or closure alert means a hazard on or near your route. Read it fully and decide whether to reroute or postpone. Information and event notices rarely change a hike itself.",
+                "incorrect": "Match the alert to your route. Danger and closure alerts are about hazards. Information and event notices usually do not change safety.",
+                "sayThisLine": "\"I read the alert and it's a danger notice. Let's switch trails.\""
+              }
+            }
+          },
+          {
+            "id": "np-05-bc-check-alerts",
+            "type": "binary-call",
+            "conceptIds": [
+              "alerts-and-closures"
+            ],
+            "payload": {
+              "prompt": "You checked the park's alerts last week. Do you need to check again the morning you go?",
+              "scene": {
+                "kind": "none",
+                "alt": "A phone showing a park alerts page with a new notice at the top."
+              },
+              "choices": [
+                {
+                  "id": "recheck",
+                  "label": "Yes, recheck right before you go"
+                },
+                {
+                  "id": "fine",
+                  "label": "No, last week is good enough"
+                }
+              ],
+              "correctChoiceId": "recheck",
+              "explanation": {
+                "correct": "Conditions change fast: storms, washouts and fires can add or lift closures overnight. Recheck the official alerts page right before you go.",
+                "incorrect": "A week is a long time on a trail. New closures and hazards can appear overnight, so check again the morning of."
+              },
+              "ruleTag": "recheck-alerts"
+            }
+          },
+          {
+            "id": "np-05-st-alert-chat",
+            "type": "say-this",
+            "conceptIds": [
+              "alerts-and-closures",
+              "fire-closure"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "There's a fire closure on the north side of the park. Our trail isn't on the closure map, though. Should we still go?"
+              },
+              "question": "What is the best response?",
+              "options": [
+                {
+                  "id": "check-alerts",
+                  "text": "Let's read the full alert and check for smoke and road notices, then decide together. If anything is unclear we can switch trails.",
+                  "isCorrect": true,
+                  "explanation": "You go to the source, name smoke and access as extra checks, and keep a fallback."
+                },
+                {
+                  "id": "sure",
+                  "text": "It's not on the map, so we're fine.",
+                  "isCorrect": false,
+                  "explanation": "Closure maps and conditions can change, and smoke and road closures may affect a hike outside the mapped area."
+                },
+                {
+                  "id": "cancel",
+                  "text": "Forget it. Fires are too scary.",
+                  "isCorrect": false,
+                  "explanation": "It shuts down the conversation without looking at the actual alert."
+                }
+              ],
+              "translation": "She is asking for a judgment call, not a yes or no. She wants a partner who reads the alert and thinks about smoke and access before committing.",
+              "followUps": [
+                {
+                  "line": "I'll check the official park page again tomorrow morning too.",
+                  "why": "It shows you know conditions can change."
+                },
+                {
+                  "line": "If the air looks smoky we can swap to the lake loop.",
+                  "why": "Offering a plan B keeps the day alive."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "np-06",
+        "title": "Talking parks",
+        "objective": "You can chat about parks with a fan without bluffing.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "leave-no-trace",
+          "wilderness-act"
+        ],
+        "activities": [
+          {
+            "id": "np-06-tt-lottery-loss",
+            "type": "talk-track",
+            "conceptIds": [
+              "permit-lottery",
+              "wilderness-permit"
+            ],
+            "payload": {
+              "title": "Lottery loss",
+              "setting": "She lost a permit draw and texts you about it",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "I didn't win the permit lottery again.",
+                  "replies": [
+                    {
+                      "id": "nearby-good",
+                      "text": "Ugh, sorry. Any great nearby trails without quotas? I'd love to plan one with you.",
+                      "smoothDelta": 22,
+                      "theirResponse": "Honestly yes, there is one I have wanted to show you.",
+                      "coachNote": "Warm, and it offers company and a plan."
+                    },
+                    {
+                      "id": "sorry-meh",
+                      "text": "Sorry to hear that.",
+                      "smoothDelta": 3,
+                      "theirResponse": "Thanks. It happens.",
+                      "coachNote": "Kind, but add a follow-up question."
+                    },
+                    {
+                      "id": "sneak-cringe",
+                      "text": "Just go without one. Who will know?",
+                      "smoothDelta": -20,
+                      "theirResponse": "Rangers know, and it's not how I want to treat that place.",
+                      "coachNote": "Never encourage breaking permit rules."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "I entered for a wilderness permit too. Overnight spots are limited.",
+                  "replies": [
+                    {
+                      "id": "quota-good",
+                      "text": "Limited quotas make sense to protect the backcountry. Do you know how many people it allows?",
+                      "smoothDelta": 20,
+                      "theirResponse": "A small number per night, which is part of why it feels special.",
+                      "coachNote": "You show you understand the purpose and ask about her interest."
+                    },
+                    {
+                      "id": "quota-meh",
+                      "text": "That's a lot of hoops.",
+                      "smoothDelta": 0,
+                      "theirResponse": "It's worth it to me.",
+                      "coachNote": "Sympathetic, but curious works better."
+                    },
+                    {
+                      "id": "quota-cringe",
+                      "text": "I could just camp anywhere.",
+                      "smoothDelta": -15,
+                      "theirResponse": "Not in a permitted zone, no.",
+                      "coachNote": "Do not brush off rules she values."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Being curious about why a system exists is much better than complaining about it."
+            }
+          },
+          {
+            "id": "np-06-tm-lnt-wilderness",
+            "type": "term-match",
+            "conceptIds": [
+              "leave-no-trace",
+              "wilderness-act"
+            ],
+            "payload": {
+              "prompt": "Match each idea to what it means.",
+              "pairs": [
+                {
+                  "id": "lnt",
+                  "term": "Leave No Trace",
+                  "definition": "Seven principles for minimizing your impact outdoors"
+                },
+                {
+                  "id": "act",
+                  "term": "Wilderness Act",
+                  "definition": "The 1964 U.S. law creating protected wilderness areas"
+                },
+                {
+                  "id": "pack",
+                  "term": "Pack it out",
+                  "definition": "Carrying all trash, food scraps and toilet paper out with you"
+                },
+                {
+                  "id": "durable",
+                  "term": "Durable surface",
+                  "definition": "Trail, rock or gravel that resists damage"
+                }
+              ],
+              "distractorDefinitions": [
+                "A fee waiver for park volunteers",
+                "A required trail map"
+              ],
+              "explanation": {
+                "summary": "Leave No Trace is the personal habit; the Wilderness Act is the law that protects some of the places where it matters most. Wilderness areas generally prohibit motors and permanent structures.",
+                "sayThisLine": "\"Wilderness areas came from the 1964 Wilderness Act. It is why there are no motors out there.\""
+              }
+            }
+          },
+          {
+            "id": "np-06-mc-lnt-principle",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "leave-no-trace"
+            ],
+            "payload": {
+              "prompt": "Which of these is one of the seven Leave No Trace principles?",
+              "options": [
+                {
+                  "id": "plan",
+                  "text": "Plan ahead and prepare"
+                },
+                {
+                  "id": "summit",
+                  "text": "Reach every summit"
+                },
+                {
+                  "id": "shortcut",
+                  "text": "Take shortcuts to save time"
+                },
+                {
+                  "id": "souvenir",
+                  "text": "Take a small souvenir"
+                }
+              ],
+              "correctOptionIds": [
+                "plan"
+              ],
+              "explanation": {
+                "correct": "Plan ahead and prepare is the first principle. The others are travel and camp on durable surfaces, dispose of waste properly, leave what you find, minimize campfire impacts, respect wildlife, and be considerate of other visitors.",
+                "incorrect": "Leave No Trace never asks for souvenirs or shortcuts. Its seven principles are about planning, durable surfaces, waste, leaving what you find, fires, wildlife and other visitors.",
+                "sayThisLine": "\"Plan ahead is the first Leave No Trace principle. That includes checking permits and alerts.\""
+              }
+            }
+          },
+          {
+            "id": "np-06-bc-wilderness-act",
+            "type": "binary-call",
+            "conceptIds": [
+              "wilderness-act"
+            ],
+            "payload": {
+              "prompt": "Someone says the Wilderness Act is a park entrance fee law. Is that right?",
+              "scene": {
+                "kind": "none",
+                "alt": "A wooden sign at the edge of a designated wilderness area listing its rules."
+              },
+              "choices": [
+                {
+                  "id": "fee",
+                  "label": "Yes, it sets entrance fees"
+                },
+                {
+                  "id": "protect",
+                  "label": "No, it protects wilderness areas"
+                }
+              ],
+              "correctChoiceId": "protect",
+              "explanation": {
+                "correct": "The 1964 Wilderness Act created a system of protected wilderness areas, generally without motors or permanent structures. Fees are set through separate laws and policy.",
+                "incorrect": "It is about protection, not fees. The Wilderness Act of 1964 established wilderness areas where motors and permanent structures are generally prohibited."
+              },
+              "ruleTag": "wilderness-act"
+            }
+          },
+          {
+            "id": "np-06-st-park-fan",
+            "type": "say-this",
+            "conceptIds": [
+              "leave-no-trace",
+              "wilderness-act"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "I love that the park has a Leave No Trace rule about not building rock stacks. Somebody always builds cairns everywhere anyway."
+              },
+              "question": "Which reply shows you are listening without bluffing?",
+              "options": [
+                {
+                  "id": "curious",
+                  "text": "I did not know that. Why do the extra stacks matter? I thought they helped people find the way.",
+                  "isCorrect": true,
+                  "explanation": "You admit what you do not know and ask a real question, which invites her to explain."
+                },
+                {
+                  "id": "bluff",
+                  "text": "Oh yeah, I always build a cairn at every viewpoint.",
+                  "isCorrect": false,
+                  "explanation": "It is the exact habit she is complaining about."
+                },
+                {
+                  "id": "change",
+                  "text": "It is just rocks, does it really matter?",
+                  "isCorrect": false,
+                  "explanation": "It dismisses something she cares about without curiosity."
+                }
+              ],
+              "translation": "She is venting about something she cares about. Extra stacks can confuse the route and disturb the ground, so she wants to know you are on her side.",
+              "followUps": [
+                {
+                  "line": "I'll leave the rocks where they are next time.",
+                  "why": "It shows a small, real change, not a lecture."
+                },
+                {
+                  "line": "What is the one habit you wish everyone had on the trail?",
+                  "why": "It gives her the floor and shows you want to learn."
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

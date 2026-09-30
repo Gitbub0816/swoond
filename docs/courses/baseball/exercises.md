@@ -584,8 +584,8 @@ Samples are the ten full tracks in section 4 (`T1` to `T10`), each with the enth
   "question": "What is she talking about?",
   "options": [
     { "id": "a", "text": "The relief pitchers lost the lead late", "isCorrect": true },
-    { "id": "b", "text": "The starting pitcher got hurt" },
-    { "id": "c", "text": "A fielding error decided the game", "explanation": "Errors are separate from pitchers blowing a lead." },
+    { "id": "b", "text": "The starting pitcher got hurt", "isCorrect": false },
+    { "id": "c", "text": "A fielding error decided the game", "explanation": "Errors are separate from pitchers blowing a lead.", "isCorrect": false },
     { "id": "d", "text": "Relievers gave up the lead", "isCorrect": true }
   ],
   "translation": "Her team's relief pitchers gave up a lead they were supposed to protect, and the team lost or nearly lost because of it.",
@@ -605,8 +605,8 @@ Samples are the ten full tracks in section 4 (`T1` to `T10`), each with the enth
   "question": "What is she talking about?",
   "options": [
     { "id": "a", "text": "The batter watched strike three with a full count", "isCorrect": true },
-    { "id": "b", "text": "The batter swung and missed at a fastball" },
-    { "id": "c", "text": "The umpire threw a pitch" },
+    { "id": "b", "text": "The batter swung and missed at a fastball", "isCorrect": false },
+    { "id": "c", "text": "The umpire threw a pitch", "isCorrect": false },
     { "id": "d", "text": "A slow breaking ball struck him out looking", "isCorrect": true }
   ],
   "translation": "It was a full count (three balls, two strikes). The batter did not swing at a strike and was called out. She is frustrated he did not swing.",
@@ -626,9 +626,9 @@ Samples are the ten full tracks in section 4 (`T1` to `T10`), each with the enth
   "question": "What is she talking about?",
   "options": [
     { "id": "a", "text": "The team trails the last playoff spot by two games", "isCorrect": true },
-    { "id": "b", "text": "The team is two games from winning the division" },
+    { "id": "b", "text": "The team is two games from winning the division", "isCorrect": false },
     { "id": "c", "text": "A series against the team just ahead of them", "isCorrect": true },
-    { "id": "d", "text": "The team already made the playoffs" }
+    { "id": "d", "text": "The team already made the playoffs", "isCorrect": false }
   ],
   "translation": "Her team is outside the playoff picture by two games and has a series against a rival for the final spot, so it matters a lot.",
   "followUps": [
@@ -646,9 +646,9 @@ Samples are the ten full tracks in section 4 (`T1` to `T10`), each with the enth
   "question": "What is she talking about?",
   "options": [
     { "id": "a", "text": "The automatic runner placed on second in extras", "isCorrect": true },
-    { "id": "b", "text": "A haunted ballpark" },
+    { "id": "b", "text": "A haunted ballpark", "isCorrect": false },
     { "id": "c", "text": "A rule that speeds up extra innings", "isCorrect": true },
-    { "id": "d", "text": "The runner who was pinch-hit for" }
+    { "id": "d", "text": "The runner who was pinch-hit for", "isCorrect": false }
   ],
   "translation": "Since 2020, each extra inning starts with a runner on second base. Some fans love the quick finish; others say it cheapens extra-inning baseball.",
   "followUps": [
@@ -666,9 +666,9 @@ Samples are the ten full tracks in section 4 (`T1` to `T10`), each with the enth
   "question": "What is she talking about?",
   "options": [
     { "id": "a", "text": "A ball-strike call was overturned by the system", "isCorrect": true },
-    { "id": "b", "text": "A replay review of a home run" },
+    { "id": "b", "text": "A replay review of a home run", "isCorrect": false },
     { "id": "c", "text": "The batter or catcher used a challenge", "isCorrect": true },
-    { "id": "d", "text": "A pitcher balked" }
+    { "id": "d", "text": "A pitcher balked", "isCorrect": false }
   ],
   "translation": "In 2026 each team gets two challenges a game on balls and strikes. The tracking system said the pitch missed the zone, so the at-bat continued.",
   "followUps": [
@@ -997,3 +997,342 @@ Samples are the ten full tracks in section 4 (`T1` to `T10`), each with the enth
   }
 }
 ```
+
+## 3. Playbook terms (72)
+
+Definition plus an example line in the enthusiast's voice (what she might say). Ids are curriculum concept ids (CDS Appendix). Definitions are Swoon'd's own words. Time-sensitive terms (marked [2026]) are re-verified at release.
+
+| # | Term | conceptId | Definition | Example line |
+|---|---|---|---|---|
+| 1 | Inning | `inning` | One turn each at bat and in the field; nine make a regulation game. | "We were tied going into the ninth inning." |
+| 2 | Out | `out` | One of three ways a half-inning gets used up; the batting team keeps hitting until it has three. | "Two outs, bases loaded, come on." |
+| 3 | Walk-off | `walk-off` | A game-ending run by the home team in the bottom of the last inning; the game ends immediately. | "It was a walk-off, everyone ran onto the field." |
+| 4 | Automatic runner | `automatic-runner` | A runner placed on second base at the start of each extra inning. Fans call it the ghost runner. | "I hate the ghost runner in extra innings." |
+| 5 | Batting order | `batting-order` | The nine hitters in the order they bat all game. | "Why is he batting eighth?" |
+| 6 | Designated hitter | `designated-hitter` | A batter who bats in place of the pitcher and does not field. | "Since the universal DH, no pitchers hit." |
+| 7 | The count | `count` | The number of balls and strikes on the batter, always said balls first. | "The count was 2-1 and he sat on a fastball." |
+| 8 | Full count | `full-count` | Three balls and two strikes; the next pitch decides the at-bat. | "Full count, bases loaded, my heart." |
+| 9 | Strike zone | `strike-zone` | The area over home plate, between the batter's knees and the middle of his chest, where a pitch counts as a strike. | "That was way outside the strike zone." |
+| 10 | Foul ball | `foul-ball` | A ball hit outside the lines; a strike unless the batter already has two. | "He fouled off eight pitches." |
+| 11 | Walk | `walk` | Four balls: the batter takes first base. | "He worked a walk to start the inning." |
+| 12 | Hit by pitch | `hit-by-pitch` | A pitch that hits the batter awards him first base. | "He got hit by a pitch and took first." |
+| 13 | Plate appearance | `plate-appearance` | Every trip to the plate, whatever the result. | "He has 600 plate appearances." |
+| 14 | At-bat | `at-bat` | A plate appearance that does not end in a walk, hit by pitch or sacrifice. | "That was an eight-pitch at-bat." |
+| 15 | Force play | `force-play` | An out made by touching the base when the runner is forced to go; no tag needed. | "It's a force at second." |
+| 16 | Tag | `tag` | Touching a runner with the ball or the glove holding it. | "They tagged him out at home." |
+| 17 | Tag up | `tag-up` | Touching the base after a fly ball is caught before running on. | "He tagged up and scored." |
+| 18 | Sacrifice fly | `sacrifice-fly` | A fly ball caught for an out that lets a runner score; no at-bat is charged. | "That's a sac fly, one run in." |
+| 19 | Stolen base | `stolen-base` | Advancing to the next base without a hit while the pitcher delivers. | "He's got 40 steals this year." |
+| 20 | Balk | `balk` | An illegal move by the pitcher that awards each runner a base. | "They called a balk on the pitcher." |
+| 21 | Pickoff | `pickoff` | A throw to a base to catch a runner leading off. | "He got picked off first." |
+| 22 | Double play | `double-play` | Two outs on one play, such as a 6-4-3. | "We hit into a double play, ugh." |
+| 23 | Error | `error` | A fielding mistake that lets a batter or runner reach or advance. | "That was an error on the shortstop." |
+| 24 | Infield fly rule | `infield-fly-rule` | A rule that calls the batter out on an easy pop-up with runners on and fewer than two outs. | "Infield fly, batter's out, don't run." |
+| 25 | Cutoff man | `cutoff-man` | An infielder who intercepts an outfield throw to redirect it. | "The cutoff man cut off the throw." |
+| 26 | Pitch framing | `pitch-framing` | A catcher's skill of receiving pitches to make borderline strikes look like strikes. | "He's an elite framer." |
+| 27 | Infield in | `infield-in` | Infielders playing close to cut off a run at the plate. | "They have the infield in." |
+| 28 | Line score | `line-score` | The row-by-row scoreboard of runs by inning with R, H and E totals. | "The line score says we had 11 hits." |
+| 29 | Box score | `box-score` | A game summary listing each batter's and pitcher's numbers. | "Check the box score, he was 3 for 4." |
+| 30 | Batting average | `batting-average` | Hits divided by at-bats. | "He's hitting .310." |
+| 31 | On-base percentage | `on-base-percentage` | How often a batter reaches base, including walks. | "His on-base percentage is .400." |
+| 32 | Slugging percentage | `slugging-percentage` | Total bases per at-bat; measures power. | "He's slugging over .550." |
+| 33 | OPS | `ops` | On-base plus slugging. | "His OPS is over .900." |
+| 34 | RBI | `rbi` | A run scored because of the batter's plate appearance. | "Three RBI last night." |
+| 35 | ERA | `era` | Earned runs per nine innings. | "Her ace has a 2.50 ERA." |
+| 36 | WHIP | `whip` | Walks plus hits per inning pitched. | "His WHIP is barely over one." |
+| 37 | Save | `save` | A finish to a close win by a reliever meeting set conditions. | "He's got 30 saves." |
+| 38 | Hold | `hold` | A reliever preserving a lead in the middle innings. | "He picked up a hold in the eighth." |
+| 39 | Quality start | `quality-start` | A start of six or more innings with three or fewer earned runs. | "That was a quality start." |
+| 40 | No-hitter | `no-hitter` | A game in which a team gets no hits. | "It's a no-hitter into the seventh!" |
+| 41 | Perfect game | `perfect-game` | A game in which no opposing batter reaches base. | "A perfect game, only 24 have ever happened." |
+| 42 | Run differential | `run-differential` | Runs scored minus runs allowed. | "The run differential says we are better than 500." |
+| 43 | Magic number | `magic-number` | Combination of wins and rival losses that clinches a spot. | "The magic number is three." |
+| 44 | Four-seam fastball | `four-seam-fastball` | The fastest, straightest pitch. | "He throws a four-seam at 97." |
+| 45 | Slider | `slider` | A hard breaking ball with a sharp sideways bite. | "That slider fell off the table." |
+| 46 | Curveball | `curveball` | A slower breaking ball with a big drop. | "His curveball is filthy." |
+| 47 | Changeup | `changeup` | A pitch that looks like a fastball but arrives much slower. | "He got fooled by a changeup." |
+| 48 | Bullpen | `bullpen` | The relief pitchers; also the area where they warm up. | "Our bullpen is exhausted." |
+| 49 | Closer | `closer` | The reliever who usually finishes close games. | "Our closer never blows saves." |
+| 50 | Pitch count | `pitch-count` | The number of pitches a pitcher has thrown; a workload signal. | "He was at 105 pitches, they pulled him." |
+| 51 | Command | `command` | The ability to throw a pitch where you want it. | "His command is elite." |
+| 52 | Exit velocity | `exit-velocity` | How fast the ball leaves the bat. | "That was 110 mph exit velocity." |
+| 53 | Launch angle | `launch-angle` | The vertical angle the ball leaves the bat. | "He's raising his launch angle." |
+| 54 | Barrel | `barrel` | A batted ball with ideal speed and angle. | "He barreled that up." |
+| 55 | Platoon advantage | `platoon-advantage` | The edge a hitter gets facing an opposite-handed pitcher. | "They platoon him against lefties." |
+| 56 | Sacrifice bunt | `sacrifice-bunt` | A bunt that gives up the batter to advance a runner. | "The sacrifice bunt moved him to second." |
+| 57 | Intentional walk | `intentional-walk` | A walk given on purpose, usually to set up a force or avoid a slugger. | "They walked him on purpose." |
+| 58 | Leverage | `leverage` | How much a situation swings the game. | "That was the highest leverage at-bat." |
+| 59 | Pitch clock | `pitch-clock` | A timer forcing the pitcher to throw within 15 seconds (18 with runners on) [2026]. | "The pitch clock rushed him." |
+| 60 | ABS challenge | `abs-challenge` | A limited challenge to a ball-strike call, decided by a tracking system [2026]. | "He challenged and the ABS overturned it." |
+| 61 | Disengagement limit | `disengagement-limit` | The two pickoff throws or step-offs allowed per plate appearance [2026]. | "A third step-off is a balk." |
+| 62 | Three-batter minimum | `three-batter-minimum` | A reliever must face at least three batters or finish the inning. | "That's why they can't just bring a lefty in for one." |
+| 63 | WAR | `war` | Wins Above Replacement: how many wins a player adds over a freely available replacement. | "His WAR is over eight." |
+| 64 | wRC+ | `wrc-plus` | A hitting stat scaled so 100 is league average, adjusting for park. | "His wRC+ is 150." |
+| 65 | FIP | `fip` | An ERA-like stat based only on things a pitcher controls. | "His FIP says he's been unlucky." |
+| 66 | Statcast | `statcast` | MLB's tracking system that measures speed, angle, spin and more. | "Statcast says that was 112 mph." |
+| 67 | Free agency | `free-agency` | When a player can sign with any team after his contract ends. | "He's a free agent this winter." |
+| 68 | Arbitration | `arbitration` | A process that sets salaries for young players who lack free agency. | "He goes to arbitration next year." |
+| 69 | Luxury tax | `luxury-tax` | A tax on payroll above a threshold (the competitive balance tax). | "They're over the luxury tax again." |
+| 70 | Trade deadline | `trade-deadline` | The date after which players cannot be traded until winter. | "They're sellers at the deadline." |
+| 71 | Lockout | `lockout` | Owners halting operations during a labor dispute; not the same as a strike. | "There's going to be a lockout in December." |
+| 72 | Dead-ball era | `dead-ball-era` | The early 1900s, when scoring was low and home runs rare. | "The dead-ball era was all bunts and steals." |
+
+## 4. Talk Track scenarios (10)
+
+Each track has the enthusiast line, what it means, and the replies with coach notes. In the payloads, `smoothDelta` is +30 (good), 0 to +5 (meh) or -20 (cringe). All payloads validate against `talk-track.schema.json`. Voice: cheeky coach, playful, never about the crush or a team; the aim is real curiosity, not fake authority.
+
+### T1. Bullpen blew it (lesson `talk-02`)
+
+- **Enthusiast line:** "Bullpen blew it again. Up two in the eighth."
+- **Meaning:** relief pitchers gave up the lead late. Terms: bullpen, blown save, reliever, closer.
+
+```json
+{
+  "title": "Bullpen blew it",
+  "setting": "She texts you after a late-inning collapse.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "Bullpen blew it again. Up two in the eighth. I can't.",
+      "replies": [
+        { "id": "good", "text": "Oof. Was it the closer or the guy before him?", "smoothDelta": 30, "theirResponse": "The setup guy! He walked two and then the closer came in and...", "coachNote": "You used the bullpen roles and asked her to tell the story." },
+        { "id": "meh", "text": "That's rough. Baseball, right?", "smoothDelta": 3, "theirResponse": "Sure, but it's my baseball.", "coachNote": "Kind, but generic. Ask one specific question." },
+        { "id": "cringe", "text": "Just get better pitchers.", "smoothDelta": -20, "theirResponse": "...Thank you, genius.", "coachNote": "Advice is not what she asked for. Ask about it instead." }
+      ]
+    }
+  ],
+  "closingNote": "The bullpen is the group of relief pitchers. When a lead disappears late, they get the blame."
+}
+```
+
+### T2. Full-count slider (lesson `count-07`)
+
+- **Enthusiast line:** "He took a 3-2 slider right down the middle."
+- **Meaning:** full count, a called strike three. Terms: full count, slider, called strike three.
+
+```json
+{
+  "title": "Full-count slider",
+  "setting": "She's still upset about last night's final at-bat.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "He took a 3-2 slider right down the middle. For strike three. I'm still mad.",
+      "replies": [
+        { "id": "good", "text": "Ugh, called strike three. Do you think he was sitting on a fastball?", "smoothDelta": 30, "theirResponse": "YES. He was looking heater and got fooled.", "coachNote": "You named the count and asked what she thought he was expecting." },
+        { "id": "meh", "text": "Wow. That sucks.", "smoothDelta": 2, "theirResponse": "It really does.", "coachNote": "Fine, but you can do better with a real question." },
+        { "id": "cringe", "text": "Well, a slider is a basic pitch.", "smoothDelta": -20, "theirResponse": "Okay, thanks for the lecture.", "coachNote": "Do not correct or lecture. Stay curious." }
+      ]
+    }
+  ],
+  "closingNote": "Three balls and two strikes is a full count. Taking a good pitch for strike three is 'striking out looking'."
+}
+```
+
+### T3. Wild-card math (lesson `score-07`)
+
+- **Enthusiast line:** "We're two games back for the last wild card."
+- **Meaning:** trails the final playoff spot by two games. Terms: games behind, wild card.
+
+```json
+{
+  "title": "Wild-card math",
+  "setting": "It's late September and the standings are all she talks about.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "We're two games back for the last wild card with nine to play.",
+      "replies": [
+        { "id": "good", "text": "Nine games left. Who else is chasing that spot?", "smoothDelta": 30, "theirResponse": "Three teams! And we play one of them this weekend.", "coachNote": "You did the math and asked about the race." },
+        { "id": "meh", "text": "So are you guys going to make it?", "smoothDelta": 3, "theirResponse": "I don't know! Don't jinx it.", "coachNote": "Understandable, but predictions can feel like pressure." },
+        { "id": "cringe", "text": "Two games is nothing, chill.", "smoothDelta": -20, "theirResponse": "Two games with nine left is EVERYTHING.", "coachNote": "Do not dismiss how much it matters to her." }
+      ]
+    }
+  ],
+  "closingNote": "Games behind counts how many wins separate you from a spot. Two games with nine left is a real race."
+}
+```
+
+### T4. The pitching change (lesson `strat-07`)
+
+- **Enthusiast line:** "Why did he take him out? He was throwing a gem!"
+- **Meaning:** she questions the manager's decision to remove a starter. Terms: pitch count, times through the order, matchup.
+
+```json
+{
+  "title": "The pitching change",
+  "setting": "She's ranting about the manager after a loss.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "Why did he pull him?! He'd given up one run in six innings!",
+      "replies": [
+        { "id": "good", "text": "That's a great start. What was his pitch count?", "smoothDelta": 30, "theirResponse": "Like 98. But he was cruising!", "coachNote": "You showed you know pitch counts drive that decision." },
+        { "id": "meh", "text": "Managers make weird choices.", "smoothDelta": 4, "theirResponse": "Ugh, right?", "coachNote": "Friendly, but no curiosity." },
+        { "id": "cringe", "text": "Actually, analytics say to pull starters early.", "smoothDelta": -20, "theirResponse": "Not the time, thanks.", "coachNote": "A lecture during a rant is a mistake. Listen first." }
+      ]
+    },
+    {
+      "theirMessage": "And then the reliever gave up a homer on the first pitch.",
+      "replies": [
+        { "id": "good", "text": "Ouch. Was it a lefty against your slugger?", "smoothDelta": 30, "theirResponse": "Yes! He didn't even try to match up!", "coachNote": "You linked the change to a matchup, a real bullpen concept." },
+        { "id": "meh", "text": "That's how it goes sometimes.", "smoothDelta": 2, "theirResponse": "Hmm.", "coachNote": "True but flat." }
+      ]
+    }
+  ],
+  "closingNote": "Managers weigh pitch count, matchups and rest; fans weigh the result."
+}
+```
+
+### T5. Ghost runner (lesson `talk-05`)
+
+- **Enthusiast line:** "I hate the ghost runner."
+- **Meaning:** dislikes the automatic runner on second in extra innings.
+
+```json
+{
+  "title": "Ghost runner",
+  "setting": "The game went to extras and she is grumbling.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "I hate the ghost runner. Extra innings used to be the best part.",
+      "replies": [
+        { "id": "good", "text": "What do you miss about the old way?", "smoothDelta": 30, "theirResponse": "The tension! Now it's over in one swing.", "coachNote": "You invited her opinion and did not argue." },
+        { "id": "meh", "text": "I kind of like that it's faster.", "smoothDelta": 3, "theirResponse": "Fair, but I don't.", "coachNote": "Honest, but ask first." },
+        { "id": "cringe", "text": "It's the same as any other rule.", "smoothDelta": -20, "theirResponse": "It is NOT.", "coachNote": "Do not dismiss her feelings." }
+      ]
+    }
+  ],
+  "closingNote": "The automatic runner starts every extra inning with a runner on second. Fans are split."
+}
+```
+
+### T6. ABS challenge night (lesson `talk-05`)
+
+- **Enthusiast line:** "The ABS challenge saved us in the ninth."
+- **Meaning:** a ball-strike call was overturned by the tracking system [2026].
+
+```json
+{
+  "title": "ABS challenge night",
+  "setting": "She's watching the game and wants to tell you what happened.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "The ABS challenge saved us in the ninth! It was a ball and the ump called it a strike.",
+      "replies": [
+        { "id": "good", "text": "Nice! Do teams save their challenges for the late innings?", "smoothDelta": 30, "theirResponse": "Yes, you only get two, so they saved one.", "coachNote": "You know challenges are limited and asked a real strategy question." },
+        { "id": "meh", "text": "Robots ruining baseball!", "smoothDelta": 2, "theirResponse": "Ha, some people say that.", "coachNote": "A joke, but you did not ask about her view." },
+        { "id": "cringe", "text": "The zone is 17 inches, obviously.", "smoothDelta": -20, "theirResponse": "Sure, professor.", "coachNote": "Do not show off; ask about her game." }
+      ]
+    }
+  ],
+  "closingNote": "Since 2026 a batter, pitcher or catcher can challenge a ball-strike call within two seconds; each team starts with two challenges."
+}
+```
+
+### T7. Lockout talk (lesson `front-06`)
+
+- **Enthusiast line:** "There's going to be a lockout in December."
+- **Meaning:** owners will stop the offseason when the CBA expires on December 1 2026. Terms: CBA, lockout, salary cap [verify at release].
+
+```json
+{
+  "title": "Lockout talk",
+  "setting": "She is worried about next season.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "They're saying there will be a lockout in December. I'm so mad.",
+      "replies": [
+        { "id": "good", "text": "That sounds stressful. Is the salary cap the sticking point?", "smoothDelta": 30, "theirResponse": "Basically! The owners want one and the players won't take it.", "coachNote": "You asked a real question and stayed neutral." },
+        { "id": "meh", "text": "That's frustrating for fans.", "smoothDelta": 4, "theirResponse": "It really is.", "coachNote": "Kind, no substance." },
+        { "id": "cringe", "text": "Players are greedy anyway.", "smoothDelta": -20, "theirResponse": "That's not it at all.", "coachNote": "Do not pick a side in a labor dispute." }
+      ]
+    }
+  ],
+  "closingNote": "The CBA is the labor agreement; when it expires the owners can lock out the players until a new one is signed."
+}
+```
+
+### T8. Keeping score at the park (lesson `cult-05`)
+
+- **Enthusiast line:** "Do you want to keep score with me?"
+- **Meaning:** invitation to score the game with a scorecard. Terms: scorekeeping symbols, K, 6-4-3.
+
+```json
+{
+  "title": "Keeping score at the park",
+  "setting": "You are at the ballpark and she pulls out a scorecard.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "Do you want to keep score with me? I've done it since I was a kid.",
+      "replies": [
+        { "id": "good", "text": "I'd love to. Teach me what a K is and I'll write it in.", "smoothDelta": 30, "theirResponse": "A strikeout! And a backwards K means he watched it.", "coachNote": "You admitted you are new and asked her to teach you." },
+        { "id": "meh", "text": "Sure, I guess.", "smoothDelta": 3, "theirResponse": "Only if you want to.", "coachNote": "Lukewarm. Show some interest." },
+        { "id": "cringe", "text": "Isn't that what the scoreboard is for?", "smoothDelta": -20, "theirResponse": "...The scoreboard doesn't tell you the story.", "coachNote": "Do not mock a ritual she loves." }
+      ]
+    }
+  ],
+  "closingNote": "A K is a swinging strikeout; a backwards K means a called strike three. Scorekeeping is a quiet way to share the game."
+}
+```
+
+### T9. Trade deadline rental (lesson `front-05`)
+
+- **Enthusiast line:** "He's just a rental. We'll lose him in the winter."
+- **Meaning:** a player acquired at the trade deadline on an expiring contract. Terms: rental, free agency, trade deadline.
+
+```json
+{
+  "title": "Trade deadline rental",
+  "setting": "Her team just made a deadline trade.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "We got a good bat at the deadline, but he's a rental. He'll be a free agent in the winter.",
+      "replies": [
+        { "id": "good", "text": "Is it worth it for a playoff run, or would you rather keep prospects?", "smoothDelta": 30, "theirResponse": "That's the debate! We gave up two prospects.", "coachNote": "You know the trade-off and asked a real question." },
+        { "id": "meh", "text": "Is he any good?", "smoothDelta": 3, "theirResponse": "He's hitting well, yeah.", "coachNote": "Fine, but you can go deeper." },
+        { "id": "cringe", "text": "Trades are always bad ideas.", "smoothDelta": -20, "theirResponse": "Not always.", "coachNote": "A blanket opinion can sound like you know it all." }
+      ]
+    }
+  ],
+  "closingNote": "A rental is a player acquired for the rest of one season on an expiring contract."
+}
+```
+
+### T10. The bat flip debate (lesson `cult-02`)
+
+- **Enthusiast line:** "That bat flip was awesome. People are mad about it."
+- **Meaning:** a player celebrated a home run and fans argue about unwritten rules.
+
+```json
+{
+  "title": "The bat flip debate",
+  "setting": "A player flipped his bat after a home run and the internet is arguing.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "That bat flip was awesome. Why are people so mad about it?",
+      "replies": [
+        { "id": "good", "text": "Some fans see it as showing up the pitcher. What do you think?", "smoothDelta": 30, "theirResponse": "I think baseball needs more fun, honestly.", "coachNote": "You explained the debate and asked for her view." },
+        { "id": "meh", "text": "I don't really get the rule.", "smoothDelta": 4, "theirResponse": "There isn't a written rule, it's a custom.", "coachNote": "Honest, and it opened the door for her to explain." },
+        { "id": "cringe", "text": "He should get beaned for that.", "smoothDelta": -20, "theirResponse": "Yikes. No.", "coachNote": "Do not wish harm; the debate is about style, not violence." }
+      ]
+    }
+  ],
+  "closingNote": "Unwritten rules are baseball customs about respect, like not celebrating too much."
+}
+```
+
+## 5. Validation
+
+Every JSON fence in sections 2 and 4 is validated against its schema with the repo's ajv setup (the same version and draft as `tools/validate`). Check command (from the repo root; the script lives in the agent scratch directory and is not committed):
+
+```
+node <scratch>/check-exercises.mjs docs/courses/baseball/exercises.md
+```
+Result at authoring time: see NOTES_FOR_ORCHESTRATOR.md.

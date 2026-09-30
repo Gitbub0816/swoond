@@ -1,0 +1,1421 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "hiking",
+  "unit": {
+    "id": "water-food-and-body",
+    "title": "Water, food and your body",
+    "summary": "Hydration, fuel, heat and altitude: how the body behaves on a climb.",
+    "layer": "foundations",
+    "order": 2,
+    "personalizationSlots": [
+      "skill-level"
+    ],
+    "lessons": [
+      {
+        "id": "wf-01",
+        "title": "How much water",
+        "objective": "You can estimate water needs for a hike and read early dehydration signs.",
+        "estimatedMinutes": 6,
+        "conceptIds": [
+          "hydration-rate",
+          "dehydration-signs"
+        ],
+        "activities": [
+          {
+            "id": "wf-01-es-hydration",
+            "type": "estimate-slider",
+            "conceptIds": [
+              "hydration-rate"
+            ],
+            "payload": {
+              "prompt": "Water for four hours of moderate hiking?",
+              "unit": "liters",
+              "min": 0,
+              "max": 6,
+              "step": 0.5,
+              "correctValue": 2,
+              "tolerance": {
+                "full": 0.5,
+                "partial": 1
+              },
+              "explanation": {
+                "correct": "About half a liter per hour is the classic starting point, so roughly 2 liters.",
+                "incorrect": "Needs vary with heat and effort, but half a liter per hour is a sturdy baseline.",
+                "sayThisLine": "\"About half a liter an hour, so two liters for this one.\""
+              }
+            }
+          },
+          {
+            "id": "wf-01-mc-dehydration",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "dehydration-signs"
+            ],
+            "payload": {
+              "prompt": "Which sign means you are dehydrated and should drink?",
+              "options": [
+                {
+                  "id": "dark-urine",
+                  "text": "Your urine is dark yellow or brown"
+                },
+                {
+                  "id": "clear",
+                  "text": "Your urine is clear and pale"
+                },
+                {
+                  "id": "headache",
+                  "text": "You have a mild headache"
+                },
+                {
+                  "id": "cold",
+                  "text": "You feel cold"
+                }
+              ],
+              "correctOptionIds": [
+                "dark-urine"
+              ],
+              "explanation": {
+                "correct": "Dark urine means your blood is more concentrated because you are not drinking enough. A pale, clear stream means you are well hydrated.",
+                "incorrect": "Urine color is the fastest check. Dark yellow or brown signals dehydration; pale is good.",
+                "sayThisLine": "\"My urine was dark, so I doubled my water.\""
+              }
+            }
+          },
+          {
+            "id": "wf-01-mc-signs",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "dehydration-signs"
+            ],
+            "payload": {
+              "prompt": "You are two hours in on a hot day. Which of these suggests dehydration?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Your mouth is dry and you feel thirsty"
+                },
+                {
+                  "id": "b",
+                  "text": "Your legs are tired"
+                },
+                {
+                  "id": "c",
+                  "text": "The sun is bright"
+                },
+                {
+                  "id": "d",
+                  "text": "Your backpack feels heavier"
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Thirst and a dry mouth are early signals. Drink before you are very thirsty, and sip often instead of waiting.",
+                "incorrect": "Tired legs come from climbing, not dehydration alone. But thirst is the body's call for water.",
+                "sayThisLine": "\"I felt thirsty, so I knew it was time to drink.\""
+              }
+            }
+          },
+          {
+            "id": "wf-01-mc-when-drink",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "hydration-rate"
+            ],
+            "payload": {
+              "prompt": "When is the best time to drink water on a hike?",
+              "options": [
+                {
+                  "id": "lunch",
+                  "text": "Only at lunch break"
+                },
+                {
+                  "id": "thirst",
+                  "text": "Only when you feel very thirsty"
+                },
+                {
+                  "id": "regular",
+                  "text": "Regularly throughout the hike, and whenever you feel thirsty"
+                },
+                {
+                  "id": "end",
+                  "text": "All at once at the end of the hike"
+                }
+              ],
+              "correctOptionIds": [
+                "regular"
+              ],
+              "explanation": {
+                "correct": "Small sips through the hike, plus drinking when thirst calls, keep you ahead of dehydration. Let thirst guide you; do not force huge amounts either.",
+                "incorrect": "Waiting until lunch, or until you are very thirsty, lets a water deficit build. Sip often and early, and drink when thirsty.",
+                "sayThisLine": "\"I sip every twenty minutes, not just at lunch.\""
+              }
+            }
+          },
+          {
+            "id": "wf-01-bc-heat-hydration",
+            "type": "binary-call",
+            "conceptIds": [
+              "hydration-rate"
+            ],
+            "payload": {
+              "prompt": "It is a hot day. Should you carry more water than usual?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two water bottles in the sun on a hot trail, one full and one nearly empty."
+              },
+              "choices": [
+                {
+                  "id": "more",
+                  "label": "Yes, carry more"
+                },
+                {
+                  "id": "same",
+                  "label": "No, the usual amount"
+                }
+              ],
+              "correctChoiceId": "more",
+              "explanation": {
+                "correct": "Heat makes you sweat more to cool your body, so you lose water faster and should carry noticeably more. Pair it with salty snacks, and drink to thirst.",
+                "incorrect": "Heat increases sweat loss, it does not reduce it. Plan on more water on hot days, and know where you can refill.",
+                "sayThisLine": "\"Desert heat means I carry a lot more water than on a cool day.\""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "wf-02",
+        "title": "Making water safe",
+        "objective": "You can compare ways to treat backcountry water and name what they stop.",
+        "estimatedMinutes": 6,
+        "conceptIds": [
+          "water-treatment",
+          "giardia"
+        ],
+        "activities": [
+          {
+            "id": "wf-02-tm-treatment",
+            "type": "term-match",
+            "conceptIds": [
+              "water-treatment"
+            ],
+            "payload": {
+              "prompt": "Match the water treatment method to what it does.",
+              "pairs": [
+                {
+                  "id": "filter",
+                  "term": "Squeeze filter",
+                  "definition": "Forces water through a fine membrane that blocks parasites and bacteria; check if yours covers viruses"
+                },
+                {
+                  "id": "chemical",
+                  "term": "Chemical tablets",
+                  "definition": "Chlorine dioxide or iodine kills most germs, but you must wait the full time on the label (hours for some parasites)"
+                },
+                {
+                  "id": "boil",
+                  "term": "Boiling",
+                  "definition": "A rolling boil kills germs anywhere, but it is slow and burns fuel"
+                },
+                {
+                  "id": "uv",
+                  "term": "UV light pen",
+                  "definition": "Ultraviolet light inactivates germs; fast and light, but it needs batteries and clear water"
+                }
+              ],
+              "distractorDefinitions": [
+                "Letting water sit in the sun overnight"
+              ],
+              "explanation": {
+                "summary": "No single method is perfect. Filters are fast and common. Chemicals are light. UV is trendy but needs power. Boiling works anywhere.",
+                "sayThisLine": "\"I use a squeeze filter. It's light, but I keep it from freezing.\""
+              }
+            }
+          },
+          {
+            "id": "wf-02-fg-giardia",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "giardia"
+            ],
+            "payload": {
+              "prompt": "Complete the giardia facts.",
+              "template": "Giardia is a {{what}} that spreads through {{how}} and causes {{result}}.",
+              "gaps": [
+                {
+                  "id": "what",
+                  "options": [
+                    "microscopic parasite",
+                    "type of algae"
+                  ],
+                  "correct": "microscopic parasite"
+                },
+                {
+                  "id": "how",
+                  "options": [
+                    "feces in water",
+                    "clean rain"
+                  ],
+                  "correct": "feces in water"
+                },
+                {
+                  "id": "result",
+                  "options": [
+                    "severe cramps and diarrhea",
+                    "a mild sunburn"
+                  ],
+                  "correct": "severe cramps and diarrhea"
+                }
+              ],
+              "explanation": {
+                "correct": "Giardia is a microscopic parasite spread through animal and human feces. It causes severe cramps and diarrhea, often a week or two after you drink it.",
+                "incorrect": "Giardia lives in natural water, even clear water, and causes a nasty stomach illness. Treating water is how you avoid it."
+              }
+            }
+          },
+          {
+            "id": "wf-02-bc-clear-water",
+            "type": "binary-call",
+            "conceptIds": [
+              "giardia"
+            ],
+            "payload": {
+              "prompt": "You reach a clear, cold mountain stream. Drink it untreated?",
+              "scene": {
+                "kind": "none",
+                "alt": "A clear, fast mountain stream running over rocks."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, it looks clean"
+                },
+                {
+                  "id": "no",
+                  "label": "No, treat it first"
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Clear water can carry giardia, cryptosporidium and bacteria. Clarity does not mean safety, so treat backcountry water and follow park guidance.",
+                "incorrect": "Even the prettiest streams can carry invisible parasites and bacteria. Treating all backcountry water prevents illness days or weeks later.",
+                "sayThisLine": "\"I treat everything. Even the pretty streams.\""
+              }
+            }
+          },
+          {
+            "id": "wf-02-mc-filters",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "water-treatment"
+            ],
+            "payload": {
+              "prompt": "What can a typical water filter remove?",
+              "options": [
+                {
+                  "id": "all",
+                  "text": "All germs and all contaminants"
+                },
+                {
+                  "id": "bacteria-parasites",
+                  "text": "Most bacteria and parasites, but not viruses or toxins"
+                },
+                {
+                  "id": "nothing",
+                  "text": "Only makes the water look better"
+                },
+                {
+                  "id": "bugs",
+                  "text": "Only removes visible bugs and leaves"
+                }
+              ],
+              "correctOptionIds": [
+                "bacteria-parasites"
+              ],
+              "explanation": {
+                "correct": "Most filters trap bacteria and parasites but not viruses or dissolved chemicals. Viruses are a smaller worry in most U.S. backcountry, but check your filter's specs and follow park guidance.",
+                "incorrect": "Filters are good at parasites and bacteria but not perfect against all viruses or pollution.",
+                "sayThisLine": "\"My filter stops giardia and crypto, the main worries in most places. I check the specs for viruses.\""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "wf-03",
+        "title": "Salt and the water trap",
+        "objective": "You can explain why plain water alone can be dangerous on long hikes.",
+        "estimatedMinutes": 6,
+        "conceptIds": [
+          "electrolytes",
+          "hyponatremia"
+        ],
+        "activities": [
+          {
+            "id": "wf-03-mc-hyponatremia",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "hyponatremia"
+            ],
+            "payload": {
+              "prompt": "Hyponatremia is rare but real. Which situation sets it up?",
+              "options": [
+                {
+                  "id": "overdrink",
+                  "text": "Drinking far more plain water than thirst asks for, for many hours, with little food or salt"
+                },
+                {
+                  "id": "thirst",
+                  "text": "Drinking to thirst and eating regular snacks"
+                },
+                {
+                  "id": "two-liters",
+                  "text": "Drinking two liters over three hours on a hot climb"
+                },
+                {
+                  "id": "skipping",
+                  "text": "Sipping less water than you need"
+                }
+              ],
+              "correctOptionIds": [
+                "overdrink"
+              ],
+              "explanation": {
+                "correct": "Hyponatremia is low blood sodium. It usually takes very large amounts of plain water over many hours with little food. Drinking to thirst and eating salty snacks keeps you safe.",
+                "incorrect": "A normal amount of water is not the problem. Hyponatremia needs a big excess of plain water over many hours with little salt. Never withhold water from a hiker who feels unwell in the heat.",
+                "sayThisLine": "\"I drink to thirst and eat salty snacks. I don't force plain water.\""
+              }
+            }
+          },
+          {
+            "id": "wf-03-mc-safest-drink",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "electrolytes"
+            ],
+            "payload": {
+              "prompt": "Hot day, six hours out. Which drinking plan is safest?",
+              "options": [
+                {
+                  "id": "sip-salt",
+                  "text": "Drink to thirst and eat salty snacks"
+                },
+                {
+                  "id": "only-water",
+                  "text": "Force down large amounts of plain water with no food or salt"
+                },
+                {
+                  "id": "electrolyte",
+                  "text": "Water plus electrolyte mix or sports drink"
+                },
+                {
+                  "id": "soda",
+                  "text": "Drink soda instead of water"
+                }
+              ],
+              "correctOptionIds": [
+                "sip-salt",
+                "electrolyte"
+              ],
+              "explanation": {
+                "correct": "Drinking to thirst while eating salty snacks or using electrolyte mix replaces both water and sodium. Forcing lots of plain water well beyond thirst is what sets up hyponatremia.",
+                "incorrect": "Forcing plain water with no food or salt is the risky pattern, not drinking itself. Thirst plus salty food is the safe pairing.",
+                "sayThisLine": "\"I drop an electrolyte tab in one bottle every hot day.\""
+              }
+            }
+          },
+          {
+            "id": "wf-03-ds-water-trap",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "hyponatremia",
+              "electrolytes"
+            ],
+            "payload": {
+              "prompt": "Hot, 8,000 feet, dizzy, nauseous and headachy. What now?",
+              "situation": {
+                "narrative": "You started early on a planned six-hour hike. The sun is intense. You have drunk two liters of plain water in three hours and barely touched your salty snacks.",
+                "facts": [
+                  {
+                    "label": "Water so far",
+                    "value": "Two liters, plain, in three hours"
+                  },
+                  {
+                    "label": "Food eaten",
+                    "value": "Just a granola bar"
+                  },
+                  {
+                    "label": "Symptoms",
+                    "value": "Dizziness, nausea, headache",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Elevation",
+                    "value": "8,000 feet"
+                  },
+                  {
+                    "label": "Conditions",
+                    "value": "Hot, sun exposed"
+                  },
+                  {
+                    "label": "Trail back",
+                    "value": "Three hours at current pace"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "rest-fuel",
+                  "label": "Stop, rest in shade, sip water and eat salty snacks",
+                  "verdict": "best",
+                  "consequence": "Shade, rest and cooling ease heat strain, and water plus salty food restore fluid and sodium. If the headache and nausea do not settle within about an hour, or get worse, head down.",
+                  "considerations": [
+                    "Two liters in three hours is not too much; these symptoms point to heat, dehydration, altitude, or a mix",
+                    "Rest, shade, cooling and salty food come first",
+                    "Headache and nausea at altitude that persist mean descend",
+                    "Confusion, stumbling or vomiting means get help now"
+                  ]
+                },
+                {
+                  "id": "descend",
+                  "label": "Turn back and descend, resting in shade as you go",
+                  "verdict": "acceptable",
+                  "consequence": "A cautious choice, and the right one if symptoms persist. Going down helps with altitude, but walking in the heat while unwell means slow pacing and frequent shade breaks.",
+                  "considerations": [
+                    "Descending is the reliable fix for altitude symptoms",
+                    "Rest and cool down first if you feel faint",
+                    "Do not hike alone if you feel unsteady"
+                  ]
+                },
+                {
+                  "id": "push-on",
+                  "label": "Eat a salty snack and keep going to finish the loop",
+                  "verdict": "poor",
+                  "consequence": "Hard effort in heat can push heat exhaustion toward heatstroke, and climbing higher with altitude symptoms can make them worse.",
+                  "considerations": [
+                    "Symptoms are a signal to stop, not to push through",
+                    "Salty food helps, but it does not cool you or fix altitude illness",
+                    "Going higher while symptomatic is risky"
+                  ]
+                },
+                {
+                  "id": "stop-water",
+                  "label": "Stop drinking so you do not dilute your blood sodium",
+                  "verdict": "poor",
+                  "consequence": "Withholding water from a hot, symptomatic hiker can worsen dehydration and heat illness. Two liters in three hours is not the overdrinking that causes hyponatremia.",
+                  "considerations": [
+                    "Hyponatremia needs very large volumes of plain water over many hours",
+                    "Keep sipping water, and add salty food",
+                    "Never cut off water from someone who may be dehydrated"
+                  ]
+                }
+              ],
+              "expertNote": "Dizziness, nausea and headache in heat at altitude usually mean heat strain, dehydration, altitude illness, or a mix. Two liters in three hours is not excessive. Hyponatremia is rare and takes far larger volumes of plain water; never withhold water from a symptomatic hiker.",
+              "sayThisLine": "\"I felt dizzy in the heat, so I stopped, cooled off, ate salty snacks and got ready to head down.\"",
+              "safetyNote": "Confusion, stumbling, repeated vomiting or a worsening headache are an emergency: descend and call for help. Follow park guidance."
+            }
+          },
+          {
+            "id": "wf-03-fg-electrolytes",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "electrolytes"
+            ],
+            "payload": {
+              "prompt": "Complete the electrolyte fact.",
+              "template": "Electrolytes are {{what}}, like {{ex}}, that you lose in {{where}}.",
+              "gaps": [
+                {
+                  "id": "what",
+                  "options": [
+                    "salts and minerals",
+                    "extra calories"
+                  ],
+                  "correct": "salts and minerals"
+                },
+                {
+                  "id": "ex",
+                  "options": [
+                    "sodium and potassium",
+                    "sugar and caffeine"
+                  ],
+                  "correct": "sodium and potassium"
+                },
+                {
+                  "id": "where",
+                  "options": [
+                    "sweat",
+                    "your sleep"
+                  ],
+                  "correct": "sweat"
+                }
+              ],
+              "explanation": {
+                "correct": "Electrolytes are essential salts your body loses in sweat. Replacing them keeps your blood chemistry balanced and your muscles working.",
+                "incorrect": "Electrolytes are minerals, mainly sodium and potassium. Sports drinks, salted snacks and even broth replace them."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "wf-04",
+        "title": "Fueling the climb",
+        "objective": "You can estimate calories per hour and pick sensible trail food.",
+        "estimatedMinutes": 6,
+        "conceptIds": [
+          "calories-per-hour",
+          "trail-snacks"
+        ],
+        "activities": [
+          {
+            "id": "wf-04-es-calories",
+            "type": "estimate-slider",
+            "conceptIds": [
+              "calories-per-hour"
+            ],
+            "payload": {
+              "prompt": "You are hiking steadily uphill for four hours. Roughly how many calories will you burn?",
+              "unit": "calories",
+              "min": 400,
+              "max": 2500,
+              "step": 100,
+              "correctValue": 1400,
+              "tolerance": {
+                "full": 200,
+                "partial": 400
+              },
+              "explanation": {
+                "correct": "Hiking burns roughly 350 to 500 calories per hour depending on pace and terrain. Four hours is around 1,400.",
+                "incorrect": "The rate varies, but three to five hundred calories per hour is typical for hiking. Steeper or faster burns more.",
+                "sayThisLine": "\"Hiking burns about four hundred an hour, so I snack throughout.\""
+              }
+            }
+          },
+          {
+            "id": "wf-04-bc-snacking",
+            "type": "binary-call",
+            "conceptIds": [
+              "calories-per-hour"
+            ],
+            "payload": {
+              "prompt": "Six-hour hike: one big lunch, or small snacks all day?",
+              "scene": {
+                "kind": "none",
+                "alt": "A trail mix bag and a sandwich on a rock at a viewpoint."
+              },
+              "choices": [
+                {
+                  "id": "often",
+                  "label": "Small snacks every hour or so"
+                },
+                {
+                  "id": "lunch",
+                  "label": "One big lunch in the middle"
+                }
+              ],
+              "correctChoiceId": "often",
+              "explanation": {
+                "correct": "Small, frequent snacks keep your energy steady and prevent bonking. One big lunch leaves gaps where you feel weak.",
+                "incorrect": "Your body burns fuel continuously, so supply it continuously. Snacking about hourly beats a single large meal.",
+                "sayThisLine": "\"Snack every hour, not just at lunch.\""
+              }
+            }
+          },
+          {
+            "id": "wf-04-fg-trail-food",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "trail-snacks"
+            ],
+            "payload": {
+              "prompt": "Choose the words that describe good trail food.",
+              "template": "Good trail food is {{quality}} and {{portable}}.",
+              "gaps": [
+                {
+                  "id": "quality",
+                  "options": [
+                    "calorie-dense",
+                    "light and fluffy"
+                  ],
+                  "correct": "calorie-dense"
+                },
+                {
+                  "id": "portable",
+                  "options": [
+                    "survives a pack",
+                    "requires cooking"
+                  ],
+                  "correct": "survives a pack"
+                }
+              ],
+              "explanation": {
+                "correct": "Trail snacks pack lots of calories without weighing much, and they do not spoil or crumble in a pack.",
+                "incorrect": "Good trail food is dense (nuts, bars, jerky), not light and fluffy (chips, popcorn). It has to survive jostling."
+              }
+            }
+          },
+          {
+            "id": "wf-04-mc-best-snacks",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "trail-snacks"
+            ],
+            "payload": {
+              "prompt": "Which of these is a good trail snack?",
+              "options": [
+                {
+                  "id": "nuts",
+                  "text": "Nuts and nut butter"
+                },
+                {
+                  "id": "chocolate",
+                  "text": "Chocolate and energy bars"
+                },
+                {
+                  "id": "jerky",
+                  "text": "Jerky and dried fruit"
+                },
+                {
+                  "id": "all",
+                  "text": "All of the above"
+                }
+              ],
+              "correctOptionIds": [
+                "all"
+              ],
+              "explanation": {
+                "correct": "Nuts, bars, chocolate, jerky and dried fruit are all great trail snacks. They are calorie-dense, shelf-stable and they pack well.",
+                "incorrect": "Good trail food is calorie-dense and does not spoil. Mix salty, sweet and fatty for variety.",
+                "sayThisLine": "\"Tortillas and peanut butter is a solid trail lunch.\""
+              }
+            }
+          },
+          {
+            "id": "wf-04-tm-snack-fit",
+            "type": "term-match",
+            "conceptIds": [
+              "trail-snacks"
+            ],
+            "payload": {
+              "prompt": "Match each snack to how it holds up on trail.",
+              "pairs": [
+                {
+                  "id": "nuts",
+                  "term": "Mixed nuts",
+                  "definition": "Calorie-dense and survives a bouncing pack"
+                },
+                {
+                  "id": "jerky",
+                  "term": "Beef jerky",
+                  "definition": "Salty protein that keeps for days"
+                },
+                {
+                  "id": "dates",
+                  "term": "Dried dates",
+                  "definition": "Sweet, quick energy that packs small"
+                },
+                {
+                  "id": "lettuce",
+                  "term": "Fresh lettuce",
+                  "definition": "Bruises, wilts and spoils, and has few calories"
+                }
+              ],
+              "distractorDefinitions": [
+                "Melts into a mess in a warm pack and needs a fridge"
+              ],
+              "explanation": {
+                "summary": "Good trail food is calorie-dense, durable and light. Fresh greens fail all three tests.",
+                "sayThisLine": "\"I bring dried fruit and nuts, not fresh stuff.\""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "wf-05",
+        "title": "Hitting the wall",
+        "objective": "You can spot bonking early and know how to fix it.",
+        "estimatedMinutes": 6,
+        "conceptIds": [
+          "bonking",
+          "calories-per-hour"
+        ],
+        "activities": [
+          {
+            "id": "wf-05-fg-bonking",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "bonking"
+            ],
+            "payload": {
+              "prompt": "Complete the bonking fact.",
+              "template": "Bonking is running low on {{fuel}}, leaving you {{feel}}. The fix is to {{fix}}.",
+              "gaps": [
+                {
+                  "id": "fuel",
+                  "options": [
+                    "fuel (glycogen)",
+                    "oxygen"
+                  ],
+                  "correct": "fuel (glycogen)"
+                },
+                {
+                  "id": "feel",
+                  "options": [
+                    "weak, slow and irritable",
+                    "overheated and sweaty"
+                  ],
+                  "correct": "weak, slow and irritable"
+                },
+                {
+                  "id": "fix",
+                  "options": [
+                    "eat and rest",
+                    "push harder"
+                  ],
+                  "correct": "eat and rest"
+                }
+              ],
+              "explanation": {
+                "correct": "Bonking is hitting the wall: your energy stores are depleted, so you feel weak, shaky and irritable. Food and a short rest usually fix it.",
+                "incorrect": "Bonking is an energy crash from not eating enough. You get slow and cranky, and food is the cure."
+              }
+            }
+          },
+          {
+            "id": "wf-05-mc-bonk-signs",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "bonking"
+            ],
+            "payload": {
+              "prompt": "Which of these is a sign that you are bonking?",
+              "options": [
+                {
+                  "id": "weakness",
+                  "text": "Sudden weakness and slowness"
+                },
+                {
+                  "id": "irritable",
+                  "text": "Sudden irritability or confusion"
+                },
+                {
+                  "id": "tunnel",
+                  "text": "Tunnel vision or dizziness"
+                },
+                {
+                  "id": "all",
+                  "text": "All of the above"
+                }
+              ],
+              "correctOptionIds": [
+                "all"
+              ],
+              "explanation": {
+                "correct": "Bonking feels like a wall: weakness, mood changes, foggy thinking and even tunnel vision. Eat and rest. If confusion or dizziness does not clear, something else, like heat or altitude illness, may be going on.",
+                "incorrect": "Bonking is an energy crash. It brings weakness, mood shifts and sometimes strange symptoms.",
+                "sayThisLine": "\"I started getting cranky and slow, so I knew I needed to eat.\""
+              }
+            }
+          },
+          {
+            "id": "wf-05-ds-bonking",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "bonking",
+              "calories-per-hour"
+            ],
+            "payload": {
+              "prompt": "Five hours into an eight-hour hike. You are getting weak, slow and irritable. Your legs feel like lead.",
+              "situation": {
+                "narrative": "You had breakfast at six AM and a granola bar at hour two. You have barely eaten since, and the terrain is getting steeper.",
+                "facts": [
+                  {
+                    "label": "Snacks eaten since breakfast",
+                    "value": "One granola bar, at hour two"
+                  },
+                  {
+                    "label": "Current time",
+                    "value": "11 AM"
+                  },
+                  {
+                    "label": "Hours hiked",
+                    "value": "Five hours"
+                  },
+                  {
+                    "label": "Energy level",
+                    "value": "Weak, mood down, legs heavy",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Trail snacks left",
+                    "value": "Nuts, jerky, energy bars"
+                  },
+                  {
+                    "label": "Miles left",
+                    "value": "Three miles, moderate terrain"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "push",
+                  "label": "Push on to the finish, you are halfway done",
+                  "verdict": "poor",
+                  "consequence": "Another hour of weakness makes you slower and more irritable. Hiking on empty is dangerous and miserable.",
+                  "considerations": [
+                    "Weak muscles make mistakes",
+                    "Low energy clouds judgment",
+                    "Finish without eating is a recipe for trouble"
+                  ]
+                },
+                {
+                  "id": "eat-rest",
+                  "label": "Stop, eat snacks, drink water and rest 15 minutes",
+                  "verdict": "best",
+                  "consequence": "Calories, water and a short break usually restore energy and mood within 15 to 30 minutes. If you do not feel clearly better, treat it as more than hunger and turn back.",
+                  "considerations": [
+                    "Eating and drinking usually helps within 15 to 30 minutes",
+                    "A short break helps more than you expect",
+                    "If you do not improve, or feel dizzy or confused, turn around"
+                  ]
+                },
+                {
+                  "id": "descend",
+                  "label": "Turn back to the trailhead",
+                  "verdict": "acceptable",
+                  "consequence": "A cautious choice, though eating and resting first usually gets you moving again. Turn back if eating does not help.",
+                  "considerations": [
+                    "Turning back is safe but often unnecessary",
+                    "Food and rest usually fix bonking quickly",
+                    "Turn back if symptoms persist after eating and resting"
+                  ]
+                }
+              ],
+              "expertNote": "Bonking is usually preventable: eat small amounts often. If eating and resting do not help, or you feel dizzy or confused, something else may be wrong; turn back.",
+              "sayThisLine": "\"I ate a few hundred calories and felt like a new person.\""
+            }
+          },
+          {
+            "id": "wf-05-bc-prevent",
+            "type": "binary-call",
+            "conceptIds": [
+              "calories-per-hour"
+            ],
+            "payload": {
+              "prompt": "Feeling great early on. Wait to eat until you feel weak?",
+              "scene": {
+                "kind": "none",
+                "alt": "A hiker with a snack in one hand, striding up a sunny trail."
+              },
+              "choices": [
+                {
+                  "id": "wait",
+                  "label": "Yes, hunger is the cue"
+                },
+                {
+                  "id": "early",
+                  "label": "No, eat small amounts early and often"
+                }
+              ],
+              "correctChoiceId": "early",
+              "explanation": {
+                "correct": "Small, frequent snacks keep your energy steady all day. By the time you feel weak, you are already behind.",
+                "incorrect": "Waiting for weakness means you are already bonking. Steady fuel beats big meals or going without.",
+                "sayThisLine": "\"I snack every hour now. Never bonked since.\""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "wf-06",
+        "title": "When heat turns serious",
+        "objective": "You can distinguish heat cramps, exhaustion and heatstroke in plain language.",
+        "estimatedMinutes": 6,
+        "conceptIds": [
+          "heat-illness"
+        ],
+        "activities": [
+          {
+            "id": "wf-06-fg-heat-cramps",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "heat-illness"
+            ],
+            "payload": {
+              "prompt": "Complete the heat cramps fact.",
+              "template": "Heat cramps are painful {{what}}, often after heavy {{cause}}. Rest in shade and {{treat}}.",
+              "gaps": [
+                {
+                  "id": "what",
+                  "options": [
+                    "muscle spasms",
+                    "stomach bugs"
+                  ],
+                  "correct": "muscle spasms"
+                },
+                {
+                  "id": "cause",
+                  "options": [
+                    "sweating and salt loss",
+                    "sleeping"
+                  ],
+                  "correct": "sweating and salt loss"
+                },
+                {
+                  "id": "treat",
+                  "options": [
+                    "sip water with salt",
+                    "hike faster"
+                  ],
+                  "correct": "sip water with salt"
+                }
+              ],
+              "explanation": {
+                "correct": "Heat cramps are sudden, painful muscle spasms, usually in the legs, from sweat loss and low electrolytes. Rest, cool off, and sip water with salt or a sports drink.",
+                "incorrect": "Heat cramps are a sign of salt and fluid loss. Stop, rest in shade, and replace water and salt before continuing."
+              }
+            }
+          },
+          {
+            "id": "wf-06-tm-heat-ladder",
+            "type": "term-match",
+            "conceptIds": [
+              "heat-illness"
+            ],
+            "payload": {
+              "prompt": "Match each heat problem to what you would see and do.",
+              "pairs": [
+                {
+                  "id": "cramps",
+                  "term": "Heat cramps",
+                  "definition": "Painful muscle spasms: rest in shade, sip water with salt"
+                },
+                {
+                  "id": "exhaustion",
+                  "term": "Heat exhaustion",
+                  "definition": "Weak, dizzy, nauseous, sweating heavily: stop, cool down, sip fluids"
+                },
+                {
+                  "id": "stroke",
+                  "term": "Heatstroke",
+                  "definition": "Confusion or collapse with a very hot body: call 911 and cool now"
+                }
+              ],
+              "distractorDefinitions": [
+                "Sunburn on exposed skin: reapply sunscreen and cover up"
+              ],
+              "explanation": {
+                "summary": "Heat problems form a ladder. Cramps and exhaustion mean stop and cool down. Confusion or collapse is heatstroke, an emergency.",
+                "sayThisLine": "\"Dizzy and weak means stop and cool down. Confused means call for help.\""
+              }
+            }
+          },
+          {
+            "id": "wf-06-mc-heatstroke",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "heat-illness"
+            ],
+            "payload": {
+              "prompt": "What marks heatstroke, and how is it different from heat exhaustion?",
+              "options": [
+                {
+                  "id": "confusion",
+                  "text": "Confusion, stumbling or collapse with a very hot body: a medical emergency"
+                },
+                {
+                  "id": "same",
+                  "text": "The same thing, just a different name"
+                },
+                {
+                  "id": "worse-cramps",
+                  "text": "Worse muscle cramps"
+                },
+                {
+                  "id": "nausea",
+                  "text": "More nausea and vomiting"
+                }
+              ],
+              "correctOptionIds": [
+                "confusion"
+              ],
+              "explanation": {
+                "correct": "Heatstroke is life-threatening. The key sign is a change in thinking or behavior (confusion, slurred speech, stumbling, collapse) with a very hot body. Skin may be dry or still sweaty. Call emergency services and cool the person right away.",
+                "incorrect": "Heatstroke is when the body's cooling fails. Any confusion in a hot, exhausted hiker is a red flag. Call for help and start cooling them; do not wait to hike out.",
+                "sayThisLine": "\"Confusion in the heat means call for help and cool them down, right now.\""
+              }
+            }
+          },
+          {
+            "id": "wf-06-ds-heat-illness",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "heat-illness"
+            ],
+            "payload": {
+              "prompt": "Two PM, exposed canyon. Your friend is dizzy, pale and nauseous.",
+              "situation": {
+                "narrative": "You started at eight AM and have hiked steadily in a narrow canyon with no shade. The air temperature is 92 degrees F.",
+                "facts": [
+                  {
+                    "label": "Friend's symptoms",
+                    "value": "Dizziness, nausea, weakness, pale skin",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Sweating",
+                    "value": "Yes, she is sweating"
+                  },
+                  {
+                    "label": "Confusion",
+                    "value": "No, she is alert"
+                  },
+                  {
+                    "label": "Canyon water source",
+                    "value": "Creek one mile back"
+                  },
+                  {
+                    "label": "Shade",
+                    "value": "None, exposed canyon"
+                  },
+                  {
+                    "label": "Trail ahead",
+                    "value": "Two more miles to car"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "continue",
+                  "label": "Keep hiking to the car, it is only two miles",
+                  "verdict": "poor",
+                  "consequence": "Walking on in the heat with heat exhaustion can push her toward heatstroke. Two miles is a long way when her body cannot cool.",
+                  "considerations": [
+                    "Her symptoms mean she is overheating",
+                    "Continuing without rest is dangerous",
+                    "Heat exhaustion can become heatstroke fast"
+                  ]
+                },
+                {
+                  "id": "rest-water",
+                  "label": "Stop, make shade with a pack or jacket, cool her and let her sip water",
+                  "verdict": "best",
+                  "consequence": "Rest, shade, cooling (wet cloth on neck and face, fanning) and slow sips of water or electrolyte drink are the right first steps. If she is not clearly better in about 30 minutes, or gets confused, call for emergency help.",
+                  "considerations": [
+                    "Heat exhaustion is treated with rest, shade, cooling and fluids",
+                    "Confusion, stumbling or collapse means heatstroke: call 911 and cool her fast",
+                    "If she improves, walk out slowly with frequent shade breaks",
+                    "Do not leave her alone"
+                  ]
+                },
+                {
+                  "id": "back-creek",
+                  "label": "Once she can walk steadily, ease back to the creek to cool off",
+                  "verdict": "acceptable",
+                  "consequence": "Creek water is great for cooling, but rest and cool her where she is first. A mile of walking while symptomatic adds strain, so move only if she is steady, and go slowly.",
+                  "considerations": [
+                    "Cooling in water is very effective",
+                    "Start cooling before you move her",
+                    "Stop and call for help if she gets worse on the way"
+                  ]
+                }
+              ],
+              "expertNote": "Heat exhaustion: dizziness, weakness, nausea and heavy sweating. Heatstroke adds confusion or collapse and is an emergency: call for help and cool the person immediately. She may still be sweating, so do not wait for dry skin.",
+              "sayThisLine": "\"We started at dawn because the canyon is dangerous by noon.\"",
+              "safetyNote": "If she becomes confused, faints or cannot drink, call 911 and cool her right away. Do not wait to walk out."
+            }
+          },
+          {
+            "id": "wf-06-sy-heat-talk",
+            "type": "say-this",
+            "conceptIds": [
+              "heat-illness"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Maya",
+                "text": "We turned back because the heat was getting serious and I was dizzy."
+              },
+              "question": "What does she mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "She was likely showing early signs of heat illness",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "She was tired from walking",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "She was bored",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "She thought the heat was dangerous",
+                  "isCorrect": true
+                }
+              ],
+              "translation": "She recognized early signs of heat illness (dizziness) and made a smart, cautious choice to turn back before it got worse.",
+              "followUps": [
+                {
+                  "line": "Good call. Did you rest and drink water?",
+                  "why": "Shows you know the first aid."
+                },
+                {
+                  "line": "Did you start earlier on your next trip?",
+                  "why": "Asks if she learned from it."
+                }
+              ],
+              "noFakeExpertNote": "Recognize that dizziness in heat is serious. Applaud the decision to turn back."
+            }
+          }
+        ]
+      },
+      {
+        "id": "wf-07",
+        "title": "Going high",
+        "objective": "You can explain acclimatization and recognize altitude sickness.",
+        "estimatedMinutes": 6,
+        "conceptIds": [
+          "altitude-sickness",
+          "acclimatization"
+        ],
+        "activities": [
+          {
+            "id": "wf-07-mc-altitude",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "altitude-sickness"
+            ],
+            "payload": {
+              "prompt": "What is altitude sickness?",
+              "options": [
+                {
+                  "id": "headache",
+                  "text": "Headache, nausea and fatigue from going up too fast"
+                },
+                {
+                  "id": "cold",
+                  "text": "A cold caught at high elevation"
+                },
+                {
+                  "id": "fear",
+                  "text": "Fear of heights"
+                },
+                {
+                  "id": "none",
+                  "text": "Nothing real, just laziness"
+                }
+              ],
+              "correctOptionIds": [
+                "headache"
+              ],
+              "explanation": {
+                "correct": "Altitude sickness happens when you go up faster than your body can adjust. Headache, nausea and fatigue are common above roughly 8,000 feet and can show up lower for some people. If symptoms worsen, descend.",
+                "incorrect": "Altitude sickness is real: low oxygen causes headache, nausea and weakness.",
+                "sayThisLine": "\"I had a headache at the pass. Altitude, I think.\""
+              }
+            }
+          },
+          {
+            "id": "wf-07-fg-acclimatization",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "acclimatization"
+            ],
+            "payload": {
+              "prompt": "Complete the acclimatization idea.",
+              "template": "Acclimatization means your body {{what}} by {{how}}, and you sleep {{sleep}} than your high point.",
+              "gaps": [
+                {
+                  "id": "what",
+                  "options": [
+                    "adapts to less oxygen",
+                    "gets used to cold"
+                  ],
+                  "correct": "adapts to less oxygen"
+                },
+                {
+                  "id": "how",
+                  "options": [
+                    "climbing gradually",
+                    "climbing fast"
+                  ],
+                  "correct": "climbing gradually"
+                },
+                {
+                  "id": "sleep",
+                  "options": [
+                    "lower",
+                    "higher"
+                  ],
+                  "correct": "lower"
+                }
+              ],
+              "explanation": {
+                "correct": "Acclimatization is your body adjusting to lower oxygen over days. You help it by ascending gradually and sleeping lower than the highest point you reached.",
+                "incorrect": "Acclimatization takes time, not effort. Slow ascent and sleeping at a lower elevation give your body room to adjust."
+              }
+            }
+          },
+          {
+            "id": "wf-07-mc-acclimatize-strategy",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "acclimatization"
+            ],
+            "payload": {
+              "prompt": "How do you acclimatize on a mountain trip to 12,000 feet?",
+              "options": [
+                {
+                  "id": "fast",
+                  "text": "Drive to 12,000 feet as fast as possible"
+                },
+                {
+                  "id": "slow",
+                  "text": "Spend a night at an intermediate elevation like 8,000 or 9,000 feet first"
+                },
+                {
+                  "id": "run",
+                  "text": "Run at altitude to build fitness"
+                },
+                {
+                  "id": "none",
+                  "text": "There is no strategy, you just go"
+                }
+              ],
+              "correctOptionIds": [
+                "slow"
+              ],
+              "explanation": {
+                "correct": "Ascending slowly with stops at intermediate elevations lets your body adapt. Sleeping lower than your high point helps most.",
+                "incorrect": "Going fast causes altitude sickness. A slow ascent and sleeping at intermediate heights give your body time to adjust.",
+                "sayThisLine": "\"We're spending a night at 8,000 feet to acclimatize first.\""
+              }
+            }
+          },
+          {
+            "id": "wf-07-ds-altitude",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "altitude-sickness",
+              "acclimatization"
+            ],
+            "payload": {
+              "prompt": "10,500 feet, headache and nausea. Still hike to 12,500?",
+              "situation": {
+                "narrative": "You flew in yesterday and slept poorly. You woke with a headache, nausea and low energy. Today's plan climbs about 2,000 feet higher.",
+                "facts": [
+                  {
+                    "label": "Current elevation",
+                    "value": "10,500 feet (town)"
+                  },
+                  {
+                    "label": "Symptoms",
+                    "value": "Headache, nausea, fatigue",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Planned hike",
+                    "value": "To 12,500 feet"
+                  },
+                  {
+                    "label": "Time at altitude",
+                    "value": "About 20 hours"
+                  },
+                  {
+                    "label": "Acclimatization",
+                    "value": "None, flew in yesterday"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "hike",
+                  "label": "Hike anyway, you will feel better once you move",
+                  "verdict": "poor",
+                  "consequence": "Going higher with altitude sickness can make it worse and can turn serious. Symptoms are a reason not to go up.",
+                  "considerations": [
+                    "Do not ascend with symptoms",
+                    "Exertion and height can make it worse",
+                    "Feeling better while moving does not mean it is gone"
+                  ]
+                },
+                {
+                  "id": "rest",
+                  "label": "Skip the climb: rest, drink water, and go no higher until symptoms clear",
+                  "verdict": "best",
+                  "consequence": "Staying at the same elevation gives your body time to adjust. Mild symptoms often ease in a day or so. Do not go higher until they are gone, and go down if they worsen.",
+                  "considerations": [
+                    "Rest and fluids; skip alcohol",
+                    "Worse headache, vomiting, confusion, stumbling or breathlessness at rest means descend now and get help",
+                    "Ask a clinician about prevention before your next high trip"
+                  ]
+                },
+                {
+                  "id": "lower",
+                  "label": "Descend to a lower town and try again later",
+                  "verdict": "acceptable",
+                  "consequence": "Going down is the most reliable treatment, and the right call if symptoms persist or worsen. If you feel better after resting, waiting a day at this height is also reasonable.",
+                  "considerations": [
+                    "Descending fixes altitude sickness quickly",
+                    "It becomes the best choice if symptoms worsen",
+                    "You can return once acclimatized"
+                  ]
+                }
+              ],
+              "expertNote": "Altitude sickness tracks how fast you go up. Mild symptoms mean stop climbing and rest; worsening means descend. Confusion, stumbling or breathlessness at rest are emergencies. Follow medical and park guidance.",
+              "sayThisLine": "\"I had a headache on arrival, so I rested a day instead of climbing higher.\"",
+              "safetyNote": "Never ascend with symptoms. If they worsen, or you become confused or unsteady, descend and seek medical help."
+            }
+          },
+          {
+            "id": "wf-07-mc-high-hike",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "acclimatization"
+            ],
+            "payload": {
+              "prompt": "You are planning a hike to 13,000 feet. What is smart preparation?",
+              "options": [
+                {
+                  "id": "fast",
+                  "text": "Fly in and hike the next day"
+                },
+                {
+                  "id": "gradual",
+                  "text": "Drive in gradually or spend time at intermediate elevations first"
+                },
+                {
+                  "id": "train",
+                  "text": "Train hard before you go"
+                },
+                {
+                  "id": "none",
+                  "text": "Just go, altitude is not a big deal"
+                }
+              ],
+              "correctOptionIds": [
+                "gradual"
+              ],
+              "explanation": {
+                "correct": "Gradual ascent is the best prevention. Stop at intermediate elevations and sleep lower than your high point.",
+                "incorrect": "Flying in and hiking immediately is a recipe for altitude sickness. Gradual ascent prevents it.",
+                "sayThisLine": "\"We drive up slowly and sleep at eight thousand first.\""
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

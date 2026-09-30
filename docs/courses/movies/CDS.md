@@ -238,7 +238,7 @@ These are the seeds for ~90 `say-this` items; `exercises.md` writes 10+ in full.
 
 ## 11. Curriculum map (ongoing course)
 
-Course version target at launch: `curriculumVersion 0.1.0`. **17 units, 117 lessons, ~175 concepts** across all six layers. (Unit count exceeds the 8-14 guidance for the same reason as football/soccer: three branch units and a live unit; a learner sees about 15 (matching branches only). Approval requested: NOTES item 3.)
+Course version target at launch: `curriculumVersion 0.1.0`. **17 units, 117 lessons, ~340 concepts** across all six layers. (Unit count exceeds the 8-14 guidance for the same reason as football/soccer: three branch units and a live unit; a learner sees about 15 (matching branches only). Approval requested: NOTES item 3.)
 
 Activity legend: `mc` multiple-choice, `bc` binary-call, `tm` term-match, `so` sequence-order, `vi` visual-id, `ds` decision-scenario, `tk` talk-track, `tt` timing-tap (unused), `st` say-this, `fg` fill-the-gap, `li` listening-id, `es` estimate-slider, `ht` hotspot-tap, SIM = Unity.
 
@@ -466,7 +466,7 @@ Spaced review: intervals 1, 3, 7, 21, 60 days; a concept enters the pool when ma
 
 ### Also
 
-- **Concept count target (Playbook):** ~175 concept ids; Playbook terms shown in the app grouped by unit; 60+ terms authored as samples (`exercises.md`).
+- **Concept count target (Playbook):** ~340 concept ids (many are single-idea items grouped in the Playbook by unit); Playbook terms shown in the app grouped by unit; 60+ terms authored as samples (`exercises.md`).
 - **Personalization slots:** `{{director}}`, `{{genre}}`, `{{franchise}}`, `{{platform}}`, `{{region}}` (section 8).
 - **Release plan:** *v0.1.0 launch:* all four foundation units, `genres-up-close`, `directors-and-auteurs`, `eras-of-cinema`, `awards-season`, `cinephile-talk`, conversation lab (first 12 tracks), review. *v0.2:* `world-cinema`, `formats-and-debates`, `branch-franchise`, live unit with curated cards. *v0.3:* other branch units, sims (see below), licensed availability provider. Seasonal updates: awards cards each January-March, festival cards each September and May, summer box-office cards, and a yearly refresh of the "eras/now" lessons.
 

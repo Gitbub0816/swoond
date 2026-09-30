@@ -22,9 +22,21 @@
             "payload": {
               "prompt": "Match the defensive role to its job.",
               "pairs": [
-                {"id": "gk", "term": "Goalkeeper", "definition": "The only player allowed to use hands inside the penalty area; catches, punches and organises the defence."},
-                {"id": "cb", "term": "Centre-back", "definition": "A central defender who marks strikers, wins headers and organises the defensive line."},
-                {"id": "def", "term": "Defender", "definition": "Any player whose main job is to stop the other team from scoring."}
+                {
+                  "id": "gk",
+                  "term": "Goalkeeper",
+                  "definition": "The only player allowed to use hands inside the penalty area; catches, punches and organises the defence."
+                },
+                {
+                  "id": "cb",
+                  "term": "Centre-back",
+                  "definition": "A central defender who marks strikers, wins headers and organises the defensive line."
+                },
+                {
+                  "id": "def",
+                  "term": "Defender",
+                  "definition": "Any player whose main job is to stop the other team from scoring."
+                }
               ],
               "explanation": {
                 "summary": "The goalkeeper is unique because of hands; centre-backs are the central defenders.",
@@ -37,23 +49,43 @@
             "type": "hotspot-tap",
             "conceptIds": ["goalkeeper", "centre-back"],
             "payload": {
-              "prompt": "Tap where the keeper and centre-backs start on a 4-3-3.",
+              "prompt": "Tap the keeper and the two centre-backs in this 4-3-3.",
               "diagram": {
-                "diagramId": "soccer-pitch-full-positions",
-                "aspectRatio": 0.65,
-                "alt": "A full pitch showing starting positions in a 4-3-3 formation with goalkeeper in goal, two centre-backs in front of goal, and outfield players further up."
+                "diagramId": "soccer-433-shape",
+                "aspectRatio": 0.8,
+                "alt": "Overhead diagram of a 4-3-3: goalkeeper at the bottom, a back four, a deep midfielder with two central midfielders ahead, and a front three."
               },
               "hotspots": [
-                {"id": "gk-box", "label": "Goalkeeper", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.02, "r": 0.04}},
-                {"id": "cb-left", "label": "Centre-back", "shape": {"kind": "circle", "cx": 0.35, "cy": 0.1, "r": 0.045}},
-                {"id": "cb-right", "label": "Centre-back", "shape": {"kind": "circle", "cx": 0.65, "cy": 0.1, "r": 0.045}},
-                {"id": "fb-left", "label": "Full-back", "shape": {"kind": "circle", "cx": 0.15, "cy": 0.15, "r": 0.04}},
-                {"id": "fb-right", "label": "Full-back", "shape": {"kind": "circle", "cx": 0.85, "cy": 0.15, "r": 0.04}}
+                {
+                  "id": "gk",
+                  "label": "Goalkeeper",
+                  "shape": {"kind": "circle", "cx": 0.5, "cy": 0.92, "r": 0.05}
+                },
+                {
+                  "id": "lb",
+                  "label": "Left full-back",
+                  "shape": {"kind": "circle", "cx": 0.15, "cy": 0.72, "r": 0.05}
+                },
+                {
+                  "id": "lcb",
+                  "label": "Left centre-back",
+                  "shape": {"kind": "circle", "cx": 0.38, "cy": 0.76, "r": 0.05}
+                },
+                {
+                  "id": "rcb",
+                  "label": "Right centre-back",
+                  "shape": {"kind": "circle", "cx": 0.62, "cy": 0.76, "r": 0.05}
+                },
+                {
+                  "id": "rb",
+                  "label": "Right full-back",
+                  "shape": {"kind": "circle", "cx": 0.85, "cy": 0.72, "r": 0.05}
+                }
               ],
-              "correctHotspotIds": ["gk-box", "cb-left", "cb-right"],
+              "correctHotspotIds": ["gk", "lcb", "rcb"],
               "explanation": {
-                "correct": "Right. The keeper is in goal, and the two centre-backs form the central defensive line.",
-                "incorrect": "In a back four, the keeper sits in goal and two centre-backs defend the centre, with full-backs out wide."
+                "correct": "Right. The keeper is in goal, and the two centre-backs form the middle of the back four.",
+                "incorrect": "In a back four the keeper sits in goal, two centre-backs defend the centre, and the full-backs stay wide."
               }
             }
           },
@@ -82,7 +114,10 @@
             "conceptIds": ["goalkeeper"],
             "payload": {
               "prompt": "A goalkeeper can use hands anywhere on the pitch. True or false?",
-              "scene": {"kind": "none", "alt": "A goalkeeper attempting to pick up the ball with both hands outside the penalty area."},
+              "scene": {
+                "kind": "none",
+                "alt": "A goalkeeper attempting to pick up the ball with both hands outside the penalty area."
+              },
               "choices": [
                 {"id": "true", "label": "True"},
                 {"id": "false", "label": "False"}
@@ -101,13 +136,20 @@
             "type": "say-this",
             "conceptIds": ["goalkeeper"],
             "payload": {
-              "statement": {"speaker": "Maya", "text": "The keeper had a monster game, three saves in one-on-ones."},
+              "statement": {
+                "speaker": "Maya",
+                "text": "The keeper had a monster game, three saves in one-on-ones."
+              },
               "question": "What does she mean?",
               "options": [
                 {"id": "a", "text": "The goalkeeper played really well", "isCorrect": true},
-                {"id": "b", "text": "The striker created multiple chances", "isCorrect": true},
+                {"id": "b", "text": "The striker created multiple chances", "isCorrect": false},
                 {"id": "c", "text": "The team won 3-0", "isCorrect": false},
-                {"id": "d", "text": "The keeper faced tough one-on-one situations", "isCorrect": true}
+                {
+                  "id": "d",
+                  "text": "The keeper faced tough one-on-one situations",
+                  "isCorrect": true
+                }
               ],
               "translation": "The goalkeeper made three excellent saves in one-on-one situations with the striker, which saved the team from conceding.",
               "followUps": [
@@ -150,23 +192,43 @@
             "type": "hotspot-tap",
             "conceptIds": ["full-back", "wing-back"],
             "payload": {
-              "prompt": "Tap where the full-backs line up in a 4-3-3 formation.",
+              "prompt": "Tap the two full-backs in this 4-3-3.",
               "diagram": {
-                "diagramId": "soccer-pitch-full-positions",
-                "aspectRatio": 0.65,
-                "alt": "A full pitch showing a 4-3-3 formation with goalkeeper, two centre-backs, two full-backs on the wings, three midfielders, and three attackers."
+                "diagramId": "soccer-433-shape",
+                "aspectRatio": 0.8,
+                "alt": "Overhead diagram of a 4-3-3: goalkeeper at the bottom, a back four, a deep midfielder with two central midfielders ahead, and a front three."
               },
               "hotspots": [
-                {"id": "fb-left", "label": "Left full-back", "shape": {"kind": "circle", "cx": 0.15, "cy": 0.15, "r": 0.045}},
-                {"id": "fb-right", "label": "Right full-back", "shape": {"kind": "circle", "cx": 0.85, "cy": 0.15, "r": 0.045}},
-                {"id": "cb-left", "label": "Centre-back", "shape": {"kind": "circle", "cx": 0.35, "cy": 0.1, "r": 0.045}},
-                {"id": "cb-right", "label": "Centre-back", "shape": {"kind": "circle", "cx": 0.65, "cy": 0.1, "r": 0.045}},
-                {"id": "wb-left", "label": "Wing-back", "shape": {"kind": "circle", "cx": 0.1, "cy": 0.25, "r": 0.045}}
+                {
+                  "id": "lb",
+                  "label": "Left full-back",
+                  "shape": {"kind": "circle", "cx": 0.15, "cy": 0.72, "r": 0.05}
+                },
+                {
+                  "id": "lcb",
+                  "label": "Left centre-back",
+                  "shape": {"kind": "circle", "cx": 0.38, "cy": 0.76, "r": 0.05}
+                },
+                {
+                  "id": "rcb",
+                  "label": "Right centre-back",
+                  "shape": {"kind": "circle", "cx": 0.62, "cy": 0.76, "r": 0.05}
+                },
+                {
+                  "id": "rb",
+                  "label": "Right full-back",
+                  "shape": {"kind": "circle", "cx": 0.85, "cy": 0.72, "r": 0.05}
+                },
+                {
+                  "id": "lw",
+                  "label": "Left winger",
+                  "shape": {"kind": "circle", "cx": 0.18, "cy": 0.2, "r": 0.05}
+                }
               ],
-              "correctHotspotIds": ["fb-left", "fb-right"],
+              "correctHotspotIds": ["lb", "rb"],
               "explanation": {
-                "correct": "Right. The full-backs sit out wide in a back four, one on each flank.",
-                "incorrect": "Full-backs play out wide beside the centre-backs in a back-four defence."
+                "correct": "Right. The full-backs sit out wide on either side of the centre-backs, one on each flank.",
+                "incorrect": "Full-backs are the wide defenders in a back four. The centre-backs are between them and the wingers play higher up."
               }
             }
           },
@@ -177,9 +239,21 @@
             "payload": {
               "prompt": "Match the wide defender to their job.",
               "pairs": [
-                {"id": "fb", "term": "Full-back", "definition": "A wide defender in a back four who defends the flank and often overlaps to attack."},
-                {"id": "wb", "term": "Wing-back", "definition": "A wide player in a back-three system who covers the whole flank, attacking and defending."},
-                {"id": "winger", "term": "Winger", "definition": "An attacking player on the wing who beats defenders and crosses or shoots."}
+                {
+                  "id": "fb",
+                  "term": "Full-back",
+                  "definition": "A wide defender in a back four who defends the flank and often overlaps to attack."
+                },
+                {
+                  "id": "wb",
+                  "term": "Wing-back",
+                  "definition": "A wide player in a back-three system who covers the whole flank, attacking and defending."
+                },
+                {
+                  "id": "winger",
+                  "term": "Winger",
+                  "definition": "An attacking player on the wing who beats defenders and crosses or shoots."
+                }
               ],
               "explanation": {
                 "summary": "Full-backs are in a back four; wing-backs are in a back three and do more attacking.",
@@ -193,7 +267,10 @@
             "conceptIds": ["full-back"],
             "payload": {
               "prompt": "A full-back overlapping means running forward to support an attack. True or false?",
-              "scene": {"kind": "none", "alt": "A full-back running forward past the winger to receive the ball in a wide attacking position."},
+              "scene": {
+                "kind": "none",
+                "alt": "A full-back running forward past the winger to receive the ball in a wide attacking position."
+              },
               "choices": [
                 {"id": "true", "label": "True"},
                 {"id": "false", "label": "False"}
@@ -215,15 +292,25 @@
               "statement": {"speaker": "Maya", "text": "Our right-back gets forward more than the winger."},
               "question": "What is she saying?",
               "options": [
-                {"id": "a", "text": "The full-back is attacking more than defending", "isCorrect": true},
+                {
+                  "id": "a",
+                  "text": "The full-back is attacking more than defending",
+                  "isCorrect": true
+                },
                 {"id": "b", "text": "The full-back is playing high on the pitch", "isCorrect": true},
                 {"id": "c", "text": "The team's right side is strong in attack", "isCorrect": true},
                 {"id": "d", "text": "The winger is not trying hard enough", "isCorrect": false}
               ],
               "translation": "Her team's right-back is constantly overlapping and running forward in attack, more than the winger, making the right side dangerous.",
               "followUps": [
-                {"line": "Does that make your defence exposed?", "why": "Shows you understand the trade-off."},
-                {"line": "Is he a threat from set pieces?", "why": "Asks about a specific strength."}
+                {
+                  "line": "Does that make your defence exposed?",
+                  "why": "Shows you understand the trade-off."
+                },
+                {
+                  "line": "Is he a threat from set pieces?",
+                  "why": "Asks about a specific strength."
+                }
               ],
               "noFakeExpertNote": "It's fine to ask if that's risky for defending."
             }
@@ -244,12 +331,24 @@
             "payload": {
               "prompt": "Match the midfielder number to their role.",
               "pairs": [
-                {"id": "six", "term": "The 6 (Defensive midfielder)", "definition": "Sits in front of the defence to break up play and start attacks from deep."},
-                {"id": "eight", "term": "The 8 (Central midfielder)", "definition": "Links defence and attack, covers lots of ground and does everything—defending, passing, running."},
-                {"id": "ten", "term": "The 10 (Attacking midfielder)", "definition": "A creative player just behind the striker who unlocks defences with clever passes."}
+                {
+                  "id": "six",
+                  "term": "The 6 (Defensive midfielder)",
+                  "definition": "Sits in front of the defence to break up play and start attacks from deep."
+                },
+                {
+                  "id": "eight",
+                  "term": "The 8 (Central midfielder)",
+                  "definition": "Links defence and attack, covers lots of ground and does everything—defending, passing, running."
+                },
+                {
+                  "id": "ten",
+                  "term": "The 10 (Attacking midfielder)",
+                  "definition": "A creative player just behind the striker who unlocks defences with clever passes."
+                }
               ],
               "explanation": {
-                "summary": "The numbers show their roles: 6 is defensive, 8 is box-to-box, 10 is creative.",
+                "summary": "The 6 protects the defence, the 8 links defence and attack, and the 10 creates chances behind the striker.",
                 "sayThisLine": "We need a proper six, someone to screen the back line."
               }
             }
@@ -259,23 +358,43 @@
             "type": "hotspot-tap",
             "conceptIds": ["defensive-midfielder", "central-midfielder", "attacking-midfielder"],
             "payload": {
-              "prompt": "Tap the positions of the defensive, central and attacking midfielders in a 4-3-3.",
+              "prompt": "Tap the two central midfielders (the 8s) in this 4-3-3.",
               "diagram": {
-                "diagramId": "soccer-pitch-full-positions",
-                "aspectRatio": 0.65,
-                "alt": "A full pitch showing a 4-3-3 formation with a defensive midfielder, a central midfielder, an attacking midfielder, and other players in their positions."
+                "diagramId": "soccer-433-shape",
+                "aspectRatio": 0.8,
+                "alt": "Overhead diagram of a 4-3-3: goalkeeper at the bottom, a back four, a deep midfielder with two central midfielders ahead, and a front three."
               },
               "hotspots": [
-                {"id": "six", "label": "The 6", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.25, "r": 0.04}},
-                {"id": "eight", "label": "The 8", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.35, "r": 0.04}},
-                {"id": "ten", "label": "The 10", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.5, "r": 0.04}},
-                {"id": "striker", "label": "Striker", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.75, "r": 0.04}},
-                {"id": "wing", "label": "Winger", "shape": {"kind": "circle", "cx": 0.75, "cy": 0.6, "r": 0.04}}
+                {
+                  "id": "dm",
+                  "label": "Deep midfielder",
+                  "shape": {"kind": "circle", "cx": 0.5, "cy": 0.58, "r": 0.05}
+                },
+                {
+                  "id": "lcm",
+                  "label": "Left central midfielder",
+                  "shape": {"kind": "circle", "cx": 0.3, "cy": 0.46, "r": 0.05}
+                },
+                {
+                  "id": "rcm",
+                  "label": "Right central midfielder",
+                  "shape": {"kind": "circle", "cx": 0.7, "cy": 0.46, "r": 0.05}
+                },
+                {
+                  "id": "lw",
+                  "label": "Left winger",
+                  "shape": {"kind": "circle", "cx": 0.18, "cy": 0.2, "r": 0.05}
+                },
+                {
+                  "id": "st",
+                  "label": "Striker",
+                  "shape": {"kind": "circle", "cx": 0.5, "cy": 0.12, "r": 0.05}
+                }
               ],
-              "correctHotspotIds": ["six", "eight", "ten"],
+              "correctHotspotIds": ["lcm", "rcm"],
               "explanation": {
-                "correct": "Right. The 6 sits deep, the 8 is box-to-box, and the 10 sits behind the striker.",
-                "incorrect": "In a 4-3-3 the three midfielders line up: the 6 shields the defence, the 8 covers everything, and the 10 creates chances."
+                "correct": "Right. The two 8s play ahead of the deeper 6, linking defence and attack.",
+                "incorrect": "The deepest midfielder is the 6. The two central midfielders in front of him are the 8s, and the striker and wingers are attackers."
               }
             }
           },
@@ -323,7 +442,10 @@
             "conceptIds": ["central-midfielder"],
             "payload": {
               "prompt": "A number 8 is a midfielder who defends and attacks equally. True or false?",
-              "scene": {"kind": "none", "alt": "A central midfielder making a tackle in their own half, then running forward to support the attack in the opponent's half."},
+              "scene": {
+                "kind": "none",
+                "alt": "A central midfielder making a tackle in their own half, then running forward to support the attack in the opponent's half."
+              },
               "choices": [
                 {"id": "true", "label": "True"},
                 {"id": "false", "label": "False"}
@@ -374,9 +496,21 @@
             "payload": {
               "prompt": "Match the attacking role to their job.",
               "pairs": [
-                {"id": "winger", "term": "Winger", "definition": "A wide attacker who beats full-backs, crosses or cuts inside to shoot."},
-                {"id": "striker", "term": "Striker (the 9)", "definition": "The main goalscorer who leads the line, finishes chances and holds up the ball."},
-                {"id": "poacher", "term": "Poacher", "definition": "A striker whose game is being in the right place for tap-ins and rebounds."}
+                {
+                  "id": "winger",
+                  "term": "Winger",
+                  "definition": "A wide attacker who beats full-backs, crosses or cuts inside to shoot."
+                },
+                {
+                  "id": "striker",
+                  "term": "Striker (the 9)",
+                  "definition": "The main goalscorer who leads the line, finishes chances and holds up the ball."
+                },
+                {
+                  "id": "poacher",
+                  "term": "Poacher",
+                  "definition": "A striker whose game is being in the right place for tap-ins and rebounds."
+                }
               ],
               "explanation": {
                 "summary": "Wingers create from the sides; strikers finish chances in the box.",
@@ -389,16 +523,16 @@
             "type": "multiple-choice",
             "conceptIds": ["winger"],
             "payload": {
-              "prompt": "What is a winger's main way to create a goal?",
+              "prompt": "Which is a classic way a winger helps create a goal?",
               "options": [
-                {"id": "a", "text": "Dribble past defenders and shoot"},
-                {"id": "b", "text": "Cross or cut back into the box"},
-                {"id": "c", "text": "Pass sideways to midfielders"}
+                {"id": "a", "text": "Stay back and mark the striker"},
+                {"id": "b", "text": "Beat a full-back, then cross or cut the ball back"},
+                {"id": "c", "text": "Take every goal kick"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. Wingers beat defenders and then cross or cut the ball back for teammates to score.",
-                "incorrect": "A winger's job is to create chances by crossing from the wing or cutting back into the box.",
+                "correct": "Right. Wingers beat their marker on the outside and then cross or cut the ball back for a teammate. Many also cut inside to shoot.",
+                "incorrect": "A winger's job is to attack down the flank, beating the full-back and delivering a cross or cutback. Staying back to mark is a defender's job.",
                 "sayThisLine": "The winger whipped it in and the striker headed it home."
               }
             }
@@ -448,17 +582,20 @@
             "type": "binary-call",
             "conceptIds": ["striker"],
             "payload": {
-              "prompt": "A striker always stays high on the pitch waiting for chances. True or false?",
-              "scene": {"kind": "none", "alt": "A striker holding their position high near the opponent's goal, ready to receive a pass or finish a chance."},
+              "prompt": "A classic number 9 stays high, near the last defender. True or false?",
+              "scene": {
+                "kind": "none",
+                "alt": "A striker holding their position high near the opponent's goal, ready to receive a pass or finish a chance."
+              },
               "choices": [
                 {"id": "true", "label": "True"},
                 {"id": "false", "label": "False"}
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. A striker's job is to stay high and be ready to finish chances.",
-                "incorrect": "Yes, a striker leads the line and stays in an advanced position ready to score.",
-                "sayThisLine": "The striker stays high looking for a chance to run on to."
+                "correct": "True. The traditional striker leads the line and stays high ready to finish. Modern nines sometimes drop deep to link play, but finishing is still the job.",
+                "incorrect": "The classic number 9 leads the line, staying high near the last defender so he is ready to finish chances. Some modern strikers drop deep, but that is a variation.",
+                "sayThisLine": "The nine stays high, waiting to run on to something."
               },
               "ruleTag": "Striker positioning"
             }
@@ -479,9 +616,21 @@
             "payload": {
               "prompt": "Match the modern role to what it means.",
               "pairs": [
-                {"id": "b2b", "term": "Box-to-box midfielder", "definition": "A midfielder who defends his own area and arrives late to attack the other, covering the whole pitch."},
-                {"id": "pm", "term": "Playmaker", "definition": "A player, often deep, who sets the tempo and finds the key pass to unlock defences."},
-                {"id": "f9", "term": "False nine", "definition": "A centre-forward who drops deep into midfield to drag defenders out and create space for others."}
+                {
+                  "id": "b2b",
+                  "term": "Box-to-box midfielder",
+                  "definition": "A midfielder who defends his own area and arrives late to attack the other, covering the whole pitch."
+                },
+                {
+                  "id": "pm",
+                  "term": "Playmaker",
+                  "definition": "A player, often deep, who sets the tempo and finds the key pass to unlock defences."
+                },
+                {
+                  "id": "f9",
+                  "term": "False nine",
+                  "definition": "A centre-forward who drops deep into midfield to drag defenders out and create space for others."
+                }
               ],
               "explanation": {
                 "summary": "Box-to-box is a midfielder's hustle; playmaker is an artist; false nine is a forward who plays like a midfielder.",
@@ -542,7 +691,10 @@
               ],
               "translation": "A false nine is a centre-forward who leaves the box and plays deeper in midfield to drag defenders away and create chances for teammates.",
               "followUps": [
-                {"line": "Does that give you an extra midfielder?", "why": "Shows you understand the tactical idea."},
+                {
+                  "line": "Does that give you an extra midfielder?",
+                  "why": "Shows you understand the tactical idea."
+                },
                 {"line": "Can he still finish chances?", "why": "Asks if he's also a scorer."}
               ],
               "noFakeExpertNote": "False nines are a tactical invention; it's fine to say it's clever."
@@ -556,8 +708,16 @@
               "prompt": "Complete these modern roles.",
               "template": "A {{role1}} sets the team's tempo, while a {{role2}} covers every blade of grass.",
               "gaps": [
-                {"id": "role1", "options": ["box-to-box", "playmaker", "poacher"], "correct": "playmaker"},
-                {"id": "role2", "options": ["false nine", "box-to-box", "winger"], "correct": "box-to-box"}
+                {
+                  "id": "role1",
+                  "options": ["box-to-box", "playmaker", "poacher"],
+                  "correct": "playmaker"
+                },
+                {
+                  "id": "role2",
+                  "options": ["false nine", "box-to-box", "winger"],
+                  "correct": "box-to-box"
+                }
               ],
               "explanation": {
                 "correct": "Right. The playmaker is creative and controls rhythm; the box-to-box is the engine.",
@@ -582,12 +742,15 @@
               "prompt": "What is a sweeper-keeper?",
               "options": [
                 {"id": "a", "text": "A goalkeeper who stays on the goal line"},
-                {"id": "b", "text": "A goalkeeper who plays far off his line, sweeping and passing with his feet"},
+                {
+                  "id": "b",
+                  "text": "A goalkeeper who plays far off his line, sweeping and passing with his feet"
+                },
                 {"id": "c", "text": "A goalkeeper who only uses his hands"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. A sweeper-keeper is a modern goalkeeper who plays like a tenth outfield player, sweeping up and passing.",
+                "correct": "Right. A sweeper-keeper plays like an extra outfield player, sweeping up long balls behind the defence and passing with his feet.",
                 "incorrect": "A sweeper-keeper is a goalkeeper who leaves the goal area frequently to clear through balls and start attacks, like an extra defender.",
                 "sayThisLine": "Sweeper-keeper, he's basically an extra outfield player."
               }
@@ -599,7 +762,10 @@
             "conceptIds": ["sweeper-keeper"],
             "payload": {
               "prompt": "A sweeper-keeper helps the team build from the back with passing. True or false?",
-              "scene": {"kind": "none", "alt": "A modern goalkeeper playing far from goal, receiving a back pass and passing sideways to a defender in a build-up move."},
+              "scene": {
+                "kind": "none",
+                "alt": "A modern goalkeeper playing far from goal, receiving a back pass and passing sideways to a defender in a build-up move."
+              },
               "choices": [
                 {"id": "true", "label": "True"},
                 {"id": "false", "label": "False"}
@@ -620,9 +786,21 @@
             "payload": {
               "prompt": "Match the goalkeeper style to its description.",
               "pairs": [
-                {"id": "old", "term": "Traditional keeper", "definition": "Stays on or near the goal line, catches crosses and punts the ball long."},
-                {"id": "sweep", "term": "Sweeper-keeper", "definition": "Plays far from goal, clears through balls with his feet and starts attacks with passing."},
-                {"id": "dist", "term": "Distribution", "definition": "How a goalkeeper releases the ball: throwing, rolling, passing or kicking."}
+                {
+                  "id": "old",
+                  "term": "Traditional keeper",
+                  "definition": "Stays on or near the goal line, catches crosses and punts the ball long."
+                },
+                {
+                  "id": "sweep",
+                  "term": "Sweeper-keeper",
+                  "definition": "Plays far from goal, clears through balls with his feet and starts attacks with passing."
+                },
+                {
+                  "id": "dist",
+                  "term": "Distribution",
+                  "definition": "How a goalkeeper releases the ball: throwing, rolling, passing or kicking."
+                }
               ],
               "explanation": {
                 "summary": "Modern football demands keepers who can pass and think like outfield players.",
@@ -635,7 +813,10 @@
             "type": "say-this",
             "conceptIds": ["sweeper-keeper"],
             "payload": {
-              "statement": {"speaker": "Maya", "text": "Sweeper-keeper, he's basically an extra outfield player."},
+              "statement": {
+                "speaker": "Maya",
+                "text": "Sweeper-keeper, he's basically an extra outfield player."
+              },
               "question": "Why is that good for a team?",
               "options": [
                 {"id": "a", "text": "He can start attacks from deep", "isCorrect": true},
@@ -645,7 +826,10 @@
               ],
               "translation": "A modern keeper who plays like a sweeper is part of the team's attack, sweeping up through balls and helping with possession, not just stopping shots.",
               "followUps": [
-                {"line": "Is your keeper good with his feet?", "why": "Shows you know what matters now."},
+                {
+                  "line": "Is your keeper good with his feet?",
+                  "why": "Shows you know what matters now."
+                },
                 {"line": "Has he ever scored?", "why": "Lighter question that shows curiosity."}
               ],
               "noFakeExpertNote": "If you don't know, ask if he's involved in the build-up."
@@ -673,7 +857,7 @@
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. Shirt numbers hint at roles: 1 is the keeper, 2-5 defenders, 6-8 midfield, 10 creator, 9 striker.",
+                "correct": "Right. Traditionally 1 is the keeper, 2-5 defenders, 6-8 midfield, 9 the striker and 10 the creator. Modern squads use squad numbers, so it is a hint, not a rule.",
                 "incorrect": "Traditional numbers reflect positions: low numbers are defenders, middle numbers are midfielders, 9 is the striker, 10 is the creator.",
                 "sayThisLine": "He wears the 10 for a reason."
               }
@@ -686,11 +870,31 @@
             "payload": {
               "prompt": "Match the shirt number to the traditional position.",
               "pairs": [
-                {"id": "one", "term": "Number 1", "definition": "Goalkeeper; the sole starter and keeper."},
-                {"id": "four", "term": "Numbers 2-5", "definition": "Defenders; left-back (3), centre-backs (4-5), right-back (2)."},
-                {"id": "six", "term": "Numbers 6-8", "definition": "Midfielders; 6 is defensive, 8 is box-to-box."},
-                {"id": "ten", "term": "Number 10", "definition": "Attacking midfielder or playmaker; the most creative player."},
-                {"id": "nine", "term": "Number 9", "definition": "Striker; the main goalscorer and leader of the line."}
+                {
+                  "id": "one",
+                  "term": "Number 1",
+                  "definition": "The starting goalkeeper, the traditional first-choice keeper"
+                },
+                {
+                  "id": "four",
+                  "term": "Numbers 2-5",
+                  "definition": "Defenders; left-back (3), centre-backs (4-5), right-back (2)."
+                },
+                {
+                  "id": "six",
+                  "term": "Numbers 6-8",
+                  "definition": "Midfielders; 6 is defensive, 8 is box-to-box."
+                },
+                {
+                  "id": "ten",
+                  "term": "Number 10",
+                  "definition": "Attacking midfielder or playmaker; the most creative player."
+                },
+                {
+                  "id": "nine",
+                  "term": "Number 9",
+                  "definition": "Striker; the main goalscorer and leader of the line."
+                }
               ],
               "explanation": {
                 "summary": "Numbers go from goalkeeper (1) through defenders (2-5), midfielders (6-8), to attackers (9-10).",
@@ -704,15 +908,27 @@
             "conceptIds": ["shirt-numbers", "attacking-midfielder"],
             "payload": {
               "prompt": "Complete the shirt number guide.",
-              "template": "The number {{pos}} wears the {{num}}, and the striker is the {{striker}}.",
+              "template": "Traditionally the {{pos}} wears the number {{num}}, and the classic striker wears the number {{striker}}.",
               "gaps": [
-                {"id": "pos", "options": ["playmaker", "defender", "goalkeeper"], "correct": "playmaker"},
-                {"id": "num", "options": ["8", "9", "10"], "correct": "10"},
-                {"id": "striker", "options": ["7", "9", "11"], "correct": "9"}
+                {
+                  "id": "pos",
+                  "options": ["playmaker", "full-back", "goalkeeper"],
+                  "correct": "playmaker"
+                },
+                {
+                  "id": "num",
+                  "options": ["8", "9", "10"],
+                  "correct": "10"
+                },
+                {
+                  "id": "striker",
+                  "options": ["7", "9", "11"],
+                  "correct": "9"
+                }
               ],
               "explanation": {
-                "correct": "Right. The 10 is creative and runs the attack; the 9 finishes it.",
-                "incorrect": "The playmaker wears the 10; the striker traditionally wears the 9."
+                "correct": "Right. The 10 is the creative playmaker and the 9 is the classic striker.",
+                "incorrect": "By tradition the playmaker wears the 10 and the striker wears the 9. Squad numbers are more flexible today, but the old habit still shapes fan talk."
               }
             }
           },
@@ -750,7 +966,10 @@
               ],
               "translation": "Her team's number 10 is given that prestigious number because he's a highly talented playmaker or attacking midfielder who controls the team's creativity.",
               "followUps": [
-                {"line": "Is he your most creative player?", "why": "Shows you know what the 10 means."},
+                {
+                  "line": "Is he your most creative player?",
+                  "why": "Shows you know what the 10 means."
+                },
                 {"line": "How many assists does he have?", "why": "Asks about his creative output."}
               ],
               "noFakeExpertNote": "The number 10 is a big honour; it's usually given to the best player."
