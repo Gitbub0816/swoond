@@ -1,0 +1,1436 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "formula-1",
+  "unit": {
+    "id": "racecraft",
+    "title": "Racecraft: how passing really works",
+    "summary": "Why followers are slower, how drivers gain on straights, braking duels, defending, and the start.",
+    "layer": "foundations",
+    "order": 6,
+    "prerequisiteUnitIds": [
+      "car-and-circuit",
+      "the-2026-reset"
+    ],
+    "lessons": [
+      {
+        "id": "rc-01-dirty-air",
+        "title": "Dirty air",
+        "objective": "Explain why a following car loses grip and overheats its tyres.",
+        "estimatedMinutes": 8,
+        "conceptIds": [
+          "dirty-air",
+          "downforce",
+          "tyre-degradation"
+        ],
+        "activities": [
+          {
+            "id": "rc-01-mul-wake-definition",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "dirty-air"
+            ],
+            "payload": {
+              "prompt": "Why is the air behind a leading car called dirty air?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "It is turbulent from the car ahead and breaks down the follower's downforce.",
+                  "explanation": "Right. The wake is fast-moving, chaotic air that the follower's wings cannot use."
+                },
+                {
+                  "id": "b",
+                  "text": "The leading car's exhaust dirties the air for followers.",
+                  "explanation": "Not the main reason. It is the aerodynamic wake from the car body and wings."
+                },
+                {
+                  "id": "c",
+                  "text": "Dirt from the track blows up behind the car.",
+                  "explanation": "No. Dirty air is an F1 aerodynamic term, not literal dust."
+                },
+                {
+                  "id": "d",
+                  "text": "The leader's brake dust clouds the view.",
+                  "explanation": "That is not why it is called dirty air in F1."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Dirty air is the turbulent wake behind a car. The faster air breaks up the downforce the follower needs to turn.",
+                "incorrect": "Dirty air is the aerodynamic wake behind a car. Turbulence from the body and wings makes the follower lose grip and overheat tyres.",
+                "sayThisLine": "The wake is dirty air—it ruins downforce for anyone behind."
+              }
+            }
+          },
+          {
+            "id": "rc-01-mul-why-degrade",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "tyre-degradation",
+              "dirty-air"
+            ],
+            "payload": {
+              "prompt": "Why do a follower's tyres degrade faster in dirty air?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Less grip from the broken downforce means the driver slides more and stresses the tyres.",
+                  "explanation": "Right. No downforce, more sliding, tyres overheat and die faster."
+                },
+                {
+                  "id": "b",
+                  "text": "Debris from the car ahead damages the follower's tyres.",
+                  "explanation": "Not the main reason. It is the loss of downforce and tyre overheating."
+                },
+                {
+                  "id": "c",
+                  "text": "Dirty air is hotter and burns the rubber faster.",
+                  "explanation": "The issue is that the follower slides more, overheating the tyres from inside."
+                },
+                {
+                  "id": "d",
+                  "text": "Followers always drive more aggressively in dirty air.",
+                  "explanation": "Some do, but the tyre damage is mainly from loss of downforce and sliding."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Less downforce means more sliding, which overheats and stresses the tyres. A follower burns out tyres much faster than the leader.",
+                "incorrect": "Dirty air breaks downforce. Without grip, the follower slides more, and sliding generates heat. Overheated tyres degrade quickly.",
+                "sayThisLine": "No downforce, more sliding, tyres die faster."
+              }
+            }
+          },
+          {
+            "id": "rc-01-bin-dirty-air-position",
+            "type": "binary-call",
+            "conceptIds": [
+              "dirty-air",
+              "track-position"
+            ],
+            "payload": {
+              "prompt": "The leader is 0.5 seconds ahead. Stay behind for track position or go for the pass?",
+              "scene": {
+                "kind": "none",
+                "alt": "Racing scenario: leading car with follower 0.5 seconds back."
+              },
+              "choices": [
+                {
+                  "id": "stay",
+                  "label": "Stay behind"
+                },
+                {
+                  "id": "pass",
+                  "label": "Go for pass"
+                }
+              ],
+              "correctChoiceId": "stay",
+              "explanation": {
+                "correct": "Right. 0.5 seconds is a full pit loss. Track position is everything because dirty air will burn your tyres if you follow.",
+                "incorrect": "Think about tyre life. In dirty air, your tyres degrade fast. A 0.5-second gap is worth holding position until the pit window.",
+                "sayThisLine": "Track position beats pace in dirty air."
+              }
+            }
+          },
+          {
+            "id": "rc-01-bin-dirty-air-corners",
+            "type": "binary-call",
+            "conceptIds": [
+              "dirty-air",
+              "downforce"
+            ],
+            "payload": {
+              "prompt": "Is dirty air worse for the follower in fast corners or slow corners?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two corner scenarios: slow hairpin and high-speed turn."
+              },
+              "choices": [
+                {
+                  "id": "slow",
+                  "label": "Slow corners"
+                },
+                {
+                  "id": "fast",
+                  "label": "Fast corners"
+                }
+              ],
+              "correctChoiceId": "fast",
+              "explanation": {
+                "correct": "Right. Fast corners rely on downforce. No downforce, and you cannot corner fast. Slow corners are less downforce-dependent.",
+                "incorrect": "Dirty air hurts most where downforce matters most. High-speed corners need tons of grip; the follower's loss of downforce is catastrophic there.",
+                "sayThisLine": "Dirty air is deadly in fast corners."
+              }
+            }
+          },
+          {
+            "id": "rc-01-bin-follow-overheat",
+            "type": "binary-call",
+            "conceptIds": [
+              "dirty-air",
+              "tyre-degradation"
+            ],
+            "payload": {
+              "prompt": "A follower's tyres are overheating. Is it the track heat or dirty air?",
+              "scene": {
+                "kind": "none",
+                "alt": "Temperature gauge showing high tyre temps for following car."
+              },
+              "choices": [
+                {
+                  "id": "track",
+                  "label": "Track heat"
+                },
+                {
+                  "id": "dirty",
+                  "label": "Dirty air"
+                }
+              ],
+              "correctChoiceId": "dirty",
+              "explanation": {
+                "correct": "Right. Both cars are on the same track. The follower overheats from sliding in dirty air, not from the ground.",
+                "incorrect": "The follower is sliding more because of less downforce in dirty air. That internal heat from sliding is what kills the tyres.",
+                "sayThisLine": "Sliding overheats tyres. Dirty air causes sliding."
+              }
+            }
+          },
+          {
+            "id": "rc-01-sim-slipstream",
+            "type": "unity-sim",
+            "conceptIds": [
+              "dirty-air",
+              "slipstream"
+            ],
+            "payload": {
+              "simulationId": "f1.racecraft.slipstream-pass.v1",
+              "simulationVersion": "1.0.0",
+              "difficulty": 1
+            }
+          }
+        ]
+      },
+      {
+        "id": "rc-02-the-tow",
+        "title": "The tow",
+        "objective": "Use the slipstream to gain speed and time the move.",
+        "estimatedMinutes": 7,
+        "conceptIds": [
+          "slipstream",
+          "drag",
+          "gap-and-interval"
+        ],
+        "activities": [
+          {
+            "id": "rc-02-mul-slipstream-straight",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "slipstream"
+            ],
+            "payload": {
+              "prompt": "Where do drivers get a tow on a lap?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The straights, where the leading car is slowing the air, cutting the follower's drag.",
+                  "explanation": "Right. The tow is a drag advantage on straights. In corners, the follower sees dirty air."
+                },
+                {
+                  "id": "b",
+                  "text": "Every part of the lap, including corners.",
+                  "explanation": "No. In corners, dirty air ruins downforce. Tow is a straight-line drag advantage only."
+                },
+                {
+                  "id": "c",
+                  "text": "Only at the start, when cars are bunched.",
+                  "explanation": "No. Drivers use the tow throughout the race on every straight."
+                },
+                {
+                  "id": "d",
+                  "text": "Nowhere; the tow is a myth.",
+                  "explanation": "The tow is real. It is a speed gain from reduced drag on straights."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. On a straight, the car ahead pushes air back. The follower sits in the wake and cuts drag, gaining top speed.",
+                "incorrect": "The tow is a straight-line effect: low-drag reduced air. In corners, the follower faces dirty air.",
+                "sayThisLine": "The tow is a drag advantage on straights."
+              }
+            }
+          },
+          {
+            "id": "rc-02-mul-when-tow-works",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "slipstream",
+              "gap-and-interval"
+            ],
+            "payload": {
+              "prompt": "How close must the follower be to benefit from the tow?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Within roughly one car length; too far back and the wake dissipates.",
+                  "explanation": "Right. Close enough to be in the low-drag zone, which is close to the rear wing."
+                },
+                {
+                  "id": "b",
+                  "text": "Within five car lengths to feel any effect.",
+                  "explanation": "Too far. The tow needs close proximity. One car length is the real window."
+                },
+                {
+                  "id": "c",
+                  "text": "Distance does not matter; the tow works from anywhere behind.",
+                  "explanation": "No. The tow is a near-field effect. Three seconds back, there is zero tow."
+                },
+                {
+                  "id": "d",
+                  "text": "About half a second apart.",
+                  "explanation": "Time gap is misleading. Distance matters, and one car length is about right."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Close means within roughly one car length. Farther back, the air breaks up and the follower sees dirty air instead.",
+                "incorrect": "The tow is a close-range, high-speed effect. Only when the follower is very close can they cut drag.",
+                "sayThisLine": "Close tow, close follow; that is the rule."
+              }
+            }
+          },
+          {
+            "id": "rc-02-bin-tow-timing",
+            "type": "binary-call",
+            "conceptIds": [
+              "slipstream",
+              "gap-and-interval"
+            ],
+            "payload": {
+              "prompt": "Best time to use the tow: on a long straight or a short one?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two track layouts: one with a long back straight, one with a short straight."
+              },
+              "choices": [
+                {
+                  "id": "long",
+                  "label": "Long straight"
+                },
+                {
+                  "id": "short",
+                  "label": "Short straight"
+                }
+              ],
+              "correctChoiceId": "long",
+              "explanation": {
+                "correct": "Right. A long straight gives more time to use the tow, build speed, and line up the braking-zone move.",
+                "incorrect": "A long straight lets you follow, build speed from the tow, and make a cleaner pass. Short straights do not give enough room.",
+                "sayThisLine": "Long straights, big tows, big passes."
+              }
+            }
+          },
+          {
+            "id": "rc-02-sim-slipstream-pass",
+            "type": "unity-sim",
+            "conceptIds": [
+              "slipstream",
+              "drag"
+            ],
+            "payload": {
+              "simulationId": "f1.racecraft.slipstream-pass.v1",
+              "simulationVersion": "1.0.0",
+              "difficulty": 2
+            }
+          }
+        ]
+      },
+      {
+        "id": "rc-03-braking-duels",
+        "title": "The braking-zone duel",
+        "objective": "Choose a sensible place and line to attack a braking zone.",
+        "estimatedMinutes": 8,
+        "conceptIds": [
+          "braking-zone",
+          "dive-bomb",
+          "defending-position"
+        ],
+        "activities": [
+          {
+            "id": "rc-03-dec-braking-zone-dive",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "braking-zone",
+              "dive-bomb"
+            ],
+            "payload": {
+              "prompt": "You are one second behind into a braking zone. Attack left or wait?",
+              "situation": {
+                "narrative": "The corner ahead is a 90-degree right-hander. You are 1.0 second behind. Braking begins 150 metres out.",
+                "facts": [
+                  {
+                    "label": "Distance",
+                    "value": "1.0 second back"
+                  },
+                  {
+                    "label": "Corner type",
+                    "value": "90-degree right"
+                  },
+                  {
+                    "label": "Braking distance",
+                    "value": "150 metres"
+                  },
+                  {
+                    "label": "Your tyres",
+                    "value": "Lap 15 of 40"
+                  },
+                  {
+                    "label": "Leader's pace",
+                    "value": "Steady, no mistakes"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "dive",
+                  "label": "Dive to the inside, brake late, accept the risk",
+                  "verdict": "acceptable",
+                  "consequence": "You might make it stick; you might crash. The gap is large enough that a mistake costs the place, and likely more.",
+                  "considerations": [
+                    "A 1-second gap is a full braking distance on most tracks. A late-braking dive is risky.",
+                    "If you run wide or touch, you both go off. That is not a winning play yet.",
+                    "Late braking costs lock-up. Flat-spot tyres hurt for the rest of the race."
+                  ]
+                },
+                {
+                  "id": "follow",
+                  "label": "Follow through, build speed, attack the next corner",
+                  "verdict": "best",
+                  "consequence": "You stay close, learn his line, and set up a pass where the track suits you. Safer and smarter.",
+                  "considerations": [
+                    "A 1-second gap is too big to close in one corner without hitting him.",
+                    "Follow close, use the tow and dirty air info, find a better corner for your car.",
+                    "Most passes come from building speed and then acting, not panic diving."
+                  ]
+                },
+                {
+                  "id": "wait",
+                  "label": "Settle into traffic, save tyres, pit first",
+                  "verdict": "poor",
+                  "consequence": "You lose time and track position to a car that is matching your pace or will pit later.",
+                  "considerations": [
+                    "You are 1.0 second behind, not out of it. Backing off gives up the fight.",
+                    "Pitting first into traffic is a gamble. If he undercuts you, it is done.",
+                    "At lap 15, you need to be attacking, not backing off."
+                  ]
+                }
+              ],
+              "expertNote": "A 1-second gap is the braking distance. Closing it in one corner is a gamble. Sit close, learn the line, and attack when the track helps.",
+              "sayThisLine": "One second is a full braking zone. Patience pays off."
+            }
+          },
+          {
+            "id": "rc-03-dec-apex-squeeze",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "dive-bomb",
+              "defending-position"
+            ],
+            "payload": {
+              "prompt": "You are outside at the apex. Can you stay on the track and hold the line?",
+              "situation": {
+                "narrative": "Into a fast, sweeping left-hander, your rival went in deep on the inside. You are on the outside and faster. At the apex, your rival suddenly closes the door.",
+                "facts": [
+                  {
+                    "label": "Your line",
+                    "value": "Wider, faster arc"
+                  },
+                  {
+                    "label": "Rival's move",
+                    "value": "Squeezed left into you"
+                  },
+                  {
+                    "label": "Track edge",
+                    "value": "5 metres away"
+                  },
+                  {
+                    "label": "Speed",
+                    "value": "High-speed corner, 280 km/h"
+                  },
+                  {
+                    "label": "Run-off",
+                    "value": "Gravel, then wall"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "hit",
+                  "label": "Hold your line and accept the contact",
+                  "verdict": "poor",
+                  "consequence": "You both crash or one of you goes off. Contact at speed in a fast corner is dangerous and likely a DNF.",
+                  "considerations": [
+                    "High-speed contact is a crash, not a racing incident.",
+                    "The stewards will investigate, and the defensive driver will likely be penalised.",
+                    "It is not worth a DNF and a penalty investigation."
+                  ]
+                },
+                {
+                  "id": "lift",
+                  "label": "Lift off and tuck in behind, try again next corner",
+                  "verdict": "best",
+                  "consequence": "You avoid a crash, stay in the race, and live to attack again on a safer corner.",
+                  "considerations": [
+                    "You lost one position to a desperate defensive move. You are still close.",
+                    "The next corner or straight gives you a cleaner opportunity.",
+                    "Staying in the race beats a DNF every time."
+                  ]
+                },
+                {
+                  "id": "go-wide",
+                  "label": "Run wide, stay ahead, risk the run-off area",
+                  "verdict": "acceptable",
+                  "consequence": "You might stay on track with 4 wheels, or you might lock a tyre and slide into the gravel. It is a gamble.",
+                  "considerations": [
+                    "Gravel and a wall are close. Going wide is high-risk.",
+                    "If your tyre locks, you are in the wall, and that is a DNF.",
+                    "Risky, but if you pull it off, you keep the place and he gets a penalty for the squeeze."
+                  ]
+                }
+              ],
+              "expertNote": "Hold your line at high speed means contact. Lift, live to race, and attack on a safer corner or on straight where you have more room.",
+              "sayThisLine": "Lift and tuck; attack next corner."
+            }
+          },
+          {
+            "id": "rc-03-bin-braking-shallow",
+            "type": "binary-call",
+            "conceptIds": [
+              "braking-zone",
+              "dive-bomb"
+            ],
+            "payload": {
+              "prompt": "Is a shallow dive into a 180-degree hairpin riskier or safer than a deep dive?",
+              "scene": {
+                "kind": "none",
+                "alt": "Racing scenario into a tight hairpin corner."
+              },
+              "choices": [
+                {
+                  "id": "shallow",
+                  "label": "Shallow dive (safer)"
+                },
+                {
+                  "id": "deep",
+                  "label": "Deep dive (riskier)"
+                }
+              ],
+              "correctChoiceId": "deep",
+              "explanation": {
+                "correct": "Right. A hairpin is slow and tight. Deep = late braking and lock-up risk. Shallow lets you blend in and keep pace.",
+                "incorrect": "A 180-degree hairpin is tight and slow. Late braking (deep dive) riskslock-up and running wide. A controlled, shallow entry is safer.",
+                "sayThisLine": "Late braking kills at tight corners."
+              }
+            }
+          },
+          {
+            "id": "rc-03-bin-pass-corner-type",
+            "type": "binary-call",
+            "conceptIds": [
+              "braking-zone"
+            ],
+            "payload": {
+              "prompt": "Best corner for a pass: tight hairpin or long sweeper?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two corners: a slow hairpin and a fast, long-radius turn."
+              },
+              "choices": [
+                {
+                  "id": "hairpin",
+                  "label": "Tight hairpin"
+                },
+                {
+                  "id": "sweeper",
+                  "label": "Long sweeper"
+                }
+              ],
+              "correctChoiceId": "hairpin",
+              "explanation": {
+                "correct": "Right. Hairpins are slow, low-speed, long braking zones. Easy to follow, room to pass inside or out.",
+                "incorrect": "Hairpins have long braking zones and low speed. Passes are clean there. Long sweepers are high-speed and hard to follow; braking zones are shorter.",
+                "sayThisLine": "Hairpins are overtaking zones."
+              }
+            }
+          },
+          {
+            "id": "rc-03-sim-braking-duel",
+            "type": "unity-sim",
+            "conceptIds": [
+              "braking-zone",
+              "dive-bomb"
+            ],
+            "payload": {
+              "simulationId": "f1.racecraft.slipstream-pass.v1",
+              "simulationVersion": "1.0.0",
+              "difficulty": 3
+            }
+          }
+        ]
+      },
+      {
+        "id": "rc-04-defending",
+        "title": "Defending without a penalty",
+        "objective": "Apply the rules about moving under braking and leaving room.",
+        "estimatedMinutes": 8,
+        "conceptIds": [
+          "defending-position",
+          "stewards",
+          "time-penalty"
+        ],
+        "activities": [
+          {
+            "id": "rc-04-dec-one-move-rule",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "defending-position"
+            ],
+            "payload": {
+              "prompt": "A car is alongside into a braking zone. Can you move right, then left to block?",
+              "situation": {
+                "narrative": "On a straight into a left-hander, a rival is alongside. You brake. He is on the right. You move right to cover him, then move left again to block the inside line.",
+                "facts": [
+                  {
+                    "label": "Rival position",
+                    "value": "Alongside, to the right"
+                  },
+                  {
+                    "label": "Your first move",
+                    "value": "Move right to cover"
+                  },
+                  {
+                    "label": "Your second move",
+                    "value": "Move left to block inside"
+                  },
+                  {
+                    "label": "Corner type",
+                    "value": "Left-hand turn"
+                  },
+                  {
+                    "label": "Braking zone",
+                    "value": "Active, both cars braking"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "allow",
+                  "label": "Yes, you are entitled to defend the line as your right.",
+                  "verdict": "poor",
+                  "consequence": "The stewards will penalise you. You made two moves under braking, and the rules allow one.",
+                  "considerations": [
+                    "Defending the inside is fine. Moving twice is not.",
+                    "Once you move right to cover, that is your move. You cannot move left again while braking.",
+                    "The penalty is usually 5 seconds or a grid drop."
+                  ]
+                },
+                {
+                  "id": "one-move",
+                  "label": "No; you can make one move, not two. Choose left to block or right to cover.",
+                  "verdict": "best",
+                  "consequence": "You defend legally. Pick one direction and commit. If he gets alongside, that is racing.",
+                  "considerations": [
+                    "One move under braking; that is the rule.",
+                    "Pick the line that suits your car and the corner.",
+                    "If he is alongside after one move, he earned it, and you can still race him into the corner."
+                  ]
+                },
+                {
+                  "id": "no-move",
+                  "label": "No defending at all; let him by and re-pass later.",
+                  "verdict": "acceptable",
+                  "consequence": "You stay legal and avoid a penalty, but you lose the position and must out-race him elsewhere.",
+                  "considerations": [
+                    "Playing it safe works sometimes, but you lose track position.",
+                    "If he is not actually ahead, you should defend once.",
+                    "Caving in every time is not racecraft."
+                  ]
+                }
+              ],
+              "expertNote": "One move under braking; that is the rule. Block the inside, or cover the outside, but not both. Pick your defence and hold it.",
+              "sayThisLine": "One move, one choice."
+            }
+          },
+          {
+            "id": "rc-04-dec-squeeze-legal",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "defending-position",
+              "stewards"
+            ],
+            "payload": {
+              "prompt": "A rival is on the inside line. Can you close the door gradually as you both turn in?",
+              "situation": {
+                "narrative": "Into a left-hander, a rival took the inside line. You are on the outside. As you both turn in, you gradually move left to close the gap between you and the kerb.",
+                "facts": [
+                  {
+                    "label": "Rival position",
+                    "value": "Inside, committed"
+                  },
+                  {
+                    "label": "Your move",
+                    "value": "Gradually squeeze left"
+                  },
+                  {
+                    "label": "Corner speed",
+                    "value": "Already turning, not braking"
+                  },
+                  {
+                    "label": "Gap",
+                    "value": "Closing to a car width"
+                  },
+                  {
+                    "label": "Rival's car",
+                    "value": "Still on the line, not pushed off"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "squeeze",
+                  "label": "Yes, gradual closing is legal defence; he chose the inside risk.",
+                  "verdict": "best",
+                  "consequence": "You defend the corner legally. He knew the risk of the inside line; if he makes it stick, he earned it.",
+                  "considerations": [
+                    "Closing down gradually in the turn-in is not a sudden move under braking.",
+                    "The inside is riskier; if he cannot stay on the road, that is on him.",
+                    "Stewards usually allow this as long as you do not force him off."
+                  ]
+                },
+                {
+                  "id": "block",
+                  "label": "No, you must give him room or it is a penalty.",
+                  "verdict": "acceptable",
+                  "consequence": "You are being cautious. You leave room and he gets the corner, but you stay legal and live to fight later.",
+                  "considerations": [
+                    "Leaving room is the safest option.",
+                    "But gradual closure in a turn-in is often allowed.",
+                    "If you are unsure, the safe play is to give room."
+                  ]
+                },
+                {
+                  "id": "hard-close",
+                  "label": "No, a hard squeeze forces him off and will be penalised.",
+                  "verdict": "poor",
+                  "consequence": "If you shut the door suddenly, you are right. Stewards penalise dangerous defending.",
+                  "considerations": [
+                    "There is a difference between gradual and sudden.",
+                    "A hard slam into the corner after he commits is dangerous.",
+                    "Gradually closing as you both turn in is different from suddenly slamming the door."
+                  ]
+                }
+              ],
+              "expertNote": "Gradual closure in the turn-in is legal defence. Sudden, hard squeezing that forces a rival off is not. The difference is what stewards look for.",
+              "sayThisLine": "Gradual squeeze is racing; hard slam is a penalty."
+            }
+          },
+          {
+            "id": "rc-04-bin-moving-brake",
+            "type": "binary-call",
+            "conceptIds": [
+              "defending-position",
+              "time-penalty"
+            ],
+            "payload": {
+              "prompt": "Can you move side to side under braking to block multiple passing lines?",
+              "scene": {
+                "kind": "none",
+                "alt": "Defending car moving left and right under braking."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, all defensive moves are legal"
+                },
+                {
+                  "id": "no",
+                  "label": "No, only one move under braking"
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Right. Under braking, you get one move to block a line. Weaving is a penalty.",
+                "incorrect": "One move under braking; that is the rule. Multiple moves to block are dangerous and penalised."
+              }
+            }
+          },
+          {
+            "id": "rc-04-bin-unsafe-squeeze",
+            "type": "binary-call",
+            "conceptIds": [
+              "defending-position",
+              "stewards"
+            ],
+            "payload": {
+              "prompt": "You squeeze a rival so close he loses grip and almost crashes. Is that legal?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two cars side-by-side, one squeezed to the edge of the track."
+              },
+              "choices": [
+                {
+                  "id": "legal",
+                  "label": "Yes, he chose the inside risk"
+                },
+                {
+                  "id": "penalty",
+                  "label": "No, unsafe defence is penalised"
+                }
+              ],
+              "correctChoiceId": "penalty",
+              "explanation": {
+                "correct": "Right. Unsafe, aggressive defending is penalised. You must leave racing room even in defence.",
+                "incorrect": "Defence has limits. Forcing a car to lose control or run off is dangerous and merits a penalty."
+              }
+            }
+          },
+          {
+            "id": "rc-04-bin-room-rule",
+            "type": "binary-call",
+            "conceptIds": [
+              "defending-position"
+            ],
+            "payload": {
+              "prompt": "Where does the rule say you must leave room: braking zone or corner entry?",
+              "scene": {
+                "kind": "none",
+                "alt": "Racing scenario showing braking zone and corner entry."
+              },
+              "choices": [
+                {
+                  "id": "braking",
+                  "label": "Braking zone"
+                },
+                {
+                  "id": "entry",
+                  "label": "Corner entry"
+                }
+              ],
+              "correctChoiceId": "entry",
+              "explanation": {
+                "correct": "Right. At turn-in, you must leave a car width of room for a car that is alongside.",
+                "incorrect": "The rule is at corner entry (turn-in). You must leave room if a car is alongside when you both commit to the corner."
+              }
+            }
+          },
+          {
+            "id": "rc-04-mul-defending-inside",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "defending-position"
+            ],
+            "payload": {
+              "prompt": "Best way to defend against a late-braking dive to the inside?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Block the inside line from the start and do not move.",
+                  "explanation": "Good, but you must allow it if he is truly alongside at turn-in."
+                },
+                {
+                  "id": "b",
+                  "text": "Take a normal driving line and leave a car width at turn-in if needed.",
+                  "explanation": "Right. Defend by precision and line choice, but follow the room rule."
+                },
+                {
+                  "id": "c",
+                  "text": "Squeeze him off the road; he chose the gamble.",
+                  "explanation": "No. Even on a dive-bomb, you must leave racing room at turn-in."
+                },
+                {
+                  "id": "d",
+                  "text": "Brake early to get off the line and let him miss the apex.",
+                  "explanation": "Risky. You sacrifice braking distance and might run wide yourself."
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. Defend with precision: a perfect line and a quick apex. If he is alongside at turn-in, leave him room. That is racing.",
+                "incorrect": "Defence is about line choice and precision, not brute force. Leave a car width at turn-in if he earns it with a real move.",
+                "sayThisLine": "Defence is racing, not blocking."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "rc-05-passing-without-drs",
+        "title": "Passing without DRS",
+        "objective": "Explain how tow, Overtake Mode and wake combine to enable a pass.",
+        "estimatedMinutes": 8,
+        "conceptIds": [
+          "overtake-mode",
+          "slipstream",
+          "active-aero",
+          "dirty-air"
+        ],
+        "activities": [
+          {
+            "id": "rc-05-mul-overtake-mode-what",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "overtake-mode"
+            ],
+            "payload": {
+              "prompt": "What does Overtake Mode do in 2026?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "A boost button that lets the driver add extra electrical power when within one second of the car ahead.",
+                  "explanation": "Right. It replaces DRS and is available to the car being passed, not the leader."
+                },
+                {
+                  "id": "b",
+                  "text": "The same as DRS: open the rear wing for a speed boost.",
+                  "explanation": "No. Overtake Mode is electrical. DRS is gone. Open the wings and you lose downforce in the corner."
+                },
+                {
+                  "id": "c",
+                  "text": "A penalty given to the leader for defending too much.",
+                  "explanation": "No. Overtake Mode is a boost for the follower."
+                },
+                {
+                  "id": "d",
+                  "text": "A rule that says you cannot defend more than once.",
+                  "explanation": "That is a defending rule, not Overtake Mode."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Overtake Mode is 2026's answer to DRS. An electrical boost for a car within one second of the leader, no wing needed.",
+                "incorrect": "Overtake Mode is an electrical system in 2026. A car within one second of the car ahead gets a boost button. No DRS, no wing flaps.",
+                "sayThisLine": "Overtake Mode replaced DRS."
+              }
+            }
+          },
+          {
+            "id": "rc-05-mul-tow-plus-boost",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "slipstream",
+              "overtake-mode"
+            ],
+            "payload": {
+              "prompt": "How do tow and Overtake Mode work together for a pass?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The follower gets a tow on the straight, builds speed, and the boost kicks in just before braking.",
+                  "explanation": "Right. The tow closes the gap; the boost gives an extra edge for the move."
+                },
+                {
+                  "id": "b",
+                  "text": "Overtake Mode cancels the tow effect.",
+                  "explanation": "No. They work together. Close tow, then boost."
+                },
+                {
+                  "id": "c",
+                  "text": "Only Overtake Mode matters; the tow is useless in 2026.",
+                  "explanation": "No. The tow is still important. Close follow, tow gain, boost gain, pass."
+                },
+                {
+                  "id": "d",
+                  "text": "The leader can also use Overtake Mode to pull away.",
+                  "explanation": "No. Only the car within one second of the leader gets the boost."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. The follower uses the tow to get close and build speed, then the Overtake Mode boost is the final kick into the braking zone.",
+                "incorrect": "Tow + boost is the 2026 overtaking formula. Close follow for the tow, then add the electrical push to make the pass stick.",
+                "sayThisLine": "Tow closes the gap; boost closes the deal."
+              }
+            }
+          },
+          {
+            "id": "rc-05-mul-dirty-air-pass",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "dirty-air",
+              "overtake-mode"
+            ],
+            "payload": {
+              "prompt": "Why is dirty air a problem even with Overtake Mode?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The boost does not help in corners; dirty air costs grip, and the follower cannot corner as fast.",
+                  "explanation": "Right. Electrical boost only helps on straights. In corners, dirty air is still deadly."
+                },
+                {
+                  "id": "b",
+                  "text": "Dirty air cancels Overtake Mode entirely.",
+                  "explanation": "No. The boost still works; it just does not fix the corner problem."
+                },
+                {
+                  "id": "c",
+                  "text": "Overtake Mode solves the dirty air problem completely.",
+                  "explanation": "No. The boost is straight-line only. Dirty air ruins corners."
+                },
+                {
+                  "id": "d",
+                  "text": "Dirty air only affects the leader, not the follower.",
+                  "explanation": "Wrong. Dirty air affects the follower's grip in corners."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Overtake Mode is a straight-line tool. In corners, the follower is still in dirty air and loses downforce and grip.",
+                "incorrect": "Overtake Mode helps on straights. But corners are still dirty-air territory for the follower, which is why passes are often on big straights.",
+                "sayThisLine": "Boost works on straights; dirty air kills in corners."
+              }
+            }
+          },
+          {
+            "id": "rc-05-sim-slipstream-pass-no-drs",
+            "type": "unity-sim",
+            "conceptIds": [
+              "slipstream",
+              "overtake-mode"
+            ],
+            "payload": {
+              "simulationId": "f1.racecraft.slipstream-pass.v1",
+              "simulationVersion": "1.0.0",
+              "difficulty": 4
+            }
+          }
+        ]
+      },
+      {
+        "id": "rc-06-lapped-traffic",
+        "title": "Lapped cars and blue flags",
+        "objective": "Explain how traffic affects the leader and what the flags demand.",
+        "estimatedMinutes": 7,
+        "conceptIds": [
+          "blue-flag",
+          "track-position",
+          "gap-and-interval"
+        ],
+        "activities": [
+          {
+            "id": "rc-06-mul-blue-flag-meaning",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "blue-flag"
+            ],
+            "payload": {
+              "prompt": "What does a blue flag tell a lapped car to do?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Let the faster car through; you are being lapped and must yield.",
+                  "explanation": "Right. Blue flag means get out of the way. Ignore it and you get penalised."
+                },
+                {
+                  "id": "b",
+                  "text": "Pit immediately; your car is damaged.",
+                  "explanation": "No. That is not what blue means. Blue is a lapping signal only."
+                },
+                {
+                  "id": "c",
+                  "text": "Slow down a bit; the car behind is close.",
+                  "explanation": "No. Blue means you are lapped and must let him pass."
+                },
+                {
+                  "id": "d",
+                  "text": "Keep the inside line; a lapped car is behind you.",
+                  "explanation": "Wrong. Blue tells the lapped car to yield."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. A blue flag tells a lapped car to yield the racing line and let the faster car through. Ignoring it is a penalty.",
+                "incorrect": "Blue flag is the lapping signal. If you are lapped and shown blue, you must yield safely as soon as possible.",
+                "sayThisLine": "Blue flag means get out of the way."
+              }
+            }
+          },
+          {
+            "id": "rc-06-mul-traffic-leader",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "track-position",
+              "gap-and-interval"
+            ],
+            "payload": {
+              "prompt": "How does lapped traffic affect the race leader?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Lapped cars disrupt the leader's rhythm and gap management; must navigate them safely.",
+                  "explanation": "Right. Even at a huge pace advantage, lapped cars are traffic, and hitting one is a DNF."
+                },
+                {
+                  "id": "b",
+                  "text": "Lapped cars help the leader by making passes for second place harder.",
+                  "explanation": "True sometimes, but lapped traffic is mainly a hazard for everyone."
+                },
+                {
+                  "id": "c",
+                  "text": "Lapped traffic does not affect the leader; only second place feels it.",
+                  "explanation": "Wrong. The leader must navigate them and avoid crashes."
+                },
+                {
+                  "id": "d",
+                  "text": "The FIA removes all lapped cars so the leader can race alone.",
+                  "explanation": "No. Lapped cars stay on track and are part of the race."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Even a dominant leader must navigate lapped cars. Crashing into one is a DNF, no matter how fast you are.",
+                "incorrect": "Lapped traffic is a hazard for everyone. The leader must pass them safely, and a mistake costs the race.",
+                "sayThisLine": "Lapped cars are part of the race for everyone."
+              }
+            }
+          },
+          {
+            "id": "rc-06-bin-blue-flag-penalty",
+            "type": "binary-call",
+            "conceptIds": [
+              "blue-flag"
+            ],
+            "payload": {
+              "prompt": "Is ignoring a blue flag a time penalty or a black flag?",
+              "scene": {
+                "kind": "none",
+                "alt": "Lapped car ignoring blue flag signal."
+              },
+              "choices": [
+                {
+                  "id": "time",
+                  "label": "Time penalty"
+                },
+                {
+                  "id": "black",
+                  "label": "Black flag"
+                }
+              ],
+              "correctChoiceId": "time",
+              "explanation": {
+                "correct": "Right. Repeated blue-flag ignoring gets a time penalty. A black flag is for much worse offences.",
+                "incorrect": "Ignoring blue flags is dangerous driving and merits a time penalty. A black flag is disqualification."
+              }
+            }
+          },
+          {
+            "id": "rc-06-bin-lap-traffic-overtake",
+            "type": "binary-call",
+            "conceptIds": [
+              "track-position",
+              "gap-and-interval"
+            ],
+            "payload": {
+              "prompt": "If you are chasing a leader and both hit lapped traffic, who gains time?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two cars catching up to a lapped car."
+              },
+              "choices": [
+                {
+                  "id": "leader",
+                  "label": "The leader"
+                },
+                {
+                  "id": "chaser",
+                  "label": "The chaser"
+                }
+              ],
+              "correctChoiceId": "chaser",
+              "explanation": {
+                "correct": "Right. The leader slows to pass; the chaser uses the lapped car as a marker and often gets a tow.",
+                "incorrect": "The chaser can often benefit from traffic the leader slows for. Traffic is a gamble; sometimes it helps the chaser."
+              }
+            }
+          },
+          {
+            "id": "rc-06-bin-defensive-lap",
+            "type": "binary-call",
+            "conceptIds": [
+              "blue-flag",
+              "defending-position"
+            ],
+            "payload": {
+              "prompt": "Can a lapped car defend its position against the car lapping it?",
+              "scene": {
+                "kind": "none",
+                "alt": "Lapped car showing blue flag."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, defend until clearly lapped"
+                },
+                {
+                  "id": "no",
+                  "label": "No, blue flag means yield"
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Right. A lapped car can race until the flag. Once blue is shown, yield immediately.",
+                "incorrect": "Before the blue flag, a lapped car can race. Once blue is shown, the lapped car must yield at the next opportunity."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "rc-07-the-start",
+        "title": "The start and turn one",
+        "objective": "Explain how starts are won and lost, including in 2026.",
+        "estimatedMinutes": 8,
+        "conceptIds": [
+          "race-start",
+          "mgu-k",
+          "traction"
+        ],
+        "activities": [
+          {
+            "id": "rc-07-tim-start-reaction",
+            "type": "timing-tap",
+            "conceptIds": [
+              "race-start"
+            ],
+            "payload": {
+              "prompt": "Tap to launch when the lights go out.",
+              "theme": {
+                "label": "Race start",
+                "resultUnit": "points"
+              },
+              "rounds": [
+                {
+                  "zoneStartPct": 40,
+                  "zoneEndPct": 60,
+                  "sweepSeconds": 0.5
+                },
+                {
+                  "zoneStartPct": 35,
+                  "zoneEndPct": 65,
+                  "sweepSeconds": 0.5
+                },
+                {
+                  "zoneStartPct": 30,
+                  "zoneEndPct": 70,
+                  "sweepSeconds": 0.5
+                }
+              ],
+              "explanation": {
+                "correct": "Perfect timing! A great start is gained on reaction. Balancing perfect launch against a lock-up is the skill.",
+                "incorrect": "Late off the line, and you lose positions. Drivers practice the timing endlessly.",
+                "sayThisLine": "Split-second timing wins starts."
+              }
+            }
+          },
+          {
+            "id": "rc-07-mul-start-power-2026",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "mgu-k",
+              "race-start"
+            ],
+            "payload": {
+              "prompt": "How does the MGU-K affect a 2026 start?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The driver can deploy extra electrical power for a better launch, but must manage the battery carefully.",
+                  "explanation": "Right. 2026 starts use the battery. Careful deployment wins or loses a start."
+                },
+                {
+                  "id": "b",
+                  "text": "The MGU-K is not used at the start; it only works during the race.",
+                  "explanation": "No. The battery is fully charged at the start and is deployed for launch."
+                },
+                {
+                  "id": "c",
+                  "text": "All drivers get the same electrical power at the start, so starts are purely about reaction.",
+                  "explanation": "No. Battery state varies. Teams manage it differently from corner to corner."
+                },
+                {
+                  "id": "d",
+                  "text": "The MGU-K is charged during the race but cannot be used at the start.",
+                  "explanation": "Wrong. The battery is fully charged before the start and is available for deployment."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. A full battery at the start is available for launch power. Deploying it well wins the start.",
+                "incorrect": "In 2026, the electrical system (MGU-K) is fully charged before the race start. Drivers use it to gain traction off the line.",
+                "sayThisLine": "Battery power wins starts in 2026."
+              }
+            }
+          },
+          {
+            "id": "rc-07-mul-traction-loss",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "traction",
+              "race-start"
+            ],
+            "payload": {
+              "prompt": "What causes a driver to lose traction off the start line?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Spinning the tyres (wheelspin) from too much throttle, or locking the brakes under braking.",
+                  "explanation": "Right. Wheelspin wastes grip; lock-up wastes braking distance. Both cost positions."
+                },
+                {
+                  "id": "b",
+                  "text": "The track is always slippery at the start.",
+                  "explanation": "Not always. Most starts are on clean track. Traction loss is about driver error."
+                },
+                {
+                  "id": "c",
+                  "text": "Too much electrical power always causes wheelspin.",
+                  "explanation": "Not if managed well. Too much power without control does cause wheelspin."
+                },
+                {
+                  "id": "d",
+                  "text": "Rain is the only reason for traction loss at the start.",
+                  "explanation": "Rain is one reason, but driver inputs (throttle, brakes, electrical power) cause most traction loss."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Too much throttle spins the tyres; the car does not go forward. Controlling the throttle and the electrical power is the start skill.",
+                "incorrect": "Traction loss at the start comes from overdriving the throttle or the electrical system. Smooth, controlled power wins.",
+                "sayThisLine": "Smooth throttle wins the start."
+              }
+            }
+          },
+          {
+            "id": "rc-07-mul-turn-one-chaos",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "race-start"
+            ],
+            "payload": {
+              "prompt": "Why is turn one chaos in Formula 1?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "All 20 cars are bunched together, braking from top speed with no tow or dirty air to predict.",
+                  "explanation": "Right. Everyone is cold, everyone is packed, the braking is blind, and crashes happen."
+                },
+                {
+                  "id": "b",
+                  "text": "The track is always wet at the start of the race.",
+                  "explanation": "Not usually. Wet makes it worse, but even on dry track turn one is chaotic."
+                },
+                {
+                  "id": "c",
+                  "text": "Drivers are always aggressive and love crashing at the start.",
+                  "explanation": "Most drivers are careful at turn one. But tight spacing and cold tyres make accidents likely."
+                },
+                {
+                  "id": "d",
+                  "text": "The FIA makes turn one hard on purpose.",
+                  "explanation": "No. Turn one is naturally chaotic because 20 cars brake together."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. All 20 cars, cold tyres, cold brakes, no gaps, no traction. Turn one is a lottery and a graveyard.",
+                "incorrect": "Turn one is chaos because everyone is braking from speed in a packed field. Tyres are cold, margins are zero, crashes are common.",
+                "sayThisLine": "Turn one is lawless; survive it and race from there."
+              }
+            }
+          },
+          {
+            "id": "rc-07-bin-start-advantage",
+            "type": "binary-call",
+            "conceptIds": [
+              "race-start"
+            ],
+            "payload": {
+              "prompt": "Does pole position help at the start more on a long straight or a short one?",
+              "scene": {
+                "kind": "none",
+                "alt": "Track layouts with long and short straights before turn one."
+              },
+              "choices": [
+                {
+                  "id": "long",
+                  "label": "Long straight"
+                },
+                {
+                  "id": "short",
+                  "label": "Short straight"
+                }
+              ],
+              "correctChoiceId": "short",
+              "explanation": {
+                "correct": "Right. A short straight to turn one means less time for second place to gain; pole is safer. Long straights give chasers more room.",
+                "incorrect": "Pole is most valuable on a short run to turn one. A long straight after the start lets second place gain ground."
+              }
+            }
+          },
+          {
+            "id": "rc-07-bin-reaction-perfect",
+            "type": "binary-call",
+            "conceptIds": [
+              "race-start"
+            ],
+            "payload": {
+              "prompt": "Is a perfect reaction time at the start worth risking a jump-start penalty?",
+              "scene": {
+                "kind": "none",
+                "alt": "Lights going out at the start."
+              },
+              "choices": [
+                {
+                  "id": "risk",
+                  "label": "Yes, risk it for the advantage"
+                },
+                {
+                  "id": "safe",
+                  "label": "No, play it safe"
+                }
+              ],
+              "correctChoiceId": "safe",
+              "explanation": {
+                "correct": "Right. A jump-start penalty is 5 seconds. It is not worth the risk. React normally and stay legal.",
+                "incorrect": "A jump-start penalty is a race-killer. A normal reaction is worth more than the marginal gain from guessing."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
