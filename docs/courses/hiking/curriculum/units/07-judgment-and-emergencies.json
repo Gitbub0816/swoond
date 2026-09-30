@@ -1,0 +1,2552 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "hiking",
+  "unit": {
+    "id": "judgment-and-emergencies",
+    "title": "Judgment and emergencies",
+    "layer": "intermediate",
+    "order": 7,
+    "prerequisiteUnitIds": [
+      "weather-and-conditions",
+      "navigation"
+    ],
+    "personalizationSlots": [
+      "skill-level"
+    ],
+    "lessons": [
+      {
+        "id": "jd-01",
+        "title": "The plan before the trail",
+        "objective": "You can build a trip plan with margin.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "trip-plan",
+          "margin-of-safety"
+        ],
+        "activities": [
+          {
+            "id": "jd-01-ftg-plan-parts",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "trip-plan"
+            ],
+            "payload": {
+              "prompt": "What should a trip plan tell the person at home?",
+              "template": "Leave your route, your {{time}} and a call-out time with someone who is {{role}}.",
+              "gaps": [
+                {
+                  "id": "time",
+                  "options": [
+                    "expected return",
+                    "favorite snack",
+                    "shoe size"
+                  ],
+                  "correct": "expected return"
+                },
+                {
+                  "id": "role",
+                  "options": [
+                    "not on the hike",
+                    "also hiking with you",
+                    "asleep until noon"
+                  ],
+                  "correct": "not on the hike"
+                }
+              ],
+              "explanation": {
+                "correct": "A plan only helps if someone who is not with you knows the route, when you expect to be back, and when to call for help if they have not heard from you.",
+                "incorrect": "Leave the route, your expected return and a call-out time with someone who is not on the hike. If everyone in your group is in trouble, they are the one who can start a search.",
+                "sayThisLine": "\"If you have not heard from me by 7, call the ranger office.\""
+              }
+            }
+          },
+          {
+            "id": "jd-01-seq-build-plan",
+            "type": "sequence-order",
+            "conceptIds": [
+              "trip-plan",
+              "margin-of-safety"
+            ],
+            "payload": {
+              "prompt": "Put the trip-planning steps in a sensible order:",
+              "items": [
+                {
+                  "id": "route",
+                  "text": "Pick a route that fits the slowest person in the group",
+                  "why": "Everything else depends on a route the whole group can actually finish."
+                },
+                {
+                  "id": "check",
+                  "text": "Check the forecast, alerts, closures and sunset time",
+                  "why": "Conditions and daylight decide whether the route still makes sense."
+                },
+                {
+                  "id": "turn",
+                  "text": "Set a turnaround time and a lower-risk bail-out option",
+                  "why": "Deciding in advance is easier than deciding while tired and excited."
+                },
+                {
+                  "id": "share",
+                  "text": "Leave the plan and a call-out time with someone at home",
+                  "why": "Now a person who is not on the trail can start the response if you are overdue."
+                },
+                {
+                  "id": "checkin",
+                  "text": "Check in with them as soon as you are back",
+                  "why": "Closing the loop stops a needless search and keeps the habit trusted."
+                }
+              ],
+              "explanation": {
+                "correct": "Route first, then conditions, then your decision rules, then sharing the plan, then checking in. Each step sets up the next one.",
+                "incorrect": "Start with a route that fits the group, check conditions and daylight, set a turnaround and a bail-out, share it all, then check in when you are back.",
+                "sayThisLine": "\"Route, forecast, turnaround, shared, checked in. Every time.\""
+              }
+            }
+          },
+          {
+            "id": "jd-01-mc-margin",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "margin-of-safety"
+            ],
+            "payload": {
+              "prompt": "Which plan builds in the best margin of safety?",
+              "options": [
+                {
+                  "id": "tight",
+                  "text": "Finish the hike ten minutes before sunset if all goes perfectly"
+                },
+                {
+                  "id": "buffer",
+                  "text": "Plan to finish well before dark, carry a headlamp and pick a shorter bail-out"
+                },
+                {
+                  "id": "fast",
+                  "text": "Plan to hike faster than a guidebook suggests"
+                },
+                {
+                  "id": "phone",
+                  "text": "Plan to call for help if you run late"
+                }
+              ],
+              "correctOptionIds": [
+                "buffer"
+              ],
+              "explanation": {
+                "correct": "Margin means slack for the things that go wrong: a slower group, a wrong turn, a blister, weather. Extra daylight, a headlamp and a shorter option are all slack.",
+                "incorrect": "A plan that works only if everything goes perfectly has no margin. Build slack with extra daylight, a light source and a shorter option, and do not count on a phone rescue as the plan.",
+                "sayThisLine": "\"I want a cushion in the plan, not just a perfect day.\""
+              }
+            }
+          },
+          {
+            "id": "jd-01-bc-no-plan",
+            "type": "binary-call",
+            "conceptIds": [
+              "trip-plan"
+            ],
+            "payload": {
+              "prompt": "Short, familiar trail, solo, nobody knows where you went. Fine?",
+              "scene": {
+                "kind": "none",
+                "alt": "A solo hiker at a quiet trailhead with an empty parking lot and no one else in sight."
+              },
+              "choices": [
+                {
+                  "id": "fine",
+                  "label": "Fine, it is short"
+                },
+                {
+                  "id": "tell",
+                  "label": "Tell someone first"
+                }
+              ],
+              "correctChoiceId": "tell",
+              "explanation": {
+                "correct": "Short trails still have sprained ankles and wrong turns. A two-minute text with your route and return time means someone will notice if you are late.",
+                "incorrect": "Short and familiar does not remove the risk. If you get hurt and nobody knows where you are, the wait gets long. A quick text fixes that.",
+                "sayThisLine": "\"Texting you my route. Home by 5, call me if not.\""
+              },
+              "ruleTag": "Tell someone"
+            }
+          },
+          {
+            "id": "jd-01-ds-overdue-plan",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "trip-plan",
+              "margin-of-safety"
+            ],
+            "payload": {
+              "prompt": "You are planning Saturday's hike. What plan do you leave?",
+              "situation": {
+                "narrative": "You and a friend are planning a 9-mile day with 2,500 ft of gain. Your friend has never done more than 5 miles. Sunset is at 7:10 PM. A partner at home offers to be your contact.",
+                "facts": [
+                  {
+                    "label": "Distance",
+                    "value": "9 miles, 2,500 ft gain"
+                  },
+                  {
+                    "label": "Friend's longest hike",
+                    "value": "5 miles",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Sunset",
+                    "value": "7:10 PM"
+                  },
+                  {
+                    "label": "Bail-out",
+                    "value": "Shorter 6-mile loop from the junction"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "shared-margin",
+                  "label": "Start at 8 AM, turn at 2 PM, name the 6-mile bail-out, share it all",
+                  "verdict": "best",
+                  "consequence": "Your contact has the route, the start, the turnaround, the bail-out and a call-out time. You have room to slow down or shorten.",
+                  "considerations": [
+                    "The plan fits the less experienced hiker, not the fastest.",
+                    "The bail-out is chosen before anyone is tired."
+                  ]
+                },
+                {
+                  "id": "trim-only",
+                  "label": "Pick the 6-mile loop from the start and tell your contact",
+                  "verdict": "acceptable",
+                  "consequence": "This is conservative and fits your friend better. You give up the bigger view, but you finish with plenty of daylight.",
+                  "considerations": [
+                    "Matching the route to the group is the strongest margin you can buy.",
+                    "You still need a call-out time."
+                  ]
+                },
+                {
+                  "id": "hope",
+                  "label": "Do all 9 miles, start at 10 AM, and see how she feels",
+                  "verdict": "poor",
+                  "consequence": "A late start and a friend at her limit shrinks the daylight cushion. Fatigue and a slow descent can push you toward dusk.",
+                  "considerations": [
+                    "Deciding how it goes later means deciding when tired.",
+                    "Late starts eat the margin first."
+                  ]
+                },
+                {
+                  "id": "no-tell",
+                  "label": "Skip telling anyone; you will have phone signal at the top",
+                  "verdict": "poor",
+                  "consequence": "If you are hurt below the ridge and out of signal, nobody knows to look or where.",
+                  "considerations": [
+                    "Signal is not a plan.",
+                    "A contact who expects you is what starts a search."
+                  ]
+                }
+              ],
+              "expertNote": "Experienced hikers plan for the least experienced person, share the plan with someone who is not going, and decide the bail-out at the kitchen table, not on the trail.",
+              "sayThisLine": "\"I planned it around how she feels at mile seven, not mile one.\"",
+              "safetyNote": "Follow official park and land manager guidance for your trail. Swoon'd teaches appreciation, not survival training."
+            }
+          }
+        ]
+      },
+      {
+        "id": "jd-02",
+        "title": "Daylight math",
+        "objective": "You can work back from sunset to a turn time.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "daylight-math"
+        ],
+        "activities": [
+          {
+            "id": "jd-02-es-turn-time",
+            "type": "estimate-slider",
+            "conceptIds": [
+              "daylight-math"
+            ],
+            "payload": {
+              "prompt": "Sunset 7:45 PM, back 45 min before, 3 h down. Turn at?",
+              "min": 2,
+              "max": 7,
+              "step": 0.25,
+              "correctValue": 4,
+              "tolerance": {
+                "full": 0.25,
+                "partial": 0.75
+              },
+              "unit": "PM (4.5 = 4:30)",
+              "explanation": {
+                "correct": "Work backward: back at 7:00 PM (45 min before sunset), minus a 3 hour return, gives 4:00 PM. That is the latest time to turn around.",
+                "incorrect": "Start at sunset and go backward. 7:45 minus 45 minutes is 7:00 PM to be back. Then subtract the 3 hour return, which gives 4:00 PM.",
+                "sayThisLine": "\"Sunset minus cushion minus the way back. That is my turn time.\""
+              }
+            }
+          },
+          {
+            "id": "jd-02-es-short-days",
+            "type": "estimate-slider",
+            "conceptIds": [
+              "daylight-math"
+            ],
+            "payload": {
+              "prompt": "Sunset 6:00 PM, back 1 h before, 2.5 h return. Turn at?",
+              "min": 1,
+              "max": 6,
+              "step": 0.25,
+              "correctValue": 2.5,
+              "tolerance": {
+                "full": 0.25,
+                "partial": 0.75
+              },
+              "unit": "PM (2.5 = 2:30)",
+              "explanation": {
+                "correct": "Back at the car by 5:00 PM, minus a 2.5 hour return, gives 2:30 PM. Short autumn and winter days make the turn time come early.",
+                "incorrect": "Sunset at 6:00 minus one hour is 5:00 PM back at the car. Take away the 2.5 hour return and you get 2:30 PM.",
+                "sayThisLine": "\"In November my turn time is early afternoon.\""
+              }
+            }
+          },
+          {
+            "id": "jd-02-ftg-dusk-facts",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "daylight-math"
+            ],
+            "payload": {
+              "prompt": "What changes your real daylight?",
+              "template": "In a deep canyon or on a north-facing forest slope, usable light ends {{when}} than the posted sunset, so carry a {{light}}.",
+              "gaps": [
+                {
+                  "id": "when",
+                  "options": [
+                    "earlier",
+                    "later",
+                    "at the same moment"
+                  ],
+                  "correct": "earlier"
+                },
+                {
+                  "id": "light",
+                  "options": [
+                    "headlamp",
+                    "second water bottle",
+                    "camp chair"
+                  ],
+                  "correct": "headlamp"
+                }
+              ],
+              "explanation": {
+                "correct": "Terrain and tree cover block the sun, so it gets dark under trees and in canyons before the posted sunset. A headlamp is the standard backup for a slower-than-planned finish.",
+                "incorrect": "Canyons, ridges and forests all hide the low sun, so usable light ends earlier than the posted time. Always pack a headlamp with fresh batteries."
+              }
+            }
+          },
+          {
+            "id": "jd-02-bc-headlamp",
+            "type": "binary-call",
+            "conceptIds": [
+              "daylight-math"
+            ],
+            "payload": {
+              "prompt": "Your turn time is in ten minutes. Sunset is in 5 hours. Turn now?",
+              "scene": {
+                "kind": "none",
+                "alt": "A hiker checking a watch at a trail junction on a bright afternoon."
+              },
+              "choices": [
+                {
+                  "id": "turn",
+                  "label": "Yes, turn at the time"
+                },
+                {
+                  "id": "extend",
+                  "label": "No, daylight is fine"
+                }
+              ],
+              "correctChoiceId": "turn",
+              "explanation": {
+                "correct": "The turn time already accounts for the return trip, a cushion and tired legs. Lots of light left is not the same as time to spare, because the hike back takes as long as it takes.",
+                "incorrect": "Plenty of daylight now does not change the math. The turn time is what protects the return. Add time by choosing a shorter route, not by ignoring the number.",
+                "sayThisLine": "\"That is the turn time. We can come back another day.\""
+              },
+              "ruleTag": "Honor the time"
+            }
+          },
+          {
+            "id": "jd-02-ds-late-start",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "daylight-math"
+            ],
+            "payload": {
+              "prompt": "You started late. How do you fit the day around sunset?",
+              "situation": {
+                "narrative": "You planned a 4-hour-up, 3-hour-down summit hike, but you left the trailhead at 11:30 AM. Sunset is at 6:30 PM. You have headlamps and warm layers.",
+                "facts": [
+                  {
+                    "label": "Start",
+                    "value": "11:30 AM"
+                  },
+                  {
+                    "label": "Up / down",
+                    "value": "4 h up, 3 h down"
+                  },
+                  {
+                    "label": "Sunset",
+                    "value": "6:30 PM",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Summit at planned pace",
+                    "value": "3:30 PM"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "shorter",
+                  "label": "Pick a shorter objective that gets you back well before dusk",
+                  "verdict": "best",
+                  "consequence": "You choose a nearby ridge or lake that fits the daylight. You finish with light and energy left over.",
+                  "considerations": [
+                    "Adjusting the goal is easier than adjusting the daylight.",
+                    "The summit will still be there on another day."
+                  ]
+                },
+                {
+                  "id": "set-turn",
+                  "label": "Head up, but turn at 2:30 PM wherever you are, summit or not",
+                  "verdict": "acceptable",
+                  "consequence": "You follow the daylight math and turn around short of the top. It works only if you actually honor the time.",
+                  "considerations": [
+                    "A firm turn time turns a bad plan into a decent one.",
+                    "You will probably not reach the summit."
+                  ]
+                },
+                {
+                  "id": "hurry",
+                  "label": "Go for the summit at faster than planned pace and finish by headlamp",
+                  "verdict": "poor",
+                  "consequence": "Hurrying raises the chance of a slip, a wrong turn or a missed junction, and the descent still starts around dusk.",
+                  "considerations": [
+                    "A headlamp helps, but it does not make a hurried descent safe.",
+                    "Planned pace is already a fair estimate."
+                  ]
+                },
+                {
+                  "id": "hope",
+                  "label": "Go as planned; the light usually lasts longer than you think",
+                  "verdict": "poor",
+                  "consequence": "You are on the descent at sunset, tired, with no cushion for anything that goes wrong.",
+                  "considerations": [
+                    "Hoping is not a plan.",
+                    "The numbers say you finish after dark."
+                  ]
+                }
+              ],
+              "expertNote": "Late starts are common. The skill is shrinking the plan to fit the day instead of stretching the day to fit the plan.",
+              "sayThisLine": "\"We started late, so we are doing the short version.\"",
+              "safetyNote": "Daylight and pace vary by trail and season. Follow park guidance and always carry a headlamp."
+            }
+          }
+        ]
+      },
+      {
+        "id": "jd-03",
+        "title": "Turnaround times",
+        "objective": "You can set and honor a turnaround time.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "turnaround-time"
+        ],
+        "activities": [
+          {
+            "id": "jd-03-ds-summit-close",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "turnaround-time"
+            ],
+            "payload": {
+              "prompt": "Your turnaround time passes with the summit in sight. Decision?",
+              "situation": {
+                "narrative": "Your group set a 1:00 PM turnaround. It is 1:05 PM. The summit looks about 20 minutes away. Clouds are building to the west, and the descent is 2.5 hours.",
+                "facts": [
+                  {
+                    "label": "Time now",
+                    "value": "1:05 PM (turnaround was 1:00)",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "To summit",
+                    "value": "About 20 min"
+                  },
+                  {
+                    "label": "Descent",
+                    "value": "About 2.5 h"
+                  },
+                  {
+                    "label": "Sky",
+                    "value": "Clouds building to the west",
+                    "emphasis": "warning"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "turn-now",
+                  "label": "Turn around now, take a photo of the view, plan to return",
+                  "verdict": "best",
+                  "consequence": "You get down before the clouds mature and you keep the trust you built by setting the rule. You leave a summit for another day.",
+                  "considerations": [
+                    "The time was set when you were calm and rested.",
+                    "Building clouds change the math for everyone."
+                  ]
+                },
+                {
+                  "id": "extend-check",
+                  "label": "Ask the group; everyone agrees to a hard 10-minute extension and no more",
+                  "verdict": "poor",
+                  "consequence": "Extensions feel small, but 10 minutes turns into 30 at the top and the clouds keep growing.",
+                  "considerations": [
+                    "Turn times exist to resist just a little farther.",
+                    "Weather is now part of the decision, not only the clock."
+                  ]
+                },
+                {
+                  "id": "go-fast",
+                  "label": "Rush the last stretch; the summit is right there",
+                  "verdict": "poor",
+                  "consequence": "You reach the top with less margin and a storm building. Rushing the descent raises the odds of a fall.",
+                  "considerations": [
+                    "A close summit is the most tempting time to ignore the rule.",
+                    "Tired legs and a slippery descent are a bad mix."
+                  ]
+                },
+                {
+                  "id": "split",
+                  "label": "Send the fastest hiker up and wait at the junction",
+                  "verdict": "poor",
+                  "consequence": "You now have a hiker alone on exposed terrain as the weather changes, and a waiting group that is losing time.",
+                  "considerations": [
+                    "Splitting up in worsening weather is risky.",
+                    "The plan was for the whole group."
+                  ]
+                }
+              ],
+              "expertNote": "The whole point of a turnaround time is that it was decided before you saw how close the summit looked. Turning is a skill, not a failure.",
+              "sayThisLine": "\"That was the time we agreed on, so we are turning here.\"",
+              "safetyNote": "Weather and terrain can change quickly. Follow official guidance and turn back early if conditions worsen."
+            }
+          },
+          {
+            "id": "jd-03-ds-slow-morning",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "turnaround-time"
+            ],
+            "payload": {
+              "prompt": "You are behind schedule at a checkpoint. What do you change?",
+              "situation": {
+                "narrative": "You planned to reach a lake at 10:30 AM, which is halfway. It is 11:30 AM and you are still a mile short. Your turnaround for the full route is 1:00 PM, with 4 more miles to the top.",
+                "facts": [
+                  {
+                    "label": "Planned lake arrival",
+                    "value": "10:30 AM"
+                  },
+                  {
+                    "label": "Actual",
+                    "value": "11:30 AM, still 1 mile away",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Turnaround",
+                    "value": "1:00 PM"
+                  },
+                  {
+                    "label": "Remaining to top",
+                    "value": "4 miles beyond the lake"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "lake-goal",
+                  "label": "Make the lake your goal and have a long lunch there",
+                  "verdict": "best",
+                  "consequence": "You change the goal to match reality, enjoy the lake, and return well within your margin.",
+                  "considerations": [
+                    "Being behind at halfway means the summit will not fit.",
+                    "A good plan adapts before it fails."
+                  ]
+                },
+                {
+                  "id": "push-pace",
+                  "label": "Speed up and see if you can make up the time",
+                  "verdict": "poor",
+                  "consequence": "You may burn energy and still fall short. The turn time arrives with the summit still far away.",
+                  "considerations": [
+                    "Pace you cannot sustain becomes a fatigue problem later.",
+                    "The math says the summit will not fit in the window."
+                  ]
+                },
+                {
+                  "id": "shift-turn",
+                  "label": "Push the turnaround to 2:30 PM since you are already late",
+                  "verdict": "poor",
+                  "consequence": "Moving the goalposts erases your margin and makes the descent later, slower and more tired.",
+                  "considerations": [
+                    "Moving the turn time is the exact trap the rule prevents.",
+                    "Being late is a reason to shorten, not stretch."
+                  ]
+                },
+                {
+                  "id": "split-up",
+                  "label": "Send the strongest hiker on ahead to tag the top",
+                  "verdict": "poor",
+                  "consequence": "A group that splits under time pressure loses the person who might need help and the plan they all agreed on.",
+                  "considerations": [
+                    "Split groups make weaker decisions and reduce backup.",
+                    "The plan is for the group to move together."
+                  ]
+                }
+              ],
+              "expertNote": "Checkpoints are early warnings. If you miss one by an hour, you have already learned the day is longer than planned.",
+              "sayThisLine": "\"We are behind, so the lake is our summit today.\"",
+              "safetyNote": "Adjust plans early and conservatively. Follow official guidance for your route."
+            }
+          },
+          {
+            "id": "jd-03-es-half-budget",
+            "type": "estimate-slider",
+            "conceptIds": [
+              "turnaround-time"
+            ],
+            "payload": {
+              "prompt": "6 h round-trip budget, 1.5 mph, same pace back. Turn at how many miles?",
+              "min": 1,
+              "max": 8,
+              "step": 0.5,
+              "correctValue": 4.5,
+              "tolerance": {
+                "full": 0.5,
+                "partial": 1.5
+              },
+              "unit": "miles",
+              "explanation": {
+                "correct": "If the way back takes as long as the way out, you spend half your budget each way. Three hours at 1.5 mph is 4.5 miles out. Going slower on the return means turning even sooner.",
+                "incorrect": "Split the 6 hour budget in half: 3 hours out. At 1.5 mph that is 4.5 miles. If you expect to be slower coming back, turn earlier than that.",
+                "sayThisLine": "\"Half the time out, half back, and less if I will be tired.\""
+              }
+            }
+          },
+          {
+            "id": "jd-03-bc-who-decides",
+            "type": "binary-call",
+            "conceptIds": [
+              "turnaround-time"
+            ],
+            "payload": {
+              "prompt": "When is the best moment to choose a turnaround time?",
+              "scene": {
+                "kind": "none",
+                "alt": "A hiker at a kitchen table with a map and coffee, planning the next day."
+              },
+              "choices": [
+                {
+                  "id": "before",
+                  "label": "Before the hike"
+                },
+                {
+                  "id": "at-top",
+                  "label": "Near the top"
+                }
+              ],
+              "correctChoiceId": "before",
+              "explanation": {
+                "correct": "Deciding at home means you set it while calm and rested and without a summit in front of you. On the trail you only have to follow the rule, not argue about it.",
+                "incorrect": "Deciding near the top is when excitement and fatigue speak loudest. Pick the time in advance so the trail decision is already made.",
+                "sayThisLine": "\"We decided the turn time at home so we would not argue at the top.\""
+              },
+              "ruleTag": "Decide in advance"
+            }
+          },
+          {
+            "id": "jd-03-tm-turn-triggers",
+            "type": "term-match",
+            "conceptIds": [
+              "turnaround-time"
+            ],
+            "payload": {
+              "prompt": "Match each situation to the move it calls for:",
+              "pairs": [
+                {
+                  "id": "clock",
+                  "term": "Turnaround time reached",
+                  "definition": "Turn around, wherever you are, even if the goal is close"
+                },
+                {
+                  "id": "storm",
+                  "term": "Storm clouds building early",
+                  "definition": "Turn earlier than planned and get off exposed terrain"
+                },
+                {
+                  "id": "slow",
+                  "term": "Group much slower than planned",
+                  "definition": "Shorten the goal or pick a lower-risk alternative"
+                },
+                {
+                  "id": "hurt",
+                  "term": "Someone is hurt or unwell",
+                  "definition": "Stop, assess, and turn toward help; consider calling for help"
+                }
+              ],
+              "explanation": {
+                "summary": "A turnaround time is a ceiling, not a target. Weather, pace or health can move your turn earlier, but nothing should push it later. Follow official guidance and call for help when someone is hurt."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jd-04",
+        "title": "Head traps",
+        "objective": "You can name summit fever and the sunk-cost trap in yourself.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "summit-fever",
+          "sunk-cost-trap"
+        ],
+        "activities": [
+          {
+            "id": "jd-04-mc-name-trap",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "sunk-cost-trap"
+            ],
+            "payload": {
+              "prompt": "\"We drove five hours and paid for the permit. We cannot turn back.\" What is that?",
+              "options": [
+                {
+                  "id": "sunk-cost",
+                  "text": "The sunk-cost trap: past effort is pushing a risky choice"
+                },
+                {
+                  "id": "margin",
+                  "text": "Good use of margin of safety"
+                },
+                {
+                  "id": "pace",
+                  "text": "A group pace decision"
+                },
+                {
+                  "id": "plan",
+                  "text": "A well-made trip plan"
+                }
+              ],
+              "correctOptionIds": [
+                "sunk-cost"
+              ],
+              "explanation": {
+                "correct": "The drive and the permit are gone whether you continue or not. The only question is whether the next step is safe. Sunk-cost thinking lets what you already spent outvote the conditions in front of you.",
+                "incorrect": "That is the sunk-cost trap. What you spent is already spent. Judge the next hour on today's conditions, not on yesterday's effort.",
+                "sayThisLine": "\"The drive is already spent. What does the sky say?\""
+              }
+            }
+          },
+          {
+            "id": "jd-04-ds-summit-fever",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "summit-fever"
+            ],
+            "payload": {
+              "prompt": "First time in years near a peak you wanted. What do you do?",
+              "situation": {
+                "narrative": "You have wanted this summit for two years. You are 200 feet below the top when the wind rises and a partner says her hands are numb and she is shivering. The turnaround was 30 minutes ago.",
+                "facts": [
+                  {
+                    "label": "Distance to summit",
+                    "value": "200 vertical feet"
+                  },
+                  {
+                    "label": "Time vs plan",
+                    "value": "30 min past turnaround",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Partner",
+                    "value": "Shivering, numb hands",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Wind",
+                    "value": "Rising"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "turn-warm",
+                  "label": "Turn around, add layers and food for her, and head down together",
+                  "verdict": "best",
+                  "consequence": "You get her out of the wind and warm before she gets colder. You lose a summit, not a partner.",
+                  "considerations": [
+                    "Shivering and numbness are early cold warnings.",
+                    "You are over time and conditions are worsening."
+                  ]
+                },
+                {
+                  "id": "brief-top",
+                  "label": "Take five minutes to tag the top, then descend",
+                  "verdict": "poor",
+                  "consequence": "Five minutes in rising wind is a lot for a cold partner, and summit fever is the very thing that makes it feel small.",
+                  "considerations": [
+                    "The decision is being made by desire, not by facts.",
+                    "A cold partner is the clearest turn signal on the mountain."
+                  ]
+                },
+                {
+                  "id": "let-go-on",
+                  "label": "Tell her to wait here and go up alone",
+                  "verdict": "poor",
+                  "consequence": "You leave a cold partner sitting still in rising wind. Now two people are at risk.",
+                  "considerations": [
+                    "Leaving a shivering person alone is not safe.",
+                    "A summit is not worth splitting the team."
+                  ]
+                },
+                {
+                  "id": "ask-her",
+                  "label": "Ask her to power through; it is only 200 feet",
+                  "verdict": "poor",
+                  "consequence": "Pushing a cold hiker upward asks her to burn energy she does not have, and the descent will be harder.",
+                  "considerations": [
+                    "Cold hands and shivering do not improve by climbing farther.",
+                    "Pressure from a partner makes it hard to say no."
+                  ]
+                }
+              ],
+              "expertNote": "Summit fever is strongest when the goal is closest and the story is biggest. Naming it out loud is the best defense.",
+              "sayThisLine": "\"I have summit fever. Let's go down.\"",
+              "safetyNote": "If someone shows signs of confusion, stumbling or uncontrolled shivering, get them warm and consider calling for help. Follow official guidance."
+            }
+          },
+          {
+            "id": "jd-04-ds-sunk-cost-crossing",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "sunk-cost-trap"
+            ],
+            "payload": {
+              "prompt": "Six miles in, the forecast has changed. Keep going?",
+              "situation": {
+                "narrative": "You are six miles into a 14-mile point-to-point. A hiker coming the other way says the next pass has fresh snow on steep ground and no tracks. Your car is at the far end. Going back is six miles.",
+                "facts": [
+                  {
+                    "label": "Progress",
+                    "value": "6 of 14 miles"
+                  },
+                  {
+                    "label": "Report ahead",
+                    "value": "Fresh snow, steep, no tracks",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Way back",
+                    "value": "6 known miles"
+                  },
+                  {
+                    "label": "Gear",
+                    "value": "No traction, no ice axe"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "go-back",
+                  "label": "Go back the way you came and rethink the plan",
+                  "verdict": "best",
+                  "consequence": "You lose the point-to-point, but you keep going on known ground with no traction needed.",
+                  "considerations": [
+                    "Miles already hiked are not a reason to face terrain you are not equipped for.",
+                    "Retracing a known route is the lower-risk path."
+                  ]
+                },
+                {
+                  "id": "ask-rangers",
+                  "label": "Stop, check for a ranger or alerts on the pass, then decide",
+                  "verdict": "acceptable",
+                  "consequence": "You gather information first. If you cannot confirm the conditions, you still go back.",
+                  "considerations": [
+                    "Asking is smart if you can get reliable information quickly.",
+                    "You still have to be willing to turn."
+                  ]
+                },
+                {
+                  "id": "try-pass",
+                  "label": "Try the pass; you have come this far",
+                  "verdict": "poor",
+                  "consequence": "You approach steep snow without the gear or skills. A slip there can be serious, and there is no easy retreat.",
+                  "considerations": [
+                    "This is the sunk-cost trap in action.",
+                    "Steep snow without traction or training is a serious risk."
+                  ]
+                },
+                {
+                  "id": "shortcut",
+                  "label": "Cut off-trail down a drainage toward the road",
+                  "verdict": "poor",
+                  "consequence": "Off-trail drainages often end at cliffs, brush or waterfalls, and rescuers will not know where to look.",
+                  "considerations": [
+                    "A new, unplanned route adds risk on top of risk.",
+                    "Stay on maintained routes or a known retreat."
+                  ]
+                }
+              ],
+              "expertNote": "Ask what you would do if you had just arrived at this spot with no history. If the answer is turn around, the miles behind you should not change it.",
+              "sayThisLine": "\"If I had just arrived here, I would not go on. So I will not.\"",
+              "safetyNote": "Snow travel needs training and gear. Ask the land manager about conditions and follow official guidance."
+            }
+          },
+          {
+            "id": "jd-04-tm-trap-cures",
+            "type": "term-match",
+            "conceptIds": [
+              "summit-fever",
+              "sunk-cost-trap"
+            ],
+            "payload": {
+              "prompt": "Match each head trap with a good defense:",
+              "pairs": [
+                {
+                  "id": "fever",
+                  "term": "Summit fever",
+                  "definition": "Set a turnaround time at home and honor it"
+                },
+                {
+                  "id": "sunk",
+                  "term": "Sunk-cost trap",
+                  "definition": "Ask: would I start this from here today?"
+                },
+                {
+                  "id": "peer",
+                  "term": "Group pressure",
+                  "definition": "Agree in advance that any member can call a turn"
+                },
+                {
+                  "id": "hope",
+                  "term": "Hoping it clears",
+                  "definition": "Trust what you can see and the forecast, not the wish"
+                }
+              ],
+              "explanation": {
+                "summary": "Head traps are normal. The defense is deciding rules ahead of time, saying the trap out loud, and asking whether you would start the next step from scratch."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jd-05",
+        "title": "Group pace and group decisions",
+        "objective": "You can explain group pace and how to voice doubts.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "group-pace"
+        ],
+        "activities": [
+          {
+            "id": "jd-05-ds-fast-leader",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "group-pace"
+            ],
+            "payload": {
+              "prompt": "The group is stretched out. What is the fix?",
+              "situation": {
+                "narrative": "Four of you are hiking. The two strongest hikers are a quarter mile ahead. The slowest hiker at the back is breathing hard and has stopped talking. Thirty minutes to the next junction.",
+                "facts": [
+                  {
+                    "label": "Front pair",
+                    "value": "About 0.25 mile ahead"
+                  },
+                  {
+                    "label": "Rear hiker",
+                    "value": "Breathing hard, quiet",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Next junction",
+                    "value": "About 30 min"
+                  },
+                  {
+                    "label": "Group size",
+                    "value": "4"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "slow-lead",
+                  "label": "Slow the lead, put the slowest hiker up front, and regroup at the junction",
+                  "verdict": "best",
+                  "consequence": "The group moves at the pace of its slowest member, nobody is alone, and you can check how the rear hiker is doing.",
+                  "considerations": [
+                    "The group is only as fast as its slowest member.",
+                    "Someone quiet and breathing hard needs a check-in."
+                  ]
+                },
+                {
+                  "id": "wait-junction",
+                  "label": "Let the leaders wait at the junction; the rear hiker catches up",
+                  "verdict": "acceptable",
+                  "consequence": "This can work, but it leaves the slowest hiker alone and self-pacing. Waiting is fine only if you keep checking in.",
+                  "considerations": [
+                    "A regroup point is good practice.",
+                    "It works better when the slowest hiker sets the pace."
+                  ]
+                },
+                {
+                  "id": "keep-going",
+                  "label": "Keep going; everyone hikes their own pace",
+                  "verdict": "poor",
+                  "consequence": "The group drifts apart. If the rear hiker gets sick or lost at a junction, nobody notices for a while.",
+                  "considerations": [
+                    "Separation is a common way groups lose people.",
+                    "Junctions are where separated groups take different turns."
+                  ]
+                },
+                {
+                  "id": "push-her",
+                  "label": "Tell the slow hiker to speed up",
+                  "verdict": "poor",
+                  "consequence": "She burns energy she needs later, and she is less likely to tell you when something is wrong.",
+                  "considerations": [
+                    "Pressure hides problems.",
+                    "Pace should adapt to the group, not the other way."
+                  ]
+                }
+              ],
+              "expertNote": "Good groups keep the slowest person in front or in the middle, regroup at junctions, and check in with anyone who goes quiet.",
+              "sayThisLine": "\"Let's regroup at the junction and check in with everyone.\"",
+              "safetyNote": "A quiet or struggling hiker may be ill or exhausted. Stop and check in, and call for help if symptoms are serious."
+            }
+          },
+          {
+            "id": "jd-05-tt-voice-doubt",
+            "type": "talk-track",
+            "conceptIds": [
+              "group-pace"
+            ],
+            "payload": {
+              "title": "She is not sure about the plan",
+              "setting": "Texting after her group's hike planning chat",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "The group wants to push for the summit. I am wiped and the clouds look off. Am I being a baby?",
+                  "replies": [
+                    {
+                      "id": "doubt-valid",
+                      "text": "Not at all. Any one person saying stop is a good enough reason. Want help finding words?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Yes please. I do not want to be the one who ruins it.",
+                      "coachNote": "You backed her doubt and offered help, not pressure."
+                    },
+                    {
+                      "id": "doubt-meh",
+                      "text": "Go with the group, I am sure it will be fine.",
+                      "smoothDelta": -10,
+                      "theirResponse": "Okay... I guess.",
+                      "coachNote": "Reassurance that overrides her doubt is not care."
+                    },
+                    {
+                      "id": "doubt-tough",
+                      "text": "Do not be a quitter. You have come this far.",
+                      "smoothDelta": -20,
+                      "theirResponse": "That is not helpful.",
+                      "coachNote": "That is the sunk-cost trap said out loud."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "What do I even say? I do not want to sound scared.",
+                  "replies": [
+                    {
+                      "id": "say-facts",
+                      "text": "Say what you see: 'Clouds are building and I am tired. Can we turn at the next junction?'",
+                      "smoothDelta": 25,
+                      "theirResponse": "That sounds doable. Facts, not feelings.",
+                      "coachNote": "You gave her a fact-based line, which is easy to accept."
+                    },
+                    {
+                      "id": "say-apologize",
+                      "text": "Just apologize and say you will slow everyone down.",
+                      "smoothDelta": 0,
+                      "theirResponse": "I would rather not apologize for being careful.",
+                      "coachNote": "Apologizing frames caution as a fault."
+                    },
+                    {
+                      "id": "say-hide",
+                      "text": "Hide the tiredness and hope the weather clears.",
+                      "smoothDelta": -15,
+                      "theirResponse": "That sounds like a bad plan.",
+                      "coachNote": "Hoping is not a plan; naming the problem is."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Voicing a doubt is a contribution to the group's safety. Any one person calling a turn is enough."
+            }
+          },
+          {
+            "id": "jd-05-ds-doubt-vote",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "group-pace"
+            ],
+            "payload": {
+              "prompt": "One hiker wants to turn. Three want to go on. What now?",
+              "situation": {
+                "narrative": "At a pass, thunderheads are building and one hiker says she wants to turn around. The other three would like to continue to a lake 45 minutes away. The forecast had a chance of afternoon storms.",
+                "facts": [
+                  {
+                    "label": "Vote",
+                    "value": "3 continue, 1 turn"
+                  },
+                  {
+                    "label": "Sky",
+                    "value": "Thunderheads building",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Lake",
+                    "value": "45 min away, exposed ridge"
+                  },
+                  {
+                    "label": "Forecast",
+                    "value": "Afternoon storm chance"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "all-turn",
+                  "label": "Everyone turns; one doubt with this sky is enough",
+                  "verdict": "best",
+                  "consequence": "You move down together, stay ahead of the storm, and keep the group's trust.",
+                  "considerations": [
+                    "A group decision should follow the most cautious member on safety.",
+                    "Storm signs and an exposed ridge support her call."
+                  ]
+                },
+                {
+                  "id": "short-check",
+                  "label": "Pause five minutes to watch the clouds and decide together",
+                  "verdict": "acceptable",
+                  "consequence": "A short pause can gather facts, but be ready to descend if the sky keeps building.",
+                  "considerations": [
+                    "Discussion is fine if the sky supports it.",
+                    "Do not let the pause turn into a debate."
+                  ]
+                },
+                {
+                  "id": "majority",
+                  "label": "Majority rules; she can catch up",
+                  "verdict": "poor",
+                  "consequence": "Splitting up in building weather leaves her alone and the rest exposed on a ridge.",
+                  "considerations": [
+                    "Safety is not a popularity vote.",
+                    "Separating a group in storm weather adds risk."
+                  ]
+                },
+                {
+                  "id": "pressure",
+                  "label": "Convince her it will be fine and keep the group together",
+                  "verdict": "poor",
+                  "consequence": "She goes along against her judgment, and the group learns to talk over doubts.",
+                  "considerations": [
+                    "Silencing doubt is how groups end up in trouble.",
+                    "Her worry may be the only one who said it out loud."
+                  ]
+                }
+              ],
+              "expertNote": "On safety questions, healthy groups follow the most cautious voice, not the loudest. The lake will be there on a clearer day.",
+              "sayThisLine": "\"If one of us wants to turn, we turn. We can do the lake another time.\"",
+              "safetyNote": "Thunderstorms are dangerous on exposed terrain. Follow NWS and park guidance and descend early."
+            }
+          },
+          {
+            "id": "jd-05-st-group-line",
+            "type": "say-this",
+            "conceptIds": [
+              "group-pace"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "We hike at the slowest person's pace. That way nobody gets left behind."
+              },
+              "question": "What is she describing?",
+              "options": [
+                {
+                  "id": "group-pace",
+                  "text": "Setting the group's pace by its slowest member",
+                  "isCorrect": true,
+                  "explanation": "Yes. Group pace means the pace of the person who needs the most time, so the group stays together."
+                },
+                {
+                  "id": "turnaround",
+                  "text": "Picking a turnaround time",
+                  "isCorrect": false,
+                  "explanation": "A turnaround time is a clock rule, not a pace rule."
+                },
+                {
+                  "id": "speed-record",
+                  "text": "Trying for a fast known time",
+                  "isCorrect": false,
+                  "explanation": "The opposite: it is about staying together, not speed."
+                }
+              ],
+              "translation": "She means the group moves at the pace of its slowest member, so nobody gets stretched out, tired or lost.",
+              "followUps": [
+                {
+                  "line": "Do you put the slower person in front?",
+                  "why": "It shows you know pacing tricks and cares about her group."
+                },
+                {
+                  "line": "How do you handle it when someone wants to turn back?",
+                  "why": "It invites her to talk about group decisions and doubts."
+                }
+              ]
+            }
+          },
+          {
+            "id": "jd-05-mc-who-can-call",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "group-pace"
+            ],
+            "payload": {
+              "prompt": "Best group rule about who can call a turnaround?",
+              "options": [
+                {
+                  "id": "anyone",
+                  "text": "Any member can call it, and the group honors it without debate"
+                },
+                {
+                  "id": "leader",
+                  "text": "Only the most experienced hiker can call it"
+                },
+                {
+                  "id": "vote",
+                  "text": "A majority vote decides every time"
+                },
+                {
+                  "id": "loudest",
+                  "text": "Whoever talks first decides"
+                }
+              ],
+              "correctOptionIds": [
+                "anyone"
+              ],
+              "explanation": {
+                "correct": "When any one person can call a turn without having to justify it, quiet doubts get heard early. The group can talk it over afterward at the trailhead.",
+                "incorrect": "Rules that need a majority, a leader or a loud voice silence some people. The safest rule lets any member stop the group on safety grounds.",
+                "sayThisLine": "\"Anyone can call a turn. No questions on the trail.\""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jd-06",
+        "title": "River crossings",
+        "objective": "You can explain when to cross and when to turn around.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "river-crossing"
+        ],
+        "activities": [
+          {
+            "id": "jd-06-ds-swollen-creek",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "river-crossing"
+            ],
+            "payload": {
+              "prompt": "The creek is higher and faster than the description said. Cross?",
+              "situation": {
+                "narrative": "Your trail hits a creek that guidebooks call a rock-hop. Today it is brown, above your knees, and moving fast. It rained overnight and snow is melting upstream. The trail continues on the other side.",
+                "facts": [
+                  {
+                    "label": "Depth",
+                    "value": "Above the knee",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Water",
+                    "value": "Brown, fast, carrying debris",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Cause",
+                    "value": "Overnight rain plus snowmelt"
+                  },
+                  {
+                    "label": "Time",
+                    "value": "Late morning"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "turn-back",
+                  "label": "Do not cross. Turn around or wait for the water to drop",
+                  "verdict": "best",
+                  "consequence": "You skip the far side today. The water is likely to be lower another day or earlier in the morning.",
+                  "considerations": [
+                    "If you are unsure, do not cross.",
+                    "Fast, murky water above the knee can knock you down."
+                  ]
+                },
+                {
+                  "id": "scout",
+                  "label": "Scout up and down for a much wider, shallower spot, but do not force it",
+                  "verdict": "acceptable",
+                  "consequence": "Water is often slower and shallower where the channel is wider. If you cannot find one, you still turn around.",
+                  "considerations": [
+                    "Scouting is standard, but only if you can see the bottom and exit.",
+                    "Snowmelt can keep flows high; you may not find a safe spot."
+                  ]
+                },
+                {
+                  "id": "cross-quick",
+                  "label": "Cross quickly at the trail crossing; it is only a few steps",
+                  "verdict": "poor",
+                  "consequence": "A few steps in fast water can be enough to lose footing. Once swept off, you cannot control where you end up.",
+                  "considerations": [
+                    "Speed does not help against current.",
+                    "Cold water quickly reduces strength and coordination."
+                  ]
+                },
+                {
+                  "id": "log-cross",
+                  "label": "Cross on the wet fallen log downstream",
+                  "verdict": "poor",
+                  "consequence": "A wet log over fast water is easy to slip from and often has branches that trap you.",
+                  "considerations": [
+                    "Wet logs are slippery.",
+                    "A fall means water and debris together."
+                  ]
+                }
+              ],
+              "expertNote": "Most crossings are easier in the cool early morning, when snowmelt is lower. If the water is above your knee, fast or murky, most guidance says do not cross.",
+              "sayThisLine": "\"The water is high today. We will come back when it drops.\"",
+              "safetyNote": "Swoon'd teaches judgment, not river skills. Follow NPS and local guidance; if unsure, do not cross."
+            }
+          },
+          {
+            "id": "jd-06-ds-morning-crossing",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "river-crossing"
+            ],
+            "payload": {
+              "prompt": "A shallow, clear crossing is ahead. How do you approach it?",
+              "situation": {
+                "narrative": "The trail crosses a clear, ankle-to-shin-deep stream about 15 feet wide over gravel. It is early morning on a cool day. You are wearing boots and carrying a full pack with trekking poles.",
+                "facts": [
+                  {
+                    "label": "Depth",
+                    "value": "Ankle to shin deep"
+                  },
+                  {
+                    "label": "Water",
+                    "value": "Clear, slow"
+                  },
+                  {
+                    "label": "Width",
+                    "value": "About 15 feet"
+                  },
+                  {
+                    "label": "Bed",
+                    "value": "Gravel, visible"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "prep-cross",
+                  "label": "Loosen pack straps, face upstream, and use poles for steady steps",
+                  "verdict": "best",
+                  "consequence": "You keep your pack easy to shed if you fall and your footing stable. You cross in a few careful steps.",
+                  "considerations": [
+                    "Loosening the hip belt and chest strap lets you shed the pack if you fall.",
+                    "Poles give extra points of contact."
+                  ]
+                },
+                {
+                  "id": "swap-shoes",
+                  "label": "Swap into camp shoes or sandals first to protect your boots and feet",
+                  "verdict": "acceptable",
+                  "consequence": "Shoes with grip protect your feet and keep your boots dry for later. Bare feet are more likely to slip or get cut.",
+                  "considerations": [
+                    "Wearing shoes with grip is better than crossing barefoot.",
+                    "Keep the straps loose here too."
+                  ]
+                },
+                {
+                  "id": "rush",
+                  "label": "Run across with buckled straps to stay dry",
+                  "verdict": "poor",
+                  "consequence": "Running on wet rocks invites a fall, and buckled straps make a fall in water harder to escape.",
+                  "considerations": [
+                    "Slow, steady steps beat speed.",
+                    "Unbuckled straps let you shed a pack that pulls you under."
+                  ]
+                },
+                {
+                  "id": "link-arms",
+                  "label": "Tie yourself to your partner with a rope for safety",
+                  "verdict": "poor",
+                  "consequence": "A rope in moving water can trap two people together instead of freeing them.",
+                  "considerations": [
+                    "Tying yourself to someone in current is dangerous.",
+                    "Rope work in water takes specific training."
+                  ]
+                }
+              ],
+              "expertNote": "Easy crossings still deserve a pause: face upstream, use poles, unbuckle the hip belt and chest strap, and take slow, deliberate steps.",
+              "sayThisLine": "\"Straps loose, face upstream, slow steps.\"",
+              "safetyNote": "Conditions change. Follow local guidance, and if unsure about the depth, current or bottom, do not cross."
+            }
+          },
+          {
+            "id": "jd-06-bc-flood-canyon",
+            "type": "binary-call",
+            "conceptIds": [
+              "river-crossing"
+            ],
+            "payload": {
+              "prompt": "A stream is up and muddy after upstream rain. Wait or cross?",
+              "scene": {
+                "kind": "none",
+                "alt": "A muddy, fast-moving stream cutting across a trail in the woods."
+              },
+              "choices": [
+                {
+                  "id": "wait",
+                  "label": "Wait or turn back"
+                },
+                {
+                  "id": "cross",
+                  "label": "Cross to save time"
+                }
+              ],
+              "correctChoiceId": "wait",
+              "explanation": {
+                "correct": "Rain upstream reaches you later, and muddy, rising water hides depth and moving debris. Waiting, or turning back, costs time but keeps the risk out of the equation.",
+                "incorrect": "Muddy, rising water means you cannot see the bottom or the debris, and rain upstream can keep it rising after it stops raining where you are. Wait or turn back.",
+                "sayThisLine": "\"It is rising and muddy. Not today.\""
+              },
+              "ruleTag": "If unsure, do not cross"
+            }
+          },
+          {
+            "id": "jd-06-mc-when-crossing",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "river-crossing"
+            ],
+            "payload": {
+              "prompt": "Which signs say you should NOT cross? Pick all that apply.",
+              "options": [
+                {
+                  "id": "fast",
+                  "text": "Fast current that pushes on your legs"
+                },
+                {
+                  "id": "murky",
+                  "text": "Murky water that hides the bottom"
+                },
+                {
+                  "id": "debris",
+                  "text": "Debris and logs being carried along"
+                },
+                {
+                  "id": "wide-shallow",
+                  "text": "Clear, slow water across a wide gravel bar"
+                }
+              ],
+              "correctOptionIds": [
+                "fast",
+                "murky",
+                "debris"
+              ],
+              "allowMultiple": true,
+              "explanation": {
+                "correct": "Fast, murky or debris-filled water is a reason to stop. Clear, slow water over a wide gravel bar is the kind of crossing hikers commonly make, with care.",
+                "incorrect": "Fast current, murky water and moving debris are all reasons not to cross. Only the clear, slow water over a wide gravel bar is a common careful crossing.",
+                "sayThisLine": "\"I can see the bottom and it is slow. That is a crossing I would consider.\""
+              }
+            }
+          },
+          {
+            "id": "jd-06-ftg-crossing-steps",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "river-crossing"
+            ],
+            "payload": {
+              "prompt": "Fill in the basics for a careful crossing.",
+              "template": "Cross early when snowmelt is {{flow}}, face {{direction}} and unbuckle your hip belt.",
+              "gaps": [
+                {
+                  "id": "flow",
+                  "options": [
+                    "lower",
+                    "highest",
+                    "peaking"
+                  ],
+                  "correct": "lower"
+                },
+                {
+                  "id": "direction",
+                  "options": [
+                    "upstream",
+                    "downstream",
+                    "the bank"
+                  ],
+                  "correct": "upstream"
+                }
+              ],
+              "explanation": {
+                "correct": "Snowmelt streams usually run lowest in the cool morning and highest in the late afternoon. Facing upstream lets you brace against the current, and an unbuckled hip belt lets you shed the pack.",
+                "incorrect": "Cross when flow is lower, which for snowmelt is often early morning, face upstream and unbuckle the hip belt so you can drop the pack if you fall."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jd-07",
+        "title": "Wildlife on the trail",
+        "objective": "You can describe distance, noise and food storage basics.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "wildlife-encounter",
+          "bear-canister"
+        ],
+        "activities": [
+          {
+            "id": "jd-07-ds-bear-trail",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "wildlife-encounter"
+            ],
+            "payload": {
+              "prompt": "A bear is on the trail ahead and has not noticed you. What now?",
+              "situation": {
+                "narrative": "You come around a bend and see a bear about 100 yards ahead, grazing on the trail edge. It has not seen you. The trail is in a park with bears. You have bear spray on your hip belt.",
+                "facts": [
+                  {
+                    "label": "Distance",
+                    "value": "About 100 yards"
+                  },
+                  {
+                    "label": "Bear behavior",
+                    "value": "Calm, has not noticed you"
+                  },
+                  {
+                    "label": "Location",
+                    "value": "Park with bears"
+                  },
+                  {
+                    "label": "Gear",
+                    "value": "Bear spray, accessible"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "back-away",
+                  "label": "Stop, stay calm, back away slowly, and take another route or wait",
+                  "verdict": "best",
+                  "consequence": "You leave the bear its space and avoid surprising it. You can wait for it to move on or choose another route.",
+                  "considerations": [
+                    "Many parks ask you to stay at least 100 yards from bears.",
+                    "Do not run; running can trigger a chase."
+                  ]
+                },
+                {
+                  "id": "talk-alert",
+                  "label": "Speak in a calm voice so it knows you are human, and back away",
+                  "verdict": "acceptable",
+                  "consequence": "A calm, low voice can help a bear identify you as a person. Keep moving away, and do not shout or approach.",
+                  "considerations": [
+                    "Do not scream or make sudden moves.",
+                    "Back away, do not turn and flee."
+                  ]
+                },
+                {
+                  "id": "photo-closer",
+                  "label": "Creep closer for a better photo",
+                  "verdict": "poor",
+                  "consequence": "Moving closer can startle the bear or push it into defending space, and it puts you in danger.",
+                  "considerations": [
+                    "Distance is what keeps you and the bear safe.",
+                    "A photo is not worth a confrontation."
+                  ]
+                },
+                {
+                  "id": "run",
+                  "label": "Turn and run back down the trail",
+                  "verdict": "poor",
+                  "consequence": "Running can trigger a chase reaction, and bears are much faster than people.",
+                  "considerations": [
+                    "Do not run from a bear.",
+                    "Back away slowly instead."
+                  ]
+                }
+              ],
+              "expertNote": "Advice varies by species, park and situation. Learn the specific guidance for the place you hike, carry bear spray only if you know how to use it, and keep your distance.",
+              "sayThisLine": "\"We are giving it space and finding another way.\"",
+              "safetyNote": "Follow local park guidance for bears, and get proper instruction if you plan to carry bear spray."
+            }
+          },
+          {
+            "id": "jd-07-mc-distance",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "wildlife-encounter"
+            ],
+            "payload": {
+              "prompt": "What distance do many U.S. parks ask you to keep from bears and wolves?",
+              "options": [
+                {
+                  "id": "hundred-yards",
+                  "text": "At least 100 yards"
+                },
+                {
+                  "id": "ten-feet",
+                  "text": "About 10 feet"
+                },
+                {
+                  "id": "fifty-feet",
+                  "text": "About 50 feet"
+                },
+                {
+                  "id": "any",
+                  "text": "Any distance is fine if it is calm"
+                }
+              ],
+              "correctOptionIds": [
+                "hundred-yards"
+              ],
+              "explanation": {
+                "correct": "Many parks, including Yellowstone, ask visitors to stay at least 100 yards from bears and wolves, and about 25 yards from most other wildlife. Rules vary, so check the park's own guidance.",
+                "incorrect": "Many parks ask for at least 100 yards from bears and wolves and about 25 yards from most other large wildlife. Check the local rule before you go.",
+                "sayThisLine": "\"A hundred yards from bears. Check the park's rule for everything else.\""
+              }
+            }
+          },
+          {
+            "id": "jd-07-ds-camp-food",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "bear-canister"
+            ],
+            "payload": {
+              "prompt": "It is dusk at your campsite. Where does the food go?",
+              "situation": {
+                "narrative": "You are camping in bear country. The park requires food storage. You have a bear canister, a bag of snacks, toothpaste and a cooking pot with a few crumbs. A ranger reminded you of the rule at the trailhead.",
+                "facts": [
+                  {
+                    "label": "Area",
+                    "value": "Bear country, storage required"
+                  },
+                  {
+                    "label": "Have",
+                    "value": "Bear canister"
+                  },
+                  {
+                    "label": "Scented items",
+                    "value": "Food, toothpaste, trash, pot"
+                  },
+                  {
+                    "label": "Rule",
+                    "value": "Food storage mandatory"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "canister-all",
+                  "label": "Seal all food, trash and scented items in the canister, away from the tent",
+                  "verdict": "best",
+                  "consequence": "You follow the park rule, and animals learn nothing from you. Your camp is quiet.",
+                  "considerations": [
+                    "Scented items count, not just food.",
+                    "Keeping the canister away from the tent adds distance."
+                  ]
+                },
+                {
+                  "id": "box-or-hang",
+                  "label": "Use a provided food locker if the site has one",
+                  "verdict": "acceptable",
+                  "consequence": "Food lockers are a permitted solution in many places. Follow the posted rules.",
+                  "considerations": [
+                    "Local rules decide what is allowed.",
+                    "Still keep scented items in the locker."
+                  ]
+                },
+                {
+                  "id": "tent-food",
+                  "label": "Keep snacks in your tent in case you get hungry at night",
+                  "verdict": "poor",
+                  "consequence": "Food in a tent draws animals to where you sleep. It also breaks the park rule.",
+                  "considerations": [
+                    "Animals that get human food can become dangerous.",
+                    "Tents are not food storage."
+                  ]
+                },
+                {
+                  "id": "pack-tree",
+                  "label": "Leave the pack with the food under a tree beside the tent",
+                  "verdict": "poor",
+                  "consequence": "A backpack is no barrier. Bears and rodents can open it, and you are sleeping right next to it.",
+                  "considerations": [
+                    "Bags are not animal-proof.",
+                    "Keep food storage and sleeping areas apart."
+                  ]
+                }
+              ],
+              "expertNote": "Store everything with a scent (food, trash, toothpaste, sunscreen) the way the park requires. It protects you and it protects the animals.",
+              "sayThisLine": "\"Food, trash and toothpaste go in the canister, away from the tent.\"",
+              "safetyNote": "Storage rules differ by park. Follow official rules and the ranger's instructions."
+            }
+          },
+          {
+            "id": "jd-07-tm-wildlife-basics",
+            "type": "term-match",
+            "conceptIds": [
+              "wildlife-encounter",
+              "bear-canister"
+            ],
+            "payload": {
+              "prompt": "Match each wildlife habit to its purpose:",
+              "pairs": [
+                {
+                  "id": "distance",
+                  "term": "Keep your distance",
+                  "definition": "Gives animals room so they do not feel threatened"
+                },
+                {
+                  "id": "noise",
+                  "term": "Talk or make noise on the trail",
+                  "definition": "Helps avoid surprising an animal around a bend"
+                },
+                {
+                  "id": "canister",
+                  "term": "Bear canister or locker",
+                  "definition": "Keeps food and scented items away from animals"
+                },
+                {
+                  "id": "no-feed",
+                  "term": "Never feed wildlife",
+                  "definition": "Fed animals lose fear of people and may have to be removed"
+                }
+              ],
+              "explanation": {
+                "summary": "Space, noise and storage keep animals wild and people safe. Rules differ by park and species, so read the local guidance before you go."
+              }
+            }
+          },
+          {
+            "id": "jd-07-bc-approach",
+            "type": "binary-call",
+            "conceptIds": [
+              "wildlife-encounter"
+            ],
+            "payload": {
+              "prompt": "An elk is resting near the trail. Walk right past for a photo?",
+              "scene": {
+                "kind": "none",
+                "alt": "A large elk resting in grass a few yards beside a hiking trail."
+              },
+              "choices": [
+                {
+                  "id": "give-space",
+                  "label": "Give it space"
+                },
+                {
+                  "id": "walk-past",
+                  "label": "Walk right past"
+                }
+              ],
+              "correctChoiceId": "give-space",
+              "explanation": {
+                "correct": "Elk and other large animals can charge if they feel cornered, especially during calving or rut. Give them wide space, use a zoom lens, and take a detour if you need to.",
+                "incorrect": "Large animals like elk and moose can be aggressive when close, especially with young or in the fall rut. Keep the distance the park asks for, usually about 25 yards, and go around.",
+                "sayThisLine": "\"That is too close for me. Let's go around.\""
+              },
+              "ruleTag": "Give wildlife space"
+            }
+          }
+        ]
+      },
+      {
+        "id": "jd-08",
+        "title": "Signal is not safety",
+        "objective": "You can explain why cell coverage cannot be your plan.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "cell-coverage-myth",
+          "satellite-messenger"
+        ],
+        "activities": [
+          {
+            "id": "jd-08-mc-coverage",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "cell-coverage-myth"
+            ],
+            "payload": {
+              "prompt": "Why is \"I will just call if something happens\" a weak plan?",
+              "options": [
+                {
+                  "id": "gaps",
+                  "text": "Coverage often has gaps in canyons, valleys and remote country"
+                },
+                {
+                  "id": "never",
+                  "text": "Phones never work outdoors"
+                },
+                {
+                  "id": "wait",
+                  "text": "Rescuers refuse calls from phones"
+                },
+                {
+                  "id": "battery",
+                  "text": "Phone batteries never run down"
+                }
+              ],
+              "correctOptionIds": [
+                "gaps"
+              ],
+              "explanation": {
+                "correct": "Coverage maps look confident, but terrain blocks signals and remote areas often have none. A phone is useful when it works, but it cannot be the whole plan.",
+                "incorrect": "The problem is gaps, not that phones never work. Valleys, canyons and remote areas often have no signal, so the plan must work without one.",
+                "sayThisLine": "\"A phone is a bonus. The plan has to work without signal.\""
+              }
+            }
+          },
+          {
+            "id": "jd-08-st-messenger",
+            "type": "say-this",
+            "conceptIds": [
+              "satellite-messenger"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "I carry a satellite messenger for backcountry trips. It has an SOS button but I still tell people my plan."
+              },
+              "question": "What is she describing?",
+              "options": [
+                {
+                  "id": "messenger",
+                  "text": "A device that can send messages and SOS by satellite, used alongside a plan",
+                  "isCorrect": true,
+                  "explanation": "Yes. A satellite messenger can reach a response center without cell service, and a plan still matters."
+                },
+                {
+                  "id": "gps",
+                  "text": "A GPS that replaces a map and compass",
+                  "isCorrect": false,
+                  "explanation": "It is a messenger, and it does not replace navigation skills."
+                },
+                {
+                  "id": "guarantee",
+                  "text": "A device that guarantees a quick rescue",
+                  "isCorrect": false,
+                  "explanation": "No device guarantees a fast rescue. Weather, terrain and distance can delay help."
+                }
+              ],
+              "translation": "She uses a satellite messenger to reach help when there is no cell signal, but she knows it is a backup and still shares her plan with someone.",
+              "followUps": [
+                {
+                  "line": "Do you test it before a trip and check the battery?",
+                  "why": "It shows you understand a device is only useful if it is ready."
+                },
+                {
+                  "line": "Do you keep a subscription active all year or by trip?",
+                  "why": "A genuine question about how she uses it, no bluffing."
+                }
+              ]
+            }
+          },
+          {
+            "id": "jd-08-ds-injured-no-signal",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "cell-coverage-myth"
+            ],
+            "payload": {
+              "prompt": "Your friend is hurt and your phone shows no bars. What now?",
+              "situation": {
+                "narrative": "Your friend fell and cannot walk on her ankle. You are in a valley two miles from the trailhead. Your phone shows no bars. It is early afternoon and you told her sister the route and return time.",
+                "facts": [
+                  {
+                    "label": "Injury",
+                    "value": "Cannot put weight on ankle",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Signal",
+                    "value": "No bars"
+                  },
+                  {
+                    "label": "Plan shared",
+                    "value": "Yes, with call-out time"
+                  },
+                  {
+                    "label": "Time",
+                    "value": "Early afternoon"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "try-text-stay",
+                  "label": "Keep her warm, try 911 call and text, and whistle in threes if help is near",
+                  "verdict": "best",
+                  "consequence": "You keep her stable and make repeated attempts. A text can sometimes go through when a call cannot. If not, your shared plan will start a search.",
+                  "considerations": [
+                    "Text 911 works in many areas where calls do not, but not everywhere.",
+                    "Stay together and keep her warm."
+                  ]
+                },
+                {
+                  "id": "one-goes",
+                  "label": "If you can do it safely, send one person toward the trailhead for signal or help",
+                  "verdict": "acceptable",
+                  "consequence": "Sending one person for help is a standard option when the route is short and clear. Leave her warm, with food and water and a way to signal.",
+                  "considerations": [
+                    "Only if the route is short and the person can navigate it.",
+                    "Leave her with layers, a whistle and a clear plan."
+                  ]
+                },
+                {
+                  "id": "carry-her",
+                  "label": "Try to carry her out yourself for two miles",
+                  "verdict": "poor",
+                  "consequence": "Carrying an adult that far on uneven ground risks a second injury and slows help.",
+                  "considerations": [
+                    "Two injured people is worse than one.",
+                    "Call for help rather than improvise a carry."
+                  ]
+                },
+                {
+                  "id": "wander-signal",
+                  "label": "Both of you climb off-trail to find a spot with signal",
+                  "verdict": "poor",
+                  "consequence": "You move an injured person on rough ground and lose your location for anyone searching.",
+                  "considerations": [
+                    "Moving off the route makes you harder to find.",
+                    "An injured person should not climb."
+                  ]
+                }
+              ],
+              "expertNote": "Try every channel, but do not count on signal. Your shared plan with a call-out time is the safety net that still works when the phone does not.",
+              "sayThisLine": "\"We are staying put. Someone will check if we are not back by six.\"",
+              "safetyNote": "Emergencies are unpredictable. Call 911 when you can, and follow official guidance and any responder instructions."
+            }
+          },
+          {
+            "id": "jd-08-bc-messenger-plan",
+            "type": "binary-call",
+            "conceptIds": [
+              "satellite-messenger"
+            ],
+            "payload": {
+              "prompt": "You bought a satellite messenger. Skip telling anyone your plan?",
+              "scene": {
+                "kind": "none",
+                "alt": "A hiker at a trailhead holding a small orange satellite messenger."
+              },
+              "choices": [
+                {
+                  "id": "still-tell",
+                  "label": "Still tell someone"
+                },
+                {
+                  "id": "skip",
+                  "label": "Skip it, I have a device"
+                }
+              ],
+              "correctChoiceId": "still-tell",
+              "explanation": {
+                "correct": "Devices can be dropped, wet, dead or blocked from the sky. A person who knows your plan is a second layer, and the device is a third.",
+                "incorrect": "A device can fail: dead battery, no clear sky, or you may be unable to press it. A person who knows your plan is your backup.",
+                "sayThisLine": "\"The device is a backup. My plan is with my sister.\""
+              },
+              "ruleTag": "Layers of backup"
+            }
+          },
+          {
+            "id": "jd-08-ftg-messenger-use",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "satellite-messenger"
+            ],
+            "payload": {
+              "prompt": "How do you get the most from a satellite messenger?",
+              "template": "Check the {{battery}} and subscription before you go, and keep it where it has a clear view of the {{sky}}.",
+              "gaps": [
+                {
+                  "id": "battery",
+                  "options": [
+                    "battery",
+                    "case color",
+                    "brand"
+                  ],
+                  "correct": "battery"
+                },
+                {
+                  "id": "sky",
+                  "options": [
+                    "sky",
+                    "trail",
+                    "map"
+                  ],
+                  "correct": "sky"
+                }
+              ],
+              "explanation": {
+                "correct": "A dead battery or an inactive subscription makes the device useless. Satellite signals need a clear view of the sky, so tree cover and canyon walls can block them.",
+                "incorrect": "Check the battery and subscription before you go, and use the device in the open with a view of the sky. Trees and canyon walls can block satellite signals."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jd-09",
+        "title": "Signaling for help",
+        "objective": "You can describe distress signals and when to use them.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "sos-signals"
+        ],
+        "activities": [
+          {
+            "id": "jd-09-ftg-threes",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "sos-signals"
+            ],
+            "payload": {
+              "prompt": "What is the widely used distress signal?",
+              "template": "Three of anything, like {{count}} whistle blasts, a pause, then {{again}}, signals distress.",
+              "gaps": [
+                {
+                  "id": "count",
+                  "options": [
+                    "three",
+                    "one",
+                    "seven"
+                  ],
+                  "correct": "three"
+                },
+                {
+                  "id": "again",
+                  "options": [
+                    "repeat",
+                    "stop for the day",
+                    "wave"
+                  ],
+                  "correct": "repeat"
+                }
+              ],
+              "explanation": {
+                "correct": "Three of anything (whistle blasts, flashes of light, shouts) is a widely used distress signal. Pause and repeat so searchers can find the direction. Two blasts back often means they hear you.",
+                "incorrect": "The common distress signal is three of something: whistle blasts, flashes or shouts. Pause, then repeat, so people can locate the sound.",
+                "sayThisLine": "\"Three blasts, pause, repeat. Whistle in threes.\""
+              }
+            }
+          },
+          {
+            "id": "jd-09-mc-best-signal",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "sos-signals"
+            ],
+            "payload": {
+              "prompt": "Which signal carries farthest for the least effort?",
+              "options": [
+                {
+                  "id": "whistle",
+                  "text": "A whistle blown in groups of three"
+                },
+                {
+                  "id": "shout",
+                  "text": "Shouting until you lose your voice"
+                },
+                {
+                  "id": "clap",
+                  "text": "Clapping your hands"
+                },
+                {
+                  "id": "whisper",
+                  "text": "Waiting for someone to notice you"
+                }
+              ],
+              "correctOptionIds": [
+                "whistle"
+              ],
+              "explanation": {
+                "correct": "A whistle is louder, carries farther and takes less energy than shouting. That is why one is on many packs and safety checklists.",
+                "incorrect": "A whistle carries much farther than a voice and uses far less energy. Shouting exhausts you, and waiting silently gives searchers nothing to find.",
+                "sayThisLine": "\"My whistle is clipped to my pack strap, not buried in the bottom.\""
+              }
+            }
+          },
+          {
+            "id": "jd-09-seq-need-help",
+            "type": "sequence-order",
+            "conceptIds": [
+              "sos-signals"
+            ],
+            "payload": {
+              "prompt": "You need help and cannot walk out. Put the steps in order:",
+              "items": [
+                {
+                  "id": "safe",
+                  "text": "Move out of immediate danger if you can do so safely",
+                  "why": "Steady, safe footing comes before anything else."
+                },
+                {
+                  "id": "call",
+                  "text": "Call 911 or press the SOS button on your device",
+                  "why": "Official help is the fastest path to real help, so try early."
+                },
+                {
+                  "id": "warm",
+                  "text": "Add layers and get out of wind and wet",
+                  "why": "Staying warm keeps you functioning while you wait."
+                },
+                {
+                  "id": "signal",
+                  "text": "Signal in threes with a whistle, light or bright clothing",
+                  "why": "Signals help searchers find you once help is on the way."
+                },
+                {
+                  "id": "stay",
+                  "text": "Stay put and save your phone battery for updates",
+                  "why": "Staying in one place makes you easier to find."
+                }
+              ],
+              "explanation": {
+                "correct": "Get safe, ask for help, stay warm, signal, and stay put. Each step supports the next while you wait for responders.",
+                "incorrect": "Start with safety, then contact help, stay warm, signal in threes, and stay put with the phone conserving battery.",
+                "sayThisLine": "\"Safe, call, warm, signal, stay put.\""
+              }
+            }
+          },
+          {
+            "id": "jd-09-ds-overdue-night",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "sos-signals"
+            ],
+            "payload": {
+              "prompt": "Dark is coming and you cannot walk out. How do you signal?",
+              "situation": {
+                "narrative": "You twisted a knee badly on a ridge trail and cannot walk. You have a whistle, a headlamp, a phone with 60% battery and no signal, an emergency blanket and a jacket. Sunset is in an hour. You told a friend your plan.",
+                "facts": [
+                  {
+                    "label": "Injury",
+                    "value": "Cannot walk",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Phone",
+                    "value": "60% battery, no signal"
+                  },
+                  {
+                    "label": "Kit",
+                    "value": "Whistle, headlamp, emergency blanket"
+                  },
+                  {
+                    "label": "Plan shared",
+                    "value": "Yes, friend expects a call by 8 PM"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "stay-signal",
+                  "label": "Stay put on the trail, layer up, use the blanket, whistle in threes",
+                  "verdict": "best",
+                  "consequence": "You stay visible on a known route, conserve warmth and energy and let searchers find you based on your plan.",
+                  "considerations": [
+                    "The trail is where searchers will look first.",
+                    "Save the headlamp for signals and use it sparingly."
+                  ]
+                },
+                {
+                  "id": "try-phone",
+                  "label": "Try 911 and a text from the phone at intervals, in airplane mode between tries",
+                  "verdict": "acceptable",
+                  "consequence": "Attempting a text now and then can succeed when a call cannot. Airplane mode in between saves battery.",
+                  "considerations": [
+                    "Combine this with staying put and signaling.",
+                    "Do not walk to find signal."
+                  ]
+                },
+                {
+                  "id": "crawl-down",
+                  "label": "Crawl or hop down the trail in the dark",
+                  "verdict": "poor",
+                  "consequence": "Moving an injured leg in the dark risks a worse injury and leaves your last known position.",
+                  "considerations": [
+                    "Do not make an injury worse in the dark.",
+                    "Keep your place so searchers can find you."
+                  ]
+                },
+                {
+                  "id": "no-signal",
+                  "label": "Shout all night until someone hears you",
+                  "verdict": "poor",
+                  "consequence": "You lose your voice and your energy, and shouting carries far less than a whistle.",
+                  "considerations": [
+                    "A whistle is louder and less tiring.",
+                    "Rest is important when you are waiting."
+                  ]
+                }
+              ],
+              "expertNote": "Once you have told someone your plan, staying put is usually the fastest way to be found. Signal in threes at intervals, and respond when you hear an answer.",
+              "sayThisLine": "\"I am staying put and whistling in threes.\"",
+              "safetyNote": "Call 911 when you can. Follow official guidance and any instructions given by responders."
+            }
+          },
+          {
+            "id": "jd-09-tm-signals",
+            "type": "term-match",
+            "conceptIds": [
+              "sos-signals"
+            ],
+            "payload": {
+              "prompt": "Match each signal tool to how it helps:",
+              "pairs": [
+                {
+                  "id": "whistle",
+                  "term": "Whistle",
+                  "definition": "Loud, carries far, and takes little energy"
+                },
+                {
+                  "id": "mirror",
+                  "term": "Signal mirror",
+                  "definition": "Flashes sunlight toward aircraft or distant people"
+                },
+                {
+                  "id": "headlamp",
+                  "term": "Headlamp flashes",
+                  "definition": "Three flashes at night show where you are"
+                },
+                {
+                  "id": "bright",
+                  "term": "Bright clothing or gear",
+                  "definition": "Spread out in the open so searchers can see it from above"
+                }
+              ],
+              "explanation": {
+                "summary": "Sound for distance, light for the night, color for the day. Use them in threes and only when you actually need help."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "jd-10",
+        "title": "What first aid training gives you",
+        "objective": "You can explain why real wilderness first aid training matters.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "wilderness-first-aid"
+        ],
+        "activities": [
+          {
+            "id": "jd-10-mc-why-training",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "wilderness-first-aid"
+            ],
+            "payload": {
+              "prompt": "Why take a hands-on wilderness first aid course?",
+              "options": [
+                {
+                  "id": "practice",
+                  "text": "It teaches you to assess and improvise in remote places, with practice"
+                },
+                {
+                  "id": "read",
+                  "text": "Reading an article is enough"
+                },
+                {
+                  "id": "kit",
+                  "text": "A big first-aid kit replaces training"
+                },
+                {
+                  "id": "no-need",
+                  "text": "Rescuers arrive quickly everywhere"
+                }
+              ],
+              "correctOptionIds": [
+                "practice"
+              ],
+              "explanation": {
+                "correct": "Courses from groups like NOLS, the Red Cross and other providers teach assessment, improvised care and when to evacuate, with hands-on practice. Help can be hours away, and knowing what to do matters.",
+                "incorrect": "A kit without skill does not help, and reading is not the same as practicing. Wilderness first aid courses teach assessment and decision-making for places where help is far away.",
+                "sayThisLine": "\"I am signing up for a wilderness first aid course this spring.\""
+              }
+            }
+          },
+          {
+            "id": "jd-10-st-wfa",
+            "type": "say-this",
+            "conceptIds": [
+              "wilderness-first-aid"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "I finished my WFA last month. It is a two-day course, and the WFR is the long one."
+              },
+              "question": "What is she talking about?",
+              "options": [
+                {
+                  "id": "wfa",
+                  "text": "Wilderness First Aid (WFA), a shorter course, and Wilderness First Responder (WFR), a longer one",
+                  "isCorrect": true,
+                  "explanation": "Yes. WFA is a shorter, entry-level course and WFR is a longer course for guides and leaders."
+                },
+                {
+                  "id": "gear",
+                  "text": "A type of first-aid kit",
+                  "isCorrect": false,
+                  "explanation": "These are training courses, not kits."
+                },
+                {
+                  "id": "trail",
+                  "text": "Two trail difficulty ratings",
+                  "isCorrect": false,
+                  "explanation": "They are courses, not trail ratings."
+                }
+              ],
+              "translation": "She took a wilderness first aid course. WFA is a shorter entry-level course, and WFR is a much longer one used by guides and outdoor leaders.",
+              "followUps": [
+                {
+                  "line": "What was the most useful thing you practiced?",
+                  "why": "It invites her to share what she learned without you bluffing."
+                },
+                {
+                  "line": "Would you recommend a specific provider?",
+                  "why": "It shows you are interested in taking one, too."
+                }
+              ]
+            }
+          },
+          {
+            "id": "jd-10-ds-rolled-ankle",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "wilderness-first-aid"
+            ],
+            "payload": {
+              "prompt": "Your friend rolled her ankle. Can she walk out?",
+              "situation": {
+                "narrative": "Two miles from the trailhead your friend rolls her ankle. It hurts and is swelling. She can stand but not comfortably put weight on it. She feels no numbness. You have cell signal and a small first-aid kit.",
+                "facts": [
+                  {
+                    "label": "Distance out",
+                    "value": "2 miles"
+                  },
+                  {
+                    "label": "Weight on it",
+                    "value": "Very painful, cannot walk normally",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Numbness or deformity",
+                    "value": "None seen"
+                  },
+                  {
+                    "label": "Signal",
+                    "value": "Yes"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "stop-call",
+                  "label": "Stop, keep her warm, and call for help if she cannot walk out safely",
+                  "verdict": "best",
+                  "consequence": "You do not push a painful limb for two miles. If she cannot walk normally, calling for help early is the conservative choice.",
+                  "considerations": [
+                    "If she cannot bear weight, calling for help is reasonable.",
+                    "Watch for numbness, color change or worsening pain."
+                  ]
+                },
+                {
+                  "id": "rest-test",
+                  "label": "Rest, support the ankle, then try a few careful steps with a pole",
+                  "verdict": "acceptable",
+                  "consequence": "After rest, some hikers can walk slowly. Be ready to stop and call for help if pain grows or she cannot continue.",
+                  "considerations": [
+                    "Only if she can walk without severe pain.",
+                    "Two miles may still be long. Have a backup plan."
+                  ]
+                },
+                {
+                  "id": "power-on",
+                  "label": "Tell her to tough it out and walk two miles",
+                  "verdict": "poor",
+                  "consequence": "Walking on a badly injured ankle can worsen the injury and slow everyone down into darkness.",
+                  "considerations": [
+                    "Pain is a signal, not weakness.",
+                    "Pushing on an injury risks a bigger rescue later."
+                  ]
+                },
+                {
+                  "id": "leave-her",
+                  "label": "Leave her alone and run out for help without calling",
+                  "verdict": "poor",
+                  "consequence": "You leave her alone and unprotected when a phone call could have started help immediately.",
+                  "considerations": [
+                    "You have signal, so use it.",
+                    "Do not leave an injured person unless it is the only option."
+                  ]
+                }
+              ],
+              "expertNote": "Assessment, not heroics, is what first aid training teaches. When you are not sure how serious an injury is, calling for advice or help early is a good choice.",
+              "sayThisLine": "\"I am not sure it is safe to walk out. I am calling.\"",
+              "safetyNote": "This is not medical training. Take a real wilderness first aid course, and follow official and medical guidance."
+            }
+          },
+          {
+            "id": "jd-10-bc-call-help",
+            "type": "binary-call",
+            "conceptIds": [
+              "wilderness-first-aid"
+            ],
+            "payload": {
+              "prompt": "A hiker collapses, is confused and unresponsive. Call for help?",
+              "scene": {
+                "kind": "none",
+                "alt": "A hiker sitting slumped on the trail beside a friend who looks worried."
+              },
+              "choices": [
+                {
+                  "id": "call",
+                  "label": "Call for help now"
+                },
+                {
+                  "id": "wait",
+                  "label": "Wait and see"
+                }
+              ],
+              "correctChoiceId": "call",
+              "explanation": {
+                "correct": "Collapse, confusion or unresponsiveness are emergencies. Call 911 or use an SOS device right away, and follow the dispatcher's instructions. Do not wait to see if it improves.",
+                "incorrect": "Collapse, confusion or unresponsiveness is a reason to call for help right away. Waiting costs time when time matters most.",
+                "sayThisLine": "\"This is serious. I am calling 911.\""
+              },
+              "ruleTag": "Call early"
+            }
+          },
+          {
+            "id": "jd-10-ds-head-injury",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "wilderness-first-aid"
+            ],
+            "payload": {
+              "prompt": "A hiker hit her head on a fall. What is your call?",
+              "situation": {
+                "narrative": "A hiker slips and hits her head on a rock. She was briefly dazed, now says she is fine, but is repeating herself, has a headache and vomited once. You are three hours from the trailhead. You have one bar of signal.",
+                "facts": [
+                  {
+                    "label": "Injury",
+                    "value": "Head strike on a rock"
+                  },
+                  {
+                    "label": "Symptoms",
+                    "value": "Repeating herself, headache, vomited once",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Distance out",
+                    "value": "About 3 hours"
+                  },
+                  {
+                    "label": "Signal",
+                    "value": "One bar"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "call-now",
+                  "label": "Stop, keep her still and warm, and call 911 now",
+                  "verdict": "best",
+                  "consequence": "Confusion, repeated questions and vomiting after a head strike are warning signs. Calling early gets advice and help moving.",
+                  "considerations": [
+                    "Do not wait for symptoms to prove serious.",
+                    "Stay with her and watch for changes."
+                  ]
+                },
+                {
+                  "id": "text-then",
+                  "label": "Send a text to 911 if a call will not connect, and stay with her",
+                  "verdict": "acceptable",
+                  "consequence": "With weak signal, a text can go through when a call cannot. Keep trying and stay with her.",
+                  "considerations": [
+                    "Text 911 works only in some areas.",
+                    "Keep trying while you keep her calm."
+                  ]
+                },
+                {
+                  "id": "walk-out",
+                  "label": "Let her rest ten minutes, then walk out since she says she feels fine",
+                  "verdict": "poor",
+                  "consequence": "Symptoms after a head injury can worsen. Walking three hours with confusion risks another fall.",
+                  "considerations": [
+                    "Feeling fine after confusion is not reassuring.",
+                    "Do not push on with head injury symptoms."
+                  ]
+                },
+                {
+                  "id": "give-meds",
+                  "label": "Give her pain medicine and a big meal, then decide",
+                  "verdict": "poor",
+                  "consequence": "Guessing at medicine after a head injury without training may hide or worsen symptoms.",
+                  "considerations": [
+                    "Do not guess at medication. Get real medical advice.",
+                    "Watch and call rather than treat by guesswork."
+                  ]
+                }
+              ],
+              "expertNote": "Head injury with confusion or vomiting is a call-for-help situation. A first aid course teaches how to assess and what to watch for while you wait.",
+              "sayThisLine": "\"She is confused after hitting her head. We need help.\"",
+              "safetyNote": "This is not medical advice or training. Call 911, follow the dispatcher, and take a hands-on wilderness first aid course."
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

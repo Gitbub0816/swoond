@@ -19,21 +19,34 @@
             "type": "hotspot-tap",
             "conceptIds": ["offside-position"],
             "payload": {
-              "prompt": "Tap the attacker who is in an offside position.",
+              "prompt": "Tap the half of the pitch where a player can be in an offside position.",
               "diagram": {
-                "diagramId": "soccer-pitch-attacking-third",
-                "aspectRatio": 1.2,
-                "alt": "Attacking third with three attackers and two defenders. The leftmost attacker's feet are ahead of the last defender at the moment of the pass from midfield."
+                "diagramId": "soccer-pitch-full",
+                "aspectRatio": 0.65,
+                "alt": "Overhead view of a full pitch. Your team attacks toward the top goal. The halfway line splits the pitch into your own half at the bottom and the opponents' half at the top."
               },
               "hotspots": [
-                {"id": "left-attacker", "label": "Left attacker (offside)", "shape": {"kind": "circle", "cx": 0.35, "cy": 0.15, "r": 0.05}},
-                {"id": "middle-attacker", "label": "Middle attacker (onside)", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.25, "r": 0.05}},
-                {"id": "right-attacker", "label": "Right attacker (level)", "shape": {"kind": "circle", "cx": 0.65, "cy": 0.3, "r": 0.05}}
+                {
+                  "id": "own-half",
+                  "label": "Own half",
+                  "shape": {"kind": "rect", "x": 0.05, "y": 0.5, "w": 0.9, "h": 0.45}
+                },
+                {
+                  "id": "opp-half",
+                  "label": "Opponents' half",
+                  "shape": {"kind": "rect", "x": 0.05, "y": 0.05, "w": 0.9, "h": 0.45}
+                },
+                {
+                  "id": "centre",
+                  "label": "Centre circle",
+                  "shape": {"kind": "rect", "x": 0.35, "y": 0.42, "w": 0.3, "h": 0.16}
+                }
               ],
-              "correctHotspotIds": ["left-attacker"],
+              "correctHotspotIds": ["opp-half"],
               "explanation": {
-                "correct": "Right. At the moment of the pass, his feet are nearer the goal line than the last defender, so he is in an offside position.",
-                "incorrect": "Look at the moment the pass leaves the midfielder's foot. The left attacker's body is closer to the goal line than the second-last opponent, putting him in an offside position."
+                "correct": "Right. You can only be in an offside position in the opponents' half. Being level with the halfway line, or in your own half, is never offside.",
+                "incorrect": "A player cannot be in an offside position in his own half of the pitch. Offside only applies in the half where you are attacking.",
+                "sayThisLine": "You can't be offside in your own half."
               }
             }
           },
@@ -42,8 +55,11 @@
             "type": "binary-call",
             "conceptIds": ["offside-position"],
             "payload": {
-              "prompt": "Attacker's shoulder is nearer goal than the last defender. Offside?",
-              "scene": {"kind": "none", "alt": "A striker's upper body is slightly ahead of the defending back-line at the moment the pass is played forward."},
+              "prompt": "An attacker's shoulder is nearer goal than the second-last defender. In an offside position?",
+              "scene": {
+                "kind": "none",
+                "alt": "A striker's upper body is slightly ahead of the second-last defender and the ball is behind him at the moment the pass is played forward."
+              },
               "choices": [
                 {"id": "yes", "label": "Yes, offside position"},
                 {"id": "no", "label": "No, onside"}
@@ -62,7 +78,7 @@
             "type": "multiple-choice",
             "conceptIds": ["offside-position"],
             "payload": {
-              "prompt": "When is offside decided: moment of pass or moment of reception?",
+              "prompt": "At which moment is an offside position judged?",
               "options": [
                 {"id": "a", "text": "The moment the ball is kicked"},
                 {"id": "b", "text": "The moment the striker receives it"},
@@ -70,8 +86,8 @@
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. Offside is judged at the moment the pass leaves the passer's foot, not when the attacker receives it.",
-                "incorrect": "The moment matters: offside is decided when the pass is played, not when the receiver gets the ball. A player can move onside after receiving it and not be penalised."
+                "correct": "Right. Offside position is judged at the moment the pass leaves the passer's foot, not when the attacker receives it.",
+                "incorrect": "Offside is a snapshot taken when the ball is played. Where the attacker runs afterwards does not change whether he was in an offside position at that moment."
               }
             }
           },
@@ -83,8 +99,16 @@
               "prompt": "Complete the offside rule.",
               "template": "An attacker is in an offside position if any part of the {{parts}} is nearer the goal line than the {{opponents}}.",
               "gaps": [
-                {"id": "parts", "options": ["head, body or feet", "head or arms", "body only"], "correct": "head, body or feet"},
-                {"id": "opponents", "options": ["goalkeeper", "last defender", "second-last opponent"], "correct": "second-last opponent"}
+                {
+                  "id": "parts",
+                  "options": ["head, body or feet", "head or arms", "body only"],
+                  "correct": "head, body or feet"
+                },
+                {
+                  "id": "opponents",
+                  "options": ["goalkeeper", "last defender", "second-last opponent"],
+                  "correct": "second-last opponent"
+                }
               ],
               "explanation": {
                 "correct": "Exactly. Head, body and feet count; arms do not. The second-last opponent includes the keeper.",
@@ -107,7 +131,10 @@
             "conceptIds": ["offside-offence"],
             "payload": {
               "prompt": "Attacker in offside position but doesn't touch the ball. Offence?",
-              "scene": {"kind": "none", "alt": "An attacker stands in an offside position, the ball is passed to a teammate in an onside position, and the onside player scores."},
+              "scene": {
+                "kind": "none",
+                "alt": "An attacker stands in an offside position, the ball is passed to a teammate in an onside position, and the onside player scores."
+              },
               "choices": [
                 {"id": "yes", "label": "Offside offence"},
                 {"id": "no", "label": "No offence"}
@@ -124,7 +151,7 @@
             "type": "multiple-choice",
             "conceptIds": ["offside-offence", "active-play"],
             "payload": {
-              "prompt": "Offside attacker blocks the keeper's view. Offence?",
+              "prompt": "An attacker in an offside position stands in front of the keeper and blocks his view. Offence?",
               "options": [
                 {"id": "a", "text": "No, only if he touches the ball"},
                 {"id": "b", "text": "Yes, he interferes with an opponent"},
@@ -132,8 +159,8 @@
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Yes. Interfering with an opponent by blocking their view or movement is one way an offside position becomes an offence.",
-                "incorrect": "An offside attacker who interferes with an opponent—even without touching the ball—commits an offence. Blocking the keeper's line of sight counts as interference."
+                "correct": "Yes. Clearly obstructing an opponent's line of vision, so he cannot play the ball, is interfering with an opponent and makes the offside position an offence.",
+                "incorrect": "An offside-position attacker can commit an offence without touching the ball. Clearly blocking the keeper's view or movement counts as interfering with an opponent."
               }
             }
           },
@@ -142,18 +169,39 @@
             "type": "say-this",
             "conceptIds": ["offside-offence"],
             "payload": {
-              "statement": {"speaker": "Maya", "text": "Offside position, but he never touched it so no offence."},
+              "statement": {
+                "speaker": "Maya",
+                "text": "Offside position, but he never touched it so no offence."
+              },
               "question": "What is she saying?",
               "options": [
-                {"id": "a", "text": "You can be in an offside position without committing an offence", "isCorrect": true},
+                {
+                  "id": "a",
+                  "text": "You can be in an offside position without committing an offence",
+                  "isCorrect": true
+                },
                 {"id": "b", "text": "The attacker was not trying to score", "isCorrect": false},
-                {"id": "c", "text": "The referee made a mistake calling it offside", "isCorrect": false},
-                {"id": "d", "text": "Being offside only matters if you're involved", "isCorrect": true}
+                {
+                  "id": "c",
+                  "text": "The referee made a mistake calling it offside",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Being offside only matters if you're involved",
+                  "isCorrect": true
+                }
               ],
               "translation": "Standing in an offside position is only an offence if the player touches the ball, interferes with an opponent or gains an advantage from the position.",
               "followUps": [
-                {"line": "Can an offside player interfere without touching?", "why": "Tests deeper understanding of the rule."},
-                {"line": "How does gaining an advantage work?", "why": "Explores the third way the rule applies."}
+                {
+                  "line": "Can an offside player interfere without touching?",
+                  "why": "Tests deeper understanding of the rule."
+                },
+                {
+                  "line": "How does gaining an advantage work?",
+                  "why": "Explores the third way the rule applies."
+                }
               ],
               "noFakeExpertNote": "The distinction between position and offence trips up even experienced viewers; you are in good company."
             }
@@ -164,15 +212,22 @@
             "conceptIds": ["offside-offence"],
             "payload": {
               "prompt": "Complete the offence rule.",
-              "template": "An offside position becomes an offence if the attacker {{actions}} the ball, {{interferes}} with an opponent, or {{gains}} an advantage.",
+              "template": "An attacker in an offside position commits an offence only if he {{play}}, interferes with an opponent, or {{gain}} from being there.",
               "gaps": [
-                {"id": "actions", "options": ["touches", "watches", "sees"], "correct": "touches"},
-                {"id": "interferes", "options": ["speaks to", "moves near", "interferes with"], "correct": "interferes with"},
-                {"id": "gains", "options": ["gains", "steals", "wins"], "correct": "gains"}
+                {
+                  "id": "play",
+                  "options": ["plays the ball", "stands still", "shouts"],
+                  "correct": "plays the ball"
+                },
+                {
+                  "id": "gain",
+                  "options": ["gains an advantage", "gets a warning", "waves"],
+                  "correct": "gains an advantage"
+                }
               ],
               "explanation": {
-                "correct": "Right. Three ways: play the ball, interfere with an opponent, or gain an advantage from the position.",
-                "incorrect": "An offside position becomes an offence if the player plays the ball, interferes with an opponent, or gains an advantage (e.g., receives a deliberate backpass from a teammate)."
+                "correct": "Right. Three ways to turn a position into an offence: play the ball, interfere with an opponent, or gain an advantage from being offside.",
+                "incorrect": "Standing in an offside position is not enough. It becomes an offence if he plays the ball, interferes with an opponent, or gains an advantage, for example by playing a ball that rebounds off the post or a save."
               }
             }
           }
@@ -191,15 +246,18 @@
             "conceptIds": ["level-is-onside"],
             "payload": {
               "prompt": "Attacker level with the last defender at the moment of the pass. Onside?",
-              "scene": {"kind": "none", "alt": "A striker's feet are exactly in line with the last defender's feet when the pass is played forward."},
+              "scene": {
+                "kind": "none",
+                "alt": "A striker's feet are exactly in line with the last defender's feet when the pass is played forward."
+              },
               "choices": [
                 {"id": "yes", "label": "Onside"},
                 {"id": "no", "label": "Offside"}
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Yes. Level is onside. The benefit of the doubt goes to the attacker, so any part of the head, body or feet level with the second-last opponent counts as onside.",
-                "incorrect": "The rule gives the attacker the benefit. Level with the second-last defender is onside, not offside."
+                "correct": "Yes. Level is onside. To be offside, the attacker must be nearer the goal line than the second-last opponent, so being level counts as onside.",
+                "incorrect": "Level with the second-last opponent is onside. He has to be nearer the goal line, not just equal, to be in an offside position."
               }
             }
           },
@@ -216,8 +274,8 @@
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. For offside, only the head, body and feet count. Arms (from the shoulder down) do not make a player offside.",
-                "incorrect": "Arms and hands never count toward offside. Only the head, body and feet are judged. A player can have their arm way past the defender and be onside."
+                "correct": "Right. For offside, only the head, body and feet count. Hands and arms, measured from the bottom of the armpit down, do not.",
+                "incorrect": "Hands and arms never make a player offside. Only the head, body and feet are judged, so an arm stretched past the defender changes nothing."
               }
             }
           },
@@ -227,7 +285,10 @@
             "conceptIds": ["offside-body-parts"],
             "payload": {
               "prompt": "Attacker's knee is onside but toe is offside. Offside position?",
-              "scene": {"kind": "none", "alt": "An attacker's knee is level with the last defender, but the attacker's toe extends just past the defender's foot."},
+              "scene": {
+                "kind": "none",
+                "alt": "An attacker's knee is level with the last defender, but the attacker's toe extends just past the defender's foot."
+              },
               "choices": [
                 {"id": "yes", "label": "Yes, offside"},
                 {"id": "no", "label": "No, onside"}
@@ -247,12 +308,20 @@
               "prompt": "Complete the body parts rule.",
               "template": "For offside, {{included}} count, but {{excluded}} do not.",
               "gaps": [
-                {"id": "included", "options": ["head, body, feet", "head and shoulders", "the whole body"], "correct": "head, body, feet"},
-                {"id": "excluded", "options": ["hands and arms", "the legs", "shoulders"], "correct": "hands and arms"}
+                {
+                  "id": "included",
+                  "options": ["head, body, feet", "head and shoulders", "the whole body"],
+                  "correct": "head, body, feet"
+                },
+                {
+                  "id": "excluded",
+                  "options": ["hands and arms", "the legs", "shoulders"],
+                  "correct": "hands and arms"
+                }
               ],
               "explanation": {
-                "correct": "Exactly. Head, body and feet are judged. The arms from the shoulder down are not.",
-                "incorrect": "Hands and arms (from the shoulder down) do not count for offside. Head, body and feet do."
+                "correct": "Exactly. Head, body and feet are judged. Hands and arms, from the bottom of the armpit down, are not.",
+                "incorrect": "Hands and arms do not count for offside. Head, body and feet do, so a stretched-out arm never makes a player offside."
               }
             }
           }
@@ -280,16 +349,17 @@
             "type": "multiple-choice",
             "conceptIds": ["offside-position"],
             "payload": {
-              "prompt": "In that sim, which attacker was in an offside position?",
+              "prompt": "When you read the line on a replay, which frame do you freeze?",
               "options": [
-                {"id": "a", "text": "The near-post attacker"},
-                {"id": "b", "text": "The far-post attacker"},
-                {"id": "c", "text": "Both were onside"}
+                {"id": "a", "text": "The frame the ball leaves the passer's foot"},
+                {"id": "b", "text": "The frame the attacker controls the ball"},
+                {"id": "c", "text": "The frame the ball crosses the goal line"}
               ],
-              "correctOptionIds": ["b"],
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. The far-post attacker was ahead of the second-last defender at the moment of the pass, putting him in an offside position.",
-                "incorrect": "Watch the moment the pass leaves the passer. The attacker on the far side was nearer the goal line than the second-last defender."
+                "correct": "Right. Offside position is judged at the moment the ball is played by the passer. Freeze that frame and compare the attacker with the second-last opponent.",
+                "incorrect": "Offside is decided when the pass is played, not when the attacker receives it or when the ball reaches the goal.",
+                "sayThisLine": "Freeze it when the ball leaves his foot."
               }
             }
           },
@@ -298,20 +368,25 @@
             "type": "say-this",
             "conceptIds": ["offside-position"],
             "payload": {
-              "statement": {"speaker": "Maya", "text": "His shoulder was ahead of the last defender."},
-              "question": "Is this an offside position?",
+              "statement": {"speaker": "Her", "text": "Offside by a toenail. That's so harsh!"},
               "options": [
-                {"id": "a", "text": "Yes, any part ahead counts", "isCorrect": true},
-                {"id": "b", "text": "No, only feet count", "isCorrect": false},
-                {"id": "c", "text": "Only if the arm is extended", "isCorrect": false},
-                {"id": "d", "text": "Yes, head and body count", "isCorrect": true}
+                {
+                  "id": "o1",
+                  "text": "His toe was fractionally ahead of the second-last defender",
+                  "isCorrect": true
+                },
+                {"id": "o2", "text": "A tiny margin decided the offside call", "isCorrect": true},
+                {"id": "o3", "text": "He was fouled in the box", "isCorrect": false},
+                {"id": "o4", "text": "The ball did not cross the line", "isCorrect": false}
               ],
-              "translation": "At the moment of the pass, if any part of the head, body or feet is nearer the goal line than the second-last opponent, the attacker is in an offside position.",
+              "translation": "The attacker was in an offside position by the smallest margin, so the goal or chance was ruled out even though it looked close to level.",
               "followUps": [
-                {"line": "Does the whole shoulder have to be past?", "why": "Tests precision of the rule."},
-                {"line": "What about level, does that count?", "why": "Checks understanding of the benefit of the doubt."}
-              ],
-              "noFakeExpertNote": "The toenail debates are the reason VAR and SAOT exist; even experts study replays frame by frame."
+                {"line": "Was it really that tight?", "why": "Shows you follow the detail."},
+                {
+                  "line": "Do you think they should change the rule?",
+                  "why": "Invites her opinion on the debate."
+                }
+              ]
             }
           },
           {
@@ -319,8 +394,11 @@
             "type": "binary-call",
             "conceptIds": ["offside-position"],
             "payload": {
-              "prompt": "Attacker moves into an onside position after receiving the ball. Offence?",
-              "scene": {"kind": "none", "alt": "A striker was in an offside position when the pass was played but moved into an onside area before receiving and controlling the ball."},
+              "prompt": "He was offside when the pass left, then ran back onside before touching it. Offence?",
+              "scene": {
+                "kind": "none",
+                "alt": "A striker was in an offside position when the pass was played, then moved into an onside area before receiving the ball."
+              },
               "choices": [
                 {"id": "yes", "label": "Yes, still offside"},
                 {"id": "no", "label": "No, the moment matters"}
@@ -340,8 +418,16 @@
               "prompt": "Complete the timing rule.",
               "template": "Offside is judged at the moment the {{action}} leaves the passer's foot, not when the receiver {{action2}}.",
               "gaps": [
-                {"id": "action", "options": ["ball", "kick", "player"], "correct": "ball"},
-                {"id": "action2", "options": ["touches it", "kicks it", "controls it"], "correct": "touches it"}
+                {
+                  "id": "action",
+                  "options": ["ball", "kick", "player"],
+                  "correct": "ball"
+                },
+                {
+                  "id": "action2",
+                  "options": ["touches it", "kicks it", "controls it"],
+                  "correct": "touches it"
+                }
               ],
               "explanation": {
                 "correct": "Exactly. The timing is crucial: offside is decided by positions at the moment of the pass, not reception.",
@@ -363,8 +449,11 @@
             "type": "binary-call",
             "conceptIds": ["deliberate-play"],
             "payload": {
-              "prompt": "Defender blocks a pass with his leg (not deliberate). Next attacker offside?",
-              "scene": {"kind": "none", "alt": "A pass is deflected off a defender's shin guard as the defender tries to block. An attacker ahead of the defender receives the ball."},
+              "prompt": "A pass deflects off a defender's shin to an attacker who was offside. Still offside?",
+              "scene": {
+                "kind": "none",
+                "alt": "A pass is deflected off a defender's shin as he tries to block it. An attacker who was in an offside position when it was played receives the ball."
+              },
               "choices": [
                 {"id": "yes", "label": "Yes, still offside"},
                 {"id": "no", "label": "No, deflection resets it"}
@@ -382,15 +471,18 @@
             "conceptIds": ["deliberate-play"],
             "payload": {
               "prompt": "Defender deliberately heads a loose ball back. Next attacker was offside. Onside now?",
-              "scene": {"kind": "none", "alt": "A defender jumps and deliberately heads a bouncing ball back toward his own goal. An attacker who was in an offside position receives the pass."},
+              "scene": {
+                "kind": "none",
+                "alt": "A defender jumps and deliberately heads a bouncing ball back toward his own goal. An attacker who was in an offside position receives the pass."
+              },
               "choices": [
                 {"id": "yes", "label": "Yes, deliberate play resets it"},
                 {"id": "no", "label": "No, still offside"}
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Correct. A deliberate play by the defender (intentional head, control, or pass) resets the offside line at that moment.",
-                "incorrect": "If a defender deliberately plays the ball (passes, heads or controls it), a new offside line is established from that moment."
+                "correct": "Correct. A deliberate play by a defender, such as a header or a pass, means the attacker who receives the ball is not penalised for offside.",
+                "incorrect": "When a defender deliberately plays the ball, the attacker receiving it is not judged offside from the earlier pass. A deflection or block is different."
               }
             }
           },
@@ -399,16 +491,17 @@
             "type": "multiple-choice",
             "conceptIds": ["deliberate-play"],
             "payload": {
-              "prompt": "After a deliberate play, a new offside line is set. True or false?",
+              "prompt": "A keeper makes a save and the ball rebounds to an attacker who was offside on the shot. Offside?",
               "options": [
-                {"id": "a", "text": "True, a new line forms from that touch"},
-                {"id": "b", "text": "False, the old line still applies"},
-                {"id": "c", "text": "Only if the ball goes backwards"}
+                {"id": "a", "text": "Yes, a save is not a deliberate play"},
+                {"id": "b", "text": "No, any touch by the keeper resets offside"},
+                {"id": "c", "text": "Only if the keeper catches the ball"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "True. When a defender deliberately plays the ball, a new offside situation is created from that moment, with new positions for all players.",
-                "incorrect": "A deliberate play by a defender creates a fresh offside line. Players' positions are re-judged from the moment of that deliberate touch."
+                "correct": "Right. A save does not count as a deliberate play, so an attacker who was offside on the shot and gains from the rebound is penalised.",
+                "incorrect": "Only a deliberate play by a defender resets offside. A goalkeeper's save is not counted as one, so the rebound can still be offside.",
+                "sayThisLine": "A save does not reset offside."
               }
             }
           },
@@ -420,8 +513,16 @@
               "prompt": "Complete the rule.",
               "template": "A {{action}} play by a defender resets offside, but a {{action2}} does not.",
               "gaps": [
-                {"id": "action", "options": ["deliberate", "accidental", "soft"], "correct": "deliberate"},
-                {"id": "action2", "options": ["deflection", "tackle", "clearance"], "correct": "deflection"}
+                {
+                  "id": "action",
+                  "options": ["deliberate", "accidental", "soft"],
+                  "correct": "deliberate"
+                },
+                {
+                  "id": "action2",
+                  "options": ["deflection", "tackle", "clearance"],
+                  "correct": "deflection"
+                }
               ],
               "explanation": {
                 "correct": "Right. The rule rewards defenders who actively play the ball; a deflection or accident does not reset the line.",
@@ -445,15 +546,15 @@
             "payload": {
               "prompt": "VAR can review which of these?",
               "options": [
-                {"id": "a", "text": "A handball allegation in midfield"},
-                {"id": "b", "text": "A goal decision"},
+                {"id": "a", "text": "A throw-in decision in midfield"},
+                {"id": "b", "text": "Whether a goal should stand"},
                 {"id": "c", "text": "A first yellow card"},
-                {"id": "d", "text": "A throw-in error"}
+                {"id": "d", "text": "A goal-kick decision"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. VAR reviews only goals, penalties, direct red cards and mistaken identity. Handball allegations far from goal and yellow cards are not VAR matters.",
-                "incorrect": "VAR is limited to four areas: goals, penalties, direct reds (including DOGSO) and mistaken identity. Everything else is the referee's decision."
+                "correct": "Right. VAR reviews goals, penalties, direct red cards and mistaken identity. From 2026/27 it can also look at clearly wrong second yellows and some corner decisions.",
+                "incorrect": "VAR is limited to match-changing decisions: goals, penalties, direct red cards and mistaken identity, plus the new 2026/27 additions. Throw-ins, goal kicks and first yellows are not on the list."
               }
             }
           },
@@ -464,12 +565,24 @@
             "payload": {
               "prompt": "Match the VAR term to what it means.",
               "pairs": [
-                {"id": "check", "term": "VAR check", "definition": "VAR reviews silently in the room, no interruption; only tells the ref if there is a clear error."},
-                {"id": "review", "term": "On-field review", "definition": "The referee walks to the monitor to look at replays and decides, or VAR advises and the ref chooses."},
-                {"id": "clear", "term": "Clear and obvious", "definition": "The error must be so evident that any official looking at a replay would see it immediately."}
+                {
+                  "id": "check",
+                  "term": "VAR check",
+                  "definition": "VAR reviews silently in the room, no interruption; only tells the ref if there is a clear error."
+                },
+                {
+                  "id": "review",
+                  "term": "On-field review",
+                  "definition": "The referee walks to the monitor to look at replays and decides, or VAR advises and the ref chooses."
+                },
+                {
+                  "id": "clear",
+                  "term": "Clear and obvious",
+                  "definition": "The error must be so evident that any official looking at a replay would see it immediately."
+                }
               ],
               "explanation": {
-                "summary": "VAR uses checks to monitor play silently and reviews for on-field decisions. The threshold is 'clear and obvious.'",
+                "summary": "A check is silent and quick, and a review sends the referee to the monitor. For judgment calls the error must be clear and obvious; factual calls like offside are simply measured.",
                 "sayThisLine": "They went to the monitor, that's a review."
               }
             }
@@ -479,38 +592,55 @@
             "type": "say-this",
             "conceptIds": ["var-basics"],
             "payload": {
-              "statement": {"speaker": "Maya", "text": "VAR only steps in for a clear and obvious error."},
-              "question": "What does 'clear and obvious' mean?",
+              "statement": {"speaker": "Him", "text": "VAR only steps in for a clear and obvious error."},
               "options": [
-                {"id": "a", "text": "VAR can fix any mistake", "isCorrect": false},
-                {"id": "b", "text": "Close decisions are not VAR's job", "isCorrect": true},
-                {"id": "c", "text": "VAR reviews everything in slow motion", "isCorrect": false},
-                {"id": "d", "text": "The error has to be undeniable", "isCorrect": true}
+                {
+                  "id": "o1",
+                  "text": "Subjective calls are usually left with the referee",
+                  "isCorrect": true
+                },
+                {
+                  "id": "o2",
+                  "text": "The mistake must be clear, not just debatable",
+                  "isCorrect": true
+                },
+                {"id": "o3", "text": "VAR can rerun every decision", "isCorrect": false},
+                {"id": "o4", "text": "VAR reviews everything in slow motion", "isCorrect": false}
               ],
-              "translation": "VAR does not overturn close calls or matters of interpretation. The mistake has to be so obvious that any official would see it.",
+              "translation": "For judgment calls, VAR only interferes when the referee has made a clear mistake. Factual calls, such as whether a player was offside, are simply checked.",
               "followUps": [
-                {"line": "Does VAR help with fouls?", "why": "Tests understanding of VAR's limited scope."},
-                {"line": "Is an offside by a toenail clear and obvious?", "why": "Explores the boundary of the rule."}
-              ],
-              "noFakeExpertNote": "The 'clear and obvious' bar is contentious; fans debate it because the line is genuinely hard to draw."
+                {
+                  "line": "Was it clear or just close?",
+                  "why": "Shows you understand the threshold."
+                },
+                {
+                  "line": "Do you think the referee should have gone to the screen?",
+                  "why": "Keeps the chat friendly."
+                }
+              ]
             }
           },
           {
             "id": "offside-06-mc-limited",
-            "type": "multiple-choice",
+            "type": "binary-call",
             "conceptIds": ["var-basics"],
             "payload": {
-              "prompt": "Why does VAR only handle four types of decisions?",
-              "options": [
-                {"id": "a", "text": "To save time and keep the game flowing"},
-                {"id": "b", "text": "Because those four involve clear, factual errors"},
-                {"id": "c", "text": "To reduce the referee's burden"}
+              "prompt": "From 2026/27, VAR can review a clearly wrong second yellow card. True or false?",
+              "scene": {
+                "kind": "none",
+                "alt": "A player is sent off after a second yellow card that looked mistaken on replay."
+              },
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
               ],
-              "correctOptionIds": ["b"],
+              "correctChoiceId": "true",
               "explanation": {
-                "correct": "Yes. Goals, penalties, direct reds and mistaken identity are factual or structural decisions. Fouls, handball position and other calls involve judgment, so VAR is limited.",
-                "incorrect": "VAR focuses on decisions where the error is factual: was the ball in, was there contact in the area, was the player identified correctly. Judgments on fouls are left to the ref."
-              }
+                "correct": "True. For 2026/27 the list of VAR reviews grows to include clearly incorrect second yellow cards leading to a red, alongside mistaken identity and some corner decisions.",
+                "incorrect": "IFAB's 2026/27 changes extend VAR to clearly wrong second yellows, since they end up as a red card. A first yellow is still not reviewable.",
+                "sayThisLine": "VAR can now look at a wrong second yellow."
+              },
+              "ruleTag": "2026/27 VAR change"
             }
           }
         ]
@@ -537,16 +667,16 @@
             "type": "multiple-choice",
             "conceptIds": ["active-play"],
             "payload": {
-              "prompt": "In the VAR check, was the attacker in active play?",
+              "prompt": "An attacker in an offside position just runs past the play without touching or blocking. Active play?",
               "options": [
-                {"id": "a", "text": "Yes, he challenged for the ball"},
-                {"id": "b", "text": "No, he stood away from play"},
-                {"id": "c", "text": "The goal was disallowed for offside"}
+                {"id": "a", "text": "Yes, he is in an offside position"},
+                {"id": "b", "text": "No, he neither played the ball nor affected an opponent"},
+                {"id": "c", "text": "Yes, because the goal was scored"}
               ],
-              "correctOptionIds": ["a"],
+              "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. The attacker was involved in the play: he challenged for the header or interfered with the keeper's line of sight. He was in active play.",
-                "incorrect": "An attacker in an offside position is in active play if they challenge for the ball, interfere with an opponent or gain an advantage from the position."
+                "correct": "Right. He is in an offside position but not in active play, because he did not play the ball, interfere with an opponent or gain an advantage. So there is no offence.",
+                "incorrect": "Active play means touching the ball, interfering with an opponent or gaining an advantage. Simply being in an offside position while running past is not enough."
               }
             }
           },
@@ -555,20 +685,28 @@
             "type": "say-this",
             "conceptIds": ["saot"],
             "payload": {
-              "statement": {"speaker": "Maya", "text": "The graphic came out in about twenty seconds."},
-              "question": "What technology just showed the offside line?",
+              "statement": {
+                "speaker": "Her",
+                "text": "They didn't draw those lines by hand, the system did it in seconds."
+              },
               "options": [
-                {"id": "a", "text": "VAR took a long time to check", "isCorrect": false},
-                {"id": "b", "text": "Semi-automated offside line graphics", "isCorrect": true},
-                {"id": "c", "text": "A replay of the goal", "isCorrect": false},
-                {"id": "d", "text": "Technology that shows the offside line instantly", "isCorrect": true}
+                {"id": "o1", "text": "Semi-automated offside technology", "isCorrect": true},
+                {
+                  "id": "o2",
+                  "text": "Camera tracking that shows where the players were",
+                  "isCorrect": true
+                },
+                {"id": "o3", "text": "A referee measuring with a tape", "isCorrect": false},
+                {"id": "o4", "text": "A replay of a foul", "isCorrect": false}
               ],
-              "translation": "Semi-automated offside (SAOT) uses camera tracking and AI to draw the offside line automatically in seconds, replacing hand-drawn lines.",
+              "translation": "Semi-automated offside technology uses tracking cameras and the ball's data to place the offside line in seconds, so decisions come back quicker than hand-drawn lines.",
               "followUps": [
-                {"line": "Is SAOT always accurate?", "why": "Probes understanding of the tool's limits."},
-                {"line": "Why is it faster than the old method?", "why": "Tests grasp of the technology's value."}
-              ],
-              "noFakeExpertNote": "SAOT is faster but remains controversial when lines are impossibly tight; it is a tool, not a referee."
+                {
+                  "line": "Does it feel quicker than the old way?",
+                  "why": "Shows curiosity about how it works."
+                },
+                {"line": "Was it a close one?", "why": "Invites her to tell the story."}
+              ]
             }
           },
           {
@@ -577,11 +715,23 @@
             "conceptIds": ["active-play"],
             "payload": {
               "prompt": "Complete the active-play rule.",
-              "template": "A player in offside is in active play if they {{play}}, {{interfere}}, or {{gain}} from the position.",
+              "template": "A player in an offside position is in active play if he {{play}}, {{interfere}}, or {{gain}} from that position.",
               "gaps": [
-                {"id": "play", "options": ["pass", "play the ball", "kick"], "correct": "play the ball"},
-                {"id": "interfere", "options": ["interfere with an opponent", "see the ball", "move"], "correct": "interfere with an opponent"},
-                {"id": "gain", "options": ["gain an advantage", "are faster", "score"], "correct": "gain an advantage"}
+                {
+                  "id": "play",
+                  "options": ["pass", "play the ball", "kick"],
+                  "correct": "play the ball"
+                },
+                {
+                  "id": "interfere",
+                  "options": ["interfere with an opponent", "see the ball", "move"],
+                  "correct": "interfere with an opponent"
+                },
+                {
+                  "id": "gain",
+                  "options": ["gain an advantage", "are faster", "score"],
+                  "correct": "gain an advantage"
+                }
               ],
               "explanation": {
                 "correct": "Exactly. Three routes: play the ball, interfere with an opponent, or gain an advantage.",
@@ -606,7 +756,10 @@
               "prompt": "How does an offside trap work?",
               "options": [
                 {"id": "a", "text": "The back line stays deep and compact"},
-                {"id": "b", "text": "The entire back line steps up at the moment of the pass to catch attackers"},
+                {
+                  "id": "b",
+                  "text": "The entire back line steps up at the moment of the pass to catch attackers"
+                },
                 {"id": "c", "text": "One centre-back moves forward while others stay"}
               ],
               "correctOptionIds": ["b"],
@@ -621,7 +774,10 @@
             "type": "say-this",
             "conceptIds": ["offside-trap"],
             "payload": {
-              "statement": {"speaker": "Maya", "text": "That's the trap, the whole back line stepped up together."},
+              "statement": {
+                "speaker": "Maya",
+                "text": "That's the trap, the whole back line stepped up together."
+              },
               "question": "What is she describing?",
               "options": [
                 {"id": "a", "text": "A planned defensive move to catch offside", "isCorrect": true},
@@ -631,8 +787,14 @@
               ],
               "translation": "The defensive line (all four or five defenders) moves up as one unit at the moment an opponent plays a pass, hoping to leave attackers in an offside position.",
               "followUps": [
-                {"line": "Is the trap risky?", "why": "Tests understanding of the danger: if it fails, defenders are beaten."},
-                {"line": "When do teams use it most?", "why": "Invites reflection on tactical timing."}
+                {
+                  "line": "Is the trap risky?",
+                  "why": "Tests understanding of the danger: if it fails, defenders are beaten."
+                },
+                {
+                  "line": "When do teams use it most?",
+                  "why": "Invites reflection on tactical timing."
+                }
               ],
               "noFakeExpertNote": "The trap is a high-risk, high-reward tactic. One mistimed step and the attacker is one-on-one with the keeper."
             }
@@ -644,14 +806,17 @@
             "payload": {
               "prompt": "What is the 'daylight' offside proposal?",
               "options": [
-                {"id": "a", "text": "Offside only in day matches, not night games"},
-                {"id": "b", "text": "An attacker must be fully clear of the defender"},
-                {"id": "c", "text": "VAR must use natural light to check"}
+                {"id": "a", "text": "Offside only in daytime matches"},
+                {
+                  "id": "b",
+                  "text": "An attacker is offside only if his whole body is clearly ahead"
+                },
+                {"id": "c", "text": "VAR must use natural light"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "The daylight rule would require the attacker to be clearly separated from the defender, not just a toe ahead. It would reduce toenail offside calls.",
-                "incorrect": "The 'daylight offside' proposal means an attacker must be noticeably ahead of the defender, not just an inch. It changes the rule to eliminate margin-of-error calls."
+                "correct": "Right. Under the 'daylight' idea, an attacker would be offside only if there is clear space between his body and the last defender. It would stop toenail calls. It has been debated but not adopted.",
+                "incorrect": "The 'daylight' offside proposal says an attacker is offside only if there is clear space (daylight) between him and the last defender. It has been debated but not adopted, and no offside change was approved for 2026/27."
               }
             }
           },
