@@ -27,9 +27,7 @@
           {
             "id": "nv-01-mc-01",
             "type": "multiple-choice",
-            "conceptIds": [
-              "map-scale"
-            ],
+            "conceptIds": ["map-scale"],
             "payload": {
               "prompt": "A 1:24,000 map shows one inch equals how far?",
               "options": [
@@ -50,12 +48,10 @@
                   "text": "One kilometer"
                 }
               ],
-              "correctOptionIds": [
-                "b"
-              ],
+              "correctOptionIds": ["b"],
               "explanation": {
                 "correct": "On a 1:24,000 scale map, one inch on the map is 24,000 inches in real life, which is about 2,000 feet. That's the standard USGS topo scale for day hikes.",
-                "incorrect": "The ratio 24,000:1 means 24,000 real units per map unit. Check: 24,000 inches \u00f7 12 \u00f7 5,280 = about 0.38 miles, close to 2,000 feet. A 1:250,000 map (state level) is 1 inch = 4 miles.",
+                "incorrect": "The ratio 1:24,000 means 24,000 real units per map unit: 24,000 inches divided by 12 is 2,000 feet. A 1:250,000 map is about 4 miles per inch.",
                 "sayThisLine": "On a one-to-twenty-four-thousand map, one inch is two thousand feet."
               }
             }
@@ -63,36 +59,25 @@
           {
             "id": "nv-01-fg-01",
             "type": "fill-the-gap",
-            "conceptIds": [
-              "map-legend"
-            ],
+            "conceptIds": ["map-legend"],
             "payload": {
               "prompt": "What does the map legend show you?",
-              "template": "A map legend explains the {{symbols}} for {{feature}} and {{land}}, so you can tell the {{read}} from the real thing.",
+              "template": "The {{legend}} explains what each {{mark}} means, for example whether a dashed line is a {{trail}}.",
               "gaps": [
                 {
-                  "id": "symbols",
-                  "options": [
-                    "symbols",
-                    "borders"
-                  ],
-                  "correct": "symbols"
+                  "id": "legend",
+                  "options": ["legend", "scale bar"],
+                  "correct": "legend"
                 },
                 {
-                  "id": "feature",
-                  "options": [
-                    "trails",
-                    "seasons"
-                  ],
-                  "correct": "trails"
+                  "id": "mark",
+                  "options": ["symbol and color", "tree"],
+                  "correct": "symbol and color"
                 },
                 {
-                  "id": "land",
-                  "options": [
-                    "type",
-                    "development"
-                  ],
-                  "correct": "type"
+                  "id": "trail",
+                  "options": ["maintained trail or rough route", "paved highway"],
+                  "correct": "maintained trail or rough route"
                 }
               ],
               "explanation": {
@@ -104,9 +89,7 @@
           {
             "id": "nv-01-mc-02",
             "type": "multiple-choice",
-            "conceptIds": [
-              "map-scale"
-            ],
+            "conceptIds": ["map-scale"],
             "payload": {
               "prompt": "You have two maps of {{destination}}: 1:24,000 and 1:100,000. Which shows more detail?",
               "options": [
@@ -127,12 +110,10 @@
                   "text": "The 1:100,000 scale is better for navigation"
                 }
               ],
-              "correctOptionIds": [
-                "b"
-              ],
+              "correctOptionIds": ["b"],
               "explanation": {
                 "correct": "Larger scale (smaller numbers) means more detail in a smaller area. A 1:24,000 map shows the same region with more zoomed-in detail than a 1:100,000 map. For day hiking, 1:24,000 is ideal.",
-                "incorrect": "Think of scale ratio: smaller numbers = more zoomed in = more detail. A 1:24,000 map covers about 4 miles on a side; a 1:100,000 map covers about 16 miles. Use 1:24,000 for hiking, 1:100,000 for planning.",
+                "incorrect": "Smaller ratio numbers mean more zoomed in and more detail. A 1:24,000 quad covers about 6 by 8 miles; a 1:100,000 map covers roughly 30 by 40. Use 1:24,000 for hiking and 1:100,000 for planning.",
                 "sayThisLine": "For hiking day trips, I use a one-to-twenty-four-thousand map. It has all the detail I need."
               }
             }
@@ -140,10 +121,7 @@
           {
             "id": "nv-01-tm-01",
             "type": "term-match",
-            "conceptIds": [
-              "map-scale",
-              "map-legend"
-            ],
+            "conceptIds": ["map-scale", "map-legend"],
             "payload": {
               "prompt": "Match the map concept to its role.",
               "pairs": [
@@ -164,8 +142,8 @@
                 },
                 {
                   "id": "north",
-                  "term": "North arrow",
-                  "definition": "A pointer showing which way is true north on the map"
+                  "term": "Declination diagram",
+                  "definition": "Shows how true, magnetic and grid north differ where the map was made"
                 }
               ],
               "distractorDefinitions": [
@@ -173,7 +151,7 @@
                 "A list of trails in alphabetical order"
               ],
               "explanation": {
-                "summary": "Every map has a scale, legend and north arrow to orient you. The scale tells you distances, the legend decodes the symbols, and north lets you compare the map to a compass.",
+                "summary": "Every map has a scale, legend and declination diagram to orient you. The scale tells you distances, the legend decodes the symbols, and the diagram lets you match the map to a compass.",
                 "sayThisLine": "Before you navigate, check the legend and the scale. They're your decoder."
               }
             }
@@ -181,10 +159,7 @@
           {
             "id": "nv-01-ds-01",
             "type": "decision-scenario",
-            "conceptIds": [
-              "map-scale",
-              "map-legend"
-            ],
+            "conceptIds": ["map-scale", "map-legend"],
             "payload": {
               "situation": {
                 "facts": [
@@ -207,33 +182,39 @@
                   "id": "right",
                   "verdict": "best",
                   "label": "Get a 1:24,000 map; the detail will show each junction",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "A 1:24,000 map shows trails, junctions, water and terrain at a hiking scale, so you can match each junction you reach to the page.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Larger scale means more detail in a smaller area",
+                    "Junctions are where people go wrong",
+                    "Carry it as a paper map or a downloaded offline layer"
                   ]
                 },
                 {
                   "id": "ok",
                   "verdict": "acceptable",
                   "label": "Use a GPS track from a previous hike as your guide",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "A track shows a route someone walked, but not the other trails, junction choices or terrain around it. It is a good backup, not a replacement for a map.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Tracks can be wrong or out of date",
+                    "Tracks do not show alternatives",
+                    "Use a track and the map together"
                   ]
                 },
                 {
                   "id": "bad",
                   "verdict": "poor",
                   "label": "Use the 1:100,000 map; zoom in on your phone version",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "Zooming does not add detail; it only enlarges a coarse map. Small junctions stay invisible, and you may take a wrong turn.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Zoom does not add data",
+                    "Phones can fail, so carry paper too",
+                    "Pick a map made for hiking"
                   ]
                 }
               ],
               "expertNote": "A 1:24,000 USGS quad is the hiker's workhorse. It shows junctions, water, and terrain detail that a regional map can't. If you have a GPS track, it's good backup, but the map still matters.",
               "safetyNote": "Always carry a paper map at the right scale. Zooming a low-detail map on a phone doesn't add detail; it just makes it blurry.",
-              "prompt": "Which is best: 1:100,000 quad map o?"
+              "prompt": "Your regional map is too coarse to show local junctions. What now?"
             }
           }
         ]
@@ -252,9 +233,7 @@
           {
             "id": "nv-02-ht-01",
             "type": "hotspot-tap",
-            "conceptIds": [
-              "contour-line"
-            ],
+            "conceptIds": ["contour-line"],
             "payload": {
               "prompt": "Tap the index contour (the thick, dark line).",
               "diagram": {
@@ -269,8 +248,8 @@
                   "shape": {
                     "kind": "circle",
                     "cx": 0.5,
-                    "cy": 0.5,
-                    "r": 0.08
+                    "cy": 0.45,
+                    "r": 0.12
                   }
                 },
                 {
@@ -279,8 +258,8 @@
                   "shape": {
                     "kind": "circle",
                     "cx": 0.5,
-                    "cy": 0.5,
-                    "r": 0.08
+                    "cy": 0.7,
+                    "r": 0.12
                   }
                 },
                 {
@@ -289,14 +268,12 @@
                   "shape": {
                     "kind": "circle",
                     "cx": 0.5,
-                    "cy": 0.5,
-                    "r": 0.08
+                    "cy": 0.2,
+                    "r": 0.12
                   }
                 }
               ],
-              "correctHotspotIds": [
-                "correct"
-              ],
+              "correctHotspotIds": ["correct"],
               "explanation": {
                 "correct": "Index contours are the bold, darker lines, usually every fifth regular contour. They are labeled with their elevation to help you orient quickly.",
                 "incorrect": "Look for the thick lines that stand out from the thinner ones. Those bold lines are index contours and will have an elevation label nearby."
@@ -306,9 +283,7 @@
           {
             "id": "nv-02-mc-01",
             "type": "multiple-choice",
-            "conceptIds": [
-              "contour-interval"
-            ],
+            "conceptIds": ["contour-interval"],
             "payload": {
               "prompt": "A map says 'Contour interval 40 feet.' What does that mean?",
               "options": [
@@ -329,101 +304,76 @@
                   "text": "The map scale is one inch per 40 feet"
                 }
               ],
-              "correctOptionIds": [
-                "b"
-              ],
+              "correctOptionIds": ["b"],
               "explanation": {
                 "correct": "Contour interval is the vertical distance between each contour line. If the interval is 40 feet, each line you cross means 40 feet of elevation change. If it's 80 feet (common on big terrain), each line is 80 feet.",
-                "incorrect": "The interval is always marked on the map. Count the lines you'll cross and multiply by the interval to estimate climbing. Tight lines = small vertical distance = steep slope.",
+                "incorrect": "The interval is always printed on the map. Count the lines you will cross and multiply by the interval to estimate climbing. Lines packed close together mean that rise happens over a short distance, which is steep.",
                 "sayThisLine": "Count the contours and multiply by the interval to find how much you'll climb."
               }
             }
           },
           {
-            "id": "nv-02-mc-02",
-            "type": "multiple-choice",
-            "conceptIds": [
-              "contour-line"
-            ],
+            "id": "nv-02-bc-spacing",
+            "type": "binary-call",
+            "conceptIds": ["contour-line"],
             "payload": {
-              "prompt": "Contour lines close together on a map mean the ground is...?",
-              "options": [
+              "prompt": "Contour lines packed close together: is that ground steep?",
+              "scene": {
+                "kind": "none",
+                "alt": "A topographic map with tightly packed contour lines on one side and widely spaced lines on the other."
+              },
+              "choices": [
                 {
-                  "id": "a",
-                  "text": "Gentle and easy"
+                  "id": "yes",
+                  "label": "Yes, it is steep"
                 },
                 {
-                  "id": "b",
-                  "text": "Steep"
-                },
-                {
-                  "id": "c",
-                  "text": "Flat"
-                },
-                {
-                  "id": "d",
-                  "text": "Far away"
+                  "id": "no",
+                  "label": "No, it is gentle"
                 }
               ],
-              "correctOptionIds": [
-                "b"
-              ],
+              "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Tight contour lines mean a lot of elevation change in a small distance, which is steep. Spaced-out lines mean gradual elevation change, which is gentle terrain.",
-                "incorrect": "Think of it: if the lines are packed together, you're climbing fast. If they're spread apart, the same distance covers less elevation. Spacing = gradient.",
-                "sayThisLine": "Those contours are so tight that the slope has to be brutal."
+                "correct": "Tight contour lines mean a lot of elevation change in a small distance, which is steep. Spaced-out lines mean gentle terrain.",
+                "incorrect": "If the lines are packed together you climb fast in a short distance. If they are spread apart, the same distance covers less elevation.",
+                "sayThisLine": "Those contours are so tight the slope has to be brutal."
               }
             }
           },
           {
             "id": "nv-02-fg-01",
             "type": "fill-the-gap",
-            "conceptIds": [
-              "contour-interval",
-              "index-contour"
-            ],
+            "conceptIds": ["contour-interval", "index-contour"],
             "payload": {
               "prompt": "Reading contour elevation.",
-              "template": "To find elevation, locate an {{index}}, read its {{number}}, then count regular contours {{up}} or {{down}}, multiplying by the {{interval}}.",
+              "template": "To find elevation, locate an {{index}}, read its {{number}}, then count regular contours {{up}} or down from it, multiplying by the interval.",
               "gaps": [
                 {
                   "id": "index",
-                  "options": [
-                    "index contour",
-                    "peak"
-                  ],
+                  "options": ["index contour", "peak"],
                   "correct": "index contour"
                 },
                 {
                   "id": "number",
-                  "options": [
-                    "label",
-                    "color"
-                  ],
+                  "options": ["label", "color"],
                   "correct": "label"
                 },
                 {
                   "id": "up",
-                  "options": [
-                    "up",
-                    "along"
-                  ],
+                  "options": ["up", "along"],
                   "correct": "up"
                 }
               ],
               "explanation": {
                 "correct": "Index contours are your landmarks. Use them to orient yourself. Count contours from there, and the math tells you elevation at any spot on the map.",
-                "incorrect": "Index contours are bold and labeled to make this easier. Find one, note its elevation, count from there. Contours point downhill in drainage, uphill on ridges."
+                "incorrect": "Index contours are bold and labeled to make this easier. Find one, note its elevation, then count regular contours up or down from there."
               }
             }
           },
           {
             "id": "nv-02-ds-01",
             "type": "decision-scenario",
-            "conceptIds": [
-              "contour-line",
-              "contour-interval"
-            ],
+            "conceptIds": ["contour-line", "contour-interval"],
             "payload": {
               "situation": {
                 "facts": [
@@ -445,34 +395,34 @@
                 {
                   "id": "right",
                   "verdict": "best",
-                  "label": "Multiply: 15 lines \u00d7 80 feet = 1,200 feet of gain",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "label": "Multiply: 15 lines × 80 feet = 1,200 feet of gain",
+                  "consequence": "Fifteen intervals of 80 feet is 1,200 feet, a solid climb worth planning time and water for.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Count the lines, then multiply by the interval",
+                    "By Naismith's rule that is about 35 minutes of climbing time, before distance"
                   ]
                 },
                 {
                   "id": "over",
                   "verdict": "acceptable",
                   "label": "Estimate 1,000 to 1,500 feet without the exact math",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "A rough range gets you close, but the multiplication is easy and gives a number you can actually plan with.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Estimates are fine for a quick look",
+                    "Exact counts help with time and water"
                   ]
                 },
                 {
                   "id": "wrong",
                   "verdict": "poor",
                   "label": "Say it's about 15 miles of climbing since you crossed 15 lines",
-                  "consequence": "This option affects your hiking safety and experience.",
-                  "considerations": [
-                    "Consider all factors carefully before choosing."
-                  ]
+                  "consequence": "Contour lines measure vertical distance, not miles. Mixing them up would badly distort your plan.",
+                  "considerations": ["Lines are vertical steps", "Miles come from the scale bar"]
                 }
               ],
-              "expertNote": "Contour counting is your fast elevation-gain check. It's not perfect (the math assumes straight up, your route zigzags), but it's reliable enough for planning.",
-              "safetyNote": "Never underestimate gain from contours. If the lines are very tight, the actual climbing might be harder than the number suggests.",
-              "prompt": "Which is best: 80 feet?"
+              "expertNote": "Counting contours gives a fast net-gain check. Extra ups and downs along the way add more climbing than the net number, so pad your plan.",
+              "safetyNote": "Tightly packed contours mean steep ground. Plan extra time, and treat merged contours as a cliff to avoid.",
+              "prompt": "Your route crosses 15 contours on an 80-foot interval. How much climbing?"
             }
           }
         ]
@@ -507,9 +457,7 @@
           {
             "id": "nv-03-mc-01",
             "type": "multiple-choice",
-            "conceptIds": [
-              "cliff-contours"
-            ],
+            "conceptIds": ["cliff-contours"],
             "payload": {
               "prompt": "On a map, what do merged or very close contours signal?",
               "options": [
@@ -530,12 +478,10 @@
                   "text": "A lake or river"
                 }
               ],
-              "correctOptionIds": [
-                "c"
-              ],
+              "correctOptionIds": ["c"],
               "explanation": {
-                "correct": "When contour lines merge or are so tight you can barely see between them, that's a cliff band. It's too steep to hike; you'll need to go around or up carefully.",
-                "incorrect": "Merged contours = lots of elevation in almost no horizontal distance = vertical drop. Avoid these bands unless you know the route. Many accidents happen when people try to cross a cliff band.",
+                "correct": "When contour lines merge or bunch so tight you cannot see between them, that is a cliff or near-vertical wall. It is not a hiking route: go around it, and never try to climb it.",
+                "incorrect": "Merged contours mean a lot of elevation in almost no horizontal distance, which is a cliff. Avoid these bands unless a marked route goes through them.",
                 "sayThisLine": "The contours merge here. That's a cliff, not a trail."
               }
             }
@@ -543,9 +489,7 @@
           {
             "id": "nv-03-ht-01",
             "type": "hotspot-tap",
-            "conceptIds": [
-              "cliff-contours"
-            ],
+            "conceptIds": ["cliff-contours"],
             "payload": {
               "prompt": "Tap the area on this map that looks steepest.",
               "diagram": {
@@ -559,9 +503,9 @@
                   "label": "Gentle slope",
                   "shape": {
                     "kind": "circle",
-                    "cx": 0.5,
+                    "cx": 0.2,
                     "cy": 0.5,
-                    "r": 0.08
+                    "r": 0.12
                   }
                 },
                 {
@@ -571,7 +515,7 @@
                     "kind": "circle",
                     "cx": 0.5,
                     "cy": 0.5,
-                    "r": 0.08
+                    "r": 0.12
                   }
                 },
                 {
@@ -579,15 +523,13 @@
                   "label": "Moderate slope",
                   "shape": {
                     "kind": "circle",
-                    "cx": 0.5,
+                    "cx": 0.8,
                     "cy": 0.5,
-                    "r": 0.08
+                    "r": 0.12
                   }
                 }
               ],
-              "correctHotspotIds": [
-                "cliff"
-              ],
+              "correctHotspotIds": ["cliff"],
               "explanation": {
                 "correct": "The tightly bunched lines are a cliff. The spaced lines to the left and right are gentler slopes. Your eye should go to the packed lines first.",
                 "incorrect": "Compare line spacing. Tight = steep. Spaced = gentle. This visual skill transfers to any map."
@@ -701,15 +643,13 @@
           {
             "id": "nv-04-mc-01",
             "type": "multiple-choice",
-            "conceptIds": [
-              "ridgeline"
-            ],
+            "conceptIds": ["ridgeline"],
             "payload": {
-              "prompt": "On a topo map, how do contours bend at a ridge?",
+              "prompt": "On a topo map, how do contours bend across a ridge?",
               "options": [
                 {
                   "id": "a",
-                  "text": "They form a V pointing downhill"
+                  "text": "They form a U or V pointing downhill"
                 },
                 {
                   "id": "b",
@@ -724,22 +664,18 @@
                   "text": "They form a straight line"
                 }
               ],
-              "correctOptionIds": [
-                "c"
-              ],
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "A ridge is high ground. Contours bend in a V-shape with the point facing uphill (toward higher elevation). This V points up the ridge crest.",
-                "incorrect": "Remember: ridges are mountains pushing up, so contours point UP. Drainages are valleys pulling down, so contours point DOWN. Learn this, and you can read any map.",
-                "sayThisLine": "Contours make a V pointing uphill at a ridge."
+                "correct": "A ridge is a spur of high ground. Contours wrap around it in a U or V that points downhill, away from the higher ground.",
+                "incorrect": "Remember: contours point uphill in drainages and downhill on ridges. A V pointing uphill is a valley or stream, not a ridge.",
+                "sayThisLine": "On a ridge, the contours point downhill."
               }
             }
           },
           {
             "id": "nv-04-mc-02",
             "type": "multiple-choice",
-            "conceptIds": [
-              "drainage"
-            ],
+            "conceptIds": ["drainage"],
             "payload": {
               "prompt": "On a topo map, how do contours bend at a drainage?",
               "options": [
@@ -760,13 +696,11 @@
                   "text": "They form straight parallel lines"
                 }
               ],
-              "correctOptionIds": [
-                "a"
-              ],
+              "correctOptionIds": ["c"],
               "explanation": {
-                "correct": "A drainage is a valley where water flows downhill. Contours bend in a V-shape with the point facing downhill (toward lower elevation). Water flows along the bottom.",
-                "incorrect": "The V points the direction water goes. Down the valley. Learn this opposite of ridges: down = drainage, up = ridge.",
-                "sayThisLine": "Follow the drainage down and you'll hit the creek."
+                "correct": "A drainage is a valley where water flows downhill. Contours cross it in a V whose point faces uphill, upstream, toward higher ground.",
+                "incorrect": "The V points upstream. A stream cuts a notch into the hillside, so the contours bend back uphill around it. On a ridge they bend the other way.",
+                "sayThisLine": "That V points uphill, so it is a drainage."
               }
             }
           },
@@ -809,23 +743,19 @@
           {
             "id": "nv-04-tm-01",
             "type": "term-match",
-            "conceptIds": [
-              "ridgeline",
-              "saddle",
-              "drainage"
-            ],
+            "conceptIds": ["ridgeline", "saddle", "drainage"],
             "payload": {
               "prompt": "Match the landform to its contour pattern.",
               "pairs": [
                 {
                   "id": "ridge",
                   "term": "Ridge",
-                  "definition": "High ground; contours form a V pointing uphill"
+                  "definition": "High ground; contours bend in U or V shapes pointing downhill"
                 },
                 {
                   "id": "drain",
                   "term": "Drainage",
-                  "definition": "Valley; contours form a V pointing downhill"
+                  "definition": "Valley or stream; contours form a V pointing uphill"
                 },
                 {
                   "id": "saddle",
@@ -843,7 +773,7 @@
                 "Contours that form concentric circles"
               ],
               "explanation": {
-                "summary": "Ridges and drainages are opposites. Ridges point up, drainages point down. Saddles look like hourglasses. Once you see these patterns, reading a topo becomes natural.",
+                "summary": "Ridges and drainages are opposites. Ridge contours point downhill; drainage V's point uphill, upstream. Saddles look like hourglasses. Once you see these patterns, a topo starts to read easily.",
                 "sayThisLine": "We're walking the ridge, then dropping down the spur."
               }
             }
@@ -851,15 +781,12 @@
           {
             "id": "nv-04-ht-01",
             "type": "hotspot-tap",
-            "conceptIds": [
-              "ridgeline",
-              "drainage"
-            ],
+            "conceptIds": ["ridgeline", "drainage"],
             "payload": {
-              "prompt": "Tap the ridge on this map (uphill-pointing V).",
+              "prompt": "Tap the ridge (contours pointing downhill) on this map.",
               "diagram": {
                 "asset": "diagram.contours.ridges-drainages",
-                "alt": "A topographic map section showing three distinct patterns: a V pointing uphill (ridge), a V pointing downhill (drainage), and an hourglass shape (saddle).",
+                "alt": "A topographic map section showing three patterns: contours pointing downhill (a ridge), V shapes pointing uphill (a drainage), and an hourglass shape (a saddle).",
                 "aspectRatio": 1.5
               },
               "hotspots": [
@@ -868,9 +795,9 @@
                   "label": "Ridge",
                   "shape": {
                     "kind": "circle",
-                    "cx": 0.5,
+                    "cx": 0.2,
                     "cy": 0.5,
-                    "r": 0.08
+                    "r": 0.12
                   }
                 },
                 {
@@ -880,7 +807,7 @@
                     "kind": "circle",
                     "cx": 0.5,
                     "cy": 0.5,
-                    "r": 0.08
+                    "r": 0.12
                   }
                 },
                 {
@@ -888,18 +815,16 @@
                   "label": "Saddle",
                   "shape": {
                     "kind": "circle",
-                    "cx": 0.5,
+                    "cx": 0.8,
                     "cy": 0.5,
-                    "r": 0.08
+                    "r": 0.12
                   }
                 }
               ],
-              "correctHotspotIds": [
-                "ridge"
-              ],
+              "correctHotspotIds": ["ridge"],
               "explanation": {
-                "correct": "Ridges have that V shape pointing up the slope. It's like the contours are walking uphill along the crest.",
-                "incorrect": "Look for the V that opens downhill. That's a drainage, not a ridge. The opposite pattern."
+                "correct": "On a ridge, contours wrap around the crest and point downhill, like a tongue reaching down the slope.",
+                "incorrect": "Look for contours that point downhill. Contours that V uphill mark a drainage, the opposite pattern."
               }
             }
           }
@@ -920,9 +845,7 @@
           {
             "id": "nv-05-ht-01",
             "type": "hotspot-tap",
-            "conceptIds": [
-              "saddle"
-            ],
+            "conceptIds": ["saddle"],
             "payload": {
               "prompt": "Tap the saddle (hourglass shape) on this map.",
               "diagram": {
@@ -938,7 +861,7 @@
                     "kind": "circle",
                     "cx": 0.5,
                     "cy": 0.5,
-                    "r": 0.08
+                    "r": 0.12
                   }
                 },
                 {
@@ -946,9 +869,9 @@
                   "label": "Peak",
                   "shape": {
                     "kind": "circle",
-                    "cx": 0.5,
+                    "cx": 0.2,
                     "cy": 0.5,
-                    "r": 0.08
+                    "r": 0.12
                   }
                 },
                 {
@@ -956,18 +879,16 @@
                   "label": "Peak",
                   "shape": {
                     "kind": "circle",
-                    "cx": 0.5,
+                    "cx": 0.8,
                     "cy": 0.5,
-                    "r": 0.08
+                    "r": 0.12
                   }
                 }
               ],
-              "correctHotspotIds": [
-                "saddle"
-              ],
+              "correctHotspotIds": ["saddle"],
               "explanation": {
                 "correct": "A saddle is that narrow hourglass shape where two slopes come together and then open up again on the other side.",
-                "incorrect": "Look for the V-shapes in contours and identify which one looks pinched in the middle. That pinch is a saddle."
+                "incorrect": "Look for the pinched, hourglass shape between two higher areas. That pinch is the saddle."
               }
             }
           },
@@ -1011,14 +932,12 @@
           {
             "id": "nv-05-ht-02",
             "type": "hotspot-tap",
-            "conceptIds": [
-              "drainage"
-            ],
+            "conceptIds": ["drainage"],
             "payload": {
-              "prompt": "Tap the drainage (downhill-pointing V) on this map.",
+              "prompt": "Tap the drainage (uphill-pointing V) on this map.",
               "diagram": {
                 "asset": "diagram.contours.drainage-id",
-                "alt": "A topographic map showing a ridge and a drainage. The drainage is marked by contours forming a V pointing downhill.",
+                "alt": "A topographic map showing a ridge and a drainage. The drainage is marked by contours forming a V pointing uphill.",
                 "aspectRatio": 1.5
               },
               "hotspots": [
@@ -1027,9 +946,9 @@
                   "label": "Drainage",
                   "shape": {
                     "kind": "circle",
-                    "cx": 0.5,
+                    "cx": 0.3,
                     "cy": 0.5,
-                    "r": 0.08
+                    "r": 0.12
                   }
                 },
                 {
@@ -1037,28 +956,23 @@
                   "label": "Ridge",
                   "shape": {
                     "kind": "circle",
-                    "cx": 0.5,
+                    "cx": 0.7,
                     "cy": 0.5,
-                    "r": 0.08
+                    "r": 0.12
                   }
                 }
               ],
-              "correctHotspotIds": [
-                "drain"
-              ],
+              "correctHotspotIds": ["drain"],
               "explanation": {
-                "correct": "A drainage is a valley with a V pointing downhill. Water flows down the valley, so the V always points in the direction water goes.",
-                "incorrect": "Compare to the ridge: ridge V points up, drainage V points down. The difference is key."
+                "correct": "A drainage is a valley with a V pointing uphill, upstream. Water flows down the valley, away from the point of the V.",
+                "incorrect": "Compare to the ridge: ridge contours point downhill, while drainage V's point uphill. The difference is key."
               }
             }
           },
           {
             "id": "nv-05-mc-02",
             "type": "multiple-choice",
-            "conceptIds": [
-              "ridgeline",
-              "drainage"
-            ],
+            "conceptIds": ["ridgeline", "drainage"],
             "payload": {
               "prompt": "Which direction does water flow from a saddle between two peaks?",
               "options": [
@@ -1079,24 +993,18 @@
                   "text": "Only one direction; you have to follow the contours"
                 }
               ],
-              "correctOptionIds": [
-                "c"
-              ],
+              "correctOptionIds": ["c"],
               "explanation": {
                 "correct": "Rain on a saddle splits: half flows down one drainage, half down the other. A saddle is a drainage divide. This tells you where water goes from any high point.",
                 "incorrect": "Understanding drainage divides is key to reading terrain. Streams follow drainages (V pointing downhill). Ridges separate drainages.",
-                "sayThisLine": "Follow the drainage down and you'll hit the creek."
+                "sayThisLine": "Rain on a saddle splits and runs down both sides."
               }
             }
           },
           {
             "id": "nv-05-ds-01",
             "type": "decision-scenario",
-            "conceptIds": [
-              "ridgeline",
-              "drainage",
-              "cliff-contours"
-            ],
+            "conceptIds": ["ridgeline", "drainage", "cliff-contours"],
             "payload": {
               "situation": {
                 "facts": [
@@ -1116,36 +1024,42 @@
               },
               "options": [
                 {
-                  "id": "right",
+                  "id": "retrace",
+                  "label": "Retrace the route you came up, or follow the marked trail down",
                   "verdict": "best",
-                  "label": "Go down the drainage with gentler, spaced contours",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "Known, marked ground is the safest way down. Check the map at each junction as you go.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "You know that ground is passable",
+                    "Marked trails avoid cliff bands",
+                    "If the trail is unclear, stop and use your map"
                   ]
                 },
                 {
-                  "id": "coin",
+                  "id": "gentle",
+                  "label": "Head down the gentler side, checking the map for cliffs",
                   "verdict": "acceptable",
-                  "label": "Flip a coin; either way you'll reach lower elevation",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "Wide contour spacing suggests easier terrain, but unmarked descents can still hit cliff bands or dead ends. Reassess often and turn back if it steepens.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Wide spacing means a gentler slope",
+                    "Watch for merged contours ahead",
+                    "Do not commit to ground you cannot climb back up"
                   ]
                 },
                 {
                   "id": "steep",
+                  "label": "Go down the steep side; it will be faster",
                   "verdict": "poor",
-                  "label": "Go down the steep drainage; it will be faster",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "Steeper is not faster. It is harder to control, rough on knees, and may end at a cliff band.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Tight contours can mean cliffs",
+                    "Steep descents cause falls",
+                    "Slow and sure wins"
                   ]
                 }
               ],
-              "expertNote": "Choosing your descent line by reading contours saves energy and reduces accident risk. Steeper is not faster; it is more dangerous and harder on your knees.",
-              "safetyNote": "Always prefer the gentler line. Steep descents cause injuries. Terrain reading lets you take the easier route.",
-              "prompt": "Which is best: On a saddle between ?"
+              "expertNote": "Descend known, marked ground when you can. If you must choose a line, read the contours: wide spacing is gentler, merged lines are cliffs. Steeper is not faster.",
+              "safetyNote": "If the terrain gets steeper than you expected, stop, go back up and reassess. Off-trail descents cause many injuries.",
+              "prompt": "On a saddle and need to descend. One side looks steep, one gentle."
             }
           }
         ]
@@ -1161,37 +1075,31 @@
         ],
         "activities": [
           {
-            "id": "nv-06-mc-01",
-            "type": "multiple-choice",
-            "conceptIds": [
-              "north-types"
-            ],
+            "id": "nv-06-tm-norths",
+            "type": "term-match",
+            "conceptIds": ["north-types"],
             "payload": {
-              "prompt": "Which north is the direction to the geographic North Pole?",
-              "options": [
+              "prompt": "Match each north to what it means.",
+              "pairs": [
                 {
-                  "id": "a",
-                  "text": "Magnetic north"
+                  "id": "true",
+                  "term": "True north",
+                  "definition": "The direction to the geographic North Pole; fixed"
                 },
                 {
-                  "id": "b",
-                  "text": "Grid north"
+                  "id": "mag",
+                  "term": "Magnetic north",
+                  "definition": "Where a compass needle points; it drifts over time"
                 },
                 {
-                  "id": "c",
-                  "text": "True north"
-                },
-                {
-                  "id": "d",
-                  "text": "Map north"
+                  "id": "grid",
+                  "term": "Grid north",
+                  "definition": "The direction of the map's vertical grid lines"
                 }
               ],
-              "correctOptionIds": [
-                "c"
-              ],
+              "distractorDefinitions": ["The direction the trail happens to head"],
               "explanation": {
-                "correct": "True north is the geographic North Pole. It's fixed. Magnetic north (where a compass points) shifts and is degrees away from true north. Grid north is the map grid's north, which also differs slightly.",
-                "incorrect": "Three different norths exist. Understanding the difference stops you from walking in the wrong direction.",
+                "summary": "Three norths exist, and they differ slightly. Your compass finds magnetic north; the map is drawn to true or grid north. The difference is declination.",
                 "sayThisLine": "Compass north isn't map north. Check the declination."
               }
             }
@@ -1199,9 +1107,7 @@
           {
             "id": "nv-06-mc-02",
             "type": "multiple-choice",
-            "conceptIds": [
-              "declination"
-            ],
+            "conceptIds": ["declination"],
             "payload": {
               "prompt": "What is declination?",
               "options": [
@@ -1222,12 +1128,10 @@
                   "text": "The elevation range shown on a map"
                 }
               ],
-              "correctOptionIds": [
-                "b"
-              ],
+              "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Declination is the angle between where a compass points (magnetic north) and where the map's grid north points (true north). In your area it might be 10 degrees east or 5 degrees west. Check the map's declination box.",
-                "incorrect": "Declination varies by location and changes slightly each year. Ignoring it can throw off navigation by miles on long trips.",
+                "correct": "Declination is the angle between true north and magnetic north, where your compass points. It might be 10 degrees east in one place and 5 degrees west in another. Check the map's diagram, then confirm the current value.",
+                "incorrect": "Declination varies by location and drifts a little each year, so an old map's value may be off. Ignoring it can put you hundreds of feet off course per mile.",
                 "sayThisLine": "Declination here is about ten degrees east, so I adjusted."
               }
             }
@@ -1235,51 +1139,37 @@
           {
             "id": "nv-06-fg-01",
             "type": "fill-the-gap",
-            "conceptIds": [
-              "north-types",
-              "declination"
-            ],
+            "conceptIds": ["north-types", "declination"],
             "payload": {
               "prompt": "Understanding the three norths.",
-              "template": "A compass points to {{magnetic}} north, which is {{different}} from {{true}} north (the map grid). The {{angle}} between them is declination.",
+              "template": "A compass points to {{magnetic}} north, which differs from true north (the geographic pole). The {{angle}} between them is called {{decl}}.",
               "gaps": [
                 {
                   "id": "magnetic",
-                  "options": [
-                    "magnetic",
-                    "true"
-                  ],
+                  "options": ["magnetic", "true"],
                   "correct": "magnetic"
                 },
                 {
-                  "id": "different",
-                  "options": [
-                    "different",
-                    "same"
-                  ],
-                  "correct": "different"
+                  "id": "angle",
+                  "options": ["angle", "distance"],
+                  "correct": "angle"
                 },
                 {
-                  "id": "true",
-                  "options": [
-                    "true",
-                    "grid"
-                  ],
-                  "correct": "true"
+                  "id": "decl",
+                  "options": ["declination", "elevation"],
+                  "correct": "declination"
                 }
               ],
               "explanation": {
                 "correct": "This is the core: compass points one way, map's grid points another, and the difference is declination. Adjust for it and you stay on course.",
-                "incorrect": "Not adjusting for declination is a common source of getting turned around. Check the map legend for the declination arrow."
+                "incorrect": "Not adjusting for declination is a common source of getting turned around. Check the map's declination diagram, and confirm the current value for your area."
               }
             }
           },
           {
             "id": "nv-06-mc-03",
             "type": "multiple-choice",
-            "conceptIds": [
-              "declination"
-            ],
+            "conceptIds": ["declination"],
             "payload": {
               "prompt": "Your map shows declination of 15 degrees west. What does that mean?",
               "options": [
@@ -1300,23 +1190,18 @@
                   "text": "The map is 15 degrees old"
                 }
               ],
-              "correctOptionIds": [
-                "b"
-              ],
+              "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "15 degrees west means if the map points true north (0 degrees), your compass points 15 degrees to the west of that. You need to add 15 degrees to compass bearings to get map bearings, or subtract 15 degrees from map bearings to get compass bearings.",
-                "incorrect": "Declination is printed in the map legend and shows your location's magnetic variation. East declination you subtract; west you add (for compass to map conversion).",
-                "sayThisLine": "Declination here is about ten degrees east, so I adjusted."
+                "correct": "15 degrees west means magnetic north sits 15 degrees west of true north. To turn a map bearing into a compass bearing, add 15; to turn a compass bearing into a map bearing, subtract 15.",
+                "incorrect": "Declination is printed on the map and varies by place and year. Going from map to compass, subtract east declination and add west: east is least, west is best.",
+                "sayThisLine": "West declination means I add it going from map to compass."
               }
             }
           },
           {
             "id": "nv-06-ds-01",
             "type": "decision-scenario",
-            "conceptIds": [
-              "north-types",
-              "declination"
-            ],
+            "conceptIds": ["north-types", "declination"],
             "payload": {
               "situation": {
                 "facts": [
@@ -1339,33 +1224,39 @@
                   "id": "right",
                   "verdict": "best",
                   "label": "045 - 10 = 035 degrees (subtract for east declination)",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "For east declination, subtract when turning a map bearing into a compass bearing: 45 minus 10 is 35 degrees. The compass then points where the map does.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "East is least: subtract east declination",
+                    "West declination gets added",
+                    "Some compasses have an adjustable declination scale"
                   ]
                 },
                 {
                   "id": "add",
                   "verdict": "poor",
                   "label": "045 + 10 = 055 degrees",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "Adding when you should subtract doubles the error to 20 degrees, roughly a third of a mile off for every mile walked.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Wrong direction of correction",
+                    "20 degrees is a big miss",
+                    "Recheck with landmarks"
                   ]
                 },
                 {
                   "id": "ignore",
                   "verdict": "poor",
                   "label": "Use 045 degrees as-is; declination does not matter",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "Ten degrees of ignored declination puts you roughly 900 feet off course for every mile you walk.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Small angles add up over distance",
+                    "Declination varies by place",
+                    "Always check it before you go"
                   ]
                 }
               ],
-              "expertNote": "Declination adjustment is automatic once you remember: 'East is least, west is best.' East declination, subtract from map bearing. West declination, add to map bearing.",
-              "safetyNote": "Ignoring declination can cause you to walk miles off course. Always adjust.",
-              "prompt": "Which is best: From the map: 045 de?"
+              "expertNote": "Declination is the angle between true and magnetic north, and it changes with place and year. Look up the current value. East is least, west is best: subtract east and add west when going from map bearing to compass bearing.",
+              "safetyNote": "Even a few degrees add up over a mile. Check the current declination for your area, and confirm your bearing with landmarks.",
+              "prompt": "Map bearing 045, declination 10 degrees east. What do you set?"
             }
           }
         ]
@@ -1382,9 +1273,7 @@
           {
             "id": "nv-07-so-01",
             "type": "sequence-order",
-            "conceptIds": [
-              "bearing"
-            ],
+            "conceptIds": ["bearing"],
             "payload": {
               "prompt": "Put these bearing steps in order.",
               "items": [
@@ -1406,11 +1295,11 @@
                 },
                 {
                   "id": "step5",
-                  "text": "Hold the compass level and rotate your body until the red orienting arrow aligns with the magneti..."
+                  "text": "Hold the compass level and turn your body until the red end of the needle sits inside the orienting arrow"
                 },
                 {
                   "id": "step6",
-                  "text": "Walk in the direction the compass baseplate points"
+                  "text": "Follow the direction-of-travel arrow: pick a landmark on that line, walk to it, and repeat"
                 }
               ],
               "partialCredit": true,
@@ -1421,38 +1310,32 @@
             }
           },
           {
-            "id": "nv-07-mc-01",
-            "type": "multiple-choice",
-            "conceptIds": [
-              "bearing"
-            ],
+            "id": "nv-07-fg-cardinals",
+            "type": "fill-the-gap",
+            "conceptIds": ["bearing"],
             "payload": {
-              "prompt": "You take a bearing of 090 degrees. Which direction are you walking?",
-              "options": [
+              "prompt": "Complete the bearing basics.",
+              "template": "Bearings are measured {{cw}} from north: 000 is north, 090 is {{east}}, and 180 is {{south}}.",
+              "gaps": [
                 {
-                  "id": "a",
-                  "text": "North"
+                  "id": "cw",
+                  "options": ["clockwise", "counterclockwise"],
+                  "correct": "clockwise"
                 },
                 {
-                  "id": "b",
-                  "text": "South"
+                  "id": "east",
+                  "options": ["east", "west"],
+                  "correct": "east"
                 },
                 {
-                  "id": "c",
-                  "text": "East"
-                },
-                {
-                  "id": "d",
-                  "text": "West"
+                  "id": "south",
+                  "options": ["south", "north"],
+                  "correct": "south"
                 }
               ],
-              "correctOptionIds": [
-                "c"
-              ],
               "explanation": {
-                "correct": "Bearings are measured clockwise from north. 000 = north, 090 = east, 180 = south, 270 = west. So 090 degrees is due east.",
-                "incorrect": "Learn the four cardinal bearings: N=0/360, E=090, S=180, W=270. Everything else builds from these.",
-                "sayThisLine": "Take a bearing of ninety, due east, to the lake."
+                "correct": "Bearings are measured clockwise from north: 000 is north, 090 is east, 180 is south and 270 is west. Everything else builds from these four.",
+                "incorrect": "Learn the four cardinal bearings: N is 000 or 360, E is 090, S is 180, W is 270. Bearings run clockwise from north."
               }
             }
           },
@@ -1495,9 +1378,7 @@
           {
             "id": "nv-07-mc-03",
             "type": "multiple-choice",
-            "conceptIds": [
-              "bearing"
-            ],
+            "conceptIds": ["bearing"],
             "payload": {
               "prompt": "A bearing of 315 degrees is which direction?",
               "options": [
@@ -1518,11 +1399,9 @@
                   "text": "Southwest"
                 }
               ],
-              "correctOptionIds": [
-                "c"
-              ],
+              "correctOptionIds": ["c"],
               "explanation": {
-                "correct": "315 degrees is between north (0) and west (270). Actually, between west (270) and north (360/0). That is northwest.",
+                "correct": "315 degrees is between west (270) and north (360). That is northwest.",
                 "incorrect": "The quadrant method: 0-90 NE, 90-180 SE, 180-270 SW, 270-360 NW. 315 is in the 270-360 range, so northwest.",
                 "sayThisLine": "A bearing of three-fifteen degrees is northwest."
               }
@@ -1531,9 +1410,7 @@
           {
             "id": "nv-07-ds-01",
             "type": "decision-scenario",
-            "conceptIds": [
-              "bearing"
-            ],
+            "conceptIds": ["bearing"],
             "payload": {
               "situation": {
                 "facts": [
@@ -1556,33 +1433,39 @@
                   "id": "best",
                   "verdict": "best",
                   "label": "Use the compass to stay on bearing; also use landmarks as a handrail",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "The compass keeps you honest and landmarks confirm it. If the two disagree, stop and recheck before going on.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Pick a landmark on your bearing and walk to it",
+                    "Recheck often",
+                    "If landmark and compass disagree, stop"
                   ]
                 },
                 {
                   "id": "ok",
                   "verdict": "acceptable",
                   "label": "Use the compass alone; ignore landmarks",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "You will hold the line, but you miss free confirmation, and errors such as a wrong declination slip through unnoticed.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Landmarks are a free second opinion",
+                    "A single tool can hide mistakes",
+                    "Better to use both"
                   ]
                 },
                 {
                   "id": "bad",
                   "verdict": "poor",
                   "label": "Ditch the compass and walk toward the mountains",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "The mountains are not a bearing. Ranges wrap around and hide, and you can drift far off your route.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Vague targets drift",
+                    "You lose your route",
+                    "Use the bearing you worked out"
                   ]
                 }
               ],
-              "expertNote": "Good navigation combines compass bearings with terrain features. Use landmarks as a sanity check on your bearing.",
-              "safetyNote": "Never rely on compass alone if landmarks are available. Use all your tools.",
-              "prompt": "Which is best: Ready to navigate?"
+              "expertNote": "Good navigation combines compass bearings with terrain features. Use landmarks as a check on your bearing, and your bearing as a check on landmarks.",
+              "safetyNote": "Compass and landmarks check each other. If they disagree, stop and reassess before going any further.",
+              "prompt": "You have a 120-degree bearing and clear views. How do you use it?"
             }
           }
         ]
@@ -1618,9 +1501,7 @@
           {
             "id": "nv-08-mc-01",
             "type": "multiple-choice",
-            "conceptIds": [
-              "handrail"
-            ],
+            "conceptIds": ["handrail"],
             "payload": {
               "prompt": "What is a handrail in navigation?",
               "options": [
@@ -1641,60 +1522,50 @@
                   "text": "A marking on the map"
                 }
               ],
-              "correctOptionIds": [
-                "b"
-              ],
+              "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "A handrail is a natural feature you can follow: a stream, ridge, road or utility line. You follow it like a metaphorical handrail on stairs. It keeps you going in the right direction.",
-                "incorrect": "Handrails are force-multipliers. Instead of checking your compass every minute, you follow the creek downhill. Much easier.",
-                "sayThisLine": "I used the creek as a handrail all the way down."
+                "correct": "A handrail is a linear feature you can follow, such as a stream, ridge, road or trail. Use only handrails your map confirms are heading the right way.",
+                "incorrect": "Handrails are force multipliers: instead of checking your compass every minute, you keep a ridge, stream or trail alongside you. Confirm each one on the map first.",
+                "sayThisLine": "I kept the ridge on my left as a handrail."
               }
             }
           },
           {
-            "id": "nv-08-mc-02",
-            "type": "multiple-choice",
-            "conceptIds": [
-              "catching-feature"
-            ],
+            "id": "nv-08-fg-catching",
+            "type": "fill-the-gap",
+            "conceptIds": ["catching-feature"],
             "payload": {
-              "prompt": "What is a catching feature?",
-              "options": [
+              "prompt": "Complete the navigation terms.",
+              "template": "A {{handrail}} is a feature you follow. A {{catching}} feature lies past your target and tells you that you {{overshot}}.",
+              "gaps": [
                 {
-                  "id": "a",
-                  "text": "A feature you are trying to reach"
+                  "id": "handrail",
+                  "options": ["handrail", "bearing"],
+                  "correct": "handrail"
                 },
                 {
-                  "id": "b",
-                  "text": "A cliff or barrier that stops your progress"
+                  "id": "catching",
+                  "options": ["catching", "starting"],
+                  "correct": "catching"
                 },
                 {
-                  "id": "c",
-                  "text": "A feature that tells you that you have gone too far"
-                },
-                {
-                  "id": "d",
-                  "text": "A feature that feels slippery"
+                  "id": "overshot",
+                  "options": ["overshot", "arrived early"],
+                  "correct": "overshot"
                 }
               ],
-              "correctOptionIds": [
-                "c"
-              ],
               "explanation": {
-                "correct": "A catching feature is a landmark or terrain feature past your target. If you reach it, you overshot. Roads, rivers and distinct ridges make good catchers.",
-                "incorrect": "A catcher is insurance. You know your destination is before the catcher. If you hit the catcher, stop and backtrack.",
-                "sayThisLine": "The road is my catching feature. If I hit it, I overshot."
+                "correct": "A catching feature is a landmark beyond your target, such as a road, river or distinct ridge. If you reach it, you overshot.",
+                "incorrect": "A catcher is insurance. Your target lies before it, so if you hit the catcher, stop and backtrack."
               }
             }
           },
           {
             "id": "nv-08-mc-03",
             "type": "multiple-choice",
-            "conceptIds": [
-              "aiming-off"
-            ],
+            "conceptIds": ["aiming-off"],
             "payload": {
-              "prompt": "You need to find a water source at an unknown point along a stream. You aim at a point slightly upstream of where you?",
+              "prompt": "Your target is a junction on a long stream. Why aim a little upstream of it?",
               "options": [
                 {
                   "id": "a",
@@ -1713,11 +1584,9 @@
                   "text": "Because upstream water is safer"
                 }
               ],
-              "correctOptionIds": [
-                "b"
-              ],
+              "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "This is aiming off. If you aim for the spot exactly, and you miss by a few degrees, you could hit the stream above or below the water source. If you deliberately aim to one side, you know which direction to search.",
+                "correct": "This is aiming off. If you aim right at the spot and miss by a few degrees, you will not know whether to turn up or down the stream. Aim deliberately to one side and you know which way to turn.",
                 "incorrect": "Aiming off is a small deliberate error that lets you recover easily. Aim upstream so if you miss, you know to go downstream to find it.",
                 "sayThisLine": "I aimed off to the left so I'd know which way to turn at the creek."
               }
@@ -1726,11 +1595,7 @@
           {
             "id": "nv-08-ds-01",
             "type": "decision-scenario",
-            "conceptIds": [
-              "handrail",
-              "catching-feature",
-              "aiming-off"
-            ],
+            "conceptIds": ["handrail", "catching-feature", "aiming-off"],
             "payload": {
               "situation": {
                 "facts": [
@@ -1744,42 +1609,48 @@
                   },
                   {
                     "label": "Options",
-                    "value": "Follow compass bearing OR follow a creek downhill"
+                    "value": "Bearing, or a creek the map shows"
                   }
                 ]
               },
               "options": [
                 {
                   "id": "best",
+                  "label": "Use the creek as a handrail if the map shows it meeting the trail",
                   "verdict": "best",
-                  "label": "Follow the creek; it is a handrail. Note where it crosses the trail.",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "A creek the map shows crossing your trail is a strong handrail. Confirm each landmark on the map and cross-check with your bearing.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Only use a handrail the map confirms",
+                    "Note where the creek meets the trail",
+                    "Do not follow a creek into unknown terrain"
                   ]
                 },
                 {
                   "id": "ok",
+                  "label": "Follow the compass bearing and check the map often",
                   "verdict": "acceptable",
-                  "label": "Follow the compass bearing but check often",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "A bearing works if you check it often, but in dense forest small errors pile up. Look for a handrail or landmark to confirm.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Recheck at every feature",
+                    "Errors grow with distance",
+                    "Add a handrail when you can"
                   ]
                 },
                 {
                   "id": "bad",
+                  "label": "Guess the direction; you will find the trail eventually",
                   "verdict": "poor",
-                  "label": "Guess the direction; you'll find the trail eventually",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "Guessing in dense forest is how small errors become a lost hiker. Use the map, a bearing or a handrail.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "No plan means drift",
+                    "Stop and use STOP",
+                    "Trails do not always connect"
                   ]
                 }
               ],
-              "expertNote": "Using terrain features (handrails) is more reliable than compass work alone in poor visibility. The creek will hit the trail; you just have to follow it.",
-              "safetyNote": "Dense forest and compass work alone increases accident risk. Use available terrain features.",
-              "prompt": "Which is best: Reach a trail juncti?"
+              "expertNote": "Handrails and bearings work best together, and each must be confirmed on the map. Creeks can lead to waterfalls, cliffs and thick brush, so only use one the map shows leading where you want to go.",
+              "safetyNote": "If you cannot confirm where you are, stop and use STOP. Stay on trails when you can, and do not push blindly through dense terrain.",
+              "prompt": "Dense forest, low visibility. How do you reach the marked junction?"
             }
           }
         ]
@@ -1798,11 +1669,7 @@
           {
             "id": "nv-09-so-01",
             "type": "sequence-order",
-            "conceptIds": [
-              "offline-maps",
-              "gps-track",
-              "waypoint"
-            ],
+            "conceptIds": ["offline-maps", "gps-track", "waypoint"],
             "payload": {
               "prompt": "Put these phone navigation prep steps in order.",
               "items": [
@@ -1824,11 +1691,11 @@
                 },
                 {
                   "id": "step5",
-                  "text": "Keep your phone in a dry pocket with good charging"
+                  "text": "Keep your phone warm and dry, and carry a charged battery pack"
                 },
                 {
                   "id": "step6",
-                  "text": "Also carry a paper map as backup"
+                  "text": "Also carry a paper map and compass as backup"
                 }
               ],
               "partialCredit": true,
@@ -1839,37 +1706,29 @@
             }
           },
           {
-            "id": "nv-09-mc-01",
-            "type": "multiple-choice",
-            "conceptIds": [
-              "offline-maps"
-            ],
+            "id": "nv-09-bc-offline",
+            "type": "binary-call",
+            "conceptIds": ["offline-maps"],
             "payload": {
-              "prompt": "Why download offline maps before your hike?",
-              "options": [
+              "prompt": "Can you count on cell signal to load maps mid-hike?",
+              "scene": {
+                "kind": "none",
+                "alt": "A phone showing no bars on a remote trail."
+              },
+              "choices": [
                 {
-                  "id": "a",
-                  "text": "To save time on the trail"
+                  "id": "yes",
+                  "label": "Yes, coverage is everywhere"
                 },
                 {
-                  "id": "b",
-                  "text": "Because backcountry cell signal is unreliable or nonexistent"
-                },
-                {
-                  "id": "c",
-                  "text": "To make your phone run faster"
-                },
-                {
-                  "id": "d",
-                  "text": "Because it is cheaper than buying a paper map"
+                  "id": "no",
+                  "label": "No, download offline maps first"
                 }
               ],
-              "correctOptionIds": [
-                "b"
-              ],
+              "correctChoiceId": "no",
               "explanation": {
-                "correct": "Cell signal in the backcountry is spotty or absent. An offline map works without signal. Download it at home on WiFi before you leave.",
-                "incorrect": "Assuming you will have signal on the trail is one of the top causes of getting lost. Prepare for no signal.",
+                "correct": "Backcountry cell signal is spotty or absent. An offline map works without signal, so download it at home on Wi-Fi before you leave.",
+                "incorrect": "Assuming you will have signal is a common navigation mistake. Prepare for no signal, and carry a paper map too.",
                 "sayThisLine": "I downloaded the offline map before losing signal."
               }
             }
@@ -1877,10 +1736,7 @@
           {
             "id": "nv-09-st-01",
             "type": "say-this",
-            "conceptIds": [
-              "gps-track",
-              "waypoint"
-            ],
+            "conceptIds": ["gps-track", "waypoint"],
             "payload": {
               "statement": {
                 "speaker": "She",
@@ -1890,12 +1746,12 @@
                 {
                   "id": "correct1",
                   "isCorrect": true,
-                  "text": "Understand GPS tracks"
+                  "text": "A saved track is a breadcrumb line you can follow back"
                 },
                 {
                   "id": "correct2",
                   "isCorrect": true,
-                  "text": "Prepare for uncertainty"
+                  "text": "She is planning for something to go wrong"
                 },
                 {
                   "id": "wrong1",
@@ -1965,10 +1821,7 @@
           {
             "id": "nv-09-ds-01",
             "type": "decision-scenario",
-            "conceptIds": [
-              "offline-maps",
-              "gps-track"
-            ],
+            "conceptIds": ["offline-maps", "gps-track"],
             "payload": {
               "situation": {
                 "facts": [
@@ -1993,35 +1846,41 @@
               "options": [
                 {
                   "id": "best",
+                  "label": "Airplane mode, screen off between checks, lean on your paper map",
                   "verdict": "best",
-                  "label": "Stop GPS recording, use offline map only, and turn phone to airplane mode",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "Searching for signal drains the battery fastest. Airplane mode and a dark screen stretch what is left, and a paper map needs no charge.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Airplane mode stops signal searching",
+                    "Check the phone only at decision points",
+                    "Carry a battery pack and keep the phone warm"
                   ]
                 },
                 {
                   "id": "ok",
+                  "label": "Keep recording, but dim the screen and check it rarely",
                   "verdict": "acceptable",
-                  "label": "Keep recording, use map, and hope for signal later",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "That saves some power, but the phone still hunts for signal. Add airplane mode and rely on your paper map.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Dimming helps a little",
+                    "Signal searching is the big drain",
+                    "Have a paper backup"
                   ]
                 },
                 {
                   "id": "bad",
+                  "label": "Turn the phone off and navigate by memory and landmarks",
                   "verdict": "poor",
-                  "label": "Turn off the phone and navigate by memory and landmarks",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "Powering off saves battery, but memory fails after a wrong turn. A paper map and compass are the backup, not memory.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Memory is not a map",
+                    "Keep the phone as a backup, not a crutch",
+                    "Use paper first"
                   ]
                 }
               ],
-              "expertNote": "Battery is your scarcest resource in the backcountry. Turn off power-hungry features like GPS recording and cellular searching.",
-              "safetyNote": "A dead phone is no phone. Make battery last by disabling unnecessary features.",
-              "prompt": "Which is best: Two hours into the h?"
+              "expertNote": "Battery is your scarcest resource, and a phone is never your only map. Airplane mode, a dimmed screen and a paper backup stretch your margin.",
+              "safetyNote": "A dead phone is no phone. Carry a paper map and a battery pack, and plan for no signal.",
+              "prompt": "Two hours in, phone at 40%, no signal, GPS recording. What now?"
             }
           }
         ]
@@ -2039,9 +1898,7 @@
           {
             "id": "nv-10-ds-01",
             "type": "decision-scenario",
-            "conceptIds": [
-              "stop-method"
-            ],
+            "conceptIds": ["stop-method"],
             "payload": {
               "situation": {
                 "facts": [
@@ -2064,41 +1921,45 @@
                   "id": "best",
                   "verdict": "best",
                   "label": "STOP: sit, breathe, pull out the map and figure out where you are",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "Stopping lets you calm down, check the map, recall the last place you were sure of and choose a plan. It keeps a small mistake small.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Stop, Think, Observe, Plan",
+                    "Find the last place you were sure of",
+                    "Decide before you move"
                   ]
                 },
                 {
                   "id": "ok",
                   "verdict": "acceptable",
                   "label": "Backtrack a little and look for markers you missed",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "If you are confident of the way and it is not far, backtracking to your last sure point is sensible. Stop and check the map first so you do not compound the error.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Stop first, then backtrack",
+                    "Go only as far as you are sure",
+                    "If unsure, stay put"
                   ]
                 },
                 {
                   "id": "bad",
                   "verdict": "poor",
                   "label": "Push forward; trails always connect somewhere",
-                  "consequence": "This option affects your hiking safety and experience.",
+                  "consequence": "Not so: keep going and you can end up farther from help, in terrain that makes recovery harder.",
                   "considerations": [
-                    "Consider all factors carefully before choosing."
+                    "Trails do not always connect",
+                    "Distance from help grows",
+                    "Stopping is free"
                   ]
                 }
               ],
-              "expertNote": "The STOP method (Stop, Think, Observe, Plan) is your first action when unsure. It prevents escalating mistakes.",
-              "safetyNote": "Never keep hiking when lost. Stop immediately. Every step made lost makes recovery harder.",
-              "prompt": "Which is best: The terrain looks un?"
+              "expertNote": "STOP means Stop, Think, Observe, Plan. It is your first move when unsure, and it keeps a small mistake from growing. If you cannot resolve it quickly, do not wander: stay put or call for help.",
+              "safetyNote": "If you are lost, injured or nightfall is near, stay put, stay warm and call 911 or text if you have signal. Blow a whistle in threes.",
+              "prompt": "The terrain looks unfamiliar and the junctions do not match. What now?"
             }
           },
           {
             "id": "nv-10-so-01",
             "type": "sequence-order",
-            "conceptIds": [
-              "stop-method"
-            ],
+            "conceptIds": ["stop-method"],
             "payload": {
               "prompt": "Put the STOP method steps in order.",
               "items": [
@@ -2120,7 +1981,7 @@
                 },
                 {
                   "id": "decide",
-                  "text": "Decide: backtrack, use a handrail to get out, or wait for help"
+                  "text": "Decide: retrace to your last sure point, stay put, or call for help"
                 }
               ],
               "partialCredit": true,
@@ -2131,37 +1992,23 @@
             }
           },
           {
-            "id": "nv-10-mc-01",
-            "type": "multiple-choice",
-            "conceptIds": [
-              "dead-reckoning"
-            ],
+            "id": "nv-10-es-dead-reckoning",
+            "type": "estimate-slider",
+            "conceptIds": ["dead-reckoning"],
             "payload": {
-              "prompt": "You hiked for 40 minutes at 2 miles per hour before you realized you were lost. How far are you from your last known?",
-              "options": [
-                {
-                  "id": "a",
-                  "text": "About 1 mile"
-                },
-                {
-                  "id": "b",
-                  "text": "About 1.3 miles"
-                },
-                {
-                  "id": "c",
-                  "text": "About 2 miles"
-                },
-                {
-                  "id": "d",
-                  "text": "Impossible to know"
-                }
-              ],
-              "correctOptionIds": [
-                "b"
-              ],
+              "prompt": "You hiked 40 minutes at 2 mph before realizing you were lost. How far from your last known point?",
+              "unit": "miles",
+              "min": 0,
+              "max": 3,
+              "step": 0.25,
+              "correctValue": 1.25,
+              "tolerance": {
+                "full": 0.25,
+                "partial": 0.5
+              },
               "explanation": {
-                "correct": "Dead reckoning: 40 minutes at 2 mph means you covered 40/60 \u00d7 2 = 1.33 miles. Roughly 1.3 miles from your last known point, in the direction you were walking.",
-                "incorrect": "Dead reckoning is estimating position from time, speed and direction. It is rough but useful for finding yourself.",
+                "correct": "Dead reckoning: 40 minutes at 2 mph is about 1.3 miles. Treat it as a rough estimate, since pace and path wander.",
+                "incorrect": "Distance is speed times time: 2 mph for two thirds of an hour is about 1.3 miles. Dead reckoning is rough but useful for narrowing your search.",
                 "sayThisLine": "Forty minutes at two miles an hour, so about a mile and a third along."
               }
             }
@@ -2169,46 +2016,39 @@
           {
             "id": "nv-10-mc-02",
             "type": "multiple-choice",
-            "conceptIds": [
-              "stop-method",
-              "dead-reckoning"
-            ],
+            "conceptIds": ["stop-method", "dead-reckoning"],
             "payload": {
-              "prompt": "After using STOP and dead reckoning, you estimate you are 1.5 miles from your last known point, somewhere off-trail.?",
+              "prompt": "STOP did not reveal your location. It is late, and a friend has your plan. Best move?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Panic and run toward where you think the trail is"
+                  "text": "Run toward where you think the trail is"
                 },
                 {
                   "id": "b",
-                  "text": "Find a handrail (creek or ridge) heading downhill and follow it"
+                  "text": "Follow the nearest creek downhill; it always leads out"
                 },
                 {
                   "id": "c",
-                  "text": "Stay put and wait for rescue"
+                  "text": "Stay put, stay warm and visible; call 911 or text if you have signal"
                 },
                 {
                   "id": "d",
-                  "text": "Climb to high ground to look for landmarks"
+                  "text": "Keep hiking in the dark until something looks familiar"
                 }
               ],
-              "correctOptionIds": [
-                "b"
-              ],
+              "correctOptionIds": ["c"],
               "explanation": {
-                "correct": "A handrail (water or ridge) is your best exit. Gravity works; water flows downhill. Follow a creek down and you will hit a road or major trail.",
-                "incorrect": "Panicking makes it worse. Climbing for landmarks is exhausting. Staying put only works if you told someone where you were going.",
-                "sayThisLine": "Follow the drainage down and you'll hit the creek."
+                "correct": "Moving when lost usually makes it worse, and with your plan shared, rescuers know where to start. Stay put, layer up, make yourself visible, blow a whistle in threes, and call 911 or text if there is any signal.",
+                "incorrect": "Running, following creeks and night hiking can take you into cliffs, waterfalls, brush and cold. If it is still light and you are sure of your way back, retracing to your last sure point is reasonable; otherwise stay put.",
+                "sayThisLine": "If I am truly lost, I stop, stay put and call for help."
               }
             }
           },
           {
             "id": "nv-10-mc-03",
             "type": "multiple-choice",
-            "conceptIds": [
-              "stop-method"
-            ],
+            "conceptIds": ["stop-method"],
             "payload": {
               "prompt": "You applied STOP and have your map out. You see three possible locations you could be. What is your next move?",
               "options": [
@@ -2229,12 +2069,10 @@
                   "text": "Turn on GPS and wait for a signal"
                 }
               ],
-              "correctOptionIds": [
-                "b"
-              ],
+              "correctOptionIds": ["b"],
               "explanation": {
                 "correct": "Use your eyes and the map to narrow down. Look at slope, vegetation, water, skyline. Which of the three possible locations matches what you see around you?",
-                "incorrect": "The map and observation can pinpoint you quickly. Use them before spending energy.",
+                "incorrect": "The map and observation can pinpoint you. Use them before spending energy. If you still cannot narrow it down, treat yourself as lost: stay put and call for help.",
                 "sayThisLine": "When I get turned around, I do STOP. Sit, breathe, look at the map."
               }
             }

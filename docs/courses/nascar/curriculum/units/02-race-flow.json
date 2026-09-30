@@ -1,0 +1,1240 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "nascar",
+  "unit": {
+    "id": "race-flow",
+    "title": "How a Race Works",
+    "layer": "foundations",
+    "order": 1,
+    "lessons": [
+      {
+        "id": "flow-01",
+        "title": "The flags",
+        "objective": "Match every flag to its meaning and consequence in a race.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["green-flag", "caution-flag", "red-flag", "white-flag", "checkered-flag", "black-flag"],
+        "activities": [
+          {
+            "id": "flow-01-tm-flags",
+            "type": "term-match",
+            "conceptIds": ["green-flag", "caution-flag", "red-flag", "white-flag", "checkered-flag", "black-flag"],
+            "payload": {
+              "pairs": [
+                {
+                  "term": "Green flag",
+                  "definition": "Signals the start or restart of full-speed racing after a stoppage."
+                },
+                {
+                  "term": "Yellow flag",
+                  "definition": "Slows the field behind the pace car for an incident, debris or weather."
+                },
+                {
+                  "term": "Red flag",
+                  "definition": "Stops the race completely until conditions are fixed or weather clears."
+                },
+                {
+                  "term": "White flag",
+                  "definition": "Shows one lap remaining in the current race stage or the entire race."
+                },
+                {
+                  "term": "Checkered flag",
+                  "definition": "Ends the race; the first car across the line wins."
+                },
+                {
+                  "term": "Black flag",
+                  "definition": "Orders a driver to the pits for a penalty or safety issue; keeps them from scoring more laps."
+                }
+              ],
+              "distractorDefinitions": [
+                "Shows that half the race is done.",
+                "Means the leader is two laps ahead.",
+                "Signals a mandatory pit stop.",
+                "Indicates rain is about to start."
+              ]
+            }
+          },
+          {
+            "id": "flow-01-vid-flag-colors",
+            "type": "visual-id",
+            "conceptIds": ["green-flag", "caution-flag", "white-flag", "checkered-flag"],
+            "payload": {
+              "prompt": "Which flag ends the race?",
+              "image": {
+                "asset": "nascar-flags-grid",
+                "alt": "Four racing flags in a row: solid green, solid yellow, checkered black-and-white, and solid white with horizontal band.",
+                "license": "original-swoond"
+              },
+              "options": [
+                {"id": "a", "text": "Green"},
+                {"id": "b", "text": "Yellow"},
+                {"id": "c", "text": "Checkered"},
+                {"id": "d", "text": "White"}
+              ],
+              "correctOptionId": "c",
+              "cues": ["Look for the pattern, not the color."],
+              "explanation": {
+                "correct": "Right. The checkered pattern is unmistakable. First car across after the checker wins it.",
+                "incorrect": "The checkered flag—that distinctive black-and-white pattern—ends the race. The winning car crosses the line and the moment is history.",
+                "sayThisLine": "Checkered flag, and she takes the win."
+              }
+            }
+          },
+          {
+            "id": "flow-01-mc-caution-sequence",
+            "type": "multiple-choice",
+            "conceptIds": ["caution-flag"],
+            "payload": {
+              "prompt": "When the yellow flag waves, what happens next on track?",
+              "options": [
+                {"id": "a", "text": "All cars slow down and line up behind the pace car."},
+                {"id": "b", "text": "Drivers pit immediately for fresh tires."},
+                {"id": "c", "text": "The race is finished and a restart is scheduled for later."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Exactly. The pace car leads the field while everyone slows down and bunches up. The running order freezes until the restart.",
+                "incorrect": "When yellow waves, the pace car takes the lead and all cars slow and bunch behind it. Pitting is optional until the green comes back out."
+              }
+            }
+          },
+          {
+            "id": "flow-01-bc-red-flag-timing",
+            "type": "binary-call",
+            "conceptIds": ["red-flag"],
+            "payload": {
+              "prompt": "True or false: if a red flag is thrown with 10 laps to go, the race can still be finished.",
+              "scene": {
+                "diagramId": "nascar-pit-road-diagram",
+                "alt": "Overhead view of a NASCAR oval track with pit road alongside the straightaway. One car is on pit road, others are stopped on track under red flag conditions."
+              },
+              "choices": [
+                {"id": "true", "text": "True, the race resumes after repairs or weather clears."},
+                {"id": "false", "text": "False, red flags always end the race immediately."}
+              ],
+              "correctChoiceId": "true",
+              "ruleTag": "red-flag-rule",
+              "explanation": {
+                "correct": "Right. Red flags pause the race, but it can restart once the track or weather situation is fixed. Happens all the time when there is a big wreck to clean up.",
+                "incorrect": "Red flags pause the race, not end it. Once the track is cleared and safe, the race restarts from where it stopped. This is how safety works."
+              }
+            }
+          },
+          {
+            "id": "flow-01-mc-black-flag-consequence",
+            "type": "multiple-choice",
+            "conceptIds": ["black-flag"],
+            "payload": {
+              "prompt": "A driver ignores a black flag. What is the penalty?",
+              "options": [
+                {"id": "a", "text": "No more laps are scored after that point, even if they keep racing."},
+                {"id": "b", "text": "They get a time penalty added to their finish."},
+                {"id": "c", "text": "They are automatically disqualified from the race."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Exactly. Ignoring the black flag means the race doesn't count anything else they do—no laps scored, no points. It's a strong incentive to obey.",
+                "incorrect": "When a driver ignores the black flag, the race stops scoring their laps. It's harsh because it essentially ends their day, which is why nobody ignores it twice."
+              }
+            }
+          },
+          {
+            "id": "flow-01-fg-yellow-causes",
+            "type": "fill-the-gap",
+            "conceptIds": ["caution-flag"],
+            "payload": {
+              "prompt": "Complete the rule about caution flags.",
+              "template": "A yellow flag is thrown for {{reasons}}.",
+              "gaps": [
+                {
+                  "id": "reasons",
+                  "options": [
+                    "only crashes",
+                    "crashes, debris, or weather",
+                    "driver complaints only"
+                  ],
+                  "correct": "crashes, debris, or weather"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. Cautions protect everyone by slowing the field when something on track or in the sky makes racing unsafe.",
+                "incorrect": "Yellow flags come out when there's a crash, debris on the track, or weather that makes racing dangerous. The pace car keeps everyone safe."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "flow-02",
+        "title": "Stages, explained",
+        "objective": "Explain why races are split into stages and what stage points do.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["stage-racing", "stage-break", "stage-points"],
+        "activities": [
+          {
+            "id": "flow-02-mc-stage-purpose",
+            "type": "multiple-choice",
+            "conceptIds": ["stage-racing"],
+            "payload": {
+              "prompt": "Why did NASCAR split races into stages?",
+              "options": [
+                {"id": "a", "text": "To give fans more moments of excitement and award points for winning each stage."},
+                {"id": "b", "text": "To make it harder for the leader to win."},
+                {"id": "c", "text": "To match the format of football games."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Yes. Stages break the race into mini-races, so there are multiple climaxes and strategic decisions about whether to chase stage points or track position.",
+                "incorrect": "Stages were added to create more on-track drama—each stage end is like a mini-finish with bonus points on the line. It keeps everyone fighting the whole race."
+              }
+            }
+          },
+          {
+            "id": "flow-02-so-stage-order",
+            "type": "sequence-order",
+            "conceptIds": ["stage-racing", "stage-break"],
+            "payload": {
+              "items": [
+                "Stage one begins at the green flag.",
+                "The top ten cars at stage one's finish score points (10 down to 1).",
+                "A caution period happens automatically at stage one's end.",
+                "Teams can pit or make adjustments during the stage break.",
+                "Stage two begins with a restart and the running order freezes.",
+                "At stage two's end, top ten score points again.",
+                "Another caution and stage break.",
+                "Stage three runs until the race finishes."
+              ],
+              "partialCredit": true,
+              "explanation": {
+                "correct": "Perfect. That is how a race flows through three stages, each with its own finish line and pit window.",
+                "incorrect": "Stages split a race into three sections, each ending with a caution and opportunity to pit. Top ten at each stage end score bonus points."
+              }
+            }
+          },
+          {
+            "id": "flow-02-mc-stage-points-value",
+            "type": "multiple-choice",
+            "conceptIds": ["stage-points"],
+            "payload": {
+              "prompt": "How many stage points does the winner of a stage get?",
+              "options": [
+                {"id": "a", "text": "5 points"},
+                {"id": "b", "text": "10 points"},
+                {"id": "c", "text": "20 points"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. The stage winner gets 10, second place gets 9, down to the tenth place car getting 1 stage point. It really matters.",
+                "incorrect": "The stage winner earns 10 stage points, second gets 9, and so on down to 1 for tenth. Those points add up to a real advantage in the championship hunt."
+              }
+            }
+          },
+          {
+            "id": "flow-02-bc-stage-break-strategy",
+            "type": "binary-call",
+            "conceptIds": ["stage-break"],
+            "payload": {
+              "prompt": "At a stage break, is it always better to pit and get fresh tires?",
+              "scene": {
+                "diagramId": "nascar-stage-break-timing",
+                "alt": "Timeline showing: stage 1 ends at lap 60, stage break happens, leader is in first position with old tires, second place car pits first."
+              },
+              "choices": [
+                {"id": "no", "text": "No, some teams stay out to gain track position even with older tires."},
+                {"id": "yes", "text": "Yes, fresh tires are always worth stopping for."}
+              ],
+              "correctChoiceId": "no",
+              "ruleTag": "stage-strategy",
+              "explanation": {
+                "correct": "Exactly. If you are the leader or running well, you might stay out to hold track position, gambling that old tires will hold. It's a strategic choice, not a rule.",
+                "incorrect": "Track position can be worth more than fresh tires. A team in the lead might stay out at a stage break to keep the lead, even on old rubber. Strategy wins races."
+              }
+            }
+          },
+          {
+            "id": "flow-02-es-stage-length",
+            "type": "estimate-slider",
+            "conceptIds": ["stage-racing"],
+            "payload": {
+              "prompt": "Guess: In a typical 500-mile race, stage one is how many laps?",
+              "unit": "laps",
+              "min": 40,
+              "max": 150,
+              "step": 5,
+              "correctValue": 100,
+              "tolerance": {"full": 10, "partial": 20},
+              "explanation": {
+                "correct": "Close. Stage one is often around 100 laps, though it varies by track and race distance. The idea is to break the race into three roughly equal pieces.",
+                "incorrect": "Stage lengths depend on track and race distance, but they are generally designed to split the race fairly evenly. A 500-mile race might have stages around 100, 100, and 200 laps."
+              }
+            }
+          },
+          {
+            "id": "flow-02-mc-stage-break-pace-car",
+            "type": "multiple-choice",
+            "conceptIds": ["stage-break"],
+            "payload": {
+              "prompt": "When does the pace car come out at a stage break?",
+              "options": [
+                {"id": "a", "text": "Immediately when the stage-winning car crosses the line."},
+                {"id": "b", "text": "After all cars finish that lap and the caution flag waves."},
+                {"id": "c", "text": "Only if there was a wreck during the stage."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Right. The caution comes out automatically as soon as that stage winner takes the checkered. It is a planned, guaranteed caution.",
+                "incorrect": "The pace car comes out immediately when the stage winner crosses the line. It is a built-in caution, not dependent on anything else happening—that is the whole point of stages."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "flow-03",
+        "title": "Cautions: why the race slows",
+        "objective": "List why a caution is thrown and what happens next.",
+        "estimatedMinutes": 9,
+        "conceptIds": ["caution-flag", "running-order"],
+        "activities": [
+          {
+            "id": "flow-03-mc-caution-causes",
+            "type": "multiple-choice",
+            "conceptIds": ["caution-flag"],
+            "payload": {
+              "prompt": "Which of these does NOT cause a caution to be thrown?",
+              "options": [
+                {"id": "a", "text": "A car spins and debris is on the track."},
+                {"id": "b", "text": "Heavy rain or lightning in the area."},
+                {"id": "c", "text": "The leader is running a boring pit strategy."}
+              ],
+              "correctOptionIds": ["c"],
+              "explanation": {
+                "correct": "Exactly. Cautions are for safety and track conditions, never for entertainment or driver performance. Strategy is never a reason to throw yellow.",
+                "incorrect": "Cautions are thrown for crashes, debris, weather or safety issues—never for strategy or entertainment reasons. That would be unfair to the drivers."
+              }
+            }
+          },
+          {
+            "id": "flow-03-bc-running-order-freeze",
+            "type": "binary-call",
+            "conceptIds": ["running-order"],
+            "payload": {
+              "prompt": "When a caution comes out, does the running order immediately change?",
+              "scene": {
+                "diagramId": "nascar-caution-running-order",
+                "alt": "Race running order showing: first, second, fourth, third, fifth at the moment yellow waves."
+              },
+              "choices": [
+                {"id": "no", "text": "No, the order freezes where everyone is on track at that moment."},
+                {"id": "yes", "text": "Yes, the leader moves back to fourth because of pit strategy."}
+              ],
+              "correctChoiceId": "no",
+              "ruleTag": "caution-running-order",
+              "explanation": {
+                "correct": "Exactly right. The running order locks in where the cars are on track when the yellow waves. The pace car sorts them out, and that is the restart order unless someone pits.",
+                "incorrect": "When yellow flies, the running order freezes where everyone is on the track. No changes until someone pits or an accident reshuffles things."
+              }
+            }
+          },
+          {
+            "id": "flow-03-tm-caution-effects",
+            "type": "term-match",
+            "conceptIds": ["caution-flag"],
+            "payload": {
+              "pairs": [
+                {
+                  "term": "Pace car",
+                  "definition": "Leads the field at caution speed, keeping cars bunched safely until the restart."
+                },
+                {
+                  "term": "Pit cycle",
+                  "definition": "The window when most teams stop to refuel and change tires under caution."
+                },
+                {
+                  "term": "Gap erased",
+                  "definition": "A big lead evaporates because everyone is reset to caution speed."
+                },
+                {
+                  "term": "Stage break",
+                  "definition": "An automatic caution at the end of stages one and two, separate from incident cautions."
+                }
+              ],
+              "distractorDefinitions": [
+                "The driver who caused the caution.",
+                "A penalty for speeding on pit road.",
+                "The restart happens exactly where the yellow came out.",
+                "Only four cars are allowed to pit per caution."
+              ]
+            }
+          },
+          {
+            "id": "flow-03-mc-caution-helps-hurts",
+            "type": "multiple-choice",
+            "conceptIds": ["caution-flag"],
+            "payload": {
+              "prompt": "Can a caution actually help the car running second?",
+              "options": [
+                {"id": "a", "text": "No, cautions only help the leader by letting them conserve fuel."},
+                {"id": "b", "text": "Yes, it erases the leader's gap and gives second a fresh chance to pass."},
+                {"id": "c", "text": "Cautions do not affect strategy at all."}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Absolutely. A caution wipes out a big lead and gives the trailing car a reset at the restart with a chance to get around. That is why fans sometimes celebrate yellows.",
+                "incorrect": "Cautions can flip the race. The leader's big gap disappears, and the second-place car gets a fresh shot on the restart. It can change everything."
+              }
+            }
+          },
+          {
+            "id": "flow-03-fg-caution-pit-window",
+            "type": "fill-the-gap",
+            "conceptIds": ["caution-flag"],
+            "payload": {
+              "prompt": "During a caution, teams usually pit during the {{time}}.",
+              "gaps": [
+                {
+                  "id": "time",
+                  "options": [
+                    "next stage break",
+                    "pit cycle",
+                    "final laps of the race"
+                  ],
+                  "correct": "pit cycle"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. The pit cycle is the window when most cars stop together under yellow. Not everyone pits at once, but the cycle defines when it happens.",
+                "incorrect": "The pit cycle under caution is when the majority of the field stops for fuel and tires. Strategy around the cycle is what wins races."
+              }
+            }
+          },
+          {
+            "id": "flow-03-mc-debris-caution",
+            "type": "multiple-choice",
+            "conceptIds": ["caution-flag"],
+            "payload": {
+              "prompt": "A small piece of debris is on the track. What happens?",
+              "options": [
+                {"id": "a", "text": "A caution comes out so a safety crew can remove it."},
+                {"id": "b", "text": "Drivers must avoid it but racing continues."},
+                {"id": "c", "text": "The race is stopped permanently."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Right. Even small debris can tear up a car or cause a wreck at 180 mph, so the caution comes out to safely clean it up.",
+                "incorrect": "At racing speeds, even small pieces of debris are dangerous. A caution is thrown so safety can get on track and clear it out."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "flow-04",
+        "title": "Pit road, the basics",
+        "objective": "Explain what happens on pit road and who is over the wall.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["pit-road", "pit-crew", "pit-road-speed"],
+        "activities": [
+          {
+            "id": "flow-04-hs-pit-stall-anatomy",
+            "type": "hotspot-tap",
+            "conceptIds": ["pit-road", "pit-crew"],
+            "payload": {
+              "prompt": "Tap the pit stall where the car stops.",
+              "diagram": {
+                "asset": "nascar-pit-stall-detailed",
+                "alt": "Overhead diagram of a NASCAR pit stall showing pit crew positions: tire changers on the sides, jack man at the center rear, fueler at the tank, and tire carrier.",
+                "aspectRatio": 2.0
+              },
+              "hotspots": [
+                {
+                  "id": "stall-box",
+                  "label": "Pit stall box",
+                  "shape": "rect"
+                },
+                {
+                  "id": "pit-road-entry",
+                  "label": "Pit road entry",
+                  "shape": "rect"
+                },
+                {
+                  "id": "tire-stack",
+                  "label": "Tire stack area",
+                  "shape": "rect"
+                }
+              ],
+              "correctHotspotIds": ["stall-box"],
+              "explanation": {
+                "correct": "Right. The pit stall is where the car stops. The crew works in that small box—tire changers on each side, jack man at the back, fueler on the tank.",
+                "incorrect": "The pit stall is the crew's work area where the car stops during a pit stop. Everything happens in those few feet."
+              }
+            }
+          },
+          {
+            "id": "flow-04-tm-pit-crew-roles",
+            "type": "term-match",
+            "conceptIds": ["pit-crew"],
+            "payload": {
+              "pairs": [
+                {
+                  "term": "Tire changers (two)",
+                  "definition": "Remove old tires and bolt on new ones on the left and right sides of the car."
+                },
+                {
+                  "term": "Jack man",
+                  "definition": "Lifts the rear of the car off the ground so the rear tires can be changed."
+                },
+                {
+                  "term": "Fueler",
+                  "definition": "Inserts the fuel nozzle into the car's fuel cell during a stop."
+                },
+                {
+                  "term": "Tire carrier",
+                  "definition": "Hauls new tires from the stack to the changers during the stop."
+                },
+                {
+                  "term": "Over-the-wall crew",
+                  "definition": "The five specialists who jump the wall during a pit stop (excludes pit box personnel)."
+                }
+              ],
+              "distractorDefinitions": [
+                "Oversees the pit stop from the grandstand.",
+                "Signals the driver to enter pit road.",
+                "Cleans the windshield during stops.",
+                "Fills water bottles for the driver."
+              ]
+            }
+          },
+          {
+            "id": "flow-04-mc-pit-road-speed",
+            "type": "multiple-choice",
+            "conceptIds": ["pit-road-speed"],
+            "payload": {
+              "prompt": "Why does NASCAR have a pit road speed limit?",
+              "options": [
+                {"id": "a", "text": "To keep the crew safe and prevent drivers from speeding to gain an advantage."},
+                {"id": "b", "text": "To make the race longer and more dramatic."},
+                {"id": "c", "text": "Because pit road is too narrow for racing speeds."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Exactly. Pit road is crowded with crew members, and speeding there is dangerous and unfair. The limit protects everyone and keeps the stop fair.",
+                "incorrect": "Pit road speed limits protect crew and prevent drivers from getting an illegal advantage by speeding. It is a safety and fairness rule."
+              }
+            }
+          },
+          {
+            "id": "flow-04-bc-speeding-penalty",
+            "type": "binary-call",
+            "conceptIds": ["pit-road-speed"],
+            "payload": {
+              "prompt": "If a driver speeds on pit road entry, what is the penalty?",
+              "scene": {
+                "diagramId": "nascar-pit-entry-speed",
+                "alt": "Diagram of pit road with speed-check zones marked, showing a car entering at 52 mph when the limit is 35 mph."
+              },
+              "choices": [
+                {"id": "penalty", "text": "Drive-through penalty: exit pit road immediately and lose track position."},
+                {"id": "fine", "text": "A fine after the race but no on-track penalty."}
+              ],
+              "correctChoiceId": "penalty",
+              "ruleTag": "pit-road-speed-penalty",
+              "explanation": {
+                "correct": "Right. A speeding penalty means you drive through pit road without stopping, losing your pit service and track position. It is harsh because it costs the entire pit stop.",
+                "incorrect": "Speeding on pit road results in a drive-through penalty: you lose the chance to pit and drop in the order. That is why nobody does it twice."
+              }
+            }
+          },
+          {
+            "id": "flow-04-so-pit-stop-sequence",
+            "type": "sequence-order",
+            "conceptIds": ["pit-road", "pit-crew"],
+            "payload": {
+              "items": [
+                "Driver enters pit road at legal speed.",
+                "Crew signals the driver to their pit box.",
+                "Car stops; tire changers and jack man jump the wall.",
+                "Jack man lifts the car; tire changers remove old tires.",
+                "Fueler connects to the fuel cell.",
+                "New tires bolt on; jack man lowers the car.",
+                "Fueler disconnects; the crew exits the wall.",
+                "Driver leaves pit road and rejoins racing."
+              ],
+              "partialCredit": true,
+              "explanation": {
+                "correct": "Perfect. That is the flow of a pit stop from entry to exit, all done in under 12 seconds when it is clicking.",
+                "incorrect": "A pit stop flows from entry to the car stopping, the crew doing their jobs, and the driver leaving. It has to be smooth and fast."
+              }
+            }
+          },
+          {
+            "id": "flow-04-mc-pit-safety",
+            "type": "multiple-choice",
+            "conceptIds": ["pit-road"],
+            "payload": {
+              "prompt": "What is the main safety concern on pit road?",
+              "options": [
+                {"id": "a", "text": "Five crew members working near a moving car at speed, with fuel and hazards all around."},
+                {"id": "b", "text": "The pit road is too short."},
+                {"id": "c", "text": "Drivers might fall asleep during long stops."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Absolutely. Pit road is one of the most dangerous places in racing—crew members are feet from a moving car, there is fuel, flying tires, and controlled chaos. Every rule protects them.",
+                "incorrect": "Pit road is intense: crew working right next to a car, fuel being transferred, and everything happens in seconds. Safety rules make the difference."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "flow-05",
+        "title": "Restarts and the choose rule",
+        "objective": "Describe a restart and how the choose rule works.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["restart", "choose-rule"],
+        "activities": [
+          {
+            "id": "flow-05-mc-restart-basics",
+            "type": "multiple-choice",
+            "conceptIds": ["restart"],
+            "payload": {
+              "prompt": "When a restart happens after a caution, how are cars lined up?",
+              "options": [
+                {"id": "a", "text": "Single file in the same order they were running."},
+                {"id": "b", "text": "Double file with the leader and second place in front, staggered."},
+                {"id": "c", "text": "Random order chosen by the pace car."}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. The field lines up in double file, with the leader and second place car side by side at the front. It sets up drama.",
+                "incorrect": "Restarts are double file—two cars across. The leader and second place are at the front, and the field stacks up behind them. That is how the running order comes back."
+              }
+            }
+          },
+          {
+            "id": "flow-05-hs-choose-line-positions",
+            "type": "hotspot-tap",
+            "conceptIds": ["choose-rule"],
+            "payload": {
+              "prompt": "Tap the lane (inside or outside) where the third-place car would restart.",
+              "diagram": {
+                "asset": "nascar-restart-double-file",
+                "alt": "Overhead view of a NASCAR restart line: leader on the inside lane, second place on the outside lane, third place marked but without lane assignment.",
+                "aspectRatio": 2.5
+              },
+              "hotspots": [
+                {
+                  "id": "inside-lane",
+                  "label": "Inside lane",
+                  "shape": "rect"
+                },
+                {
+                  "id": "outside-lane",
+                  "label": "Outside lane",
+                  "shape": "rect"
+                }
+              ],
+              "correctHotspotIds": ["inside-lane"],
+              "explanation": {
+                "correct": "Yes. In running order, third place chooses next. They might pick inside or outside depending on which lane has momentum.",
+                "incorrect": "The third-place car chooses their lane at the restart. They might go inside to follow the leader's slipstream or outside to set up a pass."
+              }
+            }
+          },
+          {
+            "id": "flow-05-bc-inside-outside-strategy",
+            "type": "binary-call",
+            "conceptIds": ["choose-rule"],
+            "payload": {
+              "prompt": "Is the inside lane always the better choice at a restart?",
+              "scene": {
+                "diagramId": "nascar-restart-lane-choice",
+                "alt": "Restart lineup showing: lane choice depends on track type and momentum, not just inside position."
+              },
+              "choices": [
+                {"id": "no", "text": "No, the choice depends on track type and which lane has momentum (the run)."},
+                {"id": "yes", "text": "Yes, inside is always faster because it is the short way around."}
+              ],
+              "correctChoiceId": "no",
+              "ruleTag": "lane-choice-strategy",
+              "explanation": {
+                "correct": "Exactly. On a short track, the inside might dominate. On a superspeedway, the outside lane might have better draft momentum. Drivers pick based on what they see.",
+                "incorrect": "Lane choice is strategy, not math. Which lane has the run, the draft advantage, or suits the track type? That is what drivers think about."
+              }
+            }
+          },
+          {
+            "id": "flow-05-tm-restart-terms",
+            "type": "term-match",
+            "conceptIds": ["restart"],
+            "payload": {
+              "pairs": [
+                {
+                  "term": "Restart jump",
+                  "definition": "Getting a great start and launching past the car next to you as the green waves."
+                },
+                {
+                  "term": "The run",
+                  "definition": "Speed and momentum a trailing car builds in a lane, ready to pass."
+                },
+                {
+                  "term": "Double file",
+                  "definition": "Two-car-wide lineup at the restart with the top two side by side."
+                },
+                {
+                  "term": "Choose rule",
+                  "definition": "Each driver picks inside or outside lane in order, starting with the leader's choice."
+                }
+              ],
+              "distractorDefinitions": [
+                "A penalty for jumping the start.",
+                "When the green flag waves before everyone is ready.",
+                "The race announcer calling restart positions.",
+                "The pace car leaving pit road."
+              ]
+            }
+          },
+          {
+            "id": "flow-05-mc-restart-passing-opportunity",
+            "type": "multiple-choice",
+            "conceptIds": ["restart"],
+            "payload": {
+              "prompt": "Why do fans get excited about restarts?",
+              "options": [
+                {"id": "a", "text": "Because it is when most of the passing and position changes happen in a race."},
+                {"id": "b", "text": "Because the race is almost over."},
+                {"id": "c", "text": "Because free tires are handed out."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Absolutely. Restarts reset the field, everyone has fresh tires from the pit cycle, and the green flag jump starts a battle. Wild moves happen on restarts.",
+                "incorrect": "Restarts are where the best passing happens. Everyone is side by side, tires are fresh, and the green flag lights it up. That is where races are won and lost."
+              }
+            }
+          },
+          {
+            "id": "flow-05-fg-restart-lineup",
+            "type": "fill-the-gap",
+            "conceptIds": ["restart"],
+            "payload": {
+              "prompt": "At a restart, the first car in line is {{position}}, and they can pick {{choice}}.",
+              "gaps": [
+                {
+                  "id": "position",
+                  "options": ["the leader", "the fastest car", "random"],
+                  "correct": "the leader"
+                },
+                {
+                  "id": "choice",
+                  "options": ["the pit crew", "inside or outside lane", "when to go"],
+                  "correct": "inside or outside lane"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. The leader gets first pick of lane, and they have a good idea which side will work best at that track.",
+                "incorrect": "The leader picks their lane first at a restart. They might want the inside for the short way or the outside for the draft, depending on the track."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "flow-06",
+        "title": "Overtime, red flags and finishing",
+        "objective": "Explain overtime and why races run long.",
+        "estimatedMinutes": 9,
+        "conceptIds": ["overtime", "red-flag"],
+        "activities": [
+          {
+            "id": "flow-06-bc-overtime-trigger",
+            "type": "binary-call",
+            "conceptIds": ["overtime"],
+            "payload": {
+              "prompt": "If a caution is thrown with one lap left, does the race go to overtime (green-white-checkered)?",
+              "scene": {
+                "diagramId": "nascar-overtime-caution",
+                "alt": "Timeline showing: three laps to go, yellow flag waves, white flag next restart, checkered to finish."
+              },
+              "choices": [
+                {"id": "yes", "text": "Yes, the race is extended so it can finish under green flag."},
+                {"id": "no", "text": "No, the race ends immediately under caution."}
+              ],
+              "correctChoiceId": "yes",
+              "ruleTag": "overtime-rule",
+              "explanation": {
+                "correct": "Yes. Overtime gives the race a chance to finish under green. It is called green-white-checkered: one more lap under caution, one lap to race for the win.",
+                "incorrect": "Overtime kicks in if a caution is near the end. The race extends so it finishes under green flag, not yellow. That is what green-white-checkered means."
+              }
+            }
+          },
+          {
+            "id": "flow-06-mc-gw-checkered-format",
+            "type": "multiple-choice",
+            "conceptIds": ["overtime"],
+            "payload": {
+              "prompt": "In a green-white-checkered finish, what do the three flags mean?",
+              "options": [
+                {"id": "a", "text": "Green = restart, white = one lap to go, checkered = race finish."},
+                {"id": "b", "text": "Green = leader is winning, white = second place, checkered = third place."},
+                {"id": "c", "text": "Green = pit stops allowed, white = no passing, checkered = everyone stops."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Right. Green flag waves the overtime restart, white shows one final lap ahead, and checkered ends the race. Drama in three flags.",
+                "incorrect": "Green-white-checkered is exactly what it sounds like: restart on green, one lap warning on white, and the finish on checkered. It gives the race a fair ending under green."
+              }
+            }
+          },
+          {
+            "id": "flow-06-so-overtime-sequence",
+            "type": "sequence-order",
+            "conceptIds": ["overtime"],
+            "payload": {
+              "items": [
+                "A caution is thrown late in the race, around lap 198 of 200.",
+                "The race goes to overtime because a green-flag finish is needed.",
+                "Crews can make one last pit stop adjustment if they choose.",
+                "The field lines up double file for the restart.",
+                "Green flag waves—the overtime restart.",
+                "The white flag shows one lap remains.",
+                "The leader crosses first and the checkered flag drops."
+              ],
+              "partialCredit": true,
+              "explanation": {
+                "correct": "Perfect. That is how overtime works—caution, reset, one last chance, then the finish under green.",
+                "incorrect": "Overtime happens when a caution is late. The race restarts, one lap is raced, and the checkered flag ends it all."
+              }
+            }
+          },
+          {
+            "id": "flow-06-mc-red-flag-duration",
+            "type": "multiple-choice",
+            "conceptIds": ["red-flag"],
+            "payload": {
+              "prompt": "When a red flag is thrown for weather, how long might the stop last?",
+              "options": [
+                {"id": "a", "text": "A few minutes if lightning is the issue, or an hour-plus if a storm passes."},
+                {"id": "b", "text": "Exactly 15 minutes, always."},
+                {"id": "c", "text": "Until the leader agrees to restart."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Exactly. A red flag for lightning might clear in minutes, but a major storm can stop a race for hours. Weather decides.",
+                "incorrect": "Red-flag duration depends on what caused it. Lightning might clear in 10 minutes, rain could stop a race for hours. NASCAR will not restart until it is safe."
+              }
+            }
+          },
+          {
+            "id": "flow-06-fg-red-flag-safety",
+            "type": "fill-the-gap",
+            "conceptIds": ["red-flag"],
+            "payload": {
+              "prompt": "A red flag {{reason}}, and {{action}} happens.",
+              "gaps": [
+                {
+                  "id": "reason",
+                  "options": ["stops the race completely", "means the leader is fast", "slows the pace car"],
+                  "correct": "stops the race completely"
+                },
+                {
+                  "id": "action",
+                  "options": ["all cars park on pit road", "all cars park on track", "drivers go to the garage"],
+                  "correct": "all cars park on pit road"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. A red flag halts everything—all cars shut down on pit road until conditions improve.",
+                "incorrect": "Red flags stop the race; all cars come to pit road. Engines off. Everyone waits for weather or repairs to clear the track."
+              }
+            }
+          },
+          {
+            "id": "flow-06-bc-finish-under-red",
+            "type": "binary-call",
+            "conceptIds": ["red-flag"],
+            "payload": {
+              "prompt": "If the race is red-flagged with 15 laps to go and never restarts due to weather, can the race still be official and have a winner?",
+              "scene": {
+                "diagramId": "nascar-red-flag-weather",
+                "alt": "Weather radar showing heavy storms approaching. Race suspended at lap 185 of 200."
+              },
+              "choices": [
+                {"id": "yes", "text": "Yes, NASCAR counts the results at the time of the red flag and declares a winner."},
+                {"id": "no", "text": "No, if the race does not finish the winner is void."}
+              ],
+              "correctChoiceId": "yes",
+              "ruleTag": "red-flag-final-results",
+              "explanation": {
+                "correct": "Yes. If a race is halted and cannot restart due to darkness, weather, or track damage, NASCAR makes it official at that point. A winner is crowned.",
+                "incorrect": "NASCAR can declare a race official even if it does not finish every lap, as long as at least half the distance has been run and it is not safe to continue."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "flow-07",
+        "title": "Lucky dogs and wave-arounds",
+        "objective": "Explain how lapped cars return to the lead lap under caution.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["free-pass", "wave-around", "lap-down"],
+        "activities": [
+          {
+            "id": "flow-07-tm-lapped-car-terms",
+            "type": "term-match",
+            "conceptIds": ["lap-down", "free-pass", "wave-around"],
+            "payload": {
+              "pairs": [
+                {
+                  "term": "Lapped car",
+                  "definition": "A car that the leader has completed one or more full laps ahead of; it is still racing but not in contention to win."
+                },
+                {
+                  "term": "Free pass (lucky dog)",
+                  "definition": "Under caution, the first car one lap down gets to rejoin the lead lap without pitting."
+                },
+                {
+                  "term": "Wave-around",
+                  "definition": "Lapped cars can pass the pace car under caution to unlap themselves and rejoin the tail of the lead-lap cars."
+                },
+                {
+                  "term": "Lead lap",
+                  "definition": "The group of cars running on the leader's current lap; being on the lead lap means you can still win."
+                }
+              ],
+              "distractorDefinitions": [
+                "A car that was lapped but pitted and gained tires.",
+                "The fastest car on the track.",
+                "A penalty given to drivers who complain.",
+                "The pit crew's signal for a good stop."
+              ]
+            }
+          },
+          {
+            "id": "flow-07-ds-free-pass-decision",
+            "type": "decision-scenario",
+            "conceptIds": ["free-pass"],
+            "payload": {
+              "situation": {
+                "facts": [
+                  {"label": "Situation", "value": "Yellow flag just waved on lap 150 of 200."},
+                  {"label": "Lead lap status", "value": "The leader is on lap 150; you are a lap down on lap 149."},
+                  {"label": "Free pass eligibility", "value": "You are the first car one lap down, so you get the free pass."},
+                  {"label": "Your restart position", "value": "You will rejoin on the lead lap at the tail of the field."}
+                ]
+              },
+              "options": [
+                {
+                  "id": "accept",
+                  "text": "Take the free pass—rejoin the lead lap even though you restart at the back.",
+                  "verdict": "best",
+                  "consequence": "You are back in contention to win and have the full race distance ahead. The restart position is worth it.",
+                  "considerations": "Free pass is free speed; you get a lap without pitting. The restart position will sort itself as the race goes."
+                },
+                {
+                  "id": "pit-anyway",
+                  "text": "Pit anyway for fresh tires, even though you stay a lap down.",
+                  "verdict": "poor",
+                  "consequence": "You get fresh tires but remain one lap down. You cannot win, and you wasted your free pass.",
+                  "considerations": "The free pass exists because it is the prize for being the first unlapped car. Pitting negates that advantage."
+                },
+                {
+                  "id": "decline",
+                  "text": "Decline the free pass and stay on pit road.",
+                  "verdict": "poor",
+                  "consequence": "You stay a lap down and lose the gift. Unusual strategy with almost no upside.",
+                  "considerations": "There is almost no reason to turn down a free lap. You are back in it."
+                }
+              ],
+              "expertNote": "Free pass is pure momentum—one lap for free and a reset at the restart. It is always taken unless pit strategy or fuel issues demand otherwise."
+            }
+          },
+          {
+            "id": "flow-07-mc-wave-around-access",
+            "type": "multiple-choice",
+            "conceptIds": ["wave-around"],
+            "payload": {
+              "prompt": "During a wave-around, which lapped cars can pass the pace car?",
+              "options": [
+                {"id": "a", "text": "Only the first car that is one lap down."},
+                {"id": "b", "text": "All lapped cars can pass the pace car to rejoin the lead lap."},
+                {"id": "c", "text": "Only cars that are two or more laps down."}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. The wave-around is open to all lapped cars—one down, two down, whoever wants to unlap. They pass the pace car and rejoin the tail of the field.",
+                "incorrect": "Wave-arounds let every lapped car pass the pace car under caution and get back on the lead lap. It is different from the free pass, which goes to just the first one-lap-down car."
+              }
+            }
+          },
+          {
+            "id": "flow-07-bc-free-pass-vs-wave-around",
+            "type": "binary-call",
+            "conceptIds": ["free-pass", "wave-around"],
+            "payload": {
+              "prompt": "Is a free pass the same as a wave-around?",
+              "scene": {
+                "diagramId": "nascar-free-pass-wave-around",
+                "alt": "Two scenarios: free pass shows one car advancing without pitting, wave-around shows multiple lapped cars passing the pace car."
+              },
+              "choices": [
+                {"id": "no", "text": "No, free pass goes to the first lapped car; wave-around is for all lapped cars."},
+                {"id": "yes", "text": "Yes, they are the same thing."}
+              ],
+              "correctChoiceId": "no",
+              "ruleTag": "free-pass-vs-wave-around",
+              "explanation": {
+                "correct": "Exactly. Free pass is the first one-lap-down car's prize; wave-around is the open opportunity for everyone lapped to unlap. Different rules, same goal.",
+                "incorrect": "Free pass is exclusive—the first car one lap down. Wave-around is general—all lapped cars can wave around. Different mechanics, same outcome: getting back on the lead lap."
+              }
+            }
+          },
+          {
+            "id": "flow-07-mc-lap-down-reality",
+            "type": "multiple-choice",
+            "conceptIds": ["lap-down"],
+            "payload": {
+              "prompt": "Can a car that is one lap down still win the race?",
+              "options": [
+                {"id": "a", "text": "No, a lapped car cannot win under any circumstances."},
+                {"id": "b", "text": "Yes, if they get a free pass or wave-around and then pass all the lead-lap cars."},
+                {"id": "c", "text": "Only if the race leader crashes."}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. A lapped car is not out of it—if they unlap and then pass everyone, they can absolutely win. It is rare but possible.",
+                "incorrect": "Being a lap down is not a death sentence. If a car gets the free pass or waves around to rejoin, then races back to the front, they can win."
+              }
+            }
+          },
+          {
+            "id": "flow-07-fg-unlap-mechanics",
+            "type": "fill-the-gap",
+            "conceptIds": ["wave-around"],
+            "payload": {
+              "prompt": "Under the wave-around rule, lapped cars pass the {{location}} to rejoin the {{status}}.",
+              "gaps": [
+                {
+                  "id": "location",
+                  "options": ["pit road", "pace car", "leader"],
+                  "correct": "pace car"
+                },
+                {
+                  "id": "status",
+                  "options": ["lead lap", "pit road", "garage"],
+                  "correct": "lead lap"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. Lapped cars pass the pace car during a wave-around and rejoin as lead-lap cars at the tail of the field.",
+                "incorrect": "Wave-around means lapped cars pass the pace car and rejoin the lead lap group. They slot in at the back, but they are back in the lead-lap battle."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "flow-08",
+        "title": "A race in seven beats",
+        "objective": "Narrate the shape and rhythm of a complete race from green to checkered.",
+        "estimatedMinutes": 11,
+        "conceptIds": ["stage-racing", "restart", "pit-road", "checkered-flag"],
+        "activities": [
+          {
+            "id": "flow-08-so-race-narrative",
+            "type": "sequence-order",
+            "conceptIds": ["stage-racing", "restart", "pit-road", "checkered-flag"],
+            "payload": {
+              "items": [
+                "Green flag drops. The field accelerates from the start/finish line.",
+                "Cars string out, and strategy emerges: who is fast, who is saving fuel or tires?",
+                "Stage one finishes at lap 100. The top ten score stage points.",
+                "Caution comes out automatically at the stage break. Crews pit, adjust, fuel, and change tires.",
+                "The field restarts in double file. Passing happens on the restart.",
+                "Stage two runs and finishes. Another caution, another pit cycle.",
+                "Stage three begins and usually runs to the end, with only incident cautions interrupting.",
+                "Lapped cars might get a free pass or wave-around to unlap themselves.",
+                "Near the end, a caution might trigger overtime (green-white-checkered).",
+                "The leader crosses first, the checkered flag waves, and the race is over."
+              ],
+              "partialCredit": true,
+              "explanation": {
+                "correct": "Perfect. That is the seven-beat shape of a modern NASCAR race—green, stage, restart, stage, caution, battle, and checkered.",
+                "incorrect": "A race flows in beats: start, stage, restart, stage, restart, battle, and finish. Stages and restarts are the rhythm."
+              }
+            }
+          },
+          {
+            "id": "flow-08-st-what-happens-next",
+            "type": "say-this",
+            "conceptIds": ["stage-racing", "pit-road"],
+            "payload": {
+              "statement": "They're pitting at the stage break now.",
+              "options": [
+                {"id": "1", "isCorrect": true},
+                {"id": "2", "isCorrect": true},
+                {"id": "3", "isCorrect": false}
+              ],
+              "option": [
+                {"id": "1", "text": "A planned caution just happened at the end of the stage."},
+                {"id": "2", "text": "The top ten just finished stage points and are resetting strategy."},
+                {"id": "3", "text": "Pit road is closing and no one can pit anymore."}
+              ],
+              "translation": "The automatic caution at the stage finish opened the pit window, and teams are now servicing their cars.",
+              "followUps": [
+                "What is the crew doing on this pit stop?",
+                "Why would someone skip this pit stop and stay out?"
+              ],
+              "noFakeExpertNote": "Explaining stages and pit strategy is foundation knowledge; you are not faking expertise."
+            }
+          },
+          {
+            "id": "flow-08-tt-race-flow-talk",
+            "type": "talk-track",
+            "conceptIds": ["stage-racing", "restart", "pit-road", "checkered-flag"],
+            "payload": {
+              "title": "Race day talk",
+              "setting": "He just witnessed his first full race and wants to know what just happened.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "I have no idea what is going on with all these flags and cautions and pit stops. What is the race actually doing?",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "The race is split into three stages with pit stops between. That is the rhythm: go, caution, restart, repeat.",
+                      "smoothDelta": 28,
+                      "theirResponse": "Okay, so stages break it up. That makes sense.",
+                      "coachNote": "You explained the structure clearly without overloading."
+                    },
+                    {
+                      "id": "b",
+                      "text": "There are a lot of rules. Let me explain them.",
+                      "smoothDelta": 5,
+                      "theirResponse": "Yeah, but what is happening right now in the race?",
+                      "coachNote": "He wants the story first, details later."
+                    },
+                    {
+                      "id": "c",
+                      "text": "It is just cars driving in circles.",
+                      "smoothDelta": -15,
+                      "theirResponse": "Okay, clearly not.",
+                      "coachNote": "You dismissed what he is seeing. That closes the conversation."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "So the stage is like a mini race?",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "Exactly. Each stage has a finish line and the top ten score bonus points, then everyone resets with a pit stop.",
+                      "smoothDelta": 26,
+                      "theirResponse": "Got it. So there are three mini finishes plus the main finish.",
+                      "coachNote": "You connected the dots. He understands the beat now."
+                    },
+                    {
+                      "id": "b",
+                      "text": "Yeah, kind of. But the real race is about pit strategy.",
+                      "smoothDelta": 8,
+                      "theirResponse": "Okay, but the stages matter too, right?",
+                      "coachNote": "True, but do not hedge. Stages are real mini-races."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "Why do they pit at every caution?",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "They pit for fuel and fresh tires. Old tires fade, so new rubber helps them race and defend.",
+                      "smoothDelta": 25,
+                      "theirResponse": "So tires matter a lot.",
+                      "coachNote": "You explained the why, not just the what."
+                    },
+                    {
+                      "id": "b",
+                      "text": "Some teams pit and some do not. Track position is the game.",
+                      "smoothDelta": 10,
+                      "theirResponse": "So there is a choice?",
+                      "coachNote": "Good, but explain what they are choosing between."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Races are a series of stages, cautions, restarts and strategy calls. The rhythm is the story."
+            }
+          },
+          {
+            "id": "flow-08-mc-three-stage-why",
+            "type": "multiple-choice",
+            "conceptIds": ["stage-racing"],
+            "payload": {
+              "prompt": "Why do races have three stages instead of one long race?",
+              "options": [
+                {"id": "a", "text": "To create multiple climaxes and strategic decision points instead of one long grind."},
+                {"id": "b", "text": "To make sure drivers do not get tired."},
+                {"id": "c", "text": "To give fans a scheduled time when the race will end."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Right. Stages create drama and give fans—and drivers—multiple moments to care about. Each stage is a mini finish line.",
+                "incorrect": "Stages break the race into separate battles, each with points on the line and a pit stop to reset strategy. It keeps everyone fighting all the way."
+              }
+            }
+          },
+          {
+            "id": "flow-08-bc-caution-breaks-rhythm",
+            "type": "binary-call",
+            "conceptIds": ["stage-racing"],
+            "payload": {
+              "prompt": "Can an incident caution (not a stage break) also change the race flow significantly?",
+              "scene": {
+                "diagramId": "nascar-incident-caution-flow",
+                "alt": "Timeline: stage two running smoothly, then an incident yellow waves early, changing pit cycles and strategy."
+              },
+              "choices": [
+                {"id": "yes", "text": "Yes, an incident caution erases the leader's gap and opens a new pit cycle unpredictably."},
+                {"id": "no", "text": "No, only stage breaks change strategy."}
+              ],
+              "correctChoiceId": "yes",
+              "ruleTag": "incident-caution-impact",
+              "explanation": {
+                "correct": "Absolutely. An incident yellow is random and can flip everything. It erases a lead and opens a pit cycle when nobody expected it.",
+                "incorrect": "Incident cautions are chaos. They happen unexpectedly and reset the pit cycle and running order, sometimes helping the second-place car dramatically."
+              }
+            }
+          },
+          {
+            "id": "flow-08-fg-race-finish-conditions",
+            "type": "fill-the-gap",
+            "conceptIds": ["checkered-flag"],
+            "payload": {
+              "prompt": "A race is finished when the {{condition}} {{milestone}} is reached.",
+              "gaps": [
+                {
+                  "id": "condition",
+                  "options": ["leader", "winner", "first car"],
+                  "correct": "first car"
+                },
+                {
+                  "id": "milestone",
+                  "options": [
+                    "crosses the finish line on the final lap",
+                    "has the most points",
+                    "completes half the distance"
+                  ],
+                  "correct": "crosses the finish line on the final lap"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. The first car to cross the line on the final lap wins, and the checkered flag ends the race.",
+                "incorrect": "A race ends when the first car completes the full distance and crosses the finish line. Checkered flag = it is done."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -155,10 +155,9 @@ Valid example: `{ "seed": 11, "scenarioSetId": "serve-starter", "scenarioCount":
 | `sv-s07` | Score 3-3 (deuce in game). Returner leaning to the T. | Serve wide; aim into the outer third of the box. | `serve-targets` | standard |
 | `sv-s08` | Score 2-1 in points (30-15). Wrong-side trap: both side rings shown, score as numbers only (L5). | Deuce court is played when the total points are even; here 30-15 is three points: ad court. | `serve-sides` | sides, trap |
 | `sv-s09` | Deuce court, first serve, returner crowds the baseline (close). | Body serve jams the returner; flat at the hip. | `serve-targets` | pressure |
-| `sv-s10` | Ad court, first serve, big point 15-40. The server has missed three first serves in a row. | Pick a high-percentage first serve (slice or kick body), not max power. | `first-server-percentage-idea`* | pressure |
+| `sv-s10` | Ad court, first serve, big point 15-40. The server has missed three first serves in a row. | Pick a high-percentage first serve (slice or kick body), not max power. | `first-second-serve` | pressure |
 | `sv-s11` | Deuce court, second serve, wind of nothing; returner stands well back. | Kick deep to the corner: hard for a deep returner to attack. | `serve-spins` | second-serve |
 | `sv-s12` | Ad court, learner-picked spin quiz at L5: replay shows a ball curving to the sideline and skidding low. | Name it: slice. | `serve-spins` | trap |
-- \* Use `first-second-serve` for `sv-s10`; there is no separate concept id (keep the concept list closed).
 - Rules for the rest: generate by choosing side, attempt, score and stance from the tables; expected target = away from the stance (`wide-cheat` -> T, `t-cheat` -> wide, `close` -> body, `deep` -> wide or body); expected spin: second serve -> kick or slice; first serve -> any.
 
 ## 12. Freeze / explain moments

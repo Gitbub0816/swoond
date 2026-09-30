@@ -432,7 +432,8 @@
               ],
               "correctHotspotIds": ["cb", "s"],
               "explanation": {
-                "correct": "The cornerback stays tight on the receiver, and the safety plays deep to help if the receiver beats the corner or the route goes over the top."
+                "correct": "The cornerback stays tight on the receiver, and the safety plays deep to help if the receiver beats the corner or the route goes over the top.",
+                "incorrect": "On a pass route, the corner covers the receiver and the safety provides help deep over the top."
               }
             },
             "xp": 10
@@ -442,7 +443,7 @@
             "type": "binary-call",
             "conceptIds": ["linebacker"],
             "payload": {
-              "prompt": "A linebacker can tell if the offense is running or passing just by watching the first step of the running back. True or false?",
+              "prompt": "A great linebacker reads run vs pass from the first step. True or false?",
               "scene": {"kind": "none", "alt": "A defensive formation with a linebacker watching the running back's first movement at the snap."},
               "choices": [
                 {"id": "true", "label": "True"},
@@ -579,22 +580,18 @@
             "type": "visual-id",
             "conceptIds": ["jersey-numbers"],
             "payload": {
-              "prompt": "Which player is most likely to be the quarterback based on his jersey number?",
-              "diagram": {
-                "diagramId": "football-players-numbers",
-                "alt": "Five football players in uniform showing different jersey numbers: 7, 42, 63, 89, and 15.",
-                "aspectRatio": 2.5
-              },
-              "targets": [
-                {"id": "qb", "label": "Player 7", "shape": {"kind": "circle", "cx": 0.2, "cy": 0.5, "r": 0.05}},
-                {"id": "rb", "label": "Player 42", "shape": {"kind": "circle", "cx": 0.4, "cy": 0.5, "r": 0.05}},
-                {"id": "ol", "label": "Player 63", "shape": {"kind": "circle", "cx": 0.6, "cy": 0.5, "r": 0.05}},
-                {"id": "wr", "label": "Player 89", "shape": {"kind": "circle", "cx": 0.8, "cy": 0.5, "r": 0.05}},
-                {"id": "def", "label": "Player 15", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.2, "r": 0.04}}
+              "prompt": "Which player is most likely the quarterback by jersey number?",
+              "image": "football-players-numbers",
+              "options": [
+                {"id": "a", "text": "Player 7"},
+                {"id": "b", "text": "Player 42"},
+                {"id": "c", "text": "Player 63"},
+                {"id": "d", "text": "Player 89"}
               ],
-              "correctTargetIds": ["qb"],
+              "correctOptionId": "a",
               "explanation": {
-                "correct": "Quarterbacks wear numbers 1-19. Player 7 is in that range. It is a strong signal even though other positions overlap."
+                "correct": "Quarterbacks wear 1-19. Number 7 is in that range. It is a strong signal for the position.",
+                "incorrect": "Look at the jersey numbers. Quarterbacks wear 1-19, so the lower numbers signal QB, not linemen or receivers."
               }
             },
             "xp": 10
@@ -604,20 +601,17 @@
             "type": "visual-id",
             "conceptIds": ["jersey-numbers"],
             "payload": {
-              "prompt": "Which player is most likely to be a lineman (offensive or defensive)?",
-              "diagram": {
-                "diagramId": "football-lineman-numbers",
-                "alt": "Three football players showing jersey numbers 19, 76, and 34.",
-                "aspectRatio": 2.5
-              },
-              "targets": [
-                {"id": "lin", "label": "Player 76", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.5, "r": 0.05}},
-                {"id": "qb", "label": "Player 19", "shape": {"kind": "circle", "cx": 0.2, "cy": 0.5, "r": 0.05}},
-                {"id": "lb", "label": "Player 34", "shape": {"kind": "circle", "cx": 0.8, "cy": 0.5, "r": 0.05}}
+              "prompt": "Which player is most likely a lineman by jersey number?",
+              "image": "football-lineman-numbers",
+              "options": [
+                {"id": "a", "text": "Player 19"},
+                {"id": "b", "text": "Player 76"},
+                {"id": "c", "text": "Player 34"}
               ],
-              "correctTargetIds": ["lin"],
+              "correctOptionId": "b",
               "explanation": {
-                "correct": "Linemen (both offensive and defensive) wear numbers 50-79. Player 76 fits perfectly. Numbers are a shorthand fans use to spot positions."
+                "correct": "Linemen wear 50-79. Player 76 fits perfectly. Numbers are shorthand to spot positions instantly.",
+                "incorrect": "Look at the number ranges. Linemen wear 50-79, so the higher numbers signal offensive or defensive line."
               }
             },
             "xp": 10
