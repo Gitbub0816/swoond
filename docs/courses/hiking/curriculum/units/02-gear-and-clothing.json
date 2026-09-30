@@ -576,30 +576,70 @@
             ],
             "payload": {
               "safetyNote": "Hypothermia can occur in temperatures well above freezing, especially with wet clothing.",
-              "prompt": "You are at 8,000 feet. Temperature is 55°F, wind is gusting and light rain is starting. You are wearing a heavy cotton sweatshirt. What do you do?",
+              "prompt": "Cold rain at 8,000 feet. Cotton sweatshirt soaked. Change or continue?",
+              "situation": {
+                "narrative": "You are exposed at altitude wearing a heavy cotton sweatshirt that is now wet from rain. You have synthetic layers in your pack.",
+                "facts": [
+                  {
+                    "label": "Temperature",
+                    "value": "55 F"
+                  },
+                  {
+                    "label": "Wind",
+                    "value": "Gusty"
+                  },
+                  {
+                    "label": "Rain",
+                    "value": "Light but ongoing"
+                  },
+                  {
+                    "label": "Current layer",
+                    "value": "Cotton sweatshirt, soaked",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Backup gear",
+                    "value": "Synthetic base layer and shell in pack"
+                  }
+                ]
+              },
               "options": [
                 {
                   "id": "change",
-                  "text": "Change immediately into your synthetic base layer and shell",
-                  "explanation": "Your synthetics will wick sweat and shed rain while keeping you warm."
+                  "label": "Stop and change into your synthetic base layer and shell",
+                  "verdict": "best",
+                  "consequence": "Synthetics wick sweat and shed rain. You stay warm and dry despite the cold wind. Five minutes and you are recovered.",
+                  "considerations": [
+                    "Cotton loses all insulating value when wet",
+                    "Wind and wet multiply the chilling effect",
+                    "Hypothermia risk rises fast in these conditions"
+                  ]
                 },
                 {
-                  "id": "stay",
-                  "text": "Keep the cotton on, you are not that cold"
+                  "id": "continue",
+                  "label": "Keep the cotton on and push on",
+                  "verdict": "poor",
+                  "consequence": "Wet cotton keeps you in direct contact with cold. Shivering, clumsiness and confusion build over the next hour.",
+                  "considerations": [
+                    "Wet cotton conducts heat away from your body",
+                    "Even at 55 F, hypothermia is possible in wind and wet",
+                    "Stopping to change takes minutes, not hours"
+                  ]
                 },
                 {
                   "id": "move",
-                  "text": "Keep moving faster to stay warm"
+                  "label": "Keep moving faster to generate more heat",
+                  "verdict": "poor",
+                  "consequence": "Activity warms you momentarily, but you sweat more, making the wet cotton worse. Exhaustion follows.",
+                  "considerations": [
+                    "Exercise does not overcome wet cotton against your skin",
+                    "You can not keep moving fast forever",
+                    "The cold is not the enemy, the wet is"
+                  ]
                 }
               ],
-              "correctOptionIds": [
-                "change"
-              ],
-              "explanation": {
-                "correct": "Cotton soaks up water and loses all insulation value. Even at 55°F in wind and rain, wet cotton can lead to hypothermia. Change now.",
-                "incorrect": "Hypothermia happens faster than you think, especially in wind and wet. Cotton is dangerous in these conditions. Swap to synthetics right away.",
-                "sayThisLine": "\"If I feel cold in cotton, I change out of it, period. No waiting.\""
-              }
+              "expertNote": "Hypothermia happens fast in wind, wet and altitude. Cotton loses all warmth when soaked. Change to synthetics now, not later.",
+              "sayThisLine": "\"If I feel cold in cotton, I change out of it. Now, not after another mile.\""
             }
           },
           {
@@ -772,30 +812,66 @@
             ],
             "payload": {
               "safetyNote": "Poor footwear fit can cause blisters, pain and lead to dangerous falls on difficult terrain.",
-              "prompt": "You are fitting a new pair of hiking boots at a store. You slide your heel easily and your big toe is about a finger-width from the toe box. On the descents of your practice hike the next day, your foot slides inside the boot. What went wrong?",
+              "prompt": "New boots slide on descents. What is the problem?",
+              "situation": {
+                "narrative": "You fitted new hiking boots at a store. The fit felt okay. On a practice hike the next day, your foot slides forward inside the boot on descents.",
+                "facts": [
+                  {
+                    "label": "Store fit test",
+                    "value": "Heel felt snug, toe-to-box spacing one finger-width"
+                  },
+                  {
+                    "label": "On the descent",
+                    "value": "Foot slides forward in boot",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Lacing",
+                    "value": "Standard snug lacing"
+                  },
+                  {
+                    "label": "Prior experience",
+                    "value": "First time in these boots"
+                  }
+                ]
+              },
               "options": [
                 {
                   "id": "lace",
-                  "text": "You did not lace them tight enough, go back to the store and try a tighter lacing"
+                  "label": "Retie with extra-tight lacing from the start",
+                  "verdict": "acceptable",
+                  "consequence": "Very tight lacing stops some slide, but it will not feel good and may cut off circulation. This might help, but is not the core fix.",
+                  "considerations": [
+                    "Lacing can help a little",
+                    "Tight lacing causes other problems over time",
+                    "The boot itself might be wrong size"
+                  ]
                 },
                 {
                   "id": "size",
-                  "text": "They are too big, return them and try a half size smaller",
-                  "explanation": "When descending a steep hill your foot slides forward in the boot, indicating it is too large."
+                  "label": "Return them and try a half size smaller",
+                  "verdict": "best",
+                  "consequence": "A smaller boot locks your heel and has just enough toe room. Descents feel solid and your foot stays put.",
+                  "considerations": [
+                    "Sliding on descents = oversized boot",
+                    "Test the smaller size on a real descent",
+                    "This is the right-sized boot"
+                  ]
                 },
                 {
                   "id": "brand",
-                  "text": "This brand does not work for your foot, try a different brand"
+                  "label": "Try a different brand that fits better",
+                  "verdict": "acceptable",
+                  "consequence": "Different brands have different lasts. A different brand might fit your foot shape better, but this brand in a smaller size might also work.",
+                  "considerations": [
+                    "Fit is personal, not brand-specific",
+                    "Try a smaller size in this boot first",
+                    "Brand switching is an option if size does not fix it"
+                  ]
                 }
               ],
-              "correctOptionIds": [
-                "size"
-              ],
-              "explanation": {
-                "correct": "Feet slide forward on descents. If yours is sliding, the boot is too big or not laced tightly enough. Size down or lace firmer.",
-                "incorrect": "Sliding on descents means the boot is oversized. Your heel should lock and your toes should not be jamming the front.",
-                "sayThisLine": "\"My foot slid on the downhill. That means the boot is too big or I did not lace it right.\""
-              }
+              "expertNote": "Feet slide forward on descents when the boot is oversized. A locked heel is non-negotiable. Size down before switching brands.",
+              "sayThisLine": "\"My foot slid on the downhill. That means the boot is too big. I returned them for a half size smaller.\""
             }
           },
           {
@@ -1052,30 +1128,66 @@
             ],
             "payload": {
               "safetyNote": "Untreated blisters can become infected. Clean the area and keep it dry.",
-              "prompt": "You already have a fluid-filled blister on your heel. It is the size of a quarter. What is the best way to treat it for the rest of your hike?",
+              "prompt": "Quarter-sized blister on heel. How do you treat it now?",
+              "situation": {
+                "narrative": "You have a fluid-filled blister on your heel, about the size of a quarter. You are midway through a six-hour hike and have a sterile pad and blister pack in your first aid kit.",
+                "facts": [
+                  {
+                    "label": "Blister size",
+                    "value": "Quarter-sized, fluid-filled"
+                  },
+                  {
+                    "label": "Pain level",
+                    "value": "Painful with each step",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Gear available",
+                    "value": "Sterile pad, moleskin, blister pack in kit"
+                  },
+                  {
+                    "label": "Time left",
+                    "value": "3 more hours to car"
+                  }
+                ]
+              },
               "options": [
                 {
                   "id": "cover",
-                  "text": "Cover it with a sterile pad or blister pack to protect from friction and infection",
-                  "explanation": "Keeping it clean and reducing rubbing stops it from getting worse."
+                  "label": "Cover with a sterile blister pad or donut pad to cut the pressure",
+                  "verdict": "best",
+                  "consequence": "The pad removes friction. The blister stays intact and protected. You finish the hike with manageable pain.",
+                  "considerations": [
+                    "An intact blister is less likely to get infected",
+                    "Pressure relief is the main thing that helps",
+                    "Keep it clean and change socks"
+                  ]
                 },
                 {
                   "id": "pop",
-                  "text": "Pop it to drain it quickly"
+                  "label": "Drain it now to relieve pressure",
+                  "verdict": "poor",
+                  "consequence": "The fluid drains, but the wound is now open to bacteria and dirt. The risk of infection rises and it stays painful.",
+                  "considerations": [
+                    "An open blister is an infection risk",
+                    "Pressure relief does not require popping it",
+                    "Covering works as well without the risk"
+                  ]
                 },
                 {
                   "id": "ignore",
-                  "text": "Leave it alone and keep hiking"
+                  "label": "Leave it alone and keep hiking",
+                  "verdict": "poor",
+                  "consequence": "Three more hours of rubbing on a full blister. By the end, the skin around it is shredded and the whole area is raw.",
+                  "considerations": [
+                    "Ignoring a full blister makes it worse",
+                    "The friction keeps building",
+                    "A pad takes two minutes to apply"
+                  ]
                 }
               ],
-              "correctOptionIds": [
-                "cover"
-              ],
-              "explanation": {
-                "correct": "Cover with a sterile blister pack or donut pad that cuts out the pressure. Popping it risks infection and opens the wound.",
-                "incorrect": "Do not pop it. Keep it clean and covered to prevent infection. A blister that is already here needs protection, not drainage.",
-                "sayThisLine": "\"I cover a blister with a sterile pad, keep it clean and change socks. No popping.\""
-              }
+              "expertNote": "A full blister needs protection from friction, not popping. Cover with a sterile pad or moleskin donut and you can finish your hike.",
+              "sayThisLine": "\"I cover a blister with a pad, keep it clean and change my socks. No popping.\""
             }
           },
           {

@@ -21,13 +21,13 @@ final class GamesViewModel {
         var hasSimulation: Bool
     }
 
-    struct Section: Identifiable, Equatable {
+    struct InterestSection: Identifiable, Equatable {
         var id: CourseID
         var name: String
         var rows: [GameRow]
     }
 
-    private(set) var sections: [Section] = []
+    private(set) var sections: [InterestSection] = []
     private(set) var reviewCount = 0
     private(set) var reviewCourseId: CourseID?
     private(set) var challenge: FriendChallenge?
@@ -36,7 +36,7 @@ final class GamesViewModel {
     func load(model: AppModel) async {
         guard let person = model.activePerson else { sections = []; isLoaded = true; return }
         let env = model.env
-        var built: [Section] = []
+        var built: [InterestSection] = []
         var reviews = 0
         var reviewCourse: CourseID?
         for interest in person.interests {
@@ -55,7 +55,7 @@ final class GamesViewModel {
                         hasSimulation: types.contains(.unitySim)))
                 }
             }
-            built.append(Section(id: id, name: model.interestName(id), rows: rows))
+            built.append(InterestSection(id: id, name: model.interestName(id), rows: rows))
             if let mastery = try? await env.engine.mastery(courseId: id) {
                 let due = LessonPlanner.dueReviews(in: curriculum, mastery: mastery, now: await env.engine.now())
                 if !due.isEmpty && reviewCourse == nil { reviews = due.count; reviewCourse = id }
@@ -64,7 +64,7 @@ final class GamesViewModel {
         sections = built
         reviewCount = reviews
         reviewCourseId = reviewCourse
-        challenge = (try? await env.challenges.pendingChallenge()).flatMap { $0 }
+        challenge = try? await env.challenges.pendingChallenge()
         isLoaded = true
     }
 }
