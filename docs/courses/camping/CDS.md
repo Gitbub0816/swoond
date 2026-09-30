@@ -556,7 +556,7 @@ Native rows link to `docs/native-exercises/CATALOG.md`. Counts are approximate a
 |---|---|---|---|
 | Diagrams: campsite plan, site cross-section (`site-cross-section`), camp triangle, tent anatomy, stove anatomy, fire-ring layout (`hotspot-tap`, `binary-call`) | Procedural / vector drawn in-app | In-house | `original-swoond` |
 | Shelter, stove and camp-animal illustrations (`visual-id`), e.g. `camping/shelter-freestanding.svg` | Original illustration | In-house or commissioned | `original-swoond` |
-| Optional photography | NPS/USFS/USGS public domain only after review | Agencies | `original-swoond` is not used for these; use a per-source id (`nps-public-domain`) once L-12 registry exists |
+| Optional photography | NPS/USFS/USGS public domain only after review | Agencies | Not used at launch; a per-source id once the L-12 registry exists |
 | Audio | None | n/a | n/a |
 | Fonts | Instrument Serif, Geist | OFL | `ofl` |
 

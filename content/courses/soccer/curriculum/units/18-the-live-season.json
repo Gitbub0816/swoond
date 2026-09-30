@@ -1,0 +1,1284 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "soccer",
+  "unit": {
+    "id": "the-live-season",
+    "title": "The live season",
+    "layer": "current-season",
+    "order": 17,
+    "prerequisiteUnitIds": [
+      "formations-and-shape"
+    ],
+    "personalizationSlots": [
+      "team",
+      "player",
+      "league"
+    ],
+    "live": {
+      "dataKind": "standings,scores,schedules,news",
+      "adapterKey": "soccer.season",
+      "refreshHint": "hourly; minutes during matches"
+    },
+    "lessons": [
+      {
+        "id": "live-01",
+        "title": "This week's table",
+        "objective": "You can read {{team}}'s place in the table and what it needs to achieve.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "league-table",
+          "form-and-ppg",
+          "goal-difference"
+        ],
+        "activities": [
+          {
+            "id": "live-01-mc-position",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "league-table"
+            ],
+            "payload": {
+              "prompt": "The team in fifth has 61 points. {{team}} is fourth with 64. How far ahead are they?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "5 points"
+                },
+                {
+                  "id": "b",
+                  "text": "8 points"
+                },
+                {
+                  "id": "c",
+                  "text": "3 points"
+                }
+              ],
+              "correctOptionIds": [
+                "c"
+              ],
+              "explanation": {
+                "correct": "Right. 64 minus 61 is three points. Reading the gap to the team below is the first thing to check in any table.",
+                "incorrect": "Fourth on 64 and fifth on 61 means a three-point gap, so one bad result could swap them.",
+                "sayThisLine": "We are three clear of fifth, but it is tight."
+              }
+            }
+          },
+          {
+            "id": "live-01-bc-title-pace",
+            "type": "binary-call",
+            "conceptIds": [
+              "form-and-ppg"
+            ],
+            "payload": {
+              "prompt": "{{team}} averages two points a game. Is that title pace?",
+              "scene": {
+                "kind": "none",
+                "alt": "A team has played 30 games and collected 60 points. That is 2.0 points per game, or about 76 over a 38-game season."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, title pace"
+                },
+                {
+                  "id": "no",
+                  "label": "No, a bit short"
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Right. Two points a game works out at about 76 over 38 games: a strong season, but title winners usually need closer to 2.2 or more.",
+                "incorrect": "Two points a game is about 76 over 38 games. That is a very good season, but titles are usually won with roughly 85 or more."
+              },
+              "ruleTag": "Reading form"
+            }
+          },
+          {
+            "id": "live-01-fg-difference",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "goal-difference"
+            ],
+            "payload": {
+              "prompt": "How is goal difference calculated?",
+              "template": "Goal difference is {{action}} minus {{action2}}.",
+              "gaps": [
+                {
+                  "id": "action",
+                  "options": [
+                    "goals conceded",
+                    "goals scored",
+                    "wins"
+                  ],
+                  "correct": "goals scored"
+                },
+                {
+                  "id": "action2",
+                  "options": [
+                    "wins",
+                    "goals conceded",
+                    "draws"
+                  ],
+                  "correct": "goals conceded"
+                }
+              ],
+              "explanation": {
+                "correct": "Exactly. Goals for minus goals against: if you've scored 45 and conceded 30, your goal difference is +15.",
+                "incorrect": "Goals scored minus goals conceded: the top tiebreaker when teams are level on points."
+              }
+            }
+          },
+          {
+            "id": "live-01-mc-tiebreak",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "league-table",
+              "goal-difference"
+            ],
+            "payload": {
+              "prompt": "In the Premier League, two teams are level on points. What separates them first?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Alphabetical order"
+                },
+                {
+                  "id": "b",
+                  "text": "Goal difference"
+                },
+                {
+                  "id": "c",
+                  "text": "A coin toss"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. The Premier League ranks level teams by goal difference first. Some leagues, such as La Liga, look at head-to-head results first, so it can vary.",
+                "incorrect": "Goal difference, goals scored minus goals conceded, is the first tiebreaker in the Premier League. Other leagues can use different rules."
+              }
+            }
+          },
+          {
+            "id": "live-01-st-table",
+            "type": "say-this",
+            "conceptIds": [
+              "league-table",
+              "form-and-ppg"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Fan",
+                "text": "We are second only on goal difference. One bad afternoon and we drop."
+              },
+              "question": "What does she mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Her team has the same points as the team below but a better goal difference",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "Goal difference is the only thing that decides the league",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "She thinks the ranking is unfair",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "The league has not started yet",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "Her team is level on points with the side below, and only a better goal difference keeps them ahead. A heavy defeat could swap them.",
+              "followUps": [
+                {
+                  "line": "How many points behind is the top spot?",
+                  "why": "Moves the chat from the tiebreaker to the bigger race."
+                },
+                {
+                  "line": "Who is the team just below you?",
+                  "why": "Shows you are following the table."
+                }
+              ],
+              "noFakeExpertNote": "It is fine to ask her to explain how the table tiebreakers work."
+            }
+          }
+        ]
+      },
+      {
+        "id": "live-02",
+        "title": "The fixture that matters",
+        "objective": "You can explain why this week's match matters and what's at stake for {{team}}.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "title-race",
+          "relegation-scrap",
+          "derby"
+        ],
+        "activities": [
+          {
+            "id": "live-02-mc-title-race",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "title-race"
+            ],
+            "payload": {
+              "prompt": "{{team}} is one point behind the leader and plays them this week. Why does it matter?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "It is the most glamorous fixture"
+                },
+                {
+                  "id": "b",
+                  "text": "A win takes them top and beats a direct rival head-to-head"
+                },
+                {
+                  "id": "c",
+                  "text": "It has the biggest attendance"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. In a title race, games against your closest rival are decisive. A win flips the table and takes points away from the team you are chasing.",
+                "incorrect": "A win against the leader puts you top, and it stops them from adding points. That is why fans call it a six-pointer."
+              }
+            }
+          },
+          {
+            "id": "live-02-mc-relegation",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "relegation-scrap"
+            ],
+            "payload": {
+              "prompt": "Fans say 40 points usually keeps you up. {{team}} has 32 with five games left. How many more?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "4 points"
+                },
+                {
+                  "id": "b",
+                  "text": "8 points"
+                },
+                {
+                  "id": "c",
+                  "text": "12 points"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. 40 minus 32 is eight. Forty is only a rule of thumb, and some seasons 36 or 37 is enough, but it is the number fans quote.",
+                "incorrect": "Forty minus 32 leaves eight points. Fans use 40 as a safety mark in a 20-team league, though it is not a guarantee."
+              }
+            }
+          },
+          {
+            "id": "live-02-st-derby",
+            "type": "say-this",
+            "conceptIds": [
+              "derby"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Fan",
+                "text": "It's a derby this week. Form goes out the window."
+              },
+              "question": "What does she mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The usual rankings don't matter in derbies",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "The match is unpredictable because of the rivalry",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "One team is too good to lose",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Derbies decide the whole season",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "Derbies between local rivals are so charged with emotion and pride that the better team on paper often doesn't win; rivalries can upset the expected result.",
+              "followUps": [
+                {
+                  "line": "What's the head-to-head record in this derby?",
+                  "why": "Shows you know derby history matters."
+                },
+                {
+                  "line": "How many of your team's worst losses have come in derbies?",
+                  "why": "Opens a conversation about the intensity."
+                }
+              ],
+              "noFakeExpertNote": "You don't need to know the derby history; asking her about it is perfect."
+            }
+          },
+          {
+            "id": "live-02-st-fixture-timing",
+            "type": "say-this",
+            "conceptIds": [
+              "title-race",
+              "relegation-scrap"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Fan",
+                "text": "We play twice in four days and they have a week off. Fixture congestion is brutal."
+              },
+              "question": "What is she frustrated about?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Her team gets less rest between games than the opponent",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "Fixture congestion means lots of matches in a short spell",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "The match is scheduled too late in the season",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Ticket prices are too high",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "Fixture congestion means many games in a short window. Her team has less recovery time than an opponent who has had a week off, which can hurt legs and rotation.",
+              "followUps": [
+                {
+                  "line": "How many games do you have this week?",
+                  "why": "Asks about the actual schedule."
+                },
+                {
+                  "line": "Who could get rested?",
+                  "why": "Shows you understand rotation."
+                }
+              ],
+              "noFakeExpertNote": "Agreeing that a packed schedule is tough is a real, fair observation."
+            }
+          },
+          {
+            "id": "live-02-mc-context",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "title-race",
+              "derby"
+            ],
+            "payload": {
+              "prompt": "{{team}} chases the title; their derby rival sits mid-table. What does the rival gain?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Nothing, the game does not matter to them"
+                },
+                {
+                  "id": "b",
+                  "text": "A chance to spoil the title chase and win local bragging rights"
+                },
+                {
+                  "id": "c",
+                  "text": "A trophy for finishing above them"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. Even with nothing left to play for in the table, beating a title-chasing local rival can define their season.",
+                "incorrect": "A spoiler result against a title contender is huge: three points, bragging rights and a dent in the leader's push."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "live-03",
+        "title": "Injury and lineup news",
+        "objective": "You can explain what an injury or lineup change means for {{team}}'s approach this week.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "injury-report",
+          "fixture-congestion"
+        ],
+        "activities": [
+          {
+            "id": "live-03-mc-injury-impact",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "injury-report"
+            ],
+            "payload": {
+              "prompt": "{{team}}'s main striker is out with a hamstring injury and they play twice in five days. Why is the timing hard?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "It is one-off bad luck; nothing changes"
+                },
+                {
+                  "id": "b",
+                  "text": "With little recovery time, there is less room to rotate or cover the gap"
+                },
+                {
+                  "id": "c",
+                  "text": "Two games in five days help him heal faster"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. Two games in five days with a key player out means the rest of the squad has to cover more, with less time to rest or reset.",
+                "incorrect": "Congestion plus an injury means fewer options and tired legs. That is why the timing hurts."
+              }
+            }
+          },
+          {
+            "id": "live-03-ds-rotation",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "injury-report",
+              "fixture-congestion"
+            ],
+            "payload": {
+              "prompt": "Your best centre-back is doubtful. Two games in three days. Do you risk him?",
+              "situation": {
+                "narrative": "You are the manager, with a cup match now and a league game against a title rival three days later.",
+                "facts": [
+                  {
+                    "label": "Game 1",
+                    "value": "Cup match"
+                  },
+                  {
+                    "label": "Game 2",
+                    "value": "League game vs. a title rival"
+                  },
+                  {
+                    "label": "Centre-back",
+                    "value": "Doubtful, trained yesterday"
+                  },
+                  {
+                    "label": "Backup",
+                    "value": "A younger, less experienced player"
+                  },
+                  {
+                    "label": "Gap to top",
+                    "value": "One point",
+                    "emphasis": "warning"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "rest",
+                  "label": "Rest him in the cup and let the medical team reassess before the league game",
+                  "verdict": "best",
+                  "consequence": "You protect a doubtful player for the bigger game and give the backup minutes.",
+                  "considerations": [
+                    "Injury risk is higher with little recovery time",
+                    "The medical staff should have the final say"
+                  ]
+                },
+                {
+                  "id": "cup-only",
+                  "label": "Start him in the cup to build match fitness, then review",
+                  "verdict": "acceptable",
+                  "consequence": "It can work if he comes through, but a setback would cost you in both games.",
+                  "considerations": [
+                    "Match fitness has value",
+                    "A setback in the cup would hurt the league game too"
+                  ]
+                },
+                {
+                  "id": "both",
+                  "label": "Play him in both games regardless",
+                  "verdict": "poor",
+                  "consequence": "He could be out for weeks if the injury flares up, and the risk lands right before a key fixture.",
+                  "considerations": [
+                    "Two games in three days with a doubtful player is a big risk"
+                  ]
+                }
+              ],
+              "expertNote": "Managers weigh how much each game matters, how risky the injury is and how good the cover is, and they lean heavily on the medical team's advice.",
+              "sayThisLine": "He trained, but the medics say hold him back for the big one."
+            }
+          },
+          {
+            "id": "live-03-st-injury-talk",
+            "type": "say-this",
+            "conceptIds": [
+              "injury-report"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Fan",
+                "text": "Doubtful to play. That means he'll probably go, right?"
+              },
+              "question": "Is she right?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Doubtful means he is very likely to play",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "Doubtful means he is a genuine question mark and often more likely to miss than to play",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "Doubtful means the club is not sure, so wait for the team news",
+                  "isCorrect": true
+                },
+                {
+                  "id": "d",
+                  "text": "Injury news is always obvious",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "Doubtful sits between \"out\" and \"fit\": he is a real question mark and often more likely to miss than to play. Clubs use the word loosely, so wait for the official team news.",
+              "followUps": [
+                {
+                  "line": "Has he trained all week?",
+                  "why": "That's how you gauge if doubtful means he'll go."
+                },
+                {
+                  "line": "Who plays if he doesn't make it?",
+                  "why": "Shows you're thinking about the backup plan."
+                }
+              ],
+              "noFakeExpertNote": "Injury reports are vague by design; teams keep cards close. Asking what the fans think is fair."
+            }
+          },
+          {
+            "id": "live-03-mc-squad-rotation",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "fixture-congestion"
+            ],
+            "payload": {
+              "prompt": "{{team}} has three games in seven days. The manager makes five changes for the second game (a cup match). Why?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The second game is a chance to rotate and keep legs fresh for the third game"
+                },
+                {
+                  "id": "b",
+                  "text": "The first game didn't go well"
+                },
+                {
+                  "id": "c",
+                  "text": "The cup is less important than league matches"
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Three games in seven days kills legs; rotating in the less critical game keeps your best players sharp for the league.",
+                "incorrect": "Fixture congestion forces rotation. Use the cup match or the least critical game to give regulars a breather."
+              }
+            }
+          },
+          {
+            "id": "live-03-fg-status",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "injury-report"
+            ],
+            "payload": {
+              "prompt": "Complete the injury status.",
+              "template": "{{status}} means the player is expected to play; {{status2}} means it's uncertain.",
+              "gaps": [
+                {
+                  "id": "status",
+                  "options": [
+                    "Out",
+                    "Probable",
+                    "Doubtful"
+                  ],
+                  "correct": "Probable"
+                },
+                {
+                  "id": "status2",
+                  "options": [
+                    "Out",
+                    "Probable",
+                    "Doubtful"
+                  ],
+                  "correct": "Doubtful"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. Probable means likely to play. Doubtful means a real question mark. Out means he will miss it.",
+                "incorrect": "Probable means trained and likely to start; doubtful means tested but could go either way."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "live-04",
+        "title": "Transfer news decoder",
+        "objective": "You can tell rumour from confirmed news and read a 'here we go' moment.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "here-we-go",
+          "transfer-window",
+          "contract-expiry"
+        ],
+        "activities": [
+          {
+            "id": "live-04-mc-sources",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "here-we-go"
+            ],
+            "payload": {
+              "prompt": "Transfer news arrives from three places. Which counts as official?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "A tabloid report"
+                },
+                {
+                  "id": "b",
+                  "text": "A club statement"
+                },
+                {
+                  "id": "c",
+                  "text": "A forum post that says \"trust me\""
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. A club statement is official. A trusted reporter's \"here we go\" (Fabrizio Romano is the famous one) usually means a deal is basically done, but the club announcement is the confirmation.",
+                "incorrect": "A club statement is the official word. Tabloids and forums are rumour until a club or a trusted reporter confirms it."
+              }
+            }
+          },
+          {
+            "id": "live-04-st-deadline",
+            "type": "say-this",
+            "conceptIds": [
+              "transfer-window"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Fan",
+                "text": "It's deadline day and there's four hours. He's not getting done now."
+              },
+              "question": "What's her reasoning?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Medical checks, paperwork and registration take time even on deadline day",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "The seller is being difficult",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "Four hours is enough for a complex transfer",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Deals cannot be done on deadline day",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "Late-window deals need medical exams, paperwork, registration and the league's OK; four hours is tight for a big deal unless it's already agreed.",
+              "followUps": [
+                {
+                  "line": "Has the player's club confirmed they agreed a fee?",
+                  "why": "That's the gating factor."
+                },
+                {
+                  "line": "What's left to do besides medicals?",
+                  "why": "Asks about the process."
+                }
+              ],
+              "noFakeExpertNote": "Deadline day chaos is real; asking why something is stalled is a fair question."
+            }
+          },
+          {
+            "id": "live-04-mc-expiry",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "contract-expiry"
+            ],
+            "payload": {
+              "prompt": "Contract ends June 30. July 1: he joins anyone free. This move is called?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "A free transfer or out-of-contract move"
+                },
+                {
+                  "id": "b",
+                  "text": "A loan"
+                },
+                {
+                  "id": "c",
+                  "text": "A release clause"
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. When a contract expires, the player is out of contract and can join anyone free of charge.",
+                "incorrect": "Contract expiry means the player is free to go. After his contract ends, no club can stop him signing elsewhere without a fee."
+              }
+            }
+          },
+          {
+            "id": "live-04-st-rumour",
+            "type": "say-this",
+            "conceptIds": [
+              "here-we-go",
+              "transfer-window"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Fan",
+                "text": "Ten different websites say he's done. But no club statement."
+              },
+              "question": "Should she believe it?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "If many sources agree, it's probably true",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "Multiple rumours don't equal confirmation; a club or trusted reporter's 'here we go' matters most",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "Rumours spread faster than facts",
+                  "isCorrect": true
+                },
+                {
+                  "id": "d",
+                  "text": "One club statement beats ten rumours",
+                  "isCorrect": true
+                }
+              ],
+              "translation": "Rumours echo across sites even when they're wrong. Only a club statement, a trusted reporter's 'here we go', or official news counts as confirmed.",
+              "followUps": [
+                {
+                  "line": "Has anyone official—club or reporter—said 'here we go'?",
+                  "why": "That's the key signal."
+                },
+                {
+                  "line": "Has the player's current club denied it?",
+                  "why": "A denial is also information."
+                }
+              ],
+              "noFakeExpertNote": "Rumour season is fun but stressful; staying sceptical is smart."
+            }
+          },
+          {
+            "id": "live-04-ds-negotiate",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "transfer-window",
+              "contract-expiry"
+            ],
+            "payload": {
+              "prompt": "Your star winger's contract ends in six months and a big club has bid. What do you do?",
+              "situation": {
+                "narrative": "You are the club's sporting director.",
+                "facts": [
+                  {
+                    "label": "Contract left",
+                    "value": "Six months"
+                  },
+                  {
+                    "label": "Market value",
+                    "value": "Around €50m with a long contract"
+                  },
+                  {
+                    "label": "Incoming offer",
+                    "value": "€30m from a top club"
+                  },
+                  {
+                    "label": "Player mood",
+                    "value": "Wants to leave",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Your season",
+                    "value": "On track for Europe"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "negotiate",
+                  "label": "Push for more than €30m, but be ready to accept a fair deal",
+                  "verdict": "best",
+                  "consequence": "You use your leverage before he can walk for free, and you keep money to reinvest.",
+                  "considerations": [
+                    "With six months left, his value is falling every week",
+                    "A fair fee now beats nothing in the summer"
+                  ]
+                },
+                {
+                  "id": "accept",
+                  "label": "Accept €30m straight away",
+                  "verdict": "acceptable",
+                  "consequence": "You get a fee and move on quickly, but you may leave money on the table.",
+                  "considerations": [
+                    "Better than a free exit",
+                    "You did not test what the buyer would pay"
+                  ]
+                },
+                {
+                  "id": "keep",
+                  "label": "Keep him until the contract ends",
+                  "verdict": "poor",
+                  "consequence": "He may leave for free in the summer, and an unhappy player can hurt the team meanwhile.",
+                  "considerations": [
+                    "No fee means no reinvestment",
+                    "A discontented player can drag the squad"
+                  ]
+                }
+              ],
+              "expertNote": "With a short contract, the seller's leverage shrinks every month. Clubs usually prefer a fair fee now to nothing later.",
+              "sayThisLine": "He wants out, so thirty million now beats zero in the summer."
+            }
+          }
+        ]
+      },
+      {
+        "id": "live-05",
+        "title": "Title race and relegation maths",
+        "objective": "You can calculate what {{team}} needs from the run-in to win or survive.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "run-in",
+          "title-race",
+          "relegation-scrap"
+        ],
+        "activities": [
+          {
+            "id": "live-05-mc-points-needed",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "title-race",
+              "run-in"
+            ],
+            "payload": {
+              "prompt": "{{team}} has 65 points and three games left. What is the most they can reach?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "71 points"
+                },
+                {
+                  "id": "b",
+                  "text": "74 points"
+                },
+                {
+                  "id": "c",
+                  "text": "77 points"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. Three wins would add nine points: 65 + 9 = 74. Working out the maximum is the first step in any title or survival chase.",
+                "incorrect": "Three games are worth at most nine points, so the ceiling is 65 + 9 = 74."
+              }
+            }
+          },
+          {
+            "id": "live-05-es-survival-math",
+            "type": "estimate-slider",
+            "conceptIds": [
+              "relegation-scrap"
+            ],
+            "payload": {
+              "prompt": "{{team}} is 18th with 25 points. About how many more points would fans call safe?",
+              "unit": "points",
+              "min": 5,
+              "max": 20,
+              "step": 1,
+              "correctValue": 15,
+              "tolerance": {
+                "full": 2,
+                "partial": 4
+              },
+              "explanation": {
+                "correct": "Close. About 15 more gets you to 40, the number fans quote as safe in a 20-team league.",
+                "incorrect": "Fans use roughly 40 points as the safety mark, so from 25 that is about 15 more. It is a rule of thumb, not a guarantee."
+              }
+            }
+          },
+          {
+            "id": "live-05-mc-head-to-head",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "title-race"
+            ],
+            "payload": {
+              "prompt": "Fans call a match between two direct rivals a \"six-pointer\". Why?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The winner gets six points"
+                },
+                {
+                  "id": "b",
+                  "text": "A win gains you three and stops your rival gaining three"
+                },
+                {
+                  "id": "c",
+                  "text": "It counts double in the table"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. A win gives you three points and denies a direct rival the chance to take them, so the gap swings by up to six.",
+                "incorrect": "The winner still gets three points. It is called a six-pointer because a win also stops your rival collecting three."
+              }
+            }
+          },
+          {
+            "id": "live-05-st-run-in",
+            "type": "say-this",
+            "conceptIds": [
+              "run-in",
+              "title-race"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Fan",
+                "text": "The run-in is brutal. We've got three of the top four coming up."
+              },
+              "question": "What's she worried about?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Playing strong teams in the final stretch hurts the title chances",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "The remaining games are all very difficult",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "Three games at once",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "The season is almost over",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "The run-in is the last set of fixtures; a brutal run-in means tough opponents when {{team}} needs to win. Easy run-ins let you catch up.",
+              "followUps": [
+                {
+                  "line": "What's your worst-case scenario from those three games?",
+                  "why": "Asks about the stakes."
+                },
+                {
+                  "line": "When do you play the bottom half?",
+                  "why": "Shows you're thinking about winnable games."
+                }
+              ],
+              "noFakeExpertNote": "Worrying about the fixture list is totally fair; fixture luck is real."
+            }
+          },
+          {
+            "id": "live-05-es-gap",
+            "type": "estimate-slider",
+            "conceptIds": [
+              "title-race"
+            ],
+            "payload": {
+              "prompt": "{{team}} trails by 5 points with 4 games left. If the leader wins all four, how many points would {{team}} need?",
+              "unit": "points",
+              "min": 5,
+              "max": 20,
+              "step": 1,
+              "correctValue": 17,
+              "tolerance": {
+                "full": 0,
+                "partial": 2
+              },
+              "explanation": {
+                "correct": "Right. The leader gains 12, so the gap would grow to 17 unless {{team}} got the same. Four games are worth at most 12, so it would be out of reach.",
+                "incorrect": "The leader adds 12 points, so to finish level {{team}} would need 5 + 12 = 17. Four games only offer 12, so that is impossible."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "live-06",
+        "title": "What is everyone talking about",
+        "objective": "You can name and explain the story fans are talking about today.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "sack-race",
+          "international-break",
+          "var-basics"
+        ],
+        "activities": [
+          {
+            "id": "live-06-mc-sack-race",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "sack-race"
+            ],
+            "payload": {
+              "prompt": "The manager is under pressure after two losses in six games. What do fans mean by 'sack race'?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "A running event for fans"
+                },
+                {
+                  "id": "b",
+                  "text": "Speculation about whether the manager will be fired"
+                },
+                {
+                  "id": "c",
+                  "text": "A race to the bottom of the table"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. 'In the sack race' means the manager's job is in danger; odds shift as results change.",
+                "incorrect": "The sack race is the speculation about which managers might be fired. Media heat rises and falls with results."
+              }
+            }
+          },
+          {
+            "id": "live-06-st-break",
+            "type": "say-this",
+            "conceptIds": [
+              "international-break"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Fan",
+                "text": "There's an international break next week and three of our best players are away. Nightmare."
+              },
+              "question": "What's the problem?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Her team loses match fitness while other teams rest",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "International matches don't count for the league",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "Players travel far and come back tired or injured",
+                  "isCorrect": true
+                },
+                {
+                  "id": "d",
+                  "text": "The league pauses but her team doesn't",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "International breaks pause the league while national teams play. Her best players are away and often return fatigued or injured, and the club loses time to train together.",
+              "followUps": [
+                {
+                  "line": "How long is the break?",
+                  "why": "Longer breaks are more disruptive."
+                },
+                {
+                  "line": "Do you have a game right after they get back?",
+                  "why": "That's when injuries spike."
+                }
+              ],
+              "noFakeExpertNote": "International breaks are genuinely disruptive; it's a real fixture-list problem."
+            }
+          },
+          {
+            "id": "live-06-st-var",
+            "type": "say-this",
+            "conceptIds": [
+              "var-basics"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Fan",
+                "text": "VAR checked that for four minutes for nothing. It was never going to change."
+              },
+              "question": "What's she frustrated about?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "A long VAR review that didn't overturn the on-field call",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "VAR reviewing an incident that wasn't serious",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "VAR always makes wrong calls",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Four minutes is too long for any review",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "VAR spent four minutes reviewing and ultimately kept the original call. She feels the review was unnecessary or that the ref should have trusted the on-field read.",
+              "followUps": [
+                {
+                  "line": "What incident did they check?",
+                  "why": "Lets her explain what she saw."
+                },
+                {
+                  "line": "Did you think it was the right call in the end?",
+                  "why": "Invites her to discuss the decision."
+                }
+              ],
+              "noFakeExpertNote": "Frustration with VAR pace is totally valid; 'clear and obvious' is genuinely subjective."
+            }
+          },
+          {
+            "id": "live-06-tt-headlines",
+            "type": "talk-track",
+            "conceptIds": [
+              "sack-race",
+              "international-break"
+            ],
+            "payload": {
+              "title": "Why is everyone talking about this?",
+              "setting": "She brings up a story from the past week—maybe a managerial rumour or an injury in an international match.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "The manager is definitely leaving. Everyone knows it.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "Has the club said anything? Or is it media speculation?",
+                      "smoothDelta": 22,
+                      "theirResponse": "Speculation so far, but it feels done.",
+                      "coachNote": "Asks for facts before assuming."
+                    },
+                    {
+                      "id": "b",
+                      "text": "Yeah, he's done.",
+                      "smoothDelta": 4,
+                      "theirResponse": "Right?",
+                      "coachNote": "Agreeing without facts isn't enough; curiosity matters."
+                    },
+                    {
+                      "id": "c",
+                      "text": "He should leave.",
+                      "smoothDelta": -10,
+                      "theirResponse": "Wow, okay.",
+                      "coachNote": "Piling on gives her nothing to talk about, and you have no facts either."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Managerial pressure is a huge story; distinguishing rumour from reality helps."
+            }
+          },
+          {
+            "id": "live-06-tt-injury-talk",
+            "type": "talk-track",
+            "conceptIds": [
+              "international-break"
+            ],
+            "payload": {
+              "title": "Injury during the break",
+              "setting": "She mentions a player who got injured on international duty and missed her team's next game.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "He got injured at the international break and now we have to play without him.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "Ouch. Was it a contact injury or overuse from the extra game?",
+                      "smoothDelta": 28,
+                      "theirResponse": "Tackle. Unnecessary too, the match was decided.",
+                      "coachNote": "Asks for detail and shows empathy."
+                    },
+                    {
+                      "id": "b",
+                      "text": "That sucks.",
+                      "smoothDelta": 8,
+                      "theirResponse": "Yeah.",
+                      "coachNote": "Sympathy is good; ask for details to show deeper care."
+                    },
+                    {
+                      "id": "c",
+                      "text": "International matches are stupid.",
+                      "smoothDelta": -8,
+                      "theirResponse": "I mean, yeah, but he loves playing for his country.",
+                      "coachNote": "Don't dismiss what she values."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "International-break injuries are a sore point; asking details is sympathetic."
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

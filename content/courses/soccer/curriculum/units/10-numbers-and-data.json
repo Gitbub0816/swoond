@@ -1,0 +1,1246 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "soccer",
+  "unit": {
+    "id": "numbers-and-data",
+    "title": "Numbers and analytics",
+    "layer": "enthusiast",
+    "order": 9,
+    "prerequisiteUnitIds": [
+      "attack-and-defence"
+    ],
+    "lessons": [
+      {
+        "id": "numbers-01",
+        "title": "Expected goals (xG)",
+        "objective": "You can explain xG in plain English.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "xg"
+        ],
+        "activities": [
+          {
+            "id": "numbers-01-mc-xg-basic",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "xg"
+            ],
+            "payload": {
+              "prompt": "What does xG measure?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The actual goals scored in a match"
+                },
+                {
+                  "id": "b",
+                  "text": "The quality of shots, not the luck"
+                },
+                {
+                  "id": "c",
+                  "text": "How many shots a team takes"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Exactly. xG is about shot quality and probability, not whether it actually went in. It strips out finishing luck.",
+                "incorrect": "xG is expected goals: a probability score for each shot based on angle, distance and situation, independent of whether it went in.",
+                "sayThisLine": "The data says we had more quality chances even though we lost one-nil."
+              }
+            }
+          },
+          {
+            "id": "numbers-01-es-xg-team",
+            "type": "estimate-slider",
+            "conceptIds": [
+              "xg"
+            ],
+            "payload": {
+              "prompt": "A team wins 3-1 but had 1.2 xG. Unlucky or lucky?",
+              "unit": "goals above xG",
+              "min": -2,
+              "max": 2,
+              "step": 0.1,
+              "correctValue": 1.8,
+              "tolerance": {
+                "full": 0.3,
+                "partial": 0.6
+              },
+              "explanation": {
+                "correct": "Right. Scoring 3 from 1.2 xG means they were clinical and lucky: they converted chances at a rate well above the model's predictions.",
+                "incorrect": "They had only 1.2 xG but scored 3, so they exceeded the expected value by about 1.8 goals. That's a huge overperformance.",
+                "sayThisLine": "We finished clinical today, turned half-chances into goals."
+              }
+            }
+          },
+          {
+            "id": "numbers-01-st-xg-draw",
+            "type": "say-this",
+            "conceptIds": [
+              "xg"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Leo",
+                "text": "We lost 1-0 but won the xG 2.1 to 0.3."
+              },
+              "question": "What is he saying?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "His team played worse than the score shows",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "His team created better chances but luck went the other way",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "xG predicts the team will win next time",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "His team should have won based on the quality of chances",
+                  "isCorrect": true
+                }
+              ],
+              "translation": "By shot quality and position, his team created chances worth 2.1 goals while the opponent's chances were worth only 0.3. The actual 1-0 loss doesn't reflect who played better.",
+              "followUps": [
+                {
+                  "line": "Did your keeper have to make a crucial save?",
+                  "why": "Asks about the defensive moment, not the stat."
+                },
+                {
+                  "line": "What should you have done differently in the second half?",
+                  "why": "Focuses on what was in their control."
+                }
+              ],
+              "noFakeExpertNote": "xG is a supporting fact, not a prediction. Luck evens out over a season, but one match can be decided by a single moment."
+            }
+          },
+          {
+            "id": "numbers-01-tm-xg-terms",
+            "type": "term-match",
+            "conceptIds": [
+              "xg"
+            ],
+            "payload": {
+              "prompt": "Match the stat to its meaning.",
+              "pairs": [
+                {
+                  "id": "xg",
+                  "term": "xG",
+                  "definition": "The probability that a shot becomes a goal, based on angle, distance and defensive pressure."
+                },
+                {
+                  "id": "stat",
+                  "term": "Shot-quality stat",
+                  "definition": "A number that summarizes how dangerous a team's chances were in a match."
+                },
+                {
+                  "id": "luck",
+                  "term": "Overperformance",
+                  "definition": "Scoring more goals than xG predicted, usually unsustainable over time."
+                }
+              ],
+              "explanation": {
+                "summary": "xG isolates chance quality from finishing. A team outperforming its xG is running hot.",
+                "sayThisLine": "We were clinical, the striker finished everything on offer."
+              }
+            }
+          },
+          {
+            "id": "numbers-01-fg-xg-context",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "xg"
+            ],
+            "payload": {
+              "prompt": "Complete the insight.",
+              "template": "A team losing 2-0 with 3.5 xG was {{performance}}, and {{outlook}}.",
+              "gaps": [
+                {
+                  "id": "performance",
+                  "options": [
+                    "lucky",
+                    "clinical",
+                    "outplayed"
+                  ],
+                  "correct": "lucky"
+                },
+                {
+                  "id": "outlook",
+                  "options": [
+                    "should improve next match",
+                    "likely to regress",
+                    "was deserving of the loss"
+                  ],
+                  "correct": "likely to regress"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. Scoring only 2 from 3.5 xG means they underperformed, and underperformance tends to reverse.",
+                "incorrect": "Underperformance (low goals from high xG) usually corrects over time as a team's actual finishing rate returns to normal."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "numbers-02",
+        "title": "Assists, chance creation and xA",
+        "objective": "You can explain xA.",
+        "estimatedMinutes": 11,
+        "conceptIds": [
+          "xa",
+          "progressive-pass"
+        ],
+        "activities": [
+          {
+            "id": "numbers-02-mc-xa-basics",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "xa"
+            ],
+            "payload": {
+              "prompt": "A player has many assists but low xA. What does that mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "He is not creating chances for others"
+                },
+                {
+                  "id": "b",
+                  "text": "His teammates are clinical finishers"
+                },
+                {
+                  "id": "c",
+                  "text": "He plays too defensively"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Exactly. He's setting up low-xG chances that his team is converting at a high rate. High assists, low xA = efficient teammates.",
+                "incorrect": "Low xA (expected assists) means the chances he's creating aren't high-quality on paper, but his teammates are finishing them anyway.",
+                "sayThisLine": "He's finding the strikers in good positions, they're doing the rest."
+              }
+            }
+          },
+          {
+            "id": "numbers-02-st-xa-creator",
+            "type": "say-this",
+            "conceptIds": [
+              "xa",
+              "progressive-pass"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Zara",
+                "text": "His xA is great even if the strikers keep missing."
+              },
+              "question": "What is she saying?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The striker is not good",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "He creates dangerous chances even though they aren't being finished",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "The team should trade the striker",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "His assists will improve when strikers get form",
+                  "isCorrect": true
+                }
+              ],
+              "translation": "The data shows he's threading high-quality passes into dangerous positions; the strikers' finishing is the issue, not his creation.",
+              "followUps": [
+                {
+                  "line": "Does he take risks with his passes?",
+                  "why": "Asks about his playing style."
+                },
+                {
+                  "line": "Who should your team bring in to finish chances?",
+                  "why": "Discusses the team need, not the player's stats."
+                }
+              ],
+              "noFakeExpertNote": "xA is how good the chance was, not how good the assist looked. A back-heel to an open striker counts more than a fifty-yard curler into the corner."
+            }
+          },
+          {
+            "id": "numbers-02-bc-progressive",
+            "type": "binary-call",
+            "conceptIds": [
+              "progressive-pass"
+            ],
+            "payload": {
+              "prompt": "A 20-yard pass from defence into the attacking third. Progressive pass?",
+              "scene": {
+                "kind": "none",
+                "alt": "A defender passes the ball forward from the defensive third to a teammate in the attacking third, moving it significantly closer to goal."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, progressive"
+                },
+                {
+                  "id": "no",
+                  "label": "No, sideways"
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes. A progressive pass meaningfully moves the ball towards the opponent's goal. This does.",
+                "incorrect": "A pass that advances the ball significantly towards goal is progressive. A 20-yard leap forward definitely is.",
+                "sayThisLine": "One touch, one pass, and we're in the attacking third."
+              },
+              "ruleTag": "Progressive definition"
+            }
+          },
+          {
+            "id": "numbers-02-mc-xa-vs-assists",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "xa"
+            ],
+            "payload": {
+              "prompt": "A player has 5 assists and 3.2 xA. Which is true?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "He is overperforming; strikers are finishing above their quality"
+                },
+                {
+                  "id": "b",
+                  "text": "The stat is wrong"
+                },
+                {
+                  "id": "c",
+                  "text": "He is creating low-quality chances"
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. He's assisted 5 goals from chances that the model valued at 3.2 goals. His strikers are converting at above-normal rates.",
+                "incorrect": "xA is based on the quality of the chances he creates. More assists than xA means his teammates are finishing better than expected."
+              }
+            }
+          },
+          {
+            "id": "numbers-02-tm-creation",
+            "type": "term-match",
+            "conceptIds": [
+              "xa",
+              "progressive-pass"
+            ],
+            "payload": {
+              "prompt": "Match the creation term to its meaning.",
+              "pairs": [
+                {
+                  "id": "xa",
+                  "term": "xA (expected assists)",
+                  "definition": "The sum of the xG of shots that result from a player's passes, measuring chance creation quality."
+                },
+                {
+                  "id": "pp",
+                  "term": "Progressive pass",
+                  "definition": "A pass that moves the ball meaningfully closer to the opponent's goal."
+                },
+                {
+                  "id": "thread",
+                  "term": "Threading a pass",
+                  "definition": "A precise pass that splits defenders and puts a teammate through on goal."
+                }
+              ],
+              "explanation": {
+                "summary": "Chance creation is measured by the quality of shots from your passes, not just the number of assists.",
+                "sayThisLine": "He threads through balls into dangerous areas, the finishers just have to put them away."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "numbers-03",
+        "title": "PPDA and pressing numbers",
+        "objective": "You can explain PPDA.",
+        "estimatedMinutes": 11,
+        "conceptIds": [
+          "ppda",
+          "high-press"
+        ],
+        "activities": [
+          {
+            "id": "numbers-03-mc-ppda",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "ppda"
+            ],
+            "payload": {
+              "prompt": "Lower PPDA means the team is doing what?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Playing more passes overall"
+                },
+                {
+                  "id": "b",
+                  "text": "Pressing harder, forcing fewer passes"
+                },
+                {
+                  "id": "c",
+                  "text": "Defending deeper"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Exactly. PPDA is passes allowed per defensive action. Low PPDA means the defense acts often, interrupting the opponent's build-up.",
+                "incorrect": "PPDA measures how many passes the opponent gets before a defensive action (tackle, interception, foul) stops them. Low = more pressing.",
+                "sayThisLine": "We're in their face, not giving them space to settle."
+              }
+            }
+          },
+          {
+            "id": "numbers-03-es-ppda-intensity",
+            "type": "estimate-slider",
+            "conceptIds": [
+              "ppda"
+            ],
+            "payload": {
+              "prompt": "Estimate: heavy press, low PPDA. What range?",
+              "unit": "passes per action",
+              "min": 4,
+              "max": 12,
+              "step": 0.5,
+              "correctValue": 6,
+              "tolerance": {
+                "full": 1,
+                "partial": 2
+              },
+              "explanation": {
+                "correct": "Right. A heavy press sits under 8 PPDA, often 6 or lower, meaning an action every few passes.",
+                "incorrect": "Heavy pressing teams force a defensive action very frequently. PPDA of 6 or below indicates relentless pressure.",
+                "sayThisLine": "We're winning the ball every five or six passes, they can't build out."
+              }
+            }
+          },
+          {
+            "id": "numbers-03-st-ppda-intensity",
+            "type": "say-this",
+            "conceptIds": [
+              "ppda",
+              "high-press"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Coach",
+                "text": "Their PPDA is under eight, that's a heavy press."
+              },
+              "question": "What is the coach saying?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The opponent has 8 players",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "The opponent is defending deep",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "The opponent is pressing aggressively throughout the pitch",
+                  "isCorrect": true
+                },
+                {
+                  "id": "d",
+                  "text": "They intercept the ball frequently",
+                  "isCorrect": true
+                }
+              ],
+              "translation": "The opponent forces a defensive action within every eight passes or so, meaning they are pressing hard and not giving time on the ball.",
+              "followUps": [
+                {
+                  "line": "How do you counter that kind of press?",
+                  "why": "Asks about tactical response."
+                },
+                {
+                  "line": "Can they sustain that intensity for ninety minutes?",
+                  "why": "Questions sustainability."
+                }
+              ],
+              "noFakeExpertNote": "PPDA tells you intensity; it doesn't tell you if the press is effective. A high PPDA might mean the team is deep, not soft."
+            }
+          },
+          {
+            "id": "numbers-03-mc-ppda-buildup",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "ppda",
+              "high-press"
+            ],
+            "payload": {
+              "prompt": "A team has a 10+ PPDA. Most likely they are doing what?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Pressing high and compact"
+                },
+                {
+                  "id": "b",
+                  "text": "Sitting deep and defending blocks"
+                },
+                {
+                  "id": "c",
+                  "text": "Playing long balls"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. High PPDA means the opponent gets many passes before an action, suggesting a low block that lets them build out.",
+                "incorrect": "PPDA above 10 indicates a passive defensive shape that allows the opponent to move the ball comfortably before challenging.",
+                "sayThisLine": "They're camped in their half, we can build out from the back."
+              }
+            }
+          },
+          {
+            "id": "numbers-03-fg-ppda-context",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "ppda"
+            ],
+            "payload": {
+              "prompt": "Complete the press assessment.",
+              "template": "PPDA under 6 means {{intensity}}, while PPDA over 11 means {{defense}}.",
+              "gaps": [
+                {
+                  "id": "intensity",
+                  "options": [
+                    "a passive defence",
+                    "relentless pressure",
+                    "long-ball tactics"
+                  ],
+                  "correct": "relentless pressure"
+                },
+                {
+                  "id": "defense",
+                  "options": [
+                    "a deep block",
+                    "an aggressive press",
+                    "a counter-attack"
+                  ],
+                  "correct": "a deep block"
+                }
+              ],
+              "explanation": {
+                "correct": "Correct. Low PPDA = pressing team; high PPDA = sitting-deep team.",
+                "incorrect": "PPDA inversely measures pressing intensity. Under 6 is relentless, over 11 is reactive."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "numbers-04",
+        "title": "Possession is not control",
+        "objective": "You can explain why possession can mislead.",
+        "estimatedMinutes": 11,
+        "conceptIds": [
+          "possession-stat",
+          "tempo-control"
+        ],
+        "activities": [
+          {
+            "id": "numbers-04-mc-possession-quality",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "possession-stat"
+            ],
+            "payload": {
+              "prompt": "60% possession, no shots on target. What does that suggest?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The team with possession played well"
+                },
+                {
+                  "id": "b",
+                  "text": "Possession itself does not guarantee dangerous play"
+                },
+                {
+                  "id": "c",
+                  "text": "The goalkeeper made great saves"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Exactly. You can have the ball without creating danger. Possession is territory; shots are threat.",
+                "incorrect": "High possession but no shots on target means the team was passing sideways and backwards, not attacking.",
+                "sayThisLine": "Sixty percent possession but not one shot on target."
+              }
+            }
+          },
+          {
+            "id": "numbers-04-st-possession-myth",
+            "type": "say-this",
+            "conceptIds": [
+              "possession-stat",
+              "tempo-control"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Commentator",
+                "text": "We dominated possession all night but they caught us on the break."
+              },
+              "question": "What went wrong?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The team did not control the tempo of the match",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "The opponent's defence was too good",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "Having the ball does not protect against counterattacks",
+                  "isCorrect": true
+                },
+                {
+                  "id": "d",
+                  "text": "Possession guarantees you will score",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "Holding the ball often means little if you are not creating danger or dictating the pace. The opponent waited and struck when the team was exposed.",
+              "followUps": [
+                {
+                  "line": "Did you press them too high?",
+                  "why": "Asks about the tactical setup."
+                },
+                {
+                  "line": "How did they transition so quickly?",
+                  "why": "Focuses on what the opponent did."
+                }
+              ],
+              "noFakeExpertNote": "The best teams have both: they control possession and create chances. Low possession can work if a team is clinical on the break."
+            }
+          },
+          {
+            "id": "numbers-04-bc-possession-danger",
+            "type": "binary-call",
+            "conceptIds": [
+              "possession-stat"
+            ],
+            "payload": {
+              "prompt": "Team A: 55% possession, 12 shots on target. Team B: 45% possession, 8 shots. Team A more dangerous?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two teams' statistics shown side by side: Team A with more passes and possession, Team B with fewer passes but more efficient shooting."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, more possession"
+                },
+                {
+                  "id": "no",
+                  "label": "No, Team B might score"
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Right. More possession does not guarantee more danger. Team A's shots outnumber Team B's, so Team A is more threatening.",
+                "incorrect": "Possession alone is not the measure. Team A took more shots on target, which is the better indicator of attacking threat.",
+                "sayThisLine": "They had less ball but sharper in the box."
+              },
+              "ruleTag": "Possession vs. threat"
+            }
+          },
+          {
+            "id": "numbers-04-mc-tempo-control",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "tempo-control"
+            ],
+            "payload": {
+              "prompt": "Which team 'controls the tempo'?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The team passing backwards more"
+                },
+                {
+                  "id": "b",
+                  "text": "The team dictating when and where the game is played"
+                },
+                {
+                  "id": "c",
+                  "text": "The team with higher possession"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Yes. Tempo control is about rhythm and dictation, not possession percentage. A team playing slow and methodical controls it differently than one playing fast breaks.",
+                "incorrect": "Controlling the tempo means setting the pace and intensity of the match, not just holding the ball."
+              }
+            }
+          },
+          {
+            "id": "numbers-04-tm-possession-terms",
+            "type": "term-match",
+            "conceptIds": [
+              "possession-stat",
+              "tempo-control"
+            ],
+            "payload": {
+              "prompt": "Match the concept to its definition.",
+              "pairs": [
+                {
+                  "id": "poss",
+                  "term": "Possession %",
+                  "definition": "The proportion of time a team holds the ball; it says nothing about what they do with it."
+                },
+                {
+                  "id": "tempo",
+                  "term": "Tempo control",
+                  "definition": "Dictating the pace and rhythm of the match: whether play is slow, direct, methodical or chaotic."
+                },
+                {
+                  "id": "threat",
+                  "term": "Attacking threat",
+                  "definition": "The likelihood and quality of shots and chances created, independent of possession."
+                }
+              ],
+              "explanation": {
+                "summary": "Possession is a resource. Threat is what you do with it. Tempo is how you control the rhythm.",
+                "sayThisLine": "We had the ball but they set the pace, and it suited them."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "numbers-05",
+        "title": "Over- and underperforming",
+        "objective": "You can explain why finishing streaks fade.",
+        "estimatedMinutes": 11,
+        "conceptIds": [
+          "overperform-underperform",
+          "xg"
+        ],
+        "activities": [
+          {
+            "id": "numbers-05-mc-regression",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "overperform-underperform",
+              "xg"
+            ],
+            "payload": {
+              "prompt": "A striker is scoring 5 goals from 2.0 xG. What usually happens next?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "He keeps scoring at that rate"
+                },
+                {
+                  "id": "b",
+                  "text": "His finishing regresses towards expected levels"
+                },
+                {
+                  "id": "c",
+                  "text": "His xG will drop to match his goals"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. Overperformance is usually unsustainable. Regression to the mean says his finishing will likely drop towards his xG level.",
+                "incorrect": "Extreme overperformance typically regresses. A striker scoring 5 from 2.0 xG is running very hot and will likely cool down.",
+                "sayThisLine": "He's overperforming his xG so it won't last."
+              }
+            }
+          },
+          {
+            "id": "numbers-05-ds-form",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "overperform-underperform"
+            ],
+            "payload": {
+              "prompt": "Five games: 4 goals from 1.1 xG. Sell or keep?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Last 5 games",
+                    "value": "Striker scored 4 goals from 1.1 xG"
+                  },
+                  {
+                    "label": "Season average",
+                    "value": "0.8 xG per game, 0.7 goals per game"
+                  },
+                  {
+                    "label": "Offer",
+                    "value": "Sell for record fee or keep"
+                  },
+                  {
+                    "label": "Window",
+                    "value": "January deadline in 3 days"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "sell",
+                  "label": "Sell for the record fee",
+                  "verdict": "poor",
+                  "consequence": "You sell at peak value, but lose your best finisher when form regresses. Title hopes fade.",
+                  "considerations": [
+                    "Overperformance is temporary",
+                    "Losing mid-season is costly"
+                  ]
+                },
+                {
+                  "id": "keep",
+                  "label": "Keep him and chase the title",
+                  "verdict": "best",
+                  "consequence": "He regresses but is still above season average. Team stays competitive as relative overperformance continues.",
+                  "considerations": [
+                    "Expect his goal tally to drop closer to 0.7-0.8 per game",
+                    "He still contributes at that level"
+                  ]
+                },
+                {
+                  "id": "loan",
+                  "label": "Loan him out to build confidence",
+                  "verdict": "acceptable",
+                  "consequence": "You remove the player from pressure, but also from your title challenge. Works if you have depth.",
+                  "considerations": [
+                    "Risky mid-season when you need production",
+                    "Gives player a mental reset"
+                  ]
+                }
+              ],
+              "expertNote": "A smart team sells strikers at peak overperformance, but a team fighting for a title keeps them. You know form will dip; the question is whether you need him."
+            }
+          },
+          {
+            "id": "numbers-05-st-slump",
+            "type": "say-this",
+            "conceptIds": [
+              "overperform-underperform"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Pundit",
+                "text": "He's underperforming his xG, that's when you back the player to turn it around."
+              },
+              "question": "What is the pundit saying?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The player is not skilled",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "The player will likely improve as finishing regresses to normal",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "The player should be sold immediately",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "His xG is higher than his goal tally, so regression helps him",
+                  "isCorrect": true
+                }
+              ],
+              "translation": "When a striker is scoring below his expected level, the stats suggest he will score more in the future as his luck improves.",
+              "followUps": [
+                {
+                  "line": "How many games until he's back to normal?",
+                  "why": "Regression takes time, ask about the timeline."
+                },
+                {
+                  "line": "Has his xG stayed the same?",
+                  "why": "Distinguish between slump and loss of form."
+                }
+              ],
+              "noFakeExpertNote": "Underperformance is encouraging news: the player is getting chances, just not finishing them. Overperformance is the opposite warning sign."
+            }
+          },
+          {
+            "id": "numbers-05-mc-regression-timeline",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "overperform-underperform"
+            ],
+            "payload": {
+              "prompt": "Over a season, most strikers' goal totals move towards their xG. Over how long?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Within one week"
+                },
+                {
+                  "id": "b",
+                  "text": "Over 10-15 matches"
+                },
+                {
+                  "id": "c",
+                  "text": "Regression is instant"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Correct. Regression to the mean takes a full sample size of games, usually 10-15 matches or more.",
+                "incorrect": "Regression is not instant. It takes multiple games for a player's actual finishing to reflect their quality of chances."
+              }
+            }
+          },
+          {
+            "id": "numbers-05-fg-performance",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "overperform-underperform",
+              "xg"
+            ],
+            "payload": {
+              "prompt": "Complete the forward's profile.",
+              "template": "A forward with 1.2 xG per game but 1.8 goals per game is {{status}}, and this {{sustainability}}.",
+              "gaps": [
+                {
+                  "id": "status",
+                  "options": [
+                    "underperforming",
+                    "overperforming",
+                    "consistent"
+                  ],
+                  "correct": "overperforming"
+                },
+                {
+                  "id": "sustainability",
+                  "options": [
+                    "will continue indefinitely",
+                    "is likely unsustainable",
+                    "means his xG is too low"
+                  ],
+                  "correct": "is likely unsustainable"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. Outscoring your xG is great short-term, but it regresses. Expect his goal tally to drop towards 1.2.",
+                "incorrect": "Overperformance (more goals than xG) usually reverses. Over time, actual scoring gravitates towards expected levels."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "numbers-06",
+        "title": "Eye test vs data",
+        "objective": "You can hold both views.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "eye-test-vs-data",
+          "form-and-ppg",
+          "progressive-carry",
+          "shots-on-target"
+        ],
+        "activities": [
+          {
+            "id": "numbers-06-mc-both-lenses",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "eye-test-vs-data"
+            ],
+            "payload": {
+              "prompt": "What is the best approach to reading a match?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Trust only the stats, ignore what you saw"
+                },
+                {
+                  "id": "b",
+                  "text": "Use stats and watching to build a full picture"
+                },
+                {
+                  "id": "c",
+                  "text": "The eye test is always right, stats mislead"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Exactly. Stats answer 'what happened'; watching answers 'how and why'. The best analysis uses both.",
+                "incorrect": "Neither stats nor eye test alone tells the full story. Data removes bias; watching captures context and moments.",
+                "sayThisLine": "The data says he's great but the eye test disagrees."
+              }
+            }
+          },
+          {
+            "id": "numbers-06-st-debate",
+            "type": "say-this",
+            "conceptIds": [
+              "eye-test-vs-data"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Fan",
+                "text": "The stats say we played well but we felt like we lost control."
+              },
+              "question": "What is she identifying?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Stats are always wrong",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "Stats measure one thing, feeling another; both matter",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "Her team was overrated",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Numbers don't capture the rhythm and momentum",
+                  "isCorrect": true
+                }
+              ],
+              "translation": "The stats (xG, possession, progressive passes) might support the team's performance, but the emotional experience was different. Both observations are valid.",
+              "followUps": [
+                {
+                  "line": "Which periods did you feel we lost control?",
+                  "why": "Asks for specifics from watching."
+                },
+                {
+                  "line": "Did a particular substitution change how the match felt?",
+                  "why": "Connects feeling to a tactical moment."
+                }
+              ],
+              "noFakeExpertNote": "The eye test captures flow and atmosphere; data captures underlying quality. Neither replaces the other. Combine them."
+            }
+          },
+          {
+            "id": "numbers-06-tm-data-terms",
+            "type": "term-match",
+            "conceptIds": [
+              "eye-test-vs-data",
+              "progressive-carry",
+              "shots-on-target"
+            ],
+            "payload": {
+              "prompt": "Match the stat to what it reveals.",
+              "pairs": [
+                {
+                  "id": "ppg",
+                  "term": "Points per game",
+                  "definition": "A team's average points per match over a period, showing consistency independent of number of games played."
+                },
+                {
+                  "id": "prog",
+                  "term": "Progressive carry",
+                  "definition": "A dribble that moves the ball meaningfully towards goal, measuring ball-carrying skill."
+                },
+                {
+                  "id": "shot",
+                  "term": "Shots on target",
+                  "definition": "The number of shots that force a save or go in, hinting at finishing quality and shot selection."
+                }
+              ],
+              "explanation": {
+                "summary": "Numbers isolate skills: carries show dribbling, shots on target show composure in the box, PPG shows consistency.",
+                "sayThisLine": "Look at their shots on target; they're clinical, it's not luck."
+              }
+            }
+          },
+          {
+            "id": "numbers-06-mc-integration",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "eye-test-vs-data",
+              "form-and-ppg"
+            ],
+            "payload": {
+              "prompt": "A team is averaging 2.1 points per game in the last 5 but the last match 'felt sloppy'. What's the smartest take?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The stats are wrong, they are regressing"
+                },
+                {
+                  "id": "b",
+                  "text": "Ignore the feeling and trust the recent PPG"
+                },
+                {
+                  "id": "c",
+                  "text": "Good form with one ugly win is still form; watch next match to confirm"
+                }
+              ],
+              "correctOptionIds": [
+                "c"
+              ],
+              "explanation": {
+                "correct": "Smart. 2.1 PPG over 5 matches is good; one sloppy win doesn't erase that. But watch the next game to see if sloppiness is a pattern.",
+                "incorrect": "Numbers show output (points), not quality. One ugly win doesn't cancel recent good form, but you should check if it becomes a trend."
+              }
+            }
+          },
+          {
+            "id": "numbers-06-tt-data-talk",
+            "type": "talk-track",
+            "conceptIds": [
+              "eye-test-vs-data"
+            ],
+            "payload": {
+              "title": "Data and feelings in a slump",
+              "setting": "Your team is in good form but the last match felt poor.",
+              "exchanges": [
+                {
+                  "theirMessage": "Our new striker has 2 goals in 4 games. We're not sure he's the right fit.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "What's his xG? If it's low, he's just having a quiet run.",
+                      "smoothDelta": 20,
+                      "theirResponse": "Actually, 1.8 xG so he's slightly underperforming. That's reassuring.",
+                      "coachNote": "You're reading between the stats and the feeling. Smart question."
+                    },
+                    {
+                      "id": "b",
+                      "text": "Just wait, strikers need time to settle.",
+                      "smoothDelta": 5,
+                      "theirResponse": "Yeah, but how many games? Two or twenty?",
+                      "coachNote": "Vague comfort is weak. Better to ask about the numbers."
+                    },
+                    {
+                      "id": "c",
+                      "text": "He looks lost in your system, the finishing will come.",
+                      "smoothDelta": -10,
+                      "theirResponse": "That's bluffing. You haven't watched us play.",
+                      "coachNote": "Avoid guessing what you don't know. Stick to what you can see or ask."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "The stats say we're playing well but every match is a fight. I'm exhausted.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "Good form is tough form sometimes. How's the defensive record?",
+                      "smoothDelta": 20,
+                      "theirResponse": "Only 8 goals in 5, so yeah, we're solid at the back.",
+                      "coachNote": "You're validating the stats while acknowledging the grind. Both are real."
+                    },
+                    {
+                      "id": "b",
+                      "text": "The stats don't matter if you're not enjoying it.",
+                      "smoothDelta": 0,
+                      "theirResponse": "True, but my team's got a shot at the title, so I'll suffer.",
+                      "coachNote": "Neutral. You're validating the emotion but adding perspective."
+                    },
+                    {
+                      "id": "c",
+                      "text": "You need to trust the process and ignore how you feel.",
+                      "smoothDelta": -15,
+                      "theirResponse": "That sounds hollow. Feeling matters too.",
+                      "coachNote": "You're dismissing her experience. The eye test is valid even if the stats are positive."
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": "numbers-06-fg-data-nuance",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "eye-test-vs-data"
+            ],
+            "payload": {
+              "prompt": "Complete the balanced view.",
+              "template": "Stats show {{what-stats}} while watching shows {{what-watch}}, so the full picture uses {{how}}.",
+              "gaps": [
+                {
+                  "id": "what-stats",
+                  "options": [
+                    "the score",
+                    "underlying quality",
+                    "what the team intended"
+                  ],
+                  "correct": "underlying quality"
+                },
+                {
+                  "id": "what-watch",
+                  "options": [
+                    "everything that happened",
+                    "rhythm and momentum",
+                    "the team's intentions"
+                  ],
+                  "correct": "rhythm and momentum"
+                },
+                {
+                  "id": "how",
+                  "options": [
+                    "numbers alone",
+                    "feeling alone",
+                    "both together"
+                  ],
+                  "correct": "both together"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. Numbers isolate quality independent of luck and emotion; watching reveals context and flow. Together they tell the story.",
+                "incorrect": "One-dimensional analysis misses the sport. Numbers and eye test answer different questions."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

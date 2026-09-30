@@ -1,0 +1,639 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "soccer",
+  "unit": {
+    "id": "branch-premier-league",
+    "title": "Branch: Premier League",
+    "layer": "branch",
+    "branchId": "premier-league",
+    "order": 11,
+    "prerequisiteUnitIds": [
+      "competitions-and-clubs"
+    ],
+    "personalizationSlots": [
+      "team",
+      "player"
+    ],
+    "lessons": [
+      {
+        "id": "pl-01",
+        "title": "The Premier League ladder",
+        "objective": "You can explain how Premier League places decide Europe and relegation.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "pl-european-spots",
+          "league-table",
+          "promotion-relegation"
+        ],
+        "activities": [
+          {
+            "id": "pl-01-tm-places",
+            "type": "term-match",
+            "conceptIds": [
+              "pl-european-spots"
+            ],
+            "payload": {
+              "prompt": "Match each league position to what it usually means.",
+              "pairs": [
+                {
+                  "id": "top",
+                  "term": "Top four",
+                  "definition": "The usual number of Champions League places for England."
+                },
+                {
+                  "id": "bottom",
+                  "term": "Bottom three",
+                  "definition": "Relegated to the Championship."
+                },
+                {
+                  "id": "champ",
+                  "term": "Championship winners",
+                  "definition": "Promoted up to the Premier League."
+                }
+              ],
+              "distractorDefinitions": [
+                "Bottom five: all relegated together."
+              ],
+              "explanation": {
+                "summary": "Four ladder rungs matter most to fans: the Champions League places at the top, the drop zone at the bottom, and promotion from below.",
+                "sayThisLine": "Top four for Europe, bottom three go down."
+              }
+            }
+          },
+          {
+            "id": "pl-01-ftg-league",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "league-table",
+              "promotion-relegation"
+            ],
+            "payload": {
+              "prompt": "Complete the Premier League structure.",
+              "template": "The Premier League has {{teams}} teams and {{relegated}} are relegated each season.",
+              "gaps": [
+                {
+                  "id": "teams",
+                  "options": [
+                    "18",
+                    "20",
+                    "22"
+                  ],
+                  "correct": "20"
+                },
+                {
+                  "id": "relegated",
+                  "options": [
+                    "2",
+                    "3",
+                    "4"
+                  ],
+                  "correct": "3"
+                }
+              ],
+              "explanation": {
+                "correct": "Correct. Twenty teams compete, and the bottom three go down to the Championship.",
+                "incorrect": "The Premier League has 20 clubs, and three teams are relegated to the Championship each season."
+              }
+            }
+          },
+          {
+            "id": "pl-01-mc-champions",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "league-table"
+            ],
+            "payload": {
+              "prompt": "Who won the 2025-26 Premier League title?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Arsenal"
+                },
+                {
+                  "id": "b",
+                  "text": "Manchester City"
+                },
+                {
+                  "id": "c",
+                  "text": "Liverpool"
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Arsenal won the 2025-26 title with 85 points, with Manchester City second on 78 and Manchester United third on 71.",
+                "incorrect": "Arsenal took the 2025-26 title with 85 points. It was their first league title since the unbeaten 2003-04 season.",
+                "sayThisLine": "Arsenal won it with 85 points, that is a proper title."
+              }
+            }
+          },
+          {
+            "id": "pl-01-st-top-four",
+            "type": "say-this",
+            "conceptIds": [
+              "pl-european-spots"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Jamie",
+                "text": "We need top four for Champions League football."
+              },
+              "question": "What does Jamie mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "His team has to finish in the top four places to play in Europe's biggest club competition",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "His team has already qualified",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "The team needs to win four matches to qualify",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Finishing fourth automatically wins a trophy",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "A top-four finish in the Premier League earns entry into the Champions League, the most prestigious European club competition.",
+              "followUps": [
+                {
+                  "line": "Is your team close to top four this season?",
+                  "why": "Continues the conversation about their team's position."
+                },
+                {
+                  "line": "Have they played in the Champions League before?",
+                  "why": "Opens a question about their club's history."
+                }
+              ],
+              "noFakeExpertNote": "If uncertain, ask which European competition their team is in this season."
+            }
+          },
+          {
+            "id": "pl-01-fg-fifth",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "pl-european-spots"
+            ],
+            "payload": {
+              "prompt": "Complete the fifth-place rule.",
+              "template": "England usually gets {{usual}} Champions League places, but a fifth can be added through UEFA's European Performance Spot, which rewards {{reward}}.",
+              "gaps": [
+                {
+                  "id": "usual",
+                  "options": [
+                    "two",
+                    "four",
+                    "six"
+                  ],
+                  "correct": "four"
+                },
+                {
+                  "id": "reward",
+                  "options": [
+                    "strong European results by English clubs",
+                    "the biggest stadiums",
+                    "the most goals scored"
+                  ],
+                  "correct": "strong European results by English clubs"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. Four is the baseline, and a fifth place can be earned when English clubs do well in Europe.",
+                "incorrect": "The baseline is four places. UEFA can add a fifth (the European Performance Spot) based on how a country's clubs perform in Europe.",
+                "sayThisLine": "Fifth might get in if English clubs do well in Europe."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "pl-02",
+        "title": "FA Cup and the pyramid",
+        "objective": "You can explain the FA Cup and the English pyramid.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "fa-cup",
+          "domestic-cup"
+        ],
+        "activities": [
+          {
+            "id": "pl-02-mc-magic",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "fa-cup",
+              "domestic-cup"
+            ],
+            "payload": {
+              "prompt": "What makes the FA Cup special compared to the league?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "It pays more money"
+                },
+                {
+                  "id": "b",
+                  "text": "Non-league and lower-division teams can face Premier League giants in the early rounds"
+                },
+                {
+                  "id": "c",
+                  "text": "It's played only in summer"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Exactly. The FA Cup is a knockout competition that starts with hundreds of teams from the lower divisions and non-league, creating the possibility of giant-killing moments.",
+                "incorrect": "The magic of the FA Cup is that it draws teams from all levels of the English pyramid, so a fifth-tier team could theoretically face a Premier League side.",
+                "sayThisLine": "It's the cup, so anything can happen."
+              }
+            }
+          },
+          {
+            "id": "pl-02-st-cup-magic",
+            "type": "say-this",
+            "conceptIds": [
+              "domestic-cup"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Sarah",
+                "text": "The cup magic could happen this weekend."
+              },
+              "question": "What is she talking about?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "An unlikely upset where a smaller team beats a much bigger one",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "A magical trick will occur during the match",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "The weekend is guaranteed to be fun",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Her team will definitely win",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "In cup competitions, especially the FA Cup, smaller teams can produce unexpected upsets that feel like magic because they overcome much bigger opponents.",
+              "followUps": [
+                {
+                  "line": "Has your team had a memorable FA Cup run?",
+                  "why": "Asks about their personal experience with the cup."
+                },
+                {
+                  "line": "What's the biggest upset you can remember?",
+                  "why": "Invites them to share a famous cup moment."
+                }
+              ],
+              "noFakeExpertNote": "You don't need to know every cup story, just that upsets happen and fans love them."
+            }
+          },
+          {
+            "id": "pl-02-mc-pyramid",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "fa-cup"
+            ],
+            "payload": {
+              "prompt": "Can a non-league team from the fifth tier or lower enter the FA Cup?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "No, only Premier League and Championship teams"
+                },
+                {
+                  "id": "b",
+                  "text": "Yes, teams from all levels of the English pyramid can enter"
+                },
+                {
+                  "id": "c",
+                  "text": "Only teams from the top three divisions"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Yes. The FA Cup is open to hundreds of teams across all divisions of the English football pyramid, from the Premier League down to non-league.",
+                "incorrect": "One of the unique features of the FA Cup is that it draws from the entire English pyramid, making giant-killings possible.",
+                "sayThisLine": "The cup is open to everyone, that's why upsets happen."
+              }
+            }
+          },
+          {
+            "id": "pl-02-fg-pyramid-levels",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "domestic-cup"
+            ],
+            "payload": {
+              "prompt": "Complete the English pyramid.",
+              "template": "The English pyramid runs from the Premier League down through the {{second}}, then League One and League Two, then the {{fifth}} and beyond.",
+              "gaps": [
+                {
+                  "id": "second",
+                  "options": [
+                    "Championship",
+                    "League Three",
+                    "Conference North"
+                  ],
+                  "correct": "Championship"
+                },
+                {
+                  "id": "fifth",
+                  "options": [
+                    "National League",
+                    "Sunday League",
+                    "Isthmian Cup"
+                  ],
+                  "correct": "National League"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. Championship second, League One third, League Two fourth and the National League fifth. Non-league starts at that fifth rung.",
+                "incorrect": "The order is Premier League, Championship, League One, League Two, then the National League at level five, with non-league football below.",
+                "sayThisLine": "It runs all the way down, and the FA Cup lets them all meet."
+              }
+            }
+          },
+          {
+            "id": "pl-02-tm-cups",
+            "type": "term-match",
+            "conceptIds": [
+              "fa-cup",
+              "domestic-cup"
+            ],
+            "payload": {
+              "prompt": "Match the English trophy to what it is.",
+              "pairs": [
+                {
+                  "id": "fac",
+                  "term": "FA Cup",
+                  "definition": "England's historic knockout cup, open to clubs across the whole pyramid."
+                },
+                {
+                  "id": "lc",
+                  "term": "League Cup",
+                  "definition": "A knockout cup for Premier League and EFL clubs, often used to rotate squads."
+                },
+                {
+                  "id": "shield",
+                  "term": "Community Shield",
+                  "definition": "A season-opening match between the league champions and the FA Cup winners."
+                }
+              ],
+              "explanation": {
+                "summary": "England has several trophies, but the FA Cup is the one that lets tiny clubs meet giants.",
+                "sayThisLine": "The FA Cup is where the giant-killings happen."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "pl-03",
+        "title": "Spending rules and the 2026/27 laws",
+        "objective": "You can explain the spending rules and the new law changes fans are discussing.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "financial-rules",
+          "var-new-reviews",
+          "time-wasting-countdown"
+        ],
+        "activities": [
+          {
+            "id": "pl-03-mc-spending",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "financial-rules"
+            ],
+            "payload": {
+              "prompt": "What do Premier League spending rules aim to do?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Make every club spend exactly the same amount"
+                },
+                {
+                  "id": "b",
+                  "text": "Keep clubs' spending tied to what they earn, so they do not run into serious debt"
+                },
+                {
+                  "id": "c",
+                  "text": "Give the biggest clubs extra money to spend"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. Spending rules tie what clubs spend to what they earn. Breaking them can bring points deductions, as Everton and Nottingham Forest found in 2023-24.",
+                "incorrect": "The rules keep spending linked to income to protect clubs from serious debt. Details change over time, so check the current version before quoting a limit.",
+                "sayThisLine": "They can only spend what the rules let them, or points come off."
+              }
+            }
+          },
+          {
+            "id": "pl-03-mc-var-corner",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "var-new-reviews"
+            ],
+            "payload": {
+              "prompt": "From 2026/27, can VAR step in on a wrongly awarded corner?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "No, VAR never looks at corners"
+                },
+                {
+                  "id": "b",
+                  "text": "Yes, but only for an immediate review of a clear error"
+                },
+                {
+                  "id": "c",
+                  "text": "Yes, always, for as long as it takes"
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Correct. From 1 July 2026, VAR can correct clearly wrongly awarded corners, but only through an immediate review, not a long one.",
+                "incorrect": "The 2026/27 Laws let VAR correct wrongly awarded corners, but only when it can be done immediately so the game keeps moving.",
+                "sayThisLine": "They can fix a bad corner now, but it has to be quick."
+              }
+            }
+          },
+          {
+            "id": "pl-03-st-countdown",
+            "type": "say-this",
+            "conceptIds": [
+              "time-wasting-countdown"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "commentator",
+                "text": "They're stalling but the ref's got the countdown up now."
+              },
+              "question": "What does this mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The team is deliberately wasting time and the referee is enforcing the new five-second restart countdown",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "The referee is timing the entire match",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "The match is ending soon",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "A goal will be scored in five seconds",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "The 2026/27 restart countdown forces teams to restart play (throw-in, goal kick) within five seconds, shown visually by the referee, cutting down on deliberate time-wasting.",
+              "followUps": [
+                {
+                  "line": "Does your team need to improve at restarting quickly?",
+                  "why": "Asks if it affects their play style."
+                },
+                {
+                  "line": "Do you think the countdown makes the game better?",
+                  "why": "Opens their opinion on the rule change."
+                }
+              ],
+              "noFakeExpertNote": "If you're unsure, note that the ref's hand signals count down the five seconds."
+            }
+          },
+          {
+            "id": "pl-03-ds-transfer-window",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "financial-rules"
+            ],
+            "payload": {
+              "prompt": "Your club wants a big-money striker. What is the smart call?",
+              "situation": {
+                "narrative": "Your club is comfortable in mid-table but its finances are tight.",
+                "facts": [
+                  {
+                    "label": "Team position",
+                    "value": "Mid-table, safe from relegation"
+                  },
+                  {
+                    "label": "Finances",
+                    "value": "Already close to the spending limit",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Target striker",
+                    "value": "A very expensive fee"
+                  },
+                  {
+                    "label": "Alternative",
+                    "value": "A cheaper, proven forward"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "spend-big",
+                  "label": "Sign the striker regardless of the rules",
+                  "verdict": "poor",
+                  "consequence": "The club risks breaching the spending rules and a points deduction that could cost more than the striker's goals earn.",
+                  "considerations": [
+                    "Breaching spending rules can bring points deductions",
+                    "One signing rarely outweighs the risk of losing points"
+                  ]
+                },
+                {
+                  "id": "stay-inside",
+                  "label": "Sign the cheaper forward and stay inside the limit",
+                  "verdict": "best",
+                  "consequence": "The squad improves without breaking the rules, and the club keeps room for the next window.",
+                  "considerations": [
+                    "Successful clubs build inside their financial limits",
+                    "Long-term health matters more than one transfer"
+                  ]
+                },
+                {
+                  "id": "wait",
+                  "label": "Wait a window and reduce losses first",
+                  "verdict": "acceptable",
+                  "consequence": "You avoid any breach but the team goes without a striker for a while.",
+                  "considerations": [
+                    "Safe but slow",
+                    "Patience can open better opportunities later"
+                  ]
+                }
+              ],
+              "expertNote": "Fans say \"we can't afford it\" because clubs near their spending limit have to weigh ambition against the risk of a points deduction.",
+              "safetyNote": "This scenario explains football business rules; it is not financial advice."
+            }
+          },
+          {
+            "id": "pl-03-fg-purpose",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "financial-rules"
+            ],
+            "payload": {
+              "prompt": "Complete the purpose of the spending rules.",
+              "template": "Spending rules aim to keep clubs {{a}} and competition {{b}}.",
+              "gaps": [
+                {
+                  "id": "a",
+                  "options": [
+                    "financially stable",
+                    "completely equal",
+                    "debt-free forever"
+                  ],
+                  "correct": "financially stable"
+                },
+                {
+                  "id": "b",
+                  "options": [
+                    "fairer",
+                    "cheaper",
+                    "shorter"
+                  ],
+                  "correct": "fairer"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. The point is to stop clubs collapsing under debt and to stop unlimited owner spending from deciding everything.",
+                "incorrect": "The rules protect clubs' finances and support fairer competition by limiting how far spending can outrun income.",
+                "sayThisLine": "The rules keep the league fair and the clubs stable."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

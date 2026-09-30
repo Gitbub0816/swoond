@@ -322,6 +322,42 @@
             }
           },
           {
+            "id": "act-04-mc-2",
+            "type": "multiple-choice",
+            "conceptIds": ["chase-defender"],
+            "payload": {
+              "prompt": "Why do teams love the dribble handoff?",
+              "options": [
+                {"id": "correct", "text": "It beats the defender who is chasing the ball handler, creating space and separation quickly."},
+                {"id": "dist-1", "text": "It makes the defender foul more often."},
+                {"id": "dist-2", "text": "It stops the offense from taking bad shots."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Exactly. The handoff defeats the chase: the defender following the dribbler is still chasing when the ball goes to a new player.",
+                "incorrect": "Not quite. Teams love the DHO because it sidesteps the chasing defender, creating instant separation and scoring chances."
+              }
+            }
+          },
+          {
+            "id": "act-04-mc-3",
+            "type": "multiple-choice",
+            "conceptIds": ["handoff-action"],
+            "payload": {
+              "prompt": "In a dribble handoff, which player is the receiver?",
+              "options": [
+                {"id": "correct", "text": "The teammate moving toward the ball handler to take the ball directly from their hands."},
+                {"id": "dist-1", "text": "The defender guarding the ball handler."},
+                {"id": "dist-2", "text": "Any player standing still on the perimeter."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. The receiver comes forward to meet the dribbler and takes the ball hand-to-hand in one motion.",
+                "incorrect": "Not quite. The receiver is the teammate moving to meet the dribbler and take the ball directly."
+              }
+            }
+          },
+          {
             "id": "act-04-hst-1",
             "type": "hotspot-tap",
             "conceptIds": ["dribble-handoff"],
@@ -725,16 +761,21 @@
             "type": "timing-tap",
             "conceptIds": ["late-clock"],
             "payload": {
-              "prompt": "With 8 seconds on the shot clock, should you shoot or dribble? Tap when to shoot.",
-              "barLabel": "Shot clock (24 seconds)",
-              "itemLabel": "Decision point",
-              "min": 0,
-              "max": 24,
-              "correctValue": 8,
-              "tolerance": {"full": 3, "partial": 5},
+              "prompt": "With 8 seconds on the shot clock, should you shoot? Tap when.",
+              "theme": {
+                "label": "Shot clock",
+                "resultUnit": "seconds"
+              },
+              "rounds": [
+                {
+                  "zoneStartPct": 25,
+                  "zoneEndPct": 42,
+                  "sweepSeconds": 3
+                }
+              ],
               "explanation": {
-                "correct": "Right. With 8 seconds or less, you should take a shot or create separation for one; very little time remains.",
-                "incorrect": "Not quite. With only 8 seconds left, you are in late-clock offense and need to shoot soon."
+                "correct": "Right. With 8 seconds or less, take a shot or create one; time is nearly gone.",
+                "incorrect": "Not quite. With only 8 seconds left, you are in late-clock and need to shoot soon."
               }
             }
           },
@@ -779,16 +820,21 @@
             "type": "timing-tap",
             "conceptIds": ["late-clock"],
             "payload": {
-              "prompt": "A play breaks down and the ball handler is at half-court with 4 seconds on the shot clock. When should they shoot?",
-              "barLabel": "Shot clock (remaining)",
-              "itemLabel": "Shoot or lose the ball",
-              "min": 0,
-              "max": 4,
-              "correctValue": 1,
-              "tolerance": {"full": 1, "partial": 2},
+              "prompt": "Half-court with 4 seconds left. Shoot now or lose the ball. Tap when.",
+              "theme": {
+                "label": "Late-clock decision",
+                "resultUnit": "seconds"
+              },
+              "rounds": [
+                {
+                  "zoneStartPct": 0,
+                  "zoneEndPct": 25,
+                  "sweepSeconds": 2
+                }
+              ],
               "explanation": {
-                "correct": "Right. With only 4 seconds left from half-court, shoot immediately or it is a shot-clock violation.",
-                "incorrect": "Not quite. With 4 seconds left, any delay might mean the ball does not get off before the clock expires."
+                "correct": "Right. With only 4 seconds from half-court, shoot immediately or risk a shot-clock violation.",
+                "incorrect": "Not quite. With 4 seconds left, any delay risks not getting the shot off in time."
               }
             }
           },
