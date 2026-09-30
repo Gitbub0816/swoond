@@ -139,3 +139,323 @@ Privacy: the author, genre and platform the learner connects are personal data; 
 - **Mastery model:** `concept-mastery-v1`, pass threshold 0.80.
 - **Useful competence statement:** "I can follow and join a conversation about books: I understand what readers mean by tropes, DNF, TBR and POV, place a book on the genre map, know how prizes and publishing work at a conversational level, recommend without spoiling or faking expertise, and ask honest, interested follow-up questions about what someone loves to read."
 
+## 11. Curriculum map (ongoing course)
+
+20 units, 119 lessons. Layers: Foundations (5 units, 35 lessons), Intermediate (4 units, 23), Enthusiast depth (2 units, 12), Branches (6 units, 35), Live (1 unit, 4), Conversation practice (1 unit, 7), Perpetual review (1 unit, 3). A learner sees about 15 units (core plus the branches that match their `genre`). Unit count exceeds the 8-14 guidance like music/football (OPEN_QUESTIONS P-04); proposed folds are in NOTES.
+
+Activities: `MC` multiple-choice, `BC` binary-call, `TM` term-match, `SO` sequence-order, `VI` visual-id (original art only), `DS` decision-scenario, `TT` talk-track, `ST` say-this, `FG` fill-the-gap, `ES` estimate-slider, `HT` hotspot-tap. No lesson uses Unity.
+
+### Layer: Foundations
+
+**Unit 1 - `books-and-editions` (How Books Work).** Prerequisites: none.
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| be-01 | Hardcover, paperback, ebook, audio | Tell formats apart and why readers choose each | `book-formats`, `hardcover-vs-paperback`, `mass-market-paperback` | TM, VI, MC, ST |
+| be-02 | Anatomy of a book | Name the parts of a physical book | `book-anatomy`, `dust-jacket`, `colophon` | HT, TM, FG |
+| be-03 | Editions, printings and ISBNs | Explain edition vs printing and what an ISBN is for | `edition-vs-printing`, `isbn`, `translation-edition` | MC, BC, ES |
+| be-04 | Novel, novella, short story, collection | Place a work by length and shape | `novel-novella-short-story`, `story-collection`, `word-count` | ES, MC, TM |
+| be-05 | Series or standalone, and reading order | Decide where to start a series | `series-vs-standalone`, `reading-order`, `duology-trilogy` | DS, BC, ST |
+| be-06 | Where books live | Understand libraries, indie stores, chains, online | `library-borrowing`, `indie-bookstore`, `ebook-lending` | MC, DS, ST |
+| be-07 | Fiction, nonfiction, and the fuzzy middle | Recognise memoir, autofiction, historical fiction | `fiction-vs-nonfiction`, `autofiction`, `historical-fiction` | BC, MC, ST |
+
+**Unit 2 - `reader-language` (How Readers Talk).** Prerequisites: `books-and-editions`.
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| rl-01 | TBR, DNF, ARC and friends | Decode reader shorthand | `tbr`, `dnf`, `arc` | TM, ST, FG |
+| rl-02 | Slumps, hangovers and moods | Understand reading moods | `reading-slump`, `book-hangover`, `mood-reading` | ST, MC, DS |
+| rl-03 | Rereading and comfort reads | Get why people reread | `reread`, `comfort-read` | ST, MC |
+| rl-04 | What a 3-star review means | Read star ratings with judgment | `star-rating`, `half-stars`, `rating-culture` | ES, MC, BC |
+| rl-05 | Spoilers and content warnings | Handle spoilers and CWs gracefully | `spoiler-etiquette`, `content-warning` | DS, BC, ST |
+| rl-06 | Annotating and tabbing | Understand the etiquette of marking books | `annotating`, `tabbing`, `book-borrowing-etiquette` | ST, DS |
+| rl-07 | Challenges and readathons | Read reading-count culture without pressure | `reading-challenge`, `readathon`, `books-per-year-myth` | MC, ES, ST |
+
+**Unit 3 - `story-craft` (The Craft Vocabulary).** Prerequisites: `reader-language`.
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| sc-01 | Plot, story and theme | Separate what happens from what it is about | `plot`, `theme`, `premise` | MC, TM, ST |
+| sc-02 | Character and arc | Name protagonist, antagonist, arc, round vs flat | `protagonist`, `character-arc`, `round-vs-flat-character` | MC, ST, FG |
+| sc-03 | Point of view | Identify first, close third, omniscient, second | `pov-first-person`, `pov-third-limited`, `pov-omniscient`, `pov-second-person` | MC, ST, HT |
+| sc-04 | Tense and voice | Notice past vs present tense and voice | `past-vs-present-tense`, `narrative-voice` | BC, MC |
+| sc-05 | The unreliable narrator | Explain and spot an unreliable narrator | `unreliable-narrator`, `narrator-vs-author` | ST, DS, MC |
+| sc-06 | Structure | Recognise acts, dual timelines, frames | `three-act-structure`, `dual-timeline`, `frame-narrative`, `nonlinear-narrative` | SO, MC, ST |
+| sc-07 | Setting and worldbuilding | See how place shapes story | `setting`, `worldbuilding`, `sense-of-place` | MC, ST |
+| sc-08 | Pacing, hooks and cliffhangers | Understand the page-turner machinery | `pacing`, `hook`, `cliffhanger`, `page-turner` | SO, MC, ST |
+| sc-09 | Show, don't tell, and prose style | Hear the difference in style | `show-dont-tell`, `prose-style`, `dialogue` | BC, MC |
+
+**Unit 4 - `genre-map` (Genre as a Promise).** Prerequisites: `reader-language`.
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| gm-01 | Genre as a promise | Explain genre as what the reader is promised | `genre-promise`, `genre-vs-category`, `shelving` | MC, ST, TM |
+| gm-02 | The fiction map | Place books in the main genres and subgenres | `genre-map`, `subgenre`, `speculative-fiction` | VI, MC, TM |
+| gm-03 | Middle grade, YA, new adult, adult | Know age categories and crossover | `middle-grade`, `young-adult`, `new-adult`, `crossover-book` | MC, BC, ST |
+| gm-04 | Tropes | Explain what a trope is and why it satisfies | `trope`, `trope-vs-cliche`, `trope-as-promise` | TM, ST, FG |
+| gm-05 | Cross-genre and shelving | Understand blended genres and shelf placement | `cross-genre`, `genre-blending`, `bookstore-section` | DS, MC |
+| gm-06 | Literary vs genre | Hold the debate without picking a side rudely | `literary-vs-genre`, `commercial-fiction`, `book-snobbery` | BC, ST, TT |
+
+**Unit 5 - `reading-life` (How Readers Find Each Other).** Prerequisites: `reader-language`.
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| rlf-01 | How a book club runs | Know club formats and discussion styles | `book-club`, `discussion-questions`, `club-pick` | SO, DS, ST |
+| rlf-02 | Celebrity and media book clubs | Understand the "pick" effect | `celebrity-book-club`, `pick-effect` | MC, ST |
+| rlf-03 | BookTok, Bookstagram, BookTube | Understand social reading and its effect on sales | `booktok`, `bookstagram`, `booktube`, `influencer-effect` | TM, MC, ST |
+| rlf-04 | Goodreads, StoryGraph, Hardcover | Tell reading trackers apart | `goodreads`, `storygraph`, `reading-tracker`, `year-in-review` | TM, MC, DS |
+| rlf-05 | Buddy reads and reading together | Read together without spoiling | `buddy-read`, `read-aloud`, `reading-pace-etiquette` | DS, ST |
+| rlf-06 | Libraries as culture | Understand holds, waitlists, library apps | `library-holds`, `libby`, `library-card` | SO, MC, ST |
+
+### Layer: Intermediate
+
+**Unit 6 - `publishing-101`.** Prerequisites: `books-and-editions`, `genre-map`.
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| pb-01 | From manuscript to shelf | Order the steps of traditional publishing | `literary-agent`, `acquiring-editor`, `advance`, `publishing-pipeline` | SO, MC, ST |
+| pb-02 | The Big Five and indies | Know the landscape at a conversational level | `big-five`, `imprint`, `independent-press` | TM, MC |
+| pb-03 | Self-publishing and Kindle Unlimited | Understand indie authors and subscription reading | `self-publishing`, `kindle-unlimited`, `hybrid-author` | MC, ST, BC |
+| pb-04 | Release day and bestseller lists | Read pub dates, preorders, lists | `pub-date`, `preorder`, `bestseller-list`, `first-week-sales` | ES, MC, ST |
+| pb-05 | Translation and who is "the author" | Credit translators and understand translated fiction | `translated-fiction`, `translator-credit` | MC, BC, ST |
+| pb-06 | Backlist, frontlist, out of print | Understand a book's marketing life | `backlist`, `frontlist`, `out-of-print` | TM, MC |
+
+**Unit 7 - `taste-and-recs`.** Prerequisites: `reader-language`, `genre-map`.
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| tr-01 | Plot-driven or character-driven | Name what a reader values | `plot-driven-vs-character-driven`, `pace-preference`, `mood-match` | BC, ST, MC |
+| tr-02 | Comp titles | Decode "X meets Y" | `comp-titles`, `if-you-liked` | ST, TM, FG |
+| tr-03 | Recommending without spoiling | Pitch a book spoiler-free | `spoiler-free-pitch`, `rec-etiquette` | DS, TT |
+| tr-04 | What a shelf tells you | Read taste from what someone owns | `taste-signals`, `auto-buy-author`, `shelf-reading` | ST, DS |
+| tr-05 | Gifting a book | Choose a gift that fits | `book-gift`, `gift-fit`, `already-owns-it` | DS, ST |
+| tr-06 | Reading outside your lane | Try a new shelf gracefully | `genre-stretch`, `gateway-book` | DS, ST |
+
+**Unit 8 - `series-and-adaptations`.** Prerequisites: `books-and-editions`, `story-craft`.
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| sa-01 | Series shapes | Tell episodic, serial, saga, shared universe apart | `serial-vs-episodic`, `saga`, `shared-universe` | TM, MC |
+| sa-02 | The wait | Understand sequel waits and unfinished series | `sequel-wait`, `unfinished-series` | ST, TT |
+| sa-03 | Book vs screen | Discuss adaptations fairly | `adaptation`, `adaptation-discourse`, `faithfulness` | BC, ST, TT |
+| sa-04 | Fandom, fanfiction, shipping | Understand fan practices without mockery | `fanfiction`, `shipping`, `fandom` | TM, ST |
+| sa-05 | Retellings and reimaginings | Distinguish retelling, reimagining, homage | `retelling`, `reimagining`, `homage` | MC, TM |
+
+**Unit 9 - `reading-closely`.** Prerequisites: `story-craft`.
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| rc-01 | Theme, motif, symbol | Name what recurs and why it matters | `motif`, `symbol`, `theme-vs-motif` | MC, ST |
+| rc-02 | Allusion and intertextuality | Notice a book talking to other books | `allusion`, `intertextuality`, `epigraph` | MC, ST |
+| rc-03 | Endings: ambiguous and open | Talk about endings that will not resolve | `ambiguous-ending`, `open-ending`, `epilogue` | ST, MC, TT |
+| rc-04 | Translation choices | Understand why translations differ | `translation-choices`, `retranslation` | MC, ST |
+| rc-05 | Banned and challenged books | Explain challenges vs bans factually | `book-banning`, `challenged-book`, `banned-books-week` | MC, DS |
+| rc-06 | Author, narrator, and "the book says" | Keep author and narrator apart | `authorial-intent`, `author-narrator-distinction`, `ambiguity-reading` | BC, ST |
+
+### Layer: Enthusiast depth
+
+**Unit 10 - `prizes-and-canon`.** Prerequisites: `publishing-101`, `reading-closely`.
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| pc-01 | How literary prizes work | Understand panels, eligibility, longlist to shortlist | `longlist-shortlist`, `judging-panel`, `prize-eligibility` | SO, MC, ES |
+| pc-02 | The Booker family | Explain Booker and International Booker | `booker-prize`, `international-booker` | MC, TM, ST |
+| pc-03 | Pulitzer, National Book Award, Nobel | Tell the big three apart | `pulitzer-prize`, `national-book-award`, `nobel-literature` | TM, MC, ES |
+| pc-04 | Women's Prize and other honors | Know a handful of other prizes | `womens-prize`, `carnegie-medal`, `debut-prize` | MC, ST |
+| pc-05 | Genre awards | Hugo, Nebula, Edgar, Goodreads Choice | `hugo-award`, `nebula-award`, `edgar-award`, `goodreads-choice` | TM, MC, BC |
+| pc-06 | The canon and its critics | Discuss what "canon" means without gatekeeping | `canon`, `canon-debate`, `prize-buzz` | ST, TT |
+
+**Unit 11 - `discourse-and-collecting`.** Prerequisites: `reading-life`.
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| dc-01 | DNF shame and reading virtue | Explain the DNF debate | `dnf-discourse`, `reading-virtue` | BC, ST, TT |
+| dc-02 | Do audiobooks count? | Hold the audio debate kindly | `audiobook-discourse`, `narrator-performance` | ST, DS |
+| dc-03 | Spice and content ratings | Understand heat labels neutrally | `spice-rating`, `open-door-closed-door` | TM, ST |
+| dc-04 | Illustrated covers, special editions | Explain cover trends and collectible editions | `special-edition`, `sprayed-edges`, `cover-trend` | VI, MC, ST |
+| dc-05 | Boxes, signed copies, first editions | Understand book collecting | `subscription-box`, `signed-copy`, `first-edition` | MC, ES, ST |
+| dc-06 | AI, authors' rights, and the industry | Explain the AI debate neutrally | `ai-and-books`, `author-rights` | MC, ST |
+
+### Layer: Branches (`branch` units; each sets `branchId`)
+
+**Unit 12 - `branch-literary-fiction`.** Prerequisites: `story-craft`, `genre-map`. Branch `literary-fiction`.
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| lf-01 | What "literary" signals | Name the emphasis on style, interiority, ambiguity | `literary-fiction`, `interiority`, `stylist-vs-storyteller` | MC, ST |
+| lf-02 | Autofiction, short stories, the MFA world | Know the form landscape | `autofiction-form`, `short-story-scene`, `mfa-workshop` | MC, TM |
+| lf-03 | Translated fiction and world literature | Approach translated books | `world-literature`, `women-in-translation` | MC, ST |
+| lf-04 | Reading the prize shortlists | Use shortlists as reading maps | `shortlist-reading`, `slow-burn-lit` | DS, ST |
+| lf-05 | Talking about a literary novel | Discuss it without pretension | `literary-small-talk`, `sentence-level-praise` | TT, ST |
+
+**Unit 13 - `branch-romance-romantasy`.** Prerequisites: `genre-map`, `reader-language`. Branch `romance-romantasy`.
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| rm-01 | The genre contract: HEA and HFN | Explain the ending promise | `hea`, `hfn`, `romance-contract` | MC, BC, ST |
+| rm-02 | The trope map | Recognise the popular tropes and why they land | `enemies-to-lovers`, `friends-to-lovers`, `forced-proximity`, `fake-dating`, `slow-burn`, `grumpy-sunshine` | TM, ST, FG |
+| rm-03 | Heat levels | Read heat labels | `heat-level`, `closed-door`, `open-door` | TM, MC |
+| rm-04 | Romantasy | Explain romantasy and its boom | `romantasy`, `romance-arc-centered`, `fae-romance` | ST, MC |
+| rm-05 | Subgenres | Contemporary, historical, paranormal, sports, rom-com | `contemporary-romance`, `historical-romance`, `sports-romance`, `rom-com` | VI, TM |
+| rm-06 | The community and the respect gap | Understand the community and be respectful | `romance-community`, `romance-respect-gap` | ST, TT |
+
+**Unit 14 - `branch-fantasy-scifi`.** Prerequisites: `story-craft`, `genre-map`. Branch `fantasy-scifi`.
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| fs-01 | The fantasy map | Epic, urban, cozy, grimdark, portal | `epic-fantasy`, `urban-fantasy`, `cozy-fantasy`, `grimdark` | VI, TM, ST |
+| fs-02 | Magic systems | Hard vs soft magic | `hard-magic`, `soft-magic`, `magic-cost` | BC, MC, ST |
+| fs-03 | The sci-fi map | Hard SF, space opera, cyberpunk, dystopia | `hard-sf`, `space-opera`, `cyberpunk`, `dystopian-fiction` | TM, MC |
+| fs-04 | Worldbuilding and infodumps | Talk about worldbuilding well | `infodump`, `worldbuilding-craft`, `lore` | ST, DS |
+| fs-05 | Doorstops, series and the long wait | Read series culture | `doorstop`, `series-fatigue`, `long-wait` | ES, ST |
+| fs-06 | Canon of the genre | Know the touchstones and how fans use them | `genre-touchstones`, `chosen-one` | MC, ST |
+
+**Unit 15 - `branch-thriller-mystery`.** Prerequisites: `story-craft`, `genre-map`. Branch `thriller-mystery`.
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| tm-01 | Whodunit, howcatchem, thriller | Tell the shapes apart | `whodunit`, `howcatchem`, `thriller-vs-mystery` | MC, TM, ST |
+| tm-02 | Cozy, noir, procedural | Place subgenres by mood | `cozy-mystery`, `noir`, `police-procedural` | VI, TM |
+| tm-03 | Twists, red herrings, fair play | Explain what makes a twist satisfying | `red-herring`, `fair-play-mystery`, `plot-twist` | MC, DS, ST |
+| tm-04 | The psychological thriller wave | Recognise the domestic/psychological thriller | `psychological-thriller`, `domestic-thriller`, `twist-fatigue` | MC, ST |
+| tm-05 | Golden Age and series detectives | Know the series-detective tradition | `golden-age-mystery`, `series-detective` | MC, ST |
+| tm-06 | Crime awards and true crime adjacency | Know Edgars, Daggers, Agathas | `crime-awards`, `true-crime-books` | TM, MC |
+
+**Unit 16 - `branch-nonfiction`.** Prerequisites: `books-and-editions`, `reader-language`. Branch `nonfiction`.
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| nf-01 | The nonfiction map | Memoir, biography, history, science, essays, self-help | `nonfiction-map`, `biography`, `popular-history` | TM, MC |
+| nf-02 | Memoir and its ethics | Discuss memoir with care | `memoir`, `memoir-ethics`, `ghostwritten` | DS, ST |
+| nf-03 | Narrative nonfiction and popular science | Explain the storytelling-with-facts approach | `narrative-nonfiction`, `popular-science` | MC, ST |
+| nf-04 | Self-help and the productivity shelf | Understand the shelf without cynicism | `self-help`, `productivity-books` | MC, ST |
+| nf-05 | Reading nonfiction critically | Notes, sources, claims | `sources-and-notes`, `claim-vs-evidence`, `index-and-bibliography` | DS, MC |
+| nf-06 | Essays | Know the essay and the collection | `essay-collection`, `personal-essay` | MC, ST |
+
+**Unit 17 - `branch-classics`.** Prerequisites: `books-and-editions`, `reading-closely`. Branch `classics`.
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| cl-01 | What makes a classic | Explain the label | `classic-book`, `canon-vs-classic` | MC, ST |
+| cl-02 | Editions and translations of classics | Choose an edition | `annotated-edition`, `classics-imprints`, `translation-choice-classics` | DS, MC |
+| cl-03 | How to read a classic | Strategies that help | `reading-strategy-classics`, `historical-context` | DS, ST |
+| cl-04 | Public domain and free reading | Explain public domain and where free books come from | `public-domain`, `project-gutenberg`, `copyright-term` | MC, BC |
+| cl-05 | Retellings, dark academia and the return | Why classics keep coming back | `dark-academia`, `classics-retelling` | ST, MC |
+| cl-06 | Classics small talk | Chat without bluffing | `classics-small-talk`, `the-school-book` | TT, ST |
+
+### Layer: Current-context (live)
+
+**Unit 18 - `on-the-shelf-now`.** Prerequisites: `reader-language`. Live hooks: `releases`, `events`, `news`, `rankings`, `new-media`; every card has an evergreen fallback.
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| ln-01 | This week's releases | Read a release-week card | `release-week`, `pub-day-tuesday` | ST, MC |
+| ln-02 | Prize season explained | Understand where in the prize year we are | `prize-calendar`, `prize-season-buzz` | ST, MC |
+| ln-03 | Bestsellers and BookTok moments | Explain why a book is everywhere | `bestseller-list-reading`, `viral-book` | ST, MC |
+| ln-04 | Book-to-screen and author news | Follow adaptation and author news | `adaptation-news`, `author-event` | ST, TT |
+
+### Layer: Conversation practice
+
+**Unit 19 - `book-talk-lab`.** Prerequisites: `reader-language`, `story-craft` (any two units of your choice for the later lessons).
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| bt-01 | "What are you reading?" | Open the conversation | `book-opener`, `curious-follow-up` | TT, ST |
+| bt-02 | Her favourite book | Ask about it without quizzing | `favorite-book-question` | TT, ST |
+| bt-03 | When you have not read it | Say it honestly and warmly | `honest-not-read`, `no-fake-expertise` | TT, DS |
+| bt-04 | Disagreeing kindly | Handle a different opinion about a book | `kind-disagreement`, `star-rating-talk` | TT, DS |
+| bt-05 | Book club night | Join a group discussion | `club-participation`, `discussion-question-ask` | TT, ST |
+| bt-06 | The bookstore date | Browse and chat | `bookstore-browsing`, `staff-picks` | TT, DS |
+| bt-07 | The gift conversation | Give and receive a book | `gift-conversation` | TT, ST |
+
+### Layer: Perpetual review
+
+**Unit 20 - `reading-review`.** Prerequisites: none (unlocks after Unit 2).
+
+| Lesson | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| rv-01 | Daily bite | Spaced review of mastered concepts | (drawn from all mastered concepts) | MC, FG, TM |
+| rv-02 | Decode the line | Mixed say-this review | (drawn) | ST |
+| rv-03 | Genre-map refresher | Re-place books and tropes | `genre-map`, `trope`, `subgenre` | TM, VI, MC |
+
+**Review policy:** intervals 1, 3, 7, 14, 30, 60 days after mastery; max 12 items per review session; concepts below 0.6 mastery re-enter the queue; seasonal live concepts (prize calendar) are excluded from review once expired.
+
+### Concept count, personalization slots, release plan
+- **Concept target (Playbook):** counted from the tables above (320 unique ids) plus ~40 review-only synonyms; Playbook terms listed in `exercises.md` (80 authored).
+- **Personalization slots:** `{{author}}`, `{{genre}}`, `{{franchise}}`, `{{platform}}`, `{{region}}` as in section 8.
+- **Release plan:** **Launch (0.1):** Units 1-11 plus review, live card fallbacks, conversation lab; branch units `literary-fiction`, `romance-romantasy`, `fantasy-scifi`, `thriller-mystery`. **0.2:** `nonfiction`, `classics`. **Weekly:** live cards. **Seasonal:** prize-season cards (Sep-Nov: Booker, National Book, Nobel; Jan-Mar: Pulitzer/Women's shortlists announced; Aug: Hugo). **Yearly:** re-verify prize facts.
+
+## 12. Interaction plan
+
+Every activity family maps to a native type (`docs/native-exercises/CATALOG.md`). **There are zero Unity (Tier A) rows, on purpose.** Rubric answer for the whole course: nothing in reading culture requires the learner to watch something move through space, feel physics, or read a dynamic scene; the concepts are vocabulary, distinction, judgment and conversation, which a game engine does not teach better than a clear text exercise. "Would a fake game be a worse teacher than clear text?" Yes for every idea below.
+
+| Lesson / activity family | Concepts | Type | Justification (why this, not the alternative) | Tier | Est. count |
+|---|---|---|---|---|---|
+| Reader-shorthand and craft vocabulary | `tbr`, `dnf`, `pov-*`, `hook` | `term-match`, `fill-the-gap` | Vocabulary needs low-friction repetition; connect-term-to-plain-English is the exact shape. | B | 120 |
+| "What is she talking about?" | all conversation concepts | `say-this` | The core skill: decode a real reader line, then a follow-up question. | B | 160 |
+| Conversation practice | conversation concepts | `talk-track` | Practise asking, not bluffing; Smooth meter rewards curiosity. | B | 30 |
+| Distinctions (POV, plot vs character-driven, longlist vs shortlist) | craft, prizes | `multiple-choice`, `binary-call` | Two-to-five-way choices with per-option explanation; a diagram adds nothing. | B | 320 |
+| Recommend / gift / etiquette | `rec-etiquette`, `book-gift`, `spoiler-etiquette` | `decision-scenario` | Judgment from facts; consequences are conversational, not spatial. | B | 60 |
+| Publishing pipeline, story structure, how a club runs | `publishing-pipeline`, `three-act-structure`, `book-club` | `sequence-order` | Order is the concept; per-step `why`. Not spatial. | B | 30 |
+| Anatomy and shelf layout | `book-anatomy`, `bookstore-section` | `hotspot-tap` on original diagrams | Static labelled diagram; where, not when. | B | 20 |
+| Format and genre-convention recognition | `book-formats`, `genre-map` | `visual-id` on original Swoon'd illustrations (no real covers) | Recognition by shape and typography convention; covers are copyrighted, so original stand-ins. | B | 40 |
+| Magnitudes (lengths, prize money, print runs) | `word-count`, `longlist-shortlist` | `estimate-slider` | Gut-feel numbers; dated where live. | B | 20 |
+
+**Unity ideas considered and rejected:**
+1. *Story-structure "roller coaster" sim* (watch tension curve as a 3D track): a `sequence-order` plus a static diagram teaches acts more clearly; no physics concept.
+2. *Bookstore walk-through* (navigate a 3D store to shelve books): shelving logic is a category decision; `sequence-order`/`term-match`/`hotspot-tap` teach it without a scene.
+3. *Reading-pace "page turner" timer*: a 1D timing bar at most; not a real skill, and gamifying reading speed contradicts the course's stance (section 5).
+4. *Unreliable narrator "spot the lie" scene*: this is text comprehension; a written original passage in `say-this` is the natural medium (and avoids quoting real books).
+5. *Library holds queue simulator*: numbers and waits are `estimate-slider` and `decision-scenario`.
+
+**Native fallback and accessibility:** every exercise is text-first with `alt` for original diagrams. `listening-id` and `timing-tap` are not used (audiobook clips are copyrighted; original synthesised narration would misrepresent, and rhythm is not a book concept).
+
+## 13. Licensing & safety
+Spec section 40: **talk about works; never redistribute material from them.** This course discusses titles, authors, genres, prizes, history and craft, and links out.
+
+| Area | Handling |
+|---|---|
+| Cover art | **Never displayed.** Publisher cover images are copyrighted (and some have separate illustrator rights). `visual-id` uses original Swoon'd illustrations of *conventions* (`original-swoond`), never real jackets. Open Library's Covers API and Google Books thumbnails are also not a licence for a commercial paid app; not used. Link-outs only. |
+| Publisher descriptions / blurbs / jacket copy | Never copied or stored. Swoon'd writes its own one-line description of what a book is like (never a paraphrase of the blurb) and links to the publisher/library page. |
+| Excerpts and quotes | No passages from real books. Illustrative passages are **original, written by Swoon'd** (`original-swoond` text licence id in the content-pack registry). No long quotations. Public-domain text may be used only if verified public domain in the US and cited; default is not to. |
+| Reviews / ratings text | Never copied; star aggregates (Goodreads etc.) are not mirrored; link-outs only. |
+| Audio | No audiobook clips. |
+| Author names, titles | Facts (name, title, year). No likeness or endorsement, no fabricated quotes. Author photos are not used. |
+| Logos / trademarks | Text-only mentions of Goodreads, StoryGraph, Amazon, prizes, imprints. Prize names used descriptively; store copy wording pending legal read (like L-08). |
+| Data provider terms | See `live-data.md` sections 3-4: Open Library (open data, not a high-traffic commercial API), Google Books API (no charging users without Google agreement; no permanent copies), ISBNdb (paid; may cache while subscribed), Goodreads API (retired), StoryGraph (no public API). |
+| Sensitive content | Romance heat, violence in thrillers and sexual content are taught as *labelling literacy*; lessons are at survey depth with no explicit text; content warnings are taught as a courtesy. Banned-books lessons state facts and never push a mature title at a reader of unknown age. |
+| AI | Course text and exercises are Swoon'd-authored; no AI-generated "book summaries" of real works are shipped. |
+
+**Safety:** none of the physical-risk kind. Care areas: memoir and grief lit (no gamified scoring), mental health in nonfiction and self-help (teach critical reading, never give medical advice), and respectful handling of sexual content and censorship.
+
+## 14. Content assets
+- **Original illustration set (`original-swoond`):** book formats (hardcover, trade paperback, mass-market, ebook reader, audiobook headphones), book anatomy diagram, shelf with sections (procedural), genre-convention stand-ins (type-only abstract mockups: a big-serif "literary" style, an illustrated cartoon "rom-com" style, a dark-spine "thriller" style; no real titles), special-edition edge details, library card and holds queue, book club circle. ~40 illustrations, in-house.
+- **Procedural diagrams:** `book-anatomy-diagram`, `bookstore-floor-plan`, `story-structure-arc`, `dual-timeline-diagram`, `pov-camera-diagram`.
+- **Audio:** none.
+- **Editorial cards:** original text, weekly.
+
+## 15. Section 47 quality checklist
+
+- [x] 1. **What does a beginner need to understand?** Formats and editions, reader shorthand, craft vocabulary (POV, unreliable narrator, structure), genre as a promise, and how readers find each other (sections 2, 3).
+- [x] 2. **What do enthusiasts care about?** Tropes, DNF culture, TBR, series waits, editions, adaptations, prizes, BookTok and tracking apps (section 4).
+- [x] 3. **What current information matters?** Release week, prize season, bestseller stories, adaptation news, BookTok moments (sections 6, 7; `live-data.md`).
+- [x] 4. **What should be interactive?** Decode-the-line (say-this), talk tracks, genre and trope sorting, recommendation scenarios (section 12).
+- [x] 5. **What should NOT be gamified?** Taste, reading count, sexual content and censorship, memoir and grief, "reading level" (section 5).
+- [x] 6. **How should it personalize?** Genre, author, franchise, platform, region (section 8).
+- [x] 7. **What does conversational competence look like?** Asking honest, interested follow-ups; not bluffing; matching a rec to her taste (sections 9, 10).
+- [x] 8. **What data providers are needed?** Curated calendar, Open Library dumps, Wikidata, possibly NYT Books API and Hardcover API after terms review; Google Books and ISBNdb reviewed (section 6; `live-data.md`).
+- [x] 9. **What licensing constraints apply?** No covers, blurbs, excerpts, review text, audio; original assets only (section 13).
+- [x] 10. **How will Swoon'd measure useful understanding?** Concept mastery 0.80 across recognition, interpretation, judgment, conversation, plus talk-track Smooth >= 60 (section 10).
+
+Additional gates: [ ] manifest validates (see report); [ ] curriculum validates (not yet authored); [x] every Unity sim has an approved spec (none exist); [ ] every image/audio asset has a license id (assets not yet produced; all `original-swoond`); [ ] voice review (pending); [x] no copied publisher text.
+
+## 16. Open questions
+| # | Question | Owner | Blocking? |
+|---|---|---|---|
+| 1 | Book metadata provider for any "book card" (title, author, year): Open Library data dumps only, or a paid provider (ISBNdb) or Hardcover API? Google Books API is unsuitable for a paid app (no charging users without a Google agreement). | Product + backend | Blocks `releases` adapter, not lessons |
+| 2 | Are prize names ("Booker", "Pulitzer", "Hugo", "Goodreads Choice") ok in lesson titles and store copy? | Legal | Store copy only |
+| 3 | Should nonfiction and classics ship at launch, or 0.2 (proposed)? | Product | No |
+| 4 | Proposed folds if 20 units is too many: merge `discourse-and-collecting` into `prizes-and-canon`; merge `series-and-adaptations` into `taste-and-recs`; merge `reading-closely` into `story-craft` (17 units). | Product | No |
+| 5 | Poetry, comics/manga, and children's/picture books: candidate separate courses? | Product | No |
+| 6 | Sexual-content policy for a general-audience app: teach heat labels and tropes at survey depth (proposed) vs omit; age gating. | Product + legal | Blocks `rm-03`, `dc-03` copy |
+| 7 | Prize facts and results must be re-verified at release (see NOTES). | Content | Before release |

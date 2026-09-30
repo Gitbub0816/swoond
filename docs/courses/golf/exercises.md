@@ -341,3 +341,214 @@ Full launch tracks are in section 4; these three short samples show the payload 
 ```json
 {"prompt":"Tap the column that tells you the hardest holes.","diagram":{"diagramId":"golf-scorecard-columns","aspectRatio":1.6,"alt":"A scorecard with rows for holes one to nine and columns labelled Hole, Yards, Par, and Handicap or Stroke Index."},"hotspots":[{"id":"hole","label":"Hole","shape":{"kind":"rect","x":0.04,"y":0.1,"w":0.14,"h":0.8}},{"id":"yards","label":"Yards","shape":{"kind":"rect","x":0.22,"y":0.1,"w":0.2,"h":0.8}},{"id":"par","label":"Par","shape":{"kind":"rect","x":0.46,"y":0.1,"w":0.14,"h":0.8}},{"id":"si","label":"Handicap (stroke index)","shape":{"kind":"rect","x":0.64,"y":0.1,"w":0.3,"h":0.8}}],"correctHotspotIds":["si"],"explanation":{"correct":"The handicap or stroke index column ranks holes by difficulty; 1 is the hardest. It also tells you where handicap strokes are given.","incorrect":"Yards is length and par is the expected score. The handicap (stroke index) column ranks the holes from hardest (1) to easiest.","sayThisLine":"I get a stroke on the hardest hole, number 1."}}
 ```
+
+## 3. Playbook terms (76)
+
+Playbook entries (spec section 8): each term maps to a curriculum `conceptId`, with a plain definition and an example line in the enthusiast's voice (a line you might *hear*, not a line to fake). Definitions are short and concrete; none copies rulebook text.
+
+| # | Term | conceptId | Definition | Example line |
+|---|---|---|---|---|
+| 1 | Par | `par` | The score a skilled golfer is expected to make on a hole, two putts included. | "Par 4, so I'm happy with a five today." |
+| 2 | Birdie | `birdie` | One stroke under par on a hole. | "I birdied 16, and that was the round." |
+| 3 | Eagle | `eagle-albatross` | Two strokes under par on a hole. | "She eagled the par 5 on Sunday." |
+| 4 | Albatross | `eagle-albatross` | Three strokes under par; also called a double eagle. | "An albatross is so rare, I've only heard of one." |
+| 5 | Bogey | `bogey` | One stroke over par on a hole. | "Bogey golf is fine with me." |
+| 6 | Double bogey | `bogey` | Two strokes over par on a hole. | "I made a double on 9, but I got it back." |
+| 7 | Hole in one (ace) | `hole-in-one` | Getting the ball into the cup with the first stroke. | "My dad's had two aces, I've had none." |
+| 8 | Stroke play | `stroke-play` | A format where the lowest total number of strokes wins. | "It's stroke play, so every shot counts." |
+| 9 | Match play | `match-play` | A format decided hole by hole: win more holes than your opponent. | "It's match play, so I can afford a bad hole." |
+| 10 | Scorecard | `scorecard` | The card showing each hole's par, yardage and stroke index, where you record scores. | "I signed the card and handed it in." |
+| 11 | Gross score | `gross-score` | The actual number of strokes you took, before any handicap. | "My gross was 92 today." |
+| 12 | Net score | `net-score` | Gross score minus your course handicap. | "A net 76, so I won the flight." |
+| 13 | Handicap Index | `handicap-index` | A portable number showing your demonstrated ability, updated from posted scores. | "I'm a 14 index now." |
+| 14 | Course handicap | `course-handicap` | Your Handicap Index converted to a number of strokes for the course and tees you play. | "My course handicap is 16 from the blues." |
+| 15 | Course rating | `course-rating` | The score a scratch golfer is expected to shoot on a course. | "The course rating is 71.8 from those tees." |
+| 16 | Slope rating | `slope-rating` | How much harder a course plays for a bogey golfer than for a scratch golfer; 113 is neutral. | "It has a slope of 135, so it's brutal for me." |
+| 17 | Stroke index | `stroke-index-allocation` | The rank of each hole by difficulty, used to give handicap strokes; 1 is hardest. | "I get a stroke on the stroke index 1 hole." |
+| 18 | Tee box | `tee-box` | The starting area of a hole, marked by tee markers. | "We teed off from the forward tees." |
+| 19 | Fairway | `fairway` | The closely mown grass between tee and green. | "I hit 9 of 14 fairways." |
+| 20 | Rough | `rough` | Longer grass beside the fairway that makes shots harder. | "I was in the rough all day." |
+| 21 | Green | `green` | The smooth putting surface around the hole. | "I hit five greens in regulation." |
+| 22 | Fringe | `fringe` | The short collar of grass around the green, slightly longer than the putting surface. | "I was on the fringe, so I putted." |
+| 23 | Bunker | `bunker` | A sand-filled hazard; also called a sand trap. | "I got out of the bunker on my first try." |
+| 24 | Penalty area | `penalty-area` | A marked area (often water) where you may take relief for one penalty stroke. | "It was in the penalty area, so I took a drop." |
+| 25 | Out of bounds | `out-of-bounds` | Ground beyond the course boundary, usually marked by white stakes. | "It went OB on 4, so I re-teed." |
+| 26 | Stroke and distance | `stroke-and-distance` | One penalty stroke and replaying from where you last played. | "Stroke and distance is a killer." |
+| 27 | Provisional ball | `provisional-ball` | A second ball played after announcing it, in case the first is lost or out of bounds. | "I hit a provisional, just in case." |
+| 28 | Lost ball | `lost-ball` | A ball not found within three minutes of searching. | "We looked for five minutes, then it was lost." |
+| 29 | Drop | `drop-knee-height` | Releasing the ball from knee height into a relief area. | "I dropped it from my knee." |
+| 30 | Free relief | `free-relief` | Moving your ball without penalty from certain conditions, such as an immovable obstruction. | "It was next to a cart path, so I got free relief." |
+| 31 | Unplayable ball | `unplayable-ball` | A ball you declare unplayable, with a one-stroke penalty and relief options. | "It was under a bush, so I took an unplayable." |
+| 32 | Honor | `honor-system` | The right to tee off first, earned by the best score on the previous hole. | "She had the honor on 7." |
+| 33 | Ready golf | `ready-golf` | Playing when ready rather than strictly in order, to keep pace. | "We played ready golf to catch up." |
+| 34 | Pitch mark | `pitch-mark-repair` | A dent a ball makes on a green, which you repair. | "I fixed my pitch mark and one more." |
+| 35 | Loft | `loft` | The angle of the clubface, which sets height and shortens distance as it grows. | "A 56-degree wedge has lots of loft." |
+| 36 | Driver | `club-families` | The longest, largest-headed club, mostly used off the tee. | "I hit driver on every par 4." |
+| 37 | Hybrid | `club-families` | A club that blends wood and iron, easier to hit than a long iron. | "The hybrid saved me on 7." |
+| 38 | Wedge | `club-families` | A high-lofted club for short shots and sand. | "My wedges are what keep me in it." |
+| 39 | Putter | `club-families` | The club used on the green to roll the ball. | "I switched putters and I'm rolling it well." |
+| 40 | Carry | `carry-distance` | How far the ball flies in the air before landing. | "It carries 150 with a seven iron." |
+| 41 | Swing path | `swing-path` | The direction the club is travelling at impact. | "My path is too far from the outside." |
+| 42 | Face-to-path | `face-to-path` | The gap between where the face points and where the club travels; it creates curve. | "It's the face-to-path that makes it curve." |
+| 43 | Draw | `draw` | A gentle curve from right to left for a right-hander. | "I hit a little draw off the tee." |
+| 44 | Fade | `fade` | A gentle curve from left to right for a right-hander. | "I play a fade, so I aim left." |
+| 45 | Slice | `slice` | A big, usually unintended curve to the right for a right-hander. | "My slice showed up on the back nine." |
+| 46 | Hook | `hook` | A big curve to the left for a right-hander. | "Two hooks into the trees, ugh." |
+| 47 | Push | `push-pull` | A straight shot that starts right of target for a right-hander. | "It wasn't a slice, just a push." |
+| 48 | Pull | `push-pull` | A straight shot that starts left of target for a right-hander. | "A pull into the left rough." |
+| 49 | Fat shot | `mishits` | Hitting the ground before the ball, losing distance. | "Two fat ones, and that was it." |
+| 50 | Thin shot | `mishits` | Hitting the ball near its equator, sending it low and hot. | "I thinned it over the green." |
+| 51 | Shank | `shank` | A shot that hits the club's hosel and squirts sideways. | "She shanked it, and we all winced." |
+| 52 | Chip | `chip` | A short, low shot near the green with a lot of roll. | "I chipped it to two feet." |
+| 53 | Pitch | `pitch` | A higher short shot that carries further and rolls less than a chip. | "A little pitch over the bunker." |
+| 54 | Flop shot | `flop` | A very high, soft shot with a lob wedge and little roll. | "The flop over the bunker was risky." |
+| 55 | Bump-and-run | `bump-and-run` | A low chip that lands short and rolls most of the way, usually with a mid-iron. | "A bump-and-run was the play." |
+| 56 | Landing spot | `landing-spot` | The place where you want the ball to first touch down on a short shot. | "Pick your landing spot, not the flag." |
+| 57 | Lag putt | `lag-putt` | A long putt aimed to finish close rather than to hole it. | "I lagged it close and tapped in." |
+| 58 | Three-putt | `three-putt` | Needing three putts on one green. | "I three-putted twice on the back." |
+| 59 | Up-and-down | `up-and-down` | Getting the ball onto the green and into the hole in two strokes from off the green. | "Up-and-down from the bunker, for par." |
+| 60 | Break | `break` | How much and which way a putt curves due to the slope. | "There's a foot of break from the right." |
+| 61 | Fall line | `fall-line` | The direction water would run from the ball; the steepest downhill. | "Read the fall line, then pick your aim." |
+| 62 | Stimpmeter | `stimpmeter` | A ramp that measures green speed by how far the ball rolls. | "The greens are running at 11 today." |
+| 63 | Gimme | `gimme` | A short putt conceded by an opponent or a friend in casual play. | "That's a gimme, pick it up." |
+| 64 | Yips | `yips` | Involuntary jerks or freezes in the stroke, usually when putting under pressure. | "I've got the yips on short putts." |
+| 65 | Dispersion | `dispersion` | The spread of where your shots land. | "My dispersion with a driver is wide." |
+| 66 | Play your miss | `play-your-miss` | Aim so your typical bad shot stays out of trouble. | "I play my miss and aim away from the water." |
+| 67 | Layup | `layup` | A shorter, safer shot that leaves a good number for the next one. | "I laid up to a full wedge." |
+| 68 | Short-sided | `short-sided` | Being on the side of the green where there is little room to work with. | "Don't short-side yourself." |
+| 69 | Scramble | `scramble` | A team format: everyone hits, the team picks the best shot, all play from there. | "We shot 12 under in the scramble." |
+| 70 | Four-ball | `four-ball` | A team format where each player plays their own ball and the better score counts. | "In four-ball, I'll go for it." |
+| 71 | Foursomes | `foursomes` | Alternate shot: partners share one ball and take turns hitting it. | "Foursomes is the hardest format." |
+| 72 | Stableford | `stableford` | Points-based scoring by score against par on each hole. | "We play Stableford so a blowup hole doesn't ruin it." |
+| 73 | Skins | `skins` | A game where each hole is a prize, won outright or carried over. | "Two skins carried over to 17." |
+| 74 | Dormie | `dormie` | Being ahead in match play by as many holes as remain. | "We're dormie, so a halve wins it." |
+| 75 | Links | `links-golf` | The original style of seaside course: dunes, few trees, firm ground. | "The links are all wind and bounce." |
+| 76 | Career grand slam | `career-grand-slam` | Winning all four men's majors (or all five women's) at any point in a career. | "He completed the career grand slam." |
+
+## 4. Talk Track scenarios (10)
+
+Each scenario gives the enthusiast's opening line, what it means, and the reply guide (good, meh, cringe) with coach notes. The JSON is the exact `talk-track` payload (Smooth starts at 50; good +25, meh +5 to 0, cringe -15 to -20; success if Smooth >= 60). Replies model curiosity over expertise; the cringe reply is playful, never mean.
+
+### 4.1 After her round (`tt-after-round`)
+
+**She says:** "I shot 94 today. Two triple bogeys but I parred the last two holes!" **Meaning:** A 94 on a par 72 is 22 over, a solid score for many golfers; two triple bogeys were her big mistakes; finishing with two pars is a strong end. **Terms:** triple bogey, par, breaking 90/100.
+
+```json
+{"title":"After her round","setting":"She texts you on Saturday afternoon after 18 holes.","startingSmooth":50,"exchanges":[{"theirMessage":"I shot 94 today. Two triple bogeys, but I parred the last two holes!","replies":[{"id":"a","text":"Finishing with two pars is a great way to end. What was the best shot?","smoothDelta":25,"theirResponse":"My approach on 17. Stuck it to 10 feet and made the putt.","coachNote":"Celebrates the ending and asks for a story. Curiosity beats numbers."},{"id":"b","text":"94? Is that good?","smoothDelta":5,"theirResponse":"For me it's solid! Par is 72, so I'm 22 over. I'm chasing 90.","coachNote":"Honest, but lead with her win. She can explain the score."},{"id":"c","text":"Two triples? Sounds like a bad round.","smoothDelta":-20,"theirResponse":"...Two bad holes. The other sixteen were fine.","coachNote":"Focuses on the negative. Golf is about the good holes you remember."}]},{"theirMessage":"I'm annoyed about the triples though. One was a water ball, the other a three-putt.","replies":[{"id":"a","text":"Water balls happen. Was the three-putt a speed thing?","smoothDelta":25,"theirResponse":"Yes! I left the first one 8 feet short. Pace, always pace.","coachNote":"Uses two of her terms and asks a simple why."},{"id":"b","text":"That's rough.","smoothDelta":5,"theirResponse":"Yeah. Whatever, still my best round this month.","coachNote":"Kind but closes the topic. A tiny question would help."},{"id":"c","text":"Just don't three-putt next time.","smoothDelta":-15,"theirResponse":"Thanks, coach.","coachNote":"Advice she didn't ask for. Listen before you fix."}]}],"closingNote":"A triple bogey is three over par on a hole. A 94 on a par 72 is 22 over, a real score for many golfers."}
+```
+
+### 4.2 The round that went wrong (`tt-bad-round`)
+
+**She says:** "I shot 108 and lost six balls. I don't know why I do this to myself." **Meaning:** A discouraging round: 108 is far over par 72, six lost balls each cost a penalty stroke plus a walk. She wants sympathy more than coaching. **Terms:** lost ball, penalty stroke, bad round.
+
+```json
+{"title":"The round that went wrong","setting":"She calls you after a rough round on a windy day.","startingSmooth":50,"exchanges":[{"theirMessage":"I shot 108 and lost six balls. I don't know why I do this to myself.","replies":[{"id":"a","text":"Ugh, that sounds rough. Was it the wind, or was your swing off?","smoothDelta":20,"theirResponse":"Both. The wind moved everything and I couldn't find my rhythm.","coachNote":"Sympathy first, then a gentle question that lets her tell it."},{"id":"b","text":"Six balls? That's a lot of golf balls.","smoothDelta":0,"theirResponse":"Ha. Twenty dollars in the woods. I'll be okay.","coachNote":"A little jokey, fine, but it stays on the loss."},{"id":"c","text":"Maybe golf isn't your sport.","smoothDelta":-20,"theirResponse":"Wow. Okay.","coachNote":"Never suggest quitting. Bad rounds are part of loving golf."}]},{"theirMessage":"I just want one round where I don't lose it on the back nine.","replies":[{"id":"a","text":"What usually goes wrong on the back nine?","smoothDelta":25,"theirResponse":"I get tired and rush. My tempo goes and everything slices.","coachNote":"Asks for the pattern. She'll feel heard."},{"id":"b","text":"You'll get there.","smoothDelta":5,"theirResponse":"Thanks. I hope so.","coachNote":"Kind but generic. A question makes it personal."},{"id":"c","text":"Have you tried hitting it straight?","smoothDelta":-15,"theirResponse":"Oh, is THAT how it works.","coachNote":"Sarcasm lands as mockery. Stay curious."}]}],"closingNote":"A lost ball costs a penalty stroke and the walk back or a replayed shot. Bad rounds are universal in golf."}
+```
+
+### 4.3 Watching the final round (`tt-final-round`)
+
+**She says:** "He's two back thru 14, and the par 5s are coming up. It's not over." **Meaning:** The player trails by two strokes with four holes left, and the next holes are par 5s, which are birdie chances. She is optimistic and wants company. **Terms:** thru 14, par 5, birdie chance.
+
+```json
+{"title":"Watching the final round","setting":"You are on her couch on a tour event Sunday.","startingSmooth":50,"exchanges":[{"theirMessage":"He's two back thru 14, and the par 5s are coming up. It's not over.","replies":[{"id":"a","text":"So he needs a birdie on 15 or 16 to catch up?","smoothDelta":25,"theirResponse":"Yes! Both are reachable in two if he hits a good drive.","coachNote":"Follows the leaderboard language and asks a natural follow-up."},{"id":"b","text":"What does thru 14 mean again?","smoothDelta":10,"theirResponse":"He's played 14 holes and has four left.","coachNote":"An honest question is fine. Asking once beats bluffing."},{"id":"c","text":"He should just hit it closer.","smoothDelta":-20,"theirResponse":"Sure. Genius.","coachNote":"A joke that shows you're not following the game."}]},{"theirMessage":"Ohh, he just made birdie on 15! He's one back now.","replies":[{"id":"a","text":"Nice! One more birdie ties it, right?","smoothDelta":25,"theirResponse":"And 16 is a par 5. Come on!","coachNote":"Reads the score correctly and joins the excitement."},{"id":"b","text":"Great, is that good?","smoothDelta":5,"theirResponse":"Yes. He gained a stroke on the leader.","coachNote":"Honest, though you can see the score on screen."},{"id":"c","text":"Who cares, it's just golf.","smoothDelta":-15,"theirResponse":"...It's my favorite sport.","coachNote":"Dismissive. The whole point is sharing what she loves."}]}],"closingNote":"Thru 14 means 14 holes played. Two back means two strokes behind the leader."}
+```
+
+### 4.4 The new driver (`tt-new-driver`)
+
+**She says:** "I got fitted for a new driver: lower loft, stiffer shaft. My slice might finally be over." **Meaning:** A club fitting matched her equipment to her swing. Lower loft reduces backspin and height; a stiffer shaft can reduce the amount the clubhead twists. She hopes to reduce her slice. **Terms:** club fitting, loft, shaft flex, slice.
+
+```json
+{"title":"The new driver","setting":"She shows you her new driver at the range.","startingSmooth":50,"exchanges":[{"theirMessage":"I got fitted for a new driver: lower loft, stiffer shaft. My slice might finally be over.","replies":[{"id":"a","text":"What did the fitter see in your swing?","smoothDelta":25,"theirResponse":"My spin was way too high. The lower loft cut it down.","coachNote":"Asks about the why. Fitting is about data and feel."},{"id":"b","text":"Nice. How much was it?","smoothDelta":-5,"theirResponse":"Too much. Let's not talk about it.","coachNote":"A fair curiosity, but not the first question."},{"id":"c","text":"You can fix a slice with money? Wow.","smoothDelta":-15,"theirResponse":"It helps, technique still matters.","coachNote":"Sounds dismissive. A fitting helps; it does not replace a good swing."}]},{"theirMessage":"I'll test it tomorrow. Fingers crossed it starts on line.","replies":[{"id":"a","text":"Starts on line means it goes where the face points?","smoothDelta":25,"theirResponse":"Exactly! The face mostly decides where it starts.","coachNote":"Uses her idea and reflects it back."},{"id":"b","text":"Good luck!","smoothDelta":5,"theirResponse":"Thanks! I'll tell you how it goes.","coachNote":"Warm. A small question would make it stickier."},{"id":"c","text":"If it slices, return it.","smoothDelta":-10,"theirResponse":"That's not how fittings work.","coachNote":"Bluffing about how fittings work. Ask instead."}]}],"closingNote":"Loft, shaft flex and lie angle are the main things a fitter adjusts. It matches equipment to your swing."}
+```
+
+### 4.5 Handicap talk (`tt-handicap`)
+
+**She says:** "I'm down to a 14 index! Was a 17 in March." **Meaning:** Her Handicap Index dropped by three: she is playing better relative to par, based on posted scores. **Terms:** Handicap Index, posting scores.
+
+```json
+{"title":"Handicap talk","setting":"She tells you about her progress at dinner.","startingSmooth":50,"exchanges":[{"theirMessage":"I'm down to a 14 index! Was a 17 in March.","replies":[{"id":"a","text":"Three shots in a few months! What changed?","smoothDelta":25,"theirResponse":"Mostly my short game. I'm actually getting up and down now.","coachNote":"Celebrates and asks for the story."},{"id":"b","text":"Is 14 good?","smoothDelta":5,"theirResponse":"For an amateur, yes. The average is around mid-teens for men, higher for women.","coachNote":"Honest, and she teaches you a benchmark."},{"id":"c","text":"So you're getting worse. Numbers went down.","smoothDelta":-15,"theirResponse":"Lower is better in golf, remember?","coachNote":"Lower handicap means better. Nobody minds you learning, just say it kindly."}]},{"theirMessage":"I'm entering the club championship. I'll get strokes on the tougher holes.","replies":[{"id":"a","text":"Because of the stroke index, right? The hardest holes first?","smoothDelta":25,"theirResponse":"Yes! On holes ranked 1 to 14 I get a stroke.","coachNote":"Connects stroke index and handicap strokes."},{"id":"b","text":"What's the format?","smoothDelta":10,"theirResponse":"Net stroke play, so my handicap counts.","coachNote":"A useful, simple question."},{"id":"c","text":"That's cheating.","smoothDelta":-20,"theirResponse":"It's fair. It's why anyone can compete.","coachNote":"A handicap is what makes competition fair, not a cheat."}]}],"closingNote":"A Handicap Index shows demonstrated ability. Handicap strokes are given on the hardest holes first (stroke index 1)."}
+```
+
+### 4.6 Major Sunday (`tt-major-sunday`)
+
+**She says:** "I can't believe he's tied for the lead going into the back nine at the Masters." **Meaning:** The Masters is often decided on the back nine on Sunday; the player and the leaderboard matter to her. **Terms:** the back nine, the lead, Augusta National.
+
+```json
+{"title":"Major Sunday","setting":"It is Masters Sunday and she has the tournament on all afternoon.","startingSmooth":50,"exchanges":[{"theirMessage":"I can't believe he's tied for the lead going into the back nine at Augusta.","replies":[{"id":"a","text":"Is the back nine where Sunday gets wild at Augusta?","smoothDelta":25,"theirResponse":"Amen Corner is on the back nine. Holes 11, 12, 13. It ruins people.","coachNote":"A short, curious question that opens up her favorite lore."},{"id":"b","text":"Tied for the lead sounds good.","smoothDelta":5,"theirResponse":"It's incredible. Anything can happen from here.","coachNote":"Right idea, but it's thin. Ask what happens on the back nine."},{"id":"c","text":"Isn't the Masters a different course every year?","smoothDelta":-15,"theirResponse":"Same course every year: Augusta National.","coachNote":"A classic mistake. The Masters is always at Augusta National."}]},{"theirMessage":"The green jacket goes to the winner. It's the most famous prize in golf.","replies":[{"id":"a","text":"Does the winner keep it, or is it returned?","smoothDelta":25,"theirResponse":"He gets to wear it during the year, but it stays at Augusta. It's tradition.","coachNote":"A charming, real question that invites a story."},{"id":"b","text":"A jacket? Cool.","smoothDelta":0,"theirResponse":"It's green. That's the point!","coachNote":"Polite but shallow. Ask about the tradition."},{"id":"c","text":"Why not money instead?","smoothDelta":-10,"theirResponse":"There's money too. But the jacket is the prize.","coachNote":"Missing the tradition. Ask about it instead."}]}],"closingNote":"The Masters is played every April at Augusta National. The winner receives a green jacket."}
+```
+
+### 4.7 "Come play a round" (`tt-come-play`)
+
+**She says:** "You should come play nine holes with me this weekend. I'll take it easy on you." **Meaning:** An invitation to play a short round, kind and low-pressure. The learner has never played. **Terms:** nine holes, beginner-friendly, range.
+
+```json
+{"title":"Come play a round","setting":"She invites you after a long dinner.","startingSmooth":50,"exchanges":[{"theirMessage":"You should come play nine holes with me this weekend. I'll take it easy on you.","replies":[{"id":"a","text":"I've never played, but I'd love to. Can we start at the range?","smoothDelta":30,"theirResponse":"Perfect! We'll hit a bucket and then play the par 3 course.","coachNote":"Honest about your level and enthusiastic. That's the whole point."},{"id":"b","text":"Sure. I'll probably be terrible.","smoothDelta":5,"theirResponse":"Everyone is at first. That's fine.","coachNote":"Honest, but a bit self-deprecating. Show some excitement."},{"id":"c","text":"Sure, I'm pretty good at golf.","smoothDelta":-20,"theirResponse":"Oh really? Great. We'll see.","coachNote":"Faking a skill you don't have. It backfires at the first tee."}]},{"theirMessage":"Wear comfortable shoes and bring water. I'll lend you a club or two.","replies":[{"id":"a","text":"Thanks! Any etiquette I should know?","smoothDelta":25,"theirResponse":"Stay quiet when someone's hitting, and stay off the putting line. That's most of it!","coachNote":"Asks to learn the manners. Shows respect for the game."},{"id":"b","text":"Sounds good.","smoothDelta":5,"theirResponse":"Great, see you Saturday!","coachNote":"Friendly. One question would show curiosity."},{"id":"c","text":"Do I need to keep score?","smoothDelta":0,"theirResponse":"We can, or just play. It's a fun day either way.","coachNote":"Reasonable, but focus on enjoying it."}]}],"closingNote":"Beginners are welcome at the range and on par 3 courses. Honesty about your level is charming."}
+```
+
+### 4.8 The scramble league (`tt-scramble`)
+
+**She says:** "We won the scramble by playing the best ball each time. Twelve under!" **Meaning:** Her team used the scramble format: everyone hits, the team picks the best shot, and all play from there, so scores are much lower than normal. **Terms:** scramble, best ball, twelve under.
+
+```json
+{"title":"The scramble league","setting":"She tells you about her league night.","startingSmooth":50,"exchanges":[{"theirMessage":"We won the scramble by playing the best ball each time. Twelve under!","replies":[{"id":"a","text":"Nice! Did you use her tee shots or yours?","smoothDelta":25,"theirResponse":"A mix. She hit long, I hit accurate. It was a good balance.","coachNote":"Understands the format and asks about the team."},{"id":"b","text":"Twelve under sounds crazy.","smoothDelta":5,"theirResponse":"In a scramble it's normal! Everyone gets a mulligan, basically.","coachNote":"Honest, and she explains the format."},{"id":"c","text":"So you cheated?","smoothDelta":-15,"theirResponse":"No, it's the format. It's for fun.","coachNote":"A scramble is an official casual format. It's built that way."}]},{"theirMessage":"I hit one great drive that got picked. Felt amazing.","replies":[{"id":"a","text":"Getting picked is the best. How far did it go?","smoothDelta":25,"theirResponse":"About 220, straight down the middle. On the par 5!","coachNote":"Celebrates and asks a simple follow-up."},{"id":"b","text":"Cool.","smoothDelta":0,"theirResponse":"Yep.","coachNote":"Too short. Ask about the shot."},{"id":"c","text":"What if it went to the woods?","smoothDelta":-10,"theirResponse":"Well then you don't pick it.","coachNote":"Pessimistic. Scrambles are supposed to feel good."}]}],"closingNote":"In a scramble all players hit, the team picks the best ball, and everyone plays from there. It is a friendly, low-pressure format."}
+```
+
+### 4.9 The captain's pick (`tt-captains-pick`)
+
+**She says:** "Did you see the captain's picks? Some of them are wild." **Meaning:** In the Ryder Cup or a similar team event, captains select a few players who did not qualify automatically. Fans debate the choices. **Terms:** captain's pick, Ryder Cup, qualifying.
+
+```json
+{"title":"The captain's pick","setting":"Cup week: she is checking the team announcement.","startingSmooth":50,"exchanges":[{"theirMessage":"Did you see the captain's picks? Some of them are wild.","replies":[{"id":"a","text":"Which pick surprised you most?","smoothDelta":25,"theirResponse":"A rookie over a major winner. I get it, but it's a gamble.","coachNote":"Invites her opinion and lets her lead."},{"id":"b","text":"What's a captain's pick?","smoothDelta":10,"theirResponse":"Players the captain chooses, beyond the ones who qualified on points.","coachNote":"Honest. She'll be glad to explain."},{"id":"c","text":"They should just pick the best players.","smoothDelta":-10,"theirResponse":"That's the whole debate, though!","coachNote":"Simplistic. The debate is about who counts as best on the week."}]},{"theirMessage":"It's about chemistry too. Foursomes and fourballs need good pairs.","replies":[{"id":"a","text":"So the captain picks pairs who play well together?","smoothDelta":25,"theirResponse":"Yes. In foursomes you share one ball, so chemistry matters.","coachNote":"Links format to strategy. Shows understanding."},{"id":"b","text":"Makes sense.","smoothDelta":5,"theirResponse":"Right? It's like coaching a team.","coachNote":"Fine. Ask about the pairs for more."},{"id":"c","text":"Aren't they all just playing alone anyway?","smoothDelta":-15,"theirResponse":"Not in team match play!","coachNote":"Ryder Cup mixes team formats. Ask what foursomes means."}]}],"closingNote":"Captains choose several players beyond automatic qualifiers. Foursomes (alternate shot) and fourballs (best ball) reward good pairings."}
+```
+
+### 4.10 LIV or the tours? (`tt-liv`)
+
+**She says:** "Are you team LIV or team PGA TOUR? My brother and I argue about it." **Meaning:** A friendly debate about golf's split: LIV Golf (team format, funded by Saudi Arabia's PIF, which said it will end funding after 2026) versus the traditional tours. The learner should stay curious, not pick a side out of the blue. **Terms:** LIV Golf, PGA TOUR, format debate.
+
+```json
+{"title":"LIV or the tours?","setting":"Over lunch she brings up a family debate.","startingSmooth":50,"exchanges":[{"theirMessage":"Are you team LIV or team PGA TOUR? My brother and I argue about it.","replies":[{"id":"a","text":"I don't know enough yet. What's your argument?","smoothDelta":25,"theirResponse":"I like the tours' history. He likes LIV's team format and shorter rounds.","coachNote":"Honest and curious. She'll happily lay out both sides."},{"id":"b","text":"Whichever one's more fun to watch.","smoothDelta":5,"theirResponse":"Fair. That's what my brother says too.","coachNote":"Reasonable, but sidesteps. A question would help."},{"id":"c","text":"LIV, obviously. Everyone knows that.","smoothDelta":-20,"theirResponse":"Oh boy. Have a seat, this will take a while.","coachNote":"Faking a strong opinion invites a long argument you can't win."}]},{"theirMessage":"The money is a big part of it. Some people say it changes the sport.","replies":[{"id":"a","text":"What does the money change: who plays where, or how it's played?","smoothDelta":25,"theirResponse":"Both. Players moved, and the format moved with them.","coachNote":"A neutral, good question about what's actually different."},{"id":"b","text":"Money is always a thing.","smoothDelta":0,"theirResponse":"True.","coachNote":"Shrugs the conversation. Ask something concrete."},{"id":"c","text":"Golf was better in the old days.","smoothDelta":-10,"theirResponse":"Was it? That's a whole debate too.","coachNote":"Nostalgia is an opinion, not a question. Stay curious."}]}],"closingNote":"LIV plays a team-based format on a separate circuit. The debate involves funding, format and eligibility. It is fine to say 'I'm still learning'."}
+```
+
+## 5. Talk Track roster at launch (18)
+
+Ten are written above (section 4). Eight more follow the same shape and are authored with the curriculum (unit-end beats are marked "unit end").
+
+| # | Id | Title | Placement | Branch |
+|---|---|---|---|---|
+| 1 | `tt-after-round` | After her round | `talk-01`, Talk tab | all |
+| 2 | `tt-bad-round` | The round that went wrong | `talk-02`, Talk tab | all |
+| 3 | `tt-final-round` | Watching the final round | `talk-03`, Talk tab | all |
+| 4 | `tt-new-driver` | The new driver | `talk-04`, Talk tab | all |
+| 5 | `tt-handicap` | Handicap talk | `talk-05`, unit end of `formats-and-handicaps` | all |
+| 6 | `tt-major-sunday` | Major Sunday | `talk-06`, Talk tab | all |
+| 7 | `tt-come-play` | Come play a round | `talk-07`, Talk tab | all |
+| 8 | `tt-scramble` | The scramble league | `rec-01`, unit end of `branch-rec-play` | `rec-play` |
+| 9 | `tt-captains-pick` | The captain's pick | `cup-05`, unit end of `team-cups` | all |
+| 10 | `tt-liv` | LIV or the tours? | `hist-07`, `liv-03` | `liv-golf` and all |
+| 11 | `tt-etiquette` | The slow group | `rule-06`, unit end of `rules-and-etiquette` | all |
+| 12 | `tt-cut-line` | Who made the cut? | `pga-03`, unit end of `tour-pga` | `pga-tour` |
+| 13 | `tt-womens-major` | A women's major weekend | `lpga-03`, unit end of `tour-lpga` | `lpga-tour` |
+| 14 | `tt-links-trip` | The links trip | `cond-01`, unit end of `courses-and-conditions` | all |
+| 15 | `tt-slow-play` | The slow-play debate | `hist-08` | all |
+| 16 | `tt-lesson-progress` | Her lesson breakthrough | `short-07`, unit end of `short-game-and-putting` | all |
+| 17 | `tt-favorite-course` | Her home course | `rec-03`, `branch-rec-play` | `rec-play` |
+| 18 | `tt-sunday-singles` | Sunday singles | `cup-04` | all |
+
+After launch: 2-4 new tracks per season, generated from the live layer templates (a week's leaderboard, a major, a cup, a ruling) and reviewed by a human editor before publishing.
+
+## 6. Asset needs (all `original-swoond`)
+
+- **Diagrams (procedural):** `golf-hole-anatomy`, `golf-hole-penalty-area-red`, `golf-hole-out-of-bounds`, `golf-bunker-loose-leaf`, `golf-fairway-divot`, `golf-relief-red-lateral`, `golf-green-cross-slope`, `golf-scorecard-columns` (more per lesson).
+- **Illustrations (original vector):** `images/golf/club-hybrid-silhouette.svg`, `images/golf/course-links-schematic.svg`, `images/golf/putter-mallet-silhouette.svg`; further club families, ball cutaways, course-type schematics (parkland, desert, heathland), putter blade, wedge grinds.
+- **Audio (original recordings or synthesis):** `audio/golf/iron-strike-pure.m4a`, `audio/golf/putt-in-cup.m4a`, `audio/golf/bunker-splash.m4a`; also thin iron, fat iron, driver strike, lip-out tick.
+- No player photos, course photography, logos or broadcast audio.
+
+## 7. Voice and safety notes
+
+- **Voice:** cheeky coach, warm, a little flirty, never condescending; jokes point at the learner's ignorance, never at the crush, beginners, high handicaps, seniors, private-club members or muni regulars.
+- **No fake expertise:** every `say-this` ends with an honest follow-up line; every `talk-track` scores curiosity above jargon, and a "cringe" reply is playful, never mean.
+- **Rules:** paraphrase the Rules of Golf and cite rule numbers in the curriculum; never copy text; label anything that changes between editions with the edition year.
+- **Facts:** time-sensitive facts (results, formats, funding, the next rules edition) are tagged `[verify at release]` in the CDS and are handled by the live layer or an authored "as of" date, never hard-coded in evergreen items.
+- **Safety:** lightning, heat, hydration, carts and injury copy is conservative and generic; the lightning scenario carries a `safetyNote`; no medical claims.
+- **Betting:** no odds, tips or promotion; skins and Nassau are explained as friendly games.
+- **Neutral politics:** the LIV lessons present both arguments and never take a side; no accusations about named individuals.

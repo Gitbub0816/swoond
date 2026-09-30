@@ -397,7 +397,7 @@ One unit per branch (contract 1.2: `layer: branch`, unit-level `branchId`). `eve
 
 ### Concept targets, personalization slots, release plan
 
-- **Concept count target:** ~150 Playbook concepts (Appendix).
+- **Concept count target:** ~120 Playbook concept ids at v1 (Appendix), growing with each unit as sub-concepts are split out (target ~150).
 - **Personalization slots:** `{{style}}`, `{{brand}}`, `{{era}}` (vintage), `{{region}}`.
 - **Release plan:**
   - **Launch (v0.1-1.0):** `silhouettes`, `fabrics`, `construction`, `fit-vocab`, `style-language`, `houses`, `calendar`, `conversation-lab`, `review-loop`; default `everyday-style`.
@@ -406,7 +406,45 @@ One unit per branch (contract 1.2: `layer: branch`, unit-level `branchId`). `eve
 
 ### Appendix: Playbook concepts (ids)
 
-<<APPENDIX>>
+silhouettes: `silhouette`, `garment-flat`, `dress-shapes`, `skirt-shapes`, `trouser-shapes`, `rise`, `top-shapes`, `outerwear-shapes`, `volume-and-proportion`.
+
+fabrics: `fiber-yarn-fabric`, `natural-fibers`, `synthetic-fibers`, `semi-synthetics`, `weave-vs-knit`, `weave-types`, `drape`, `hand-feel`, `pattern-names`, `care-labels`, `fabric-weight`.
+
+construction: `shirt-anatomy`, `necklines`, `sleeve-types`, `collar-types`, `seams-darts-hems`, `lining-interfacing`, `closures-pockets`, `quality-cues`.
+
+fit-vocab: `fit-words`, `garment-measurements`, `sizing-inconsistency`, `alterations`, `ease-and-mobility`, `inclusive-design`.
+
+style-language: `color-basics`, `texture-mixing`, `capsule-wardrobe`, `dress-codes`, `aesthetic-names`, `style-signals`, `convo-style-compliments`.
+
+houses: `fashion-house`, `creative-director`, `founding-houses`, `luxury-groups`, `italian-craft`, `american-sportswear`, `avant-garde-japan-belgium`, `emerging-designers`, `creative-director-now`.
+
+calendar: `big-four-weeks`, `fashion-seasons`, `haute-couture`, `menswear-weeks`, `show-anatomy`, `show-to-store`, `fashion-events`.
+
+eras: `era-early-century`, `era-60s-70s`, `era-80s`, `era-90s`, `era-2000s`, `era-2010s-now`.
+
+industry: `design-process`, `industry-roles`, `fast-slow-fashion`, `luxury-pricing`, `made-in-labels`, `collabs-capsules`, `fashion-media`, `trend-forecasting`.
+
+sneaker-streetwear: `streetwear-origins`, `sneaker-anatomy`, `sneaker-archetypes`, `drop-culture`, `resale-and-auth`, `hype-cycle`, `sneaker-care`.
+
+vintage-thrift: `vintage-defined`, `dating-cues`, `thrift-strategy`, `resale-channels`, `condition-repair`, `vintage-sizing`, `thrift-ethics`.
+
+sustainability: `fashion-footprint`, `fiber-tradeoffs`, `greenwashing`, `supply-chain`, `fashion-regulation`, `circular-fashion`.
+
+debates: `debate-appropriation`, `debate-representation`, `debate-dupes`, `debate-quiet-vs-logo`, `debate-trend-cycles`, `debate-carousel-ai`.
+
+branch-streetwear: `streetwear-scene`, `drop-day`, `streetwear-lineages`, `favorite-brand-profile`.
+
+branch-luxury-runway: `collection-reading`, `show-review-language`, `atelier-craft`, `favorite-brand-profile`.
+
+branch-vintage: `vintage-hunting`, `favorite-era-profile`, `convo-vintage-finds`, `rescue-and-repair`.
+
+branch-menswear-tailoring: `jacket-anatomy`, `suit-styles`, `menswear-details`, `tailoring-fit`, `tailoring-dress-codes`.
+
+season-now: `live-weekly-context`, `creative-director-now`, `live-show-explainer`, `drop-day`, `live-trend-explainer`, `fashion-regulation`.
+
+conversation-lab: `convo-style-compliments`, `style-signals`, `convo-vintage-finds`, `dating-cues`, `big-four-weeks`, `convo-fashion-week`, `drop-culture`, `convo-drop`, `sizing-inconsistency`, `convo-fit-talk`, `creative-director`, `favorite-brand-profile`, `greenwashing`, `convo-sustainability`.
+
+review-loop: `dress-shapes`, `necklines`, `collar-types`.
 
 ---
 

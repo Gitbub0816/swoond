@@ -295,7 +295,7 @@ Course version target at launch: `curriculumVersion 0.1.0` (structure + first un
 | `short-02` | Putting: line and speed | Say that every putt has a line and a speed; know a lag putt. | putting-line-speed, lag-putt, three-putt | mc, ht |
 | `short-03` | Reading a green | Read slope, fall line and speed; choose an aim point. | break, fall-line, green-speed-stimp, aim-point | SIM `golf.putting.read-the-break.v1`, bc |
 | `short-04` | Chip, pitch, flop, bump-and-run | Tell the four short shots apart. | chip, pitch, flop, bump-and-run | tm, vi |
-| `short-05` | Carry and roll | Pick a landing spot and a club so the roll does the rest. | landing-spot, carry-and-roll | SIM `golf.short-game.carry-and-roll.v1`, bc |
+| `short-05` | Carry and roll | Pick a landing spot and a club so the roll does the rest. | landing-spot, carry-and-roll, fringe | SIM `golf.short-game.carry-and-roll.v1`, bc |
 | `short-06` | Bunker shots | Explain the splash shot and why bounce helps. | bunker-shot, wedge-bounce | mc, so |
 | `short-07` | Nerves, yips and gimmes | Understand the yips and the conceded putt; know an up-and-down. | yips, gimme, up-and-down | st, ds |
 
@@ -485,7 +485,7 @@ The game: `golf-objective`, `stroke`, `round-18`, `tee-box`, `fairway`, `rough`,
 Scoring: `stroke-play`, `stroke-count`, `birdie`, `eagle-albatross`, `bogey`, `hole-in-one`, `score-to-par`, `leaderboard-reading`, `scorecard`, `gross-score`, `penalty-stroke`, `score-benchmarks`.
 Clubs and swings: `fourteen-club-limit`, `club-families`, `loft`, `club-length-distance`, `carry-distance`, `swing-phases`, `grip-stance-alignment`, `swing-path`, `clubface-angle`, `face-to-path`, `start-line`, `draw`, `fade`, `slice`, `hook`, `push-pull`, `mishits`, `shank`, `range-vs-course`, `warm-up`.
 Rules: `play-it-as-it-lies`, `loose-impediments`, `stroke-and-distance`, `provisional-ball`, `lost-ball`, `red-yellow-stakes`, `penalty-area-relief`, `free-relief`, `drop-knee-height`, `nearest-point-of-relief`, `unplayable-ball`, `bunker-rules`, `putting-green-rules`, `marking-ball`, `golf-etiquette`, `honor-system`, `ready-golf`, `pitch-mark-repair`, `rules-official`, `scorecard-signing`, `two-balls-when-unsure`.
-Short game: `short-game-share`, `putting-line-speed`, `lag-putt`, `three-putt`, `break`, `fall-line`, `green-speed-stimp`, `aim-point`, `chip`, `pitch`, `flop`, `bump-and-run`, `landing-spot`, `carry-and-roll`, `bunker-shot`, `wedge-bounce`, `yips`, `gimme`, `up-and-down`.
+Short game: `short-game-share`, `putting-line-speed`, `lag-putt`, `three-putt`, `break`, `fall-line`, `green-speed-stimp`, `aim-point`, `chip`, `pitch`, `flop`, `bump-and-run`, `landing-spot`, `carry-and-roll`, `fringe`, `bunker-shot`, `wedge-bounce`, `yips`, `gimme`, `up-and-down`.
 Management: `course-management`, `risk-reward`, `dispersion`, `play-your-miss`, `layup`, `par-5-strategy`, `pin-position`, `short-sided`, `safe-side`, `wind-effect`, `elevation-effect`, `lie-types`, `pre-shot-routine`, `course-mindset`, `convo-strategy-talk`.
 Formats and handicaps: `match-play`, `holes-up-down`, `dormie`, `match-result-notation`, `halved-hole`, `scramble`, `four-ball`, `foursomes`, `shamble`, `stableford`, `skins`, `nassau`, `handicap-index`, `whs`, `course-rating`, `slope-rating`, `course-handicap`, `net-score`, `stroke-index-allocation`, `handicap-integrity`, `posting-scores`.
 Courses: `course-types`, `links-golf`, `course-architecture`, `famous-architects`, `grass-types`, `stimpmeter`, `firm-and-fast`, `tee-markers`, `course-setup`, `weather-golf`, `altitude-distance`, `famous-holes`.

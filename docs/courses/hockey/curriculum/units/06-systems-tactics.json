@@ -372,34 +372,37 @@
             }
           },
           {
-            "id": "tac-forecheck-read-01-fb-decision",
-            "type": "decision-scenario",
+            "id": "tac-forecheck-read-01-fb-sequence",
+            "type": "sequence-order",
             "conceptIds": ["forecheck", "breakout"],
             "payload": {
-              "prompt": "You are in your defensive zone with the puck. One forechecker is attacking you, two more are covering the wings, and your teammates are open. What do you do?",
-              "scenario": "Deep forechecker closing on you fast. Winger open along the boards. Center open in the neutral zone.",
-              "options": [
+              "prompt": "Order how a defenseman breaks out against a forecheck.",
+              "items": [
                 {
-                  "id": "a",
-                  "text": "Pass to the winger along the boards to start the breakout.",
-                  "consequence": "Good choice. A wall pass move or quick flip gets the puck moving forward and lets your winger carry it out.",
-                  "isGood": true
+                  "id": "see",
+                  "text": "The defenseman reads where the forechecker is attacking from.",
+                  "why": "Quick reading sets up the response."
                 },
                 {
-                  "id": "b",
-                  "text": "Shoot it up to the center in the neutral zone immediately.",
-                  "consequence": "Risky. The forechecker may intercept. Better to make a short pass first and have your winger carry it."
+                  "id": "move",
+                  "text": "He makes a quick decision: wall pass or short pass to a nearby teammate.",
+                  "why": "Speed of decision beats pressure."
                 },
                 {
-                  "id": "c",
-                  "text": "Skate backward and wait for the forechecker to get closer.",
-                  "consequence": "Bad idea. You lose space and time. A quick pass or move gets the puck away from pressure."
+                  "id": "execute",
+                  "text": "A quick, accurate pass beats the forechecker to a moving player.",
+                  "why": "Execution under pressure is key."
+                },
+                {
+                  "id": "flow",
+                  "text": "The receiving player carries the puck out with a clean breakout.",
+                  "why": "Possession exits the zone and builds the offense."
                 }
               ],
               "explanation": {
-                "correct": "Right. Short passes under pressure are safer than long passes. Get the puck to a moving player.",
-                "incorrect": "A breakout under pressure needs a quick decision. Passing to an open player close to you is faster than a long pass.",
-                "sayThisLine": "Under pressure, move it quick and short: to a teammate close by."
+                "correct": "Perfect. That is how a breakout beats forecheck pressure.",
+                "incorrect": "A breakout under pressure needs fast reads and quick, short passes to teammates.",
+                "sayThisLine": "Under pressure, move it fast: read, decide, pass, exit."
               }
             }
           },
@@ -1119,7 +1122,7 @@
               "explanation": {
                 "correct": "Right. The 1-3-1 creates the most one-timer opportunities because of the middle spacing.",
                 "incorrect": "The 1-3-1 is a one-timer machine. The three-forward middle enables quick, hard shots.",
-                "sayThisLine": "1-3-1 = one-timer city."
+                "sayThisLine": "The 1-3-1 formation creates one-timer chances."
               }
             }
           },
@@ -1196,37 +1199,40 @@
             "conceptIds": ["pp-formations", "pk-formations"],
             "payload": {
               "simulationId": "hockey.special-teams.power-play-spacing.v1",
-              "prompt": "You are on the power play against a box penalty-kill formation. Find the passing lane and score.",
-              "nativeFallback": {
-                "id": "tac-pp-seams-01-fb-decision",
-                "type": "decision-scenario",
-                "payload": {
-                  "prompt": "The penalty kill is in a box: four players forming a square. Your power play is in a 1-3-1. Where is the open passing lane?",
-                  "scenario": "Defenseman at the point with the puck. Three forwards in the middle. One forward at the net. Box is tight. One seam is visible.",
-                  "options": [
-                    {
-                      "id": "a",
-                      "text": "Between the left and right forwards in the middle, a passing lane to the net.",
-                      "consequence": "Good read. That seam is open; one-timer chance at the net.",
-                      "isGood": true
-                    },
-                    {
-                      "id": "b",
-                      "text": "Around the boards to the winger.",
-                      "consequence": "That side is covered by the box. Better to find the middle seam."
-                    },
-                    {
-                      "id": "c",
-                      "text": "Shoot from the point right through the box.",
-                      "consequence": "The box is designed to block that. Pass first, shoot second."
-                    }
-                  ],
-                  "explanation": {
-                    "correct": "Right. The box has seams; find them with quick passes.",
-                    "incorrect": "A box kill has openings. The middle seams are the target for a 1-3-1.",
-                    "sayThisLine": "Box has seams. Find them, pass, one-timer."
-                  }
+              "simulationVersion": "1.0.0",
+              "difficulty": 2,
+              "configuration": {}
+            }
+          },
+          {
+            "id": "tac-pp-seams-01-fb-decision",
+            "type": "decision-scenario",
+            "conceptIds": ["pp-formations", "pk-formations"],
+            "payload": {
+              "prompt": "The penalty kill is in a box: four players forming a square. Your power play is in a 1-3-1. Where is the open passing lane?",
+              "scenario": "Defenseman at the point with the puck. Three forwards in the middle. One forward at the net. Box is tight. One seam is visible.",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Between the left and right forwards in the middle, a passing lane to the net.",
+                  "consequence": "Good read. That seam is open; one-timer chance at the net.",
+                  "isGood": true
+                },
+                {
+                  "id": "b",
+                  "text": "Around the boards to the winger.",
+                  "consequence": "That side is covered by the box. Better to find the middle seam."
+                },
+                {
+                  "id": "c",
+                  "text": "Shoot from the point right through the box.",
+                  "consequence": "The box is designed to block that. Pass first, shoot second."
                 }
+              ],
+              "explanation": {
+                "correct": "Right. The box has seams; find them with quick passes.",
+                "incorrect": "A box kill has openings. The middle seams are the target for a 1-3-1.",
+                "sayThisLine": "Box has seams. Find them, pass, one-timer."
               }
             }
           },
@@ -1367,35 +1373,38 @@
             "conceptIds": ["dzone-coverage", "pk-formations"],
             "payload": {
               "simulationId": "hockey.tactics.dzone-coverage.v1",
-              "prompt": "You are on defense. Assign coverage in the zone. Mark the opponent's best players and control the scoring areas.",
-              "nativeFallback": {
-                "id": "tac-dzone-coverage-01-fb-decision",
-                "type": "decision-scenario",
-                "payload": {
-                  "prompt": "Three forwards are in your defensive zone attacking the net. One is at the point, one in the slot, one on the wing. You have three defensemen. How do you cover?",
-                  "scenario": "Opponent has possession at the top. One forward in slot is dangerous. One on wing. One at point shooting from distance.",
-                  "options": [
-                    {
-                      "id": "a",
-                      "text": "One defender on the slot (most dangerous), one on the wing, one watches the point.",
-                      "consequence": "Perfect. Mark the slot player tight, cover the wings, watch perimeter threats.",
-                      "isGood": true
-                    },
-                    {
-                      "id": "b",
-                      "text": "All three defenders stay deep by the goal."
-                    },
-                    {
-                      "id": "c",
-                      "text": "Two on the point, one in the slot."
-                    }
-                  ],
-                  "explanation": {
-                    "correct": "Right. Cover the danger areas. Slot is highest risk.",
-                    "incorrect": "Coverage priorities: slot player first, wings second, point third.",
-                    "sayThisLine": "Cover the slot tight, watch the wings, eyes on the point."
-                  }
+              "simulationVersion": "1.0.0",
+              "difficulty": 2,
+              "configuration": {}
+            }
+          },
+          {
+            "id": "tac-dzone-coverage-01-fb-decision",
+            "type": "decision-scenario",
+            "conceptIds": ["dzone-coverage", "pk-formations"],
+            "payload": {
+              "prompt": "Three forwards are in your defensive zone attacking the net. One is at the point, one in the slot, one on the wing. You have three defensemen. How do you cover?",
+              "scenario": "Opponent has possession at the top. One forward in slot is dangerous. One on wing. One at point shooting from distance.",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "One defender on the slot (most dangerous), one on the wing, one watches the point.",
+                  "consequence": "Perfect. Mark the slot player tight, cover the wings, watch perimeter threats.",
+                  "isGood": true
+                },
+                {
+                  "id": "b",
+                  "text": "All three defenders stay deep by the goal."
+                },
+                {
+                  "id": "c",
+                  "text": "Two on the point, one in the slot."
                 }
+              ],
+              "explanation": {
+                "correct": "Right. Cover the danger areas. Slot is highest risk.",
+                "incorrect": "Coverage priorities: slot player first, wings second, point third.",
+                "sayThisLine": "Cover the slot tight, watch the wings, eyes on the point."
               }
             }
           },

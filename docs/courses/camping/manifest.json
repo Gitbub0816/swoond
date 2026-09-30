@@ -1,0 +1,276 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "camping",
+  "displayName": "Camping",
+  "category": "Outdoors > Camping",
+  "family": "Outdoors & Adventure",
+  "status": "cds-draft",
+  "wave": 2,
+  "simulationPrefix": "camping",
+  "branches": [
+    {
+      "id": "car-camping",
+      "displayName": "Car camping",
+      "description": "Developed campgrounds, hookups, kids and dogs, comfort gear and rain days (default).",
+      "personalizationDimension": "style"
+    },
+    {
+      "id": "backpacking",
+      "displayName": "Overnight backpacking",
+      "description": "Carrying the camp: permits, designated sites, dry camps, canisters and breaking camp.",
+      "personalizationDimension": "style"
+    }
+  ],
+  "curriculumVersion": "0.1.0",
+  "foundationalModules": [
+    {
+      "id": "camp-basics",
+      "title": "Camping basics",
+      "summary": "What camping is, how a campsite works, and the trip from arrival to pack-up."
+    },
+    {
+      "id": "shelter-and-sleep",
+      "title": "Shelter and sleep systems",
+      "summary": "Tents, pads, bags and the science of staying warm, dry and comfortable overnight."
+    },
+    {
+      "id": "campsite-selection",
+      "title": "Choosing a campsite",
+      "summary": "Reading the ground, trees, water and weather before you unpack."
+    },
+    {
+      "id": "camp-kitchen-and-water",
+      "title": "Camp kitchen and water",
+      "summary": "Stoves, food planning, cold storage, safe water and clean dishes."
+    }
+  ],
+  "interactionTypes": [
+    "binary-call",
+    "decision-scenario",
+    "estimate-slider",
+    "fill-the-gap",
+    "hotspot-tap",
+    "multiple-choice",
+    "say-this",
+    "sequence-order",
+    "talk-track",
+    "term-match",
+    "visual-id"
+  ],
+  "unitySimulations": [],
+  "nativeExercises": [
+    {
+      "exerciseType": "multiple-choice",
+      "specPath": "docs/courses/camping/exercises.md",
+      "estimatedCount": 200
+    },
+    {
+      "exerciseType": "binary-call",
+      "specPath": "docs/courses/camping/exercises.md",
+      "estimatedCount": 50
+    },
+    {
+      "exerciseType": "term-match",
+      "specPath": "docs/courses/camping/exercises.md",
+      "estimatedCount": 36
+    },
+    {
+      "exerciseType": "sequence-order",
+      "specPath": "docs/courses/camping/exercises.md",
+      "estimatedCount": 50
+    },
+    {
+      "exerciseType": "visual-id",
+      "specPath": "docs/courses/camping/exercises.md",
+      "estimatedCount": 24
+    },
+    {
+      "exerciseType": "decision-scenario",
+      "specPath": "docs/courses/camping/exercises.md",
+      "estimatedCount": 150
+    },
+    {
+      "exerciseType": "talk-track",
+      "specPath": "docs/courses/camping/exercises.md",
+      "estimatedCount": 24
+    },
+    {
+      "exerciseType": "say-this",
+      "specPath": "docs/courses/camping/exercises.md",
+      "estimatedCount": 80
+    },
+    {
+      "exerciseType": "fill-the-gap",
+      "specPath": "docs/courses/camping/exercises.md",
+      "estimatedCount": 33
+    },
+    {
+      "exerciseType": "estimate-slider",
+      "specPath": "docs/courses/camping/exercises.md",
+      "estimatedCount": 33
+    },
+    {
+      "exerciseType": "hotspot-tap",
+      "specPath": "docs/courses/camping/exercises.md",
+      "estimatedCount": 30
+    }
+  ],
+  "dynamicData": [
+    {
+      "kind": "weather",
+      "providerCandidates": [
+        "NWS API (api.weather.gov)",
+        "Open-Meteo or commercial forecast (secondary)"
+      ],
+      "refreshFrequency": "hourly",
+      "notes": "Overnight lows, wind and storm timing by grid point; custom User-Agent required by NWS. See live-data.md."
+    },
+    {
+      "kind": "alerts",
+      "providerCandidates": [
+        "NWS alerts",
+        "NPS API alerts",
+        "AirNow"
+      ],
+      "refreshFrequency": "hourly",
+      "notes": "Red flag, flood, heat and air quality alerts; show source and age."
+    },
+    {
+      "kind": "closures",
+      "providerCandidates": [
+        "NPS API (alerts, campgrounds)",
+        "USFS and BLM alert pages (link)",
+        "NIFC and InciWeb"
+      ],
+      "refreshFrequency": "daily",
+      "notes": "Campground closures, bear activity, road and water status; hourly in fire season; link to the official page."
+    },
+    {
+      "kind": "regulations",
+      "providerCandidates": [
+        "Agency fire restriction pages (link-first)",
+        "State fire agency pages (link)"
+      ],
+      "refreshFrequency": "daily",
+      "notes": "Fire restriction stages and bans differ by agency and area; no unified national feed is assumed; link only, never invent a stage."
+    },
+    {
+      "kind": "conditions",
+      "providerCandidates": [
+        "NIFC Open Data",
+        "NRCS SNOTEL (AWDB REST)",
+        "USGS Water Data OGC API",
+        "AirNow"
+      ],
+      "refreshFrequency": "daily",
+      "notes": "Fire perimeters, snowpack, streamflow, smoke. USGS legacy WaterServices retires Q1 2027: use the OGC API."
+    },
+    {
+      "kind": "events",
+      "providerCandidates": [
+        "On-device booking-window rule",
+        "Swoon'd editorial calendar",
+        "Agency pages (links)"
+      ],
+      "refreshFrequency": "seasonal",
+      "notes": "Rolling-window dates computed from arrival date; permit-lottery windows, meteor showers and dark-sky dates authored with lastVerified. Recreation.gov availability is deep-link only."
+    },
+    {
+      "kind": "news",
+      "providerCandidates": [
+        "Agency press-release RSS (NPS, USFS)",
+        "Licensed news API (TBD, DECISIONS Q-3)"
+      ],
+      "refreshFrequency": "daily",
+      "notes": "Link-only at launch; explain in our own words."
+    }
+  ],
+  "editorial": {
+    "approach": "explain-and-link",
+    "sources": [
+      "Agency alerts and press releases (NPS, USFS, BLM)",
+      "NWS forecast discussions (linked)",
+      "Recreation.gov facility pages (linked)",
+      "Outdoor publications and camp reports (headline and link only)"
+    ],
+    "topicsWeExplain": [
+      "why a campground is closed or a fire ban was issued",
+      "what a red flag warning or Stage 2 restriction means for tonight",
+      "why permit lotteries and quotas exist",
+      "why bear-resistant food storage is required in some places",
+      "what shoulder season means for a campground that is open"
+    ],
+    "copyrightPolicy": "Publisher and camp-report text is never copied; Swoon'd writes its own explanation and links to the original. Agency media is linked with credit, not assumed redistributable."
+  },
+  "personalizationDimensions": [
+    "region",
+    "destination",
+    "equipment",
+    "style",
+    "skill-level"
+  ],
+  "conversationScenarios": {
+    "count": 24,
+    "path": "docs/courses/camping/curriculum/course.json"
+  },
+  "masteryModel": {
+    "type": "concept-mastery-v1",
+    "passThreshold": 0.8,
+    "usefulCompetenceStatement": "Can follow her camp talk, sanity-check a night out for site, warmth, food storage, fire rules and water, plan or book a site without bluffing, and ask a real follow-up, without pretending to be an expert or a safety authority."
+  },
+  "licensingConstraints": [
+    {
+      "area": "imagery",
+      "constraint": "Original illustrations and procedural diagrams only at launch (license id original-swoond); agency photos only after per-image credit review; no Recreation.gov, AllTrails, Hipcamp, The Dyrt, KOA or gear-brand imagery."
+    },
+    {
+      "area": "logos-trademarks",
+      "constraint": "Brand and agency names as text only; Leave No Trace credited descriptively; Smokey Bear text mention only, no artwork or slogan reproduction."
+    },
+    {
+      "area": "data-provider-terms",
+      "constraint": "NWS custom User-Agent; NPS API key and 1,000 requests/hour default; RIDB key and 50 requests/minute; AirNow attribution; NIFC and USGS credit. Recreation.gov availability and booking are not a public API: deep-link only, no scraping; no unofficial or reverse-engineered APIs for any camping platform."
+    },
+    {
+      "area": "article-text",
+      "constraint": "Never copy publisher, camp-report or outdoor-publication text; explain in our own words and link."
+    },
+    {
+      "area": "audio",
+      "constraint": "No audio at launch; any owl, coyote or weather audio requires original or licensed recordings with a license id."
+    },
+    {
+      "area": "lyrics",
+      "constraint": "No campfire song lyrics; songs are named as facts only."
+    },
+    {
+      "area": "other",
+      "constraint": "No fabricated regulations: fire restrictions, food-storage orders and fees are shown only from a cited, dated source or as a link."
+    }
+  ],
+  "safetyConstraints": [
+    "Swoon'd teaches appreciation and understanding, not safety training; it is no substitute for wilderness first aid, fire-safety or food-safety training, or local ranger guidance.",
+    "A qualified safety review (for example a Wilderness First Responder plus a Leave No Trace trainer, with ranger input on fire and food-storage rules) is a release gate; no safety-critical lesson ships before sign-off.",
+    "Every decision-scenario carries a safetyNote and never asserts that a site, fire, water source, food or condition is safe; the conservative option is always the best answer when risk rises.",
+    "Absolute rules: never burn fuel (stove, lantern, heater, charcoal or warm coals) in a tent, vehicle or enclosed shelter; never use accelerants on a fire; never leave a fire unattended; never feed wildlife; never leave children or pets in a vehicle.",
+    "Rules that vary by place (fire restriction stages, food storage, canisters, firewood, setbacks) are taught as principles plus follow the posted local rule; Swoon'd never asserts a stage or order it cannot cite.",
+    "No gamified pressure on hazards: no timers, streak bonuses or speed rewards on fire, carbon monoxide, wildlife, water, cold, heat, lightning, flood or evacuation scenarios; no nights-camped, sites-visited or campfire badges or leaderboards.",
+    "Water and food guidance follows CDC and USDA published methods with source and date; no claim that treated water or held food is guaranteed safe.",
+    "Wildlife guidance is principles only (distance, storage, never feed) and defers to local rangers; bear spray is awareness only; no medical procedures beyond recognition and get warm, dry and help.",
+    "Live conditions are informational only; always show source and age and link to the land manager; generated live scenarios pass a safety linter."
+  ],
+  "relatedCourses": [
+    {
+      "courseId": "hiking",
+      "relationship": "adjacent"
+    },
+    {
+      "courseId": "cooking",
+      "relationship": "adjacent"
+    },
+    {
+      "courseId": "climbing",
+      "relationship": "adjacent"
+    }
+  ]
+}
