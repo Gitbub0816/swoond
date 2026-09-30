@@ -1,5 +1,5 @@
 {
-  "contractVersion": "1.1.0",
+  "contractVersion": "1.2.0",
   "courseId": "basketball",
   "unit": {
     "id": "branch-wnba",
@@ -23,14 +23,14 @@
             "payload": {
               "prompt": "How long is a WNBA season compared to the NBA?",
               "options": [
-                {"id": "correct", "text": "44 games in 2026, growing to 50-52 in later years; NBA has 82 games."},
+                {"id": "correct", "text": "44 games in 2026, with the new CBA lengthening it later; the NBA plays 82."},
                 {"id": "dist-1", "text": "WNBA plays 82 games like the NBA."},
                 {"id": "dist-2", "text": "WNBA seasons are only 30 games, much shorter."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. The WNBA plays 44 games in 2026 (up from 40), and the 2026 CBA phases in 50 games by 2027-28 and 52 by 2029-32.",
-                "incorrect": "Not quite. The WNBA plays 44 games in 2026 as part of the new CBA growth schedule."
+                "correct": "Right. The WNBA plays 44 games in 2026, about half an NBA season, and the new CBA phases the schedule up to 50 and then 52 games in later seasons.",
+                "incorrect": "Not quite. The WNBA plays 44 games in 2026, about half of the NBA's 82. The new CBA lengthens the schedule in later seasons."
               }
             }
           },
@@ -47,8 +47,8 @@
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. The WNBA uses best-of-three to start (quick eliminations), best-of-five in the middle rounds, then best-of-seven Finals.",
-                "incorrect": "Not quite. The WNBA uses best-of-three first round, best-of-five next, then best-of-seven Finals."
+                "correct": "Right. The 2026 format starts with best-of-three series, which makes the first round fast and risky, then best-of-five, then a best-of-seven Finals. Formats change, so check the current season.",
+                "incorrect": "Not quite. The 2026 WNBA playoffs start with best-of-three series, then best-of-five, and end with a best-of-seven Finals. It is not the NBA's best-of-seven in every round."
               }
             }
           },
@@ -57,16 +57,16 @@
             "type": "sequence-order",
             "conceptIds": ["wnba-structure"],
             "payload": {
-              "prompt": "Order the WNBA season by month (2026).",
+              "prompt": "Put the WNBA year in order, earliest first.",
               "items": [
-                {"id": "item-1", "text": "Regular season (May–September)"},
-                {"id": "item-2", "text": "Commissioner's Cup group play (June–July)"},
-                {"id": "item-3", "text": "Playoffs begin (September 27)"},
-                {"id": "item-4", "text": "Finals (October 17+)"}
+                {"id": "item-1", "text": "Opening weeks of the regular season (May)", "why": "The season tips off in May."},
+                {"id": "item-2", "text": "Commissioner's Cup games and final (June into July)", "why": "The Cup is a midseason event."},
+                {"id": "item-3", "text": "Playoffs begin (late September)", "why": "The regular season ends and the top teams advance."},
+                {"id": "item-4", "text": "WNBA Finals (October)", "why": "The champion is crowned in October."}
               ],
               "explanation": {
-                "correct": "The season flows: regular play, mid-season Cup, then playoffs.",
-                "incorrect": "The WNBA runs May–September for regular season, with Commissioner's Cup mid-season and playoffs in late September."
+                "correct": "Right. The WNBA starts in May, plays its Commissioner's Cup around midseason, then runs the playoffs from late September into October.",
+                "incorrect": "Not quite. The order is the May tip-off, the Commissioner's Cup in June and July, the playoffs in late September, then the Finals in October."
               }
             }
           },
@@ -75,14 +75,15 @@
             "type": "fill-the-gap",
             "conceptIds": ["commissioners-cup"],
             "payload": {
-              "prompt": "The Commissioner's Cup is a mid-season WNBA tournament like the {{blank}} in the NBA.",
-              "template": "The Commissioner's Cup is a mid-season WNBA tournament like the {{gap1}} in the NBA.",
+              "prompt": "Fill in how the Commissioner's Cup works.",
+              "template": "The Commissioner's Cup is played {{when}}, and its group games {{count}} toward the regular-season record.",
               "gaps": [
-                {"id": "gap1", "options": ["Cup", "in-season tournament", "playoffs"], "correct": "Cup"}
+                {"id": "when", "options": ["around midseason", "after the Finals", "before training camp"], "correct": "around midseason"},
+                {"id": "count", "options": ["also count", "do not count", "count double"], "correct": "also count"}
               ],
               "explanation": {
-                "correct": "The Cup is the WNBA's in-season tournament, matching the NBA Cup format.",
-                "incorrect": "The Commissioner's Cup mirrors the NBA Cup, a mid-season tournament."
+                "correct": "Right. The Cup is the WNBA's in-season competition, a cousin of the NBA Cup. Its group games count in the standings, and the final is an extra game for the trophy and prize money.",
+                "incorrect": "Not quite. The Commissioner's Cup runs around midseason, and its group games also count in the regular-season standings. Only the final is an extra game."
               }
             }
           },
@@ -100,9 +101,9 @@
                 {"id": "correct", "text": "She is comparing the WNBA's shorter schedule (44 games in 2026) to the NBA's 82 games.", "isCorrect": true},
                 {"id": "dist-1", "text": "The WNBA does not have playoffs.", "isCorrect": false},
                 {"id": "dist-2", "text": "The WNBA season is only one month long.", "isCorrect": false},
-                {"id": "dist-3", "text": "WNBA games are shorter than NBA games.", "isCorrect": false}
+                {"id": "dist-3", "text": "Her team only plays on weekends.", "isCorrect": false}
               ],
-              "translation": "WNBA plays 44 games in 2026 vs NBA's 82. The CBA grows it to 50, then 52. Shorter by design.",
+              "translation": "She means the WNBA plays 44 games in 2026 compared with the NBA's 82. The new CBA lengthens the schedule in later seasons.",
               "followUps": [
                 {
                   "line": "Yeah, but they play such intense basketball. Quality over quantity.",
