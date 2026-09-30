@@ -746,3 +746,181 @@ Each sample lists its planned lesson id.
 }
 ```
 
+## 3. Playbook terms (80)
+
+Definition in plain English, then an example line in an enthusiast's voice (all Swoon'd-written). Terms map to concept ids in CDS section 11 where one exists.
+
+| # | Term | Definition | Example line |
+|---|---|---|---|
+| 1 | TBR | To-be-read: books you plan to read, or the pile of them. | "My TBR is a tower and I keep buying more." |
+| 2 | DNF | Did not finish; you quit a book. | "DNF at 40 percent, no regrets." |
+| 3 | ARC | Advance reader copy, sent before publication. | "I got an ARC of her new one, don't tell anyone." |
+| 4 | Reading slump | A stretch where nothing appeals. | "I'm in a slump, everything feels like homework." |
+| 5 | Book hangover | Not being able to start a new book after a great one. | "Book hangover. I'm just staring at the cover." |
+| 6 | Mood reader | Picks books by feeling, not schedule. | "I'm a mood reader, I can't plan my TBR." |
+| 7 | Comfort read | A book you return to for warmth. | "It's my comfort read for rainy weeks." |
+| 8 | Reread | Reading a book again. | "I reread it every autumn." |
+| 9 | Auto-buy author | An author you buy without reading the description. | "She's an auto-buy for me." |
+| 10 | Standalone | A book that is complete on its own. | "Thank goodness, it's a standalone." |
+| 11 | Duology | A two-book series. | "It's a duology, so no long wait." |
+| 12 | Doorstop | A very thick book. | "It's a doorstop but worth it." |
+| 13 | Hardcover | Rigid-boarded book, often with a dust jacket. | "I own the hardcover, it's gorgeous." |
+| 14 | Trade paperback | Larger soft-cover format. | "The trade paperback is the one I read on the train." |
+| 15 | Mass-market paperback | Small, cheap paperback. | "I found a mass-market copy at a used bookshop." |
+| 16 | Dust jacket | Removable paper cover on a hardcover. | "I take the dust jacket off to read." |
+| 17 | Spine | The narrow edge facing out on a shelf. | "I organise my shelves by spine colour." |
+| 18 | Colophon | Publication and production info page. | "There's a note about the typeface in the colophon." |
+| 19 | Epigraph | A short quotation at the start of a book or chapter. | "The epigraph sets the mood." |
+| 20 | Edition | A version of a book, such as a new cover or translation. | "Which edition did you get?" |
+| 21 | Printing | One print run of an edition. | "First printing, so it's a little collectible." |
+| 22 | ISBN | The number identifying an edition. | "Search the ISBN to get the right one." |
+| 23 | Novella | A short novel, roughly 17,500 to 40,000 words. | "It's a novella, I finished it in an evening." |
+| 24 | Omnibus | Several books in one volume. | "I got the omnibus of the first three." |
+| 25 | Plot | What happens, in order. | "The plot's simple, the writing is what wins." |
+| 26 | Theme | What the book is about underneath. | "The theme is grief, really." |
+| 27 | Character arc | How a character changes. | "Her arc from timid to fierce is perfect." |
+| 28 | Round vs flat character | A layered character vs a one-note one. | "The side characters felt flat." |
+| 29 | Point of view (POV) | Whose perspective tells the story. | "Dual POV keeps it fresh." |
+| 30 | Close third | Third person that stays inside one head. | "Close third, so we feel everything with her." |
+| 31 | Omniscient narrator | A narrator who knows everything. | "The omniscient narrator gives the game away." |
+| 32 | Unreliable narrator | A narrator you cannot fully trust. | "That narrator is so unreliable." |
+| 33 | Dual timeline | Two time periods told in alternation. | "The dual timeline works, both halves are good." |
+| 34 | Frame narrative | A story wrapped around another story. | "It's a frame story, someone finds a diary." |
+| 35 | Nonlinear | Told out of chronological order. | "Nonlinear, so keep a mental map." |
+| 36 | Worldbuilding | Creating a world's rules and culture. | "The worldbuilding is unreal." |
+| 37 | Pacing | The speed of the story. | "The pacing dragged in the middle." |
+| 38 | Cliffhanger | A chapter or book ending on unresolved tension. | "That chapter ended on a cliffhanger." |
+| 39 | Page-turner | A book you cannot put down. | "Total page-turner, finished it in one day." |
+| 40 | Show, don't tell | Convey through scene and action rather than explanation. | "It shows her fear, it never just says it." |
+| 41 | Prose | The style of the sentences. | "The prose is gorgeous, I highlighted half of it." |
+| 42 | Trope | A recurring setup readers seek out. | "Fake dating is my favourite trope." |
+| 43 | Cliché | A trope worn out through lazy use. | "That twist is a cliché." |
+| 44 | Enemies-to-lovers | Rivals fall in love. | "I'll read any enemies-to-lovers." |
+| 45 | Slow burn | Attraction that builds gradually. | "It's such a slow burn, I was screaming." |
+| 46 | HEA / HFN | Happily ever after / happy for now; the romance ending promise. | "It has an HEA, thank goodness." |
+| 47 | Heat level | How explicit the romance content is. | "Check the heat level before you gift it." |
+| 48 | Closed door / open door | Whether intimate scenes happen off or on the page. | "It's closed door, so cozy." |
+| 49 | Romantasy | Romance and fantasy where the love story is central. | "Romantasy is all I read this summer." |
+| 50 | Cozy fantasy | Low-stakes, comforting fantasy. | "Cozy fantasy for the win." |
+| 51 | Grimdark | Bleak, morally grey fantasy. | "It's grimdark, so brace yourself." |
+| 52 | Hard vs soft magic | Rules-based magic vs mysterious magic. | "Hard magic, with costs and rules." |
+| 53 | Space opera | Large-scale adventure set in space. | "It's a sprawling space opera." |
+| 54 | Cyberpunk | Near-future tech and corporate dystopia. | "Classic cyberpunk vibes." |
+| 55 | Whodunit | A mystery about who committed the crime. | "A proper whodunit, with clues." |
+| 56 | Red herring | A clue that misleads. | "That was a red herring, I fell for it." |
+| 57 | Cozy mystery | Gentle mystery with little on-page violence. | "A cozy mystery with a cat." |
+| 58 | Noir | Dark, cynical crime storytelling. | "It's pure noir." |
+| 59 | Psychological thriller | Suspense driven by minds and secrets. | "The psychological thriller kept me up." |
+| 60 | Memoir | A true story of the author's own life. | "The memoir wrecked me." |
+| 61 | Narrative nonfiction | True stories told with novelistic craft. | "It reads like a novel but it's all true." |
+| 62 | Self-help | Books promising personal improvement. | "I keep buying self-help and reading half." |
+| 63 | Autofiction | Fiction built from the author's life. | "Autofiction, so it's hard to tell what's real." |
+| 64 | Literary fiction | Fiction valuing style and depth over plot. | "It's very literary, so slower." |
+| 65 | Commercial fiction | Fiction aimed at a broad audience. | "Commercial fiction, and unapologetically fun." |
+| 66 | Young adult (YA) | Books for teens, read by all ages. | "YA can be devastating." |
+| 67 | Middle grade | Books for roughly 8 to 12. | "My favourite middle grade holds up." |
+| 68 | Comp titles | "X meets Y" comparison titles. | "It's Pride and Prejudice meets a heist." |
+| 69 | Backlist | Older titles that keep selling. | "It's backlist, but everyone's talking about it now." |
+| 70 | Frontlist | New releases. | "I only read frontlist when it's hyped." |
+| 71 | Imprint | A publisher's brand label. | "That imprint has great taste." |
+| 72 | Advance | Money paid to an author up front. | "Her advance was huge, apparently." |
+| 73 | Longlist / shortlist | Successive cuts in a prize process. | "It made the longlist but not the shortlist." |
+| 74 | Booker Prize | A leading UK-linked prize for a novel in English. | "The Booker shortlist is my summer reading." |
+| 75 | Pulitzer Prize | A US prize in journalism and the arts, including fiction. | "It won the Pulitzer, so I'm nervous." |
+| 76 | Hugo Award | A fan-voted prize for science fiction and fantasy. | "It's a Hugo winner." |
+| 77 | BookTok | Book-focused TikTok community. | "I only bought it because of BookTok." |
+| 78 | Buddy read | Reading the same book together. | "Let's do a buddy read." |
+| 79 | Special edition | A collectible printing with extras. | "I bought the special edition for the edges." |
+| 80 | Sprayed edges | Coloured page edges. | "The sprayed edges are so pretty." |
+
+## 4. Talk Track scenarios (10 fully written)
+
+Each: setting, her line, meaning, and three replies (good / meh / cringe) with coach notes. Delta values sit in the range -20 to +30. These become `talkTracks[]` payloads later.
+
+### 4.1 What are you reading? (`tt-what-reading`, lesson `bt-01`)
+- **Setting:** She is reading in a cafe.
+- **She says:** "Sorry, I'm in the middle of a chapter, it's so good."
+- **Meaning:** She is absorbed and happy; a genuine invitation to ask.
+- **Good (+22):** "Don't apologise. What's it about?" Coach: warm, gives her the floor.
+- **Meh (0):** "Oh, what is it?" Coach: fine; add a little warmth.
+- **Cringe (-15):** "Isn't reading kind of slow?" Coach: dismissive; never mock reading speed.
+
+### 4.2 Her favourite book (`tt-favorite-book`, lesson `bt-02`)
+- **Setting:** First-date chat.
+- **She says:** "If you make me pick a favourite book I will have a crisis."
+- **Meaning:** She has many; she is joking about the impossible question.
+- **Good (+22):** "Okay, top three then? Or the one you'd hand a stranger." Coach: lowers the pressure and stays curious.
+- **Meh (+2):** "So what's the best one?" Coach: repeats the crisis.
+- **Cringe (-12):** "I only read good books." Coach: snobbery.
+
+### 4.3 Haven't read it (`tt-not-read`, lesson `bt-03`)
+- **She says:** "You haven't read it?! Okay we're fixing that."
+- **Meaning:** Playful; she wants to share.
+- **Good (+25):** "Guilty. Where should I start, and what should I notice?" Coach: honest and curious.
+- **Meh (+3):** "Maybe someday." Coach: polite but closes it.
+- **Cringe (-15):** "I saw the movie, same thing." Coach: reveals you missed the point.
+
+### 4.4 Different taste (`tt-different-taste`, lesson `bt-04`)
+- **She says:** "You didn't like it?" (a little hurt)
+- **Meaning:** She wants you to enjoy what she loves.
+- **Good (+24):** "The middle wasn't for me, but I see why you love it. What got you?" Coach: honest, kind, specific.
+- **Meh (0):** "It was okay." Coach: vague.
+- **Cringe (-18):** "It's objectively bad." Coach: no one wins that argument.
+
+### 4.5 The DNF (`tt-the-dnf`, lesson `dc-01`)
+- **She says:** "I gave up on the book everyone loves. Am I broken?"
+- **Meaning:** She wants reassurance.
+- **Good (+25):** "Not broken. What lost you? I'm curious." Coach: validates and asks.
+- **Meh (+5):** "You should try again later." Coach: pushy.
+- **Cringe (-15):** "You have to finish it." Coach: ignores her call.
+
+### 4.6 Book club night (`tt-book-club`, lesson `bt-05`)
+- **She says:** "We're doing my pick tonight. Please be nice about it."
+- **Meaning:** She is nervous; the book matters to her.
+- **Good (+22):** "Always. Any question you want me to try to answer?" Coach: supportive and engaged.
+- **Meh (+2):** "It'll be fine." Coach: vague.
+- **Cringe (-12):** "I skimmed the Wikipedia page." Coach: skimming is honest but tell her warmly.
+
+### 4.7 The adaptation (`tt-adaptation`, lesson `sa-03`)
+- **She says:** "They changed the ending. Ugh."
+- **Meaning:** She is disappointed.
+- **Good (+22):** "What was the ending in the book? I'd love to hear." Coach: lets her share.
+- **Meh (+2):** "Adaptations always change things." Coach: true but flat.
+- **Cringe (-15):** "Better than the book." Coach: dismissive.
+
+### 4.8 The gift (`tt-the-gift`, lesson `bt-07`)
+- **She says:** "You bought me a book?" (she opens it)
+- **Meaning:** Surprised; the pick reveals whether you noticed her taste.
+- **Good (+25):** "I asked a bookseller what fans of your favourites love. Hope it's a fit; receipt's inside." Coach: thoughtful and low-pressure.
+- **Meh (+3):** "It was on sale." Coach: undersells it.
+- **Cringe (-15):** "It's the one everyone is reading." Coach: not personal.
+
+### 4.9 The audiobook question (`tt-audiobook`, lesson `dc-02`)
+- **She says:** "I mostly listen to books on my commute."
+- **Meaning:** She reads by audio.
+- **Good (+22):** "Nice. What's the best narrator you've heard?" Coach: audiobooks count, and narrators matter.
+- **Meh (0):** "Does that count as reading?" Coach: reopens a tired debate.
+- **Cringe (-18):** "That's cheating." Coach: judgmental.
+
+### 4.10 The long wait (`tt-long-wait`, lesson `sa-02`)
+- **She says:** "The next one isn't out until 2028. I might die."
+- **Meaning:** Playful series grief.
+- **Good (+22):** "Do you reread the earlier ones while you wait?" Coach: shows you get the ritual.
+- **Meh (+2):** "That's a long time." Coach: agreeable but flat.
+- **Cringe (-12):** "Why not read something else?" Coach: misses the point.
+
+## 5. Talk Track roster at launch (20)
+`tt-what-reading`, `tt-favorite-book`, `tt-not-read`, `tt-different-taste`, `tt-the-dnf`, `tt-book-club`, `tt-adaptation`, `tt-the-gift`, `tt-audiobook`, `tt-long-wait`, `tt-bookstore-date`, `tt-tbr-tower`, `tt-reread-comfort`, `tt-spoiler-oops`, `tt-prize-shortlist`, `tt-romance-respect`, `tt-classic-nerves`, `tt-cover-debate`, `tt-buddy-read`, `tt-library-holds`. Ten more (30 total) at 0.2: genre branch tracks, nonfiction and classics tracks.
+
+## 6. Asset needs (all `original-swoond`)
+- ~40 vector illustrations: formats (hardcover, trade, mass-market, ebook reader), edges and bindings, genre-convention stand-ins (type-only, no real titles or artwork), library card, book club circle.
+- 5 procedural diagrams: `book-anatomy-diagram`, `bookstore-floor-plan`, `story-structure-arc`, `dual-timeline-diagram`, `pov-camera-diagram`.
+- No audio.
+- Original teaching passages (short, Swoon'd-authored) for POV, tense and unreliable-narrator items; registered as `original-swoond` text.
+- Bundle path convention: `books/technique/`, `books/diagrams/`.
+
+## 7. Voice and safety notes
+- Voice: cheeky coach; warm; never mocks a genre, a taste or a reading speed; never about the crush; one joke per screen.
+- Never grade an opinion about a book. Correct answers exist only for vocabulary, distinctions and etiquette.
+- Sexual-content items stay at label level (heat level, closed/open door) with no explicit text.
+- Nothing here quotes a real book; all example lines are Swoon'd-written.
