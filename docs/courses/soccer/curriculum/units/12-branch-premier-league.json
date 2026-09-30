@@ -289,39 +289,40 @@
             "type": "decision-scenario",
             "conceptIds": ["financial-rules"],
             "payload": {
+              "prompt": "Your team needs a striker. Can you afford the £60 million target?",
               "situation": {
                 "facts": [
-                  {"label": "Your team's position", "value": "Mid-table, safe from relegation"},
+                  {"label": "Team position", "value": "Mid-table, safe from relegation"},
                   {"label": "Available budget", "value": "£50 million"},
-                  {"label": "Losses over 3 years", "value": "£45 million (can only lose £40 million total under PSR)"},
-                  {"label": "Top target striker", "value": "Available for £60 million"}
+                  {"label": "Losses over 3 years", "value": "£45 million (PSR limit: £40 million)"},
+                  {"label": "Target striker", "value": "£60 million"}
                 ]
               },
               "options": [
                 {
                   "id": "spend-big",
-                  "text": "Buy the striker for £60 million anyway",
+                  "label": "Buy the striker for £60 million anyway",
                   "verdict": "poor",
-                  "consequence": "You exceed the spending limits and risk a points deduction that could actually hurt your league position more than the striker helps.",
-                  "considerations": "PSR violations are serious; the Premier League has deducted points from multiple clubs for breaches."
+                  "consequence": "You exceed the spending limits and risk a points deduction that could hurt your league position more than the striker helps.",
+                  "considerations": ["PSR violations bring serious consequences for clubs", "Points deductions outweigh the benefit of one signing", "Multiple clubs have faced deductions for breaches"]
                 },
                 {
                   "id": "spend-budget",
-                  "text": "Spend your full £50 million on a striker and focus on sustainable budget",
+                  "label": "Spend £50 million and stay within PSR",
                   "verdict": "best",
-                  "consequence": "You strengthen the squad within financial rules, showing stability to investors and avoiding the risk of points deduction.",
-                  "considerations": "Building within constraints is how successful clubs manage their future; PSR is designed to prevent this exact overspending."
+                  "consequence": "You strengthen the squad while following financial rules, showing stability to investors and avoiding a points deduction.",
+                  "considerations": ["Successful clubs build within their constraints", "Long-term health matters more than one transfer window", "PSR exists to prevent exactly this kind of overspending"]
                 },
                 {
                   "id": "spend-less",
-                  "text": "Wait and reduce losses before making big signings",
+                  "label": "Wait for a cheaper target and reduce losses first",
                   "verdict": "acceptable",
-                  "consequence": "You miss out on this target but move closer to sustainable spending and avoid any rules breach.",
-                  "considerations": "A conservative approach but safe; sometimes the best business is the business you don't do."
+                  "consequence": "You miss this target but move closer to sustainable spending and avoid any rules breach.",
+                  "considerations": ["Conservative but safe approach", "Sometimes the best business is the business you don't do", "Patience can yield better opportunities later"]
                 }
               ],
-              "expertNote": "Experienced Premier League managers weigh immediate success against long-term sustainability. The PSR rules mean a points deduction today can undo signings from tomorrow.",
-              "safetyNote": "This scenario explains the rules; it is not financial or investment advice."
+              "expertNote": "Experienced Premier League managers know that PSR compliance is non-negotiable. A points deduction today for one signing creates long-term damage, so they weigh immediate needs against sustainable financial management.",
+              "safetyNote": "This scenario explains football business rules; it is not financial or investment advice."
             }
           },
           {

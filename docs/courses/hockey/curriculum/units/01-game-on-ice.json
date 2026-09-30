@@ -712,17 +712,41 @@
             "type": "decision-scenario",
             "conceptIds": ["extra-attacker"],
             "payload": {
-              "scenario": "It's the last two minutes of the game. Your team is down 2–1. Do you pull the goalie and send six attackers to get the puck in the net, knowing the other team can score an empty-net goal?",
-              "choices": [
-                {"id": "yes", "label": "Yes, pull the goalie and attack"},
-                {"id": "no", "label": "No, keep the goalie in"}
+              "prompt": "Pull the goalie or not? You're down by one with two minutes left.",
+              "situation": {
+                "narrative": "Your team is down 2–1 with two minutes left in the game. You have the puck in the neutral zone.",
+                "facts": [
+                  {"label": "Time left", "value": "2 minutes"},
+                  {"label": "Score", "value": "Down 2–1"},
+                  {"label": "Puck location", "value": "Neutral zone"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "yes",
+                  "label": "Pull the goalie and send a sixth attacker",
+                  "verdict": "best",
+                  "consequence": "You add an attacker, increasing offensive chances. The risk is an empty-net goal that makes it 3–1, but you're already losing.",
+                  "considerations": [
+                    "You're down, so you have everything to gain by pulling.",
+                    "An extra attacker increases the chance of scoring the tying goal.",
+                    "An empty-net goal is bad, but you're losing anyway."
+                  ]
+                },
+                {
+                  "id": "no",
+                  "label": "Keep the goalie in and play it safe",
+                  "verdict": "poor",
+                  "consequence": "You stay 6-on-5 defensively. This makes scoring harder for your team and very likely means you lose.",
+                  "considerations": [
+                    "Keeping the goalie in is too defensive when you're already behind.",
+                    "You need scoring chances, not safety, with two minutes left.",
+                    "Most coaches pull in this situation."
+                  ]
+                }
               ],
-              "correctChoiceId": "yes",
-              "reasoning": "You're already losing, so you have everything to gain by pulling the goalie. The risk of an empty-net goal is worth it because you need a goal to tie or win.",
-              "explanation": {
-                "correct": "Yes, in this situation pulling the goalie makes sense. You're losing and time is running out; the upside (scoring) outweighs the downside (an empty-net goal).",
-                "incorrect": "When you're down late, pulling the goalie is usually the right call. You're losing anyway, so you might as well throw everyone forward and hope for a goal. Early in the game, it's a different story."
-              }
+              "expertNote": "When you're down late in the game, pulling the goalie is almost always the right move. You're losing anyway, and the empty-net risk is worth the offensive upside.",
+              "sayThisLine": "Pull it and throw everyone forward. You need a goal."
             }
           },
           {
@@ -765,7 +789,7 @@
             "type": "binary-call",
             "conceptIds": ["extra-attacker"],
             "payload": {
-              "prompt": "If the goalie is pulled and the other team scores on an empty net, that goal counts the same as any other goal. True or false?",
+              "prompt": "An empty-net goal counts the same as any other goal. True or false?",
               "scene": {"kind": "none", "alt": "An opponent skates down the ice and shoots the puck into the empty goal where the goalie usually stands."},
               "choices": [
                 {"id": "true", "label": "True"},

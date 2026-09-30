@@ -294,6 +294,83 @@ test('manifest 1.1: dynamicData kinds injuries, transactions, regulations are va
   } finally { rmSync(tmp, { recursive: true }); }
 });
 
+// ---- type-monoculture ----
+test('type-monoculture: passes when unit has <12 activities', () => {
+  const r = run('--courses-dir', join(here, 'test-fixtures', 'split-good'), '--no-examples');
+  assert.equal(r.status, 0, r.stdout + r.stderr);
+  assert.doesNotMatch(r.stdout, /\[type-monoculture\]/);
+});
+
+test('type-monoculture: warns when activity type >40% of a ≥12-activity unit', () => {
+  const { tmp, cur } = splitCopy();
+  try {
+    const u1 = join(cur, 'units', '01-the-basics.json');
+    edit(u1, (j) => {
+      // Add 9 multiple-choice + 3 other types = 12 activities total (9/12 = 75% > 40%)
+      const mc = j.unit.lessons[0].activities.find((a) => a.type === 'multiple-choice');
+      const ftg = j.unit.lessons[0].activities.find((a) => a.type === 'fill-the-gap');
+      const est = j.unit.lessons[0].activities.find((a) => a.type === 'estimate-slider');
+      for (let i = 0; i < 7; i++) {
+        const clone = JSON.parse(JSON.stringify(mc));
+        clone.id = `mc-extra-${i}`;
+        clone.payload.prompt = `Question ${i}?`;
+        j.unit.lessons[0].activities.push(clone);
+      }
+      for (let i = 0; i < 1; i++) {
+        const clone = JSON.parse(JSON.stringify(ftg));
+        clone.id = `ftg-extra-${i}`;
+        j.unit.lessons[0].activities.push(clone);
+      }
+      for (let i = 0; i < 1; i++) {
+        const clone = JSON.parse(JSON.stringify(est));
+        clone.id = `est-extra-${i}`;
+        j.unit.lessons[0].activities.push(clone);
+      }
+    });
+    const r = run('--courses-dir', tmp, '--no-examples');
+    assert.equal(r.status, 1);
+    assert.match(r.stdout, /\[type-monoculture\].*units\/01-the-basics\.json.*exceeds 40%/);
+  } finally { rmSync(tmp, { recursive: true }); }
+});
+
+test('type-monoculture: errors when activity type >50% of a ≥12-activity unit', () => {
+  const { tmp, cur } = splitCopy();
+  try {
+    const u1 = join(cur, 'units', '01-the-basics.json');
+    edit(u1, (j) => {
+      // Add 16 multiple-choice + 4 other types = 20 activities total (16/20 = 80% > 50%)
+      const mc = j.unit.lessons[0].activities.find((a) => a.type === 'multiple-choice');
+      const ftg = j.unit.lessons[0].activities.find((a) => a.type === 'fill-the-gap');
+      const est = j.unit.lessons[0].activities.find((a) => a.type === 'estimate-slider');
+      const tm = j.unit.lessons[0].activities.find((a) => a.type === 'term-match');
+      for (let i = 0; i < 14; i++) {
+        const clone = JSON.parse(JSON.stringify(mc));
+        clone.id = `mc-extra-${i}`;
+        clone.payload.prompt = `Question ${i}?`;
+        j.unit.lessons[0].activities.push(clone);
+      }
+      for (let i = 0; i < 1; i++) {
+        const clone = JSON.parse(JSON.stringify(ftg));
+        clone.id = `ftg-extra-${i}`;
+        j.unit.lessons[0].activities.push(clone);
+      }
+      for (let i = 0; i < 1; i++) {
+        const clone = JSON.parse(JSON.stringify(est));
+        clone.id = `est-extra-${i}`;
+        j.unit.lessons[0].activities.push(clone);
+      }
+      for (let i = 0; i < 1; i++) {
+        const clone = JSON.parse(JSON.stringify(tm));
+        clone.id = `tm-extra-${i}`;
+        j.unit.lessons[0].activities.push(clone);
+      }
+    });
+    const r = run('--courses-dir', tmp, '--no-examples');
+    assert.equal(r.status, 1);
+    assert.match(r.stdout, /\[type-monoculture\].*units\/01-the-basics\.json.*exceeds 50%/);
+  } finally { rmSync(tmp, { recursive: true }); }
+});
+
 // ---- repeated-prompt: say-this has a stock question by design ----
 test('repeated-prompt: say-this repetition is judged on the quoted line, not the stock question', () => {
   const { tmp, cur } = splitCopy();

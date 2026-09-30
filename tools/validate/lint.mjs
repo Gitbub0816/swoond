@@ -145,7 +145,35 @@ export function lintCourse(courseId, manifest, files, scripts = [], opts = {}) {
     else for (const id of planned) if (!used.has(id)) warn(anchor, 'missing-sim', `planned sim ${id} has no unity-sim activity`);
   }
 
-  // 5: coverage
+  // 5: type-monoculture
+  for (const { path, data } of files) {
+    const unitList = data.units ?? (data.unit ? [data.unit] : []);
+    unitList.forEach((u, ui) => {
+      const base = data.units ? `/units/${ui}` : '/unit';
+      const activities = (u.lessons ?? []).flatMap((l) => l.activities ?? []);
+      if (activities.length >= 12) {
+        const typeHist = {};
+        activities.forEach((a) => {
+          typeHist[a.type] = (typeHist[a.type] ?? 0) + 1;
+        });
+        const total = activities.length;
+        const histStr = Object.entries(typeHist)
+          .sort((a, b) => b[1] - a[1])
+          .map(([t, n]) => `${t}=${n}`)
+          .join(' ');
+        for (const [type, count] of Object.entries(typeHist)) {
+          const pct = (100 * count) / total;
+          if (pct > 50) {
+            err(path, 'type-monoculture', `${base} (${u.id}): activity type ${type} exceeds 50% (${count}/${total} = ${pct.toFixed(1)}%); histogram: ${histStr}`);
+          } else if (pct > 40) {
+            warn(path, 'type-monoculture', `${base} (${u.id}): activity type ${type} exceeds 40% (${count}/${total} = ${pct.toFixed(1)}%); histogram: ${histStr}`);
+          }
+        }
+      }
+    });
+  }
+
+  // 6: coverage
   const hist = {};
   for (const a of acts) hist[a.type] = (hist[a.type] ?? 0) + 1;
   const distinct = byPayload.size;
