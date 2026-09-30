@@ -192,7 +192,7 @@ struct ResultsView: View {
 }
 
 /// A number that animates between values (counts up when its `value` is animated).
-struct CountUpText: View, Animatable {
+struct CountUpText: View, @preconcurrency Animatable {
     var value: Double
     var format: (Int) -> String
 

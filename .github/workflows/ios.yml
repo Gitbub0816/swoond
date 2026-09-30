@@ -8,7 +8,6 @@ on:
       - tools/ci/**
       - tools/content/**
       - tools/validate/**
-      - content/**
       - docs/contracts/**
   pull_request:
     paths:
@@ -17,13 +16,12 @@ on:
       - tools/ci/**
       - tools/content/**
       - tools/validate/**
-      - content/**
       - docs/contracts/**
   workflow_dispatch:
 
 concurrency:
   group: ios-${{ github.ref }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  cancel-in-progress: false
 
 permissions:
   contents: read

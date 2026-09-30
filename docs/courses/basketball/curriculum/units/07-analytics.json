@@ -1,0 +1,884 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "basketball",
+  "unit": {
+    "id": "analytics",
+    "title": "The Numbers, Explained",
+    "layer": "intermediate",
+    "order": 7,
+    "prerequisiteUnitIds": ["offense"],
+    "lessons": [
+      {
+        "id": "ana-01",
+        "title": "Points per possession",
+        "objective": "Explain pace, offensive rating, defensive rating and net rating.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["pace", "offensive-rating", "defensive-rating", "net-rating"],
+        "activities": [
+          {
+            "id": "ana-01-es-1",
+            "type": "estimate-slider",
+            "conceptIds": ["pace"],
+            "payload": {
+              "prompt": "A typical NBA team completes about how many possessions per game?",
+              "unit": "possessions",
+              "min": 80,
+              "max": 110,
+              "step": 1,
+              "correctValue": 100,
+              "tolerance": {"full": 5, "partial": 10},
+              "explanation": {
+                "correct": "Right around there. A typical NBA team averages 100 possessions per game. Faster-paced teams might hit 105+; slower teams drop to 95 or less.",
+                "incorrect": "Not quite. A typical team completes about 100 possessions per game. This is called pace and determines how many offensive plays happen."
+              }
+            }
+          },
+          {
+            "id": "ana-01-es-2",
+            "type": "estimate-slider",
+            "conceptIds": ["offensive-rating"],
+            "payload": {
+              "prompt": "An elite NBA team scores about how many points per 100 possessions?",
+              "unit": "points/100",
+              "min": 100,
+              "max": 130,
+              "step": 1,
+              "correctValue": 115,
+              "tolerance": {"full": 5, "partial": 10},
+              "explanation": {
+                "correct": "Right in that range. An elite offensive rating is 115 or above. League average is around 110. A 105 rating is below average.",
+                "incorrect": "Not quite. Elite teams score 115+ points per 100 possessions. This metric is called offensive rating and ignores pace."
+              }
+            }
+          },
+          {
+            "id": "ana-01-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": ["offensive-rating"],
+            "payload": {
+              "prompt": "What does an offensive rating tell you?",
+              "options": [
+                {"id": "correct", "text": "How many points a team scores per 100 possessions, measuring scoring efficiency independent of how fast they play."},
+                {"id": "dist-1", "text": "The total number of points scored in a game."},
+                {"id": "dist-2", "text": "How many possessions per game the team completes."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. Offensive rating (ORtg) is points per 100 possessions, so it removes pace from the equation. Two teams with different speeds can be compared fairly.",
+                "incorrect": "Not quite. Offensive rating measures points per 100 possessions. It is a pace-adjusted efficiency metric."
+              }
+            }
+          },
+          {
+            "id": "ana-01-mc-2",
+            "type": "multiple-choice",
+            "conceptIds": ["net-rating"],
+            "payload": {
+              "prompt": "What is net rating?",
+              "options": [
+                {"id": "correct", "text": "Offensive rating minus defensive rating, showing the point difference per 100 possessions between what a team scores and allows."},
+                {"id": "dist-1", "text": "The team's winning percentage."},
+                {"id": "dist-2", "text": "How many points a team is winning by per game."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Exactly. Net rating (NetRtg) is the difference: what they score per 100 possessions minus what they allow. A +8 net rating is elite; +2 is good.",
+                "incorrect": "Not quite. Net rating is offensive rating minus defensive rating. It shows the per-possession advantage or deficit."
+              }
+            }
+          },
+          {
+            "id": "ana-01-tm-1",
+            "type": "term-match",
+            "conceptIds": ["pace", "offensive-rating", "defensive-rating", "net-rating"],
+            "payload": {
+              "prompt": "Match each metric to what it measures.",
+              "pairs": [
+                {"id": "pace", "term": "Pace", "definition": "The number of possessions a team completes per game, indicating how fast the team plays."},
+                {"id": "ortg", "term": "Offensive rating", "definition": "Points scored per 100 possessions by the team, measuring offensive efficiency independent of game speed."},
+                {"id": "drtg", "term": "Defensive rating", "definition": "Points allowed per 100 possessions, measuring how well the defense limits the opponent's scoring."},
+                {"id": "nrtg", "term": "Net rating", "definition": "Offensive rating minus defensive rating, showing the per-possession point advantage or disadvantage."}
+              ],
+              "distractorDefinitions": [
+                "The total number of points scored in a season.",
+                "The average score margin in games won by the team."
+              ],
+              "explanation": {
+                "summary": "Pace is speed; ORtg is what they score; DRtg is what they allow; NetRtg is the difference."
+              }
+            }
+          },
+          {
+            "id": "ana-01-bc-1",
+            "type": "binary-call",
+            "conceptIds": ["offensive-rating"],
+            "payload": {
+              "prompt": "A team's offensive rating of 108 means they score 108 points per game. True or false?",
+              "scene": {"kind": "none", "alt": "A team's offensive rating stat."},
+              "choices": [
+                {"id": "yes", "label": "True, they score 108 per game."},
+                {"id": "no", "label": "False, that is per 100 possessions."}
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Right. A 108 offensive rating means 108 points per 100 possessions, not per game. Pace matters: a team with 102 pace and 108 ORtg scores roughly 110 points per game.",
+                "incorrect": "Not quite. Offensive rating is always per 100 possessions, not per game. It adjusts for how fast the team plays."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "ana-02",
+        "title": "Efficiency: eFG% and TS%",
+        "objective": "Say why a three counts more in eFG% and what TS% adds.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["effective-fg-percentage", "true-shooting", "expected-points"],
+        "activities": [
+          {
+            "id": "ana-02-es-1",
+            "type": "estimate-slider",
+            "conceptIds": ["effective-fg-percentage"],
+            "payload": {
+              "prompt": "A player shoots 50% from the field overall (45% twos, 35% threes on equal attempts). What is their eFG%?",
+              "unit": "percent",
+              "min": 45,
+              "max": 55,
+              "step": 1,
+              "correctValue": 49,
+              "tolerance": {"full": 2, "partial": 3},
+              "explanation": {
+                "correct": "Right. eFG% accounts for three-pointers being worth 50% more. The formula is (FG + 0.5*3P) / FGA. This player's eFG is around 49%.",
+                "incorrect": "Not quite. eFG% gives three-pointers extra credit. The formula is (FG + 0.5*3P) / FGA. This player's eFG is higher than raw FG% because of the threes."
+              }
+            }
+          },
+          {
+            "id": "ana-02-es-2",
+            "type": "estimate-slider",
+            "conceptIds": ["true-shooting"],
+            "payload": {
+              "prompt": "A player shoots 48% from the field, 35% from three, and 80% from the free-throw line. About what is their TS%?",
+              "unit": "percent",
+              "min": 50,
+              "max": 65,
+              "step": 1,
+              "correctValue": 58,
+              "tolerance": {"full": 3, "partial": 5},
+              "explanation": {
+                "correct": "Around there. TS% (True Shooting) is (Points) / (2 × (FGA + 0.44×FTA)). It accounts for all three scoring methods. This player's TS is about 57-59%.",
+                "incorrect": "Not quite. TS% includes field goals, three-pointers, and free throws in one metric. The formula weights free-throw attempts by 0.44 to account for defensive fouls."
+              }
+            }
+          },
+          {
+            "id": "ana-02-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": ["effective-fg-percentage"],
+            "payload": {
+              "prompt": "Why do teams track eFG% instead of just FG%?",
+              "options": [
+                {"id": "correct", "text": "Because three-pointers are worth 50% more than two-pointers, so eFG% gives credit for threes and reflects true scoring efficiency."},
+                {"id": "dist-1", "text": "Because it counts free throws."},
+                {"id": "dist-2", "text": "Because it is easier to calculate."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Exactly. Regular FG% treats a two and a three the same, which undervalues three-point shooting. eFG% fixes that: (FG + 0.5*3P) / FGA.",
+                "incorrect": "Not quite. eFG% weights three-pointers by 1.5× because they are worth 50% more points. It shows shooting efficiency more accurately than FG%."
+              }
+            }
+          },
+          {
+            "id": "ana-02-mc-2",
+            "type": "multiple-choice",
+            "conceptIds": ["true-shooting"],
+            "payload": {
+              "prompt": "What does TS% (True Shooting) measure that eFG% does not?",
+              "options": [
+                {"id": "correct", "text": "Free-throw efficiency, combining field goals, three-pointers and free throws into a single scoring efficiency metric."},
+                {"id": "dist-1", "text": "How often the player shoots threes."},
+                {"id": "dist-2", "text": "The number of assists per game."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. TS% is total points divided by (2 × (FGA + 0.44×FTA)). It includes free throws, which eFG% ignores. TS% is more complete.",
+                "incorrect": "Not quite. TS% adds free-throw efficiency to the eFG% picture. Formula: Points / (2 × (FGA + 0.44×FTA)). A 60% TS is elite."
+              }
+            }
+          },
+          {
+            "id": "ana-02-ftg-1",
+            "type": "fill-the-gap",
+            "conceptIds": ["expected-points"],
+            "payload": {
+              "prompt": "When analysts say a corner three is worth more per shot than a mid-range two, they are comparing the _____ of each shot.",
+              "blanks": ["expected-points"],
+              "correctAnswers": [
+                ["expected value", "expected-points", "xp", "expected points per shot"]
+              ],
+              "explanation": {
+                "correct": "Right. Expected points (xP) is the average points a shot generates. A 35% three (1.05 xP) beats a 48% two (0.96 xP).",
+                "incorrect": "Not quite. Expected points is the average points a shot produces. A shot that goes in 35% of the time at 3 points has an xP of 1.05."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "ana-03",
+        "title": "Usage and stars",
+        "objective": "Explain usage rate, PER and what a star profile looks like.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["usage-rate", "per", "win-shares"],
+        "activities": [
+          {
+            "id": "ana-03-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": ["usage-rate"],
+            "payload": {
+              "prompt": "What is usage rate?",
+              "options": [
+                {"id": "correct", "text": "The percentage of team possessions a player uses with a shot, pass attempt resulting in an assist, or turnover."},
+                {"id": "dist-1", "text": "How many minutes a player is on the court."},
+                {"id": "dist-2", "text": "The player's shooting percentage."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. Usage rate (USG%) shows what percentage of team possessions involve that player. Stars have 25-35% USG; role players 10-20%.",
+                "incorrect": "Not quite. Usage rate is the percentage of team possessions a player uses (FGA + FTA + TOV). High scorers have high USG rates."
+              }
+            }
+          },
+          {
+            "id": "ana-03-mc-2",
+            "type": "multiple-choice",
+            "conceptIds": ["per"],
+            "payload": {
+              "prompt": "PER (Player Efficiency Rating) measures what?",
+              "options": [
+                {"id": "correct", "text": "A player's per-minute efficiency relative to their team's efficiency, accounting for scoring, rebounds, assists, turnovers and fouls."},
+                {"id": "dist-1", "text": "Only the player's point total per game."},
+                {"id": "dist-2", "text": "How many possessions the player initiates."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Exactly. PER is a composite efficiency rating: (league-average PER is ~15). A PER of 20 is All-Star level; 25+ is MVP level.",
+                "incorrect": "Not quite. PER combines points, rebounds, assists, steals, blocks, turnovers and fouls into one per-minute rating. 15 is average."
+              }
+            }
+          },
+          {
+            "id": "ana-03-mc-3",
+            "type": "multiple-choice",
+            "conceptIds": ["win-shares"],
+            "payload": {
+              "prompt": "What do Win Shares estimate?",
+              "options": [
+                {"id": "correct", "text": "The number of team wins a player contributed to through their offensive and defensive play."},
+                {"id": "dist-1", "text": "The player's salary relative to other players."},
+                {"id": "dist-2", "text": "How many games a player starts."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. Win Shares convert a player's stats into estimated wins added to the team. A star might contribute 6-8 wins; a role player 1-2.",
+                "incorrect": "Not quite. Win Shares estimate how many wins a player's performance added to the team. They combine offensive and defensive contributions."
+              }
+            }
+          },
+          {
+            "id": "ana-03-st-1",
+            "type": "say-this",
+            "conceptIds": ["usage-rate"],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "His usage rate is too high for a role player."
+              },
+              "question": "What does she mean?",
+              "options": [
+                {"id": "correct", "text": "He is handling the ball and taking shots on too many possessions for his talent level, hurting team efficiency.", "isCorrect": true},
+                {"id": "dist-1", "text": "He plays too many minutes per game.", "isCorrect": false},
+                {"id": "dist-2", "text": "He is fouling too much.", "isCorrect": false},
+                {"id": "dist-3", "text": "He shoots free throws too often.", "isCorrect": false}
+              ],
+              "translation": "She is saying the role player is using too high a percentage of team possessions (high USG%), which suggests he is over-playing his role instead of moving the ball.",
+              "followUps": [
+                {
+                  "line": "Yeah, he's chucking too much.",
+                  "why": "You recognize that high usage by a role player means too many shots and not enough ball movement."
+                },
+                {
+                  "line": "The star should have more usage.",
+                  "why": "A good follow-up noting that stars should use a higher percentage of possessions."
+                }
+              ],
+              "noFakeExpertNote": "High usage rate means handling the ball a lot; role players should have low USG%, stars 25-35%."
+            }
+          },
+          {
+            "id": "ana-03-st-2",
+            "type": "say-this",
+            "conceptIds": ["per"],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "His PER is elite but he is not clicking in games."
+              },
+              "question": "What is she noting?",
+              "options": [
+                {"id": "correct", "text": "His efficiency rating is very high (20+), but his intangible playoff impact or clutch performances do not match his regular-season stats.", "isCorrect": true},
+                {"id": "dist-1", "text": "His shooting form is bad.", "isCorrect": false},
+                {"id": "dist-2", "text": "He fouls too much.", "isCorrect": false},
+                {"id": "dist-3", "text": "He is tired from playing too long.", "isCorrect": false}
+              ],
+              "translation": "She is saying stats (PER) do not tell the whole story; despite high efficiency numbers, the player is not performing in close games or high-leverage moments.",
+              "followUps": [
+                {
+                  "line": "Yeah, he's not playing winning basketball.",
+                  "why": "You recognize that stats and winning are not always aligned."
+                },
+                {
+                  "line": "Maybe it is a sample-size thing.",
+                  "why": "A good follow-up considering whether a small game sample is skewing the perception."
+                }
+              ],
+              "noFakeExpertNote": "High PER does not always mean a player is performing in clutch moments or close games."
+            }
+          }
+        ]
+      },
+      {
+        "id": "ana-04",
+        "title": "All-in-one metrics",
+        "objective": "Decode BPM, VORP and the all-in-one stat family without a math degree.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["box-plus-minus", "vorp", "all-in-one-metrics", "on-off-differential"],
+        "activities": [
+          {
+            "id": "ana-04-tm-1",
+            "type": "term-match",
+            "conceptIds": ["box-plus-minus", "vorp", "on-off-differential"],
+            "payload": {
+              "prompt": "Match each advanced metric to what it means.",
+              "pairs": [
+                {"id": "bpm", "term": "Box Plus-Minus (BPM)", "definition": "A player's estimated point contribution per 100 possessions based on box-score stats. A +5 BPM means the team is 5 points better with that player."},
+                {"id": "vorp", "term": "VORP (Value Over Replacement Player)", "definition": "The number of additional wins a player's performance added compared to a replacement-level player. A player with 2 VORP added 2 wins to the team."},
+                {"id": "onoff", "term": "On-Off Differential", "definition": "The point differential per 100 possessions when a player is on the court versus off. Shows a player's direct impact on the game's flow."}
+              ],
+              "distractorDefinitions": [
+                "How many points a player scores per game.",
+                "The percentage of possessions a player handles the ball.",
+                "The player's ranking among all players."
+              ],
+              "explanation": {
+                "summary": "BPM is per-100-possession impact from box-score stats; VORP converts it to estimated wins; On-Off is the direct per-100 differential."
+              }
+            }
+          },
+          {
+            "id": "ana-04-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": ["box-plus-minus"],
+            "payload": {
+              "prompt": "What does a Box Plus-Minus (BPM) of +8 mean?",
+              "options": [
+                {"id": "correct", "text": "The team scores 8 more points per 100 possessions with that player on the court compared to the league average."},
+                {"id": "dist-1", "text": "The player scored 8 more points than their average."},
+                {"id": "dist-2", "text": "The team won 8 more games because of the player."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. BPM of +8 means the team's offensive/defensive balance is 8 points per 100 possessions better with that player. Elite defense + good offense = high BPM.",
+                "incorrect": "Not quite. BPM is a per-100-possession rating. +8 BPM means the team has an 8-point advantage per 100 possessions with that player."
+              }
+            }
+          },
+          {
+            "id": "ana-04-mc-2",
+            "type": "multiple-choice",
+            "conceptIds": ["vorp"],
+            "payload": {
+              "prompt": "Why is VORP (Value Over Replacement) useful?",
+              "options": [
+                {"id": "correct", "text": "It shows how much a player adds compared to a readily available backup, helping assess whether a player's contract is worth the cost."},
+                {"id": "dist-1", "text": "It shows the player's jersey number."},
+                {"id": "dist-2", "text": "It predicts which team will win the championship."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Exactly. VORP compares a player to a replacement (journeyman backup). A star with +4 VORP adds 4 wins. A bench player with +0.5 VORP is a bargain.",
+                "incorrect": "Not quite. VORP estimates how many wins a player contributed vs. a replacement-level player. It is used to evaluate contracts and value."
+              }
+            }
+          },
+          {
+            "id": "ana-04-mc-3",
+            "type": "multiple-choice",
+            "conceptIds": ["all-in-one-metrics"],
+            "payload": {
+              "prompt": "What is the danger of relying only on all-in-one metrics like BPM or PER?",
+              "options": [
+                {"id": "correct", "text": "They oversimplify complex play and miss context like defense against specific opponents, clutch performance, or intangibles like leadership."},
+                {"id": "dist-1", "text": "They are too hard to understand."},
+                {"id": "dist-2", "text": "They favor old players over new ones."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. Stats cannot capture everything. A player's on-ball defense, communication, spacing gravity and playoff performance matter beyond BPM or PER.",
+                "incorrect": "Not quite. All-in-one metrics are useful but incomplete. They miss clutch moments, defense nuance and intangibles. Use them with the eye test."
+              }
+            }
+          },
+          {
+            "id": "ana-04-st-1",
+            "type": "say-this",
+            "conceptIds": ["on-off-differential"],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "Look at his on-off numbers, the team is way better with him."
+              },
+              "question": "What is she showing you?",
+              "options": [
+                {"id": "correct", "text": "When that player is on the court, the team's per-100-possession point differential is much higher than when he is off.", "isCorrect": true},
+                {"id": "dist-1", "text": "He plays both offense and defense.", "isCorrect": false},
+                {"id": "dist-2", "text": "He is on the court for more minutes than other players.", "isCorrect": false},
+                {"id": "dist-3", "text": "His uniform is different colors.", "isCorrect": false}
+              ],
+              "translation": "She is using on-off data to show that the team plays better (scores and allows fewer points) when this player is in the game.",
+              "followUps": [
+                {
+                  "line": "So he is really important.",
+                  "why": "You recognize that large on-off differentials show a player's impact on team success."
+                },
+                {
+                  "line": "Is it just his scoring?",
+                  "why": "A good follow-up asking whether defense and playmaking also contribute to the on-off number."
+                }
+              ],
+              "noFakeExpertNote": "On-Off differential is just how much better the team plays with that player in the game."
+            }
+          }
+        ]
+      },
+      {
+        "id": "ana-05",
+        "title": "Shot charts",
+        "objective": "Read a shot chart: hot zones, cold zones and the dead midrange.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["shot-chart", "zone-shooting", "corner-three-value", "restricted-area-fg"],
+        "activities": [
+          {
+            "id": "ana-05-hst-1",
+            "type": "hotspot-tap",
+            "conceptIds": ["corner-three-value"],
+            "payload": {
+              "prompt": "Tap the area where the most efficient three-pointer is shot (shortest distance).",
+              "diagram": {
+                "diagramId": "basketball-court",
+                "alt": "A basketball court showing the three-point line."
+              },
+              "hotspots": [
+                {"id": "corner", "label": "Corner", "shape": {"kind": "circle", "cx": 0.05, "cy": 0.15, "r": 0.08}},
+                {"id": "wing", "label": "Wing", "shape": {"kind": "circle", "cx": 0.2, "cy": 0.45, "r": 0.08}},
+                {"id": "top", "label": "Top of key", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.05, "r": 0.08}},
+                {"id": "deep", "label": "Deep three", "shape": {"kind": "circle", "cx": 0.15, "cy": 0.3, "r": 0.08}}
+              ],
+              "correctHotspotIds": ["corner"],
+              "explanation": {
+                "correct": "Right! The corner three is the shortest distance at 22 ft in the NBA. Corner threes are the most efficient shot from distance.",
+                "incorrect": "Not quite. The corner three is only 22 ft from the basket, the shortest three-point distance. That is why corner threes are so valuable."
+              }
+            }
+          },
+          {
+            "id": "ana-05-hst-2",
+            "type": "hotspot-tap",
+            "conceptIds": ["restricted-area-fg"],
+            "payload": {
+              "prompt": "Tap the area where teams score the most efficiently (closest to the basket).",
+              "diagram": {
+                "diagramId": "basketball-court",
+                "alt": "A basketball court showing areas near the basket."
+              },
+              "hotspots": [
+                {"id": "rim", "label": "At the rim", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.1, "r": 0.06}},
+                {"id": "midrange", "label": "Midrange", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.35, "r": 0.08}},
+                {"id": "threepoint", "label": "Three-point line", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.05, "r": 0.08}},
+                {"id": "elbow", "label": "Elbow", "shape": {"kind": "circle", "cx": 0.65, "cy": 0.25, "r": 0.08}}
+              ],
+              "correctHotspotIds": ["rim"],
+              "explanation": {
+                "correct": "Exactly! Shots at the rim (layups, dunks) have the highest efficiency, often 55-65% or more. This is the most valuable shot location.",
+                "incorrect": "Not quite. Rim shots are the most efficient. Layups and dunks go in 55-65% of the time or higher, much better than midrange."
+              }
+            }
+          },
+          {
+            "id": "ana-05-hst-3",
+            "type": "hotspot-tap",
+            "conceptIds": ["zone-shooting"],
+            "payload": {
+              "prompt": "Tap the area where teams shoot the fewest threes and score least efficiently (the dead midrange).",
+              "diagram": {
+                "diagramId": "basketball-court",
+                "alt": "A basketball court showing the midrange area."
+              },
+              "hotspots": [
+                {"id": "midrange", "label": "Mid-range", "shape": {"kind": "rect", "x": 0.35, "y": 0.25, "w": 0.3, "h": 0.3}},
+                {"id": "corner", "label": "Corner", "shape": {"kind": "circle", "cx": 0.05, "cy": 0.15, "r": 0.08}},
+                {"id": "wing", "label": "Wing three", "shape": {"kind": "circle", "cx": 0.15, "cy": 0.45, "r": 0.08}},
+                {"id": "rim", "label": "Rim", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.1, "r": 0.06}}
+              ],
+              "correctHotspotIds": ["midrange"],
+              "explanation": {
+                "correct": "Right! The midrange (10-22 ft) is dead: low efficiency compared to rim shots and threes. Modern teams avoid it and shoot threes instead.",
+                "incorrect": "Not quite. The midrange (10-22 ft) is the least valuable shot in modern basketball. It combines the low efficiency of distance with no three-point reward."
+              }
+            }
+          },
+          {
+            "id": "ana-05-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": ["shot-chart"],
+            "payload": {
+              "prompt": "A shot chart shows what?",
+              "options": [
+                {"id": "correct", "text": "Every shot a player or team took, where it was taken from, and whether it went in (often as a heat map of make rates by location)."},
+                {"id": "dist-1", "text": "Only the three-pointers a player attempted."},
+                {"id": "dist-2", "text": "The order in which shots were taken during a game."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Exactly. Shot charts map every shot. Made shots (usually green) and misses (usually red) show where a player or team is hot or cold.",
+                "incorrect": "Not quite. Shot charts visualize all shots on a court diagram, showing makes and misses by location. Heat maps show efficiency by zone."
+              }
+            }
+          },
+          {
+            "id": "ana-05-mc-2",
+            "type": "multiple-choice",
+            "conceptIds": ["zone-shooting"],
+            "payload": {
+              "prompt": "Why did NBA analytics kill the midrange?",
+              "options": [
+                {"id": "correct", "text": "A midrange shot (10-22 ft) is worth less on average than a rim shot or three-pointer, making it inefficient. Teams maximize rim and three volume instead."},
+                {"id": "dist-1", "text": "Because guards do not like taking midrange shots."},
+                {"id": "dist-2", "text": "Because defenders are better at those distances."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. A 45% two-pointer (0.9 xP) is worth less than a 35% three (1.05 xP). Teams prefer high-volume threes and close rim shots.",
+                "incorrect": "Not quite. Analytics show rim shots and threes produce more expected points than midrange. Teams intentionally avoided the midrange in recent years."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "ana-06",
+        "title": "Tracking data and play types",
+        "objective": "Explain tracking data, screen assists and play-type frequencies.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["player-tracking", "play-types", "contested-shot-rate", "rim-deterrence"],
+        "activities": [
+          {
+            "id": "ana-06-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": ["player-tracking"],
+            "payload": {
+              "prompt": "What is player tracking data?",
+              "options": [
+                {"id": "correct", "text": "Second-by-second data from cameras and sensors showing each player's position, speed and distance to opponents, used to analyze movement and spacing."},
+                {"id": "dist-1", "text": "The number of steals a player makes per game."},
+                {"id": "dist-2", "text": "A list of games a player has participated in."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. Tracking data (from SportVU or similar systems) records player positions 25 times per second. It reveals spacing, distances and movement that box scores miss.",
+                "incorrect": "Not quite. Tracking data is continuous positional information from cameras. It enables advanced analysis of spacing, defense and player efficiency."
+              }
+            }
+          },
+          {
+            "id": "ana-06-mc-2",
+            "conceptIds": ["play-types"],
+            "type": "multiple-choice",
+            "payload": {
+              "prompt": "What is a play-type analysis?",
+              "options": [
+                {"id": "correct", "text": "Breaking down a team's possessions into categories (pick-and-roll, iso, post-up, etc.) to see which plays are most efficient and which teams favor."},
+                {"id": "dist-1", "text": "Identifying the type of shot a player takes."},
+                {"id": "dist-2", "text": "Counting how many fouls are called."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Exactly. Play-type analysis categorizes possessions: 'Iso' efficiency, 'Pick-and-roll ball handler' efficiency, 'Spot-up three' efficiency, etc.",
+                "incorrect": "Not quite. Play-type analysis groups possessions by offensive action and measures efficiency. It shows which plays work best for a team."
+              }
+            }
+          },
+          {
+            "id": "ana-06-mc-3",
+            "type": "multiple-choice",
+            "conceptIds": ["contested-shot-rate"],
+            "payload": {
+              "prompt": "What does a high contested-shot rate mean?",
+              "options": [
+                {"id": "correct", "text": "A high percentage of a player or team's shots are defended closely (defender within 2-3 feet), suggesting tough shot-taking or poor spacing."},
+                {"id": "dist-1", "text": "The player is fouled on most of their shots."},
+                {"id": "dist-2", "text": "The team is winning its games closely."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. High contested-shot rate means tough looks. A scorer with high contested rate but still shoots well is elite (he makes tough shots).",
+                "incorrect": "Not quite. Contested shots have a defender close by. High contested rates can mean tough offense or poor spacing. Efficiency matters given the contest."
+              }
+            }
+          },
+          {
+            "id": "ana-06-st-1",
+            "type": "say-this",
+            "conceptIds": ["rim-deterrence"],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "He is elite at rim deterrence even though he does not get many blocks."
+              },
+              "question": "What does she mean?",
+              "options": [
+                {"id": "correct", "text": "His presence near the basket forces opponents to avoid driving and alter shots, affecting their shots without recording blocks.", "isCorrect": true},
+                {"id": "dist-1", "text": "He fouls opponents constantly.", "isCorrect": false},
+                {"id": "dist-2", "text": "He steals the ball often.", "isCorrect": false},
+                {"id": "dist-3", "text": "He is very tall and intimidating.", "isCorrect": false}
+              ],
+              "translation": "She is noting that his defensive presence (body position, size, awareness) deters drives and changes shot quality even without blocks recorded.",
+              "followUps": [
+                {
+                  "line": "So blocks do not tell the whole story.",
+                  "why": "You recognize that rim protection is more than blocks; presence matters."
+                },
+                {
+                  "line": "His tracking data must show it.",
+                  "why": "A good follow-up noting that movement data reveals the full defensive impact."
+                }
+              ],
+              "noFakeExpertNote": "Rim deterrence is a player's ability to scare opponents into worse shots without necessarily getting blocks."
+            }
+          },
+          {
+            "id": "ana-06-st-2",
+            "type": "say-this",
+            "conceptIds": ["play-types"],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "Their play-type distribution is bad, too much iso."
+              },
+              "question": "What is she noting?",
+              "options": [
+                {"id": "correct", "text": "The team runs too many isolation plays instead of ball-movement actions, hurting spacing and forcing low-efficiency one-on-one shots.", "isCorrect": true},
+                {"id": "dist-1", "text": "The players are isolated from their families.", "isCorrect": false},
+                {"id": "dist-2", "text": "The team has no bench players.", "isCorrect": false},
+                {"id": "dist-3", "text": "The players are sitting alone on the bench.", "isCorrect": false}
+              ],
+              "translation": "She is saying the offense runs too many isolation plays (one player attacking alone) instead of screens and ball movement that generate better shots.",
+              "followUps": [
+                {
+                  "line": "Yeah, no ball movement.",
+                  "why": "You recognize that ball movement is more efficient than iso-heavy offense."
+                },
+                {
+                  "line": "They need more screen actions.",
+                  "why": "A good follow-up identifying what the offense should use instead."
+                }
+              ],
+              "noFakeExpertNote": "Play-type distribution shows whether an offense relies on isos, pick-and-rolls, spot-ups or other actions."
+            }
+          }
+        ]
+      },
+      {
+        "id": "ana-07",
+        "title": "Eye test vs numbers",
+        "objective": "Use stats to ask better questions instead of ending arguments.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["analytics-vs-eye-test", "sample-size", "clutch-stats"],
+        "activities": [
+          {
+            "id": "ana-07-ds-1",
+            "type": "decision-scenario",
+            "conceptIds": ["analytics-vs-eye-test"],
+            "payload": {
+              "prompt": "Should you trust a player's stellar 42% three-point shooting in the playoffs?",
+              "situation": {
+                "narrative": "A player is shooting 42% from three in the playoffs so far (about 40 attempts). Last season he shot 34% from three over a full season.",
+                "facts": [
+                  {"label": "Current rate", "value": "42% on 40 attempts"},
+                  {"label": "Career rate", "value": "34% over seasons"},
+                  {"label": "Sample size", "value": "40 attempts vs 500+ last season"},
+                  {"label": "Defense", "value": "Playoff defense is tougher than regular season"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "small",
+                  "label": "It is a small sample; regress toward 34-35%",
+                  "verdict": "best",
+                  "consequence": "You recognize the playoffs are small samples. A hot stretch of 40 attempts is real but likely to regress to career average (34%).",
+                  "considerations": [
+                    "40 attempts is too small to trust fully",
+                    "Career rate and last season are larger samples",
+                    "Variance in small samples is expected",
+                    "Context: playoff defense is tougher"
+                  ]
+                },
+                {
+                  "id": "trust",
+                  "label": "He is on fire; trust the new rate",
+                  "verdict": "risky",
+                  "consequence": "Overweighting recent performance. Small samples are noise. In the next series, he might drop to 32%.",
+                  "considerations": [
+                    "Hot streaks happen in small samples",
+                    "History matters more than 40 attempts",
+                    "Playoff variance is even higher"
+                  ]
+                }
+              ],
+              "expertNote": "Sample size is the most common mistake in basketball analysis. Large samples (full season) beat small samples (one series). Use stats to ask: Is this real or noise?"
+            }
+          },
+          {
+            "id": "ana-07-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": ["sample-size"],
+            "payload": {
+              "prompt": "Why do analysts care about sample size?",
+              "options": [
+                {"id": "correct", "text": "Small samples (few games or shots) have high variance and do not reliably predict future performance; larger samples reduce noise."},
+                {"id": "dist-1", "text": "Because bigger numbers are always better."},
+                {"id": "dist-2", "text": "Because it affects the length of a season."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Right. A player shooting 5-for-5 in one game is noise. 50 for 100 over a season is meaningful. A 40-attempt playoff sample sits in between.",
+                "incorrect": "Not quite. Sample size is about variance: small samples (few games) are noisy; large samples (full season) are reliable. Use full-season stats over small stretches."
+              }
+            }
+          },
+          {
+            "id": "ana-07-mc-2",
+            "type": "multiple-choice",
+            "conceptIds": ["clutch-stats"],
+            "payload": {
+              "prompt": "What is the danger of 'clutch stats' (performance in close, late-game situations)?",
+              "options": [
+                {"id": "correct", "text": "The sample size is tiny, creating huge variance; a player's late-game numbers over one season may not predict future clutch performance."},
+                {"id": "dist-1", "text": "Clutch performance is more important than regular season."},
+                {"id": "dist-2", "text": "Only superstars can perform in clutch moments."}
+              ],
+              "correctOptionIds": ["correct"],
+              "explanation": {
+                "correct": "Exactly. Late-game situations (final 5 min, within 5 pts) have tiny sample sizes. A 3-for-5 night inflates clutch stats but means little over time.",
+                "incorrect": "Not quite. Clutch performance is real but the sample size is small. Do not weight one clutch performance too heavily; ask for season-level data."
+              }
+            }
+          },
+          {
+            "id": "ana-07-st-1",
+            "type": "say-this",
+            "conceptIds": ["analytics-vs-eye-test"],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "Stats said he was the MVP, but I saw him get exposed on defense."
+              },
+              "question": "What does she mean?",
+              "options": [
+                {"id": "correct", "text": "Advanced stats may not fully capture defense or intangibles; the eye test (watching games) revealed defensive weaknesses the MVP voting missed.", "isCorrect": true},
+                {"id": "dist-1", "text": "Statistics are always wrong.", "isCorrect": false},
+                {"id": "dist-2", "text": "She saw him fouling constantly.", "isCorrect": false},
+                {"id": "dist-3", "text": "He is a poor defensive player overall.", "isCorrect": false}
+              ],
+              "translation": "She is noting that stats alone do not tell the story; watching the games showed defensive lapses or mismatches that the numbers missed.",
+              "followUps": [
+                {
+                  "line": "Yeah, stats do not capture everything.",
+                  "why": "You recognize that numbers and eye test both matter; neither is complete."
+                },
+                {
+                  "line": "But his offensive numbers were real.",
+                  "why": "A good follow-up: acknowledge the stat's offensive value while noting the defensive gap."
+                }
+              ],
+              "noFakeExpertNote": "Stats are useful but incomplete. Use them with the eye test. Both matter."
+            }
+          },
+          {
+            "id": "ana-07-st-2",
+            "type": "say-this",
+            "conceptIds": ["sample-size"],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "He is shooting 50% from three this season."
+              },
+              "question": "What would you ask first?",
+              "options": [
+                {"id": "correct", "text": "How many attempts is that on? On 20 attempts it is noise; on 200 it is real. Sample size tells you whether to trust the number.", "isCorrect": true},
+                {"id": "dist-1", "text": "Is he a good player?", "isCorrect": false},
+                {"id": "dist-2", "text": "How many games has he played?", "isCorrect": false},
+                {"id": "dist-3", "text": "Does his team win?", "isCorrect": false}
+              ],
+              "translation": "Before believing the 50% rate, you need to know the sample size (attempts). 20 attempts = noise. 200 attempts = elite shooting.",
+              "followUps": [
+                {
+                  "line": "Yeah, I need to know how many he shot.",
+                  "why": "You recognize that sample size is the first question when hearing a stat."
+                },
+                {
+                  "line": "Is that real or noise?",
+                  "why": "A good follow-up asking for the context that sample size provides."
+                }
+              ],
+              "noFakeExpertNote": "Always ask sample size first. A 50% three-rate on 20 attempts is different from 200 attempts."
+            }
+          },
+          {
+            "id": "ana-07-tt-1",
+            "type": "talk-track",
+            "conceptIds": ["analytics-vs-eye-test"],
+            "payload": {
+              "line": "The stats do not match what I saw.",
+              "translation": "You are telling a fan the box score or advanced stats do not match your observation from watching the game.",
+              "context": "A player had a big scoring line (20 pts) but looked sluggish; or an assist rate does not reflect play-making you saw.",
+              "replies": [
+                {
+                  "line": "Stats are one piece. What did you see?",
+                  "isCorrect": true,
+                  "why": "You are inviting their observation without dismissing stats. Good balance."
+                },
+                {
+                  "line": "Yeah, stats always lie.",
+                  "isCorrect": false,
+                  "why": "Dismissing stats entirely is wrong. Stats are useful; just not complete."
+                },
+                {
+                  "line": "His actual plus-minus was terrible.",
+                  "isCorrect": true,
+                  "why": "Offering a stat that might explain the gap (plus-minus captures overall impact)."
+                },
+                {
+                  "line": "You probably misremembered the game.",
+                  "isCorrect": false,
+                  "why": "Dismissing their eye test is wrong. Both matter."
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

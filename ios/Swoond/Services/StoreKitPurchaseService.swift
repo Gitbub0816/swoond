@@ -12,13 +12,13 @@ actor StoreKitPurchaseService: PurchaseService {
         static var all: [String] { [yearly, monthly] }
     }
 
-    private var products: [SubscriptionPeriod: Product] = [:]
+    private var products: [SwoondCore.SubscriptionPeriod: Product] = [:]
     private var loaded = false
 
     func plans() async -> [SubscriptionPlan] {
         await loadProducts()
         guard !products.isEmpty else { return SubscriptionPlan.placeholders }
-        return SubscriptionPeriod.allCases.compactMap { period in
+        return SwoondCore.SubscriptionPeriod.allCases.compactMap { period in
             guard let p = products[period] else { return nil }
             switch period {
             case .yearly: return SubscriptionPlan(period: .yearly, title: "Yearly", subtitle: "Billed yearly", priceText: p.displayPrice, badge: "Save 40%")
@@ -27,7 +27,7 @@ actor StoreKitPurchaseService: PurchaseService {
         }
     }
 
-    func purchase(_ period: SubscriptionPeriod) async -> PurchaseOutcome {
+    func purchase(_ period: SwoondCore.SubscriptionPeriod) async -> PurchaseOutcome {
         await loadProducts()
         guard let product = products[period] else { return .failed("Swoon\u{2019}d+ isn\u{2019}t set up in this build yet.") }
         do {
