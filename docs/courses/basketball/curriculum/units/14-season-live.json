@@ -1,0 +1,1052 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "basketball",
+  "unit": {
+    "id": "season-live",
+    "title": "Season Mode (Live)",
+    "layer": "current-season",
+    "order": 14,
+    "prerequisiteUnitIds": ["league-machine"],
+    "personalizationSlots": ["team", "player", "league", "conference", "rival"],
+    "live": {
+      "dataKind": "schedule,results,standings,roster,news",
+      "adapterKey": "basketball.season",
+      "refreshHint": "hourly; minutes during games"
+    },
+    "lessons": [
+      {
+        "id": "liv-01",
+        "title": "This week in {{league}}",
+        "objective": "Get the week's key games and context for this week's action.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["live-weekly-brief", "seeding"],
+        "live": {
+          "dataKind": "schedule",
+          "refreshHint": "daily"
+        },
+        "activities": [
+          {
+            "id": "liv-01-mc-matchup",
+            "type": "multiple-choice",
+            "conceptIds": ["live-weekly-brief"],
+            "payload": {
+              "prompt": "This week's {{league}} schedule features multiple playoff-race implications. Why does early seeding matter?",
+              "options": [
+                {"id": "a", "text": "Seeds determine playoff matchups; every win shifts seeding race."},
+                {"id": "b", "text": "Seeds determine home-court advantage in playoffs, which is worth a few points."},
+                {"id": "c", "text": "Early seeding sets the tone for the rest of the season."}
+              ],
+              "correctOptionIds": ["a", "b"],
+              "explanation": {
+                "correct": "Exactly. Seeding means playoff spots and home court. Games now matter for spring.",
+                "incorrect": "Week-to-week games shift seeds and playoff positioning. Seeding determines playoff matchups and home court."
+              }
+            }
+          },
+          {
+            "id": "liv-01-st-matchup",
+            "type": "say-this",
+            "conceptIds": ["live-weekly-brief"],
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "Our team plays three games this week and every one is against a contender."
+              },
+              "options": [
+                {"id": "a", "isCorrect": true, "text": "A brutal schedule against strong teams tests whether they can compete with the best."},
+                {"id": "b", "isCorrect": false, "text": "Easy wins against contenders are guaranteed."},
+                {"id": "c", "isCorrect": false, "text": "Playing good teams hurts their playoff chances."},
+                {"id": "d", "isCorrect": false, "text": "Winning does not matter against contenders."}
+              ],
+              "translation": "She means this week is a big test. Wins against contenders boost playoff positioning.",
+              "followUps": [
+                {
+                  "line": "Think they can win most of them?",
+                  "why": "Good: invites her to assess their roster against elite teams."
+                },
+                {
+                  "line": "That is a tough slate.",
+                  "why": "Valid: acknowledges the difficulty without predicting outcomes."
+                }
+              ],
+              "noFakeExpertNote": "Playing contenders on the road is hard. Wins here prove readiness."
+            }
+          },
+          {
+            "id": "liv-01-mc-implications",
+            "type": "multiple-choice",
+            "conceptIds": ["seeding"],
+            "payload": {
+              "prompt": "If {{team}} splits this week's games, how does that affect their seeding race?",
+              "options": [
+                {"id": "a", "text": "One win and one loss keeps them steady in the standings."},
+                {"id": "b", "text": "Splits against contenders show they can trade wins."},
+                {"id": "c", "text": "Every game matters; splitting wastes opportunities against elite teams."}
+              ],
+              "correctOptionIds": ["a", "c"],
+              "explanation": {
+                "correct": "Right. In a tight seeding race, beating contenders lifts you; splitting does not move you much.",
+                "incorrect": "Close seeds mean wins against contenders matter. A split feels neutral but lost ground to direct competitors."
+              }
+            }
+          },
+          {
+            "id": "liv-01-ds-schedule",
+            "type": "decision-scenario",
+            "conceptIds": ["live-weekly-brief", "seeding"],
+            "payload": {
+              "prompt": "Your team is one game back of the eighth seed. Three straight games against playoff-contending teams. Go for it all or rest key players?",
+              "situation": {
+                "facts": [
+                  {"label": "Record", "value": "Tied with the 9th seed"},
+                  {"label": "Schedule", "value": "Three contenders, then easier games"},
+                  {"label": "Key players", "value": "One has a minor injury, playable"},
+                  {"label": "Playoff odds", "value": "Win all three: 85% chance to make playoffs"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "go-for-it",
+                  "label": "Play full strength, go for it.",
+                  "verdict": "best",
+                  "consequence": "Winning three straight secures playoff position. The reward justifies the risk.",
+                  "considerations": ["Win now or regret it.", "Contenders are predictable.", "Rest comes after playoffs."]
+                },
+                {
+                  "id": "rest",
+                  "label": "Sit the injured player; be cautious.",
+                  "verdict": "acceptable",
+                  "consequence": "Safer approach if you value continuity over seeding wins. But playoff odds drop.",
+                  "considerations": ["Health is key.", "But playoffs matter more.", "Injury risk is real."]
+                }
+              ],
+              "expertNote": "Late-season intensity against contenders is a playoff preview. Go all-in unless injury risk is severe."
+            }
+          },
+          {
+            "id": "liv-01-fg-games",
+            "type": "fill-the-gap",
+            "conceptIds": ["live-weekly-brief"],
+            "payload": {
+              "prompt": "NBA teams play {{gamesPerWeek}} games per week on average during the regular season.",
+              "template": "NBA teams play {{gamesPerWeek}} games per week on average during the regular season.",
+              "gaps": [
+                {
+                  "id": "gamesPerWeek",
+                  "options": ["2", "3", "4", "5"],
+                  "correct": "3"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. Most weeks have 2-4 games; average is about three.",
+                "incorrect": "NBA schedule spreads games across the week. Most teams play 3 games per week on average."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "liv-02",
+        "title": "{{team}}: game preview",
+        "objective": "Preview {{team}}'s next game and what to watch for.",
+        "estimatedMinutes": 11,
+        "conceptIds": ["live-game-preview", "matchup-hunting", "rotations"],
+        "live": {
+          "dataKind": "schedule,roster",
+          "refreshHint": "twice daily"
+        },
+        "activities": [
+          {
+            "id": "liv-02-mc-preview",
+            "type": "multiple-choice",
+            "conceptIds": ["live-game-preview"],
+            "payload": {
+              "prompt": "{{team}} plays a back-to-back this week. What should you watch for?",
+              "options": [
+                {"id": "a", "text": "Bench unit performance; starters get extra rest on day two."},
+                {"id": "b", "text": "Energy levels and pace; second nights fatigue the team."},
+                {"id": "c", "text": "The coach's rotation shrinks; fewer players get heavy minutes."}
+              ],
+              "correctOptionIds": ["a", "b", "c"],
+              "explanation": {
+                "correct": "All three happen. Back-to-backs change everything: rotation, pace, and who plays.",
+                "incorrect": "Back-to-backs are brutal. Watch for rotation changes, bench stepping up, and tired defense."
+              }
+            }
+          },
+          {
+            "id": "liv-02-st-matchup",
+            "type": "say-this",
+            "conceptIds": ["live-game-preview", "matchup-hunting"],
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "This matchup is perfect for {{player}}. Their defense is slow."
+              },
+              "options": [
+                {"id": "a", "isCorrect": true, "text": "She is identifying a mismatch: the opponent's slow defense suits {{player}}'s speed."},
+                {"id": "b", "isCorrect": false, "text": "She is insulting the opponent."},
+                {"id": "c", "isCorrect": false, "text": "The matchup is bad for {{player}}."},
+                {"id": "d", "isCorrect": false, "text": "Speed has no impact on defense."}
+              ],
+              "translation": "She means the opponent's weak perimeter defense is a gift for a quick player like {{player}}.",
+              "followUps": [
+                {
+                  "line": "Think he will attack it?",
+                  "why": "Good: you are thinking about whether he exploits the matchup."
+                },
+                {
+                  "line": "That defense is not great anyway.",
+                  "why": "Valid observation about their general struggles."
+                }
+              ],
+              "noFakeExpertNote": "Mismatch-hunting is key: when the other team's defender cannot keep up, a player attacks it."
+            }
+          },
+          {
+            "id": "liv-02-ds-strategy",
+            "type": "decision-scenario",
+            "conceptIds": ["live-game-preview"],
+            "payload": {
+              "prompt": "Your team is on a four-game road trip. Tonight is game two. Rotation strategy?",
+              "situation": {
+                "facts": [
+                  {"label": "Trip", "value": "Four games in six nights, two more after tonight"},
+                  {"label": "Record so far", "value": "1-0 on the trip; tired"},
+                  {"label": "Opponent", "value": "Playoff-race team, not elite"},
+                  {"label": "Bench depth", "value": "Solid; can handle extra minutes"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "rest-starters",
+                  "label": "Rest starters now, lean on bench.",
+                  "verdict": "best",
+                  "consequence": "Conserve energy for the final two games. Bench gets valuable minutes.",
+                  "considerations": ["Long trip ahead.", "This game is winnable with bench.", "Save the stars for critical games."]
+                },
+                {
+                  "id": "go-all-out",
+                  "label": "Play to win; go full strength.",
+                  "verdict": "acceptable",
+                  "consequence": "Win now, handle fatigue later. But risky if key players get hurt.",
+                  "considerations": ["Winning matters now.", "But exhaustion is real.", "Rest matters later."]
+                }
+              ],
+              "expertNote": "Four-game trips are grinding. Winners rest strategically against non-elite teams early in the trip."
+            }
+          },
+          {
+            "id": "liv-02-mc-injury",
+            "type": "multiple-choice",
+            "conceptIds": ["live-game-preview"],
+            "payload": {
+              "prompt": "{{team}} announced a late-game injury update. What should you check before game time?",
+              "options": [
+                {"id": "a", "text": "The league's official injury report and the team's public statements."},
+                {"id": "b", "text": "Social media rumors and player hints."},
+                {"id": "c", "text": "The coach's game-day practice notes."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Official sources only. The league injury report is the truth.",
+                "incorrect": "Stick to official reports. Social media is speculation; rumors are not facts."
+              }
+            }
+          },
+          {
+            "id": "liv-02-tt-preview",
+            "type": "talk-track",
+            "conceptIds": ["live-game-preview"],
+            "payload": {
+              "title": "Game preview talk",
+              "setting": "She is excited and nervous about tonight's game. You want to talk about what might happen.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "I hope they win tonight. Our playoff chances depend on it.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "What is your team's biggest edge against this opponent?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Good question. We are way faster on the wings.",
+                      "coachNote": "You asked about their team's strength, inviting analysis."
+                    },
+                    {
+                      "id": "b",
+                      "text": "Yeah, this is a must-win.",
+                      "smoothDelta": 3,
+                      "theirResponse": "Exactly. I am so nervous.",
+                      "coachNote": "You agreed but did not add anything new to the talk."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "Do you think {{player}} will go off tonight?",
+                  "replies": [
+                    {
+                      "id": "c",
+                      "text": "Depends on whether their defense can keep up. Does he usually score against this team?",
+                      "smoothDelta": 20,
+                      "theirResponse": "He is always better at home. We are on the road, though.",
+                      "coachNote": "You connected individual skill to matchup; she gave you more info."
+                    },
+                    {
+                      "id": "d",
+                      "text": "He always scores. That is what he does.",
+                      "smoothDelta": -5,
+                      "theirResponse": "True, but some teams can slow him down.",
+                      "coachNote": "You oversimplified. Defenses actually matter."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Game previews are about matchups and momentum. Talk about edges and concerns."
+            }
+          }
+        ]
+      },
+      {
+        "id": "liv-03",
+        "title": "Why is everyone talking about this?",
+        "objective": "Decode the week's biggest basketball story and why fans care.",
+        "estimatedMinutes": 9,
+        "conceptIds": ["live-explainer", "contract", "trade"],
+        "live": {
+          "dataKind": "news",
+          "refreshHint": "hourly"
+        },
+        "activities": [
+          {
+            "id": "liv-03-mc-story",
+            "type": "multiple-choice",
+            "conceptIds": ["live-explainer"],
+            "payload": {
+              "prompt": "A star player just signed a supermax contract extension. Why is that huge news?",
+              "options": [
+                {"id": "a", "text": "It costs the team a ton of cap space; they cannot trade or sign freely."},
+                {"id": "b", "text": "It signals the player wants to stay, shaping the team's future."},
+                {"id": "c", "text": "It immediately affects playoff seeding and matchups."}
+              ],
+              "correctOptionIds": ["a", "b"],
+              "explanation": {
+                "correct": "Right. Supermax contracts lock in players and cap space. That shapes team building.",
+                "incorrect": "Player signings matter for cap and chemistry. A supermax signals commitment and limits flexibility."
+              }
+            }
+          },
+          {
+            "id": "liv-03-st-story",
+            "type": "say-this",
+            "conceptIds": ["live-explainer"],
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "The trade deadline is two weeks away and nobody knows what to expect."
+              },
+              "options": [
+                {"id": "a", "isCorrect": true, "text": "Trades are unpredictable; teams make moves based on health, seeding and opportunity."},
+                {"id": "b", "isCorrect": false, "text": "Trade deadline trades are always quiet."},
+                {"id": "c", "isCorrect": false, "text": "All contenders make the same trades."},
+                {"id": "d", "isCorrect": false, "text": "Trades do not happen at the deadline anymore."}
+              ],
+              "translation": "She means deadline trades are a wild card. Who moves where is genuinely uncertain.",
+              "followUps": [
+                {
+                  "line": "Think your team will do anything?",
+                  "why": "Invites her to predict her team's moves based on their situation."
+                },
+                {
+                  "line": "Deadline trades always seem random.",
+                  "why": "Fair observation: trades do look surprising until the context is clear."
+                }
+              ],
+              "noFakeExpertNote": "Trade deadlines create buzz because moves are real and impact playoff positioning."
+            }
+          },
+          {
+            "id": "liv-03-ds-narrative",
+            "type": "decision-scenario",
+            "conceptIds": ["live-explainer"],
+            "payload": {
+              "prompt": "A team fired their coach mid-season. Is that a reset or a sign of trouble?",
+              "situation": {
+                "facts": [
+                  {"label": "Record", "value": "35 wins, 25 losses; still in playoff race"},
+                  {"label": "Reason", "value": "Locker room discord reported"},
+                  {"label": "Interim", "value": "An assistant takes over; knows the team"},
+                  {"label": "Precedent", "value": "Coaching changes sometimes spark runs"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "reset",
+                  "label": "It is a reset; could spark a run.",
+                  "verdict": "best",
+                  "consequence": "Fresh coaching can fix culture issues. The interim coach has respect.",
+                  "considerations": ["New voice helps.", "Players know the system.", "Disruption can work."]
+                },
+                {
+                  "id": "trouble",
+                  "label": "It signals locker room dysfunction.",
+                  "verdict": "acceptable",
+                  "consequence": "True that mid-season firings indicate problems. But a change sometimes solves it.",
+                  "considerations": ["Discord is real.", "But change helps.", "Sometimes it is just bad culture."]
+                }
+              ],
+              "expertNote": "Mid-season coaching changes succeed when locker room was the problem, not talent."
+            }
+          },
+          {
+            "id": "liv-03-mc-impact",
+            "type": "multiple-choice",
+            "conceptIds": ["live-explainer"],
+            "payload": {
+              "prompt": "A league rule change is announced for next season. Why do fans care now?",
+              "options": [
+                {"id": "a", "text": "It might affect playoff strategy and team composition immediately."},
+                {"id": "b", "text": "It gives months of time to adapt; fans follow it for discussion."},
+                {"id": "c", "text": "It has no impact on this season, so fans focus on next year."}
+              ],
+              "correctOptionIds": ["a", "b"],
+              "explanation": {
+                "correct": "Exactly. Rule changes announced now affect team planning and fan debate.",
+                "incorrect": "Rule changes shape how teams think about trades and draft. Fans follow them because they matter."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "liv-04",
+        "title": "Injury report decoder",
+        "objective": "Understand injury reports and what they mean for games this week.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["injury-report", "load-management", "game-time-decision"],
+        "live": {
+          "dataKind": "roster",
+          "refreshHint": "daily, minutes before game"
+        },
+        "activities": [
+          {
+            "id": "liv-04-mc-status",
+            "type": "multiple-choice",
+            "conceptIds": ["injury-report"],
+            "payload": {
+              "prompt": "A player is listed as questionable for tonight. What does that mean?",
+              "options": [
+                {"id": "a", "text": "He will not play; it is a precaution."},
+                {"id": "b", "text": "He is uncertain to play; a game-time decision."},
+                {"id": "c", "text": "He will definitely play but is limited."}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. Questionable means game-time decision. You find out at warmups.",
+                "incorrect": "Questionable is the middle ground: the player might play, but it is uncertain."
+              }
+            }
+          },
+          {
+            "id": "liv-04-st-impact",
+            "type": "say-this",
+            "conceptIds": ["injury-report", "game-time-decision"],
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "Three players are out tonight. That is a huge opportunity for the bench."
+              },
+              "options": [
+                {"id": "a", "isCorrect": true, "text": "Missing starters mean role players and bench get more minutes and shots."},
+                {"id": "b", "isCorrect": false, "text": "Injuries do not affect playing time."},
+                {"id": "c", "isCorrect": false, "text": "The bench is always ready to start."},
+                {"id": "d", "isCorrect": false, "text": "Bench players are never good substitutes."}
+              ],
+              "translation": "She means injuries create a chance for lesser-known players to step up.",
+              "followUps": [
+                {
+                  "line": "Can the bench actually win without them?",
+                  "why": "Good: you are thinking about whether depth is real or just depth."
+                },
+                {
+                  "line": "Bench mob to the rescue.",
+                  "why": "Fair: lighthearted way to root for the reserves."
+                }
+              ],
+              "noFakeExpertNote": "Injuries are opportunities for backup players. Some rise to the occasion; others do not."
+            }
+          },
+          {
+            "id": "liv-04-bc-decision",
+            "type": "binary-call",
+            "conceptIds": ["load-management"],
+            "payload": {
+              "prompt": "A star player is listed as out for load management on the second night of a back-to-back.",
+              "pairs": [
+                {
+                  "id": "yes",
+                  "text": "Smart. Protecting him now keeps him fresh for playoffs.",
+                  "correct": true,
+                  "why": "Load management extends careers. One game is not worth the risk."
+                },
+                {
+                  "id": "no",
+                  "text": "Lazy. He should play through; that is what stars do.",
+                  "correct": false,
+                  "why": "Load management is standard now. Preventing injury beats forcing a player through fatigue."
+                }
+              ],
+              "explanation": {
+                "correct": "Load management is strategic. Playing 82 games hurts; rest helps.","incorrect": "Modern stars rest strategically. One back-to-back game is not worth the risk to a long playoff run."
+              }
+            }
+          },
+          {
+            "id": "liv-04-ds-outbreak",
+            "type": "decision-scenario",
+            "conceptIds": ["injury-report"],
+            "payload": {
+              "prompt": "A team suddenly has four players in health and safety protocols. How does that change tonight's game?",
+              "situation": {
+                "facts": [
+                  {"label": "Team impact", "value": "Missing rotation pieces; backups start"},
+                  {"label": "Opponent", "value": "Rested and healthy"},
+                  {"label": "Win expectation", "value": "Was close; now favors the opponent"},
+                  {"label": "Timing", "value": "In the middle of a playoff push"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "survival",
+                  "label": "A loss here hurts the seeding race.",
+                  "verdict": "best",
+                  "consequence": "Yes. Playing without depth against a full team is a likely loss.",
+                  "considerations": ["Depth is critical.", "One game hurts the playoff race.", "But you move on."]
+                },
+                {
+                  "id": "opportunity",
+                  "label": "Bench players get a chance; could be a surprise.",
+                  "verdict": "acceptable",
+                  "consequence": "True that upsets happen. But the odds are tough without your core.",
+                  "considerations": ["Miracles happen.", "But math says likely loss.", "Survival is the goal."]
+                }
+              ],
+              "expertNote": "Missing multiple rotation players is brutal. Expect to lose, focus on the next week."
+            }
+          },
+          {
+            "id": "liv-04-fg-status",
+            "type": "fill-the-gap",
+            "conceptIds": ["injury-report"],
+            "payload": {
+              "prompt": "Standard NBA injury statuses are: out, questionable, {{gtdStatus}}, and doubtful.",
+              "template": "Standard NBA injury statuses are: out, questionable, {{gtdStatus}}, and doubtful.",
+              "gaps": [
+                {
+                  "id": "gtdStatus",
+                  "options": [
+                    "game-time decision",
+                    "game day decision",
+                    "to-be-determined",
+                    "assessment pending"
+                  ],
+                  "correct": "game-time decision"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. Game-time decision (GTD) means the call comes at warmups.",
+                "incorrect": "GTD (game-time decision) is when a player's status is confirmed at game warmups."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "liv-05",
+        "title": "Standings and seeding race",
+        "objective": "Read the standings, understand seeding and where {{team}} stands.",
+        "estimatedMinutes": 11,
+        "conceptIds": ["live-seeding-race", "seeding", "standings-reading", "play-in", "tiebreaker"],
+        "live": {
+          "dataKind": "standings",
+          "refreshHint": "minutes after games end"
+        },
+        "activities": [
+          {
+            "id": "liv-05-mc-standing",
+            "type": "multiple-choice",
+            "conceptIds": ["standings-reading"],
+            "payload": {
+              "prompt": "{{team}} is tied in wins with another team. The tiebreaker goes to {{tiebreaker}}. What matters now?",
+              "options": [
+                {"id": "a", "text": "Head-to-head record against that team over the season."},
+                {"id": "b", "text": "Which team won the coin flip to be announced first."},
+                {"id": "c", "text": "Strength of schedule for remaining games."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Head-to-head is the first tiebreaker. It is the fairest way to separate teams.",
+                "incorrect": "Tiebreakers follow a hierarchy: head-to-head first, then division win %, then conference win %, etc."
+              }
+            }
+          },
+          {
+            "id": "liv-05-st-seeding",
+            "type": "say-this",
+            "conceptIds": ["live-seeding-race"],
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "We are right on the edge of the Play-In. One more loss and we are in danger."
+              },
+              "options": [
+                {"id": "a", "isCorrect": true, "text": "She means being 7th-10th seeds gets a team into the Play-In tournament; slipping lower means Play-In or missing playoffs."},
+                {"id": "b", "isCorrect": false, "text": "The Play-In is a guaranteed spot in the playoffs."},
+                {"id": "c", "isCorrect": false, "text": "Seeding does not affect the Play-In."},
+                {"id": "d", "isCorrect": false, "text": "All teams go through the Play-In."}
+              ],
+              "translation": "She is tracking seeding closely. If her team drops, they are in the Play-In gauntlet.",
+              "followUps": [
+                {
+                  "line": "How many games back are you from the six seed?",
+                  "why": "Good: you are thinking about the gap between Play-In and direct playoff spots."
+                },
+                {
+                  "line": "Play-In is brutal anyway.",
+                  "why": "Valid: even making Play-In is not safe."
+                }
+              ],
+              "noFakeExpertNote": "7-10 seeds make the Play-In. Missing the 6-seed is the line between direct playoffs and Play-In risk."
+            }
+          },
+          {
+            "id": "liv-05-ds-race",
+            "type": "decision-scenario",
+            "conceptIds": ["live-seeding-race", "play-in"],
+            "payload": {
+              "prompt": "{{team}} is three games back of the five seed with eight games left. Make playoffs or rest?",
+              "situation": {
+                "facts": [
+                  {"label": "Position", "value": "Currently 9th seed; Play-In bound"},
+                  {"label": "Gap", "value": "Three games back of 5th seed (direct playoff spot)"},
+                  {"label": "Games left", "value": "Eight regulars remain"},
+                  {"label": "Schedule", "value": "Mix of strong and weak opponents"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "chase-five",
+                  "label": "Go all-in to chase the five seed.",
+                  "verdict": "best",
+                  "consequence": "Three games in eight is possible. Direct playoffs save energy for playoffs.",
+                  "considerations": ["Math is doable.", "Play-In is brutal.", "Go for it."]
+                },
+                {
+                  "id": "secure-play-in",
+                  "label": "Lock up the nine seed and rest up.",
+                  "verdict": "acceptable",
+                  "consequence": "Play-In is winnable. But direct playoffs is safer. Choice depends on health.",
+                  "considerations": ["Play-In is a coin flip.", "Rest matters.", "But missing playoffs is worse."]
+                }
+              ],
+              "expertNote": "Close seeding races are decided in the final week. Three games back is close enough to chase."
+            }
+          },
+          {
+            "id": "liv-05-hs-standings",
+            "type": "hotspot-tap",
+            "conceptIds": ["standings-reading"],
+            "payload": {
+              "prompt": "In the standings table, tap where to find how many games back {{team}} is from the one seed.",
+              "description": "A standings table shows seed, team, wins, losses, and games back (GB).",
+              "spots": [
+                {
+                  "id": "gb-column",
+                  "label": "Games Back column (GB)",
+                  "correct": true,
+                  "feedback": "Right. GB shows the gap between a team and the leader."
+                },
+                {
+                  "id": "wins",
+                  "label": "Wins column",
+                  "correct": false,
+                  "feedback": "Wins alone do not show the gap. You need games back to see how close they are."
+                },
+                {
+                  "id": "seed",
+                  "label": "Seed number",
+                  "correct": false,
+                  "feedback": "Seed tells you rank but not how far back. Look at GB for distance."
+                }
+              ]
+            }
+          },
+          {
+            "id": "liv-05-mc-conference",
+            "type": "multiple-choice",
+            "conceptIds": ["seeding"],
+            "payload": {
+              "prompt": "Why does conference matter in seeding?",
+              "options": [
+                {"id": "a", "text": "Each conference gets 8 playoff seeds; teams rank within their conference."},
+                {"id": "b", "text": "Conference champions get a bye to the second round."},
+                {"id": "c", "text": "Conference rivalries determine playoff matchups."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Exactly. Seeds 1-8 East, 1-8 West. Conference determines your playoff bracket.",
+                "incorrect": "Conferences divide the league. Seeds rank within each conference, determining first-round matchups."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "liv-06",
+        "title": "Trades and free agency explainer",
+        "objective": "Decode trades, signings and the salary cap impact on team building.",
+        "estimatedMinutes": 11,
+        "conceptIds": ["live-transaction-explainer", "trade", "free-agency", "salary-cap", "trade-exception"],
+        "live": {
+          "dataKind": "news,roster",
+          "refreshHint": "hourly"
+        },
+        "activities": [
+          {
+            "id": "liv-06-mc-trade",
+            "type": "multiple-choice",
+            "conceptIds": ["trade"],
+            "payload": {
+              "prompt": "Your team trades for a player mid-season. What is the benefit?",
+              "options": [
+                {"id": "a", "text": "Immediate roster upgrade for the playoff push."},
+                {"id": "b", "text": "The acquired player is always better than who you gave up."},
+                {"id": "c", "text": "Trades never backfire."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Right. Mid-season trades add talent for a playoff run. No guarantee of success.",
+                "incorrect": "Trades are gambles. You add talent but give up future assets or depth."
+              }
+            }
+          },
+          {
+            "id": "liv-06-st-trade",
+            "type": "say-this",
+            "conceptIds": ["live-transaction-explainer", "trade"],
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "That trade looks bad long-term but makes sense for this year."
+              },
+              "options": [
+                {"id": "a", "isCorrect": true, "text": "She means the team sacrificed future assets to win now, a valid playoff-push trade-off."},
+                {"id": "b", "isCorrect": false, "text": "The trade is objectively bad."},
+                {"id": "c", "isCorrect": false, "text": "All trades help the future."},
+                {"id": "d", "isCorrect": false, "text": "Trades always look good long-term."}
+              ],
+              "translation": "She is recognizing the tension: this trade adds a star now but costs flexibility later.",
+              "followUps": [
+                {
+                  "line": "Does it make you a contender this year?",
+                  "why": "Good: you are asking if the gamble is worth it now."
+                },
+                {
+                  "line": "Risky move.",
+                  "why": "Fair assessment that trading future assets is a risk."
+                }
+              ],
+              "noFakeExpertNote": "Playoff teams often trade future picks or prospects for present talent. It is a valid strategy."
+            }
+          },
+          {
+            "id": "liv-06-ds-deadline",
+            "type": "decision-scenario",
+            "conceptIds": ["live-transaction-explainer", "salary-cap"],
+            "payload": {
+              "prompt": "Your contender is near the salary cap. A star becomes available at the deadline. Trade or pass?",
+              "situation": {
+                "facts": [
+                  {"label": "Cap situation", "value": "{{team}} is {{capStatus}} with {{remainingCap}}"},
+                  {"label": "Star available", "value": "Available for a reasonable price"},
+                  {"label": "Playoff window", "value": "This is the year; next year is uncertain"},
+                  {"label": "Trade cost", "value": "Three good young players and a pick"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "trade",
+                  "label": "Trade for the star now.",
+                  "verdict": "best",
+                  "consequence": "Add a superstar in your playoff window. The young players' loss hurts long-term but wins now.",
+                  "considerations": ["Stars matter.", "Window is now.", "Future is uncertain."]
+                },
+                {
+                  "id": "pass",
+                  "label": "Pass; keep the young core.",
+                  "verdict": "acceptable",
+                  "consequence": "Preserves future but risks wasting your window. A hard choice.",
+                  "considerations": ["Young talent is valuable.", "But today wins matter.", "Windows do not stay open."]
+                }
+              ],
+              "expertNote": "Contenders trade young talent for stars. It is a calculated risk when playoffs are now."
+            }
+          },
+          {
+            "id": "liv-06-tm-cap",
+            "type": "term-match",
+            "conceptIds": ["salary-cap", "trade-exception"],
+            "payload": {
+              "prompt": "Match salary cap terms to their meanings.",
+              "pairs": [
+                {"id": "cap", "term": "Salary cap", "definition": "The spending limit for a team's player salaries; teams over it pay a luxury tax."},
+                {"id": "exception", "term": "Trade exception", "definition": "A credit from a previous trade allowing a team to absorb a player's salary without counting it."},
+                {"id": "apron", "term": "Apron", "definition": "A second spending threshold above the luxury tax; exceeding it triggers harsher penalties."}
+              ],
+              "distractorDefinitions": [
+                "A bonus given to players for winning.",
+                "A percentage increase in a player's salary each year."
+              ],
+              "explanation": {
+                "summary": "Cap rules limit spending. Exceptions let teams absorb salary. Aprons add penalties for big spenders."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "liv-07",
+        "title": "Playoff series tracker",
+        "objective": "Understand playoff seeding, bracket predictions and why every late-season game matters.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["live-series-tracker", "playoff-format", "best-of-seven", "first-round"],
+        "live": {
+          "dataKind": "standings",
+          "refreshHint": "daily"
+        },
+        "activities": [
+          {
+            "id": "liv-07-mc-bracket",
+            "type": "multiple-choice",
+            "conceptIds": ["playoff-format"],
+            "payload": {
+              "prompt": "In the playoffs, why does seeding matter so much?",
+              "options": [
+                {"id": "a", "text": "Seeds determine playoff matchups and home-court advantage throughout the bracket."},
+                {"id": "b", "text": "Seeds give byes to higher seeds in the first round."},
+                {"id": "c", "text": "Seeding determines which team wins the championship."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Right. One plays eight, two plays seven, etc. Home court comes with being the higher seed.",
+                "incorrect": "Seeding sets the bracket. First seed hosts game one, travels for game two, etc. Huge advantage."
+              }
+            }
+          },
+          {
+            "id": "liv-07-st-matchup",
+            "type": "say-this",
+            "conceptIds": ["live-series-tracker"],
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "If we land the three seed, we might duck the two seed in the first round."
+              },
+              "options": [
+                {"id": "a", "isCorrect": true, "text": "She means seeding determines matchups; getting three protects against facing the defending champion two seed."},
+                {"id": "b", "isCorrect": false, "text": "Seeds randomly pair up in the playoffs."},
+                {"id": "c", "isCorrect": false, "text": "Avoiding tough teams is guaranteed."},
+                {"id": "d", "isCorrect": false, "text": "Seeds do not affect first-round matchups."}
+              ],
+              "translation": "She is thinking about bracket implications. Three seed plays six; two seed plays seven. Avoiding them is lucky.",
+              "followUps": [
+                {
+                  "line": "Who do you think is the second seed?",
+                  "why": "Good: invites her to name the current threat."
+                },
+                {
+                  "line": "Best record is always the two seed.",
+                  "why": "Not quite: one seed has best record. But you are thinking about the bracket."
+                }
+              ],
+              "noFakeExpertNote": "Bracket seeding is rigid: 1 vs 8, 2 vs 7, 3 vs 6, 4 vs 5. Seeding determines path to the Finals."
+            }
+          },
+          {
+            "id": "liv-07-ds-clinch",
+            "type": "decision-scenario",
+            "conceptIds": ["live-series-tracker"],
+            "payload": {
+              "prompt": "{{team}} can clinch the three seed with one win in three games. Conservative or aggressive?",
+              "situation": {
+                "facts": [
+                  {"label": "Seed", "value": "Sitting fourth; three seed is within reach"},
+                  {"label": "Games", "value": "Three left, mix of strong and weak teams"},
+                  {"label": "Playoff opponent", "value": "Three seed faces five seed; four faces six seed"},
+                  {"label": "First-round implication", "value": "Three likely faces weaker opponent"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "go-for-three",
+                  "label": "Play to clinch the three seed.",
+                  "verdict": "best",
+                  "consequence": "One win vs. three weaker opponents; sets up an easier first-round matchup.",
+                  "considerations": ["Easier path.", "Rest while clinched.", "Home court matters."]
+                },
+                {
+                  "id": "coast",
+                  "label": "Rest key players; accept the four.",
+                  "verdict": "acceptable",
+                  "consequence": "Four seed is still first-round home games. Rest helps, but playoff path is tougher.",
+                  "considerations": ["Rest is real.", "But first round matters.", "Seeding is worth one win."]
+                }
+              ],
+              "expertNote": "Playoff seeding is worth playing for. One better seed often means an easier first-round opponent."
+            }
+          },
+          {
+            "id": "liv-07-hs-bracket",
+            "type": "hotspot-tap",
+            "conceptIds": ["playoff-format"],
+            "payload": {
+              "prompt": "Tap the first-round matchup if your team is the three seed and has the best record in the conference.",
+              "description": "Bracket shows 1 seed vs 8, 2 vs 7, 3 vs 6, 4 vs 5 in the first round.",
+              "spots": [
+                {
+                  "id": "three-six",
+                  "label": "Three seed plays six seed",
+                  "correct": true,
+                  "feedback": "Right. Three seed is third-best record; plays sixth seed, the sixth-best."
+                },
+                {
+                  "id": "three-seven",
+                  "label": "Three seed plays seven seed",
+                  "correct": false,
+                  "feedback": "No. Seven plays two seed. Seeds pair symmetrically: 1-8, 2-7, 3-6, 4-5."
+                },
+                {
+                  "id": "one-three",
+                  "label": "One seed plays three seed",
+                  "correct": false,
+                  "feedback": "No. One plays eight. First-round seeding is fixed."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "liv-08",
+        "title": "Awards and All-Star season",
+        "objective": "Understand MVP voting, All-Star selections and why awards matter.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["live-awards-race", "mvp-criteria", "award-voting"],
+        "live": {
+          "dataKind": "news,standings",
+          "refreshHint": "daily"
+        },
+        "activities": [
+          {
+            "id": "liv-08-mc-mvp",
+            "type": "multiple-choice",
+            "conceptIds": ["mvp-criteria"],
+            "payload": {
+              "prompt": "What makes a player an MVP candidate?",
+              "options": [
+                {"id": "a", "text": "Elite scoring, team success and narrative matter almost equally to voters."},
+                {"id": "b", "text": "Whoever scores the most points wins MVP."},
+                {"id": "c", "text": "MVP is always determined by regular-season statistics alone."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Right. MVP voters balance scoring, efficiency, team record and story. It is subjective.",
+                "incorrect": "MVP voting weighs stats but also team wins and narrative. The best scorer does not always win."
+              }
+            }
+          },
+          {
+            "id": "liv-08-st-awards",
+            "type": "say-this",
+            "conceptIds": ["live-awards-race", "mvp-criteria"],
+            "payload": {
+              "statement": {
+                "speaker": "fan",
+                "text": "{{player}} is putting up numbers but his team is struggling. That hurts his MVP chances."
+              },
+              "options": [
+                {"id": "a", "isCorrect": true, "text": "She means MVP voters reward team success; individual stats on losing teams count less."},
+                {"id": "b", "isCorrect": false, "text": "Individual stats are the only MVP criteria."},
+                {"id": "c", "isCorrect": false, "text": "Team record does not matter in MVP voting."},
+                {"id": "d", "isCorrect": false, "text": "All-Star selections and MVP are the same thing."}
+              ],
+              "translation": "She is noting the MVP narrative: great stats on bad teams lose to decent stats on great teams.",
+              "followUps": [
+                {
+                  "line": "Can his team make the playoffs?",
+                  "why": "Good: you are thinking about whether team success can still happen."
+                },
+                {
+                  "line": "He deserves it anyway.",
+                  "why": "Fair opinion, but MVP voters weight team wins."
+                }
+              ],
+              "noFakeExpertNote": "MVP voting is not purely statistical. Great players on good teams usually win over stats guys on bad teams."
+            }
+          },
+          {
+            "id": "liv-08-ds-voting",
+            "type": "decision-scenario",
+            "conceptIds": ["award-voting"],
+            "payload": {
+              "prompt": "Three players are close in MVP voting late in the season. Who do voters pick?",
+              "situation": {
+                "facts": [
+                  {"label": "Player A", "value": "29 PPG, 7 APG; third-seed team"},
+                  {"label": "Player B", "value": "25 PPG, 8 APG; first-seed team"},
+                  {"label": "Player C", "value": "23 PPG, 5 APG; second-seed team"},
+                  {"label": "Narrative", "value": "A is a young phenom; B is a veteran leader; C is a role player elevated"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "player-b",
+                  "label": "Player B; team success and veteran respect.",
+                  "verdict": "best",
+                  "consequence": "First seed and strong narrative. MVP voters reward teams that win.",
+                  "considerations": ["Winning matters.", "Veteran respect counts.", "Narrative helps."]
+                },
+                {
+                  "id": "player-a",
+                  "label": "Player A; best raw numbers.",
+                  "verdict": "acceptable",
+                  "consequence": "A has the highest scoring. Stats matter, but team success usually wins.",
+                  "considerations": ["Numbers are great.", "But team is third.", "Voters see the full picture."]
+                }
+              ],
+              "expertNote": "MVP voters weigh stats and narrative. First seed leading usually means that player's team is winning."
+            }
+          },
+          {
+            "id": "liv-08-mc-allstar",
+            "type": "multiple-choice",
+            "conceptIds": ["live-awards-race"],
+            "payload": {
+              "prompt": "How is the All-Star Game team selected?",
+              "options": [
+                {"id": "a", "text": "Fan vote (50%), player vote (25%), coach vote (25%) determines the 12-person roster per conference."},
+                {"id": "b", "text": "The commissioner selects all All-Stars based on statistics."},
+                {"id": "c", "text": "Only the best players from the top two seeds make it."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Right. Fans vote, players vote, coaches vote. All-Star selection is a mix.",
+                "incorrect": "All-Star selection is democratic: fan voting, peer voting, and coach input all count."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
