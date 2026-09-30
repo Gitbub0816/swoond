@@ -38,7 +38,10 @@
           {
             "id": "pre-snap-01-hs-qb",
             "type": "hotspot-tap",
-            "conceptIds": ["pre-snap-read", "disguise"],
+            "conceptIds": [
+              "pre-snap-read",
+              "disguise"
+            ],
             "payload": {
               "prompt": "Tap where the quarterback looks first in his pre-snap read.",
               "diagram": {
@@ -50,23 +53,43 @@
                 {
                   "id": "safeties",
                   "label": "Deep safeties",
-                  "shape": {"kind": "rect", "x": 0.35, "y": 0.05, "w": 0.3, "h": 0.1}
+                  "shape": {
+                    "kind": "rect",
+                    "x": 0.35,
+                    "y": 0.05,
+                    "w": 0.3,
+                    "h": 0.1
+                  }
                 },
                 {
                   "id": "linebackers",
                   "label": "Linebackers",
-                  "shape": {"kind": "rect", "x": 0.3, "y": 0.15, "w": 0.4, "h": 0.1}
+                  "shape": {
+                    "kind": "rect",
+                    "x": 0.3,
+                    "y": 0.15,
+                    "w": 0.4,
+                    "h": 0.1
+                  }
                 },
                 {
                   "id": "line",
                   "label": "Defensive line",
-                  "shape": {"kind": "rect", "x": 0.25, "y": 0.25, "w": 0.5, "h": 0.08}
+                  "shape": {
+                    "kind": "rect",
+                    "x": 0.25,
+                    "y": 0.25,
+                    "w": 0.5,
+                    "h": 0.08
+                  }
                 }
               ],
-              "correctHotspotIds": ["safeties"],
+              "correctHotspotIds": [
+                "safeties"
+              ],
               "explanation": {
                 "correct": "The safeties reveal the coverage shell. Read them first, then the linebackers, then the line.",
-                "incorrect": "The quarterback's pre-snap read starts with safeties. Are they split (two-high) or stacked (one-high)? That changes everything."
+                "incorrect": "The quarterback's pre-snap read usually starts with the safeties. Are two split deep, or is one deep in the middle? That changes everything."
               }
             },
             "xp": 10
@@ -74,18 +97,30 @@
           {
             "id": "pre-snap-01-bc-motion",
             "type": "binary-call",
-            "conceptIds": ["pre-snap-read", "disguise"],
+            "conceptIds": [
+              "pre-snap-read",
+              "disguise"
+            ],
             "payload": {
-              "prompt": "If a corner lines up 10 yards from the receiver before the snap, it is likely Cover 0 (man with no help). True or false?",
-              "scene": {"kind": "none", "alt": "A cornerback lined up tight on a receiver at the line of scrimmage, signaling press coverage or man coverage."},
+              "prompt": "A corner pressed on a receiver with no safety deep often signals Cover 0. True or false?",
+              "scene": {
+                "kind": "none",
+                "alt": "A cornerback lined up tight on a receiver at the line of scrimmage, signaling press coverage or man coverage."
+              },
               "choices": [
-                {"id": "true", "label": "True"},
-                {"id": "false", "label": "False"}
+                {
+                  "id": "true",
+                  "label": "True"
+                },
+                {
+                  "id": "false",
+                  "label": "False"
+                }
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. A corner playing tight press coverage deep in the backfield is a tell for man coverage with no safety help.",
-                "incorrect": "Yes, a corner lined up so far off or so tight is a pre-snap clue that the defense is in man or Cover 0."
+                "correct": "True. Corners pressed up with no safety behind them usually mean man coverage with no deep help, and that often comes with a blitz.",
+                "incorrect": "Yes. Tight corners and no deep safety is a classic Cover 0 clue. It is risky for the defense, so the quarterback looks for a quick throw or hot route."
               }
             },
             "xp": 10
@@ -93,17 +128,32 @@
           {
             "id": "pre-snap-01-tm-reads",
             "type": "term-match",
-            "conceptIds": ["pre-snap-read", "audible"],
+            "conceptIds": [
+              "pre-snap-read",
+              "audible"
+            ],
             "payload": {
               "prompt": "Match each pre-snap tell to what it suggests.",
               "pairs": [
-                {"id": "two-high", "term": "Two-high safeties", "definition": "Likely Cover 2 or Cover 4; zone coverage is more likely than man."},
-                {"id": "one-high", "term": "One-high safety", "definition": "Could be Cover 1, Cover 3, or Cover 0; man coverage is possible."},
-                {"id": "blitz", "term": "Extra linebacker creeping up", "definition": "Blitz is coming; the quarterback might audible to hot routes or checkdowns."}
+                {
+                  "id": "two-high",
+                  "term": "Two-high safeties",
+                  "definition": "Likely Cover 2 or Cover 4; zone coverage is more likely than man."
+                },
+                {
+                  "id": "one-high",
+                  "term": "One-high safety",
+                  "definition": "Could be Cover 1 (man) or Cover 3 (zone); the coverage is not obvious yet."
+                },
+                {
+                  "id": "blitz",
+                  "term": "Extra linebacker creeping up",
+                  "definition": "A blitz may be coming; the quarterback might check to a hot route or quick throw."
+                }
               ],
               "explanation": {
-                "summary": "Pre-snap reads tell the quarterback where the help is (or is not). Safeties are the key.",
-                "sayThisLine": "Two-high: safe. One-high: risky. Blitz: hot route."
+                "summary": "Pre-snap reads tell the quarterback where the help is, or is not. Safeties are the key clue.",
+                "sayThisLine": "Two-high often means zone. One-high could be man or zone. An extra rusher means check for a blitz."
               }
             },
             "xp": 10
@@ -111,15 +161,27 @@
           {
             "id": "pre-snap-01-ds-audible",
             "type": "decision-scenario",
-            "conceptIds": ["pre-snap-read", "audible"],
+            "conceptIds": [
+              "pre-snap-read",
+              "audible"
+            ],
             "payload": {
               "prompt": "You see a blitz coming. Do you audible to a screen pass or a go route?",
               "situation": {
                 "narrative": "Offense pre-snap.",
                 "facts": [
-                  {"label": "Defense", "value": "Extra linebacker creeping up near the line"},
-                  {"label": "Read", "value": "Blitz is coming"},
-                  {"label": "Original play", "value": "Deep play-action design"}
+                  {
+                    "label": "Defense",
+                    "value": "Extra linebacker creeping up near the line"
+                  },
+                  {
+                    "label": "Read",
+                    "value": "Blitz is coming"
+                  },
+                  {
+                    "label": "Original play",
+                    "value": "Deep play-action design"
+                  }
                 ]
               },
               "options": [
@@ -127,11 +189,11 @@
                   "id": "screen",
                   "label": "Audible to screen pass",
                   "verdict": "best",
-                  "consequence": "Screen pass punishes aggressive blitz. The rusher has committed and the blockers are already set.",
+                  "consequence": "A screen gets the ball out quickly over rushers who have already committed to the quarterback.",
                   "considerations": [
                     "Screens are built to beat blitzes.",
-                    "Go routes take time to develop and leave the QB exposed to the blitz.",
-                    "A screen is a fast hit."
+                    "Go routes take time to develop and leave the quarterback exposed.",
+                    "A screen is a fast throw."
                   ]
                 },
                 {
@@ -152,20 +214,47 @@
           {
             "id": "pre-snap-01-st-sample",
             "type": "say-this",
-            "conceptIds": ["pre-snap-read"],
+            "conceptIds": [
+              "pre-snap-read"
+            ],
             "payload": {
-              "statement": {"speaker": "Analyst", "text": "He pointed at the Mike linebacker and nodded. That is when I knew the play was changing."},
+              "statement": {
+                "speaker": "Analyst",
+                "text": "He pointed at the Mike linebacker and the whole line shifted its protection."
+              },
               "question": "What just happened?",
               "options": [
-                {"id": "a", "text": "The quarterback complimented the linebacker", "isCorrect": false},
-                {"id": "b", "text": "The quarterback identified the blitz and made an audible", "isCorrect": true},
-                {"id": "c", "text": "The center is changing the blocking scheme", "isCorrect": false},
-                {"id": "d", "text": "The offense is signaling the defense", "isCorrect": false}
+                {
+                  "id": "a",
+                  "text": "The quarterback complimented the linebacker",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "The quarterback identified the middle linebacker so the line could set its protection",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "The center is changing the blocking scheme",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "The offense is signaling the defense",
+                  "isCorrect": false
+                }
               ],
-              "translation": "Pointing at the Mike (middle linebacker) is a pre-snap tell that the quarterback spotted something and called a new play to beat it.",
+              "translation": "The Mike is the middle linebacker. Quarterbacks and centers point him out so the line and backs know who to block, which can also signal the defense is adjusting.",
               "followUps": [
-                {"line": "Why would a quarterback point at the Mike?", "why": "Tells you the qb is actively reading the defense and making adjustments."},
-                {"line": "Does the defense change their play after the audible?", "why": "Tests if you know the Mike linebacker calls the coverage for the defense."}
+                {
+                  "line": "Who usually sets the protection, the quarterback or the center?",
+                  "why": "Shows you know the center often makes the protection call and the quarterback confirms."
+                },
+                {
+                  "line": "Why point out the Mike specifically?",
+                  "why": "The middle linebacker is often the key to the protection count."
+                }
               ],
               "noFakeExpertNote": "If unsure, think about what the quarterback is trying to communicate to his team at the line."
             },
@@ -244,11 +333,11 @@
               "pairs": [
                 {"id": "flood", "term": "Flood concept", "definition": "Three receivers in one zone, beat zone coverage by overloading one defender with choices."},
                 {"id": "mesh", "term": "Mesh concept", "definition": "Two crossing routes, beat man coverage by rubbing off defenders."},
-                {"id": "smash", "term": "Smash concept", "definition": "Shallow slant and deep corner on the same side, beat Cover 3 by attacking the deep third."}
+                {"id": "smash", "term": "Smash concept", "definition": "A short hitch underneath and a corner route over the top on one side; a classic Cover 2 beater."}
               ],
               "explanation": {
-                "summary": "Concepts are answers to coverages. Know the coverage, find the combo that breaks it.",
-                "sayThisLine": "Flood beats zone. Mesh beats man. Smash attacks the third."
+                "summary": "Concepts are answers to coverages. Know the coverage, then find the combination that stresses it.",
+                "sayThisLine": "Flood beats zone. Mesh beats man. Smash stresses Cover 2."
               }
             },
             "xp": 10
@@ -275,61 +364,100 @@
           {
             "id": "combos-02-ds-call",
             "type": "decision-scenario",
-            "conceptIds": ["route-combination", "cover-3"],
+            "conceptIds": [
+              "route-combination",
+              "cover-3"
+            ],
             "payload": {
-              "prompt": "You see Cover 3 (three deep thirds, four underneath in zone). Do you call mesh or smash?",
+              "prompt": "You see Cover 3. Do you call flood or mesh?",
               "situation": {
                 "facts": [
-                  {"label": "Coverage", "value": "Cover 3"},
-                  {"label": "Deep thirds", "value": "Three safeties split deep"},
-                  {"label": "Underneath", "value": "Four zone defenders close"}
+                  {
+                    "label": "Coverage",
+                    "value": "Cover 3"
+                  },
+                  {
+                    "label": "Deep thirds",
+                    "value": "Two corners and a safety split the deep field"
+                  },
+                  {
+                    "label": "Underneath",
+                    "value": "Four zone defenders close"
+                  }
                 ]
               },
               "options": [
                 {
-                  "id": "smash",
-                  "label": "Call smash concept",
+                  "id": "flood",
+                  "label": "Call the flood concept",
                   "verdict": "best",
-                  "consequence": "Smash has a deep corner into the one-third you are attacking. Beat the deep third and the underneath zone opens.",
+                  "consequence": "Three receivers stretch one side at different depths. The defenders there cannot cover all three levels.",
                   "considerations": [
-                    "Smash attacks the deep third with one receiver and the other at intermediate depth.",
-                    "If the deep third bites on the corner, the intermediate is open.",
-                    "Mesh is better against man coverage."
+                    "Flood overloads one side of a zone",
+                    "It puts receivers at deep, middle and short levels",
+                    "It forces one defender to choose"
                   ]
                 },
                 {
                   "id": "mesh",
-                  "label": "Call mesh concept",
+                  "label": "Call the mesh concept",
                   "verdict": "poor",
-                  "consequence": "Mesh is for man coverage. Against Cover 3 zone, the crossing receivers just switch zone defenders, no advantage.",
+                  "consequence": "Mesh is built to beat man. Against zone, the crossing receivers may just sit in windows, which is a weaker use of the play.",
                   "considerations": [
-                    "Mesh is a man-coverage concept.",
-                    "Zone coverage is not troubled by crosses.",
-                    "Use zone-beaters like flood or smash instead."
+                    "Mesh is mainly a man-coverage concept",
+                    "Zone defenders pass crossers along",
+                    "Flood is a better zone answer"
                   ]
                 }
               ],
-              "expertNote": "Know your coverage. Mesh beats man (rubbing off defenders). Smash and flood beat zone (overload or attack the third)."
+              "expertNote": "Know your coverage. Mesh beats man by rubbing off defenders, while flood beats zone by overloading one side."
             },
             "xp": 10
           },
           {
             "id": "combos-02-st-analyst",
             "type": "say-this",
-            "conceptIds": ["route-combination"],
+            "conceptIds": [
+              "route-combination"
+            ],
             "payload": {
-              "statement": {"speaker": "Analyst", "text": "That is a classic mesh out of 11 personnel. Two receivers crossing, one outside, one in the slot. Man coverage is finished."},
+              "statement": {
+                "speaker": "Analyst",
+                "text": "That is a classic mesh out of 11 personnel. Two receivers crossing, one outside, one in the slot. Man coverage is in trouble."
+              },
               "question": "What is about to happen?",
               "options": [
-                {"id": "a", "text": "The running back will block", "isCorrect": false},
-                {"id": "b", "text": "One receiver will be open because the defenders rubbed off each other", "isCorrect": true},
-                {"id": "c", "text": "The quarterback will take a sack", "isCorrect": false},
-                {"id": "d", "text": "The defense will blitz", "isCorrect": false}
+                {
+                  "id": "a",
+                  "text": "The running back will block",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "One receiver will be open because the defenders rubbed off each other",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "The quarterback will take a sack",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "The defense will blitz",
+                  "isCorrect": false
+                }
               ],
-              "translation": "A mesh concept against man coverage is nearly impossible to defend. Two receivers crossing create unavoidable picks and rubs on man defenders.",
+              "translation": "Against man coverage, a mesh can be hard to defend because the crossing receivers cause natural picks and rubs on their defenders.",
               "followUps": [
-                {"line": "Why does mesh work against man and not zone?", "why": "Tests your understanding of the difference: man is one-on-one; zone covers areas. Mesh rubs off one-on-one matchups."},
-                {"line": "What personnel grouping is 11?", "why": "Shows you know the code: 1 back, 1 tight end, 3 receivers."}
+                {
+                  "line": "Why does mesh work against man and not zone?",
+                  "why": "Tests your understanding of the difference: man is one-on-one; zone covers areas. Mesh rubs off one-on-one matchups."
+                },
+                {
+                  "line": "What personnel grouping is 11?",
+                  "why": "Shows you know the code: 1 back, 1 tight end, 3 receivers."
+                }
               ],
               "noFakeExpertNote": "If unsure, think about what happens when two receivers cross paths and there is a defender on each one."
             },
@@ -347,14 +475,28 @@
           {
             "id": "progression-03-so-order",
             "type": "sequence-order",
-            "conceptIds": ["quarterback-progression"],
+            "conceptIds": [
+              "quarterback-progression"
+            ],
             "payload": {
               "prompt": "Arrange these in the order a quarterback checks receivers.",
               "items": [
-                {"id": "first", "text": "First read: primary receiver downfield"},
-                {"id": "second", "text": "Second read: secondary receiver, deeper or across"},
-                {"id": "third", "text": "Third read: tertiary receiver, usually on a route behind the sticks"},
-                {"id": "checkdown", "text": "Checkdown: running back on a short route to the flat if everyone else is covered"}
+                {
+                  "id": "first",
+                  "text": "First read: primary receiver downfield"
+                },
+                {
+                  "id": "second",
+                  "text": "Second read: secondary receiver, deeper or across"
+                },
+                {
+                  "id": "third",
+                  "text": "Third read: another receiver, often across the field or on a shorter route"
+                },
+                {
+                  "id": "checkdown",
+                  "text": "Checkdown: running back on a short route to the flat if everyone else is covered"
+                }
               ],
               "explanation": {
                 "correct": "The quarterback works through the progression from first to checkdown. If the first is covered, he looks to the second.",
@@ -385,18 +527,30 @@
           {
             "id": "progression-03-bc-timing",
             "type": "binary-call",
-            "conceptIds": ["quarterback-progression", "checkdown"],
+            "conceptIds": [
+              "quarterback-progression",
+              "checkdown"
+            ],
             "payload": {
-              "prompt": "A quarterback who gets to the checkdown quickly is making a good decision. True or false?",
-              "scene": {"kind": "none", "alt": "A quarterback scanning receivers downfield, then quickly finding a running back in the flat."},
+              "prompt": "A quarterback should always throw to his first read. True or false?",
+              "scene": {
+                "kind": "none",
+                "alt": "A quarterback scanning receivers downfield, then quickly finding a running back in the flat."
+              },
               "choices": [
-                {"id": "true", "label": "True"},
-                {"id": "false", "label": "False"}
+                {
+                  "id": "true",
+                  "label": "True"
+                },
+                {
+                  "id": "false",
+                  "label": "False"
+                }
               ],
-              "correctChoiceId": "true",
+              "correctChoiceId": "false",
               "explanation": {
-                "correct": "True. Going through a progression and getting to the checkdown fast is smart. Better a safe five yards than a sack.",
-                "incorrect": "Yes, if the first and second reads are covered, the checkdown is the right choice. Fast decisions beat pressure."
+                "correct": "False. A progression exists because coverage decides. If the first read is covered, the quarterback moves to the next one, all the way to the checkdown.",
+                "incorrect": "No. The first read is the plan, not a promise. Good quarterbacks move through the progression when the defense takes it away."
               }
             },
             "xp": 10
@@ -521,18 +675,30 @@
           {
             "id": "protection-04-bc-free",
             "type": "binary-call",
-            "conceptIds": ["protection-scheme", "blitz"],
+            "conceptIds": [
+              "protection-scheme",
+              "blitz"
+            ],
             "payload": {
-              "prompt": "If the offense has five blockers and the defense sends five rushers, one rusher is always free. True or false?",
-              "scene": {"kind": "none", "alt": "Five offensive blockers lined up against five defensive rushers."},
+              "prompt": "Six rushers against five blockers means one rusher is free. True or false?",
+              "scene": {
+                "kind": "none",
+                "alt": "Five offensive blockers lined up against five defensive rushers."
+              },
               "choices": [
-                {"id": "true", "label": "True"},
-                {"id": "false", "label": "False"}
+                {
+                  "id": "true",
+                  "label": "True"
+                },
+                {
+                  "id": "false",
+                  "label": "False"
+                }
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. In a numbers game, five blockers stop four rushers and one gets free. The protection must account for this with a hot route.",
-                "incorrect": "Yes, math matters. Blockers versus rushers determines if someone is open."
+                "correct": "True. When rushers outnumber blockers, someone has no one to block him. The offense needs a hot route, a quick throw or extra help.",
+                "incorrect": "Yes. Blockers versus rushers is simple math. If there are more rushers than blockers, one gets through unless the offense adds help."
               }
             },
             "xp": 10
@@ -546,7 +712,7 @@
               "pairs": [
                 {"id": "base", "term": "Base protection", "definition": "The offensive line and running back block the front four rushers."},
                 {"id": "blitz", "term": "Blitz pick-up", "definition": "An extra blocker (often running back or tight end) stays to block a blitzing linebacker or safety."},
-                {"id": "hot", "term": "Hot route", "definition": "A receiver changes his route to become a checkdown and pickup a free rusher, turning him into a passer."}
+                {"id": "hot", "term": "Hot route", "definition": "A receiver changes to a quick route so the ball gets out before a free rusher arrives."}
               ],
               "explanation": {
                 "summary": "Protection is about matching numbers. Hot routes solve the free-rusher problem.",
@@ -558,15 +724,31 @@
           {
             "id": "protection-04-ds-call",
             "type": "decision-scenario",
-            "conceptIds": ["protection-scheme", "blitz", "hot-route"],
+            "conceptIds": [
+              "protection-scheme",
+              "blitz",
+              "hot-route"
+            ],
             "payload": {
               "prompt": "You see a blitz coming: six rushers, five blockers. Do you audible to a hot route or trust the protection?",
               "situation": {
                 "facts": [
-                  {"label": "Rushers", "value": "Six (four linemen, two blitzers)"},
-                  {"label": "Blockers", "value": "Five (line and running back)"},
-                  {"label": "Free rusher", "value": "One is unblocked"},
-                  {"label": "Original play", "value": "Deep pass design"}
+                  {
+                    "label": "Rushers",
+                    "value": "Six (four linemen, two blitzers)"
+                  },
+                  {
+                    "label": "Blockers",
+                    "value": "Five (the offensive line)"
+                  },
+                  {
+                    "label": "Free rusher",
+                    "value": "One is unblocked"
+                  },
+                  {
+                    "label": "Original play",
+                    "value": "Deep pass design"
+                  }
                 ]
               },
               "options": [
@@ -574,7 +756,7 @@
                   "id": "hot-route",
                   "label": "Audible to a hot route",
                   "verdict": "best",
-                  "consequence": "A hot route turns the free rusher into a target. The receiver picks him up and becomes an outlet.",
+                  "consequence": "A hot route gets the ball out quickly, before the free rusher can get there.",
                   "considerations": [
                     "You have six rushers on five blockers.",
                     "Someone is free.",
@@ -592,27 +774,54 @@
                   ]
                 }
               ],
-              "expertNote": "Blitz math: if there are more rushers than blockers, audible to a hot route. Turn the free rusher into a target."
+              "expertNote": "Blitz math: if there are more rushers than blockers, use a hot route or quick throw so the ball is gone before the free rusher arrives."
             },
             "xp": 10
           },
           {
             "id": "protection-04-st-call",
             "type": "say-this",
-            "conceptIds": ["protection-scheme"],
+            "conceptIds": [
+              "protection-scheme"
+            ],
             "payload": {
-              "statement": {"speaker": "Center", "text": "Mike! Mike! Two! Two! The linebacker is your guy, running back picks him up!"},
+              "statement": {
+                "speaker": "Center",
+                "text": "That is the Mike, the middle linebacker! Back, you have him if he blitzes!"
+              },
               "question": "What is the center doing?",
               "options": [
-                {"id": "a", "text": "Calling out his favorite plays", "isCorrect": false},
-                {"id": "b", "text": "Identifying the middle linebacker and assigning a blitz pick-up", "isCorrect": true},
-                {"id": "c", "text": "Telling the quarterback to throw", "isCorrect": false},
-                {"id": "d", "text": "Disagreeing with the defensive call", "isCorrect": false}
+                {
+                  "id": "a",
+                  "text": "Calling out his favorite plays",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "Identifying the middle linebacker and assigning a blitz pick-up",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "Telling the quarterback to throw",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Disagreeing with the defensive call",
+                  "isCorrect": false
+                }
               ],
               "translation": "The center is identifying the Mike (middle linebacker) and telling the running back he is the assignment for pick-up to stop the blitz.",
               "followUps": [
-                {"line": "Who usually calls out the protection?", "why": "Tests your knowledge that the center is the quarterback of the defense... wait, the offense. The center calls the line protection."},
-                {"line": "Why point out the Mike specifically?", "why": "The middle linebacker is the most likely to blitz from the linebacker level."}
+                {
+                  "line": "Who usually calls out the protection?",
+                  "why": "Shows you know the center usually sets the protection on offense."
+                },
+                {
+                  "line": "Why point out the Mike specifically?",
+                  "why": "The middle linebacker is the most likely to blitz from the linebacker level."
+                }
               ],
               "noFakeExpertNote": "If unsure, think about who is directing the blockers at the line on offense."
             },
@@ -719,8 +928,8 @@
             "payload": {
               "prompt": "Match each gap assignment to who is responsible.",
               "pairs": [
-                {"id": "a-gap", "term": "A gap defender", "definition": "Linebacker or safety assigned to the space between center and guard."},
-                {"id": "b-gap", "term": "B gap defender", "definition": "Linebacker or edge rusher filling the space between guard and tackle."},
+                {"id": "a-gap", "term": "A gap defender", "definition": "Defensive tackle or linebacker assigned to the space between center and guard."},
+                {"id": "b-gap", "term": "B gap defender", "definition": "Defensive tackle or linebacker filling the space between guard and tackle."},
                 {"id": "c-gap", "term": "C gap defender", "definition": "Edge rusher (DE or OLB) responsible for the space outside the tackle."}
               ],
               "explanation": {
@@ -733,15 +942,29 @@
           {
             "id": "run-gaps-05-ds-read",
             "type": "decision-scenario",
-            "conceptIds": ["run-gap"],
+            "conceptIds": [
+              "run-gap"
+            ],
             "payload": {
-              "prompt": "The running back bursts into the B gap and sees it is stuffed. Cut left (A gap) or bounce it outside (C gap)?",
+              "prompt": "B gap is stuffed. Cut back to the A gap or bounce outside?",
               "situation": {
                 "facts": [
-                  {"label": "Designed run", "value": "Right B gap"},
-                  {"label": "B gap status", "value": "Stuffed by linebacker"},
-                  {"label": "A gap", "value": "One blocker has a seal"},
-                  {"label": "C gap", "value": "Edge is reaching"}
+                  {
+                    "label": "Designed run",
+                    "value": "Right B gap"
+                  },
+                  {
+                    "label": "B gap status",
+                    "value": "Stuffed by linebacker"
+                  },
+                  {
+                    "label": "A gap",
+                    "value": "One blocker has a seal"
+                  },
+                  {
+                    "label": "C gap",
+                    "value": "Edge is reaching"
+                  }
                 ]
               },
               "options": [
@@ -767,7 +990,7 @@
                   ]
                 }
               ],
-              "expertNote": "Inside zone reads: if the primary gap (B) is stuffed, cutback to the secondary (A). Outside zone: if the edge is free, cut back."
+              "expertNote": "In zone runs the back follows the blocks. If the planned gap closes, he looks for the next crease, often back inside where a blocker has sealed a defender."
             },
             "xp": 10
           }
@@ -836,13 +1059,13 @@
             "payload": {
               "prompt": "Match each throw type to what the window depends on.",
               "pairs": [
-                {"id": "deep", "term": "Deep throw", "definition": "Long window; the receiver is far from defenders. Biggest vertical separation."},
+                {"id": "deep", "term": "Deep throw", "definition": "The ball is in the air longest, so defenders have time to close. Placement matters."},
                 {"id": "tight", "term": "Tight window throw", "definition": "Defenders are close; throw must be precise and fast to beat coverage."},
                 {"id": "yac", "term": "Receiver YAC (yards after catch)", "definition": "The receiver's ability to run after catching the ball. A good receiver turns three yards into ten."}
               ],
               "explanation": {
-                "summary": "Windows open and close based on defender proximity. Great receivers turn short throws into big plays (YAC).",
-                "sayThisLine": "Deep = wide window. Tight = fast throw. YAC = receiver skill."
+                "summary": "Windows open and close as defenders move. Great receivers turn short throws into big plays after the catch.",
+                "sayThisLine": "Deep: long flight. Tight: fast and precise. YAC: what the receiver adds."
               }
             },
             "xp": 10
@@ -850,14 +1073,26 @@
           {
             "id": "throw-window-06-ds-shoulder",
             "type": "decision-scenario",
-            "conceptIds": ["passing-window", "back-shoulder-throw"],
+            "conceptIds": [
+              "passing-window",
+              "back-shoulder-throw"
+            ],
             "payload": {
-              "prompt": "A defender is playing inside coverage on your receiver. Back-shoulder throw or front-shoulder?",
+              "prompt": "Fade down the sideline, defender on his hip. Back shoulder or over the top?",
               "situation": {
                 "facts": [
-                  {"label": "Receiver position", "value": "Slant route crossing inside"},
-                  {"label": "Defender", "value": "Playing inside shade (closer to his inside)"},
-                  {"label": "Window", "value": "Only the back shoulder is open"}
+                  {
+                    "label": "Route",
+                    "value": "Fade down the sideline"
+                  },
+                  {
+                    "label": "Defender",
+                    "value": "Covering tight, trailing on his hip"
+                  },
+                  {
+                    "label": "Window",
+                    "value": "Little room deep; ball placement is key"
+                  }
                 ]
               },
               "options": [
@@ -865,25 +1100,26 @@
                   "id": "back-shoulder",
                   "label": "Back-shoulder throw",
                   "verdict": "best",
-                  "consequence": "Only the receiver can reach the back shoulder. The defender cannot get there, and the receiver shields the ball.",
+                  "consequence": "The ball goes to the shoulder only the receiver can reach. He turns back to it while the defender is chasing.",
                   "considerations": [
-                    "The defender is in position to cut inside.",
-                    "Back shoulder is the only window.",
-                    "The receiver uses his body to protect the ball."
+                    "The defender is trailing",
+                    "Only the receiver can reach the back shoulder",
+                    "The receiver shields the ball with his body"
                   ]
                 },
                 {
                   "id": "front-shoulder",
-                  "label": "Front-shoulder throw",
+                  "label": "Throw it over the top",
                   "verdict": "poor",
-                  "consequence": "The defender is already playing inside. Front shoulder is the defender's area, and he will likely intercept.",
+                  "consequence": "The ball hangs in the air, which gives the defender time to catch up and break it up.",
                   "considerations": [
-                    "The defender is between the quarterback and the front shoulder.",
-                    "Easy pick."
+                    "A long floating throw gives the defender time",
+                    "He is already in position",
+                    "It risks a pass breakup or interception"
                   ]
                 }
               ],
-              "expertNote": "Back-shoulder throws exploit tight coverage. Throw to the shoulder the defender cannot reach. The receiver shields the ball."
+              "expertNote": "Back-shoulder throws beat tight coverage. The quarterback puts the ball where the defender cannot reach it, and the receiver adjusts."
             },
             "xp": 10
           },
@@ -977,14 +1213,26 @@
           {
             "id": "blocking-07-ds-call",
             "type": "decision-scenario",
-            "conceptIds": ["zone-blocking", "gap-scheme"],
+            "conceptIds": [
+              "zone-blocking",
+              "gap-scheme"
+            ],
             "payload": {
-              "prompt": "Your defense is loaded up on the edge. Zone block or gap block to attack inside?",
+              "prompt": "Defense is loaded on the edge. Zone or gap block to attack inside?",
               "situation": {
                 "facts": [
-                  {"label": "Defense", "value": "Extra defenders on the edge"},
-                  {"label": "Inside", "value": "Light box (fewer defenders in the middle)"},
-                  {"label": "Desired result", "value": "Get the ball into the open middle"}
+                  {
+                    "label": "Defense",
+                    "value": "Extra defenders on the edge"
+                  },
+                  {
+                    "label": "Inside",
+                    "value": "Light box (fewer defenders in the middle)"
+                  },
+                  {
+                    "label": "Desired result",
+                    "value": "Get the ball into the open middle"
+                  }
                 ]
               },
               "options": [
@@ -1028,7 +1276,7 @@
               "correctOptionIds": ["b"],
               "explanation": {
                 "correct": "Zone blocking emphasizes reading and adapting. Gap blocking is about each blocker doing his job on one defender.",
-                "incorrect": "The philosophies are opposite. Zone: flexible and reactive. Gap: rigid and predictable."
+                "incorrect": "The philosophies differ. Zone is flexible and reactive, and gap is structured and assignment-based."
               }
             },
             "xp": 10
@@ -1036,22 +1284,50 @@
           {
             "id": "blocking-07-st-watch",
             "type": "say-this",
-            "conceptIds": ["zone-blocking", "pulling-guard"],
+            "conceptIds": [
+              "zone-blocking",
+              "pulling-guard"
+            ],
             "payload": {
-              "statement": {"speaker": "Analyst", "text": "Watch the left guard. He is pulling across the formation to lead the back on the power run."},
+              "statement": {
+                "speaker": "Analyst",
+                "text": "Watch the left guard. He is pulling across the formation to lead the back on the power run."
+              },
               "question": "What blocking scheme is this?",
               "options": [
-                {"id": "a", "text": "Zone blocking", "isCorrect": false},
-                {"id": "b", "text": "Gap blocking, with a pull to the second level", "isCorrect": true},
-                {"id": "c", "text": "Play-action blocking", "isCorrect": false},
-                {"id": "d", "text": "Pass protection", "isCorrect": false}
+                {
+                  "id": "a",
+                  "text": "Zone blocking",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "Gap blocking, with a pull to the second level",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "Play-action blocking",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Pass protection",
+                  "isCorrect": false
+                }
               ],
               "translation": "A pulling guard is a signature of gap-scheme runs like power, counter and toss. He clears the path for the running back.",
               "followUps": [
-                {"line": "Why do pulling guards only show up in gap schemes?", "why": "In gap, each blocker has a job; a pull is that job. In zone, everyone stays put and blocks an area."},
-                {"line": "What is the puller clearing?", "why": "Usually a linebacker who would be in the gap or second level."}
+                {
+                  "line": "Why do pulling guards only show up in gap schemes?",
+                  "why": "Gap schemes rely on pullers to lead. Zone schemes mostly keep the linemen moving together as a unit."
+                },
+                {
+                  "line": "What is the puller clearing?",
+                  "why": "Usually a linebacker who would be in the gap or second level."
+                }
               ],
-              "noFakeExpertNote": "If unsure, think about what a player pulling means: he is stepping back and moving to another spot, not staying in place."
+              "noFakeExpertNote": "If unsure, remember what a pull means: the guard leaves his spot to lead through a different gap."
             },
             "xp": 10
           }
@@ -1067,16 +1343,30 @@
           {
             "id": "short-yardage-08-ds-sneak",
             "type": "decision-scenario",
-            "conceptIds": ["quarterback-sneak"],
+            "conceptIds": [
+              "quarterback-sneak"
+            ],
             "payload": {
               "prompt": "Third and one. Sneak or hand it off?",
               "situation": {
                 "narrative": "Short yardage situation.",
                 "facts": [
-                  {"label": "Situation", "value": "Third and one"},
-                  {"label": "Quarterback", "value": "Good athlete, can move"},
-                  {"label": "Blocking", "value": "Tight line, good momentum"},
-                  {"label": "Defense", "value": "Spread and light on the line"}
+                  {
+                    "label": "Situation",
+                    "value": "Third and one"
+                  },
+                  {
+                    "label": "Quarterback",
+                    "value": "Good athlete, can move"
+                  },
+                  {
+                    "label": "Blocking",
+                    "value": "Tight line, good momentum"
+                  },
+                  {
+                    "label": "Defense",
+                    "value": "Spread and light on the line"
+                  }
                 ]
               },
               "options": [
@@ -1084,11 +1374,11 @@
                   "id": "sneak",
                   "label": "Quarterback sneak",
                   "verdict": "best",
-                  "consequence": "The QB sneaks behind a surge, gets one yard easily, and keeps the offense on schedule.",
+                  "consequence": "The quarterback follows a surge and usually gets the yard, keeping the offense on schedule.",
                   "considerations": [
                     "One yard is all you need.",
-                    "The sneak is nearly automatic from one yard.",
-                    "No handoff to a back, less chance of a fumble."
+                    "The sneak works most of the time from one yard.",
+                    "There is no handoff, so less chance of a fumble."
                   ]
                 },
                 {
@@ -1102,24 +1392,37 @@
                   ]
                 }
               ],
-              "expertNote": "On short yardage, the sneak is nearly automatic. One yard is nothing for a quarterback pushing behind a surging line."
+              "expertNote": "On short yardage, the sneak is one of the most reliable plays. One yard is not much for a quarterback pushing behind a surging line."
             },
             "xp": 10
           },
           {
             "id": "short-yardage-08-mc-why",
             "type": "multiple-choice",
-            "conceptIds": ["quarterback-sneak"],
+            "conceptIds": [
+              "quarterback-sneak"
+            ],
             "payload": {
               "prompt": "Why is the quarterback sneak so hard to stop?",
               "options": [
-                {"id": "a", "text": "The offense moves the entire line forward in a surge, and the QB follows the big mass"},
-                {"id": "b", "text": "The quarterback is faster than defensive linemen"},
-                {"id": "c", "text": "The defense is not allowed to touch the quarterback on a sneak"}
+                {
+                  "id": "a",
+                  "text": "The offense moves the entire line forward in a surge, and the QB follows the big mass"
+                },
+                {
+                  "id": "b",
+                  "text": "The quarterback is faster than defensive linemen"
+                },
+                {
+                  "id": "c",
+                  "text": "The defense is not allowed to touch the quarterback on a sneak"
+                }
               ],
-              "correctOptionIds": ["a"],
+              "correctOptionIds": [
+                "a"
+              ],
               "explanation": {
-                "correct": "The sneak works because the whole line surges forward together. The defense has no time to stack the box.",
+                "correct": "The whole line surges forward together and the quarterback follows. The defense has very little room and time to react.",
                 "incorrect": "The sneak is about synchronized power from the line, not the quarterback's individual speed."
               }
             },
@@ -1151,7 +1454,7 @@
             "payload": {
               "prompt": "Match each short-yardage call to when to use it.",
               "pairs": [
-                {"id": "sneak", "term": "Quarterback sneak", "definition": "Third or fourth and one or two; automatic when you need a yard or less."},
+                {"id": "sneak", "term": "Quarterback sneak", "definition": "Third or fourth and one; works most of the time when you need a yard."},
                 {"id": "power", "term": "Power run", "definition": "Third and one or two; a pulling guard leads the running back."},
                 {"id": "dive", "term": "Short dive", "definition": "Goal line; the running back dives straight ahead with the line surging."}
               ],
@@ -1184,20 +1487,48 @@
           {
             "id": "short-yardage-08-st-call",
             "type": "say-this",
-            "conceptIds": ["quarterback-sneak", "fourth-down-decision"],
+            "conceptIds": [
+              "quarterback-sneak",
+              "fourth-down-decision"
+            ],
             "payload": {
-              "statement": {"speaker": "Coach", "text": "Fourth and one. Give me the sneak. We get it, we live. We miss, we did not have it anyway."},
+              "statement": {
+                "speaker": "Coach",
+                "text": "Fourth and one. Give me the sneak. We get it, we live. We miss, we did not have it anyway."
+              },
               "question": "What is the coach saying?",
               "options": [
-                {"id": "a", "text": "The team should always go for it on fourth and one", "isCorrect": false},
-                {"id": "b", "text": "On fourth and one, the sneak is nearly automatic and worth the risk", "isCorrect": true},
-                {"id": "c", "text": "The quarterback is the best player on the team", "isCorrect": false},
-                {"id": "d", "text": "The offense is out of ideas", "isCorrect": false}
+                {
+                  "id": "a",
+                  "text": "The team should always go for it on fourth and one",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "On fourth and one, the sneak is a high-percentage play worth the risk",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "The quarterback is the best player on the team",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "The offense is out of ideas",
+                  "isCorrect": false
+                }
               ],
-              "translation": "Fourth-and-one decisions favor going for it now, and the sneak is the highest-percentage play in short yardage.",
+              "translation": "Fourth-and-one decisions often favor going for it, and the sneak is one of the highest-percentage plays in short yardage.",
               "followUps": [
-                {"line": "Why does modern coaching favor going for it on fourth and one?", "why": "Tests EPA understanding: analytics say it improves win probability."},
-                {"line": "Would the coach sneak on fourth and five?", "why": "No; five yards is too far, even for a sneak."}
+                {
+                  "line": "Why does modern coaching favor going for it on fourth and one?",
+                  "why": "Tests EPA understanding: analytics say it improves win probability."
+                },
+                {
+                  "line": "Would the coach sneak on fourth and five?",
+                  "why": "No; five yards is too far, even for a sneak."
+                }
               ],
               "noFakeExpertNote": "If unsure, think about the simplicity: QB follows the line forward one yard on fourth and one."
             },
