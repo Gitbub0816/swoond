@@ -1017,3 +1017,625 @@ Each term has a definition and an example line in the enthusiast's voice. Concep
 | 63 | `c-price` | C price | The benchmark arabica futures price for commodity coffee. | "The C price jumped again." |
 | 64 | `grinder-importance` | The grinder matters | Enthusiasts often say grinder quality matters more than the brewer. | "Buy the grinder first." |
 
+## 4. Talk Track scenarios (9)
+
+Each scenario: the setting, what she means, then the full `talk-track` payload with good, meh and cringe replies and coach notes. Replies reward curiosity, honesty and offering to try; bluffing and dismissing lose points.
+
+### 4.1 The new bag (`tt-new-bag`)
+
+**Meaning:** She opens a bag of washed Ethiopian and wants you to smell it. Meaning: she is sharing something she loves; the win is curiosity, not a tasting note you do not have.
+
+```json
+{
+  "title": "The new bag",
+  "setting": "She holds out a fresh bag at breakfast.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "Smell this. Washed Ethiopian, Guji. Tell me it's not blueberry.",
+      "replies": [
+        {
+          "id": "curious",
+          "text": "Wow, that's really fruity. What makes it smell like that?",
+          "smoothDelta": 15,
+          "theirResponse": "Ha, the variety and the processing. Washed keeps it clean, so the fruit really comes through.",
+          "coachNote": "Specific and honest. You invited her to explain."
+        },
+        {
+          "id": "meh",
+          "text": "Smells like coffee to me.",
+          "smoothDelta": -3,
+          "theirResponse": "Fair. Smell it again, slowly, before you taste.",
+          "coachNote": "Honest but closes the door. Add one curious follow-up."
+        },
+        {
+          "id": "cringe",
+          "text": "Yes, I get blueberry and jasmine notes. Very floral.",
+          "smoothDelta": -15,
+          "theirResponse": "Oh really? Which part is jasmine?",
+          "coachNote": "Bluffing is the quickest way to get caught. Say what you actually notice."
+        }
+      ]
+    },
+    {
+      "theirMessage": "Want me to make it as a pour-over? I'll show you.",
+      "replies": [
+        {
+          "id": "yes",
+          "text": "Yes please. Can I hold the kettle?",
+          "smoothDelta": 15,
+          "theirResponse": "Sure, but the kettle's hot, so pour slowly and away from your hand.",
+          "coachNote": "Offers to learn, and respects the hot water."
+        },
+        {
+          "id": "fake",
+          "text": "Sure, I pour-over all the time.",
+          "smoothDelta": -15,
+          "theirResponse": "Great! Then you can handle the bloom.",
+          "coachNote": "Claiming skill you don't have backfires fast."
+        },
+        {
+          "id": "pass",
+          "text": "I'll just watch you do it.",
+          "smoothDelta": 5,
+          "theirResponse": "Okay, but next time you pour.",
+          "coachNote": "Fine, but leaning in is warmer."
+        }
+      ]
+    }
+  ],
+  "closingNote": "She did not want an expert. She wanted someone curious about what she loves."
+}
+```
+
+### 4.2 The sour shot (`tt-sour-shot`)
+
+**Meaning:** Her espresso tastes sharp and she sighs. Meaning: under-extraction; she is frustrated, not asking you to fix the machine.
+
+```json
+{
+  "title": "The sour shot",
+  "setting": "She grimaces at her first espresso of the morning.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "Ugh. Sour again. I've changed the grind twice.",
+      "replies": [
+        {
+          "id": "empathy",
+          "text": "That sounds annoying. Is it running fast?",
+          "smoothDelta": 12,
+          "theirResponse": "Yeah, like seventeen seconds. I think I'm still too coarse.",
+          "coachNote": "Empathy first, then one genuine question."
+        },
+        {
+          "id": "fix",
+          "text": "Just add more milk.",
+          "smoothDelta": -12,
+          "theirResponse": "That's not the point. The shot's still bad.",
+          "coachNote": "Masks the problem. She wants to solve it, not hide it."
+        },
+        {
+          "id": "bluff",
+          "text": "It's under-extracted, obviously. Go finer by three.",
+          "smoothDelta": -8,
+          "theirResponse": "Wow, okay, thanks Mr. Barista. Why three?",
+          "coachNote": "A guess dressed as expertise. Ask before advising."
+        }
+      ]
+    },
+    {
+      "theirMessage": "I think I should tighten the grind and taste again.",
+      "replies": [
+        {
+          "id": "support",
+          "text": "That sounds smart. Want me to taste with you?",
+          "smoothDelta": 15,
+          "theirResponse": "Yes! A second opinion helps. Careful, the cup's hot.",
+          "coachNote": "Supportive and safe."
+        },
+        {
+          "id": "impatient",
+          "text": "Can we just get coffee from the café?",
+          "smoothDelta": -10,
+          "theirResponse": "Fine, but this is my happy place.",
+          "coachNote": "Skips her ritual. Stay with the project."
+        },
+        {
+          "id": "ask",
+          "text": "What does better taste like to you?",
+          "smoothDelta": 10,
+          "theirResponse": "Sweet, not sharp. Like a caramel finish.",
+          "coachNote": "Invites her to define her goal."
+        }
+      ]
+    }
+  ],
+  "closingNote": "Dialing in is a process. Being patient with her is the skill."
+}
+```
+
+### 4.3 The new grinder (`tt-grinder`)
+
+**Meaning:** She upgrades to a flat-burr grinder. Meaning: gear joy; she wants you to ask about the difference in the cup, not quote specs.
+
+```json
+{
+  "title": "The new grinder",
+  "setting": "She unboxes a shiny grinder.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "Flat burrs. Finally. The clarity is going to be unreal.",
+      "replies": [
+        {
+          "id": "q",
+          "text": "What changes in the cup, do you think?",
+          "smoothDelta": 15,
+          "theirResponse": "More distinct flavors, less mud. It's a big difference from the old one.",
+          "coachNote": "A cup-focused question shows care."
+        },
+        {
+          "id": "price",
+          "text": "That looks expensive.",
+          "smoothDelta": -8,
+          "theirResponse": "It is, but it's the thing I use every day.",
+          "coachNote": "Price talk can sound judgmental."
+        },
+        {
+          "id": "fake",
+          "text": "Flat versus conical, right? I prefer conical.",
+          "smoothDelta": -15,
+          "theirResponse": "Interesting. Why conical?",
+          "coachNote": "Don't pick a side you can't defend."
+        }
+      ]
+    },
+    {
+      "theirMessage": "Want to help me season the burrs with a bit of coffee?",
+      "replies": [
+        {
+          "id": "help",
+          "text": "Sure, show me what to do. Is it unplugged while we work?",
+          "smoothDelta": 15,
+          "theirResponse": "Good call. Safety first. Unplugged when we touch anything inside.",
+          "coachNote": "Learning with safety in mind."
+        },
+        {
+          "id": "hands",
+          "text": "Sure, let me stick my fingers in to check.",
+          "smoothDelta": -20,
+          "theirResponse": "Hands out of the burrs, please!",
+          "coachNote": "Never put fingers near burrs."
+        },
+        {
+          "id": "later",
+          "text": "Maybe later, I'll watch.",
+          "smoothDelta": 3,
+          "theirResponse": "Okay, next time then.",
+          "coachNote": "Fine, but staying engaged is warmer."
+        }
+      ]
+    }
+  ],
+  "closingNote": "Gear talk is love talk. Ask about her experience, not the specs."
+}
+```
+
+### 4.4 Ordering at her café (`tt-cafe-order`)
+
+**Meaning:** She takes you to her favorite café. Meaning: she wants you to feel at home, not quizzed.
+
+```json
+{
+  "title": "Ordering at her café",
+  "setting": "You're in line at a busy specialty café.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "I'll get a cortado. What are you having?",
+      "replies": [
+        {
+          "id": "ask",
+          "text": "What's a cortado? I'm used to lattes.",
+          "smoothDelta": 15,
+          "theirResponse": "Espresso with a little warm milk, smaller than a latte. Want to try one?",
+          "coachNote": "Honest, curious, and easy for her to help."
+        },
+        {
+          "id": "copy",
+          "text": "The same, I guess.",
+          "smoothDelta": 3,
+          "theirResponse": "Bold. It's strong, you sure?",
+          "coachNote": "Fine, but check what you're ordering."
+        },
+        {
+          "id": "snob",
+          "text": "I only drink single-origin pour-overs.",
+          "smoothDelta": -15,
+          "theirResponse": "Oh, ha. You do? Since when?",
+          "coachNote": "Performing expertise is cringe. Be yourself."
+        }
+      ]
+    },
+    {
+      "theirMessage": "The barista asked if you want oat, dairy or something else.",
+      "replies": [
+        {
+          "id": "allergy",
+          "text": "Dairy is fine for me. Do you want anything for allergies?",
+          "smoothDelta": 10,
+          "theirResponse": "Nope, I'm good, but thanks for asking.",
+          "coachNote": "Mindful and kind."
+        },
+        {
+          "id": "ask-barista",
+          "text": "What do you recommend with espresso?",
+          "smoothDelta": 12,
+          "theirResponse": "Oat's great in flat whites, barista's choice though.",
+          "coachNote": "Asking the barista is a good move."
+        },
+        {
+          "id": "rude",
+          "text": "Whatever's cheapest.",
+          "smoothDelta": -8,
+          "theirResponse": "Okay... you can have fun with that.",
+          "coachNote": "Price-first makes it sound like you don't care."
+        }
+      ]
+    }
+  ],
+  "closingNote": "Ordering is easy when you are curious. Nobody is grading you."
+}
+```
+
+### 4.5 Light vs dark (`tt-roast-debate`)
+
+**Meaning:** She says dark roast is burnt; her friend says light is sour. Meaning: a good-natured debate; stay warm.
+
+```json
+{
+  "title": "Light vs dark",
+  "setting": "A friend debates roast levels at brunch.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "Dark roast is basically burnt. Light roast is where the flavor is.",
+      "replies": [
+        {
+          "id": "balance",
+          "text": "Is there a dark roast you'd actually enjoy?",
+          "smoothDelta": 15,
+          "theirResponse": "Honestly, a really good medium-dark can be sweet. I just hate burnt.",
+          "coachNote": "Finds common ground."
+        },
+        {
+          "id": "agree",
+          "text": "Totally. Dark is burnt.",
+          "smoothDelta": -5,
+          "theirResponse": "Well, I wouldn't go that far.",
+          "coachNote": "Agreeing with absolutes is shaky."
+        },
+        {
+          "id": "fight",
+          "text": "That's snobby. Dark roast is the real coffee.",
+          "smoothDelta": -12,
+          "theirResponse": "Whoa. It's a preference, not a war.",
+          "coachNote": "Escalating ends the conversation."
+        }
+      ]
+    },
+    {
+      "theirMessage": "What do you usually drink?",
+      "replies": [
+        {
+          "id": "honest",
+          "text": "A medium roast from my corner café. I'm learning what I like.",
+          "smoothDelta": 15,
+          "theirResponse": "Love that. Next time, try the same bean light and dark.",
+          "coachNote": "Honest and open to learning."
+        },
+        {
+          "id": "bluff",
+          "text": "A light natural Geisha, obviously.",
+          "smoothDelta": -15,
+          "theirResponse": "Oh wow, I'd love to hear about it.",
+          "coachNote": "Don't claim rare coffees you haven't had."
+        },
+        {
+          "id": "shrug",
+          "text": "I don't really care.",
+          "smoothDelta": -5,
+          "theirResponse": "Fair, but maybe you'd enjoy caring a bit.",
+          "coachNote": "Don't shrug; show some curiosity."
+        }
+      ]
+    }
+  ],
+  "closingNote": "Taste is personal. Being generous about roasts beats winning the debate."
+}
+```
+
+### 4.6 Direct trade (`tt-direct-trade`)
+
+**Meaning:** She says she only buys direct trade. Meaning: she values sourcing transparency; do not challenge her values or pretend to be an expert.
+
+```json
+{
+  "title": "Direct trade",
+  "setting": "She checks a bag label at the roaster.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "I only buy direct trade. It matters to me.",
+      "replies": [
+        {
+          "id": "curious",
+          "text": "What does it mean to you?",
+          "smoothDelta": 15,
+          "theirResponse": "That the roaster knows the farmer and pays above market. I like the transparency.",
+          "coachNote": "Asks for her meaning instead of assuming."
+        },
+        {
+          "id": "challenge",
+          "text": "Isn't direct trade just marketing?",
+          "smoothDelta": -12,
+          "theirResponse": "Sometimes, sure, but some roasters are very open about prices.",
+          "coachNote": "Challenging values is risky. Ask how she checks."
+        },
+        {
+          "id": "dismiss",
+          "text": "Whatever, it's all the same.",
+          "smoothDelta": -15,
+          "theirResponse": "It really isn't, and it matters to me.",
+          "coachNote": "Dismissive. Show some respect."
+        }
+      ]
+    },
+    {
+      "theirMessage": "How do you know it's direct, though? Some roasters just say it.",
+      "replies": [
+        {
+          "id": "honest",
+          "text": "No idea. How do you check?",
+          "smoothDelta": 15,
+          "theirResponse": "Look for price transparency and the farm's name. Some publish their prices.",
+          "coachNote": "Honest and invites her to teach."
+        },
+        {
+          "id": "bluff",
+          "text": "I can tell by the label.",
+          "smoothDelta": -12,
+          "theirResponse": "Can you? What on the label tells you?",
+          "coachNote": "A bluff you can't support."
+        },
+        {
+          "id": "shrug",
+          "text": "Does it really matter?",
+          "smoothDelta": -10,
+          "theirResponse": "To me it does.",
+          "coachNote": "Ethics talk needs care, not a shrug."
+        }
+      ]
+    }
+  ],
+  "closingNote": "Ask how she decides. You don't have to agree to be curious."
+}
+```
+
+### 4.7 Coffee together (`tt-coffee-date`)
+
+**Meaning:** She invites you to try a flight at her favorite roaster. Meaning: a sharing moment; be honest that you are new.
+
+```json
+{
+  "title": "Coffee together",
+  "setting": "A text before the weekend.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "Want to do a tasting flight with me Saturday? Three coffees side by side.",
+      "replies": [
+        {
+          "id": "yes",
+          "text": "Yes! I'm a beginner, so you'll have to explain things.",
+          "smoothDelta": 15,
+          "theirResponse": "Perfect. I love explaining. You'll taste the difference right away.",
+          "coachNote": "Honest and warm."
+        },
+        {
+          "id": "fake",
+          "text": "Sure. I've done cuppings before.",
+          "smoothDelta": -12,
+          "theirResponse": "Oh cool, which ones?",
+          "coachNote": "A tall tale. Be yourself."
+        },
+        {
+          "id": "no",
+          "text": "I'm not really a coffee person.",
+          "smoothDelta": -8,
+          "theirResponse": "That's fine, but I think you'd enjoy it.",
+          "coachNote": "Keep the door open."
+        }
+      ]
+    },
+    {
+      "theirMessage": "Fair warning: they'll serve them hot. Let them cool a bit before you sip.",
+      "replies": [
+        {
+          "id": "thanks",
+          "text": "Thanks. Should I smell first?",
+          "smoothDelta": 12,
+          "theirResponse": "Always smell first. Then a small slurp.",
+          "coachNote": "Takes her tip and asks more."
+        },
+        {
+          "id": "dismiss",
+          "text": "I know how hot drinks work.",
+          "smoothDelta": -8,
+          "theirResponse": "Okay, just being careful.",
+          "coachNote": "Taking a safety note gracefully is sweeter."
+        },
+        {
+          "id": "joke",
+          "text": "I'll wear oven mitts.",
+          "smoothDelta": 5,
+          "theirResponse": "Ha. Sure.",
+          "coachNote": "A light joke is fine, but answer the point."
+        }
+      ]
+    }
+  ],
+  "closingNote": "A flight is for tasting together. Curiosity is the ticket."
+}
+```
+
+### 4.8 Why is coffee so expensive? (`tt-price`)
+
+**Meaning:** She sighs about prices in the news. Meaning: she cares about farmers and is frustrated with costs; do not lecture.
+
+```json
+{
+  "title": "Why is coffee so expensive?",
+  "setting": "She scrolls headlines over breakfast.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "Coffee prices are nuts. I hope farmers actually see some of it.",
+      "replies": [
+        {
+          "id": "curious",
+          "text": "Do farmers usually benefit when prices rise?",
+          "smoothDelta": 12,
+          "theirResponse": "Sometimes, but costs rise too, and not every farmer gets the benefit. It's complicated.",
+          "coachNote": "A genuine question shows you care."
+        },
+        {
+          "id": "fact",
+          "text": "It's because of the C price and weather.",
+          "smoothDelta": -2,
+          "theirResponse": "True, but it's more complicated for the farmer.",
+          "coachNote": "Fine facts but skip the lecture."
+        },
+        {
+          "id": "shrug",
+          "text": "Just buy cheaper coffee.",
+          "smoothDelta": -12,
+          "theirResponse": "That's not really the point.",
+          "coachNote": "Dismissive of her concern."
+        }
+      ]
+    },
+    {
+      "theirMessage": "Anyway, it makes me want to buy from roasters who are open about prices.",
+      "replies": [
+        {
+          "id": "support",
+          "text": "That sounds like a good way to decide. Want to look at labels together?",
+          "smoothDelta": 15,
+          "theirResponse": "Yes! Let's check what each roaster publishes.",
+          "coachNote": "Supportive and practical."
+        },
+        {
+          "id": "cynic",
+          "text": "They're all marketing anyway.",
+          "smoothDelta": -12,
+          "theirResponse": "Some are. That's why I look for details.",
+          "coachNote": "Cynicism ends the conversation."
+        },
+        {
+          "id": "ask",
+          "text": "What would you look for on a label?",
+          "smoothDelta": 10,
+          "theirResponse": "Farm name, price info, harvest date.",
+          "coachNote": "Asking keeps it about her."
+        }
+      ]
+    }
+  ],
+  "closingNote": "Talk about the world with her, not at her."
+}
+```
+
+### 4.9 Decaf question (`tt-decaf`)
+
+**Meaning:** A friend mentions decaf. Meaning: a neutral fact moment; Swoon'd gives no health advice, so stay factual and kind.
+
+```json
+{
+  "title": "Decaf and the tired friend",
+  "setting": "Afternoon at a café.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "I'll have decaf. Is decaf actually caffeine-free?",
+      "replies": [
+        {
+          "id": "fact",
+          "text": "Mostly, but not entirely. A little caffeine remains.",
+          "smoothDelta": 12,
+          "theirResponse": "Good to know. I'll keep that in mind.",
+          "coachNote": "Neutral fact and no medical advice."
+        },
+        {
+          "id": "health",
+          "text": "Decaf is healthier for you.",
+          "smoothDelta": -15,
+          "theirResponse": "I'm not sure that's true.",
+          "coachNote": "Avoid health claims."
+        },
+        {
+          "id": "ask",
+          "text": "Why decaf this afternoon? Sleep?",
+          "smoothDelta": 3,
+          "theirResponse": "Mostly habit.",
+          "coachNote": "A little nosy; keep it light."
+        }
+      ]
+    },
+    {
+      "theirMessage": "Do you know how they take the caffeine out?",
+      "replies": [
+        {
+          "id": "honest",
+          "text": "No idea. Want to look it up together later?",
+          "smoothDelta": 15,
+          "theirResponse": "Sure. I think there are a few methods.",
+          "coachNote": "Honest and open."
+        },
+        {
+          "id": "bluff",
+          "text": "They use chemicals. It's terrible for you.",
+          "smoothDelta": -15,
+          "theirResponse": "That doesn't sound right.",
+          "coachNote": "A claim you can't back up."
+        },
+        {
+          "id": "ask-barista",
+          "text": "Let's ask the barista which decaf they serve.",
+          "smoothDelta": 10,
+          "theirResponse": "Good idea, they'd know.",
+          "coachNote": "Reasonable and social."
+        }
+      ]
+    }
+  ],
+  "closingNote": "No health claims. Honest curiosity wins."
+}
+```
+
+## 5. Talk Track roster at launch (18)
+
+The nine scenarios above plus: 1. First-morning-coffee ritual ("don't talk to me until I've had it"), 2. Her home-espresso budget plan, 3. "Is this oat milk okay?" (allergen-aware ordering), 4. Latte art attempt, 5. Cold brew batch day, 6. Coffee trip memory (a farm visit), 7. A championship night (she watches the WBC stream), 8. Decaf afternoon follow-up, 9. Gifting her a bag (honest questions before buying). Unit-end tracks reuse the nine above with unit-specific context.
+
+## 6. Asset needs (all `original-swoond`)
+
+Procedural diagrams: `coffee-belt-map`, `espresso-machine-front`, `puck-cross-section-channel`, `v60-cone`, `chemex-and-kalita`, `grind-ladder`, `roast-ladder`, `drink-builds`, `cherry-cross-section`, `roast-curve`, `flavor-wheel-original`. Audio: `steam-stretching`, `steam-texturing`, `first-crack`, `second-crack`, `kettle-rising`, `espresso-pour`, `grinder-whine`. All original or synthesized; no third-party photography, video or recordings.
+
+## 7. Voice and safety notes
+
+- Voice: cheeky coach, playful never mean. Jokes target the learner's ignorance, never her taste, baristas or farmers. One joke per screen.
+- Never teach "strong = dark", "crema = quality", or caffeine as good or bad for health. Caffeine content appears only as neutral fact.
+- Every hot-water, steam, moka-pot and cold-brew item includes a safety note in `safetyNote` or the explanation; safety review is never timed and never part of a streak.
+- Milk alternatives: ask first, read labels; no claims about allergens being safe in small amounts.
+- Fair Trade, direct trade and certifications: neutral, with critiques; no brand called ethical or unethical.
