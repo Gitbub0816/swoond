@@ -155,23 +155,189 @@ Each sample has a planned lesson id. Payloads are the exact contract shape.
 **Sample 1** (lesson `mgmt-04`)
 
 ```json
-{"prompt":"The flag is tucked by the bunker. Where do you aim?","situation":{"narrative":"A 150-yard approach, and the pin is close to the right edge.","facts":[{"label":"Pin position","value":"5 yards from the right edge"},{"label":"Trouble","value":"Bunker right, water long","emphasis":"warning"},{"label":"Green shape","value":"Wide, sloping left to right"},{"label":"Your typical miss","value":"A little right"},{"label":"Your handicap","value":"About 15"}],"narrative":"A 150-yard approach, and the pin is close to the right edge."},"options":[{"id":"flag","label":"Straight at the flag","verdict":"poor","consequence":"A normal miss finds the bunker or worse. Short-sided, the up-and-down is tough.","considerations":["Your miss leans right","No room on that side"]},{"id":"middle","label":"The middle of the green","verdict":"best","consequence":"You have a long putt, but a miss is still on the green or in a fine spot.","considerations":["Two putts is a good result","Keeps the bunker out of play"]},{"id":"left","label":"Well left of the green","verdict":"acceptable","consequence":"Safe from the bunker but leaves a tricky chip back over the slope.","considerations":["Safe but wasteful","Not needed when the middle is available"]}],"expertNote":"Good players aim at the fat part of the green when the flag is tucked. A fifteen-foot putt beats a bunker shot every time.","sayThisLine":"I'm not going after that flag; middle of the green is fine."}
+{"prompt":"The flag is tucked by the bunker. Where do you aim?","situation":{"narrative":"A 150-yard approach, and the pin is close to the right edge.","facts":[{"label":"Pin position","value":"5 yards from the right edge"},{"label":"Trouble","value":"Bunker right, water long","emphasis":"warning"},{"label":"Green shape","value":"Wide, sloping left to right"},{"label":"Your typical miss","value":"A little right"},{"label":"Your handicap","value":"About 15"}]},"options":[{"id":"flag","label":"Straight at the flag","verdict":"poor","consequence":"A normal miss finds the bunker or worse. Short-sided, the up-and-down is tough.","considerations":["Your miss leans right","No room on that side"]},{"id":"middle","label":"The middle of the green","verdict":"best","consequence":"You have a long putt, but a miss is still on the green or in a fine spot.","considerations":["Two putts is a good result","Keeps the bunker out of play"]},{"id":"left","label":"Well left of the green","verdict":"acceptable","consequence":"Safe from the bunker but leaves a tricky chip back over the slope.","considerations":["Safe but wasteful","Not needed when the middle is available"]}],"expertNote":"Good players aim at the fat part of the green when the flag is tucked. A fifteen-foot putt beats a bunker shot every time.","sayThisLine":"I'm not going after that flag; middle of the green is fine."}
 ```
 
 **Sample 2** (lesson `rule-06`)
 
 ```json
-{"prompt":"A faster group is right behind you. What now?","situation":{"narrative":"You are playing a relaxed round and the group behind is waiting on every shot.","facts":[{"label":"Your pace","value":"About 4 hours 30 minutes"},{"label":"Group behind","value":"Waiting on every tee"},{"label":"Open hole ahead","value":"Yes, a full hole gap","emphasis":"warning"},{"label":"Course rule","value":"Pace of play posted at the first tee"}],"narrative":"You are playing a relaxed round and the group behind is waiting on every shot."},"options":[{"id":"ignore","label":"Keep going and ignore them","verdict":"poor","consequence":"The group behind gets frustrated and the whole course backs up.","considerations":["Rounds that back up hurt everyone","A gap ahead means you are the problem"]},{"id":"through","label":"Wave them through when convenient","verdict":"best","consequence":"They pass smoothly, thank you, and you relax and enjoy your round.","considerations":["Let faster groups play through","Do it at a tee or a safe spot"]},{"id":"rush","label":"Speed up and skip the rest of your routine","verdict":"acceptable","consequence":"It helps a little, but rushing makes shots worse and still leaves the group behind you.","considerations":["Ready golf helps","Rushing can lead to errors"]}],"expertNote":"Letting a faster group play through is good manners, not an insult. Everyone plays better with space around them.","sayThisLine":"Go ahead and play through, we're taking our time."}
+{"prompt":"A faster group is right behind you. What now?","situation":{"narrative":"You are playing a relaxed round and the group behind is waiting on every shot.","facts":[{"label":"Your pace","value":"About 4 hours 30 minutes"},{"label":"Group behind","value":"Waiting on every tee"},{"label":"Open hole ahead","value":"Yes, a full hole gap","emphasis":"warning"},{"label":"Course rule","value":"Pace of play posted at the first tee"}]},"options":[{"id":"ignore","label":"Keep going and ignore them","verdict":"poor","consequence":"The group behind gets frustrated and the whole course backs up.","considerations":["Rounds that back up hurt everyone","A gap ahead means you are the problem"]},{"id":"through","label":"Wave them through when convenient","verdict":"best","consequence":"They pass smoothly, thank you, and you relax and enjoy your round.","considerations":["Let faster groups play through","Do it at a tee or a safe spot"]},{"id":"rush","label":"Speed up and skip the rest of your routine","verdict":"acceptable","consequence":"It helps a little, but rushing makes shots worse and still leaves the group behind you.","considerations":["Ready golf helps","Rushing can lead to errors"]}],"expertNote":"Letting a faster group play through is good manners, not an insult. Everyone plays better with space around them.","sayThisLine":"Go ahead and play through, we're taking our time."}
 ```
 
 **Sample 3** (lesson `rule-07`)
 
 ```json
-{"prompt":"You are unsure of a ruling in stroke play. What do you do?","situation":{"narrative":"Your ball is near a drainage cover and you are not sure if you get relief. No official is nearby.","facts":[{"label":"Format","value":"Stroke play, counting"},{"label":"Official nearby","value":"No"},{"label":"Your partners","value":"Also unsure"},{"label":"Stakes","value":"Club championship round"}],"narrative":"Your ball is near a drainage cover and you are not sure if you get relief. No official is nearby."},"options":[{"id":"guess","label":"Guess and play on, sign the card","verdict":"poor","consequence":"A wrong guess can mean a penalty or disqualification for a wrong score.","considerations":["A wrong ruling can bring penalties","You are responsible for your card"]},{"id":"two","label":"Play two balls and report to the committee","verdict":"best","consequence":"Stroke play allows two balls when unsure. The committee decides which counts afterward.","considerations":["Announce which ball you will count","Report the situation before signing your card"]},{"id":"partners","label":"Take the group's best guess","verdict":"acceptable","consequence":"It might be right, but friends can be wrong too.","considerations":["Better than a solo guess","Not the same as checking"]}],"expertNote":"When you honestly do not know, the rules allow you to play two balls in stroke play and let the committee sort it out. Asking beats guessing.","sayThisLine":"I'm not sure, so I'll play two balls and check afterward."}
+{"prompt":"You are unsure of a ruling in stroke play. What do you do?","situation":{"narrative":"Your ball is near a drainage cover and you are not sure if you get relief. No official is nearby.","facts":[{"label":"Format","value":"Stroke play, counting"},{"label":"Official nearby","value":"No"},{"label":"Your partners","value":"Also unsure"},{"label":"Stakes","value":"Club championship round"}]},"options":[{"id":"guess","label":"Guess and play on, sign the card","verdict":"poor","consequence":"A wrong guess can mean a penalty or disqualification for a wrong score.","considerations":["A wrong ruling can bring penalties","You are responsible for your card"]},{"id":"two","label":"Play two balls and report to the committee","verdict":"best","consequence":"Stroke play allows two balls when unsure. The committee decides which counts afterward.","considerations":["Announce which ball you will count","Report the situation before signing your card"]},{"id":"partners","label":"Take the group's best guess","verdict":"acceptable","consequence":"It might be right, but friends can be wrong too.","considerations":["Better than a solo guess","Not the same as checking"]}],"expertNote":"When you honestly do not know, the rules allow you to play two balls in stroke play and let the committee sort it out. Asking beats guessing.","sayThisLine":"I'm not sure, so I'll play two balls and check afterward."}
 ```
 
 **Sample 4** (lesson `cond-05`)
 
 ```json
-{"prompt":"Thunder rumbles and the course horn sounds. What now?","situation":{"narrative":"You are on the 14th fairway when the course sounds its horn.","facts":[{"label":"Sound","value":"Thunder in the distance","emphasis":"warning"},{"label":"Course signal","value":"Horn: suspend play","emphasis":"warning"},{"label":"Nearest shelter","value":"Clubhouse, half a mile"},{"label":"Nearest trees","value":"A big oak, 40 yards away"}],"narrative":"You are on the 14th fairway when the course sounds its horn."},"options":[{"id":"finish","label":"Finish the hole first","verdict":"poor","consequence":"Lightning can strike miles ahead of a storm. Finishing is not worth the risk.","considerations":["Stop when the horn sounds","Lightning does not wait for a putt"]},{"id":"tree","label":"Shelter under the big oak","verdict":"poor","consequence":"Tall isolated trees attract lightning and are among the most dangerous places to stand.","considerations":["Trees are not shelter","Do not stand near tall objects"]},{"id":"leave","label":"Leave the course now for a safe building or vehicle","verdict":"best","consequence":"You follow the course's procedure and get to a safe place quickly.","considerations":["Follow the course's own procedure","Take cart or walk directly to shelter"]}],"expertNote":"When the horn sounds, play stops. Leave the course and follow the club's procedure; do not wait for the next hole and do not shelter under trees.","safetyNote":"This is a learning scenario, not lightning safety training; follow your course's official procedure."}
+{"prompt":"Thunder rumbles and the course horn sounds. What now?","situation":{"narrative":"You are on the 14th fairway when the course sounds its horn.","facts":[{"label":"Sound","value":"Thunder in the distance","emphasis":"warning"},{"label":"Course signal","value":"Horn: suspend play","emphasis":"warning"},{"label":"Nearest shelter","value":"Clubhouse, half a mile"},{"label":"Nearest trees","value":"A big oak, 40 yards away"}]},"options":[{"id":"finish","label":"Finish the hole first","verdict":"poor","consequence":"Lightning can strike miles ahead of a storm. Finishing is not worth the risk.","considerations":["Stop when the horn sounds","Lightning does not wait for a putt"]},{"id":"tree","label":"Shelter under the big oak","verdict":"poor","consequence":"Tall isolated trees attract lightning and are among the most dangerous places to stand.","considerations":["Trees are not shelter","Do not stand near tall objects"]},{"id":"leave","label":"Leave the course now for a safe building or vehicle","verdict":"best","consequence":"You follow the course's procedure and get to a safe place quickly.","considerations":["Follow the course's own procedure","Take cart or walk directly to shelter"]}],"expertNote":"When the horn sounds, play stops. Leave the course and follow the club's procedure; do not wait for the next hole and do not shelter under trees.","safetyNote":"This is a learning scenario, not lightning safety training; follow your course's official procedure."}
+```
+
+### 2.7 `talk-track`
+
+Full launch tracks are in section 4; these three short samples show the payload shape for other lessons.
+
+**Sample 1** (lesson `talk-01`)
+
+```json
+{"title":"She broke 90","setting":"She texts after her round on Saturday.","startingSmooth":50,"exchanges":[{"theirMessage":"I finally broke 90!! 88. I've been chasing that all summer.","replies":[{"id":"a","text":"That's huge. What finally clicked?","smoothDelta":25,"theirResponse":"Honestly, the short game. I stopped chunking my chips.","coachNote":"Celebrates and asks for the story. Curiosity beats stats."},{"id":"b","text":"Nice. Is 88 good?","smoothDelta":0,"theirResponse":"For me it is! Par is 72 though, so we'll see.","coachNote":"Honest, but it slightly shrinks her moment. Celebrate first."},{"id":"c","text":"Cool. You should aim for scratch next.","smoothDelta":-15,"theirResponse":"Ha. Sure. Let me enjoy this one.","coachNote":"Moving the goalposts. Let her enjoy the milestone."}]}],"closingNote":"Breaking 90 means finishing 18 holes in fewer than 90 strokes. For many golfers it is a real milestone."}
+```
+
+**Sample 2** (lesson `talk-04`)
+
+```json
+{"title":"The new driver","setting":"She shows you a new driver at the range.","startingSmooth":50,"exchanges":[{"theirMessage":"Got fitted for a new driver. Lower loft, stiffer shaft. My slice might finally be over.","replies":[{"id":"a","text":"What did the fitter see in your swing?","smoothDelta":25,"theirResponse":"My ball speed was fine, but my spin was way too high.","coachNote":"Asks about the why. Fitting is about data and feel."},{"id":"b","text":"Nice. What does it cost?","smoothDelta":-5,"theirResponse":"Too much. Let's not talk about it.","coachNote":"Price is a fair curiosity, but not the first question."},{"id":"c","text":"Buying a driver fixes a slice? Amazing.","smoothDelta":-15,"theirResponse":"...It helps. Technique still matters.","coachNote":"Sounds dismissive. A fitting helps; it does not magically fix a swing."}]}],"closingNote":"Loft, shaft flex and lie are the main fitting variables. A fitting matches gear to the swing; it does not replace it."}
+```
+
+**Sample 3** (lesson `talk-06`)
+
+```json
+{"title":"Major Sunday","setting":"You watch the last round of a major together.","startingSmooth":50,"exchanges":[{"theirMessage":"He's two back thru 14, and the par 5s are still coming. This isn't over.","replies":[{"id":"a","text":"So he needs a birdie on 15 or 16?","smoothDelta":25,"theirResponse":"Exactly. Two par 5s left, and that's where you make a move.","coachNote":"Reads the leaderboard language and asks a simple follow-up."},{"id":"b","text":"What does thru 14 mean?","smoothDelta":10,"theirResponse":"He's played 14 of 18 holes. Four to go.","coachNote":"An honest question is fine. Better to ask once than to fake it."},{"id":"c","text":"He should just hit it closer.","smoothDelta":-20,"theirResponse":"Sure. Genius.","coachNote":"A joke that sounds like you don't get the game."}]}],"closingNote":"Thru 14 means 14 holes played. A par 5 is the best birdie chance on many courses."}
+```
+
+### 2.8 `timing-tap`
+
+**Sample 1** (lesson `club-04`)
+
+```json
+{"prompt":"Tap when the marker reaches the top of the swing.","theme":{"label":"Swing tempo","resultUnit":"points"},"rounds":[{"zoneStartPct":60,"zoneEndPct":76,"sweepSeconds":1.8},{"zoneStartPct":64,"zoneEndPct":76,"sweepSeconds":1.5},{"zoneStartPct":68,"zoneEndPct":78,"sweepSeconds":1.3}],"explanation":{"correct":"Good tempo is a smooth backswing about three times as long as the downswing, with a pause of no hurry at the top.","incorrect":"Rushing the transition is the classic error. Tempo is smooth: a longer backswing, then an unhurried change of direction.","sayThisLine":"My tempo goes when I rush the top."},"accessibilityAlternative":"tap-to-stop-slow"}
+```
+
+**Sample 2** (lesson `short-02`)
+
+```json
+{"prompt":"Tap at the end of a smooth putting stroke.","theme":{"label":"Putting rhythm","resultUnit":"points"},"rounds":[{"zoneStartPct":45,"zoneEndPct":62,"sweepSeconds":2.0},{"zoneStartPct":50,"zoneEndPct":62,"sweepSeconds":1.7}],"explanation":{"correct":"Putting is about a steady rhythm, the same tempo back and through, and letting the length of the stroke set the pace.","incorrect":"Jabbing at a putt is common under pressure. Keep the tempo the same and let the length of the stroke set the distance.","sayThisLine":"I just tried to keep the same rhythm."}}
+```
+
+**Sample 3** (lesson `short-06`)
+
+```json
+{"prompt":"Tap when the club enters the sand behind the ball.","theme":{"label":"Bunker splash","resultUnit":"points"},"rounds":[{"zoneStartPct":55,"zoneEndPct":70,"sweepSeconds":1.6},{"zoneStartPct":58,"zoneEndPct":68,"sweepSeconds":1.4},{"zoneStartPct":60,"zoneEndPct":68,"sweepSeconds":1.2}],"explanation":{"correct":"In a splash shot the club enters the sand behind the ball, and the sand carries the ball out. The ball is never hit directly.","incorrect":"Hitting the ball first sends it too far or thin. Enter the sand a couple of inches behind the ball and let the sand lift it.","sayThisLine":"Hit the sand, not the ball."}}
+```
+
+### 2.9 `say-this`
+
+**Sample 1** (lesson `talk-01`)
+
+```json
+{"statement":{"speaker":"Maya","text":"I three-jacked four times today and lipped out two more. My putter hates me."},"question":"What is she talking about?","options":[{"id":"a","text":"She took three putts on four different greens","isCorrect":true},{"id":"b","text":"Two putts caught the edge of the cup and stayed out","isCorrect":true},{"id":"c","text":"She lost four golf balls","isCorrect":false},{"id":"d","text":"Her putter broke twice","isCorrect":false}],"translation":"On four greens she needed three putts, and two more putts touched the rim of the hole without dropping. A frustrating day of putting.","followUps":[{"line":"Were the three-putts from long range or short ones?","why":"Shows you know three-putts come from poor pace or missed short putts."},{"line":"That lip-out on 12 sounds painful.","why":"Uses her word and shows sympathy without pretending expertise."}],"noFakeExpertNote":"You don't need to fix her stroke. Ask what happened and listen."}
+```
+
+**Sample 2** (lesson `live-02`)
+
+```json
+{"statement":{"speaker":"Sam","text":"He's four back but only thru 12, and the par 5s are all on the back nine."},"question":"What is he saying?","options":[{"id":"a","text":"The player trails by four strokes","isCorrect":true},{"id":"b","text":"The player has played 12 holes so far","isCorrect":true},{"id":"c","text":"He still has good birdie chances ahead","isCorrect":true},{"id":"d","text":"The player is four holes ahead","isCorrect":false}],"translation":"The player is four strokes behind the leader, has six holes left, and the par 5s (easier for birdies) are still to come, so he can still win.","followUps":[{"line":"Which of the par 5s is the easiest?","why":"Shows you understand par 5s are birdie holes."},{"line":"How many strokes back is the leader?","why":"A simple honest question that keeps the conversation going."}],"noFakeExpertNote":"It's fine to ask what 'thru 12' means. Nobody minds an honest question."}
+```
+
+**Sample 3** (lesson `fmt-02`)
+
+```json
+{"statement":{"speaker":"Jordan","text":"We got 3 and 2'd in fourballs, but we'd have won it if my partner made that putt on 15."},"question":"What happened?","options":[{"id":"a","text":"They lost the match with two holes left","isCorrect":true},{"id":"b","text":"They were three holes behind when it ended","isCorrect":true},{"id":"c","text":"They lost by three strokes total","isCorrect":false},{"id":"d","text":"They lost by two holes on the last green","isCorrect":false}],"translation":"Their opponents were three holes up with only two to play, so the match ended early. Fourball means each player plays their own ball and the better score on each hole counts.","followUps":[{"line":"Was it close until the 15th?","why":"Shows you understand a match is decided hole by hole."},{"line":"Who was the other side, a couple you know?","why":"Curious, low-stakes, and about the people."}],"noFakeExpertNote":"Match play scores are just holes up or down. Ask her to explain the ending."}
+```
+
+**Sample 4** (lesson `talk-04`)
+
+```json
+{"statement":{"speaker":"Riley","text":"I put in a 56 with more bounce and the sand shots have been so much easier."},"question":"What did she change?","options":[{"id":"a","text":"Her sand wedge","isCorrect":true},{"id":"b","text":"A wedge with 56 degrees of loft","isCorrect":true},{"id":"c","text":"A wedge with a sole that helps it glide through sand","isCorrect":true},{"id":"d","text":"Her driver","isCorrect":false}],"translation":"She has a wedge with 56 degrees of loft and more bounce, the angled sole that helps the club glide through the sand instead of digging, which makes bunker shots easier.","followUps":[{"line":"Is the sand soft or firm where you play?","why":"Bounce matters more for soft sand, so this is a smart question."},{"line":"Did it change your distance gap to the pitching wedge?","why":"Shows you know wedges are chosen to fill distance gaps."}],"noFakeExpertNote":"You don't need to know grinds. Ask what feels different."}
+```
+
+### 2.10 `fill-the-gap`
+
+**Sample 1** (lesson `score-02`)
+
+```json
+{"prompt":"Complete the sentence about aces.","template":"A hole in one on a par {{par}} is an {{name}}.","gaps":[{"id":"par","options":["3","4","5"],"correct":"3"},{"id":"name","options":["eagle","albatross","birdie"],"correct":"eagle"}],"explanation":{"correct":"An ace on a par 3 is two under par, an eagle. On a par 4 it would be an albatross, and on a par 5 a condor.","incorrect":"Count under par: one shot on a par 3 is two under, which is an eagle. Longer holes make the same ace a rarer score.","sayThisLine":"Her ace on the par 3 was an eagle."}}
+```
+
+**Sample 2** (lesson `fmt-01`)
+
+```json
+{"prompt":"Complete the sentence about match play.","template":"In match play you win a {{unit}} by taking fewer strokes on it, and the match goes to whoever wins more {{unit2}}.","gaps":[{"id":"unit","options":["hole","round","shot"],"correct":"hole"},{"id":"unit2","options":["holes","strokes","rounds"],"correct":"holes"}],"explanation":{"correct":"Match play is hole by hole: whoever takes fewer strokes wins that hole, and whoever wins more holes wins the match. Total strokes do not matter.","incorrect":"In match play the hole is the unit. Win more holes than your opponent and you win the match, however many total strokes you took."}}
+```
+
+**Sample 3** (lesson `rule-02`)
+
+```json
+{"prompt":"Complete the out-of-bounds rule.","template":"Out of bounds costs {{penalty}} penalty stroke and you play again from {{where}}.","gaps":[{"id":"penalty","options":["one","two","no"],"correct":"one"},{"id":"where","options":["the previous spot","the fairway","the green"],"correct":"the previous spot"}],"explanation":{"correct":"Stroke and distance: one penalty stroke, and you replay from where you last played. Some courses offer a local rule with a faster option.","incorrect":"It is one penalty stroke and a replay from the previous spot, called stroke and distance. Ask the pro shop about local alternatives for casual rounds.","sayThisLine":"OB, so stroke and distance."}}
+```
+
+**Sample 4** (lesson `fmt-08`)
+
+```json
+{"prompt":"Complete the handicap sentence.","template":"A net score is your {{gross}} score minus your {{hcp}}.","gaps":[{"id":"gross","options":["gross","best","par"],"correct":"gross"},{"id":"hcp","options":["course handicap","slope","handicap max"],"correct":"course handicap"}],"explanation":{"correct":"Net score equals the gross score you actually took minus your course handicap. It lets golfers of different skill compete fairly.","incorrect":"Take the gross score (what you actually shot) and subtract your course handicap. That is your net score for the round.","sayThisLine":"I shot 95, but with my handicap that's a net 80."}}
+```
+
+### 2.11 `listening-id`
+
+**Sample 1** (lesson `club-06`)
+
+```json
+{"prompt":"Which strike does this sound like?","audio":{"asset":"audio/golf/iron-strike-pure.m4a","durationMs":2500,"license":"original-swoond","description":"A crisp, compressed click with a short, clean thump, like a ball squeezed against the ground.","maxPlays":3},"options":[{"id":"a","text":"Pure iron strike"},{"id":"b","text":"Thin shot (hit near the equator)"},{"id":"c","text":"Fat shot (turf first)"}],"correctOptionId":"a","explanation":{"correct":"A pure iron sounds crisp and solid. The club compresses the ball against the turf and takes a small divot after the ball.","incorrect":"A pure strike is a clean click. A thin shot is a hard, high-pitched ting; a fat shot is a dull thud."},"listenFor":["Crisp click","Short thump","No ringing"]}
+```
+
+**Sample 2** (lesson `short-02`)
+
+```json
+{"prompt":"Did the putt drop or lip out?","audio":{"asset":"audio/golf/putt-in-cup.m4a","durationMs":3000,"license":"original-swoond","description":"A soft roll ending in a distinct rattle as a ball drops to the bottom of a cup.","maxPlays":3},"options":[{"id":"a","text":"Dropped in the cup"},{"id":"b","text":"Lipped out"},{"id":"c","text":"Stopped short"}],"correctOptionId":"a","explanation":{"correct":"The soft roll ending in a low rattle is the ball dropping and hitting the bottom of the cup. Golfers love that sound.","incorrect":"A drop ends with a rattle inside the cup. A lip-out is a soft tick at the rim followed by silence; a short putt just rolls out."},"listenFor":["Low rattle","Drop into the cup","No further roll"]}
+```
+
+**Sample 3** (lesson `short-06`)
+
+```json
+{"prompt":"Which sand shot does this sound like?","audio":{"asset":"audio/golf/bunker-splash.m4a","durationMs":2500,"license":"original-swoond","description":"A soft, muffled whoosh of sand thrown up, with no sharp click of a ball being struck.","maxPlays":3},"options":[{"id":"a","text":"A clean splash (sand first)"},{"id":"b","text":"A thin blade across the ball"},{"id":"c","text":"A skulled shot over the green"}],"correctOptionId":"a","explanation":{"correct":"A soft whoosh with no sharp click means the club went through the sand and threw the ball out on a cushion. That is a good bunker shot.","incorrect":"A sharp click means the club hit the ball itself, which in a bunker usually sends it flying. The soft whoosh is the good sound."},"listenFor":["Soft whoosh","No sharp click","Sand spray"]}
+```
+
+### 2.12 `estimate-slider`
+
+**Sample 1** (lesson `game-02`)
+
+```json
+{"prompt":"How wide is the hole (the cup)?","unit":"inches","min":2,"max":8,"step":0.25,"correctValue":4.25,"tolerance":{"full":0.25,"partial":1},"explanation":{"correct":"The cup is 4.25 inches across, only a little bigger than a golf ball. That is why putts are so hard.","incorrect":"The cup is 4.25 inches wide, about two and a half times the width of the ball.","sayThisLine":"The hole is only 4.25 inches wide."}}
+```
+
+**Sample 2** (lesson `club-01`)
+
+```json
+{"prompt":"How many clubs may you carry in a round?","unit":"clubs","min":8,"max":20,"step":1,"correctValue":14,"tolerance":{"full":0,"partial":2},"explanation":{"correct":"Fourteen clubs is the limit. Going over gives a penalty of two strokes per hole, up to four in stroke play.","incorrect":"The limit is fourteen clubs. Most golfers carry about that many: a driver, woods or hybrids, irons, wedges and a putter.","sayThisLine":"You can carry at most fourteen clubs."}}
+```
+
+**Sample 3** (lesson `cond-03`)
+
+```json
+{"prompt":"A Stimp of 10: how far does the ball roll?","unit":"feet","min":4,"max":16,"step":1,"correctValue":10,"tolerance":{"full":0,"partial":2},"explanation":{"correct":"The Stimpmeter releases a ball down a ramp, and the distance it rolls on a flat green, in feet, is the Stimp. So a 10 rolls about ten feet.","incorrect":"The Stimp number is simply how many feet the ball rolls after leaving the ramp. Higher means faster greens, which break more.","sayThisLine":"The greens are running at about a 10 today."}}
+```
+
+**Sample 4** (lesson `fmt-06`)
+
+```json
+{"prompt":"What is the highest Handicap Index in the system?","unit":"strokes","min":20,"max":60,"step":1,"correctValue":54,"tolerance":{"full":0,"partial":5},"explanation":{"correct":"The World Handicap System caps the Handicap Index at 54.0, so almost anyone can get a handicap and play in fair competition.","incorrect":"The maximum Handicap Index is 54.0. It lets beginners join events and compete fairly with better players.","sayThisLine":"You can get a handicap even as a beginner."}}
+```
+
+### 2.13 `hotspot-tap`
+
+**Sample 1** (lesson `game-02`)
+
+```json
+{"prompt":"Tap the putting green.","diagram":{"diagramId":"golf-hole-anatomy","aspectRatio":0.75,"alt":"Top-down par-4 hole. A tee box at the bottom, a long fairway with rough on both sides, a bunker on the left, a pond on the right, and a round green with a flag at the top."},"hotspots":[{"id":"tee","label":"Tee box","shape":{"kind":"rect","x":0.38,"y":0.85,"w":0.24,"h":0.1}},{"id":"fairway","label":"Fairway","shape":{"kind":"rect","x":0.34,"y":0.3,"w":0.32,"h":0.5}},{"id":"bunker","label":"Bunker","shape":{"kind":"circle","cx":0.24,"cy":0.2,"r":0.07}},{"id":"pond","label":"Pond","shape":{"kind":"circle","cx":0.78,"cy":0.55,"r":0.1}},{"id":"green","label":"Green","shape":{"kind":"circle","cx":0.5,"cy":0.1,"r":0.09}}],"correctHotspotIds":["green"],"explanation":{"correct":"The green is the short, smooth grass around the hole where you putt, at the top of the diagram with the flag.","incorrect":"The green is the smooth, round putting surface around the flag. The fairway is the longer mown lane, and the bunker and pond are hazards.","sayThisLine":"I hit the green in regulation."}}
+```
+
+**Sample 2** (lesson `rule-03`)
+
+```json
+{"prompt":"Ball crossed the red stakes here. Tap a legal lateral drop area.","diagram":{"diagramId":"golf-relief-red-lateral","aspectRatio":1,"alt":"Top-down pond edge with red stakes and a marked entry point. Four areas: beside the entry point within two club-lengths, closer to the flag across the water, behind the pond on the line, and far back on the fairway."},"hotspots":[{"id":"side","label":"Beside the entry point, within two club-lengths","shape":{"kind":"circle","cx":0.3,"cy":0.55,"r":0.08}},{"id":"closer","label":"Closer to the flag across the water","shape":{"kind":"circle","cx":0.7,"cy":0.2,"r":0.08}},{"id":"behind","label":"Behind the pond on the line","shape":{"kind":"circle","cx":0.5,"cy":0.85,"r":0.08}},{"id":"far","label":"Far back on the fairway","shape":{"kind":"circle","cx":0.15,"cy":0.9,"r":0.07}}],"correctHotspotIds":["side"],"explanation":{"correct":"Lateral relief is within two club-lengths of where the ball crossed the edge, and never nearer the hole. That is the area beside the entry point.","incorrect":"Relief must be within two club-lengths of the crossing point and no nearer the hole. Closer to the flag is not allowed, and far back is not within two club-lengths.","sayThisLine":"I dropped within two club-lengths, no closer to the hole."}}
+```
+
+**Sample 3** (lesson `short-03`)
+
+```json
+{"prompt":"This putt falls left. Tap the high side to aim.","diagram":{"diagramId":"golf-green-cross-slope","aspectRatio":1,"alt":"Top-down green with the ball at the bottom, the hole near the top, and gentle contour lines showing the surface falling from the right side down to the left."},"hotspots":[{"id":"high","label":"High side, right of the hole","shape":{"kind":"circle","cx":0.62,"cy":0.25,"r":0.09}},{"id":"low","label":"Low side, left of the hole","shape":{"kind":"circle","cx":0.36,"cy":0.25,"r":0.09}},{"id":"cup","label":"Straight at the hole","shape":{"kind":"circle","cx":0.5,"cy":0.2,"r":0.05}}],"correctHotspotIds":["high"],"explanation":{"correct":"Water runs downhill, so a putt on a left-falling slope drifts left. Start it on the high side, to the right, and let the slope bring it back.","incorrect":"On a green that falls left the ball drifts left, so aiming at the hole or left of it misses low. Aim on the high side, right of the hole.","sayThisLine":"Play it out to the high side and let it feed in."}}
+```
+
+**Sample 4** (lesson `score-04`)
+
+```json
+{"prompt":"Tap the column that tells you the hardest holes.","diagram":{"diagramId":"golf-scorecard-columns","aspectRatio":1.6,"alt":"A scorecard with rows for holes one to nine and columns labelled Hole, Yards, Par, and Handicap or Stroke Index."},"hotspots":[{"id":"hole","label":"Hole","shape":{"kind":"rect","x":0.04,"y":0.1,"w":0.14,"h":0.8}},{"id":"yards","label":"Yards","shape":{"kind":"rect","x":0.22,"y":0.1,"w":0.2,"h":0.8}},{"id":"par","label":"Par","shape":{"kind":"rect","x":0.46,"y":0.1,"w":0.14,"h":0.8}},{"id":"si","label":"Handicap (stroke index)","shape":{"kind":"rect","x":0.64,"y":0.1,"w":0.3,"h":0.8}}],"correctHotspotIds":["si"],"explanation":{"correct":"The handicap or stroke index column ranks holes by difficulty; 1 is the hardest. It also tells you where handicap strokes are given.","incorrect":"Yards is length and par is the expected score. The handicap (stroke index) column ranks the holes from hardest (1) to easiest.","sayThisLine":"I get a stroke on the hardest hole, number 1."}}
 ```

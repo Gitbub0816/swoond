@@ -906,7 +906,7 @@ See section 4; eight full payloads are provided there and the roster of 18 is in
 
 ```json
 {
-  "prompt": "About how many hours until a full electric kiln is safe to open?",
+  "prompt": "How many hours does a full electric kiln take to cool?",
   "unit": "hours",
   "min": 2,
   "max": 72,

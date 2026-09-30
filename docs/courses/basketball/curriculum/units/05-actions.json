@@ -83,27 +83,9 @@
                 {"id": "decision", "text": "The screener either rolls, pops or slips based on the defense."},
                 {"id": "action", "text": "The ball handler either drives, shoots or passes to the screener."}
               ],
-              "correctOrder": ["screen", "handler", "decision", "action"],
               "explanation": {
-                "summary": "Pick first, handler attacks it, screener moves, then the play happens."
-              }
-            }
-          },
-          {
-            "id": "act-01-mc-3",
-            "type": "multiple-choice",
-            "conceptIds": ["pick-and-pop"],
-            "payload": {
-              "prompt": "When does a pick-and-pop happen instead of a roll?",
-              "options": [
-                {"id": "correct", "text": "When the screener is a good shooter and the defense closes too tight on the roll."},
-                {"id": "dist-1", "text": "When the ball handler is double-teamed."},
-                {"id": "dist-2", "text": "When the screener is fouled."}
-              ],
-              "correctOptionIds": ["correct"],
-              "explanation": {
-                "correct": "Right. A pop is a pick-and-roll variation where the shooter steps out instead of rolling, punishing tight defense.",
-                "incorrect": "Not quite. Pick-and-pop is when a good-shooting screener steps out to the perimeter instead of rolling, often effective against aggressive defense."
+                "correct": "Right. The sequence is: pick, attack it, screener decides their move, then the action happens.",
+                "incorrect": "Not quite. The pick comes first, then the handler attacks it, then the screener reacts, then the play concludes."
               }
             }
           }
@@ -152,24 +134,6 @@
               "explanation": {
                 "correct": "Exactly. Drop defense leaves space for the ball handler to shoot, especially dangerous if they can shoot threes.",
                 "incorrect": "Not quite. Drop defense gives up the pull-up shot because the ball handler has space to shoot."
-              }
-            }
-          },
-          {
-            "id": "act-02-mc-2",
-            "type": "multiple-choice",
-            "conceptIds": ["switch"],
-            "payload": {
-              "prompt": "What is a mismatch created by switching?",
-              "options": [
-                {"id": "correct", "text": "A big defender ends up guarding a quick ball handler, or a small defender guarding the big, creating an advantage."},
-                {"id": "dist-1", "text": "Two defenders guarding the same player."},
-                {"id": "dist-2", "text": "A player guarding two opponents."}
-              ],
-              "correctOptionIds": ["correct"],
-              "explanation": {
-                "correct": "Right. Switches can create mismatches: a ball-handling big or a shooting small can exploit the switch.",
-                "incorrect": "Not quite. Switching creates a mismatch when the wrong defender ends up on the wrong player based on size or speed."
               }
             }
           },
@@ -328,7 +292,7 @@
             "payload": {
               "prompt": "What is a dribble handoff (DHO)?",
               "options": [
-                {"id": "correct", "text": "A ball handler dribbles toward a teammate and hands the ball directly to them on the move, without a bounce pass."},
+                {"id": "correct", "text": "A ball handler hands the ball directly to a moving teammate, creating separation."},
                 {"id": "dist-1", "text": "A pass made after a player has dribbled and stopped."},
                 {"id": "dist-2", "text": "Passing the ball to a teammate on the bench."}
               ],
@@ -340,29 +304,11 @@
             }
           },
           {
-            "id": "act-04-mc-2",
-            "type": "multiple-choice",
-            "conceptIds": ["chase-defender"],
-            "payload": {
-              "prompt": "Why is defending a dribble handoff difficult?",
-              "options": [
-                {"id": "correct", "text": "The receiving player gets instant separation from their defender, who must recover, or the ball handler retains space."},
-                {"id": "dist-1", "text": "It is not difficult; defenders can stop it easily."},
-                {"id": "dist-2", "text": "The ball goes out of bounds."}
-              ],
-              "correctOptionIds": ["correct"],
-              "explanation": {
-                "correct": "Exactly. Handoffs create a moment of chaos: the receiver suddenly has space and the old ball handler is still a threat.",
-                "incorrect": "Not quite. Handoffs are hard to defend because they create instant separation and quick decision-making for the offense."
-              }
-            }
-          },
-          {
             "id": "act-04-bc-1",
             "type": "binary-call",
             "conceptIds": ["handoff-action"],
             "payload": {
-              "prompt": "Is this a dribble handoff: a ball handler stops dribbling, the receiver cuts, and the handler passes to the cutter. Correct?",
+              "prompt": "Handler stops dribbling, passes to a cutting teammate. Is this a DHO?",
               "scene": {"kind": "none", "alt": "A ball handler stopping and passing to a cutting teammate."},
               "choices": [
                 {"id": "yes", "label": "Yes, that is a handoff."},
@@ -422,24 +368,6 @@
               "explanation": {
                 "correct": "Right. A post entry initiates play through a big, often leading to a post-up, pass-out or split cut.",
                 "incorrect": "Not quite. A post entry is a pass to a big man in a scoring position, usually low or high post."
-              }
-            }
-          },
-          {
-            "id": "act-05-mc-2",
-            "type": "multiple-choice",
-            "conceptIds": ["split-cut"],
-            "payload": {
-              "prompt": "What is a split cut after a post entry?",
-              "options": [
-                {"id": "correct", "text": "A quick cut down the middle between two defenders who are guarding the post, looking for a pass and layup."},
-                {"id": "dist-1", "text": "A cut to the corner for a three-pointer."},
-                {"id": "dist-2", "text": "A pass that splits two opponents."}
-              ],
-              "correctOptionIds": ["correct"],
-              "explanation": {
-                "correct": "Exactly. A split cut is an easy basket: two defenders collapse on the post, leaving the cutter open in the middle.",
-                "incorrect": "Not quite. A split cut is when a player cuts between the big and their defender, expecting a short pass from the post player."
               }
             }
           },
@@ -579,24 +507,6 @@
               "explanation": {
                 "correct": "Exactly. Stagger screens are two in a row—the player uses one, then the other, creating confusion and space.",
                 "incorrect": "Not quite. A stagger screen is two consecutive screens set for one player, one after the other."
-              }
-            }
-          },
-          {
-            "id": "act-06-mc-3",
-            "type": "multiple-choice",
-            "conceptIds": ["flare-screen"],
-            "payload": {
-              "prompt": "What does a flare screen do?",
-              "options": [
-                {"id": "correct", "text": "Pushes a player out to the three-point line for a catch-and-shoot opportunity."},
-                {"id": "dist-1", "text": "Pulls a player into the paint for a post-up."},
-                {"id": "dist-2", "text": "Creates space for a backdoor cut."}
-              ],
-              "correctOptionIds": ["correct"],
-              "explanation": {
-                "correct": "Right. A flare screen spreads the defense by moving a shooter to the perimeter for an open three.",
-                "incorrect": "Not quite. A flare screen moves a player out to the three-point line, creating space for a perimeter shot."
               }
             }
           },

@@ -151,25 +151,25 @@ Valid: `{ "seed": 7, "scenarioSetId": "compression-starter", "scenarioCount": 3 
   "limits": { "sMin": 0.5, "sMax": 6.0, "fMin": 14, "fMax": 200 },
   "look": { "distortionMax": 1.15 }, "tags": ["face"], "teaches": ["wide-angle-distortion", "subject-distance"] }
 ```
-- **Maths (all deterministic, pure functions; `PhysicalCamera`):** frame height H (36 mm portrait, 24 mm landscape). Subject fraction f = (F x h / (s - F/1000)) / H, with F in mm, s and h in metres. Background fraction g = (F x B / (D - F/1000)) / H with D = s + b. Background size ratio R = (s - F/1000) / (s + b - F/1000) (1 = same scale as subject; smaller = background looks smaller and farther). Face distortion ratio = (s + nose... ) = (s + depthEar) / (s - depthNose) (1.00 is flat; 1.20 is visibly enlarged nose). Vertical field of view = 2 x atan(H / (2F)); horizontal edge-stretch flag when F < 18 mm (horizontal FOV over about 90 degrees on the 36 mm side).
+- **Maths (all deterministic, pure functions; `PhysicalCamera`):** frame height H (36 mm portrait, 24 mm landscape). Subject fraction f = (F x h / (s - F/1000)) / H, with F in mm, s and h in metres. Background fraction g = (F x B / (D - F/1000)) / H with D = s + b. Background size ratio R = (s - F/1000) / (s + b - F/1000) (1 = same scale as subject; smaller = background looks smaller and farther). Face distortion ratio = (s + depthEar) / (s - depthNose) (1.00 is flat; 1.20 is a visibly enlarged nose). Vertical field of view = 2 x atan(H / (2F)); horizontal edge-stretch flag when F < 18 mm (horizontal FOV over about 90 degrees on the 36 mm side).
 - **Evaluation of Shoot:** pass if all hold: |f - target| <= tolerance(difficulty); look constraint(s) satisfied; s within [sMin, sMax] (the Zone); F within range; distortion <= `distortionMax` when set; edge-stretch flag false when `noEdgeStretch` is set.
 - **Scenarios (all with computed feasible windows, sub-fraction target and `limits` as shown):**
 
 | scenarioId | Setup | Look constraint | Feasible focal window (mm) | Teaches | Tags |
 |---|---|---|---|---|---|
 | `cs-01` | Head-and-shoulders (h 0.30 m), door wall 3 m behind, s 0.5 to 6 m, f 0.55 | distortion <= 1.15 | 81 to 200 (s 1.3 to 3.2 m) | `wide-angle-distortion`, `subject-distance` | face |
-| `cs-02` | Full figure (h 1.7 m), mountain (B 600 m) 8 km behind, f 0.60, s 1 to 60 m | mountain fraction g >= 0.35 | 168 to 200 (s 13 to 16 m) | `perspective-compression`, `focal-length` | basic |
+| `cs-02` | Full figure (h 1.7 m), mountain (B 600 m) 8 km behind, f 0.60, s 1 to 60 m | mountain fraction g >= 0.30 | 145 to 200 (s 11.5 to 16 m) | `perspective-compression`, `focal-length` | basic |
 | `cs-03` | Group width 3.0 m in a small room, landscape, f 0.90 of the 24 mm side, s <= 3.4 m | no edge stretch (F >= 18) | 18 to 24 (s 2.5 to 3.4 m) | `field-of-view`, `focal-length` | space |
-| `cs-04` | Two-shot dolly zoom: A is fixed at 24 mm; B must keep f 0.50 (+-tol) with the tree wall 25 m behind | g(B) / g(A) >= 2.5 | 75 to 200 (s 7 to 19 m) | `perspective-compression`, `subject-distance` | two-shot |
+| `cs-04` | Two-shot dolly zoom: A is fixed at 24 mm; B must keep f 0.50 (+-tol) with the tree wall 25 m behind | g(B) / g(A) >= 2.5 | 72 to 200 (s 6.8 to 19 m) | `perspective-compression`, `subject-distance` | two-shot |
 | `cs-05` | Product h 0.12 m (front-to-back 0.06 m), shelf 1.2 m behind, s 0.3 to 1.5, f 0.70 | distortion <= 1.10 | 110 to 200 (s 0.63 to 1.15 m) | `wide-angle-distortion` | face |
-| `cs-06` | Lamp posts (h 5 m, 5 of them, 10 m apart from the nearest to the farthest 40 m away), f 0.50 on the nearest | nearest-to-farthest size ratio >= 0.50 ("packed") | 144 to 200 (s 40 to 56 m) | `perspective-compression` | basic |
+| `cs-06` | Lamp posts (h 5 m, five posts 10 m apart, so the farthest is 40 m behind the nearest), f 0.50 on the nearest | nearest-to-farthest size ratio >= 0.50 ("packed") | 144 to 200 (s 40 to 56 m) | `perspective-compression` | basic |
 | `cs-07` | Same lamp row, f 0.50 | nearest-to-farthest size ratio <= 0.25 ("deep") | 14 to 47 (s 3.9 to 13 m) | `perspective-compression`, `field-of-view` | basic |
-| `cs-08` | Room interior, width 4.2 m across the 36 mm side, standing in the doorway s <= 2.5 m, f 0.95 | no edge stretch | 18 to 20 (s 2.2 to 2.5 m) | `field-of-view` | space |
+| `cs-08` | Room interior, width 4.2 m across the 36 mm side, standing in the doorway s <= 3.0 m, f 0.95 | no edge stretch | 18 to 24 (s 2.2 to 2.95 m) | `field-of-view` | space |
 | `cs-09` | Choose-the-frame: two frames of the same face at the same size, A 24 mm at 0.45 m and B 85 mm at 1.8 m; pick the wide close-up | `choose_target` | n/a | `wide-angle-distortion` | face |
 | `cs-10` | Dog head (h 0.25 m; snout 0.06 m ahead, ears 0.04 m behind), s 0.3 to 3, f 0.60 | distortion <= 1.15 | 58 to 200 (s 0.73 to 2.5 m) | `wide-angle-distortion`, `subject-distance` | face |
 | `cs-11` | Phone lenses only (24, 48, 120 mm equivalent): head-and-shoulders (h 0.35 m), f 0.55, s 0.5 to 4 | distortion <= 1.20 | 120 only (48 mm fails at s 0.9 m, ratio 1.23) | `wide-angle-distortion`, `focal-length` | face |
-| `cs-12` | Reverse dolly zoom: A fixed at 135 mm; B keeps f 0.50 with tree wall 25 m behind | g(B) / g(A) <= 0.35 | 14 to 35 (s 1.5 to 3.3 m) | `perspective-compression`, `field-of-view` | two-shot |
-- **Generation rule (for more scenarios):** pick subject h and target f; choose a look (background fraction range, size-ratio range, or distortion cap) and limits; solve F from s = F x h / (f x H) + F/1000 over the F range; require a non-empty feasible window at least 20 mm wide at L1 to L3 (narrower allowed at L4 to L5); no scenario may have its window depend on hitting an exact number.
+| `cs-12` | Reverse dolly zoom: A fixed at 135 mm; B keeps f 0.50 with tree wall 25 m behind | g(B) / g(A) <= 0.35 | 18 to 35 (s 1.7 to 3.3 m) | `perspective-compression`, `field-of-view` | two-shot |
+- **Generation rule (for more scenarios):** pick subject h and target f; choose a look (background fraction range, size-ratio range, or distortion cap) and limits; solve F from s = F x h / (f x H) + F/1000 over the F range; require a feasible window whose Fmax / Fmin is at least 1.3 (or that spans at least one detent) at L1 to L3 (narrower allowed at L4 to L5); no scenario may have its window depend on hitting an exact number.
 
 ## 12. Freeze / explain moments
 Voice: cheeky coach, never mean. Titles <= 6 words; bodies <= 45 words.
