@@ -619,7 +619,7 @@
                   {
                     "role": "player",
                     "x": 0.5,
-                    "y": 0.315
+                    "y": 0.34
                   },
                   {
                     "role": "ball",
@@ -966,7 +966,7 @@
               "leave-kitchen-before-volley"
             ],
             "payload": {
-              "prompt": "You are in the kitchen, ball bounces outside, floats back. You volley from inside.",
+              "prompt": "Still in the kitchen after a bounce, you volley the next ball.",
               "scene": {
                 "kind": "court-diagram",
                 "diagramId": "pickleball-court",
@@ -974,15 +974,15 @@
                   {
                     "role": "player",
                     "x": 0.5,
-                    "y": 0.31
+                    "y": 0.42
                   },
                   {
                     "role": "ball",
                     "x": 0.5,
-                    "y": 0.22
+                    "y": 0.3
                   }
                 ],
-                "alt": "You stand inside the kitchen zone, volleying a ball that bounced outside."
+                "alt": "You stand inside the kitchen after hitting a bounced ball, and the next ball is coming in the air."
               },
               "choices": [
                 {
@@ -1015,28 +1015,28 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "Volley the next ball that comes to you"
+                  "text": "Volley the next ball, since you are already in"
                 },
                 {
                   "id": "b",
-                  "text": "Hit only groundstrokes and then leave the zone"
+                  "text": "Hit balls that have bounced, and step fully out before you volley"
                 },
                 {
                   "id": "c",
-                  "text": "Stay there and wait for instructions"
+                  "text": "Leave the kitchen immediately or lose the point"
                 },
                 {
                   "id": "d",
-                  "text": "Hit any shot, then move back"
+                  "text": "Hit any shot, as long as you move back afterwards"
                 }
               ],
               "correctOptionIds": [
                 "b"
               ],
               "explanation": {
-                "correct": "You can hit groundstrokes in the kitchen (bounced balls), but before you volley again, you must exit the zone.",
-                "incorrect": "The kitchen is only open for groundstrokes once you're in it. Volleys are not allowed from inside; you must leave first.",
-                "sayThisLine": "In the kitchen: hit bounces, then exit before volleying."
+                "correct": "You can stay in the kitchen and keep hitting balls that have bounced. To volley, you have to get both feet out of the zone first.",
+                "incorrect": "You are allowed to be in the kitchen, so there is no rush to leave. But volleying from inside is a fault, and moving back afterwards does not undo it.",
+                "sayThisLine": "I can hit bounced balls from the kitchen, but I must step out to volley."
               }
             }
           },
@@ -1102,15 +1102,15 @@
                   {
                     "role": "player",
                     "x": 0.5,
-                    "y": 0.35
+                    "y": 0.3
                   },
                   {
                     "role": "ball",
                     "x": 0.5,
-                    "y": 0.27
+                    "y": 0.4
                   }
                 ],
-                "alt": "You stand outside the kitchen while your paddle extends over the kitchen line to hit the ball."
+                "alt": "You stand just behind the kitchen line while your paddle reaches out over the kitchen, in the air, to hit the ball."
               },
               "choices": [
                 {
@@ -1124,9 +1124,9 @@
               ],
               "correctChoiceId": "legal",
               "explanation": {
-                "correct": "Legal. Your paddle can reach over the kitchen as long as your feet are outside the zone. Only foot position matters.",
-                "incorrect": "The kitchen rule is about foot position, not paddle reach. As long as your feet are out, your paddle can go anywhere.",
-                "sayThisLine": "Paddle over kitchen is fine; feet outside = legal."
+                "correct": "Legal. Your paddle can reach over the kitchen in the air as long as you are not touching the zone or its line when you hit.",
+                "incorrect": "The fault is about touching the kitchen, not reaching over it. Your feet are clear, so a paddle in the air above the zone is fine.",
+                "sayThisLine": "Reaching over the kitchen is fine if I am not touching it."
               },
               "ruleTag": "Paddle reaching over kitchen is legal"
             }
@@ -1138,32 +1138,32 @@
               "paddle-over-kitchen-ok"
             ],
             "payload": {
-              "prompt": "What part of your body matters for the kitchen volley rule?",
+              "prompt": "What decides whether a volley is a kitchen fault?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Your paddle position"
+                  "text": "Whether your paddle reaches over the kitchen"
                 },
                 {
                   "id": "b",
-                  "text": "Your arm or hand"
+                  "text": "Whether your arm crosses the kitchen line in the air"
                 },
                 {
                   "id": "c",
-                  "text": "Your foot position"
+                  "text": "Whether you are touching the kitchen or its line"
                 },
                 {
                   "id": "d",
-                  "text": "Your balance"
+                  "text": "How hard you hit the ball"
                 }
               ],
               "correctOptionIds": [
                 "c"
               ],
               "explanation": {
-                "correct": "Foot position is the only thing that matters for the kitchen volley rule. Paddle and arms can reach over; feet must stay out.",
-                "incorrect": "The kitchen rule is about where your feet are when you volley, not where your paddle or hands reach.",
-                "sayThisLine": "Kitchen rule is about feet, not paddle. Paddle can reach over."
+                "correct": "It comes down to touching. Usually that is your feet, but it also counts if anything you wear or carry, like your paddle, touches the kitchen or its line while you volley.",
+                "incorrect": "Reaching over the kitchen in the air is fine. The fault is about touching the zone or its line, and how hard you hit does not matter.",
+                "sayThisLine": "Reaching over is fine. Touching the kitchen is the fault."
               }
             }
           },
@@ -1174,22 +1174,22 @@
               "paddle-over-kitchen-ok"
             ],
             "payload": {
-              "prompt": "Match the body part to whether it can enter the kitchen for a volley.",
+              "prompt": "Match each one to the kitchen volley rule.",
               "pairs": [
                 {
                   "id": "feet",
                   "term": "Your feet",
-                  "definition": "Cannot be in or touching the kitchen line when volleying; this causes a fault"
+                  "definition": "Cannot touch the kitchen or its line when you volley"
                 },
                 {
                   "id": "paddle",
-                  "term": "Your paddle",
-                  "definition": "Can reach over or into the kitchen freely when volleying; no restriction"
+                  "term": "Your paddle in the air",
+                  "definition": "Can reach over the kitchen, as long as it does not touch the zone"
                 },
                 {
-                  "id": "arm",
-                  "term": "Your arm or hand",
-                  "definition": "Can reach over the kitchen as much as needed; only feet are restricted"
+                  "id": "momentum",
+                  "term": "Your momentum",
+                  "definition": "Cannot carry you into the kitchen after the volley"
                 }
               ],
               "distractorDefinitions": [
@@ -1197,8 +1197,8 @@
                 "Must stay behind the baseline at all times"
               ],
               "explanation": {
-                "summary": "The kitchen volley rule applies only to feet. Your paddle, arm and hand can reach freely over the zone. It's about foot placement.",
-                "sayThisLine": "Kitchen rule: feet can't be in. Paddle and arm: reach away."
+                "summary": "Reaching over the kitchen in the air is fine. What gets you in trouble is touching the zone or its line, and that includes being carried in by momentum after a volley.",
+                "sayThisLine": "Reaching over is fine. Touching or drifting in is the fault."
               }
             }
           },
@@ -1217,7 +1217,7 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "No, paddle reach is fine. What matters is where your feet are.",
+                  "text": "Not if your feet stayed out. Reaching over is fine; touching is the fault.",
                   "isCorrect": true
                 },
                 {
@@ -1227,7 +1227,7 @@
                 },
                 {
                   "id": "c",
-                  "text": "Only if you stepped in too.",
+                  "text": "Yes, but only on a hard shot.",
                   "isCorrect": false
                 },
                 {
@@ -1236,18 +1236,18 @@
                   "isCorrect": false
                 }
               ],
-              "translation": "Paddle reaching over the kitchen is perfectly legal. The kitchen rule cares only about foot position, not reach.",
+              "translation": "Sam reached a paddle over the kitchen without stepping in. That is legal: the fault is about touching the kitchen or its line, not about reaching over the air above it.",
               "followUps": [
                 {
-                  "line": "Paddle can go anywhere. The kitchen rule is just about where your feet are.",
-                  "why": "Direct and clears up the confusion."
+                  "line": "I think that's fine if your feet stayed out. Reaching over is okay, touching is the problem.",
+                  "why": "Clears up a common worry without sounding like an official."
                 },
                 {
-                  "line": "As long as your feet were outside the kitchen, the volley is legal.",
-                  "why": "Focuses on the actual rule: foot position."
+                  "line": "Did you feel yourself drift in after? That would be the thing to watch for.",
+                  "why": "Shows you understand the momentum side as well."
                 }
               ],
-              "noFakeExpertNote": "This is a common misconception. Paddle reach is always legal; feet position is what matters."
+              "noFakeExpertNote": "Lots of new players think reaching over is a fault. Say it kindly: you are sharing a rule you just learned, not ruling on Sam's game."
             }
           }
         ]
@@ -1269,31 +1269,31 @@
             ],
             "payload": {
               "prompt": "Complete the reason for the kitchen.",
-              "template": "The kitchen exists to prevent players from {{action}} at the net, which would {{consequence}}.",
+              "template": "The kitchen stops players from {{action}} right at the net, which keeps rallies {{result}}.",
               "gaps": [
                 {
                   "id": "action",
                   "options": [
-                    "smashing hard",
-                    "volleying softly",
-                    "running forward"
+                    "smashing volleys",
+                    "dinking softly",
+                    "serving underhand"
                   ],
-                  "correct": "smashing hard"
+                  "correct": "smashing volleys"
                 },
                 {
-                  "id": "consequence",
+                  "id": "result",
                   "options": [
-                    "end rallies instantly",
-                    "dominate the game",
-                    "tire everyone out"
+                    "longer",
+                    "shorter",
+                    "louder"
                   ],
-                  "correct": "dominate the game"
+                  "correct": "longer"
                 }
               ],
               "explanation": {
-                "correct": "The kitchen prevents net players from smashing weak balls away. Without it, whoever reaches the net first would win every rally.",
-                "incorrect": "The kitchen creates a balanced game by forcing net players to dink soft. Soft play keeps rallies alive.",
-                "sayThisLine": "Kitchen stops net smashes; it keeps the game balanced."
+                "correct": "The kitchen stops players from standing at the net and smashing volleys. That keeps rallies longer and rewards patience and placement.",
+                "incorrect": "Dinking and underhand serves are still allowed. What the kitchen removes is the power volley from right beside the net, and that is why rallies last.",
+                "sayThisLine": "The kitchen stops net smashes, so rallies last longer."
               }
             }
           },
@@ -1331,18 +1331,18 @@
                   "isCorrect": false
                 }
               ],
-              "translation": "The kitchen forces net players to be soft and patient. It's the reason soft game and dinking strategy matter. Without it, pickleball would be a serve-and-volley race to the net.",
+              "translation": "Sam has just discovered the reason for the kitchen. It stops anyone from standing at the net and smashing, so patience and placement matter more than power.",
               "followUps": [
                 {
-                  "line": "That's where the kitchen comes in. Without it, net players would dominate. The soft game is what makes pickleball interesting.",
-                  "why": "Explains the strategic reason."
+                  "line": "Fair question! The kitchen is there so nobody can just camp at the net and smash.",
+                  "why": "Warm, and explains the reason without lecturing."
                 },
                 {
-                  "line": "The kitchen makes it a game of patience and angles, not just reaching the net.",
-                  "why": "Describes what the kitchen does for the sport."
+                  "line": "I think the kitchen makes it a game of patience and angles, not just who gets to the net first.",
+                  "why": "Offers your understanding as an opinion rather than a verdict."
                 }
               ],
-              "noFakeExpertNote": "The kitchen is the heart of pickleball strategy. It's not a limitation; it's the reason the game works."
+              "noFakeExpertNote": "You are explaining what you just learned, not teaching a class. A curious follow-up, like asking how Sam gets around a good net player, keeps it a conversation."
             }
           },
           {
@@ -1375,9 +1375,9 @@
                 "b"
               ],
               "explanation": {
-                "correct": "Without the kitchen, net dominance wins. The first player to reach the net could volley away every ball with an unreturnable smash.",
-                "incorrect": "The kitchen makes pickleball unique: it forces patience and soft play instead of power. Removing it would turn it into tennis.",
-                "sayThisLine": "No kitchen = whoever reaches the net smashes and wins every point."
+                "correct": "Without the kitchen, the player who gets to the net first could volley hard at close range, which is very hard to defend. The game would become a race to the net.",
+                "incorrect": "The kitchen exists to slow the net and encourage soft shots, so taking it away would do the opposite: more power, fewer long rallies.",
+                "sayThisLine": "Without the kitchen it would be a race to the net, and smashes would win."
               }
             }
           },

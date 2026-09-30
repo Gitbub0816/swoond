@@ -206,22 +206,22 @@
             "type": "visual-id",
             "conceptIds": ["referee-signals"],
             "payload": {
-              "prompt": "Which signal means double dribble or carry?",
+              "prompt": "Which signal means double dribble?",
               "image": {
                 "asset": "referee-signals-dribble-violation.png",
-                "alt": "Referee hand signals showing a rolling hands over each other motion.",
+                "alt": "Illustration of a referee with both palms facing down, patting up and down in front of the body as if dribbling with two hands.",
                 "license": "original-swoond"
               },
               "options": [
-                {"id": "a", "text": "Rolling hands continuously"},
-                {"id": "b", "text": "Single arm rolling motion"},
-                {"id": "c", "text": "Sweeping arm horizontally"},
-                {"id": "d", "text": "Three fingers up"}
+                {"id": "a", "text": "Both palms patting up and down"},
+                {"id": "b", "text": "Fists rolling over each other"},
+                {"id": "c", "text": "Both thumbs pointing up"},
+                {"id": "d", "text": "A closed fist raised overhead"}
               ],
               "correctOptionId": "a",
               "explanation": {
-                "correct": "Right. The ref rolls both hands over each other to signal double dribble or carry.",
-                "incorrect": "Refs signal dribble violations with rolling hands—the motion mimics a bouncing ball rolling."
+                "correct": "The referee pats the air with both palms, like someone dribbling with two hands. It is the double-dribble signal.",
+                "incorrect": "Double dribble looks like what it is: two hands patting a pretend ball. Rolling fists mean traveling, thumbs up mean a jump ball, and a raised fist stops the clock for a foul."
               }
             }
           },
@@ -238,8 +238,8 @@
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "The ball is turned over to the other team. It is not a foul, but a violation.",
-                "incorrect": "Dribble violations like carrying result in a turnover. The opposing team gets possession."
+                "correct": "A carry is a violation, not a foul, so there are no free throws. The ball is simply awarded to the other team for an inbound.",
+                "incorrect": "Violations such as carrying are turnovers: no free throws and no technical foul, just a throw-in for the other team at the nearest spot."
               }
             }
           }
@@ -275,17 +275,17 @@
             "type": "binary-call",
             "conceptIds": ["three-second-violation"],
             "payload": {
-              "prompt": "Post player stands in the paint for 4 seconds while their team has the ball. Violation?",
-              "scene": {"kind": "none", "alt": "A player standing in the painted lane area with the ball on the perimeter."},
+              "prompt": "A big sits in the lane two seconds, steps fully out, then back in two more. Violation?",
+              "scene": {"kind": "none", "alt": "An offensive player stands in the painted lane for two seconds, steps out with both feet, then steps back in while the ball stays on the perimeter."},
               "choices": [
                 {"id": "yes", "label": "3-second violation"},
                 {"id": "no", "label": "Legal"}
               ],
-              "correctChoiceId": "yes",
+              "correctChoiceId": "no",
               "explanation": {
-                "correct": "Yes, 3-second violation. The limit is three seconds on offense. Four is too long.",
-                "incorrect": "An offensive player can spend at most 3 consecutive seconds in the paint. Four seconds is a violation.",
-                "sayThisLine": "Three seconds max in the lane on offense."
+                "correct": "Legal. The three-second count only builds while the player stays in the lane. Leaving with both feet resets it, which is why bigs pop in and out.",
+                "incorrect": "The violation needs three straight seconds in the lane while the offense has the ball in the frontcourt. Stepping out with both feet restarts the count.",
+                "sayThisLine": "\"He keeps stepping out of the lane so the three-second count resets.\""
               },
               "ruleTag": "Offensive 3-second"
             }
@@ -303,9 +303,9 @@
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Yes, 8-second violation. In the NBA, a team has eight seconds. Ten is too slow.",
-                "incorrect": "The NBA and WNBA allow eight seconds to cross half court. College is ten. Ten seconds in the NBA is a turnover.",
-                "sayThisLine": "Eight seconds to get up court in the NBA."
+                "correct": "In the NBA a team has eight seconds to get the ball across half court. Ten is too slow, so the ball goes to the other team. College allows ten.",
+                "incorrect": "The NBA and WNBA allow eight seconds to reach the frontcourt, and college allows ten. Ten seconds in the NBA is a violation and a turnover.",
+                "sayThisLine": "\"They ran out of time getting it over half court.\""
               },
               "ruleTag": "8-second halfcourt"
             }
@@ -315,17 +315,17 @@
             "type": "binary-call",
             "conceptIds": ["shot-clock-violation"],
             "payload": {
-              "prompt": "Shot clock shows 2 sec; a player throws the ball up as the clock hits zero. Does it count?",
-              "scene": {"kind": "none", "alt": "A desperation heave released as the shot clock expires, missing the rim entirely."},
+              "prompt": "A shot leaves the hands before the shot clock hits zero, then misses everything. Violation?",
+              "scene": {"kind": "none", "alt": "A late heave leaves the shooter's hand with the shot clock almost at zero and sails past the basket without touching the rim."},
               "choices": [
-                {"id": "yes", "label": "Shot counts, no violation"},
+                {"id": "yes", "label": "No violation"},
                 {"id": "no", "label": "Shot-clock violation"}
               ],
               "correctChoiceId": "no",
               "explanation": {
-                "correct": "Shot-clock violation. The ball must leave the player's hands before the clock expires and must hit the rim or go in.",
-                "incorrect": "For a shot to count, it must leave the shooter's hands before time and hit the rim (or go in). Airball after the buzzer is a violation.",
-                "sayThisLine": "Airball after the shot clock. No good."
+                "correct": "To beat the shot clock, the ball must leave the hand in time and then hit the rim. An airball does not reset anything, so it is a shot-clock violation.",
+                "incorrect": "Releasing in time is only half the rule. The shot also has to touch the rim or go in. A shot that touches nothing is a violation, and the ball goes to the other team.",
+                "sayThisLine": "\"Airball with the clock running out is a shot-clock violation.\""
               },
               "ruleTag": "Shot-clock deadline"
             }
@@ -369,8 +369,8 @@
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Personal foul. Pushing, holding or elbowing is contact away from a shot attempt.",
-                "incorrect": "Contact away from a shot is a personal foul. If it happens while shooting, it's a shooting foul."
+                "correct": "Pushing, holding or hitting a player who is not in the act of shooting is a personal foul. It counts toward the player's six and the team's foul total.",
+                "incorrect": "It is not a shooting foul, because no shot was going up, and it is not a technical, which is about conduct. Illegal contact away from a shot is a plain personal foul."
               }
             }
           },
@@ -387,8 +387,8 @@
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Correct. Made shot plus a foul equals an and-one: the basket counts, plus one free throw.",
-                "incorrect": "When a shooter is fouled and makes the shot, it's an and-one: the basket counts and they get one bonus free throw."
+                "correct": "A made shot with a foul on it is an and-one: the points count and the shooter gets one bonus free throw. Fans call it a three-point play when the shot was a two.",
+                "incorrect": "A foul does not erase a good basket. The shot counts, and the shooter gets exactly one extra free throw, the and-one, because the foul cost them a chance at the free point."
               }
             }
           },
@@ -400,13 +400,13 @@
               "prompt": "A player gets their sixth personal foul in the NBA. What happens?",
               "options": [
                 {"id": "a", "text": "They sit out one quarter"},
-                {"id": "b", "text": "They are fouled out and must leave the game"},
+                {"id": "b", "text": "They foul out and cannot play the rest of the game"},
                 {"id": "c", "text": "They lose two free throws"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "They foul out and are ejected. Six fouls disqualifies a player in the NBA and WNBA. College is five.",
-                "incorrect": "In the NBA and WNBA, a sixth personal foul disqualifies the player. They must leave the game."
+                "correct": "A sixth personal foul disqualifies a player in the NBA, so they sit for good and a teammate subs in. College uses five. Ejection is a separate thing, for flagrant or technical fouls.",
+                "incorrect": "In the NBA a sixth personal foul disqualifies the player for the rest of the game, including overtime. There is no timed penalty and no free-throw penalty."
               }
             }
           },
