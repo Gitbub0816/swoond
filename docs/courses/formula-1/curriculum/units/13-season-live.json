@@ -99,29 +99,30 @@
                   "id": "friday",
                   "label": "Tune for Friday: get the most from today",
                   "verdict": "poor",
-                  "consequence": "You dial in the car for cool, low-grip conditions. Sunday comes and the setup is too extreme: understeer or oversteer in the heat.",
+                  "consequence": "You dial in the car for cool, low-grip conditions. Friday times improve, but Sunday heat changes everything: over-stiff setup wastes pace.",
                   "considerations": [
-                    "Friday practice is for learning, not dialling in the race setup.",
-                    "Track evolution means a Friday setup is already half-obsolete by qualifying."
+                    "Friday practice is for learning setup sensitivity, not dialling in the race.",
+                    "Track evolution and heat cycles mean a Friday tune-up is obsolete by Sunday."
                   ]
                 },
                 {
                   "id": "sunday",
                   "label": "Target Sunday: prepare for the race",
                   "verdict": "best",
-                  "consequence": "You build a setup that will work Sunday and Saturday qualifying. Friday times are slower but meaningful.",
+                  "consequence": "You build a setup that will work Sunday and Saturday qualifying. Friday times are slower but meaningful for race setup.",
                   "considerations": [
-                    "Sunday is the race. That is what counts for points.",
-                    "A setup that works in heat and grip is a setup that works in the race."
+                    "Sunday is the race. Points come on Sunday, not Friday.",
+                    "A setup that works in heat is the real test of the car's balance."
                   ]
                 },
                 {
                   "id": "saturday",
                   "label": "Chase Saturday: split the difference",
                   "verdict": "acceptable",
-                  "consequence": "You aim for qualifying conditions. Friday times are rough, Sunday requires tweaks.",
+                  "consequence": "You aim for qualifying conditions. Friday data informs the choice, Sunday requires minor tweaks.",
                   "considerations": [
-                    "Targeting qualifying can work if you do not over-commit."
+                    "Targeting Saturday qualifying is viable if the team monitors Sunday's expected conditions.",
+                    "This is a middle path, not ideal but workable."
                   ]
                 }
               ],
@@ -281,12 +282,17 @@
             "type": "estimate-slider",
             "conceptIds": ["title-permutations"],
             "payload": {
-              "prompt": "Three drivers are within 30 points with six races left. How many different final outcomes are mathematically possible?",
-              "scale": {"min": 1, "max": 10},
-              "acceptableRange": {"min": 2, "max": 4},
+              "prompt": "Three drivers are within 30 points with six races left. How many realistic final championship outcomes?",
+              "unit": "outcomes",
+              "min": 1,
+              "max": 10,
+              "step": 1,
+              "correctValue": 3,
+              "tolerance": {"full": 1, "partial": 2},
               "explanation": {
-                "correct": "Right. With six races and tight gaps, all three can still win depending on results. Realistic: three drivers all have a path.",
-                "incorrect": "Six races, three contenders within 30 points: mathematically all three can clinch or be eliminated depending on outcomes."
+                "correct": "Right. With six races and tight gaps, all three drivers can realistically win. Three or more outcomes are mathematically possible.",
+                "incorrect": "With six races left and three drivers within 30 points, all three have a realistic chance to clinch depending on race results.",
+                "sayThisLine": "The title stays open as long as the maths is there."
               }
             }
           },
@@ -398,7 +404,7 @@
           {
             "id": "sl-04-st-season-arc",
             "type": "say-this",
-            "conceptIds": ["DNF", "reliability"],
+            "conceptIds": ["dnf", "reliability"],
             "payload": {
               "statement": {"speaker": "Fan", "text": "Two DNFs cost him the title this season. The car speed is there, reliability is not."},
               "question": "What is her point?",
@@ -527,7 +533,7 @@
           {
             "id": "sl-06-bin-aduo-fairness",
             "type": "binary-call",
-            "conceptIds": ["ADUO"],
+            "conceptIds": ["aduo"],
             "payload": {
               "prompt": "ADUO lets underperforming engine makers take extra upgrades mid-season. Is that fair?",
               "scene": {
@@ -697,31 +703,28 @@
             "type": "hotspot-tap",
             "conceptIds": ["pit-window"],
             "payload": {
-              "prompt": "Where is {{region}}'s pit lane located on the circuit?",
-              "image": {
-                "src": "circuit-f1-generic-diagram",
-                "alt": "Map of {{region}} circuit showing pit lane and main features."
+              "prompt": "Where is the pit lane on a Formula 1 circuit?",
+              "diagram": {
+                "diagramId": "circuit-pit-lane-generic",
+                "alt": "Generic F1 circuit showing pit lane and starting grid."
               },
               "hotspots": [
                 {
                   "id": "pit-lane",
-                  "x": 20,
-                  "y": 50,
-                  "shape": {"kind": "circle", "radius": 30},
                   "label": "Pit lane",
-                  "isCorrect": true,
-                  "feedback": "Right. The pit lane is where teams service their cars during the race."
+                  "shape": {"kind": "circle", "cx": 0.2, "cy": 0.5, "r": 0.15}
                 },
                 {
                   "id": "grid",
-                  "x": 80,
-                  "y": 50,
-                  "shape": {"kind": "circle", "radius": 25},
                   "label": "Starting grid",
-                  "isCorrect": false,
-                  "feedback": "That is the starting grid, not the pit lane."
+                  "shape": {"kind": "circle", "cx": 0.8, "cy": 0.5, "r": 0.12}
                 }
-              ]
+              ],
+              "correctHotspotIds": ["pit-lane"],
+              "explanation": {
+                "correct": "Right. The pit lane runs parallel to the main straight where teams service their cars.",
+                "incorrect": "The pit lane is where teams stop for tyres and fuel. The starting grid is where drivers line up for the race start."
+              }
             }
           },
           {
@@ -729,31 +732,28 @@
             "type": "hotspot-tap",
             "conceptIds": ["high-speed-corner", "braking-zone"],
             "payload": {
-              "prompt": "Identify the main passing opportunity at {{region}}. Tap the braking zone.",
-              "image": {
-                "src": "circuit-f1-corner-diagram",
-                "alt": "{{region}} circuit layout showing high-speed and slow corners."
+              "prompt": "Identify the main overtaking zone on this circuit.",
+              "diagram": {
+                "diagramId": "circuit-braking-zone-generic",
+                "alt": "Generic F1 circuit layout highlighting braking zone and high-speed corner."
               },
               "hotspots": [
                 {
                   "id": "braking-zone",
-                  "x": 60,
-                  "y": 40,
-                  "shape": {"kind": "circle", "radius": 28},
                   "label": "Turn 1 braking zone",
-                  "isCorrect": true,
-                  "feedback": "Right. The braking zone into Turn 1 is where most passing happens."
+                  "shape": {"kind": "circle", "cx": 0.6, "cy": 0.4, "r": 0.14}
                 },
                 {
                   "id": "high-speed",
-                  "x": 25,
-                  "y": 70,
-                  "shape": {"kind": "circle", "radius": 22},
                   "label": "High-speed sweeper",
-                  "isCorrect": false,
-                  "feedback": "High-speed corners are hard to pass; the braking zone is better."
+                  "shape": {"kind": "circle", "cx": 0.25, "cy": 0.7, "r": 0.11}
                 }
-              ]
+              ],
+              "correctHotspotIds": ["braking-zone"],
+              "explanation": {
+                "correct": "Right. Braking zones into slow corners are the main overtaking opportunities.",
+                "incorrect": "High-speed corners rely on grip and precision. Braking zones are safer for passing."
+              }
             }
           },
           {
@@ -795,10 +795,11 @@
                 {
                   "id": "one-stop",
                   "label": "Plan for one stop: tyres last, pit once late",
-                  "verdict": "risky",
-                  "consequence": "If tyres degrade faster in the race heat, you hit the cliff before lap 60. A forced second stop drops you.",
+                  "verdict": "poor",
+                  "consequence": "If tyres degrade faster in the race heat, you hit the cliff and lose pace. A forced second stop under pressure drops you further.",
                   "considerations": [
-                    "Friday is cool. Race day is hotter and speeds are faster, stressing tyres more."
+                    "Friday is cool. Race day is hotter and speeds are faster, stressing tyres more than practice suggests.",
+                    "Betting the whole race on Friday data is a high-risk gamble when Sunday conditions are unknown."
                   ]
                 },
                 {

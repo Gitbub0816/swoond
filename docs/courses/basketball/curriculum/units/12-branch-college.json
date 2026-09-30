@@ -506,26 +506,23 @@
             "type": "hotspot-tap",
             "conceptIds": ["selection-sunday"],
             "payload": {
-              "prompt": "Tap the part of college basketball that changed the most under NIL and the portal.",
-              "scene": {"kind": "image", "path": "docs/design/illustrations/college-basketball-landscape.svg", "alt": "College basketball landscape with team, player, and money symbols."},
+              "prompt": "Tap the part of college basketball that changed the most.",
+              "diagram": {"asset": "diagrams/college-basketball-landscape.svg", "alt": "College basketball landscape with team, player, and money symbols."},
               "hotspots": [
                 {
                   "id": "player-earnings",
-                  "shape": {"kind": "circle", "x": 45, "y": 50, "radius": 12},
                   "label": "Player earnings",
-                  "hint": "Players now earn money from NIL."
+                  "shape": {"kind": "circle", "cx": 0.45, "cy": 0.50, "r": 0.12}
                 },
                 {
                   "id": "team-roster",
-                  "shape": {"kind": "rect", "x": 30, "y": 20, "width": 30, "height": 25},
                   "label": "Team rosters",
-                  "hint": "Rosters shift constantly via the portal."
+                  "shape": {"kind": "rect", "x": 0.30, "y": 0.20, "w": 0.30, "h": 0.25}
                 },
                 {
                   "id": "recruiting",
-                  "shape": {"kind": "circle", "x": 70, "y": 40, "radius": 10},
                   "label": "Recruiting",
-                  "hint": "Schools compete harder for portal players."
+                  "shape": {"kind": "circle", "cx": 0.70, "cy": 0.40, "r": 0.10}
                 }
               ],
               "correctHotspotIds": ["player-earnings", "team-roster", "recruiting"],
@@ -593,7 +590,6 @@
               ],
               "distractorDefinitions": [
                 "A team that only plays in early morning games.",
-                "A conference that plays only night games.",
                 "A program that has never made the tournament."
               ],
               "explanation": {
@@ -639,8 +635,8 @@
               "prompt": "Blue-blood programs have an unfair advantage in recruiting. True?",
               "scene": {"kind": "none", "alt": "College basketball recruitment and program hierarchy."},
               "choices": [
-                {"id": "yes", "label": "Yes, history, facilities and money give them huge edges."},
-                {"id": "no", "label": "No, talent and coaching matter more than program prestige."}
+                {"id": "yes", "label": "Yes, they have real structural edges."},
+                {"id": "no", "label": "No, talent matters most."}
               ],
               "correctChoiceId": "yes",
               "explanation": {
@@ -704,7 +700,7 @@
                 "narrative": "A mid-major coach is hired by a blue blood. The university has an assistant coach who has been loyal and knows the system.",
                 "facts": [
                   {"label": "Assistant's track record", "value": "Good recruiter, five years at the program, knows the players"},
-                  {"label": "Outside option", "value": "Successful coach at another mid-major, fresh recruiter, proven track record"},
+                  {"label": "Outside option", "value": "Proven coach, established recruiting network"},
                   {"label": "Program status", "value": "Consistent tournament team, not an elite program"}
                 ]
               },
@@ -848,32 +844,27 @@
             "conceptIds": ["selection-sunday"],
             "payload": {
               "prompt": "Fill in the blanks about the college basketball calendar.",
-              "text": "The season starts in ___1___ and runs through March Madness in ___2___. Conference tournaments happen in ___3___, and the NCAA tournament begins right after Selection ___4___.",
+              "template": "The season starts in {{start-month}}. Conference tournaments happen in {{conf-month}}, and the NCAA tournament begins in {{tourney-month}}.",
               "gaps": [
                 {
-                  "id": "gap-1",
-                  "correctAnswers": ["November", "november", "Nov"],
-                  "hint": "Early in the fall"
+                  "id": "start-month",
+                  "options": ["November", "October", "September", "August"],
+                  "correct": "November"
                 },
                 {
-                  "id": "gap-2",
-                  "correctAnswers": ["April", "april", "Apr"],
-                  "hint": "After spring break"
+                  "id": "conf-month",
+                  "options": ["March", "February", "April", "May"],
+                  "correct": "March"
                 },
                 {
-                  "id": "gap-3",
-                  "correctAnswers": ["March", "march", "Mar"],
-                  "hint": "Before April"
-                },
-                {
-                  "id": "gap-4",
-                  "correctAnswers": ["Sunday", "sunday"],
-                  "hint": "The day the bracket is announced"
+                  "id": "tourney-month",
+                  "options": ["April", "March", "May", "June"],
+                  "correct": "March"
                 }
               ],
               "explanation": {
-                "correct": "Right. Season flows: November start, conference tournaments in March, Selection Sunday, then the NCAA tournament in March-April.",
-                "incorrect": "Try again. The key dates: November (start), March (conference tournaments and Selection Sunday), then April (tournament runs through spring)."
+                "correct": "Right. Season flows: November start, conference tournaments in March, then the NCAA tournament starts in March and runs through April.",
+                "incorrect": "Try again. College season starts November, conference tournaments in March, NCAA tournament starts in March."
               }
             }
           },

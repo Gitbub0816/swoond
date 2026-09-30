@@ -33,7 +33,7 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "How much a single play changes the team's expected scoring probability"
+                  "text": "How many expected points a single play added or took away"
                 },
                 {
                   "id": "b",
@@ -48,8 +48,8 @@
                 "a"
               ],
               "explanation": {
-                "correct": "EPA is a predictive stat. Every play moves the needle on what the offense will likely score from that field position.",
-                "incorrect": "EPA is not about yards or money. It measures how much each play helps or hurts the team's scoring chance."
+                "correct": "A model estimates how many points a team is expected to score from any down, distance and field position. EPA is the change in that number after a play.",
+                "incorrect": "EPA is not yards or money. It is the change in expected points from before the snap to after the play."
               }
             },
             "xp": 10
@@ -61,19 +61,19 @@
               "epa"
             ],
             "payload": {
-              "prompt": "A 10-yard gain on first and 10 from midfield has how much EPA?",
+              "prompt": "How much EPA is a 10-yard gain on first and 10 at midfield?",
               "unit": "points",
               "min": 0,
-              "max": 1,
+              "max": 2,
               "step": 0.1,
-              "correctValue": 0.4,
+              "correctValue": 0.8,
               "tolerance": {
-                "full": 0.15,
-                "partial": 0.25
+                "full": 0.3,
+                "partial": 0.5
               },
               "explanation": {
-                "correct": "A 10-yard gain on first down from midfield is a good drive continuation—roughly 0.4 points added. The offense is now much closer and has four downs left.",
-                "incorrect": "Field position and play type matter. A 10-yard gain early in a drive gains about 0.3 to 0.5 EPA depending on starting position."
+                "correct": "Roughly three-quarters of a point, give or take. The team is now at first and 10 in the opponent's territory, where the expected score is much higher.",
+                "incorrect": "A clean first-down gain from midfield usually adds somewhere around three-quarters of a point. The exact value depends on the model."
               }
             },
             "xp": 10
@@ -85,7 +85,7 @@
               "epa"
             ],
             "payload": {
-              "prompt": "A quarterback with a high EPA per play is playing better than one with low EPA, all else equal. True or false?",
+              "prompt": "Higher EPA per play generally means a player is creating more value. True or false?",
               "scene": {
                 "kind": "none",
                 "alt": "A quarterback with high EPA per play, improving his team's expected scoring on each snap."
@@ -102,8 +102,8 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. Higher EPA per play means the QB is creating more value on every snap. It is one of the best indicators of quarterback performance.",
-                "incorrect": "Yes, EPA per play is one of the most predictive stats for quarterback quality."
+                "correct": "True. EPA per play measures value added on each snap. It is more stable than wins and more telling than raw yards, though receivers and blockers share the credit.",
+                "incorrect": "It really is a useful signal of value per play, even though it is not perfect on its own."
               }
             },
             "xp": 10
@@ -121,22 +121,22 @@
                 {
                   "id": "epa",
                   "term": "EPA per play",
-                  "definition": "How much value each play adds to the offense's expected score."
+                  "definition": "How many expected points a play adds, on average."
                 },
                 {
                   "id": "success",
                   "term": "Success rate",
-                  "definition": "The share of plays that keep the offense on schedule (40% of needed yards on first, 60% on second, all on third)."
+                  "definition": "Share of plays that gain enough: 40% of yards to go on first, 60% on second, all on third or fourth."
                 },
                 {
-                  "id": "combo",
-                  "term": "EPA + success rate",
-                  "definition": "Together they show if an offense is both efficient (EPA) and consistent (success rate)."
+                  "id": "cpoe",
+                  "term": "CPOE",
+                  "definition": "Completion percentage over expected: actual completions versus what an average passer would hit on similar throws."
                 }
               ],
               "explanation": {
-                "summary": "EPA is value created per play. Success rate is consistency. Both matter.",
-                "sayThisLine": "High EPA? Efficient. High success rate? Reliable. Both? Elite."
+                "summary": "EPA is value per play, success rate is consistency, and CPOE checks a passer's accuracy against the difficulty of his throws.",
+                "sayThisLine": "High EPA means valuable. High success rate means steady."
               }
             },
             "xp": 10
@@ -175,7 +175,7 @@
                   "isCorrect": false
                 }
               ],
-              "translation": "A high EPA with low success rate means explosive plays mixed with stalls. The offense is streaky, not steady.",
+              "translation": "High EPA with a low success rate suggests big plays mixed with stalls. The offense creates value but it is streaky, not steady.",
               "followUps": [
                 {
                   "line": "Is a high-EPA, low-success player good or bad?",
@@ -212,11 +212,11 @@
             "payload": {
               "prompt": "Fourth and two, down by three, two minutes left. Analytics say go for it. Old school says punt. Who is right?",
               "situation": {
-                "narrative": "Late game situation.",
+                "narrative": "A late-game situation.",
                 "facts": [
                   {
                     "label": "Down",
-                    "value": "Four and two"
+                    "value": "Fourth and two"
                   },
                   {
                     "label": "Score",
@@ -229,10 +229,6 @@
                   {
                     "label": "Field position",
                     "value": "Own 40-yard line"
-                  },
-                  {
-                    "label": "Momentum",
-                    "value": "Offense playing well"
                   }
                 ]
               },
@@ -241,26 +237,26 @@
                   "id": "go",
                   "label": "Go for it",
                   "verdict": "best",
-                  "consequence": "Analytics show go-for-it has better win probability than punt. If you get two yards, you live. If you miss, game is still likely lost.",
+                  "consequence": "Win-probability models favor going. A conversion keeps the drive and the game alive. A miss hurts, but punting also leaves you needing a stop.",
                   "considerations": [
-                    "EPA models show going for it at four and two has higher win probability than punting.",
-                    "You need a touchdown anyway, so field position is secondary.",
-                    "The offense is hot; strike now."
+                    "You are trailing with little time, so you need possessions.",
+                    "Two yards is a short distance.",
+                    "A punt still requires a defensive stop and time to score."
                   ]
                 },
                 {
                   "id": "punt",
-                  "label": "Punt and hope",
-                  "verdict": "poor",
-                  "consequence": "Punting is safe but it lowers your win probability. Analytics changed this calculus.",
+                  "label": "Punt",
+                  "verdict": "acceptable",
+                  "consequence": "A punt pins them and keeps the score at three, but it hands the ball away with the clock running down.",
                   "considerations": [
                     "Punting has been the default for decades.",
-                    "But the math now favors going for it in most fourth-down situations.",
-                    "Fear of failure is why coaches still punt."
+                    "You trade the ball for field position.",
+                    "Two minutes is very little time to get it back."
                   ]
                 }
               ],
-              "expertNote": "Fourth-down analytics is the biggest coaching revolution in 20 years. Modern teams go for it more often because the math says it wins more games."
+              "expertNote": "Fourth-down analytics is one of the biggest coaching shifts of the last two decades. Win-probability models say many fourth downs should be attempted, but score, time and field position all change the answer."
             },
             "xp": 10
           },
@@ -273,7 +269,7 @@
             "payload": {
               "statement": {
                 "speaker": "Coach",
-                "text": "Analytics say we should have gone for it on fourth and three last week. We would have won."
+                "text": "The numbers said we should have gone for it on fourth and three last week. It would have given us a better shot."
               },
               "question": "What is the coach saying?",
               "options": [
@@ -340,8 +336,8 @@
                 "a"
               ],
               "explanation": {
-                "correct": "EPA models showed that punting surrenders too much value. Going for it, even with modest conversion rates, often improves win probability.",
-                "incorrect": "The analytics revolution is about win probability, not physical talent. Better modeling changed strategy."
+                "correct": "Win-probability and expected-points models showed that punting often gives up more than it gains. Going for it, even with modest conversion rates, frequently improves a team's chances.",
+                "incorrect": "The shift is about math, not players. Better modeling changed the strategy."
               }
             },
             "xp": 10
@@ -353,7 +349,7 @@
               "fourth-down-decision"
             ],
             "payload": {
-              "prompt": "A team that goes for it more often on fourth down should win more games, all else equal. True or false?",
+              "prompt": "Going for it when the math says so, instead of punting by default, raises win chances. True or false?",
               "scene": {
                 "kind": "none",
                 "alt": "A team going for it on fourth down and converting, improving their win probability."
@@ -370,8 +366,8 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. Going for it when the math favors it improves expected win probability. Over a season, this compounds.",
-                "incorrect": "Yes, the teams that adjusted fastest to go-for-it analytics won more in the 2020s."
+                "correct": "True. When the model favors going, each attempt is a small edge, and small edges add up over a season.",
+                "incorrect": "It is about picking the right spots. The edge is small per attempt, but it compounds."
               }
             },
             "xp": 10
@@ -383,19 +379,19 @@
               "fourth-down-decision"
             ],
             "payload": {
-              "prompt": "At what conversion rate does fourth and one become a better bet than punting?",
+              "prompt": "How often do teams convert fourth and one, roughly?",
               "unit": "%",
-              "min": 40,
-              "max": 75,
+              "min": 30,
+              "max": 90,
               "step": 5,
-              "correctValue": 55,
+              "correctValue": 65,
               "tolerance": {
                 "full": 10,
                 "partial": 15
               },
               "explanation": {
-                "correct": "Around 55% conversion rate, going for it on fourth and one has higher win probability than punting. At 50%, it is breakeven.",
-                "incorrect": "The threshold depends on score, time and field position, but roughly 55% is the breakpoint for fourth and one."
+                "correct": "Fourth-and-one conversions run around two-thirds of the time in recent seasons. That is why models say go from most of the field.",
+                "incorrect": "Teams convert fourth and one far more often than most fans guess, roughly two-thirds. That rate is why the models favor going."
               }
             },
             "xp": 10
@@ -438,8 +434,8 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Teams now ask: is paying a star RB $10M a year worth it when a veteran minimum back and a young backup can do 80% of the work? The debate is about cap allocation.",
-                "incorrect": "The debate is really about money and value. Star running backs are expensive and have short peak years."
+                "correct": "A star running back is expensive, peak years can be short, and teams have found they can get strong production from cheaper backs. The debate is about how to spend limited salary-cap money.",
+                "incorrect": "It is about money and value. Star backs cost a lot and often decline earlier than other positions."
               }
             },
             "xp": 10
@@ -474,7 +470,7 @@
                       "coachNote": "Agreeing is fine. Add a follow-up about the tradeoff next time."
                     },
                     {
-                      "id": "zone",
+                      "id": "replace",
                       "text": "RBs are easy to replace with committee backups anyway.",
                       "smoothDelta": -15,
                       "theirResponse": "Not that easy, but okay.",
@@ -520,15 +516,15 @@
                   "isCorrect": false
                 }
               ],
-              "translation": "The running back position has a steep learning curve (starts young) and early decline (peaks around 25-28, falls off by 30). Contracts often extend past the peak.",
+              "translation": "Running backs tend to peak young and decline earlier than most positions, often in their late 20s. Contracts can run past the peak, so teams may pay for production that is gone.",
               "followUps": [
                 {
-                  "line": "Why do running backs decline faster than, say, quarterbacks?",
-                  "why": "Tests understanding: RBs rely on burst and quickness; QBs rely on intelligence and accuracy, which age slower."
+                  "line": "Why do running backs decline earlier than quarterbacks?",
+                  "why": "Backs rely on burst and take hits every play. Quarterbacks rely on accuracy and decision-making, which age slower."
                 },
                 {
-                  "line": "Is this debate just about running backs?",
-                  "why": "It is similar for other positions: receivers, edge rushers. But RB decline is steepest and most predictable."
+                  "line": "Is this only about running backs?",
+                  "why": "No, but the drop-off at running back tends to come earlier, which makes the contract debate sharper."
                 }
               ],
               "noFakeExpertNote": "If unsure, think about the age curve of a typical running back versus other positions."
@@ -569,25 +565,25 @@
                   "id": "depth",
                   "label": "Build depth with cheaper backs",
                   "verdict": "best",
-                  "consequence": "A committee of younger and veteran minimum RBs can handle 90% of the production at 20% of the cost. Use the cap elsewhere.",
+                  "consequence": "A mix of veteran and young backs can cover much of the production at a fraction of the price, and the freed-up cap space helps elsewhere.",
                   "considerations": [
-                    "Modern teams have moved toward committee backs.",
-                    "Cap efficiency matters more than star power at RB.",
-                    "With $50M, you can fix multiple holes."
+                    "Many teams now split carries between backs.",
+                    "Cap efficiency often matters more than star power here.",
+                    "$50M can fix multiple holes."
                   ]
                 },
                 {
                   "id": "star",
                   "label": "Sign the star RB",
                   "verdict": "acceptable",
-                  "consequence": "Elite talent does matter. But you sacrifice flexibility for other positions and are vulnerable to injury.",
+                  "consequence": "Elite talent matters, but you lose flexibility for other positions and carry injury and decline risk.",
                   "considerations": [
-                    "A true elite RB is still a weapon.",
-                    "You are limited elsewhere on the roster."
+                    "A true elite back is still a weapon.",
+                    "You will have less to spend elsewhere."
                   ]
                 }
               ],
-              "expertNote": "The RB value debate is really about cap allocation. Modern economics favor depth and flexibility over one expensive star at a position with easy replacement."
+              "expertNote": "The running back value debate is really about cap allocation. Many teams lean toward flexibility over one expensive star at a position that tends to age quickly."
             },
             "xp": 10
           },
@@ -598,10 +594,10 @@
               "rb-value-debate"
             ],
             "payload": {
-              "prompt": "A committee of veteran backups can often replicate 85-90% of a star RB's production at 20% of the cost. True or false?",
+              "prompt": "Many teams now split carries among cheaper backs instead of paying one star. True or false?",
               "scene": {
                 "kind": "none",
-                "alt": "Multiple running backs sharing carries, achieving solid production without a star player."
+                "alt": "Several running backs sharing carries on an offense."
               },
               "choices": [
                 {
@@ -615,8 +611,8 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. The RB position benefits from fresh legs and is less reliant on a single standout talent than WR or QB.",
-                "incorrect": "Yes, this is the core of the modern value debate. You can build a productive RB room without breaking the cap."
+                "correct": "True. Running backs get hit a lot and decline early, so teams often prefer fresh, cheaper options.",
+                "incorrect": "It is a real trend: teams spread carries and save cap room for other spots."
               }
             },
             "xp": 10
@@ -671,11 +667,11 @@
               "followUps": [
                 {
                   "line": "Can a great QB on a bad team have a losing record?",
-                  "why": "Yes, absolutely. A Hall of Famer on a weak team can go 8-9. A mediocre QB on a great team can go 12-1."
+                  "why": "Yes. A great passer on a weak team can go 8-9, and a mediocre one on a great team can go 12-5."
                 },
                 {
-                  "line": "What is a better stat than QB wins?",
-                  "why": "EPA per play, yards per attempt, touchdown-to-interception ratio, decision-making in clutch time. Any stat that isolates QB performance."
+                  "line": "What would you look at instead of his record?",
+                  "why": "EPA per play, yards per attempt or CPOE. None is perfect, but all say more about his play."
                 }
               ],
               "noFakeExpertNote": "If unsure, think about a great QB on a bad team versus a mediocre QB on a great team. Who has the better record?"
@@ -816,27 +812,27 @@
               "quarterback"
             ],
             "payload": {
-              "prompt": "Match each stat to whether it isolates QB performance.",
+              "prompt": "Match each stat to what it really measures.",
               "pairs": [
                 {
                   "id": "wins",
                   "term": "QB wins (record)",
-                  "definition": "Team statistic; heavily influenced by defense, running game and special teams. Misleading for comparing QBs."
+                  "definition": "A team result, shaped by defense, running game and special teams."
                 },
                 {
                   "id": "epa",
                   "term": "EPA per play",
-                  "definition": "Isolates QB efficiency. One of the best indicators of individual QB performance."
+                  "definition": "Value added per play. Shared with line and receivers but closer to QB play than wins."
                 },
                 {
                   "id": "ypa",
                   "term": "Yards per attempt",
-                  "definition": "Isolates QB decision-making and arm talent. Less affected by defense than wins."
+                  "definition": "Passing efficiency. Receivers and scheme influence it too."
                 }
               ],
               "explanation": {
-                "summary": "Use individual stats to compare QBs, not records. Records tell you about the team.",
-                "sayThisLine": "Wins are about the team. EPA is about the QB. Compare apples to apples."
+                "summary": "No single stat isolates a quarterback, but EPA and yards per attempt say far more than his win-loss record. Records tell you about the team.",
+                "sayThisLine": "Wins belong to the team. Start with EPA or yards per attempt."
               }
             },
             "xp": 10
@@ -861,7 +857,7 @@
               "tush-push-debate"
             ],
             "payload": {
-              "prompt": "Fourth and one. Your QB sneaks with teammates pushing. Illegal or genius?",
+              "prompt": "Your team sneaks with a push on fourth and one. Legal, but fair?",
               "situation": {
                 "facts": [
                   {
@@ -874,38 +870,38 @@
                   },
                   {
                     "label": "Legal status",
-                    "value": "Legal as of 2026 (ban vote failed 22-10)"
+                    "value": "Legal in 2026"
                   },
                   {
-                    "label": "Fan reaction",
-                    "value": "Half say genius, half say unfair"
+                    "label": "2025 ban vote",
+                    "value": "22 yes, needed 24"
                   }
                 ]
               },
               "options": [
                 {
-                  "id": "legal",
-                  "label": "It is legal, so it is fair game",
+                  "id": "both",
+                  "label": "Say it is legal and explain why some want it banned",
                   "verdict": "best",
-                  "consequence": "The rule book says it is legal. Teams that exploit it win more on short yardage. That is football evolution.",
+                  "consequence": "You show you know the rule and the debate. The ban vote in 2025 fell short (22 votes, 24 needed), so it stays legal.",
                   "considerations": [
-                    "The ban vote failed 22-10; 32 teams could not agree it was wrong.",
-                    "If it is legal, use it.",
-                    "Fans will argue, but the league has ruled."
+                    "It is legal today.",
+                    "Critics see it as unfair or unsafe.",
+                    "Fans of the play see it as execution and innovation."
                   ]
                 },
                 {
                   "id": "unfair",
-                  "label": "It is nearly unstoppable and should be banned",
+                  "label": "Argue firmly it should be banned",
                   "verdict": "acceptable",
-                  "consequence": "A reasonable opinion. The play does seem to violate the spirit of individual competition.",
+                  "consequence": "A reasonable opinion many fans hold, but it skips the fact that the league kept it legal.",
                   "considerations": [
-                    "Some fans feel the assist defeats the purpose of short yardage.",
-                    "But defenders could also push to stop it."
+                    "Some fans feel the assist defeats the point of short yardage.",
+                    "Others note teams that run it well still have to execute."
                   ]
                 }
               ],
-              "expertNote": "The tush push is a perfect example of a rule debate: legal but controversial. The 2025 ban vote failed because teams are split on fairness versus innovation."
+              "expertNote": "The tush push is a good rule-debate example: legal, effective and controversial. The 2025 proposal to ban it failed 22-10, short of the 24 votes needed."
             },
             "xp": 10
           },
@@ -926,10 +922,10 @@
                   "replies": [
                     {
                       "id": "both",
-                      "text": "I get it. Some love the creativity, others think it breaks the spirit of short yardage. What would you ban?",
+                      "text": "I get it. Some love the execution, others think it breaks the spirit. What would you change?",
                       "smoothDelta": 25,
                       "theirResponse": "Just that one play. Everything else is fine.",
-                      "coachNote": "Shows you understand both sides and respect her view."
+                      "coachNote": "Shows you understand both sides and respect their view."
                     },
                     {
                       "id": "legal",
@@ -943,7 +939,7 @@
                       "text": "That rule is fine, stop complaining.",
                       "smoothDelta": -15,
                       "theirResponse": "Wow, okay.",
-                      "coachNote": "Dismissing her opinion ends the conversation. Show curiosity instead."
+                      "coachNote": "Dismissing their opinion ends the conversation. Show curiosity instead."
                     }
                   ]
                 }
@@ -1022,11 +1018,11 @@
               "followUps": [
                 {
                   "line": "Is the dynamic kickoff safer than the old one?",
-                  "why": "Yes, statistically. But some fans hate that the league keeps changing it."
+                  "why": "League data says injuries fell, though people still argue about how much and what it does to the game."
                 },
                 {
                   "line": "Will the kickoff rule keep changing?",
-                  "why": "Likely. The league will try different setups to balance returns, collisions and entertainment."
+                  "why": "It has been adjusted repeatedly, so further tweaks are plausible."
                 }
               ],
               "noFakeExpertNote": "If unsure, think about what the analyst values: tradition or safety innovation."
@@ -1040,7 +1036,7 @@
               "kickoff-debate"
             ],
             "payload": {
-              "prompt": "Rule changes every few years are necessary for safety, even if they disrupt tradition. True or false?",
+              "prompt": "The league's stated reason for the dynamic kickoff was player safety. True or false?",
               "scene": {
                 "kind": "none",
                 "alt": "A kickoff play showing the evolution of the rule over time for safety."
@@ -1057,8 +1053,8 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. The kickoff is the most injury-prone play. The league has tweaked it repeatedly to reduce harm while keeping returns alive.",
-                "incorrect": "Yes, player health is the league's stated reason for the kickoff changes."
+                "correct": "True. The kickoff was one of the most injury-prone plays, so the league redesigned it to cut full-speed collisions while keeping returns.",
+                "incorrect": "Player health really was the stated reason for the changes."
               }
             },
             "xp": 10
@@ -1102,8 +1098,8 @@
                 "a"
               ],
               "explanation": {
-                "correct": "The protocol is a medical safeguard. A player is removed, checked by independent doctors, and must pass tests before returning.",
-                "incorrect": "Concussion protocols are a player health measure, not a competitive tool."
+                "correct": "The protocol is a medical safeguard. A player with a suspected head injury is removed, examined by the team doctor and an independent neurological consultant, and must pass a step-by-step process before returning.",
+                "incorrect": "Concussion protocols protect player health. They are not a competitive tool."
               }
             },
             "xp": 10
@@ -1165,7 +1161,7 @@
               "concussion-protocol"
             ],
             "payload": {
-              "prompt": "Reducing the number of practices and full-contact drills helps prevent injuries and overload. True or false?",
+              "prompt": "Limiting full-contact practices is one way to manage injury risk. True or false?",
               "scene": {
                 "kind": "none",
                 "alt": "Players recovering during reduced-contact practices, managing workload and injury risk."
@@ -1182,8 +1178,8 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. The league and teams now manage practice intensity to reduce cumulative head impacts and other injuries. It is an emerging safety frontier.",
-                "incorrect": "Yes, practice contact reduction is part of modern player health management."
+                "correct": "True. Contact in practice is capped, and teams manage workload to reduce cumulative impacts and other injuries.",
+                "incorrect": "It is a real part of modern player-health management."
               }
             },
             "xp": 10
