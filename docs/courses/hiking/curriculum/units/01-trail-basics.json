@@ -85,6 +85,81 @@
                 "sayThisLine": "The trailhead has a register. Sign it so rangers know the trail is being used."
               }
             }
+          },
+          {
+            "id": "tb-01-bc-01",
+            "type": "binary-call",
+            "conceptIds": ["trailhead"],
+            "payload": {
+              "prompt": "You see a parking lot with a single sign that says 'Trail Closed.' Should you start hiking?",
+              "scene": {
+                "kind": "field-diagram",
+                "diagramId": "diagram.trail.closed-sign",
+                "markers": [
+                  {
+                    "role": "player",
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                ],
+                "alt": "A parking lot with a wooden sign reading 'Trail Closed' at the trailhead."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, go ahead"
+                },
+                {
+                  "id": "no",
+                  "label": "No, respect the sign"
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "A trailhead sign that says closed means it's closed. Respect the sign: the trail may be unsafe, under repair, or closed for wildlife protection.",
+                "incorrect": "Trailhead signs convey official information. Closed means closed. Always respect trail markers and signs.",
+                "sayThisLine": "The sign says closed, so we do not hike it. Maybe next month."
+              }
+            }
+          },
+          {
+            "id": "tb-01-fg-01",
+            "type": "fill-the-gap",
+            "conceptIds": ["trailhead"],
+            "payload": {
+              "prompt": "Complete the sentences.",
+              "template": "A trailhead is more organized than a {{random}} parking lot because it has a {{info}} and {{space}}.",
+              "gaps": [
+                {
+                  "id": "random",
+                  "options": [
+                    "random",
+                    "hiking"
+                  ],
+                  "correct": "random"
+                },
+                {
+                  "id": "info",
+                  "options": [
+                    "sign",
+                    "fee"
+                  ],
+                  "correct": "sign"
+                },
+                {
+                  "id": "space",
+                  "options": [
+                    "designated parking",
+                    "tent area"
+                  ],
+                  "correct": "designated parking"
+                }
+              ],
+              "explanation": {
+                "correct": "A trailhead has a sign that tells you trail info and parking reserved for hikers. It marks the official start clearly.",
+                "incorrect": "Trailheads stand out because they are organized with a sign, parking and often a register. Random parking lacks these markers."
+              }
+            }
           }
         ]
       },
@@ -195,6 +270,74 @@
                 "sayThisLine": "It's a lollipop: two miles up the stem, then the loop around the lake."
               }
             }
+          },
+          {
+            "id": "tb-02-mc-01",
+            "type": "multiple-choice",
+            "conceptIds": ["out-and-back", "point-to-point"],
+            "payload": {
+              "prompt": "You plan an out-and-back hike but see an alternative point-to-point route. What do you need to do differently?",
+              "options": [
+                {
+                  "id": "shuttle",
+                  "text": "Arrange a shuttle or two cars so you end up somewhere different"
+                },
+                {
+                  "id": "reverse",
+                  "text": "Plan to reverse the route and hike the same way back"
+                },
+                {
+                  "id": "loop",
+                  "text": "Connect it to a loop to get back to the start"
+                },
+                {
+                  "id": "camp",
+                  "text": "Overnight camp at the endpoint"
+                }
+              ],
+              "correctOptionIds": ["shuttle"],
+              "explanation": {
+                "correct": "A point-to-point route ends somewhere else, so you need logistics: a shuttle service, a second car, or someone to pick you up.",
+                "incorrect": "That is what makes point-to-point different from out-and-back. You need a way to get home from the endpoint.",
+                "sayThisLine": "A point-to-point means a shuttle or two cars, otherwise we just hike to the car we left."
+              }
+            }
+          },
+          {
+            "id": "tb-02-bc-01",
+            "type": "binary-call",
+            "conceptIds": ["loop-hike"],
+            "payload": {
+              "prompt": "You are halfway through a loop hike and realize you do not like this trail. Can you skip the second half and hike back to the car a different way?",
+              "scene": {
+                "kind": "field-diagram",
+                "diagramId": "diagram.trail.loop-checkpoint",
+                "markers": [
+                  {
+                    "role": "player",
+                    "x": 0.5,
+                    "y": 0.25
+                  }
+                ],
+                "alt": "A loop trail with your location marked at the top, showing the path you came from and the remaining loop ahead."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, take a shortcut"
+                },
+                {
+                  "id": "no",
+                  "label": "No, complete the loop or backtrack"
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Stay on marked trails. Either finish the loop or backtrack the way you came. Shortcuts create erosion and social trails.",
+                "incorrect": "Leaving a loop halfway risks getting lost and creates erosion problems. Finish the loop or backtrack to the car.",
+                "sayThisLine": "We finished the loop even though we were tired. Better to stay on the trail than cut across."
+              }
+            }
           }
         ]
       },
@@ -252,7 +395,7 @@
             "type": "fill-the-gap",
             "conceptIds": ["junction", "spur-trail"],
             "payload": {
-              "prompt": "Complete the sentences.",
+              "prompt": "Fill in the blanks.",
               "template": "A {{place}} is where trails meet and an easy place to go wrong. A {{short}} is a quick detour to a lake or viewpoint.",
               "gaps": [
                 {
@@ -275,6 +418,103 @@
               "explanation": {
                 "correct": "A junction is a trail intersection where the right choice matters. A spur is a marked branch off the main trail, often worth a quick visit.",
                 "incorrect": "Junctions are where you can take a wrong turn. Spurs are official side trails, not social trails (which are eroded shortcuts)."
+              }
+            }
+          },
+          {
+            "id": "tb-03-mc-01",
+            "type": "multiple-choice",
+            "conceptIds": ["spur-trail"],
+            "payload": {
+              "prompt": "At a junction you see a sign: 'Waterfall Spur, 0.5 miles.' What does this tell you?",
+              "options": [
+                {
+                  "id": "official",
+                  "text": "It is an official side trail you can take and return on"
+                },
+                {
+                  "id": "shortcut",
+                  "text": "It is a shortcut that skips part of the main trail"
+                },
+                {
+                  "id": "closed",
+                  "text": "It is closed to the public"
+                },
+                {
+                  "id": "difficult",
+                  "text": "It is dangerous and only for experts"
+                }
+              ],
+              "correctOptionIds": ["official"],
+              "explanation": {
+                "correct": "A spur is an official branch with a sign and distance. You can take it as a detour and return to the main trail the same way. It adds miles to your day.",
+                "incorrect": "A spur is marked and maintained, not a shortcut. It is a side trip to a feature like a waterfall or viewpoint that the trail crew wants you to see."
+              }
+            }
+          },
+          {
+            "id": "tb-03-tm-01",
+            "type": "term-match",
+            "conceptIds": ["junction", "spur-trail", "switchback"],
+            "payload": {
+              "prompt": "Match each trail feature to its purpose.",
+              "pairs": [
+                {
+                  "id": "junc",
+                  "term": "Junction",
+                  "definition": "Where two or more trails meet and you must choose a direction"
+                },
+                {
+                  "id": "spur",
+                  "term": "Spur trail",
+                  "definition": "An official side route to a waterfall, viewpoint or camp with its own sign"
+                },
+                {
+                  "id": "switch",
+                  "term": "Switchback",
+                  "definition": "A hairpin turn that climbs steep ground at a gentler angle"
+                }
+              ],
+              "distractorDefinitions": [
+                "A place where hikers rest"
+              ],
+              "explanation": {
+                "summary": "A junction is a choice point, a spur is a marked detour and a switchback is a gentle climb on steep ground. Each serves a different purpose on the trail.",
+                "sayThisLine": "We took the spur left to the outlook, came back and finished the main trail with its switchbacks."
+              }
+            }
+          },
+          {
+            "id": "tb-03-ds-01",
+            "type": "decision-scenario",
+            "conceptIds": ["spur-trail", "junction"],
+            "payload": {
+              "prompt": "At a junction you spot what looks like an unmarked shortcut down the slope. Should you take it?",
+              "context": "You are tired, the junction is busy with other hikers, and the shortcut would save 20 minutes.",
+              "options": [
+                {
+                  "id": "take",
+                  "text": "Take the shortcut to save time"
+                },
+                {
+                  "id": "marked",
+                  "text": "Stay on the marked trail even though it is longer"
+                },
+                {
+                  "id": "ask",
+                  "text": "Ask other hikers if they know the shortcut"
+                },
+                {
+                  "id": "split",
+                  "text": "Send one person to scout it quickly"
+                }
+              ],
+              "correctOptionId": "marked",
+              "explanation": {
+                "correct": "Stay on marked trails. Unmarked shortcuts cause erosion and can get you lost or injured. The extra 20 minutes is worth staying safe.",
+                "incorrect": "Shortcuts create social trails that erode slopes and confuse other hikers. Even if others have used it, it is still off-trail.",
+                "sayThisLine": "We were tired but we stayed on the marked trail. Social trails hurt the mountain.",
+                "safetyNote": "Hiking off-trail risks getting lost, damaging the environment, and potentially falling on unstable ground. Stay on marked trails even if longer."
               }
             }
           }
@@ -360,6 +600,129 @@
                 "sayThisLine": "Follow the cairns across the slab, and please don't build new ones."
               }
             }
+          },
+          {
+            "id": "tb-04-tm-01",
+            "type": "term-match",
+            "conceptIds": ["blaze", "cairn", "social-trail"],
+            "payload": {
+              "prompt": "Match each marker or trail type to its meaning.",
+              "pairs": [
+                {
+                  "id": "blaze",
+                  "term": "Blaze",
+                  "definition": "A paint mark on a tree or rock showing the official trail direction"
+                },
+                {
+                  "id": "cairn",
+                  "term": "Cairn",
+                  "definition": "A stack of stones used to mark the trail on bare rock or above treeline"
+                },
+                {
+                  "id": "social",
+                  "term": "Social trail",
+                  "definition": "An eroded shortcut created by hikers but not maintained or marked officially"
+                }
+              ],
+              "distractorDefinitions": [
+                "A warning sign posted by rangers",
+                "A natural pile of stones"
+              ],
+              "explanation": {
+                "summary": "Blazes and cairns are official markers that guide you on the right path. Social trails are unofficial shortcuts that damage the land.",
+                "sayThisLine": "I followed the blazes and then the cairns once we got above the trees."
+              }
+            }
+          },
+          {
+            "id": "tb-04-fg-01",
+            "type": "fill-the-gap",
+            "conceptIds": ["blaze"],
+            "payload": {
+              "prompt": "Complete the sentence.",
+              "template": "A single {{mark}} means keep going straight, but a {{double}} warns that the trail is about to {{turn}}.",
+              "gaps": [
+                {
+                  "id": "mark",
+                  "options": [
+                    "blaze",
+                    "cairn"
+                  ],
+                  "correct": "blaze"
+                },
+                {
+                  "id": "double",
+                  "options": [
+                    "blaze",
+                    "marker"
+                  ],
+                  "correct": "blaze"
+                },
+                {
+                  "id": "turn",
+                  "options": [
+                    "turn",
+                    "stop"
+                  ],
+                  "correct": "turn"
+                }
+              ],
+              "explanation": {
+                "correct": "A single blaze tells you the trail continues straight. Two stacked blazes, especially if offset, signal a sharp turn coming.",
+                "incorrect": "Blaze systems vary, but a double blaze almost always means stay alert for a direction change. Look carefully at the offset to find the turn."
+              }
+            }
+          },
+          {
+            "id": "tb-04-hs-01",
+            "type": "hotspot-tap",
+            "conceptIds": ["cairn"],
+            "payload": {
+              "prompt": "Tap the cairn that marks the official trail on this boulder field.",
+              "diagram": {
+                "diagramId": "diagram.trail.boulder-field-cairns",
+                "aspectRatio": 1.0,
+                "alt": "A boulder field with three stacked stone piles. One is an official cairn with distinct layering, one is a natural pile of loose stones, and one is partially collapsed."
+              },
+              "hotspots": [
+                {
+                  "id": "official",
+                  "label": "Official cairn",
+                  "shape": {
+                    "kind": "circle",
+                    "cx": 0.3,
+                    "cy": 0.5,
+                    "r": 0.08
+                  }
+                },
+                {
+                  "id": "natural",
+                  "label": "Natural pile",
+                  "shape": {
+                    "kind": "circle",
+                    "cx": 0.6,
+                    "cy": 0.5,
+                    "r": 0.08
+                  }
+                },
+                {
+                  "id": "collapsed",
+                  "label": "Collapsed pile",
+                  "shape": {
+                    "kind": "circle",
+                    "cx": 0.85,
+                    "cy": 0.5,
+                    "r": 0.08
+                  }
+                }
+              ],
+              "correctHotspotIds": ["official"],
+              "explanation": {
+                "correct": "An official cairn is carefully stacked with distinct layers and placed at trail junctions to mark the route. It stands out from random stone piles.",
+                "incorrect": "Official cairns are built deliberately and stand apart. Natural piles are random; collapsed ones may have been cairns but are no longer reliable.",
+                "sayThisLine": "Follow that cairn. Someone built it to mark the trail through these rocks."
+              }
+            }
           }
         ]
       },
@@ -443,6 +806,118 @@
                 "sayThisLine": "I stepped off for the bike. The hierarchy is clear: bikes give way to us, we give way to horses."
               }
             }
+          },
+          {
+            "id": "tb-05-tm-01",
+            "type": "term-match",
+            "conceptIds": ["trail-right-of-way"],
+            "payload": {
+              "prompt": "Match each group to their right of way on a narrow trail.",
+              "pairs": [
+                {
+                  "id": "horses",
+                  "term": "Horses",
+                  "definition": "Always have the right of way; most easily spooked"
+                },
+                {
+                  "id": "hikers",
+                  "term": "Hikers",
+                  "definition": "Yield to horses, have right of way over bikes"
+                },
+                {
+                  "id": "bikes",
+                  "term": "Mountain bikers",
+                  "definition": "Yield to both hikers and horses"
+                }
+              ],
+              "distractorDefinitions": [
+                "Everyone passes hikers first",
+                "First come, first served always"
+              ],
+              "explanation": {
+                "summary": "The hierarchy is: horses first, then hikers, then bikes. It is based on who is hardest to control and who needs the most space.",
+                "sayThisLine": "I stepped to the side: the hierarchy is horses, hikers, bikes. No debate."
+              }
+            }
+          },
+          {
+            "id": "tb-05-ds-01",
+            "type": "decision-scenario",
+            "conceptIds": ["trail-right-of-way"],
+            "payload": {
+              "prompt": "Two hikers with a loaded pack mule approach you going downhill on a narrow trail. What do you do?",
+              "context": "The trail has a steep drop. There is a small pull-out 20 feet behind you but none ahead of them.",
+              "options": [
+                {
+                  "id": "move",
+                  "text": "Move back to the pull-out and let them pass"
+                },
+                {
+                  "id": "wait",
+                  "text": "Stay put and let them figure it out"
+                },
+                {
+                  "id": "signal",
+                  "text": "Wave them back up the trail"
+                },
+                {
+                  "id": "fast",
+                  "text": "Walk faster down to clear the trail"
+                }
+              ],
+              "correctOptionId": "move",
+              "explanation": {
+                "correct": "A pack animal has the highest right of way. Move back to the pull-out if you are downhill. Give them the easy path even if you have to back up.",
+                "incorrect": "Pack animals are less predictable than hikers and harder to control. Respect the hierarchy: move out of their way, especially on narrow terrain.",
+                "sayThisLine": "A mule has the right of way. We walked back to the wider spot and let them through.",
+                "safetyNote": "Pack animals can spook easily on narrow trails. Always move to give them the safest, widest path possible."
+              }
+            }
+          },
+          {
+            "id": "tb-05-sy-01",
+            "type": "say-this",
+            "conceptIds": ["trail-right-of-way"],
+            "payload": {
+              "statement": {
+                "speaker": "Alex",
+                "text": "I always step aside for anyone coming uphill. It just makes sense."
+              },
+              "options": [
+                {
+                  "id": "effort",
+                  "text": "The uphill hiker is working harder and has less momentum to restart",
+                  "isCorrect": true
+                },
+                {
+                  "id": "courtesy",
+                  "text": "It is just basic trail courtesy",
+                  "isCorrect": true
+                },
+                {
+                  "id": "tired",
+                  "text": "Downhill hikers get tired more easily",
+                  "isCorrect": false
+                },
+                {
+                  "id": "speed",
+                  "text": "Downhill hikers are faster",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "He gives way to uphill hikers because they are working harder against gravity and need their momentum.",
+              "followUps": [
+                {
+                  "line": "Do you hike with people who forget the rule?",
+                  "why": "Trail etiquette question."
+                },
+                {
+                  "line": "Have you ever had someone refuse to step aside?",
+                  "why": "Real scenario to explore kindly."
+                }
+              ],
+              "noFakeExpertNote": "It is fine to ask or offer to move. Trail right of way is about safety and kindness, not knowing every rule perfectly."
+            }
           }
         ]
       },
@@ -517,6 +992,175 @@
                 "sayThisLine": "Orange peels are trash too. Pack it out.",
                 "safetyNote": "Leave No Trace is not just about looks—it is about protecting the wilderness for others and for wildlife."
               }
+            }
+          },
+          {
+            "id": "tb-06-tm-01",
+            "type": "term-match",
+            "conceptIds": ["leave-no-trace", "durable-surface"],
+            "payload": {
+              "prompt": "Match each example to the Leave No Trace principle it follows.",
+              "pairs": [
+                {
+                  "id": "durable",
+                  "term": "Camp on durable surfaces",
+                  "definition": "Stay on rock, gravel or hardpan, not on living plants or soft soil"
+                },
+                {
+                  "id": "trash",
+                  "term": "Pack it out, all of it",
+                  "definition": "Carry every wrapper, core, and piece of trash home"
+                },
+                {
+                  "id": "fire",
+                  "term": "Minimize campfire impacts",
+                  "definition": "Use established fire rings or cook on stoves instead of making new fires"
+                }
+              ],
+              "distractorDefinitions": [
+                "Hike at night to see fewer people",
+                "Tell everyone about the best spots"
+              ],
+              "explanation": {
+                "summary": "Leave No Trace means respecting the land by using durable surfaces, packing out everything and minimizing your footprint.",
+                "sayThisLine": "We camped on the rock shelf, packed every scrap and used our stove so no fires needed."
+              }
+            }
+          },
+          {
+            "id": "tb-06-fg-01",
+            "type": "fill-the-gap",
+            "conceptIds": ["leave-no-trace"],
+            "payload": {
+              "prompt": "Finish these statements.",
+              "template": "On a {{high}} mountain, a {{durable}} surface is better to camp on than {{soft}}. You should {{pack}} all trash including {{items}}.",
+              "gaps": [
+                {
+                  "id": "high",
+                  "options": [
+                    "high",
+                    "low"
+                  ],
+                  "correct": "high"
+                },
+                {
+                  "id": "durable",
+                  "options": [
+                    "rock",
+                    "moss"
+                  ],
+                  "correct": "rock"
+                },
+                {
+                  "id": "soft",
+                  "options": [
+                    "soil",
+                    "water"
+                  ],
+                  "correct": "soil"
+                },
+                {
+                  "id": "pack",
+                  "options": [
+                    "pack out",
+                    "bury"
+                  ],
+                  "correct": "pack out"
+                },
+                {
+                  "id": "items",
+                  "options": [
+                    "peels and cores",
+                    "wet items only"
+                  ],
+                  "correct": "peels and cores"
+                }
+              ],
+              "explanation": {
+                "correct": "Durable surfaces like rock and hardpan can handle use. Soft soil and plants take decades to recover. Pack out all trash, even fruit.",
+                "incorrect": "Every scrap you leave behind affects the trail and the animals. Rock and gravel are durable. Soil and plants are fragile."
+              }
+            }
+          },
+          {
+            "id": "tb-06-bc-01",
+            "type": "binary-call",
+            "conceptIds": ["leave-no-trace"],
+            "payload": {
+              "prompt": "You see a beautiful alpine meadow with wildflowers. Can you walk through it to get a better photo?",
+              "scene": {
+                "kind": "field-diagram",
+                "diagramId": "diagram.trail.alpine-meadow",
+                "markers": [
+                  {
+                    "role": "player",
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                ],
+                "alt": "An alpine meadow with blooming wildflowers and a trail cutting through it."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, stay just off the trail"
+                },
+                {
+                  "id": "no",
+                  "label": "No, take photos from the trail"
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Stay on the trail even in beautiful meadows. One person walking off-trail crushes plants. Many people destroy the meadow. Photos from the trail are enough.",
+                "incorrect": "Alpine plants take decades to grow and are fragile. Stepping on them once damages them. Respect the meadow by staying on the trail.",
+                "sayThisLine": "It looks great from the trail. Stepping off kills the flowers we want others to enjoy too."
+              }
+            }
+          },
+          {
+            "id": "tb-06-sy-01",
+            "type": "say-this",
+            "conceptIds": ["leave-no-trace"],
+            "payload": {
+              "statement": {
+                "speaker": "Jordan",
+                "text": "I always pack out my trash, even the biodegradable stuff."
+              },
+              "options": [
+                {
+                  "id": "animals",
+                  "text": "It attracts animals and changes their natural diet",
+                  "isCorrect": true
+                },
+                {
+                  "id": "litter",
+                  "text": "Others don't want to see it on the trail",
+                  "isCorrect": true
+                },
+                {
+                  "id": "slow",
+                  "text": "Biodegradable items break down very slowly at altitude",
+                  "isCorrect": true
+                },
+                {
+                  "id": "smell",
+                  "text": "It is easier to throw away at home",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "He packs out everything because even natural items attract animals, take years to break down at altitude and make the trail less appealing.",
+              "followUps": [
+                {
+                  "line": "What was the hardest thing you have packed out?",
+                  "why": "Curious about real-world Leave No Trace practice."
+                },
+                {
+                  "line": "Have you seen trash that bothered you on a trail?",
+                  "why": "Trail care awareness moment."
+                }
+              ],
+              "noFakeExpertNote": "Packing out trash is simple. You do not need to be an expert to respect the wilderness."
             }
           }
         ]
@@ -617,6 +1261,104 @@
                 }
               ],
               "noFakeExpertNote": "Signing in is a simple safety practice. You can ask what the register is for if you have not seen one."
+            }
+          },
+          {
+            "id": "tb-07-mc-01",
+            "type": "multiple-choice",
+            "conceptIds": ["trailhead"],
+            "payload": {
+              "prompt": "You arrive at the trailhead and the register is full. What should you do?",
+              "options": [
+                {
+                  "id": "skip",
+                  "text": "Skip signing since there is no room"
+                },
+                {
+                  "id": "back",
+                  "text": "Write your name on the back or ask if there is a new book"
+                },
+                {
+                  "id": "photo",
+                  "text": "Take a photo to prove you were there"
+                },
+                {
+                  "id": "text",
+                  "text": "Text the ranger your plan instead"
+                }
+              ],
+              "correctOptionIds": ["back"],
+              "explanation": {
+                "correct": "Full registers mean many hikers. Look for a back page or a new book inside the box. A ranger should replace a full register regularly.",
+                "incorrect": "A complete register shows the trail is popular. Keep looking for a place to sign or ask at the ranger station before leaving."
+              }
+            }
+          },
+          {
+            "id": "tb-07-tm-01",
+            "type": "term-match",
+            "conceptIds": ["trail-register", "trailhead"],
+            "payload": {
+              "prompt": "Match each part of a well-run hike day to its purpose.",
+              "pairs": [
+                {
+                  "id": "plan",
+                  "term": "Share your trip plan",
+                  "definition": "Tell someone where you are going and when you expect to return"
+                },
+                {
+                  "id": "register",
+                  "term": "Sign the trail register",
+                  "definition": "Leave a record at the trailhead with your name and the time you started"
+                },
+                {
+                  "id": "checkin",
+                  "term": "Confirm you are back",
+                  "definition": "Text or call your contact when you return so no one starts a search"
+                }
+              ],
+              "distractorDefinitions": [
+                "Post photos to social media",
+                "Tell everyone about your route online"
+              ],
+              "explanation": {
+                "summary": "A safe hike day starts with a plan, includes a register signature and ends with a check-in. Three steps, three circles of safety.",
+                "sayThisLine": "I told my sister where I was going, signed the register and texted her when I was back."
+              }
+            }
+          },
+          {
+            "id": "tb-07-ds-01",
+            "type": "decision-scenario",
+            "conceptIds": ["trail-register", "trailhead"],
+            "payload": {
+              "prompt": "You reach the trailhead but realize you forgot to tell anyone where you are going. Do you?",
+              "context": "You are already there, the weather is perfect, and you only planned a short 3-hour hike.",
+              "options": [
+                {
+                  "id": "hike",
+                  "text": "Hike anyway, it is short"
+                },
+                {
+                  "id": "call",
+                  "text": "Call or text someone your plan before starting"
+                },
+                {
+                  "id": "register",
+                  "text": "Just sign the register, that is enough"
+                },
+                {
+                  "id": "leave",
+                  "text": "Leave your plan on the dashboard of your car"
+                }
+              ],
+              "correctOptionId": "call",
+              "explanation": {
+                "correct": "Stop and contact someone. The register is helpful but not enough. A personal contact knows you specifically and can alert rescuers if needed.",
+                "incorrect": "Short hikes are where accidents happen just as much as long ones. Always tell someone your plan before you start, no matter the distance.",
+                "sayThisLine": "I made the call before I left the parking lot. Five minutes to tell my brother my plan.",
+                "safetyNote": "A trail register and a personal contact serve different purposes. You need both: the register for land managers and your contact for rescue."
+              }
             }
           }
         ]
@@ -736,6 +1478,114 @@
                 }
               ],
               "closingNote": "Listening means asking what she learned and what helped."
+            }
+          },
+          {
+            "id": "tb-08-mc-01",
+            "type": "multiple-choice",
+            "conceptIds": ["blaze"],
+            "payload": {
+              "prompt": "Someone says 'We followed the blazes the whole way.' What does that tell you?",
+              "options": [
+                {
+                  "id": "right",
+                  "text": "They stayed on the marked trail the whole time"
+                },
+                {
+                  "id": "fast",
+                  "text": "They hiked quickly"
+                },
+                {
+                  "id": "lost",
+                  "text": "They got turned around and had to backtrack"
+                },
+                {
+                  "id": "shortcut",
+                  "text": "They found a shortcut"
+                }
+              ],
+              "correctOptionIds": ["right"],
+              "explanation": {
+                "correct": "Following the blazes means they stuck to the official marked trail. It is a sign of a well-navigated hike.",
+                "incorrect": "Blazes are paint marks that show the official route. If someone followed them, they did not get lost."
+              }
+            }
+          },
+          {
+            "id": "tb-08-tm-01",
+            "type": "term-match",
+            "conceptIds": ["blaze", "junction", "switchback"],
+            "payload": {
+              "prompt": "Match each term to what a hiker might say about it.",
+              "pairs": [
+                {
+                  "id": "blaze",
+                  "term": "Blaze",
+                  "definition": "A paint mark on a tree that shows you are on the right trail"
+                },
+                {
+                  "id": "junction",
+                  "term": "Junction",
+                  "definition": "A place where two trails meet and you have to choose"
+                },
+                {
+                  "id": "switchback",
+                  "term": "Switchback",
+                  "definition": "A zigzag path that climbs steep ground gently"
+                }
+              ],
+              "distractorDefinitions": [
+                "A type of backpack"
+              ],
+              "explanation": {
+                "summary": "A hiker uses blazes to stay on track, navigates junctions with care and counts switchbacks when climbing steep slopes.",
+                "sayThisLine": "The blazes led us right. At the junction we went left, then up through the switchbacks."
+              }
+            }
+          },
+          {
+            "id": "tb-08-sy-02",
+            "type": "say-this",
+            "conceptIds": ["blaze", "junction"],
+            "payload": {
+              "statement": {
+                "speaker": "Sam",
+                "text": "The double blaze threw me off. I was looking for a single one."
+              },
+              "options": [
+                {
+                  "id": "turn",
+                  "text": "A double blaze means a sharp turn is coming up",
+                  "isCorrect": true
+                },
+                {
+                  "id": "caution",
+                  "text": "It is a warning to slow down or be careful",
+                  "isCorrect": true
+                },
+                {
+                  "id": "end",
+                  "text": "It means you are at the end of the trail",
+                  "isCorrect": false
+                },
+                {
+                  "id": "danger",
+                  "text": "It means the trail is dangerous",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "He missed the warning because a double blaze signals a direction change, often sharp, that hikers need to anticipate.",
+              "followUps": [
+                {
+                  "line": "Have you missed a turn despite the blazes?",
+                  "why": "Relatable navigation moment."
+                },
+                {
+                  "line": "Do you look ahead for blazes or just follow?",
+                  "why": "Trail awareness question."
+                }
+              ],
+              "noFakeExpertNote": "Missing blazes happens to everyone. The trick is to scan ahead for the next one after each turn."
             }
           }
         ]
