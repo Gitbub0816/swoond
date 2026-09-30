@@ -50,10 +50,10 @@ public enum InterestCatalog {
         return String(name.prefix(1)).uppercased() + String(name.dropFirst().prefix(1)).lowercased()
     }
 
-    /// In-app search normalization (DESIGN_SPEC section 1): strip apostrophes (straight and curly) and whitespace, lowercase.
+    /// In-app search normalization (DESIGN_SPEC section 1): strip apostrophes (straight and curly), hyphens and whitespace, lowercase.
     /// "Swoon'd", "Swoon\u{2019}d", "Swoon d" and "swoond" all normalize to "swoond".
     public static func normalize(_ query: String) -> String {
-        let drop: Set<Character> = ["'", "\u{2019}", "\u{2018}", "`"]
+        let drop: Set<Character> = ["'", "\u{2019}", "\u{2018}", "`", "-"]
         return query.lowercased().filter { !drop.contains($0) && !$0.isWhitespace }
     }
 
