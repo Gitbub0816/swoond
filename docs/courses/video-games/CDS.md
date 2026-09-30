@@ -222,7 +222,7 @@ Fifteen things a gamer might naturally say (translation, terms, and a meaningful
 
 ## 11. Curriculum map (ongoing course)
 
-Course is designed as an ongoing programme: **20 units, 122 lessons** across foundations, intermediate, enthusiast depth, branches, current layer, conversation practice and perpetual review. A learner sees about 14 to 16 units (only their selected branch units appear). Activity codes: `mc` multiple-choice, `bc` binary-call, `tm` term-match, `so` sequence-order, `vi` visual-id, `ds` decision-scenario, `tk` talk-track, `tt` timing-tap, `st` say-this, `fg` fill-the-gap, `li` listening-id, `es` estimate-slider, `ht` hotspot-tap, `us` unity-sim. Every lesson lists at least four activities (validator rule `thin-lesson`). Concept ids are the Playbook terms; the concept ids per lesson are listed in the rows.
+Course is designed as an ongoing programme: **20 units, 122 lessons** across foundations, intermediate, enthusiast depth, branches, current layer, conversation practice and perpetual review. A learner sees about 14 to 16 units (only their selected branch units appear). Activity codes: `mc` multiple-choice, `bc` binary-call, `tm` term-match, `so` sequence-order, `vi` visual-id, `ds` decision-scenario, `tk` talk-track, `tt` timing-tap, `st` say-this, `fg` fill-the-gap, `li` listening-id, `es` estimate-slider, `ht` hotspot-tap, `us` unity-sim. Every lesson lists at least four activities (validator rule `thin-lesson`). the concept ids per lesson are listed in the rows.
 
 | Layer | Purpose | Units | Lessons |
 |---|---|---|---|
@@ -474,7 +474,7 @@ Course is designed as an ongoing programme: **20 units, 122 lessons** across fou
 
 **Review policy:** spaced repetition over mastered concepts (intervals 1, 3, 7, 14, 30, 60 days; correct advances, wrong resets to 1; wrong answers lower mastery by 0.15), Daily Bite draws 3 items from due concepts, maximum 12 review items per day, live-layer concepts are reviewed only while their season is current. Term Blitz and Genre Spotter sessions are available on demand.
 
-**Concept count:** 464 distinct concept ids across the 122 lessons (counted from the tables above). Roughly 1 in 6 is a Playbook vocabulary term (the 72 in `exercises.md` reuse these ids where a term exists); the rest are fine-grained ideas (`hud`, `core-loop`, `crossplay`). Consolidating rarely-tested ids before curriculum authoring is an open item (NOTES #6).
+**Concept count:** 464 distinct concept ids across the 122 lessons (counted from the tables above). Roughly 1 in 6 is a Playbook vocabulary term (the 79 in `exercises.md` reuse these ids where a term exists); the rest are fine-grained ideas (`hud`, `core-loop`, `crossplay`). Consolidating rarely-tested ids before curriculum authoring is an open item (NOTES #6).
 
 **Personalization slots:** `{{platform}}` (plat, buy, mech, live), `{{franchise}}` and `{{game}}` (anat, vocab, tog, conv, live), `{{genre}}` (branch choice), `{{creator}}` (esp, cult, live), `{{org}}` (esp, live).
 

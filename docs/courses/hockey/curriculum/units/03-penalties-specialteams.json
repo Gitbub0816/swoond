@@ -623,16 +623,15 @@
             "conceptIds": ["penalty-nuance"],
             "payload": {
               "prompt": "Complete the 4-on-4 rule.",
-              "template": "When both teams get minors at the same time, the result is {{result}}, not a power play. This creates {{effect}} hockey because there are {{total}} skaters instead of {{normal}}, so the ice is wide open.",
+              "template": "Mutual minors = {{result}}, creating {{effect}} because only {{total}} skaters remain.",
               "gaps": [
-                {"id": "result", "options": ["5-on-5", "4-on-4", "no penalty"], "correct": "4-on-4"},
-                {"id": "effect", "options": ["defensive", "fast and chaotic", "predictable"], "correct": "fast and chaotic"},
-                {"id": "total", "options": ["four", "six", "eight"], "correct": "eight"},
-                {"id": "normal", "options": ["ten", "twelve", "six"], "correct": "ten"}
+                {"id": "result", "options": ["5-on-5", "4-on-4", "no power play"], "correct": "4-on-4"},
+                {"id": "effect", "options": ["defensive", "wide-open", "predictable"], "correct": "wide-open"},
+                {"id": "total", "options": ["four", "six", "eight"], "correct": "eight"}
               ],
               "explanation": {
-                "correct": "Right. A 4-on-4 (mutual minors) is wide-open hockey: four skaters per side instead of six, so both teams have tons of ice. It's exciting but unpredictable.",
-                "incorrect": "When both teams get a minor, the penalties cancel out into a 4-on-4: no power play for either side. Eight total skaters (four per side) instead of ten makes the game look like a wide-open track meet."
+                "correct": "Right. Mutual minors = 4-on-4 with no power play. Eight total skaters instead of ten makes it wide-open.",
+                "incorrect": "When both teams get a minor, it becomes 4-on-4 with no power play. The game opens up since there are fewer skaters."
               }
             }
           },
@@ -641,7 +640,7 @@
             "type": "binary-call",
             "conceptIds": ["penalty-nuance"],
             "payload": {
-              "prompt": "A 5-on-3 power play is about 90 seconds in duration because one of the two minors expires while the other continues. True or false?",
+              "prompt": "A 5-on-3 lasts roughly 90 seconds because one minor expires first. True or false?",
               "scene": {"kind": "none", "alt": "The scoreboard shows two penalty timers, one expiring before the other."},
               "choices": [
                 {"id": "true", "label": "True"},

@@ -301,12 +301,11 @@
             "payload": {
               "prompt": "Put these steps of a run play in order.",
               "items": [
-                {"id": "snap", "text": "The center snaps the ball to the quarterback"},
-                {"id": "handoff", "text": "The quarterback hands the ball to the running back"},
-                {"id": "block", "text": "The offensive line blocks their defenders"},
-                {"id": "run", "text": "The running back finds the hole and runs"}
+                {"id": "snap", "text": "The center snaps the ball to the quarterback", "why": "Play starts with the snap."},
+                {"id": "block", "text": "The offensive line blocks their defenders", "why": "Blockers move first to create gaps."},
+                {"id": "handoff", "text": "The quarterback hands the ball to the running back", "why": "After blockers are moving, the handoff happens."},
+                {"id": "run", "text": "The running back finds the hole and runs", "why": "The back accelerates through the open gap."}
               ],
-              "correctOrder": ["snap", "block", "handoff", "run"],
               "explanation": {
                 "correct": "Right. The line moves first to create the hole, then the handoff happens, then the back runs through it.",
                 "incorrect": "The blocks need to happen before or with the handoff so the hole is open when the runner arrives."
@@ -446,25 +445,39 @@
             "conceptIds": ["route-tree", "slant-route", "curl-route", "post-route"],
             "payload": {
               "prompt": "Which route breaks the deepest downfield?",
-              "images": [
+              "image": {
+                "asset": "diagrams/football-route-depth",
+                "alt": "Three route patterns on a field: a short slant to the middle, a deep post to the middle, and a curl settling in the zone.",
+                "license": "original-swoond"
+              },
+              "options": [
                 {
-                  "diagramId": "route-slant",
-                  "alt": "A receiver running a slant route, cutting inside after three steps."
+                  "id": "slant",
+                  "text": "Slant route",
+                  "explanation": "Slants break after 1-3 steps, the shallowest route."
                 },
                 {
-                  "diagramId": "route-post",
-                  "alt": "A receiver running a post route, going deep then cutting diagonally toward the middle."
+                  "id": "post",
+                  "text": "Post route",
+                  "explanation": "Post routes go 15+ yards before the break, opening the underneath."
                 },
                 {
-                  "diagramId": "route-curl",
-                  "alt": "A receiver running a curl route, going out and settling in a zone."
+                  "id": "curl",
+                  "text": "Curl route",
+                  "explanation": "Curls settle around 8-10 yards, medium depth."
                 }
               ],
-              "correctImageId": "route-post",
+              "correctOptionId": "post",
               "explanation": {
                 "correct": "The post route. It runs the deepest before the break, opening up the field underneath.",
-                "incorrect": "Look for the route that goes down the field the deepest. The post route goes deep, then cuts toward the middle."
-              }
+                "incorrect": "Look for the route that goes down the field the deepest. The post route goes deep, then cuts toward the middle.",
+                "sayThisLine": "Deep routes open up the short stuff underneath."
+              },
+              "cues": [
+                "Post routes go 15 yards or more down the field",
+                "Slants are quick and shallow",
+                "Curls settle in a gap at medium depth"
+              ]
             },
             "xp": 10
           },

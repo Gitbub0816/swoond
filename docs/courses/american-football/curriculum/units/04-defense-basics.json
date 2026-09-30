@@ -59,7 +59,7 @@
             "type": "hotspot-tap",
             "conceptIds": ["four-three-front", "defensive-line", "linebacker"],
             "payload": {
-              "prompt": "In a 4-3 front, tap where the four defensive linemen line up.",
+              "prompt": "Tap where the four defensive linemen line up in a 4-3.",
               "diagram": {
                 "diagramId": "defense-formation-4-3",
                 "alt": "A football field showing the line of scrimmage with defensive players positioned. Four big players are on the line at the center and shoulder gaps. Three more defenders line up behind them.",
@@ -116,12 +116,11 @@
             "payload": {
               "prompt": "Arrange these defensive roles from the line of scrimmage outward.",
               "items": [
-                {"id": "deep", "text": "Safeties in deep coverage"},
-                {"id": "corners", "text": "Corners on the receivers"},
+                {"id": "line", "text": "Linemen taking on blockers"},
                 {"id": "backers", "text": "Linebackers filling gaps"},
-                {"id": "line", "text": "Linemen taking on blockers"}
+                {"id": "corners", "text": "Corners on the receivers"},
+                {"id": "deep", "text": "Safeties in deep coverage"}
               ],
-              "correctOrder": ["line", "backers", "corners", "deep"],
               "explanation": {
                 "correct": "Yes. The line engages first, backers fill behind them, corners lock on receivers, and safeties play the deepest.",
                 "incorrect": "Work from the closest defenders to the deepest: line first, then backers, then the defensive backs."
@@ -181,7 +180,7 @@
             "type": "binary-call",
             "conceptIds": ["man-coverage"],
             "payload": {
-              "prompt": "In man coverage, if the quarterback throws deep and the receiver breaks free, the cornerback is in trouble because he has to follow the receiver no matter how far downfield the throw goes. True or false?",
+              "prompt": "In man coverage, if a receiver beats the corner on a deep throw, the corner has no help. True or false?",
               "scene": {"kind": "none", "alt": "A football field showing a corner following a receiver one-on-one, with the receiver running downfield away from other defenders."},
               "choices": [
                 {"id": "true", "label": "True"},
@@ -760,7 +759,7 @@
             "type": "binary-call",
             "conceptIds": ["blitz"],
             "payload": {
-              "prompt": "If a quarterback gets hit late after he releases the pass on a blitz, it is still roughing the passer because the defensive player blitzed him. True or false?",
+              "prompt": "A late hit after the quarterback releases is roughing, even if on a blitz. True or false?",
               "scene": {"kind": "none", "alt": "A quarterback releasing a pass while a blitzing linebacker arrives late and hits him."},
               "choices": [
                 {"id": "true", "label": "True"},
@@ -779,7 +778,7 @@
             "type": "estimate-slider",
             "conceptIds": ["blitz"],
             "payload": {
-              "prompt": "If the defense sends a five-man blitz (one more than the usual four linemen) instead of four, what percentage of your defenders are in coverage?",
+              "prompt": "In a five-man blitz, what percent of defenders are left in coverage?",
               "unit": "%",
               "min": 40,
               "max": 90,
@@ -794,24 +793,20 @@
             "xp": 10
           },
           {
-            "id": "blitz-06-vi-look",
-            "type": "visual-id",
+            "id": "blitz-06-mc-count",
+            "type": "multiple-choice",
             "conceptIds": ["blitz"],
             "payload": {
-              "prompt": "Look at this defensive alignment. How many pass rushers can you count?",
-              "diagram": {
-                "diagramId": "blitz-formation",
-                "alt": "A defensive alignment showing four big defensive linemen on the line, with a linebacker charging forward from the second level, and two safeties deep.",
-                "aspectRatio": 2.5
-              },
+              "prompt": "Four linemen plus one linebacker rushing equals how many total blitzers?",
               "options": [
-                {"id": "four", "text": "Four, so this is base (no blitz)", "isCorrect": false},
-                {"id": "five", "text": "Five, so this is a one-man blitz (outside linebacker rushing)", "isCorrect": true},
-                {"id": "six", "text": "Six or more, so this is an all-out blitz", "isCorrect": false}
+                {"id": "four", "text": "Four, so this is base (no blitz)"},
+                {"id": "five", "text": "Five, so this is a one-man blitz"},
+                {"id": "six", "text": "Six or more"}
               ],
+              "correctOptionIds": ["five"],
               "explanation": {
-                "correct": "Five rushers means one of the backers is blitzing. Count the line (four) plus the backer charging forward (one).",
-                "incorrect": "Look at the alignment. The four linemen plus one linebacker running forward equals five rushers, which is a blitz."
+                "correct": "Five total: four linemen on the line plus one linebacker blitzing. That is one extra rusher beyond the base four.",
+                "incorrect": "Count the linemen (four) plus the blitzing linebacker (one). That is five total rushers."
               }
             },
             "xp": 10
@@ -867,7 +862,7 @@
             "type": "binary-call",
             "conceptIds": ["nickel", "cornerback"],
             "payload": {
-              "prompt": "In nickel, corner-to-receiver matchups become crucial because linebackers are off the field and cannot help on underneath routes. True or false?",
+              "prompt": "In nickel, corners have no linebacker help underneath. True or false?",
               "scene": {"kind": "none", "alt": "A nickel alignment with five defensive backs spread across the field covering five receivers."},
               "choices": [
                 {"id": "true", "label": "True"},
@@ -961,7 +956,6 @@
                 {"id": "cover3", "text": "Cover 3: three defenders split the deep field"},
                 {"id": "cover4", "text": "Cover 4 (quarters): four defenders each take a quarter"}
               ],
-              "correctOrder": ["cover0", "cover1", "cover2", "cover3", "cover4"],
               "explanation": {
                 "correct": "Cover 0 is all-in aggressive with no safety help. Cover 4 is the safest with four helping deep.",
                 "incorrect": "The ladder goes from no-help man (Cover 0) to maximum help (Cover 4, with four helping). More help = more conservative."
@@ -1026,42 +1020,39 @@
             "xp": 10
           },
           {
-            "id": "cover-4-08-ds-pick",
-            "type": "decision-scenario",
+            "id": "cover-4-08-mc-switch",
+            "type": "multiple-choice",
             "conceptIds": ["cover-1", "cover-4"],
             "payload": {
-              "prompt": "The offense is running a lot of vertical seam routes that get behind the defense. Should the defense switch from Cover 1 to Cover 4?",
-              "choices": [
-                {"id": "a", "text": "Yes, because Cover 4 has four helpers deep to prevent big plays over the top", "isCorrect": true},
-                {"id": "b", "text": "No, because Cover 4 will leave short routes open, which is worse", "isCorrect": false},
-                {"id": "c", "text": "It depends on the offense's other receivers; both coverages are equally good", "isCorrect": false}
+              "prompt": "Against vertical seam routes, which coverage gives more deep help?",
+              "options": [
+                {"id": "a", "text": "Cover 1 with one safety deep"},
+                {"id": "b", "text": "Cover 4 with four deep helpers"},
+                {"id": "c", "text": "Both are equally good against seams"}
               ],
+              "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Yes. Cover 1 has one safety deep, so seams can sneak through. Cover 4 divides the deep field, making it tougher to get behind.",
-                "incorrect": "If seam routes are hitting, Cover 4 gives more help over the top. Trade the short game for long safety."
+                "correct": "Cover 4 divides the deep field, making seams much tougher. One safety (Cover 1) leaves room for seams to fit.",
+                "incorrect": "Cover 4 has four defenders helping deep. Cover 1 has only one. Four is better for the deep pass."
               }
             },
             "xp": 10
           },
           {
-            "id": "cover-4-08-vi-ladder",
-            "type": "visual-id",
+            "id": "cover-4-08-mc-zero",
+            "type": "multiple-choice",
             "conceptIds": ["cover-0", "cover-1", "cover-4"],
             "payload": {
-              "prompt": "This defense shows no free safety and all corners in man coverage tight on receivers. What coverage is this?",
-              "diagram": {
-                "diagramId": "cover-0-look",
-                "alt": "A defensive alignment with four or five corners each covering a receiver one-on-one, no safeties lined up deep.",
-                "aspectRatio": 2.5
-              },
+              "prompt": "You see corners tight on receivers with no safeties helping deep. What is this coverage?",
               "options": [
-                {"id": "c0", "text": "Cover 0: man coverage with no safety help", "isCorrect": true},
-                {"id": "c1", "text": "Cover 1: man coverage with one free safety", "isCorrect": false},
-                {"id": "c4", "text": "Cover 4: four deep helpers", "isCorrect": false}
+                {"id": "c0", "text": "Cover 0: man with no safety help"},
+                {"id": "c1", "text": "Cover 1: man with one free safety"},
+                {"id": "c4", "text": "Cover 4: four helpers in the deep"}
               ],
+              "correctOptionIds": ["c0"],
               "explanation": {
-                "correct": "Cover 0 has no safeties helping. Every corner is on an island. That is the all-in look.",
-                "incorrect": "Count the safeties deep. Zero safeties helping? That is Cover 0. One deep? Cover 1. Four deep? Cover 4."
+                "correct": "Cover 0 puts corners on islands with zero help. Every defender is either covering a man or rushing.",
+                "incorrect": "No safeties helping means no free safety. Zero help is Cover 0, the all-in gamble."
               }
             },
             "xp": 10

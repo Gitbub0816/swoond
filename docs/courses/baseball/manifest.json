@@ -1,0 +1,122 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "baseball",
+  "displayName": "Baseball",
+  "category": "Sports > Baseball",
+  "family": "Sports",
+  "status": "cds-draft",
+  "wave": 2,
+  "simulationPrefix": "baseball",
+  "branches": [
+    { "id": "mlb", "displayName": "Major League Baseball", "description": "Default branch. 30 teams, 162 games, MLB rules (universal DH, pitch clock, ABS challenges), MLB postseason, draft and free agency.", "personalizationDimension": "league" },
+    { "id": "college", "displayName": "College baseball (NCAA)", "description": "BBCOR bats, 56-game season, regionals to the College World Series in Omaha, conferences, transfer portal and NIL. Later branch.", "personalizationDimension": "league" },
+    { "id": "npb", "displayName": "Nippon Professional Baseball (Japan)", "description": "12 teams in the Central and Pacific Leagues, ties, Climax Series and Japan Series, oendan cheering culture, posting system to MLB. Later branch.", "personalizationDimension": "league" },
+    { "id": "kbo", "displayName": "KBO League (Korea)", "description": "10 teams, five-team postseason, Korean Series, bat-flip and cheer-squad culture, ABS in every park, import limits. Later branch.", "personalizationDimension": "league" }
+  ],
+  "curriculumVersion": "0.1.0",
+  "foundationalModules": [
+    { "id": "the-game", "title": "The Game in One Sitting", "summary": "Objective, innings and outs, the diamond, nine positions, batting order, how a game ends, the 162-game season." },
+    { "id": "the-count", "title": "The Count and the At-Bat", "summary": "Balls, strikes, the count, strikeouts, fouls, walks, ball in play and what ends a plate appearance." },
+    { "id": "on-the-bases", "title": "Running the Bases", "summary": "Safe and out, force versus tag, advancing, leading, stealing, tagging up, send or hold, double plays." },
+    { "id": "the-defense", "title": "The Defense", "summary": "Who covers what, errors, cutoffs, the infield fly rule, the catcher, defensive alignment, range and arm." },
+    { "id": "scoreboard-and-stats", "title": "Scoreboards, Box Scores and Stats", "summary": "Line score, box score, batting and pitching stats, scorekeeping shorthand, milestones and the standings." }
+  ],
+  "interactionTypes": [
+    "multiple-choice", "binary-call", "term-match", "sequence-order", "visual-id", "decision-scenario",
+    "talk-track", "timing-tap", "say-this", "fill-the-gap", "listening-id", "estimate-slider", "hotspot-tap", "unity-sim"
+  ],
+  "unitySimulations": [
+    {
+      "simulationId": "baseball.baserunning.read-and-go.v1",
+      "specPath": "docs/courses/baseball/sims/baseball.baserunning.read-and-go.v1.md",
+      "status": "spec-draft",
+      "lessonIds": ["base-06", "rev-03"]
+    },
+    {
+      "simulationId": "baseball.defense.alignment-read.v1",
+      "specPath": "docs/courses/baseball/sims/baseball.defense.alignment-read.v1.md",
+      "status": "spec-draft",
+      "lessonIds": ["def-06"]
+    },
+    {
+      "simulationId": "baseball.pitching.pitch-shapes.v1",
+      "specPath": "docs/courses/baseball/sims/baseball.pitching.pitch-shapes.v1.md",
+      "status": "spec-draft",
+      "lessonIds": ["pit-03"]
+    }
+  ],
+  "nativeExercises": [
+    { "exerciseType": "multiple-choice", "specPath": "docs/courses/baseball/exercises.md", "estimatedCount": 260 },
+    { "exerciseType": "binary-call", "specPath": "docs/courses/baseball/exercises.md", "estimatedCount": 80 },
+    { "exerciseType": "term-match", "specPath": "docs/courses/baseball/exercises.md", "estimatedCount": 45 },
+    { "exerciseType": "sequence-order", "specPath": "docs/courses/baseball/exercises.md", "estimatedCount": 30 },
+    { "exerciseType": "visual-id", "specPath": "docs/courses/baseball/exercises.md", "estimatedCount": 35 },
+    { "exerciseType": "decision-scenario", "specPath": "docs/courses/baseball/exercises.md", "estimatedCount": 90 },
+    { "exerciseType": "talk-track", "specPath": "docs/courses/baseball/exercises.md", "estimatedCount": 24 },
+    { "exerciseType": "timing-tap", "specPath": "docs/courses/baseball/exercises.md", "estimatedCount": 10 },
+    { "exerciseType": "say-this", "specPath": "docs/courses/baseball/exercises.md", "estimatedCount": 85 },
+    { "exerciseType": "fill-the-gap", "specPath": "docs/courses/baseball/exercises.md", "estimatedCount": 60 },
+    { "exerciseType": "listening-id", "specPath": "docs/courses/baseball/exercises.md", "estimatedCount": 8 },
+    { "exerciseType": "estimate-slider", "specPath": "docs/courses/baseball/exercises.md", "estimatedCount": 25 },
+    { "exerciseType": "hotspot-tap", "specPath": "docs/courses/baseball/exercises.md", "estimatedCount": 50 }
+  ],
+  "dynamicData": [
+    { "kind": "schedules", "providerCandidates": ["TheSportsDB (confirm MLB coverage)", "Sportradar MLB (upgrade path)", "SportsDataIO MLB (upgrade path)", "Official team schedules (link-out)"], "refreshFrequency": "daily", "notes": "162-game season with daily games April to September; hourly on game days for probable starters. The MLB Stats API (statsapi.mlb.com) is not licensed for commercial use and is not used without an agreement." },
+    { "kind": "scores", "providerCandidates": ["TheSportsDB (confirm coverage and terms)", "Sportradar MLB", "SportsDataIO MLB"], "refreshFrequency": "minutes-during-events", "notes": "Light need: final scores and current score for the followed team. A few minutes behind is acceptable (spec section 33). No pitch-by-pitch." },
+    { "kind": "standings", "providerCandidates": ["Same providers as scores", "Computed by Swoon'd from final results"], "refreshFrequency": "daily", "notes": "Division and wild-card standings, games behind, magic number computed by the app." },
+    { "kind": "statistics", "providerCandidates": ["Provider basic player and team stats", "Retrosheet (historical, attribution)", "Lahman database (CC BY-SA 3.0, legal check)", "Chadwick Bureau register (IDs)"], "refreshFrequency": "daily", "notes": "Baseball Savant (Statcast), FanGraphs and Baseball-Reference are link-out only; their terms restrict reuse." },
+    { "kind": "rosters", "providerCandidates": ["Provider roster endpoints", "Official team pages (link-out)"], "refreshFrequency": "daily", "notes": "Active roster, 26-man limit, IL list; call-ups explained via transactions." },
+    { "kind": "transactions", "providerCandidates": ["Sportradar / SportsDataIO transactions feeds (upgrade path)", "Official MLB transactions page (link-out)"], "refreshFrequency": "daily", "notes": "Trades, signings, DFAs, call-ups; hourly around the trade deadline. No licensed feed decision yet (L-04 pattern)." },
+    { "kind": "injuries", "providerCandidates": ["Official team/league injury lists (link-out)", "Sportradar / SportsDataIO (upgrade path)"], "refreshFrequency": "daily", "notes": "IL placements explained neutrally; no injury speculation or medical claims." },
+    { "kind": "events", "providerCandidates": ["Curated postseason bracket (from provider results)", "Official All-Star, Draft and Winter Meetings pages (link-out)"], "refreshFrequency": "seasonal", "notes": "Postseason bracket and dates, All-Star Game, Draft, Winter Meetings, Opening Day." },
+    { "kind": "regulations", "providerCandidates": ["MLB.com rules glossary and official rules (link-out)", "Curated editorial with rule numbers"], "refreshFrequency": "on-release", "notes": "Rule changes (pitch clock, ABS challenge, alignment rules) and CBA developments; dated cards. The CBA expires December 1, 2026." },
+    { "kind": "news", "providerCandidates": ["Publisher RSS headlines (link-only)", "MLB.com news (link-only)", "Beat-writer sites (link-only)"], "refreshFrequency": "daily", "notes": "Identify topics, explain in Swoon'd words, link out. Editorial provider decision is open (DECISIONS Q-3 / L-01)." },
+    { "kind": "rankings", "providerCandidates": ["Curated prospect and college rankings (link-out)", "D1Baseball (link-out)"], "refreshFrequency": "weekly", "notes": "Light: prospect and college branch context only." },
+    { "kind": "weather", "providerCandidates": ["National Weather Service API (public)"], "refreshFrequency": "hourly", "notes": "Optional game-day rainout and delay card, only when a region is set." }
+  ],
+  "editorial": {
+    "approach": "explain-and-link",
+    "sources": ["MLB.com news and rules glossary", "Team beat coverage (link-only)", "The Athletic, ESPN (link-only)", "Baseball America (link-only)", "FanGraphs (link-only)", "NCAA.org and D1Baseball (college branch, link-only)"],
+    "topicsWeExplain": [
+      "why a manager's pitching change is being debated",
+      "why the bullpen is the story after a blown lead",
+      "what the ABS challenge system changed and why fans argue about it",
+      "why the trade deadline and free agency matter to fans of her team",
+      "what a lockout is and why the CBA expires on December 1 2026",
+      "why the wild-card race or a division race is tight this week",
+      "why a milestone or an award race is being discussed"
+    ],
+    "copyrightPolicy": "Publisher article text and league copy are never copied; Swoon'd explains developments in its own words with links to the original publisher. Rulebook text is paraphrased with rule references."
+  },
+  "personalizationDimensions": ["team", "player", "league", "region", "skill-level"],
+  "conversationScenarios": {
+    "count": 24,
+    "path": "docs/courses/baseball/curriculum/course.json"
+  },
+  "masteryModel": {
+    "type": "concept-mastery-v1",
+    "passThreshold": 0.8,
+    "usefulCompetenceStatement": "She can follow a baseball game or a broadcast, read the scoreboard and the box score, understand the count and the modern rules, ask a couple of good questions about a bullpen or a lineup, and say 'okay, I get why you love this' without faking it."
+  },
+  "licensingConstraints": [
+    { "area": "imagery", "constraint": "Procedural or original illustrations only (license original-swoond); no MLB, team, player or ballpark photos and no baseball-card images." },
+    { "area": "audio", "constraint": "Original recordings or synthesised sounds only (license original-swoond); no broadcast audio and no licensed songs or recorded arrangements." },
+    { "area": "logos-trademarks", "constraint": "MLB, team, NCAA, NPB, KBO, World Series, Statcast and Gold Glove marks are trademarks: plain-text mentions and link-outs only, no logos or wordmarks; non-affiliation footer." },
+    { "area": "video", "constraint": "No embedded broadcast or highlight video; deep-link to official sources." },
+    { "area": "article-text", "constraint": "Never copy publisher or league article text; paraphrase and link." },
+    { "area": "data-provider-terms", "constraint": "The MLB Stats API and Baseball Savant are not used in production without a licence; FanGraphs and Baseball-Reference are link-out only; Retrosheet needs its notice; the Lahman database is CC BY-SA 3.0 (share-alike, legal check); NCAA statistics and D1Baseball rankings are link-out only." },
+    { "area": "player-likeness", "constraint": "Names as facts only; no likeness, endorsement implication, or fabricated quotes; historical figures discussed factually and respectfully." },
+    { "area": "other", "constraint": "No betting or gambling content; labour-dispute and PED-era topics are neutral, factual and dated." }
+  ],
+  "safetyConstraints": [
+    "Youth baseball notes (pitch counts, rest days) are league safety rules, not medical advice; injury topics such as Tommy John surgery are explained as context and never as predictions about named players.",
+    "Etiquette and umpire or fan conflict scenarios teach de-escalation; never coach confrontation, and heckling lessons teach good-natured cheering only.",
+    "Ballpark tips include foul-ball awareness (watch the ball, keep children away from the dugout side); Swoon'd is not a substitute for any coaching or safety training.",
+    "Never encourage the learner to fake knowledge or expertise with the person they care about."
+  ],
+  "relatedCourses": [
+    { "courseId": "hockey", "relationship": "sibling-independent" },
+    { "courseId": "basketball", "relationship": "sibling-independent" },
+    { "courseId": "american-football", "relationship": "sibling-independent" }
+  ]
+}

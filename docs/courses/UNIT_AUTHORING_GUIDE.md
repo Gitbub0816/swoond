@@ -23,6 +23,12 @@ reviewPolicy, unitOrder) + `docs/courses/<courseId>/curriculum/units/NN-<unit-id
 8. **Concepts**: reference concept ids that exist in `course.json`. Do NOT add unit-local concepts (parallel agents would collide); if a needed concept is missing, list it in your report instead.
 9. **Only write your own unit file.** Never edit `course.json`, other units, the manifest or shared files.
 10. **Safety** (outdoors, fitness, food, etc.): conservative, follow the CDS safety constraints.
+11. **Exact schema fields.** Before writing each activity, open `docs/contracts/native-exercises/v1/<type>.schema.json`
+    and use exactly its field names. Past agents invented fields (`correctOrder`, `images`, `correctImageId`, `fanLine`,
+    `replies`, `spots`, `context`, `title`, `scenario`, `dilemma`) and were rejected. Copy structure from an accepted
+    unit in the same course.
+12. **Report honestly.** Your reply must paste the exact validator output lines for your file. Any `FAIL` or
+    `LINT-FAIL` line means you are not done. The orchestrator re-runs the validator; a false "pass" is caught.
 
 ## Validate
 `cd tools/validate && node validate.mjs --course <courseId> --partial` (if `--partial` is unavailable, run without it and ignore only `missing-unit` and `no-sims` errors caused by other unwritten units). Your unit must have **zero** schema and lint errors.

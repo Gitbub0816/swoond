@@ -973,3 +973,399 @@ All audio is **original synthesized** by Swoon'd; nothing is sampled from a game
 }
 ```
 
+## 3. Playbook terms (79)
+
+Definition plus an example line in the enthusiast's voice. The `conceptId` column reuses the curriculum concept ids from the CDS map.
+
+| Term | conceptId | Definition | Example line |
+|---|---|---|---|
+| Console | `console` | A dedicated gaming box or handheld you plug into a TV or carry. | "I only play on console, I don't want to tinker." |
+| PC gaming | `pc-gaming` | Playing on a computer, usually with a keyboard and mouse. | "My PC can run it at max settings." |
+| Handheld | `handheld` | A portable machine you play in your hands. | "I finished the whole thing on my handheld." |
+| Exclusive | `exclusive` | A game you can only get on one platform. | "It's a console exclusive, so I can't play it." |
+| Port | `port` | A game moved to another platform. | "The PC port runs so well." |
+| Crossplay | `crossplay` | Playing with people on other platforms. | "Crossplay is on, so my friends can join." |
+| Cross-save | `cross-save` | Sharing one save across platforms. | "I started on Switch and continued on PC." |
+| Frame rate (fps) | `frame-rate-fps` | How many pictures the game draws each second. | "I'm playing in performance mode for 60 fps." |
+| Ray tracing | `ray-tracing` | A lighting method with realistic reflections that costs performance. | "Ray tracing looks gorgeous but tanks my frames." |
+| Performance vs quality mode | `performance-vs-quality-mode` | A console choice between smoother play and prettier pictures. | "Quality mode looks nicer but I'll take smooth." |
+| Backwards compatibility | `backwards-compatibility` | A newer machine playing older games. | "Backwards compatibility means my old library still works." |
+| Storefront | `storefront` | The store where you buy and download games. | "It's on sale on the store right now." |
+| HUD | `hud` | The on-screen health, ammo and map. | "I turned the HUD off for immersion." |
+| Cooldown | `cooldown` | The wait before an ability can be used again. | "My cooldowns are the whole game." |
+| I-frames | `i-frames` | Brief invincibility during a dodge or action. | "The roll has generous i-frames." |
+| Aggro | `aggro` | How much an enemy wants to attack you. | "I pulled aggro and the whole camp came." |
+| Checkpoint | `checkpoint` | A spot where the game saves your progress. | "The checkpoint was so far from the boss." |
+| Permadeath | `permadeath` | Dying erases your run or character. | "Permadeath makes every fight matter." |
+| XP and levels | `xp-levels` | Points that raise your character's power. | "I need one more level before the boss." |
+| Loot | `loot` | Items you find or win. | "The loot in this dungeon is unreal." |
+| Boss fight | `boss-fight` | A big, patterned fight against a strong enemy. | "That boss took me forty tries." |
+| NPC | `npc` | A character the game controls, not a player. | "The NPC gave me a side quest." |
+| Core loop | `core-loop` | The repeated cycle that makes a game addictive. | "The core loop is just so satisfying." |
+| New Game Plus | `new-game-plus` | A second playthrough with your progress kept. | "I'm doing New Game Plus for the harder bosses." |
+| FPS (genre) | `fps` | A first-person shooter. | "I mostly play FPS games." |
+| Souls-like | `soulslike` | Hard, pattern-based action games with costly deaths. | "It's a Souls-like, so bring patience." |
+| Metroidvania | `metroidvania` | A map you unlock with new abilities. | "Every Metroidvania has one ability that changes everything." |
+| Battle royale | `battle-royale` | A last-player-standing match on a shrinking map. | "I got into the final circle in battle royale." |
+| MOBA | `moba` | A team lane-based strategy game like League of Legends. | "MOBA games have a steep learning curve." |
+| MMO | `mmo` | A huge online world with thousands of players. | "I've got a raid with my MMO guild tonight." |
+| JRPG | `jrpg` | A role-playing game in the Japanese tradition, often turn-based. | "JRPGs have the best soundtracks." |
+| Sandbox | `sandbox` | An open world where you make your own goals. | "I've built a whole city in this sandbox." |
+| Cozy game | `cozy-game` | A gentle, low-stress game. | "I need a cozy game after a stressful week." |
+| Live service | `live-service` | A game updated and monetized for years. | "It's a live-service game, so it keeps changing." |
+| Season | `season` | A fixed period with new content and rewards. | "Season 4 starts next week." |
+| Battle pass | `battle-pass` | A season reward track. | "I'm grinding the battle pass before it ends." |
+| Patch notes | `patch-notes` | The list of what an update changed. | "Did you read the patch notes? They gutted my build." |
+| DLC | `dlc` | Extra content sold after launch. | "The DLC adds a whole new area." |
+| Early access | `early-access` | Playing a game before it is finished. | "It's in early access, so expect bugs." |
+| Free-to-play | `free-to-play` | A game with no upfront cost. | "It's free-to-play, but the pass is worth it." |
+| Microtransaction | `microtransaction` | A small in-game purchase. | "No microtransactions, thank goodness." |
+| Loot box | `loot-box` | A paid or earned random reward. | "The loot boxes feel like gambling." |
+| Gacha | `gacha` | A random-pull reward system, often in mobile games. | "I'm saving up for the next gacha banner." |
+| Pay-to-win | `pay-to-win` | When paying gives a real gameplay advantage. | "It turned pay-to-win after the update." |
+| Matchmaking | `matchmaking` | How the game picks your opponents. | "Matchmaking keeps putting me against pros." |
+| Ranked play | `ranked-play` | A competitive mode with a ladder. | "I'm grinding ranked this weekend." |
+| MMR | `mmr-elo` | A hidden skill number that sorts players. | "My MMR dropped after that losing streak." |
+| GG | `gg` | Good game: what you say after a match. | "gg, that was a fun one." |
+| AFK | `afk` | Away from keyboard. | "Sorry, I was AFK getting snacks." |
+| Noob | `noob` | A beginner, sometimes an insult. | "Don't call her a noob, we all started." |
+| LFG | `lfg` | Looking for group. | "LFG for the raid, need a healer." |
+| Nerf / buff | `nerf-buff` | A change that weakens or strengthens something. | "They nerfed my main's damage." |
+| OP | `op-overpowered` | So strong it breaks balance. | "That weapon is so OP." |
+| Meta | `meta` | The strategies currently considered best. | "The meta has shifted after the patch." |
+| Tier list | `tier-list` | A ranking of characters or builds by strength. | "The tier list has my main at the bottom." |
+| Clutch | `clutch` | Winning when the odds are against you. | "That clutch in overtime was insane." |
+| Carry | `carry` | To win the game for your team. | "She carried us through the whole match." |
+| Sweaty | `sweaty` | Very try-hard. | "That lobby was so sweaty." |
+| RNG | `rng` | Random luck in a game. | "The RNG was not kind tonight." |
+| Grind | `grind` | Repeating tasks to progress. | "I've been grinding for the last piece of gear." |
+| Farm | `farm` | Repeating content to collect items or currency. | "I'm farming that boss for a rare drop." |
+| Drop rate | `drop-rate` | The chance an item appears. | "The drop rate is under one percent." |
+| Backlog | `backlog` | The games you own but have not played. | "My backlog is out of control." |
+| Completionist | `completionist` | Someone who does everything in a game. | "I'm a completionist, I want every trophy." |
+| Speedrun | `speedrun` | Finishing a game as fast as possible. | "I watched a speedrun of the whole game in an hour." |
+| Lag | `lag` | A delay between your action and the result. | "Lag killed me in the last fight." |
+| Ping | `ping` | The time your connection takes to reach the server. | "My ping spiked and I died." |
+| Tank, healer, DPS | `tank-healer-dps` | Team roles: soak damage, restore health, deal damage. | "We need a tank and a healer." |
+| Callouts | `callouts` | Teammates naming enemy positions. | "Her callouts are the reason we won." |
+| Tilt | `tilt` | Playing badly because you are frustrated. | "I'm on tilt, I should stop for tonight." |
+| Smurf | `smurf` | A skilled player on a low-rank account. | "There's a smurf in my lobby, it's brutal." |
+| Aim assist | `aim-assist` | Built-in help that eases aiming on controllers. | "Aim assist is what makes controller shooters playable." |
+| Deadzone | `deadzone` | The small stick range the game ignores. | "My stick drifts, I need a bigger deadzone." |
+| Hitbox | `hitbox` | The invisible shape that decides hits. | "The hitbox on that boss is huge." |
+| Tick rate | `tick-rate` | How often a game server updates. | "Higher tick rate makes shooting feel fair." |
+| Rollback netcode | `rollback-netcode` | Online play that guesses inputs to hide lag. | "Rollback netcode saved the online mode." |
+| Esports | `esports` | Organized competitive gaming. | "I watch esports more than regular sports." |
+| Worlds | `worlds` | The world championship of a game. | "Worlds is my Super Bowl." |
+| Draft (pick/ban) | `draft-pick-ban` | Teams choosing and banning characters before a match. | "The draft decided the whole series." |
+
+## 4. Talk Track scenarios (9)
+
+Each scenario shows the enthusiast's line, what it means, and three replies per exchange: good (curious and specific), meh (safe but flat) and cringe (bluffing or dismissive), with a coach note. The JSON is the exact `talk-track` payload. Smooth starts at 50; a good reply is +20 to +30, meh about 0 to +10, cringe -10 to -20.
+
+### 4.1 She hit a new rank (`tt-ranked-up`, lesson `conv-01`)
+
+- **Her line 1:** "I finally hit Platinum in ranked!" Means: she climbed a competitive ladder tier after grinding; terms `ranked-play`, `rank-tiers`.
+- **Her line 2:** "I was stuck in Gold for like two months." Means: she plateaued, which is common; term `tilt`.
+
+```json
+{
+  "title": "She ranked up",
+  "setting": "She texts a screenshot's worth of excitement after a long climb.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "I finally hit Platinum in ranked!",
+      "replies": [
+        { "id": "a", "text": "Congrats! That must have been a grind.", "smoothDelta": 25, "theirResponse": "It really was. Weeks of losing streaks.", "coachNote": "You named the effort. Good." },
+        { "id": "b", "text": "Nice. Is that good?", "smoothDelta": 5, "theirResponse": "It's a real step up, yeah!", "coachNote": "Honest but flat. Ask about the climb next." },
+        { "id": "c", "text": "Cool, I bet the ranks are easy to inflate.", "smoothDelta": -20, "theirResponse": "Wow. Okay.", "coachNote": "Never shrink her win." }
+      ]
+    },
+    {
+      "theirMessage": "I was stuck in Gold for like two months.",
+      "replies": [
+        { "id": "a", "text": "What finally got you unstuck?", "smoothDelta": 25, "theirResponse": "I stopped forcing fights and played the objective.", "coachNote": "A real question invites her to teach you." },
+        { "id": "b", "text": "That sounds annoying.", "smoothDelta": 8, "theirResponse": "It was. I almost quit.", "coachNote": "Kind, but it stops the flow. Ask what changed." },
+        { "id": "c", "text": "Why not just play with better people?", "smoothDelta": -12, "theirResponse": "It doesn't really work like that.", "coachNote": "Matchmaking is not a friend-list problem." }
+      ]
+    }
+  ],
+  "closingNote": "Ranked is a ladder. Ask about the climb, not whether the ladder is easy."
+}
+```
+
+### 4.2 The boss took forty tries (`tt-boss-tries`, lesson `aa-01`)
+
+- **Her line 1:** "That boss took me forty tries but I finally learned his pattern." Means: boss games are about learning telegraphs; terms `boss-pattern`, `telegraph`.
+- **Her line 2:** "The second phase has that delayed swing that gets me every time." Means: the boss changes moves at half health; term `phase-change`.
+
+```json
+{
+  "title": "The boss finally fell",
+  "setting": "She has been stuck on a boss for a week.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "That boss took me forty tries but I finally learned his pattern.",
+      "replies": [
+        { "id": "a", "text": "Forty tries! What was the tell you finally spotted?", "smoothDelta": 28, "theirResponse": "He lifts his shoulder before the big swing. I had missed it all week.", "coachNote": "You know bosses have tells. That's exactly the right question." },
+        { "id": "b", "text": "Wow, that's a lot of dying.", "smoothDelta": 6, "theirResponse": "Yeah, but it's part of the fun, weirdly.", "coachNote": "Fair, but ask what she learned." },
+        { "id": "c", "text": "Couldn't you just level up first?", "smoothDelta": -10, "theirResponse": "That's not really how this game works.", "coachNote": "Some games test skill, not stats." }
+      ]
+    },
+    {
+      "theirMessage": "The second phase has that delayed swing that gets me every time.",
+      "replies": [
+        { "id": "a", "text": "Is that when he changes moves at half health?", "smoothDelta": 22, "theirResponse": "Exactly! You've clearly played a game like this.", "coachNote": "Phases are a common idea. You reasoned it out." },
+        { "id": "b", "text": "Just dodge later, right?", "smoothDelta": -5, "theirResponse": "That's the trick, yes. Harder than it sounds!", "coachNote": "Not wrong, but it can sound like advice." },
+        { "id": "c", "text": "Just dodge, it's easy!", "smoothDelta": -18, "theirResponse": "Cool, you do it then.", "coachNote": "Never say 'just' to someone who died forty times." }
+      ]
+    }
+  ],
+  "closingNote": "Boss fights teach through failure. Ask what she learned, not why she did not skip it."
+}
+```
+
+### 4.3 They nerfed her main (`tt-nerfed-main`, lesson `vocab-02`)
+
+- **Her line 1:** "They nerfed my main again. I can't believe it." Means: developers weakened her favorite character; terms `nerf-buff`, `patch-notes`.
+- **Her line 2:** "Now the meta is all about the new hero, so everybody's picking him." Means: the currently best strategies shifted; term `meta`.
+
+```json
+{
+  "title": "Nerfed again",
+  "setting": "She's upset after a balance patch.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "They nerfed my main again. I can't believe it.",
+      "replies": [
+        { "id": "a", "text": "Ugh, that's rough. What did they change?", "smoothDelta": 25, "theirResponse": "Damage down and cooldown up. It's brutal.", "coachNote": "You sympathized and asked for detail." },
+        { "id": "b", "text": "That's just how patches go.", "smoothDelta": -5, "theirResponse": "Yeah, but it hurts.", "coachNote": "True but cold. Lead with sympathy." },
+        { "id": "c", "text": "Isn't it good for balance though?", "smoothDelta": -15, "theirResponse": "Not when it's my main getting hit.", "coachNote": "Taking the devs' side while she's upset is risky." }
+      ]
+    },
+    {
+      "theirMessage": "Now the meta is all about the new hero, so everybody's picking him.",
+      "replies": [
+        { "id": "a", "text": "Are you going to switch, or stay with your main?", "smoothDelta": 25, "theirResponse": "Stay with my main! I have too many hours.", "coachNote": "Great: it's about her choice, not the tier list." },
+        { "id": "b", "text": "What is the meta again?", "smoothDelta": 8, "theirResponse": "It's whatever's strongest right now. It changes each patch.", "coachNote": "Honest question. Good if it is real curiosity." },
+        { "id": "c", "text": "Then just play the new hero, obviously.", "smoothDelta": -15, "theirResponse": "It's not that simple, I love my main.", "coachNote": "Games are also about attachment, not only power." }
+      ]
+    }
+  ],
+  "closingNote": "A nerf weakens; the meta shifts. She is telling you about loss and loyalty, not only numbers."
+}
+```
+
+### 4.4 The raid recap (`tt-raid-recap`, lesson `conv-02`)
+
+- **Her line 1:** "We wiped four times on the last boss but our healer finally had it down." Means: her group failed four attempts before succeeding; terms `raid`, `wipe`, `tank-healer-dps`.
+- **Her line 2:** "Then I got my first piece of the new set." Means: she earned gear; term `loot`.
+
+```json
+{
+  "title": "Raid night recap",
+  "setting": "She gives a long, happy recap after a raid.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "We wiped four times on the last boss but our healer finally had it down.",
+      "replies": [
+        { "id": "a", "text": "Four wipes and then a win. What changed on the fifth try?", "smoothDelta": 28, "theirResponse": "Everyone stopped standing in the fire, honestly.", "coachNote": "You understood wipes and asked about the fix." },
+        { "id": "b", "text": "Sounds intense.", "smoothDelta": 5, "theirResponse": "It really was!", "coachNote": "Kind, but it does not invite more." },
+        { "id": "c", "text": "Your healer must be bad if you died that much.", "smoothDelta": -20, "theirResponse": "That's not fair. They were great.", "coachNote": "Do not assign blame for people you've never met." }
+      ]
+    },
+    {
+      "theirMessage": "Then I got my first piece of the new set.",
+      "replies": [
+        { "id": "a", "text": "Which piece? Are you close to completing the set?", "smoothDelta": 22, "theirResponse": "Only the chest so far, four more to go.", "coachNote": "Showing you get that gear comes in sets is charming." },
+        { "id": "b", "text": "Nice loot.", "smoothDelta": 8, "theirResponse": "Thanks!", "coachNote": "Fine, but try asking what it does." },
+        { "id": "c", "text": "Is that the one you buy with real money?", "smoothDelta": -12, "theirResponse": "No, I earned it in the raid.", "coachNote": "Do not assume purchases; ask first." }
+      ]
+    }
+  ],
+  "closingNote": "A wipe is a failed group attempt. Ask what changed, not who was to blame."
+}
+```
+
+### 4.5 Laggy night (`tt-laggy-night`, lesson `conv-03`)
+
+- **Her line 1:** "My internet was terrible tonight. I couldn't even hit anyone." Means: high ping and lag made her lose fights; terms `lag`, `ping`.
+- **Her line 2:** "I'm just so tilted right now." Means: she is frustrated and playing worse; term `tilt`.
+
+```json
+{
+  "title": "The laggy night",
+  "setting": "She messages you angry after a bad session.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "My internet was terrible tonight. I couldn't even hit anyone.",
+      "replies": [
+        { "id": "a", "text": "That sounds so frustrating. Was it lag or your Wi-Fi?", "smoothDelta": 25, "theirResponse": "Both! My ping was spiking all night.", "coachNote": "You listened first and asked a real question." },
+        { "id": "b", "text": "Just get better internet.", "smoothDelta": -18, "theirResponse": "Thanks, wow, I'll do that.", "coachNote": "Do not solve it. She wants to be heard." },
+        { "id": "c", "text": "Ouch.", "smoothDelta": 3, "theirResponse": "Yeah.", "coachNote": "Empathy, but no invitation to talk more." }
+      ]
+    },
+    {
+      "theirMessage": "I'm just so tilted right now.",
+      "replies": [
+        { "id": "a", "text": "Want to vent, or want me to distract you?", "smoothDelta": 28, "theirResponse": "Distract me. Tell me something dumb.", "coachNote": "Giving her the choice is gold." },
+        { "id": "b", "text": "Maybe take a break from gaming?", "smoothDelta": -10, "theirResponse": "I know. Please don't lecture.", "coachNote": "Health tips land better when asked for." },
+        { "id": "c", "text": "It's just a game.", "smoothDelta": -20, "theirResponse": "Right. Not helpful.", "coachNote": "Never shrink her frustration." }
+      ]
+    }
+  ],
+  "closingNote": "Tilt is frustration that makes you play worse. Listen before fixing."
+}
+```
+
+### 4.6 What should I play? (`tt-recommend`, lesson `conv-04`)
+
+- **Her line 1:** "You said you wanted to try something? What kind of games do you like?" Means: she is offering to recommend; term `difficulty-fit`.
+- **Her line 2:** "Try this cozy farming one, it's perfect for beginners." Means: a genre suggestion; terms `cozy-game`, `farming-sim`.
+
+```json
+{
+  "title": "Recommend me something",
+  "setting": "She offers to pick a game for you.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "You said you wanted to try something? What kind of games do you like?",
+      "replies": [
+        { "id": "a", "text": "I like relaxing things and stories, but I'm not good at fast games.", "smoothDelta": 28, "theirResponse": "Perfect, that gives me a lot to work with.", "coachNote": "Honest about your taste and skill. She can now recommend well." },
+        { "id": "b", "text": "Whatever you like is fine.", "smoothDelta": 3, "theirResponse": "Hmm, okay, I'll think about it.", "coachNote": "Polite but unhelpful. Give her one preference." },
+        { "id": "c", "text": "I want to play the hardest game you own.", "smoothDelta": -15, "theirResponse": "Uh, you'll hate it, but okay.", "coachNote": "Do not bluff about skill." }
+      ]
+    },
+    {
+      "theirMessage": "Try this cozy farming one, it's perfect for beginners.",
+      "replies": [
+        { "id": "a", "text": "Cozy sounds great. What do you like about it?", "smoothDelta": 22, "theirResponse": "It's like a little routine I look forward to each day.", "coachNote": "You accepted and asked why she loves it." },
+        { "id": "b", "text": "Is it free?", "smoothDelta": -3, "theirResponse": "No, but it's on sale a lot.", "coachNote": "Fair, but wait a beat before price." },
+        { "id": "c", "text": "That sounds boring.", "smoothDelta": -18, "theirResponse": "Ouch. It's actually really engaging.", "coachNote": "Don't dismiss her suggestion." }
+      ]
+    }
+  ],
+  "closingNote": "When she recommends, be honest about your taste and curious about her reasons."
+}
+```
+
+### 4.7 Come play with me (`tt-co-op-night`, lesson `conv-05`)
+
+- **Her line 1:** "Want to play co-op tonight? It's easy, I promise." Means: an invitation; term `couch-coop`.
+- **Her line 2:** "You can just follow me and revive me if I go down." Means: a beginner-friendly role in co-op; terms `let-her-lead`, `support-role`.
+
+```json
+{
+  "title": "Come play with me",
+  "setting": "She invites you to a co-op night.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "Want to play co-op tonight? It's easy, I promise.",
+      "replies": [
+        { "id": "a", "text": "Yes! I'm a total beginner though, so be patient.", "smoothDelta": 28, "theirResponse": "Deal. I'll take it slow.", "coachNote": "Honest and warm. Perfect." },
+        { "id": "b", "text": "I can't tonight, sorry.", "smoothDelta": -5, "theirResponse": "Oh, okay. Another time.", "coachNote": "Fine if true. Offer another night." },
+        { "id": "c", "text": "Sure, I'm actually pretty good at games.", "smoothDelta": -18, "theirResponse": "Oh! Okay, we'll see.", "coachNote": "Bluffing skill backfires fast." }
+      ]
+    },
+    {
+      "theirMessage": "You can just follow me and revive me if I go down.",
+      "replies": [
+        { "id": "a", "text": "Follow and revive. I can do that. Anything I should not touch?", "smoothDelta": 22, "theirResponse": "Just the red barrels. Everything else is fine.", "coachNote": "You accepted the plan and asked a safe question." },
+        { "id": "b", "text": "Okay, I'll just do my own thing.", "smoothDelta": -12, "theirResponse": "Uh, that's kind of the opposite.", "coachNote": "Co-op means playing together." },
+        { "id": "c", "text": "Sure. Where do I press to revive?", "smoothDelta": 12, "theirResponse": "I'll show you when it happens.", "coachNote": "A fine, honest beginner question." }
+      ]
+    }
+  ],
+  "closingNote": "Say yes honestly. Being a willing beginner is a good partner."
+}
+```
+
+### 4.8 The console got pricier (`tt-new-console`, lesson `buy-01` / live)
+
+- **Her line 1:** "They raised the console price again. I'm so annoyed." Means: platform holder price rise; term `price-debate`.
+- **Her line 2:** "I might just wait for a sale or get the handheld instead." Means: she is weighing purchase options; terms `seasonal-sale`, `handheld`.
+
+```json
+{
+  "title": "The console price hike",
+  "setting": "She reacts to news about a price increase.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "They raised the console price again. I'm so annoyed.",
+      "replies": [
+        { "id": "a", "text": "Ugh, that's frustrating. Are you thinking of buying one?", "smoothDelta": 24, "theirResponse": "I was! Now I'm not sure.", "coachNote": "You empathized and asked about her plans." },
+        { "id": "b", "text": "That's just how prices go.", "smoothDelta": -5, "theirResponse": "Well, thanks for that.", "coachNote": "Accurate, but cold." },
+        { "id": "c", "text": "Just buy a PC then.", "smoothDelta": -15, "theirResponse": "That costs even more, come on.", "coachNote": "Do not give one-line fixes." }
+      ]
+    },
+    {
+      "theirMessage": "I might just wait for a sale or get the handheld instead.",
+      "replies": [
+        { "id": "a", "text": "What would the handheld let you play that you can't now?", "smoothDelta": 24, "theirResponse": "I could play in bed or on the train. And all my old games.", "coachNote": "A question about what she'd gain. Great." },
+        { "id": "b", "text": "Sales are good.", "smoothDelta": 3, "theirResponse": "Yeah, the big ones are worth waiting for.", "coachNote": "Fine, but ask her thinking." },
+        { "id": "c", "text": "Just buy whatever, money isn't a big deal.", "smoothDelta": -15, "theirResponse": "It is for me, actually.", "coachNote": "Do not assume her budget." }
+      ]
+    }
+  ],
+  "closingNote": "Prices are a real part of gaming talk. Ask what she is weighing, not what she should buy."
+}
+```
+
+### 4.9 Watching the world championship (`tt-worlds-watch`, lesson `esp-04`)
+
+- **Her line 1:** "Worlds starts this week and I'm taking the day off to watch." Means: the world championship of her game; term `worlds`.
+- **Her line 2:** "My team has a rough group, but they've got a chance if they win the first match." Means: teams sorted into groups; terms `bracket-formats`, `org-brand`.
+
+```json
+{
+  "title": "Worlds week",
+  "setting": "She is excited about an esports championship.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "Worlds starts this week and I'm taking the day off to watch.",
+      "replies": [
+        { "id": "a", "text": "That's awesome. Who are you rooting for?", "smoothDelta": 28, "theirResponse": "My favorite team! They barely made it.", "coachNote": "Simple, warm and about her." },
+        { "id": "b", "text": "You're taking a day off for video games?", "smoothDelta": -18, "theirResponse": "It's like a sports final for me.", "coachNote": "Never mock the effort; treat it like a final." },
+        { "id": "c", "text": "Cool. What's Worlds?", "smoothDelta": 10, "theirResponse": "The big international tournament for my game!", "coachNote": "An honest question that lets her explain." }
+      ]
+    },
+    {
+      "theirMessage": "My team has a rough group, but they've got a chance if they win the first match.",
+      "replies": [
+        { "id": "a", "text": "Who's in their group? Anyone they've beaten before?", "smoothDelta": 22, "theirResponse": "Two strong teams, but they beat one of them in the spring.", "coachNote": "Curious about the group and history. Good." },
+        { "id": "b", "text": "I hope they win!", "smoothDelta": 8, "theirResponse": "Me too!", "coachNote": "Kind, but ask something specific if you can." },
+        { "id": "c", "text": "Isn't that team kind of overrated?", "smoothDelta": -20, "theirResponse": "Excuse me?", "coachNote": "Never criticize her team unprompted." }
+      ]
+    }
+  ],
+  "closingNote": "Treat esports like any final she cares about: ask who she is rooting for and why."
+}
+```
+
+## 5. Talk Track roster at launch (24)
+
+1. `tt-ranked-up` (conv-01), 2. `tt-boss-tries` (aa-01), 3. `tt-nerfed-main` (vocab-02), 4. `tt-raid-recap` (conv-02), 5. `tt-laggy-night` (conv-03), 6. `tt-recommend` (conv-04), 7. `tt-co-op-night` (conv-05), 8. `tt-new-console` (buy-01), 9. `tt-worlds-watch` (esp-04) (the nine above are written in full).
+10. `tt-backlog` (she is choosing what to play next), 11. `tt-cozy-village` (she shows her farm or island; `cozy-04`), 12. `tt-gift-hint` (she drops a wishlist hint; `buy-03`), 13. `tt-speedrun-clip` (she shares a speedrun; `cult-05`), 14. `tt-lets-play` (she watches a streamer; `tog-07`), 15. `tt-spoiler-save` (she asks you not to spoil; `aa-05`), 16. `tt-difficulty-debate` (she defends hard games; `deb-03`), 17. `tt-fighting-set` (she watches a set; `fight-04`), 18. `tt-shooter-clutch` (a clutch story; `shoot-05`), 19. `tt-moba-draft` (draft rant; `sm-05`), 20. `tt-gacha-pity` (pity rant; `rpg-05`), 21. `tt-your-first-game` (you tell her about your first game; `cult-01`), 22. `tt-remake-nostalgia` (a remake announced; `deb-05`), 23. `tt-patch-day` (patch-day dread; `live-04`), 24. `tt-honest-idk` (admit not knowing; `conv-07`).
+
+## 6. Asset needs (all `original-swoond`)
+
+- **Images (SVG, original):** `art/camera-view-a.svg` (third-person mock), `camera-view-b.svg` (first-person), `camera-view-c.svg` (isometric), `camera-view-d.svg` (side-scroller), `art/rarity-ladder.svg`, `art/hud-cooldown-ring.svg`, generic controller silhouettes, generic HUD diagrams (`hud-generic-shooter`, `hud-generic-rpg`, `moba-map-generic`, `controller-generic-twinstick`), a genre-map poster. None resembles a specific game.
+- **Audio (m4a, original synthesized):** `audio/cues/low-health-alarm.m4a`, `loot-chime.m4a`, `hit-marker-tick.m4a`, `level-up-jingle.m4a`, `menu-select-tick.m4a`, `checkpoint-tone.m4a`, `boss-warning-drone.m4a`, `ready-check-ding.m4a`, `victory-fanfare.m4a`, `defeat-sting.m4a`. Recipe documented with each file; no sampled game audio.
+- **Procedural diagrams (no file):** tournament bracket, rank ladder, timeline diagrams for i-frames, cooldowns and netcode.
+
+## 7. Voice and safety notes
+
+- Cheeky coach, never mean, never about her. One joke per screen. No jokes at the expense of any group of players (casuals, hardcore, mobile, console).
+- Never present a review score, sales number or price as a lesson fact; those are live cards with sources and dates.
+- Loot boxes and gacha are described neutrally; no pull simulation; never a spending nudge.
+- Toxicity scenarios teach mute/report/leave; safety notes appear where personal safety or spending worry is involved.
+- Never coach faking skill or ownership. Follow-ups are honest curiosity.
