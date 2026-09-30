@@ -27,67 +27,68 @@
             "type": "talk-track",
             "conceptIds": [
               "pole-position",
-              "starting-grid"
+              "starting-grid",
+              "race-start"
             ],
             "payload": {
               "title": "Pole on Sunday",
-              "setting": "Text before race day qualifying results. Her driver is on pole.",
+              "setting": "Sunday morning text. Her driver qualified on pole yesterday.",
               "startingSmooth": 50,
               "exchanges": [
                 {
-                  "theirMessage": "Pole!! By three tenths. At Monaco, basically the race is ours.",
+                  "theirMessage": "Pole!! By three tenths. Today could be huge, and I am not sleeping.",
                   "replies": [
                     {
                       "id": "good",
-                      "text": "Is it that hard to pass at Monaco?",
+                      "text": "Does starting first make it easy, or is the first corner the scary part?",
                       "smoothDelta": 25,
-                      "theirResponse": "Walls everywhere. Track position is everything.",
-                      "coachNote": "You linked pole to the circuit and asked why it matters. Great."
+                      "theirResponse": "Scary. The start and turn one are where it can go wrong.",
+                      "coachNote": "You asked about the risk, not just the result. That is real curiosity."
                     },
                     {
                       "id": "meh",
                       "text": "Nice! Congrats to him.",
                       "smoothDelta": 8,
                       "theirResponse": "Thanks! I am so nervous now.",
-                      "coachNote": "Kind, but does not open conversation. Ask what she is worried about."
+                      "coachNote": "Kind, but it does not open the conversation. Ask what she is worried about."
                     },
                     {
                       "id": "cringe",
                       "text": "Pole is just the first starting position.",
                       "smoothDelta": -18,
-                      "theirResponse": "I know that. At Monaco it means he will probably win.",
-                      "coachNote": "Stating the obvious instead of asking. Ask why it matters so much."
+                      "theirResponse": "I know that. It is still a big deal.",
+                      "coachNote": "Correct but flat. Ask why it matters to her instead."
                     }
                   ]
                 },
                 {
-                  "theirMessage": "Only 20 laps to go. One accident and everything changes.",
+                  "theirMessage": "One bad start and it is all gone. I cannot watch.",
                   "replies": [
                     {
                       "id": "good",
-                      "text": "Is that a short race for Monaco?",
+                      "text": "What happens if he gets a bad start? Do they lose a lot of places?",
                       "smoothDelta": 23,
-                      "theirResponse": "Yeah, it is one of the shortest on the calendar.",
-                      "coachNote": "Asking for context shows you are listening."
+                      "theirResponse": "Yes. A slow getaway lets the cars behind swarm him at the first corner.",
+                      "coachNote": "Asking what goes wrong shows you are listening."
                     },
                     {
                       "id": "meh",
-                      "text": "Accidents happen.",
+                      "text": "Try not to worry.",
                       "smoothDelta": 6,
-                      "theirResponse": "They sure do.",
-                      "coachNote": "True but flat. Ask how an accident changes the race."
+                      "theirResponse": "Easy for you to say!",
+                      "coachNote": "Kind, but it brushes her nerves aside. Ask about them."
                     },
                     {
                       "id": "cringe",
                       "text": "So he should just drive safely and he wins.",
                       "smoothDelta": -12,
-                      "theirResponse": "He is always careful. The other 19 drivers are not.",
-                      "coachNote": "Oversimplifying. Racing involves risk from rivals too."
+                      "theirResponse": "He is careful. The other nineteen are the problem.",
+                      "coachNote": "Racing involves rivals too, so avoid oversimplifying."
                     }
                   ]
                 }
               ],
-              "closingNote": "Pole position is first on the grid; at street circuits like Monaco, track position can decide the race."
+              "closingNote": "Pole is first on the grid, and the first corner is where it is most exposed. Ask what she worries about."
             }
           },
           {
@@ -175,11 +176,43 @@
             }
           },
           {
+            "id": "pt-01-bin-pole-guarantee",
+            "type": "binary-call",
+            "conceptIds": [
+              "pole-position",
+              "race-pace-vs-quali-pace"
+            ],
+            "payload": {
+              "prompt": "Does pole position guarantee a win on Sunday?",
+              "scene": {
+                "kind": "none",
+                "alt": "Text only: a driver starts first and wonders if that means victory."
+              },
+              "choices": [
+                {
+                  "id": "no",
+                  "label": "No, it only helps"
+                },
+                {
+                  "id": "yes",
+                  "label": "Yes, it is certain"
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Pole is a big advantage, but starts, strategy, tyres and safety cars can all change the result. Many races are lost from the front.",
+                "incorrect": "Starting first is an advantage, not a guarantee. A bad start or a strategy call can cost the lead.",
+                "sayThisLine": "Pole helps, but it is not a guarantee."
+              },
+              "ruleTag": "Pole position"
+            }
+          },
+          {
             "id": "pt-01-s-pole-and-start",
             "type": "say-this",
             "conceptIds": [
               "pole-position",
-              "race-start"
+              "starting-grid"
             ],
             "payload": {
               "statement": {
@@ -190,94 +223,82 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "She thinks pole is worth a big advantage at Monaco",
+                  "text": "Pole matters hugely at Monaco, because passing there is very hard.",
                   "isCorrect": true,
-                  "explanation": "Pole is the starting position; at a tight circuit it is huge."
+                  "explanation": "Right. On a tight street circuit, starting first is a big advantage."
                 },
                 {
                   "id": "b",
-                  "text": "She thinks he will definitely win",
-                  "isCorrect": true,
-                  "explanation": "Saying pole 'is basically the race' means she expects the win."
+                  "text": "Three tenths is a huge gap, so nobody will catch him.",
+                  "isCorrect": false,
+                  "explanation": "Three tenths is a good qualifying margin, but she is talking about the circuit, not the gap."
                 },
                 {
                   "id": "c",
-                  "text": "She thinks the margin of three tenths is large",
+                  "text": "The race is already over and boring.",
                   "isCorrect": false,
-                  "explanation": "Three tenths is close in qualifying; the advantage is the grid position."
+                  "explanation": "She is excited, not bored. The phrase means the grid position is worth a lot."
                 },
                 {
                   "id": "d",
-                  "text": "She thinks the race is already over and boring",
+                  "text": "He cannot lose because the cars are all the same.",
                   "isCorrect": false,
-                  "explanation": "She is excited; 'basically the race' means he is favoured."
+                  "explanation": "Cars are not the same. The point is that track position is hard to beat at Monaco."
                 }
               ],
-              "translation": "Starting first at Monaco is a huge advantage because the track is so tight and passing is nearly impossible; she expects the win.",
+              "translation": "At Monaco the track is tight and overtaking is very hard, so starting first is worth a lot. She is hoping it decides the race.",
               "followUps": [
                 {
-                  "line": "Is there any way second place can catch him?",
-                  "why": "Shows you are curious about how a race unfolds from this position."
+                  "line": "What makes Monaco so hard to pass on?",
+                  "why": "A genuine question about the circuit, not the result."
                 },
                 {
-                  "line": "Did he get pole because he is faster or is the car that good?",
-                  "why": "A genuine question about separating driver skill from car performance."
+                  "line": "Did he get pole because of the driver or the car?",
+                  "why": "It shows you are thinking about how the two fit together."
                 }
               ],
-              "noFakeExpertNote": "Do not pretend to know Monaco's layout. Ask her what makes it so hard to pass."
+              "noFakeExpertNote": "Do not pretend to know the layout. Ask her what makes Monaco so hard to pass."
             }
           },
           {
-            "id": "pt-01-s-first-lap-chaos",
-            "type": "say-this",
+            "id": "pt-01-mul-first-lap",
+            "type": "multiple-choice",
             "conceptIds": [
               "race-start",
               "starting-grid"
             ],
             "payload": {
-              "statement": {
-                "speaker": "James",
-                "text": "First lap and it is chaos. Three cars in the gravel already."
-              },
-              "question": "What does he mean?",
+              "prompt": "Why is lap one often chaotic?",
               "options": [
                 {
                   "id": "a",
-                  "text": "The start and first corner are always crowded and risky",
-                  "isCorrect": true,
-                  "explanation": "20 cars braking from speed together; accidents are common."
+                  "text": "Twenty cars are packed together and braking hard into the same first corner.",
+                  "explanation": "Right. Tight packs and cold tyres make contact more likely."
                 },
                 {
                   "id": "b",
-                  "text": "Three drivers got crashed out",
-                  "isCorrect": true,
-                  "explanation": "In gravel means they went off track and are likely DNF."
+                  "text": "The safety car always leads the first lap.",
+                  "explanation": "Only some races start behind the safety car, and usually only when conditions are very wet."
                 },
                 {
                   "id": "c",
-                  "text": "The track is wet and slippery",
-                  "isCorrect": false,
-                  "explanation": "Gravel is not mentioned; he is just describing lap-one chaos."
+                  "text": "The stewards have not started working yet.",
+                  "explanation": "Stewards are always at work. Lap-one chaos comes from the pack."
                 },
                 {
                   "id": "d",
-                  "text": "The stewards are investigating something",
-                  "isCorrect": false,
-                  "explanation": "The stewards look at incidents after the race."
+                  "text": "The cars cannot go above half speed.",
+                  "explanation": "Cars are at full speed. The danger is the crowding."
                 }
               ],
-              "translation": "The first lap is crazy and tightly packed; accidents are normal, and three drivers have already crashed out and gone off track.",
-              "followUps": [
-                {
-                  "line": "Is it always that chaotic on lap one?",
-                  "why": "A real question about F1 racing patterns."
-                },
-                {
-                  "line": "Does the leader survive the first lap easily?",
-                  "why": "Shows you are thinking about how grid position helps."
-                }
+              "correctOptionIds": [
+                "a"
               ],
-              "noFakeExpertNote": "You do not have to know why it happens. Ask why lap one is so risky."
+              "explanation": {
+                "correct": "On lap one the whole field is bunched and braking hard for the same corner, often on tyres that are not yet fully warm. That is why incidents are common.",
+                "incorrect": "Lap one is chaotic because twenty cars fight for space at the first corner. It is not about speed or rules.",
+                "sayThisLine": "Lap one is a scramble, so ask him to watch the first corner."
+              }
             }
           }
         ]
@@ -357,7 +378,7 @@
                   ]
                 }
               ],
-              "closingNote": "A podium is a top-three finish worth 15, 12 or 10 points; the championship is won over the whole season."
+              "closingNote": "A podium is a top-three finish worth 25, 18 or 15 points; the championship is won over the whole season."
             }
           },
           {
@@ -472,104 +493,136 @@
             "id": "pt-02-s-podium-meaning",
             "type": "say-this",
             "conceptIds": [
-              "podium"
+              "podium",
+              "points-system"
             ],
             "payload": {
               "statement": {
                 "speaker": "Sarah",
                 "text": "He is on the podium! Third place."
               },
-              "question": "What does she mean by 'on the podium'?",
+              "question": "What does she mean by the podium?",
               "options": [
                 {
                   "id": "a",
-                  "text": "He finished in the top three",
+                  "text": "He finished in the top three and gets a trophy ceremony.",
                   "isCorrect": true,
-                  "explanation": "The podium is the top three; he will stand on the ceremony platform."
+                  "explanation": "Right. Podium means first, second or third."
                 },
                 {
                   "id": "b",
-                  "text": "He scored points",
-                  "isCorrect": true,
-                  "explanation": "Third place is 10 points."
+                  "text": "He won the race.",
+                  "isCorrect": false,
+                  "explanation": "She said third, so not the win."
                 },
                 {
                   "id": "c",
-                  "text": "He won the race",
+                  "text": "He scored some points and nothing else.",
                   "isCorrect": false,
-                  "explanation": "Winning is first place; she said third."
+                  "explanation": "He scored points, but the podium is about the top three."
                 },
                 {
                   "id": "d",
-                  "text": "He did his best",
+                  "text": "He did his best, which is what counts.",
                   "isCorrect": false,
-                  "explanation": "Podium means a specific top-three result, not just effort."
+                  "explanation": "Podium is a specific result, not a general effort."
                 }
               ],
-              "translation": "He finished in third place, which means he will stand on the podium for the ceremony and score 10 championship points.",
+              "translation": "He finished in the top three, stands on the podium for the ceremony, and scores 15 championship points for third place.",
               "followUps": [
                 {
-                  "line": "How many points is first and second?",
-                  "why": "Learning the scoring system shows you care about the context."
+                  "line": "How many points is third worth?",
+                  "why": "Learning the scoring shows you care about the context."
                 },
                 {
                   "line": "Does a podium help his title chances?",
-                  "why": "A real question about how races stack up to a championship."
+                  "why": "It connects one result to the whole season."
                 }
               ],
-              "noFakeExpertNote": "Do not pretend to know the total points score. Ask how they add up."
+              "noFakeExpertNote": "You do not need the full points scale. Ask how they add up."
             }
           },
           {
-            "id": "pt-02-s-dnf-meaning",
-            "type": "say-this",
+            "id": "pt-02-fil-dnf-cost",
+            "type": "fill-the-gap",
             "conceptIds": [
-              "dnf"
+              "dnf",
+              "points-system"
             ],
             "payload": {
-              "statement": {
-                "speaker": "James",
-                "text": "Two DNFs in a row, that is bad for the championship."
-              },
-              "question": "Why is a DNF bad?",
-              "options": [
+              "prompt": "Complete the DNF sentence.",
+              "template": "A DNF scores {{points}} points, so rivals who {{finish}} gain ground.",
+              "gaps": [
                 {
-                  "id": "a",
-                  "text": "He scores zero points",
-                  "isCorrect": true,
-                  "explanation": "DNF means Did Not Finish. No points, no matter how close he was."
+                  "id": "points",
+                  "options": [
+                    "zero",
+                    "five",
+                    "ten"
+                  ],
+                  "correct": "zero"
                 },
                 {
-                  "id": "b",
-                  "text": "Rivals gain ground while he loses",
-                  "isCorrect": true,
-                  "explanation": "Rivals finish and score; he does not. The gap widens."
-                },
-                {
-                  "id": "c",
-                  "text": "He has to start at the back next race",
-                  "isCorrect": false,
-                  "explanation": "A DNF does not affect the next race's grid."
-                },
-                {
-                  "id": "d",
-                  "text": "He gets a time penalty",
-                  "isCorrect": false,
-                  "explanation": "A DNF is a mechanical issue or crash, not a penalty."
+                  "id": "finish",
+                  "options": [
+                    "finish",
+                    "retire",
+                    "wait"
+                  ],
+                  "correct": "finish"
                 }
               ],
-              "translation": "Did Not Finish means he scored zero points, while rivals who finished scored points, so he is falling further behind in the championship.",
-              "followUps": [
+              "explanation": {
+                "correct": "DNF means did not finish. A retirement scores nothing, while rivals who finish in the points gain ground, which is why reliability matters in a title fight.",
+                "incorrect": "A DNF scores zero points. Rivals who finish score, so the gap grows with each retirement.",
+                "sayThisLine": "A DNF is zero points and that really hurts."
+              }
+            }
+          },
+          {
+            "id": "pt-02-fil-podium-points",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "podium",
+              "points-system"
+            ],
+            "payload": {
+              "prompt": "Complete the podium points.",
+              "template": "The winner scores {{first}} points, second scores {{second}}, and third scores {{third}}.",
+              "gaps": [
                 {
-                  "line": "Is it the car or the driver when he DNFs?",
-                  "why": "A thoughtful question about the cause."
+                  "id": "first",
+                  "options": [
+                    "25",
+                    "20",
+                    "10"
+                  ],
+                  "correct": "25"
                 },
                 {
-                  "line": "Can he catch up in the last races?",
-                  "why": "Shows you are thinking about the calendar and points math."
+                  "id": "second",
+                  "options": [
+                    "18",
+                    "15",
+                    "12"
+                  ],
+                  "correct": "18"
+                },
+                {
+                  "id": "third",
+                  "options": [
+                    "15",
+                    "10",
+                    "8"
+                  ],
+                  "correct": "15"
                 }
               ],
-              "noFakeExpertNote": "You do not need to know if it is fixable. Ask what caused it."
+              "explanation": {
+                "correct": "A win is 25, second is 18 and third is 15. The points then drop down to tenth place.",
+                "incorrect": "The top three score 25, 18 and 15. Fourth is 12, then 10, 8, 6, 4, 2 and 1.",
+                "sayThisLine": "A win is worth twenty-five, a podium is at least fifteen."
+              }
             }
           }
         ]
@@ -687,7 +740,7 @@
                       "id": "good",
                       "text": "Does he get another attempt in qualifying?",
                       "smoothDelta": 24,
-                      "theirResponse": "Maybe one more run if fuel is left. But the track is still evolving.",
+                      "theirResponse": "Maybe one more run if there is time. But the track is still evolving.",
                       "coachNote": "You asked about recovery options, not blamed the rules."
                     },
                     {
@@ -711,62 +764,64 @@
             }
           },
           {
-            "id": "pt-03-s-pole-circuit",
+            "id": "pt-03-s-parc-ferme",
             "type": "say-this",
             "conceptIds": [
-              "qualifying"
+              "qualifying",
+              "parc-ferme"
             ],
             "payload": {
               "statement": {
                 "speaker": "Sarah",
-                "text": "Pole here is basically the race. Did you see how tight that circuit is?"
+                "text": "They cannot touch the car now. It is all parc ferme until the race."
               },
               "question": "What is she saying?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Starting position matters more at some circuits",
+                  "text": "After qualifying the car's set-up is largely locked, so teams must live with it in the race.",
                   "isCorrect": true,
-                  "explanation": "At tight, bumpy circuits, passing is hard, so pole is worth a lot."
+                  "explanation": "Right. Parc ferme limits changes once qualifying begins."
                 },
                 {
                   "id": "b",
-                  "text": "She thinks pole guarantees a win here",
-                  "isCorrect": true,
-                  "explanation": "She is saying pole is so valuable it essentially decides the race."
+                  "text": "The cars are taken off to a museum.",
+                  "isCorrect": false,
+                  "explanation": "Parc ferme means a locked car, not a display."
                 },
                 {
                   "id": "c",
-                  "text": "She thinks the race is already decided",
+                  "text": "The team is on a break and cannot work on the car.",
                   "isCorrect": false,
-                  "explanation": "She is expressing confidence, not saying the race is over."
+                  "explanation": "Teams still work on the car. They are just limited in what they can change."
                 },
                 {
                   "id": "d",
-                  "text": "She is criticising the circuit design",
+                  "text": "Drivers cannot practise any more.",
                   "isCorrect": false,
-                  "explanation": "She is commenting on its difficulty, not its design."
+                  "explanation": "Practice is over, but this is about the set-up being locked."
                 }
               ],
-              "translation": "At a tight circuit, starting first is such a huge advantage because passing is very difficult; she expects the pole-sitter to win.",
+              "translation": "Parc ferme is a rule that locks most of the car's set-up after qualifying, so the team has to race what it qualified with.",
               "followUps": [
                 {
-                  "line": "Are some circuits easier to pass on than others?",
-                  "why": "A genuine question about how circuit design affects racing."
+                  "line": "What can teams still change?",
+                  "why": "A good question: there are some limited changes allowed."
                 },
                 {
-                  "line": "What makes it so hard to pass at a tight circuit?",
-                  "why": "Shows you are curious about the mechanics, not just the result."
+                  "line": "Is that why qualifying set-up matters so much?",
+                  "why": "It links two ideas, which shows you are following."
                 }
               ],
-              "noFakeExpertNote": "You do not need to know the circuit. Ask why she thinks pole is so valuable."
+              "noFakeExpertNote": "You do not need the full rulebook. Ask what parc ferme locks."
             }
           },
           {
             "id": "pt-03-s-race-pace-specialist",
             "type": "say-this",
             "conceptIds": [
-              "race-pace-vs-quali-pace"
+              "race-pace-vs-quali-pace",
+              "qualifying"
             ],
             "payload": {
               "statement": {
@@ -777,41 +832,41 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "The driver is better at one lap than at managing a stint",
+                  "text": "The driver is sharper over one lap than over a long stint, since they are different skills.",
                   "isCorrect": true,
-                  "explanation": "Some drivers excel at single-lap pace (qualifying) but struggle over a long race."
+                  "explanation": "Right. Qualifying is a single flat-out lap; a race is tyre care and patience."
                 },
                 {
                   "id": "b",
-                  "text": "Race pace and one-lap pace can be different",
-                  "isCorrect": true,
-                  "explanation": "Qualifying is one lap flat-out; the race is 50 laps managing tyres."
+                  "text": "The car is unreliable in the race.",
+                  "isCorrect": false,
+                  "explanation": "It is the same car, and reliability is not what he is describing."
                 },
                 {
                   "id": "c",
-                  "text": "The car is unreliable",
+                  "text": "The driver is lazy on Sundays.",
                   "isCorrect": false,
-                  "explanation": "The car is the same on both days. He is describing the driver's style."
+                  "explanation": "It is not about effort. It is about a different kind of skill."
                 },
                 {
                   "id": "d",
-                  "text": "He is lazy in the race",
+                  "text": "The team gives him a slower engine in races.",
                   "isCorrect": false,
-                  "explanation": "Different challenges require different skills, not laziness."
+                  "explanation": "Teams do not do that. Both sessions use the same power unit."
                 }
               ],
-              "translation": "He is fast over a single qualifying lap but slower during the race when he has to manage tyres and traffic over 50+ laps. It is two different skills.",
+              "translation": "He is fast over a single qualifying lap but loses ground over a full race, which needs tyre care and consistency.",
               "followUps": [
                 {
-                  "line": "Can a driver improve his race pace, or is it just how he drives?",
-                  "why": "A thoughtful question about skill development."
+                  "line": "Can he improve his race pace, or is it just how he drives?",
+                  "why": "A thoughtful question about how skills develop."
                 },
                 {
-                  "line": "Does his qualifying pole help if his race pace is weak?",
-                  "why": "Shows you are linking concepts: pole advantage plus race-pace weakness."
+                  "line": "Is it the tyres or the traffic?",
+                  "why": "It helps you find the real reason."
                 }
               ],
-              "noFakeExpertNote": "Do not pretend to know his weaknesses. Ask why race and qualifying are so different."
+              "noFakeExpertNote": "Do not pretend to know his weaknesses. Ask why qualifying and racing are so different."
             }
           }
         ]
@@ -873,22 +928,24 @@
             "id": "pt-04-tt-undercut-fail",
             "type": "talk-track",
             "conceptIds": [
-              "undercut"
+              "undercut",
+              "pit-window",
+              "track-position"
             ],
             "payload": {
               "title": "Undercut backfired",
-              "setting": "After the race. His team tried to undercut the leader and it did not work.",
+              "setting": "After the race. His team tried an undercut and it did not work.",
               "startingSmooth": 50,
               "exchanges": [
                 {
-                  "theirMessage": "They undercut the leader and he still got him. Fresh tyres did not help.",
+                  "theirMessage": "They pitted first to undercut, and he still came out behind the car he was chasing.",
                   "replies": [
                     {
                       "id": "good",
-                      "text": "Was the leader too far ahead for the undercut to work?",
+                      "text": "Was the gap too big for the fresh tyres to make up?",
                       "smoothDelta": 26,
-                      "theirResponse": "Probably. The gap was too big.",
-                      "coachNote": "You understand that gaps matter. That is the key to understands."
+                      "theirResponse": "Probably. He was too far back for it to work.",
+                      "coachNote": "You understand that the gap matters. That is the key to an undercut."
                     },
                     {
                       "id": "meh",
@@ -899,67 +956,58 @@
                     },
                     {
                       "id": "cringe",
-                      "text": "The leader is just too good.",
+                      "text": "The car ahead is just too good.",
                       "smoothDelta": -14,
                       "theirResponse": "Or the car was better.",
-                      "coachNote": "Do not judge the driver. Overtaking depends on the car, gap and tyres."
+                      "coachNote": "Do not jump to the driver. Gap, traffic and tyres all matter."
                     }
                   ]
                 }
               ],
-              "closingNote": "An undercut works when the gap is small enough that fresh tyres can overcome it; a big gap needs a different strategy."
+              "closingNote": "An undercut works when the gap is small enough that fresh tyres can make it up. A big gap needs a different plan."
             }
           },
           {
-            "id": "pt-04-s-undercut-meaning",
-            "type": "say-this",
+            "id": "pt-04-ter-strategy-words",
+            "type": "term-match",
             "conceptIds": [
-              "undercut"
+              "undercut",
+              "overcut",
+              "pit-window",
+              "track-position"
             ],
             "payload": {
-              "statement": {
-                "speaker": "Sarah",
-                "text": "They undercut him and he never got it back."
-              },
-              "question": "What is she talking about?",
-              "options": [
+              "prompt": "Match each strategy word to what she means.",
+              "pairs": [
                 {
-                  "id": "a",
-                  "text": "A rival pitted first and gained track position",
-                  "isCorrect": true,
-                  "explanation": "Undercut means stopping first to jump ahead on fresh tyres."
+                  "id": "undercut",
+                  "term": "Undercut",
+                  "definition": "Pitting first so fresh tyres let you come out ahead."
                 },
                 {
-                  "id": "b",
-                  "text": "The rival's fresh tyres were quicker",
-                  "isCorrect": true,
-                  "explanation": "Fresh tyres are what make the move work."
+                  "id": "overcut",
+                  "term": "Overcut",
+                  "definition": "Staying out longer, then using clear air to gain the place."
                 },
                 {
-                  "id": "c",
-                  "text": "He was penalised for going under a line",
-                  "isCorrect": false,
-                  "explanation": "Undercut is a strategy term, not a penalty."
+                  "id": "pit-window",
+                  "term": "Pit window",
+                  "definition": "The range of laps when a stop makes the most sense."
                 },
                 {
-                  "id": "d",
-                  "text": "The engine broke",
-                  "isCorrect": false,
-                  "explanation": "No engine failure is mentioned here."
+                  "id": "track-position",
+                  "term": "Track position",
+                  "definition": "Where you are on the road, which matters when passing is hard."
                 }
               ],
-              "translation": "A rival stopped for fresh tyres before him, went faster on new rubber, and was still ahead when he stopped, so the rival won the positional battle.",
-              "followUps": [
-                {
-                  "line": "Would pitting sooner have helped him?",
-                  "why": "Shows you understand pit timing matters."
-                },
-                {
-                  "line": "Can you undercut someone if they are way ahead?",
-                  "why": "A smart question about when the strategy works."
-                }
+              "distractorDefinitions": [
+                "A penalty for using the pit lane speed limit.",
+                "A mandatory stop that must happen on lap one."
               ],
-              "noFakeExpertNote": "You do not have to know pit windows. Ask how far ahead the rival was."
+              "explanation": {
+                "summary": "These four words cover almost every strategy complaint: who pitted first, who stayed out, when the window opened and who held the place.",
+                "sayThisLine": "They got the undercut because the pit window opened early."
+              }
             }
           },
           {
@@ -971,44 +1019,44 @@
             "payload": {
               "statement": {
                 "speaker": "James",
-                "text": "The pit window is open. She needs to stop in the next lap or two or tyres are done."
+                "text": "The pit window is open. She needs to stop in the next few laps or the tyres are done."
               },
               "question": "What does he mean?",
               "options": [
                 {
                   "id": "a",
-                  "text": "There is a range of laps when pitting makes sense",
+                  "text": "There is a stretch of laps when a stop makes sense, and leaving it too long costs time.",
                   "isCorrect": true,
-                  "explanation": "The pit window is when a stop is strategically best."
+                  "explanation": "Right. The window is the best range of laps for a stop."
                 },
                 {
                   "id": "b",
-                  "text": "Tyres have a limited lifespan",
-                  "isCorrect": true,
-                  "explanation": "If she waits too long, tyres will fail and she will be very slow."
+                  "text": "Pitting is mandatory on this lap.",
+                  "isCorrect": false,
+                  "explanation": "The window is a recommendation, not a rule."
                 },
                 {
                   "id": "c",
-                  "text": "Pitting is mandatory",
+                  "text": "She will crash if she does not pit.",
                   "isCorrect": false,
-                  "explanation": "The pit window is when it should happen, but a driver could delay."
+                  "explanation": "Old tyres are slow, but they are not usually dangerous."
                 },
                 {
                   "id": "d",
-                  "text": "She will crash if she does not pit",
+                  "text": "The pits are closed for now.",
                   "isCorrect": false,
-                  "explanation": "Old tyres are slow, not dangerous in that sense."
+                  "explanation": "The pit lane is open. The window is about strategy."
                 }
               ],
-              "translation": "There is a specific range of laps (usually 2-5 laps wide) when stopping for fresh tyres will maximise her race position; if she waits longer, her current tyres will be too worn and she will lose time.",
+              "translation": "There is a range of laps when stopping for fresh tyres makes the most sense. If she waits too long, her tyres wear out and she loses time.",
               "followUps": [
                 {
-                  "line": "How do the pit wall know when the pit window is?",
-                  "why": "A real question about how they calculate it."
+                  "line": "How do they work out the window?",
+                  "why": "A real question about how teams plan it."
                 },
                 {
-                  "line": "What happens if she stays out past the window?",
-                  "why": "Shows you understand the consequence of waiting too long."
+                  "line": "What happens if she stays out past it?",
+                  "why": "It shows you understand the cost of waiting."
                 }
               ],
               "noFakeExpertNote": "You do not need to know the calculation. Ask how they decide when to pit."
@@ -1018,7 +1066,8 @@
             "id": "pt-04-s-strategy-call",
             "type": "say-this",
             "conceptIds": [
-              "track-position"
+              "track-position",
+              "pit-window"
             ],
             "payload": {
               "statement": {
@@ -1029,41 +1078,41 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "Where you finish is about staying ahead, not just being quick",
+                  "text": "On a track where passing is hard, holding your place is worth more than a stop for fresh tyres.",
                   "isCorrect": true,
-                  "explanation": "On difficult-to-pass tracks, where you run is more important than pure speed."
+                  "explanation": "Right. Staying out avoids dropping behind other cars."
                 },
                 {
                   "id": "b",
-                  "text": "They chose not to pit in that moment",
-                  "isCorrect": true,
-                  "explanation": "Staying out means holding position and avoiding worse traffic."
+                  "text": "The team ran out of tyres.",
+                  "isCorrect": false,
+                  "explanation": "Teams choose when to stop. It was a decision."
                 },
                 {
                   "id": "c",
-                  "text": "The track layout favours one team",
+                  "text": "The track layout favours one team.",
                   "isCorrect": false,
-                  "explanation": "Track position is about your place in the running order, not circuit design."
+                  "explanation": "Track position is about running order, not layout."
                 },
                 {
                   "id": "d",
-                  "text": "He needs more speed to win",
+                  "text": "He thinks speed is all that matters.",
                   "isCorrect": false,
-                  "explanation": "The point is that speed is not the only factor; position is too."
+                  "explanation": "The whole point is that speed is not the only thing."
                 }
               ],
-              "translation": "On a track where overtaking is difficult, being ahead is more valuable than being a tenth of a second faster, so they chose to keep their track position rather than risk losing it with a pit stop.",
+              "translation": "On a track where overtaking is difficult, being ahead is often worth more than being a tenth quicker, so the team kept the place rather than risk losing it in a stop.",
               "followUps": [
                 {
                   "line": "When does pit strategy matter more than pace?",
-                  "why": "A real question about the trade-off between speed and position."
+                  "why": "A real question about the trade-off."
                 },
                 {
-                  "line": "What tracks make position most important?",
-                  "why": "Shows you are thinking about circuit characteristics."
+                  "line": "Which tracks make position most important?",
+                  "why": "It connects strategy to the circuit."
                 }
               ],
-              "noFakeExpertNote": "You do not need to know tire degradation. Ask when pitting hurts more than it helps."
+              "noFakeExpertNote": "You do not need to know tyre degradation in detail. Ask when pitting hurts more than it helps."
             }
           }
         ]
@@ -1151,6 +1200,7 @@
             "id": "pt-05-s-penalty-meaning",
             "type": "say-this",
             "conceptIds": [
+              "stewards",
               "time-penalty"
             ],
             "payload": {
@@ -1162,41 +1212,41 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "She thinks the stewards penalised her driver unfairly",
+                  "text": "She thinks the stewards were wrong to penalise him at all, because it was a fair tussle.",
                   "isCorrect": true,
-                  "explanation": "She disagrees with their decision to add time to his race result."
+                  "explanation": "Right. A racing incident means nobody is to blame."
                 },
                 {
                   "id": "b",
-                  "text": "She thinks the move was legal racing",
-                  "isCorrect": true,
-                  "explanation": "Calling it a racing incident means she thinks both drivers share blame, not one alone."
+                  "text": "She thinks five seconds is too long for a small mistake.",
+                  "isCorrect": false,
+                  "explanation": "Her point is that there should be no penalty."
                 },
                 {
                   "id": "c",
-                  "text": "She thinks five seconds is too much time",
+                  "text": "She wants the race rerun.",
                   "isCorrect": false,
-                  "explanation": "Her main point is that he should not be penalised at all."
+                  "explanation": "She is objecting to the call, not asking for a rerun."
                 },
                 {
                   "id": "d",
-                  "text": "She wants the race rerun",
+                  "text": "She is delighted that he got a penalty.",
                   "isCorrect": false,
-                  "explanation": "She is objecting to the stewards' call, not asking for a rerun."
+                  "explanation": "She is upset, not delighted."
                 }
               ],
-              "translation": "She disagrees with the stewards' decision to penalise her driver; she thinks the move was fair racing where both drivers shared responsibility, not grounds for punishment.",
+              "translation": "She disagrees with the stewards. She thinks it was a normal racing tussle where both drivers share responsibility.",
               "followUps": [
                 {
-                  "line": "What would have been a fair call in her view?",
-                  "why": "Asks her to explain her reasoning without pretending to be the judge."
+                  "line": "What would you have called it?",
+                  "why": "It invites her reasoning without pretending to judge it."
                 },
                 {
                   "line": "Could the other driver have avoided the contact?",
-                  "why": "Shows you are thinking about both drivers' perspectives."
+                  "why": "It shows you are looking at both sides."
                 }
               ],
-              "noFakeExpertNote": "You do not know the rules as well as the stewards. Listen to her and ask questions."
+              "noFakeExpertNote": "You do not know the rules as well as the stewards. Listen first and ask what she saw."
             }
           },
           {
@@ -1208,100 +1258,114 @@
             "payload": {
               "statement": {
                 "speaker": "James",
-                "text": "He is on eight penalty points now. One more bad incident and he loses a race."
+                "text": "He is on eleven penalty points now. One more and he misses a race."
               },
-              "question": "Why does this matter?",
+              "question": "Why does that matter?",
               "options": [
                 {
                   "id": "a",
-                  "text": "12 penalty points in 12 months means a one-race ban",
+                  "text": "Twelve penalty points in twelve months mean a one-race ban, so he is one point away.",
                   "isCorrect": true,
-                  "explanation": "That is the rule. Dangerous or unsportsmanlike driving costs points."
+                  "explanation": "Right. He has very little room left."
                 },
                 {
                   "id": "b",
-                  "text": "Losing a race could cost him the title",
-                  "isCorrect": true,
-                  "explanation": "Missing a race means missing points and falling behind."
+                  "text": "Eleven means a fine is coming.",
+                  "isCorrect": false,
+                  "explanation": "Penalty points are not fines. Twelve means a ban."
                 },
                 {
                   "id": "c",
-                  "text": "Eight is already a lot",
+                  "text": "Penalty points are taken off his race result.",
                   "isCorrect": false,
-                  "explanation": "Eight means he has room for a couple more; 12 triggers the ban."
+                  "explanation": "They sit on his licence. They do not change a race result."
                 },
                 {
                   "id": "d",
-                  "text": "The penalty points system is new",
+                  "text": "The points reset after every race.",
                   "isCorrect": false,
-                  "explanation": "It has existed for years."
+                  "explanation": "They last twelve months, not one race."
                 }
               ],
-              "translation": "He has accumulated eight licence points for dangerous or unsportsmanlike incidents; 12 total in 12 months triggers a mandatory one-race ban, which could cost him championship points.",
+              "translation": "He has eleven licence points for dangerous or unsportsmanlike incidents. At twelve within twelve months there is a one-race ban.",
               "followUps": [
                 {
-                  "line": "What kind of incidents give penalty points?",
+                  "line": "What earns penalty points?",
                   "why": "A real question about what the rule penalises."
                 },
                 {
-                  "line": "How many points will he get for today's incident?",
-                  "why": "Shows you understand the system accumulates."
+                  "line": "When do his oldest points expire?",
+                  "why": "They drop off a year after they are given, which helps the picture."
                 }
               ],
-              "noFakeExpertNote": "You do not need to memorise the point scale. Ask what qualifies as dangerous driving."
+              "noFakeExpertNote": "You do not need the full scale. Ask what kind of incident earns points."
             }
           },
           {
-            "id": "pt-05-s-consistency",
-            "type": "say-this",
+            "id": "pt-05-dec-rant-reply",
+            "type": "decision-scenario",
             "conceptIds": [
               "stewards",
-              "time-penalty"
+              "time-penalty",
+              "penalty-points"
             ],
             "payload": {
-              "statement": {
-                "speaker": "Sarah",
-                "text": "This is not the same as last week. The stewards are being inconsistent."
+              "prompt": "She is ranting about a penalty. How do you reply?",
+              "situation": {
+                "narrative": "After the race, she is angry about a penalty her driver got for a move she thinks was fair.",
+                "facts": [
+                  {
+                    "label": "Her mood",
+                    "value": "Furious and hurt"
+                  },
+                  {
+                    "label": "What you know",
+                    "value": "Only the headline"
+                  },
+                  {
+                    "label": "Penalty",
+                    "value": "Five seconds added"
+                  },
+                  {
+                    "label": "Goal",
+                    "value": "Connect, not argue"
+                  }
+                ]
               },
-              "question": "What is she complaining about?",
               "options": [
                 {
-                  "id": "a",
-                  "text": "Similar incidents got different penalties",
-                  "isCorrect": true,
-                  "explanation": "Inconsistency means the same action got penalised differently before."
+                  "id": "ask",
+                  "label": "Ask what she saw that made it fair, then listen.",
+                  "verdict": "best",
+                  "consequence": "She explains her view, feels heard, and you learn something real about the incident.",
+                  "considerations": [
+                    "A rant usually wants listening, not a judge.",
+                    "You can ask about the stewards' reason later."
+                  ]
                 },
                 {
-                  "id": "b",
-                  "text": "The rule was applied unfairly this time",
-                  "isCorrect": true,
-                  "explanation": "Consistency matters: the penalty should match past precedent."
+                  "id": "side",
+                  "label": "Agree it was a joke, even though you have not seen it.",
+                  "verdict": "acceptable",
+                  "consequence": "She feels supported, but you have agreed to something you do not know. She may ask for details.",
+                  "considerations": [
+                    "Empathy is good, but claiming knowledge you do not have is risky.",
+                    "Try to ask one question too."
+                  ]
                 },
                 {
-                  "id": "c",
-                  "text": "The penalty is too harsh",
-                  "isCorrect": false,
-                  "explanation": "She is not saying it is harsh, but that it is inconsistent with precedent."
-                },
-                {
-                  "id": "d",
-                  "text": "There is a new rule this season",
-                  "isCorrect": false,
-                  "explanation": "She is pointing out an inconsistency, not a rule change."
+                  "id": "defend",
+                  "label": "Defend the stewards and tell her the rule is the rule.",
+                  "verdict": "poor",
+                  "consequence": "She feels dismissed and the chat turns into an argument.",
+                  "considerations": [
+                    "Taking sides before listening shuts the conversation down.",
+                    "You can disagree later, gently."
+                  ]
                 }
               ],
-              "translation": "A penalty her driver received today seems different from how a similar incident was judged in a previous race, which suggests the stewards are not applying the rules consistently.",
-              "followUps": [
-                {
-                  "line": "What incident from last week was similar?",
-                  "why": "Shows you are listening to the comparison she is making."
-                },
-                {
-                  "line": "Do you think the rule should be clearer?",
-                  "why": "A thoughtful question about fairness and clarity."
-                }
-              ],
-              "noFakeExpertNote": "You do not need to know all the past penalties. Ask what she thinks was different."
+              "expertNote": "When someone is upset about a penalty, the best thing is to ask what they saw. You do not need to know the ruling to be a good listener.",
+              "sayThisLine": "Tell me what you saw. What made it fair to you?"
             }
           },
           {
@@ -1311,26 +1375,28 @@
               "time-penalty"
             ],
             "payload": {
-              "prompt": "He got a 5-second penalty. Does the driver keep his finishing position?",
+              "prompt": "He finishes 3 seconds ahead, then gets a 5-second penalty. Does he lose the place?",
               "scene": {
                 "kind": "none",
-                "alt": "Asking whether a time penalty affects final position"
+                "alt": "Text only: a driver finishes three seconds ahead of the next car, then receives a five-second time penalty."
               },
               "choices": [
                 {
                   "id": "yes",
-                  "label": "Yes, usually"
+                  "label": "Yes, he drops behind"
                 },
                 {
                   "id": "no",
-                  "label": "No, time is added"
+                  "label": "No, he keeps it"
                 }
               ],
-              "correctChoiceId": "no",
+              "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Time penalties add seconds to race time. If the gap was less, position drops.",
-                "incorrect": "Penalties are time, not position. The time added to his total can move him down."
-              }
+                "correct": "The five seconds are added to his race time, so his time becomes two seconds slower than the car behind. He drops behind it in the classification.",
+                "incorrect": "A time penalty is added to the race time. Finishing three seconds ahead is not enough to absorb five, so he loses the place.",
+                "sayThisLine": "Three seconds clear is not enough against a five-second penalty."
+              },
+              "ruleTag": "Time penalty"
             }
           }
         ]
@@ -1443,132 +1509,173 @@
             "id": "pt-06-s-energy-manage",
             "type": "say-this",
             "conceptIds": [
-              "super-clipping"
+              "super-clipping",
+              "energy-store"
             ],
             "payload": {
               "statement": {
                 "speaker": "James",
-                "text": "He is deploying the battery too early. He will clip at the end of the straight like always."
+                "text": "He is deploying the battery too early. He will clip at the end of the straight again."
               },
               "question": "What does he mean?",
               "options": [
                 {
                   "id": "a",
-                  "text": "The driver is using electrical power at the wrong time",
+                  "text": "He is spending the electrical energy early, so it will run out before the straight ends.",
                   "isCorrect": true,
-                  "explanation": "Deploying early means running out of battery later."
+                  "explanation": "Right. Energy has to be spread across the lap."
                 },
                 {
                   "id": "b",
-                  "text": "The battery will be empty when he needs it",
-                  "isCorrect": true,
-                  "explanation": "Clipping happens when the battery runs empty mid-straight."
+                  "text": "The car is about to break down.",
+                  "isCorrect": false,
+                  "explanation": "Clipping is not a failure. It is how the battery behaves."
                 },
                 {
                   "id": "c",
-                  "text": "He drives the same way every lap",
+                  "text": "He has not warmed his tyres enough.",
                   "isCorrect": false,
-                  "explanation": "The issue is deploying energy at the wrong moment."
+                  "explanation": "Tyres are not involved in clipping."
                 },
                 {
                   "id": "d",
-                  "text": "The car is broken",
+                  "text": "He is driving the same way every lap.",
                   "isCorrect": false,
-                  "explanation": "It is a strategy issue, not a mechanical failure."
+                  "explanation": "The point is about when he uses the energy, not repetition."
                 }
               ],
-              "translation": "He is spending the electrical energy too early in the lap, which means the battery will be empty later on the straight when he would benefit from it most, so he will slow and lose time.",
+              "translation": "He is using his electrical energy too soon, so it will not last the whole straight and the car will slow at the end.",
               "followUps": [
                 {
                   "line": "Does the pit wall tell him when to deploy?",
-                  "why": "A real question about how much is driver choice versus strategy."
+                  "why": "A real question about what is driver choice and what is strategy."
                 },
                 {
                   "line": "Can he learn to manage it better?",
-                  "why": "Shows you understand energy management is a skill."
+                  "why": "It shows you understand energy management is a skill."
                 }
               ],
-              "noFakeExpertNote": "You do not need to know the electrical system. Ask how energy strategy works."
+              "noFakeExpertNote": "You do not need to know the electrical details. Ask how energy strategy works."
             }
           },
           {
-            "id": "pt-06-s-overtake-mode",
-            "type": "say-this",
+            "id": "pt-06-mul-overtake-mode",
+            "type": "multiple-choice",
             "conceptIds": [
-              "overtake-mode"
+              "overtake-mode",
+              "boost-button",
+              "gap-and-interval"
             ],
             "payload": {
-              "statement": {
-                "speaker": "James",
-                "text": "Overtake mode is open on the straights. He can finally hunt down the leader."
-              },
-              "question": "What does he mean?",
+              "prompt": "A fan says Overtake Mode is available. What does that mean?",
               "options": [
                 {
                   "id": "a",
-                  "text": "The car can run in a high-power setup to chase rivals",
-                  "isCorrect": true,
-                  "explanation": "Overtake Mode is a high-power wing configuration for straights."
+                  "text": "A car within one second of the one ahead gets extra electrical power to attack.",
+                  "explanation": "Right. Overtake Mode is for a car that is close enough at the detection point."
                 },
                 {
                   "id": "b",
-                  "text": "The driver is now free to try passing",
-                  "isCorrect": true,
-                  "explanation": "With the mode active, he has the power to make an attempt."
+                  "text": "Any car can open its wings on any lap.",
+                  "explanation": "That is Straight Mode, which is limited to set zones."
                 },
                 {
                   "id": "c",
-                  "text": "The leader made a mistake",
-                  "isCorrect": false,
-                  "explanation": "Overtake Mode is a system setting, not dependent on the leader's error."
+                  "text": "The car ahead must let the one behind through.",
+                  "explanation": "There is no such rule. It is an energy boost, not an order."
                 },
                 {
                   "id": "d",
-                  "text": "Only one car can use it per lap",
-                  "isCorrect": false,
-                  "explanation": "Any car can use it on any straight when allowed."
+                  "text": "The race has a rolling restart.",
+                  "explanation": "It has nothing to do with restarts."
                 }
               ],
-              "translation": "The car's overtake-mode setup (a low-downforce, high-power wing configuration) is now activated, which gives him a power advantage on the straights to attempt a pass on the leader.",
-              "followUps": [
-                {
-                  "line": "How is Overtake Mode different from Straight Mode?",
-                  "why": "A smart question about the two wing configurations."
-                },
-                {
-                  "line": "Can the leader use it too?",
-                  "why": "Shows you understand both cars have the technology."
-                }
+              "correctOptionIds": [
+                "a"
               ],
-              "noFakeExpertNote": "You do not need to know aerodynamic limits. Ask how it helps in a chase."
+              "explanation": {
+                "correct": "Overtake Mode gives a car within one second at the detection point extra electrical deployment, replacing DRS. It helps the chase, but does not guarantee a pass.",
+                "incorrect": "Overtake Mode is an electrical boost for a car within a second of the one ahead. It is not a wing setting or an order.",
+                "sayThisLine": "He got within a second, so he has Overtake Mode."
+              }
             }
           },
           {
             "id": "pt-06-bc-straight-mode",
             "type": "binary-call",
             "conceptIds": [
-              "straight-mode"
+              "straight-mode",
+              "drs"
             ],
             "payload": {
-              "prompt": "Can both drivers use Straight Mode on the same straight?",
+              "prompt": "Can the leader use Straight Mode too, or only the chaser?",
               "scene": {
                 "kind": "none",
-                "alt": "Question about whether Straight Mode is available to both drivers"
+                "alt": "Text only: who can open the wings in the straight-line zones."
               },
               "choices": [
                 {
-                  "id": "yes",
-                  "label": "Yes, both can"
+                  "id": "both",
+                  "label": "Both cars can use it"
                 },
                 {
-                  "id": "no",
-                  "label": "No, only the leader"
+                  "id": "chaser",
+                  "label": "Only the chaser"
                 }
               ],
-              "correctChoiceId": "yes",
+              "correctChoiceId": "both",
               "explanation": {
-                "correct": "Straight Mode reduces drag for any driver. Both can use it for speed.",
-                "incorrect": "It is not a passing tool. Both drivers benefit equally."
+                "correct": "Straight Mode is available to every car in the allowed zones. Unlike DRS, it does not depend on being close to another car.",
+                "incorrect": "Straight Mode is for everyone in the set zones. Only Overtake Mode depends on being within a second.",
+                "sayThisLine": "Straight Mode is for everyone. Overtake Mode is for the chaser."
+              },
+              "ruleTag": "Straight Mode"
+            }
+          },
+          {
+            "id": "pt-06-fil-clipping",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "super-clipping",
+              "energy-store",
+              "recharge"
+            ],
+            "payload": {
+              "prompt": "Complete the clipping sentence.",
+              "template": "Clipping happens when the {{part}} runs low on a long {{where}}, so the car stops {{what}}.",
+              "gaps": [
+                {
+                  "id": "part",
+                  "options": [
+                    "battery",
+                    "tyre",
+                    "brake"
+                  ],
+                  "correct": "battery"
+                },
+                {
+                  "id": "where",
+                  "options": [
+                    "straight",
+                    "corner",
+                    "pit lane"
+                  ],
+                  "correct": "straight"
+                },
+                {
+                  "id": "what",
+                  "options": [
+                    "accelerating",
+                    "turning",
+                    "braking"
+                  ],
+                  "correct": "accelerating"
+                }
+              ],
+              "explanation": {
+                "correct": "When the battery is drained on a long straight, the electrical push fades and the car stops gaining speed. Fans call it clipping.",
+                "incorrect": "Clipping is about the battery running low on a long straight. The car stops accelerating, even though the driver is flat out.",
+                "sayThisLine": "He clipped at the end of the straight."
               }
             }
           }
@@ -1592,24 +1699,24 @@
             ],
             "payload": {
               "title": "Teammate battle",
-              "setting": "After qualifying. Her driver outqualified his teammate.",
+              "setting": "After qualifying. Her driver was out-qualified by his teammate.",
               "startingSmooth": 50,
               "exchanges": [
                 {
-                  "theirMessage": "Your guy got out-qualified by his teammate again. Same car and everything.",
+                  "theirMessage": "My guy got out-qualified by his teammate again. Same car and everything.",
                   "replies": [
                     {
                       "id": "good",
-                      "text": "What does your teammate's pace on race day look like?",
+                      "text": "What about his race pace on Sundays?",
                       "smoothDelta": 26,
                       "theirResponse": "Better, usually. His race pace is solid.",
-                      "coachNote": "You asked about a different metric. That is fair."
+                      "coachNote": "You asked about a different metric. That is a fair follow-up."
                     },
                     {
                       "id": "meh",
                       "text": "Qualifying is just one lap.",
                       "smoothDelta": 9,
-                      "theirResponse": "True, but still stings.",
+                      "theirResponse": "True, but it still stings.",
                       "coachNote": "Sympathetic and true. Ask about Sunday."
                     },
                     {
@@ -1622,7 +1729,7 @@
                   ]
                 }
               ],
-              "closingNote": "A teammate drives the same car, making the teammate battle the fairest comparison of driver talent."
+              "closingNote": "A teammate drives the same car, so the teammate battle is the fairest test. One session is a clue, not a verdict."
             }
           },
           {
@@ -1636,42 +1743,42 @@
                 "speaker": "Sarah",
                 "text": "He got out-qualified by his teammate again. Same car, and he is a tenth slower."
               },
-              "question": "Why is this important?",
+              "question": "Why does she bring up the teammate?",
               "options": [
                 {
                   "id": "a",
-                  "text": "The teammate drives the same car, making it a fair comparison",
+                  "text": "The teammate has the same car, so the gap is the fairest comparison.",
                   "isCorrect": true,
-                  "explanation": "The teammate is the only equal test of pure driver talent."
+                  "explanation": "Right. Same machinery means the difference is mostly the driver."
                 },
                 {
                   "id": "b",
-                  "text": "It suggests a weakness in qualifying",
-                  "isCorrect": true,
-                  "explanation": "A consistent gap to the teammate shows a pattern."
+                  "text": "The teammate has a faster engine.",
+                  "isCorrect": false,
+                  "explanation": "Teammates share the same power unit."
                 },
                 {
                   "id": "c",
-                  "text": "He will definitely be slower in the race",
+                  "text": "The team always prefers the teammate.",
                   "isCorrect": false,
-                  "explanation": "Some drivers are faster on race day than qualifying."
+                  "explanation": "Teams can favour a driver, but that is not what she is saying."
                 },
                 {
                   "id": "d",
-                  "text": "The car is not very good",
+                  "text": "A tenth is too small to matter.",
                   "isCorrect": false,
-                  "explanation": "The car is the same for both drivers."
+                  "explanation": "A tenth is small, but she is pointing to a pattern, not a single tenth."
                 }
               ],
-              "translation": "He consistently qualifies slower than his teammate by about one-tenth, which shows his qualifying pace is weaker (since they have equal equipment, all the difference is the drivers).",
+              "translation": "A teammate drives the same car, so if he keeps being slower over one lap, that is the most direct comparison you can make.",
               "followUps": [
                 {
                   "line": "Is his race pace better than his qualifying?",
-                  "why": "Shows you understand drivers can excel in different areas."
+                  "why": "It shows you know that drivers can be better at different things."
                 },
                 {
-                  "line": "Could he be using a different car set-up?",
-                  "why": "A reasonable question about non-driver factors."
+                  "line": "Has it been a pattern this year?",
+                  "why": "A gap only means something when it repeats."
                 }
               ],
               "noFakeExpertNote": "You do not need to judge the driver. Ask if he is quicker elsewhere."
@@ -1686,128 +1793,132 @@
             "payload": {
               "statement": {
                 "speaker": "James",
-                "text": "Silly season has started. His contract is up in 2027 and everyone is guessing."
+                "text": "Silly season has started. There are rumours about his contract, and everyone is guessing."
               },
               "question": "What is he talking about?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Mid-season speculation about next year's seats",
+                  "text": "Speculation about which driver will be in which seat next year.",
                   "isCorrect": true,
-                  "explanation": "Silly season is the annual rumour-and-contract period."
+                  "explanation": "Right. Silly season is the rumour period for the driver market."
                 },
                 {
                   "id": "b",
-                  "text": "His contract ends and teams are interested",
-                  "isCorrect": true,
-                  "explanation": "An open seat attracts attention from top teams."
+                  "text": "He has definitely been sacked.",
+                  "isCorrect": false,
+                  "explanation": "Rumours are not confirmed news."
                 },
                 {
                   "id": "c",
-                  "text": "He is definitely leaving",
+                  "text": "His team is leaving F1.",
                   "isCorrect": false,
-                  "explanation": "Speculation does not mean a done deal."
+                  "explanation": "Nobody said that. It is talk about drivers."
                 },
                 {
                   "id": "d",
-                  "text": "The team has fired him",
+                  "text": "The season has been cancelled.",
                   "isCorrect": false,
-                  "explanation": "Contract expiry is not the same as dismissal."
+                  "explanation": "Silly season is a nickname for the rumour mill."
                 }
               ],
-              "translation": "The mid-season period when driver contracts come up for renewal and rumours spread about who will drive for which team next year; 2027 is when his current deal ends.",
+              "translation": "Silly season is the period when the driver market heats up and rumours spread about who will drive where next year.",
               "followUps": [
                 {
-                  "line": "Which top teams might want him?",
+                  "line": "Which teams might want him?",
                   "why": "A natural question about where he might go."
                 },
                 {
-                  "line": "Does he want to stay with his current team?",
-                  "why": "Shows you are thinking about his preferences, not just the gossip."
+                  "line": "Does he want to stay?",
+                  "why": "It keeps the chat about the person, not just the gossip."
                 }
               ],
-              "noFakeExpertNote": "You do not have inside info. Ask her what she thinks will happen."
+              "noFakeExpertNote": "You do not have inside information. Ask her what she thinks will happen."
             }
           },
           {
             "id": "pt-07-s-banter",
             "type": "say-this",
             "conceptIds": [
-              "driver-market"
+              "driver-market",
+              "teammate-battle"
             ],
             "payload": {
               "statement": {
                 "speaker": "Emma",
-                "text": "Your guy made a great pass on him. He is going to transfer to Ferrari or McLaren, mark my words."
+                "text": "Your guy made a great pass on him. I bet he ends up at a big team soon, mark my words."
               },
               "question": "What is she doing?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Complimenting your driver while speculating about transfers",
+                  "text": "Complimenting your driver with a bit of friendly banter about a move to a top team.",
                   "isCorrect": true,
-                  "explanation": "She praised the pass and then joked about him moving teams."
+                  "explanation": "Right. It is a compliment with a tease, and not news."
                 },
                 {
                   "id": "b",
-                  "text": "Teasing by predicting a rival will leave for a big team",
-                  "isCorrect": true,
-                  "explanation": "This is fan banter: light trash-talk about future deals."
+                  "text": "Announcing confirmed team news.",
+                  "isCorrect": false,
+                  "explanation": "She is guessing, not reporting."
                 },
                 {
                   "id": "c",
-                  "text": "Saying the driver is unhappy in his current seat",
+                  "text": "Saying her driver is better.",
                   "isCorrect": false,
-                  "explanation": "She is joking about his talent, not his satisfaction."
+                  "explanation": "She is praising your driver."
                 },
                 {
                   "id": "d",
-                  "text": "Reporting confirmed team news",
+                  "text": "Being rude about your driver.",
                   "isCorrect": false,
-                  "explanation": "This is speculation and banter, not official news."
+                  "explanation": "She is being generous, not rude."
                 }
               ],
-              "translation": "She is playfully suggesting that your driver is so talented after that pass that Ferrari or McLaren will recruit him for next season—it is friendly rivalry banter.",
+              "translation": "She is teasing in a friendly way: your driver was so good she thinks a top team will notice.",
               "followUps": [
                 {
-                  "line": "Is he actually linked to those teams?",
-                  "why": "A good question to check if the speculation has truth."
+                  "line": "Is there any real talk about it?",
+                  "why": "A good way to check whether it is a joke or a rumour."
                 },
                 {
-                  "line": "How long is his contract?",
-                  "why": "Shows you understand driver transfers take planning."
+                  "line": "Which driver on her side would you want on your team?",
+                  "why": "A playful question that keeps the banter going."
                 }
               ],
-              "noFakeExpertNote": "You do not need to know transfer rumors. Ask if she is joking or if there is news."
+              "noFakeExpertNote": "It is banter, not news. A smile and a counter-tease are all you need."
             }
           },
           {
             "id": "pt-07-bc-strategy-call",
             "type": "binary-call",
             "conceptIds": [
+              "teammate-battle",
               "pit-window"
             ],
             "payload": {
-              "prompt": "If a teammate is ahead and pitting, should your driver pit too?",
+              "prompt": "Teammates run 1-2. The leader pits. Must the second car pit next lap?",
               "scene": {
                 "kind": "none",
-                "alt": "Question about pit strategy relative to teammate"
+                "alt": "Text only: two teammates running first and second."
               },
               "choices": [
                 {
-                  "id": "maybe",
-                  "label": "Depends on position"
+                  "id": "no",
+                  "label": "Not necessarily"
                 },
                 {
-                  "id": "always",
-                  "label": "Usually yes"
+                  "id": "yes",
+                  "label": "Yes, always"
                 }
               ],
-              "correctChoiceId": "maybe",
+              "correctChoiceId": "no",
               "explanation": {
-                "correct": "Pit strategy depends on championship position, track position, and fuel. Teammates are not always the model.",
-                "incorrect": "Teammates have different tire life and race position. Strategy is individual."
-              }
+                "correct": "Each car's strategy depends on its own tyres and track position. Teams often split strategies between teammates to cover different risks.",
+                "incorrect": "Teammates do not always pit together. Different tyre age and traffic mean each car can have its own plan.",
+                "sayThisLine": "They split the strategies to cover different risks."
+              },
+              "ruleTag": "Team strategy"
             }
           }
         ]
@@ -2039,28 +2150,76 @@
             "id": "pt-08-bc-gap-read",
             "type": "binary-call",
             "conceptIds": [
-              "gap-and-interval"
+              "gap-and-interval",
+              "tyre-degradation"
             ],
             "payload": {
-              "prompt": "If the gap to the leader is dropping, is the trailing driver definitely faster?",
+              "prompt": "The gap to the leader is shrinking. Is the chaser definitely faster?",
               "scene": {
                 "kind": "none",
-                "alt": "Asking whether a closing gap means a faster car"
+                "alt": "Text only: a gap between two cars is falling lap by lap."
               },
               "choices": [
                 {
-                  "id": "yes",
-                  "label": "Yes, definitely"
+                  "id": "maybe",
+                  "label": "Not necessarily"
                 },
                 {
-                  "id": "maybe",
-                  "label": "Could be tires or fuel"
+                  "id": "yes",
+                  "label": "Yes, definitely"
                 }
               ],
               "correctChoiceId": "maybe",
               "explanation": {
-                "correct": "Gaps close for many reasons: fresher tires, lower fuel, SC restart. Not always pure pace.",
-                "incorrect": "A gap close can mean tire advantage, fuel weight, or safety car restart."
+                "correct": "A gap can shrink because the leader is managing tyres, stuck in traffic, saving energy or just slowing. It does not always mean the chaser is simply quicker.",
+                "incorrect": "Closing gaps have several causes: tyre wear, traffic, energy management, even a deliberate slowdown. Do not assume pure pace.",
+                "sayThisLine": "The gap is closing, but is it pace or just tyre care?"
+              },
+              "ruleTag": "Gaps"
+            }
+          },
+          {
+            "id": "pt-08-fil-gap-interval",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "gap-and-interval"
+            ],
+            "payload": {
+              "prompt": "Complete the timing-screen sentence.",
+              "template": "The {{gap}} is the time to the race leader, and the {{interval}} is the time to the car directly {{where}}.",
+              "gaps": [
+                {
+                  "id": "gap",
+                  "options": [
+                    "gap",
+                    "sector",
+                    "delta"
+                  ],
+                  "correct": "gap"
+                },
+                {
+                  "id": "interval",
+                  "options": [
+                    "interval",
+                    "penalty",
+                    "window"
+                  ],
+                  "correct": "interval"
+                },
+                {
+                  "id": "where",
+                  "options": [
+                    "ahead",
+                    "behind",
+                    "alongside"
+                  ],
+                  "correct": "ahead"
+                }
+              ],
+              "explanation": {
+                "correct": "On the timing screen, gap is the time to the leader, and interval is the time to the car ahead. Fans use both to read the race.",
+                "incorrect": "Gap is to the leader, and interval is to the car directly ahead. Both help you read whether someone is catching up.",
+                "sayThisLine": "What is the interval to the car ahead?"
               }
             }
           }
