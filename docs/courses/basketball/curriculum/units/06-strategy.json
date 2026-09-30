@@ -594,14 +594,14 @@
             "payload": {
               "prompt": "Why do coaches give intentional fouls late in games?",
               "options": [
-                {"id": "correct", "text": "To reset possession, adjust the shot clock or stop the clock in specific late-game scenarios."},
-                {"id": "dist-1", "text": "To make the opponent angry."},
-                {"id": "dist-2", "text": "To teach players a lesson."}
+                {"id": "correct", "text": "To stop the clock when trailing, or to keep a team from taking a good shot."},
+                {"id": "dist-1", "text": "To make the other team angry."},
+                {"id": "dist-2", "text": "To give their own players a rest."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Exactly. Strategic fouls are about time management and possession, not emotion.",
-                "incorrect": "Not quite. Intentional fouls are tactical: they reset the clock or give your team back the ball in tight moments."
+                "correct": "A late intentional foul stops the clock, so a trailing team keeps its chance to get the ball back, or it stops a fast break or a good shot. The price is free throws for the other team.",
+                "incorrect": "Late fouls are not about emotions or rest. They are tactical: they stop the clock and cost the fouling team points at the line, which it accepts in order to keep a chance to win."
               }
             }
           },
@@ -616,23 +616,23 @@
               },
               "question": "What is she talking about?",
               "options": [
-                {"id": "correct", "text": "The opponent is deliberately fouling a poor free-throw shooter to send him to the line instead of letting him play.", "isCorrect": true},
-                {"id": "dist-1", "text": "A player is coughing (hacking)..", "isCorrect": false},
-                {"id": "dist-2", "text": "They are using a computer exploit in the game.", "isCorrect": false},
-                {"id": "dist-3", "text": "A player's defense is very sloppy.", "isCorrect": false}
+                {"id": "correct", "text": "The other team keeps fouling a poor free-throw shooter on purpose, betting he will miss.", "isCorrect": true},
+                {"id": "dist-1", "text": "A player has been coughing all night.", "isCorrect": false},
+                {"id": "dist-2", "text": "The other team is playing sloppy, careless defense.", "isCorrect": false},
+                {"id": "dist-3", "text": "A coach keeps sending his best shooter to the line.", "isCorrect": false}
               ],
-              "translation": "She means the opponent is intentionally fouling a bad FT shooter to try to disrupt them and their rhythm.",
+              "translation": "The other team is fouling one of her team's bad free-throw shooters over and over, hoping he misses from the line and they get the ball back.",
               "followUps": [
                 {
-                  "line": "Yeah, he's missing everything from the line.",
-                  "why": "You see that the hack strategy is working; the shooter is struggling at the free-throw line."
+                  "line": "Is it working?",
+                  "why": "It is a fair, easy question. It works only if he keeps missing more than he makes."
                 },
                 {
-                  "line": "At what point do they stop doing it?",
-                  "why": "A good follow-up asking whether there's a point in the game where hacking becomes less effective."
+                  "line": "Can they keep doing it all game?",
+                  "why": "It shows you know the league limits it late in quarters, and it lets her weigh in."
                 }
               ],
-              "noFakeExpertNote": "Hacking is just fouling a bad FT shooter on purpose to send them to the line instead of letting them play."
+              "noFakeExpertNote": "Hacking is just fouling a bad free-throw shooter on purpose. You do not need to say more than 'is it working?'"
             }
           }
         ]
@@ -649,21 +649,21 @@
             "type": "timing-tap",
             "conceptIds": ["two-for-one"],
             "payload": {
-              "prompt": "Tap to shoot for two possessions before the half ends.",
+              "prompt": "Bar runs 60 to 0. Tap to shoot at 36 to 28 seconds left.",
               "theme": {
                 "label": "Two-for-one window",
                 "resultUnit": "seconds"
               },
               "rounds": [
                 {
-                  "zoneStartPct": 35,
-                  "zoneEndPct": 65,
+                  "zoneStartPct": 40,
+                  "zoneEndPct": 53,
                   "sweepSeconds": 3.0
                 }
               ],
               "explanation": {
-                "correct": "Right! You shot with enough time (around 30+ seconds) left so your opponent shoots, and you get the ball back before the half ends.",
-                "incorrect": "Not quite. Two-for-one means you shoot while there is enough time (usually 30+ seconds) left so both teams get one more possession each."
+                "correct": "Shooting with roughly 36 to 28 seconds left leaves the other team a full possession and still hands you the ball back for a last shot. That is how a team turns one possession into two.",
+                "incorrect": "Shoot too early and you waste the trick, and too late and the other team's possession swallows the quarter. Around 36 to 28 seconds is the usual two-for-one window."
               }
             }
           },
@@ -672,21 +672,21 @@
             "type": "timing-tap",
             "conceptIds": ["clock-management"],
             "payload": {
-              "prompt": "Tap when you should call timeout to stop the clock.",
+              "prompt": "Bar runs 0 to 8 seconds. Tap to inbound before the 5 count.",
               "theme": {
-                "label": "Timeout placement",
+                "label": "Inbound count",
                 "resultUnit": "seconds"
               },
               "rounds": [
                 {
-                  "zoneStartPct": 45,
-                  "zoneEndPct": 55,
-                  "sweepSeconds": 2.5
+                  "zoneStartPct": 50,
+                  "zoneEndPct": 60,
+                  "sweepSeconds": 4
                 }
               ],
               "explanation": {
-                "correct": "Nice! You stopped the clock at a key moment, giving your team time to set up the play you need.",
-                "incorrect": "Not quite. Timeout timing is about stopping the clock when you need it most—usually with enough time to set a play."
+                "correct": "An inbounder has five seconds to pass the ball in, so the safe window is just before the count ends, after the play has had time to develop. Wait past five and the ball is turned over.",
+                "incorrect": "Inbounding at once can waste the play and inbounding after five seconds is a violation. The inbounder aims to throw as late as he safely can, just before five."
               }
             }
           },
@@ -695,16 +695,16 @@
             "type": "estimate-slider",
             "conceptIds": ["two-for-one"],
             "payload": {
-              "prompt": "With how many seconds left can you still get two possessions?",
+              "prompt": "Two-for-one starts with about how many seconds left?",
               "unit": "seconds",
               "min": 10,
               "max": 60,
               "step": 1,
-              "correctValue": 30,
-              "tolerance": {"full": 5, "partial": 10},
+              "correctValue": 35,
+              "tolerance": {"full": 4, "partial": 8},
               "explanation": {
-                "correct": "Right around there. 30 seconds is the typical threshold: you have time to shoot, they have time to shoot, and you get the ball back.",
-                "incorrect": "Not quite. Roughly 30 seconds is the benchmark. Any more and you could afford a longer possession; any less and they might not get a real shot."
+                "correct": "The other team can use up to 24 seconds of shot clock, so a team needs to shoot with about 35 seconds left to still get the ball back. Below roughly 30 the trick stops working.",
+                "incorrect": "The trick needs room for the other team's possession, which can last up to the 24-second shot clock, and still leave you a last shot. That puts the start of the window around 35 seconds left."
               }
             }
           },
@@ -713,16 +713,16 @@
             "type": "estimate-slider",
             "conceptIds": ["clock-management"],
             "payload": {
-              "prompt": "How many timeouts does an NBA team get per quarter?",
+              "prompt": "How many timeouts does an NBA team get per game?",
               "unit": "timeouts",
-              "min": 1,
-              "max": 4,
+              "min": 2,
+              "max": 12,
               "step": 1,
-              "correctValue": 3,
-              "tolerance": {"full": 0.5, "partial": 1},
+              "correctValue": 7,
+              "tolerance": {"full": 0, "partial": 1},
               "explanation": {
-                "correct": "Right. Three timeouts per quarter (with one carryover if unused). That is why coaches use them carefully.",
-                "incorrect": "Not quite. NBA teams get three timeouts per quarter, with one unused timeout carrying over to the next quarter."
+                "correct": "Under the current rules each team gets seven timeouts for the game, with limits on how many it can use late. That is few enough that when to use them is part of the strategy.",
+                "incorrect": "An NBA team has seven timeouts for the whole game, not per quarter. The late-game limits make saving some for the final minutes a real decision."
               }
             }
           },
@@ -731,41 +731,41 @@
             "type": "decision-scenario",
             "conceptIds": ["final-possession"],
             "payload": {
-              "prompt": "How should you run the final possession?",
+              "prompt": "Down two, eight seconds, star doubled. What now?",
               "situation": {
-                "narrative": "Your team is down 2 with 8 seconds left. You have the ball. No timeouts remain. Your best scorer is being double-teamed.",
+                "narrative": "Your team trails by 2 with eight seconds left and the ball. There are no timeouts. The other team is double-teaming your best scorer.",
                 "facts": [
                   {"label": "Score", "value": "Down 2"},
                   {"label": "Time", "value": "8 seconds"},
-                  {"label": "Ball position", "value": "In your possession"},
-                  {"label": "Timeouts", "value": "0 remaining"}
+                  {"label": "Timeouts", "value": "None left"},
+                  {"label": "Their defense", "value": "Two defenders on your star"}
                 ]
               },
               "options": [
                 {
                   "id": "iso",
-                  "label": "ISO your best scorer",
+                  "label": "Let your star go one-on-one anyway",
                   "verdict": "acceptable",
-                  "consequence": "They are double-teamed and have to create. Risky but your star might force a shot or find an open teammate.",
+                  "consequence": "A great scorer can beat a double, but it is hard, and the shot is often contested. You also give up your open teammate.",
                   "considerations": [
-                    "Star scorers sometimes break double-teams",
-                    "But only 8 seconds is very tight",
-                    "No timeout means no reset if they don't get off a shot"
+                    "Star scorers sometimes beat double-teams",
+                    "It wastes the open teammate the double created",
+                    "Eight seconds is enough for one more pass"
                   ]
                 },
                 {
                   "id": "move",
-                  "label": "Quick ball movement",
+                  "label": "Move the ball quickly to the open teammate",
                   "verdict": "best",
-                  "consequence": "You move the ball fast to find the open man from the double. No timeout = simplicity and speed.",
+                  "consequence": "A double-team leaves someone open. A quick pass gets a good look, and you can still tie it with a two or win it with a three.",
                   "considerations": [
-                    "Doubles create gaps; find them quickly",
-                    "8 seconds is not much time for a complex play",
-                    "Quick movement often beats heroics late"
+                    "The double-team leaves a teammate open",
+                    "Eight seconds is enough for one or two quick passes",
+                    "A two ties it and a three wins it"
                   ]
                 }
               ],
-              "expertNote": "Final possession with no timeouts? Move the ball fast. Doubles create openings. Your best shot is the next guy over, not forcing it through two defenders."
+              "expertNote": "When a star is doubled, someone else is open. With no timeout, coaches want the quick pass to a shooter rather than a forced one-on-one, but a star who can beat two defenders still gets the ball."
             }
           }
         ]

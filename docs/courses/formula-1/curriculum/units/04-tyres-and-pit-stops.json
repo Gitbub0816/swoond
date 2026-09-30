@@ -704,7 +704,7 @@
                 {
                   "id": "cliff",
                   "term": "Tyre cliff",
-                  "definition": "The sudden collapse in grip when a tyre reaches the end of its useful life, dropping five seconds per lap."
+                  "definition": "The sudden collapse in grip when a tyre reaches the end of its life, costing seconds every lap."
                 }
               ],
               "distractorDefinitions": [
@@ -761,7 +761,7 @@
               "tyre-cliff"
             ],
             "payload": {
-              "prompt": "A driver is on old soft tyres and suddenly loses five seconds per lap. What happened?",
+              "prompt": "A driver on old softs suddenly loses seconds every lap. What happened?",
               "options": [
                 {
                   "id": "a",
@@ -776,20 +776,20 @@
                 {
                   "id": "c",
                   "text": "The driver made a mistake and lost concentration.",
-                  "explanation": "No. A five-second drop across the board is the tyre, not the driver."
+                  "explanation": "No. A sudden, lasting drop in every lap time points at the tyre, not a lapse of concentration."
                 },
                 {
                   "id": "d",
                   "text": "The pit wall told the driver to go slower.",
-                  "explanation": "A sudden five-second drop is the tyre cliff, not a call from the pit wall."
+                  "explanation": "A sudden, big drop in pace is the tyre cliff. A slow-down order from the pit wall would not cost seconds every lap like this."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. The tyre cliff is the sudden end of grip. It is not gradual; the tyre goes from usable to dead in one lap.",
-                "incorrect": "The tyre cliff is a sudden collapse in grip when the compound reaches the end of its life. It costs five seconds or more immediately.",
+                "correct": "Right. The tyre cliff is the sudden end of grip. It is not gradual: pace falls away quickly and the tyre needs to come off.",
+                "incorrect": "The tyre cliff is a sudden collapse in grip when the compound reaches the end of its life. Lap times fall away quickly and keep getting worse.",
                 "sayThisLine": "The cliff hit him and he lost the place."
               }
             }
@@ -837,26 +837,33 @@
           },
           {
             "id": "tp-04-est-blister-temp",
-            "type": "estimate-slider",
+            "type": "binary-call",
             "conceptIds": [
               "blistering"
             ],
             "payload": {
-              "prompt": "At what tyre temperature does blistering risk rise sharply?",
-              "min": 80,
-              "max": 130,
-              "step": 1,
-              "unit": "°C",
-              "correctValue": 110,
-              "tolerance": {
-                "full": 3,
-                "partial": 5
+              "prompt": "Graining or blistering: which one is lasting damage to the tyre?",
+              "scene": {
+                "kind": "none",
+                "alt": "Text only: two tyre problems, small rubber balls tearing off a cold tyre and bubbles forming on an overheated one."
               },
+              "choices": [
+                {
+                  "id": "graining",
+                  "label": "Graining"
+                },
+                {
+                  "id": "blistering",
+                  "label": "Blistering"
+                }
+              ],
+              "correctChoiceId": "blistering",
               "explanation": {
-                "correct": "Right. Soft tyres can safely run up to about 110 to 115 degrees Celsius. Beyond that, blistering risk rises sharply.",
-                "incorrect": "Tyres blister when overheated, usually above 110 degrees Celsius. Hot track and hard braking push them to that limit.",
-                "sayThisLine": "The tyres are at 115 degrees and blistering is starting."
-              }
+                "correct": "Right. Blisters come from overheating and damage the tyre's surface, so it will not recover and usually has to come off. Graining can clear as the tyre settles.",
+                "incorrect": "Graining is the one that can clear as the tyre settles and heats up. Blistering is heat damage, so that tyre will not recover and usually has to be changed.",
+                "sayThisLine": "That is blistering, so he will have to stop."
+              },
+              "ruleTag": "Tyre wear"
             }
           }
         ]
@@ -894,8 +901,8 @@
                 },
                 {
                   "id": "3",
-                  "text": "Fresh tyres are fitted and tightened, fuel is added if needed.",
-                  "why": "New tyres go on and are torqued; fuel flows if the race is long."
+                  "text": "Fresh tyres are fitted and the wheel nuts are tightened.",
+                  "why": "New tyres go on and are secured. There is no refuelling in F1; the stop is all about tyres."
                 },
                 {
                   "id": "4",
@@ -916,7 +923,7 @@
               "pit-stop"
             ],
             "payload": {
-              "prompt": "Tap when the stop is complete to simulate a pit stop.",
+              "prompt": "Tap in the zone to release the car after a perfect stop.",
               "theme": {
                 "label": "Pit stop"
               },
@@ -928,9 +935,9 @@
                 }
               ],
               "explanation": {
-                "correct": "Perfect timing. A two-second stop is lightning fast: all four wheels off and on in parallel.",
-                "incorrect": "A pit stop takes about two seconds of stationary time: jacks up (0.3 s), wheels off and on (1.2 s), jacks down (0.3 s), release.",
-                "sayThisLine": "Two seconds, that is a perfect stop."
+                "correct": "Perfect timing. A top crew is stationary for only about two seconds, with all four wheels swapped at once by separate mechanics.",
+                "incorrect": "Close, but the zone is tight for a reason. A top crew is stationary for only about two seconds: four wheel guns working at once, then a clean release.",
+                "sayThisLine": "Two seconds stationary, that is a great stop."
               }
             }
           },
@@ -946,15 +953,15 @@
               "max": 40,
               "step": 1,
               "unit": "seconds",
-              "correctValue": 21,
+              "correctValue": 22,
               "tolerance": {
-                "full": 3,
-                "partial": 5
+                "full": 4,
+                "partial": 8
               },
               "explanation": {
-                "correct": "Right. Pit loss is about 20 to 25 seconds at most circuits: time through the pit lane (slowed), the stop (two seconds), and exiting.",
-                "incorrect": "Pit loss is about 20 to 25 seconds at most circuits: time through the pit lane (slowed), the stop itself (two seconds), and exiting.",
-                "sayThisLine": "Pit loss is about twenty seconds."
+                "correct": "Good read. Pit loss is roughly 20 to 25 seconds at many circuits. It varies with the length and speed limit of each pit lane.",
+                "incorrect": "Most of the loss is not the two-second stop itself, it is driving down a speed-limited pit lane. That adds up to roughly 20 to 25 seconds at many circuits, more or less depending on the track.",
+                "sayThisLine": "A stop costs about twenty seconds, so they need a reason."
               }
             }
           },
@@ -1062,13 +1069,13 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "To force pit stops and mix up the race; a one-stop would be boring and predictable.",
-                  "explanation": "Right. The rule exists to prevent running the whole race on one soft tyre set. It creates strategy."
+                  "text": "To force at least one stop and a mix of tyres, instead of one set all race.",
+                  "explanation": "Right. Two different compounds means at least one stop, and it gives teams a real choice of strategy."
                 },
                 {
                   "id": "b",
                   "text": "To save tyres and reduce the environmental impact.",
-                  "explanation": "The rule is not about tyre conservation. It is about race strategy and competition."
+                  "explanation": "The rule is not about saving tyres. It is about making every dry race include a stop and some strategic variety."
                 },
                 {
                   "id": "c",
@@ -1078,15 +1085,15 @@
                 {
                   "id": "d",
                   "text": "To make pit crews work more and tire them out.",
-                  "explanation": "That is not the reason. The rule is about race fairness and strategy."
+                  "explanation": "That is not the reason. The rule is about guaranteeing a stop and some tyre variety."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. The two-compound rule exists to force stops and prevent a dull one-stop winner. It creates drama and strategy.",
-                "incorrect": "The two-compound rule forces drivers to use at least two different compounds, which forces at least one stop per race.",
+                "correct": "Right. In a dry race every driver must use at least two different compounds, so at least one stop is guaranteed. Teams then choose which tyres and when.",
+                "incorrect": "The two-compound rule makes drivers use at least two different compounds in a dry race, which guarantees at least one stop. It is not about saving tyres or tiring out crews.",
                 "sayThisLine": "The two-compound rule forces a stop."
               }
             }

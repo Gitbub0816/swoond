@@ -410,12 +410,12 @@
               "translation": "When I moved out of disturbed air, my car had grip to attempt a pass.",
               "followUps": [
                 {
-                  "line": "Clean air gives front grip because no car disrupts the airflow.",
-                  "why": "Aerodynamics decide whether a pass is even possible."
+                  "line": "What got him out of the dirty air?",
+                  "why": "Clean air usually comes from a lane change, a pit stop or a good restart, so it is the natural next question."
                 },
                 {
-                  "line": "Clean-air passes often happen three-wide when the inside car clears.",
-                  "why": "Once you have grip, you can turn and dive to a different line."
+                  "line": "Could he hold the clean air once he had it?",
+                  "why": "Getting clean air is one thing, keeping it through the next car is another, and it shows you follow the fight."
                 }
               ]
             }
@@ -458,7 +458,7 @@
               "clean-air-pass"
             ],
             "payload": {
-              "prompt": "A clean-air pass is easiest when {{condition}}.",
+              "prompt": "When is a clean-air pass easiest?",
               "template": "A clean-air pass is easiest when {{condition}}.",
               "gaps": [
                 {
@@ -503,17 +503,17 @@
               "choices": [
                 {
                   "id": "yes",
-                  "label": "Yes, one block per attempt."
+                  "label": "Yes, one defensive move is racing"
                 },
                 {
                   "id": "no",
-                  "label": "No, never block."
+                  "label": "No, all blocking is banned"
                 }
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Right. One block per attempt is legal and expected. Repeated blocks anger rivals.",
-                "incorrect": "Blocking is legal. A leading car can move once to defend. Multiple blocks or very late blocks may be penalized or draw retaliation."
+                "correct": "Right. Defending your line once is part of racing. Weaving back and forth angers rivals and can draw a penalty.",
+                "incorrect": "A single defensive move is part of racing. Repeated weaving or a very late swerve can be penalized and often draws anger from the other driver."
               }
             }
           },
@@ -526,9 +526,10 @@
             "payload": {
               "prompt": "He blocks low, you go high, he goes high. What now?",
               "situation": {
+                "narrative": "You are third, chasing second, and he keeps moving to cut off your line.",
                 "facts": [
                   {
-                    "label": "Laps left",
+                    "label": "Laps to go",
                     "value": "8"
                   },
                   {
@@ -537,7 +538,7 @@
                   },
                   {
                     "label": "The block",
-                    "value": "Back-and-forth blocking"
+                    "value": "He has moved twice to cut you off"
                   },
                   {
                     "label": "History",
@@ -547,28 +548,28 @@
               },
               "options": [
                 {
-                  "id": "accept",
-                  "label": "Accept and wait.",
-                  "verdict": "acceptable",
-                  "consequence": "Clean racing, you earn respect, but lose this battle.",
-                  "considerations": ["Shows respect.", "But you might not get another chance.", "Only 8 laps left."]
-                },
-                {
-                  "id": "bump",
-                  "label": "Bump him off his line.",
+                  "id": "patient",
+                  "label": "Stay close and set up a clean pass",
                   "verdict": "best",
-                  "consequence": "Fair payback for repeated blocks. He loses momentum and you dive past.",
-                  "considerations": ["Repeated blocks invite a response.", "Bump is within bounds.", "Might be the only way."]
+                  "consequence": "You keep your car clean and keep pressure on him. Weaving costs him speed, and a lap later you may get the run you need.",
+                  "considerations": ["Blocking costs the car in front speed.", "Eight laps is enough for another try.", "A clean pass keeps you out of trouble."]
                 },
                 {
-                  "id": "wreck",
-                  "label": "Wreck him.",
+                  "id": "again",
+                  "label": "Go low again right now",
+                  "verdict": "acceptable",
+                  "consequence": "You may get lucky, but he has already shown he will cover, so you risk a messy side-by-side move.",
+                  "considerations": ["It keeps the pressure on.", "He is already covering you.", "A rushed move can cost you both."]
+                },
+                {
+                  "id": "hit",
+                  "label": "Hit him to move him out of the way",
                   "verdict": "poor",
-                  "consequence": "Both of you DNF. Not worth 8 laps.",
-                  "considerations": ["You both crash.", "Reputation suffers.", "Not worth it."]
+                  "consequence": "Contact can spin you both, and intentional contact can draw a penalty. Eight laps is not worth it.",
+                  "considerations": ["You could both wreck.", "Intentional contact can be penalized.", "It is a desperate move, not a pass."]
                 }
               ],
-              "expertNote": "Repeated blocking—moving back and forth—crosses from defense into aggression and invites retaliation."
+              "expertNote": "Weaving to block tests everyone's patience. Most drivers answer with a cleaner pass, not contact."
             }
           },
           {
@@ -601,7 +602,7 @@
                 "Blocking radio signals."
               ],
               "explanation": {
-                "summary": "One block is racing. Multiple blocks are not and earn a dirty reputation."
+                "summary": "One block is racing. Weaving again and again is not, and it earns a bad reputation."
               }
             }
           },
@@ -620,7 +621,7 @@
                 },
                 {
                   "id": "b",
-                  "text": "For repeated or very late blocks."
+                  "text": "When it is repeated weaving or a very late move."
                 },
                 {
                   "id": "c",
@@ -631,8 +632,8 @@
                 "b"
               ],
               "explanation": {
-                "correct": "Right. One block is clean. Multiple blocks or a very late block may be flagged.",
-                "incorrect": "Blocking is legal, but excessive blocking or blocking very late into the corner may draw a penalty. The line between racing and wrecking matters."
+                "correct": "Right. One defensive move is fine. Weaving or a very late move may be penalized.",
+                "incorrect": "Defending once is racing, but excessive blocking or blocking very late into a corner can draw a penalty. Officials use judgment, which is why fans argue about it."
               }
             }
           }
@@ -724,44 +725,52 @@
               "braking-zone"
             ],
             "payload": {
-              "prompt": "You brake better. Dive for the inside?",
+              "prompt": "Nose alongside into a slow corner. How do you play it?",
               "situation": {
+                "narrative": "You are second and pulling alongside the leader on the brakes as you both approach a slow right-hander.",
                 "facts": [
                   {
                     "label": "Position",
-                    "value": "Second place"
+                    "value": "Second, nose beside his rear wheel"
                   },
                   {
-                    "label": "Your skill",
-                    "value": "Better braking than leader"
-                  },
-                  {
-                    "label": "Turn",
+                    "label": "Corner",
                     "value": "Tight 90-degree right-hander"
                   },
                   {
-                    "label": "Laps left",
-                    "value": "20 remaining"
+                    "label": "Room on the inside",
+                    "value": "Enough for your car if you commit"
+                  },
+                  {
+                    "label": "Laps to go",
+                    "value": "20"
                   }
                 ]
               },
               "options": [
                 {
-                  "id": "dive",
-                  "label": "Dive inside in braking zone.",
+                  "id": "room",
+                  "label": "Brake late, take the inside and leave him room",
                   "verdict": "best",
-                  "consequence": "Out-braking the leader gains inside position. If you nail the turn, you are past. Road-course passing is about braking.",
-                  "considerations": ["You have braking edge.", "Inside is open.", "20 laps for attempts."]
+                  "consequence": "You get the inside line cleanly and he has the room he is owed, so you are likely to exit side by side or ahead.",
+                  "considerations": ["You are already alongside, so the pass is earned.", "Leaving room keeps it racing, not wrecking.", "You can commit because the gap is there."]
                 },
                 {
                   "id": "wait",
-                  "label": "Wait for a mistake.",
+                  "label": "Back out and wait for a mistake",
                   "verdict": "acceptable",
-                  "consequence": "Conservative. You might never get a cleaner shot.",
-                  "considerations": ["No crash risk.", "But the leader is fast.", "Mistake might not come."]
+                  "consequence": "You stay safe and clean, but the leader may not make a mistake, and you may not get another shot this lap.",
+                  "considerations": ["It avoids any risk of contact.", "You give up a real opening.", "With 20 laps left there will be other chances."]
+                },
+                {
+                  "id": "crowd",
+                  "label": "Dive in and force him wide",
+                  "verdict": "poor",
+                  "consequence": "You push him off his line, contact is likely and you can both lose positions, or get a penalty.",
+                  "considerations": ["Pushing a car wide is not a clean pass.", "Contact can spin you both.", "You can be penalized for it."]
                 }
               ],
-              "expertNote": "Road-course specialists pass in the braking zone. Out-braking is how passes happen when skill separates drivers."
+              "expertNote": "Road-course passes work when you are alongside and leave room. A late brake without an overlap is a lunge, not a pass."
             }
           },
           {
@@ -795,12 +804,12 @@
               "translation": "I braked later than the leader, gaining inside position into the chicane.",
               "followUps": [
                 {
-                  "line": "Out-braking means braking later than your rival; it is the signature road-course pass.",
-                  "why": "On road courses, braking point is where passes are made."
+                  "line": "Did he make it stick through the exit?",
+                  "why": "A late brake is only half of the pass. The exit decides whether the other car can take the spot back."
                 },
                 {
-                  "line": "A failed out-braking attempt can result in a crash at the apex if you run out of room.",
-                  "why": "Road-course racecraft is about knowing the limit and executing perfectly."
+                  "line": "Where did he brake compared with the other driver?",
+                  "why": "It asks about the braking point, which is where road-course passes are made."
                 }
               ]
             }
@@ -824,8 +833,9 @@
               "lapped-traffic"
             ],
             "payload": {
-              "prompt": "You are fourth; lapped car is in your way. Pass it?",
+              "prompt": "A lapped car is ahead of you on your line. What do you do?",
               "situation": {
+                "narrative": "You are fourth, half a second behind third, and a slower lapped car is running on your line.",
                 "facts": [
                   {
                     "label": "Position",
@@ -833,35 +843,42 @@
                   },
                   {
                     "label": "Traffic",
-                    "value": "Lapped car is in the way"
+                    "value": "Lapped car on your line"
                   },
                   {
                     "label": "Gap to third",
-                    "value": "Half second back"
+                    "value": "Half a second"
                   },
                   {
-                    "label": "Laps left",
-                    "value": "35 to go"
+                    "label": "Laps to go",
+                    "value": "35"
                   }
                 ]
               },
               "options": [
                 {
-                  "id": "pass",
-                  "label": "Pass the lapped car.",
+                  "id": "around",
+                  "label": "Pick a clean line around it and keep your pace",
                   "verdict": "best",
-                  "consequence": "Overtaking clears your line and lets you chase third.",
-                  "considerations": ["Just in the way.", "Passing opens your path.", "35 laps to chase."]
+                  "consequence": "You lose little time, keep third in sight and stay clean.",
+                  "considerations": ["A lapped car is slower, so you need to get by it.", "Choose a line it is not on.", "Keep your momentum for the next car."]
                 },
                 {
-                  "id": "wait",
-                  "label": "Wait for it to clear.",
-                  "verdict": "acceptable",
-                  "consequence": "The car might yield. You save fuel and tires.",
-                  "considerations": ["Car might give up.", "You save fuel.", "But might stay in way."]
+                  "id": "behind",
+                  "label": "Stay stuck behind it and hope it moves",
+                  "verdict": "poor",
+                  "consequence": "You sit in its dirty air and lose time while third pulls away.",
+                  "considerations": ["Lapped cars cost you time every lap.", "Dirty air hurts your grip.", "Waiting hands the gap to third."]
+                },
+                {
+                  "id": "push",
+                  "label": "Nudge it out of your way",
+                  "verdict": "poor",
+                  "consequence": "Contact can spin both cars, and it can draw a penalty.",
+                  "considerations": ["Contact is not a pass.", "You could wreck a car that is not in the fight.", "It is rarely worth it."]
                 }
               ],
-              "expertNote": "Lapped traffic is a hazard for leaders but a tool for others; passing or using them can change the race."
+              "expertNote": "Lapped cars are supposed to give way when the blue flag says a leader is coming, but it does not always go smoothly. Good drivers plan the pass."
             }
           },
           {

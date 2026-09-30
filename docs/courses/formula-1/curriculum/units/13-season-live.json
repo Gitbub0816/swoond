@@ -7,8 +7,15 @@
     "summary": "Weekly templates driven by live data: previews, recaps, title picture, driver and team form.",
     "layer": "current-season",
     "order": 13,
-    "prerequisiteUnitIds": ["race-weekend-101", "tyres-and-pit-stops"],
-    "personalizationSlots": ["driver", "team", "region"],
+    "prerequisiteUnitIds": [
+      "race-weekend-101",
+      "tyres-and-pit-stops"
+    ],
+    "personalizationSlots": [
+      "driver",
+      "team",
+      "region"
+    ],
     "live": {
       "dataKind": "standings,scores,schedules,news",
       "adapterKey": "f1.season",
@@ -20,132 +27,229 @@
         "title": "This weekend: what to watch",
         "objective": "Read a race preview: circuit type, tyre picks and what matters most.",
         "estimatedMinutes": 9,
-        "conceptIds": ["hard-medium-soft", "street-circuit", "sprint", "pit-window", "track-evolution"],
+        "conceptIds": [
+          "hard-medium-soft",
+          "street-circuit",
+          "sprint",
+          "pit-window",
+          "track-evolution"
+        ],
         "activities": [
           {
             "id": "sl-01-mc-circuit-type",
             "type": "multiple-choice",
-            "conceptIds": ["street-circuit"],
+            "conceptIds": [
+              "street-circuit",
+              "track-evolution"
+            ],
             "payload": {
-              "prompt": "Is this circuit a street circuit, high-speed track, or balanced layout?",
+              "prompt": "A preview says: walls close, little run-off, pole matters. What kind of circuit?",
               "options": [
-                {"id": "a", "text": "Street circuit", "explanation": "Tight, bumpy, walls close. Track position and tyre life matter most."},
-                {"id": "b", "text": "High-speed track", "explanation": "Fast corners, long straights. Downforce and aero efficiency rule."},
-                {"id": "c", "text": "Balanced", "explanation": "Mix of corners and straights. No single style dominates."}
+                {
+                  "id": "a",
+                  "text": "A street circuit",
+                  "explanation": "Right. Tight, bumpy, walled tracks make passing hard, so qualifying and track position matter most."
+                },
+                {
+                  "id": "b",
+                  "text": "A high-speed, flat-out circuit",
+                  "explanation": "High-speed tracks have long straights and fast corners, and run-off is usually generous."
+                },
+                {
+                  "id": "c",
+                  "text": "A balanced circuit with no particular trait",
+                  "explanation": "Balanced tracks do not have this walls-and-pole character."
+                }
               ],
-              "correctOptionIds": ["a"],
+              "correctOptionIds": [
+                "a"
+              ],
               "explanation": {
-                "correct": "Right. Street circuits like Monaco and Singapore are tight and unforgiving.",
-                "incorrect": "Circuit type shapes strategy: street circuits favor track position, high-speed layouts favor outright pace.",
-                "sayThisLine": "Street circuits are all about staying ahead."
+                "correct": "Close walls, little run-off and a premium on pole are classic street-circuit signs, like Monaco or Singapore.",
+                "incorrect": "Close walls and little room to pass point to a street circuit, where track position is gold.",
+                "sayThisLine": "It is a street circuit, so qualifying matters."
               }
             }
           },
           {
             "id": "sl-01-mc-tyre-choice",
             "type": "multiple-choice",
-            "conceptIds": ["hard-medium-soft"],
+            "conceptIds": [
+              "hard-medium-soft",
+              "tyre-degradation"
+            ],
             "payload": {
-              "prompt": "Three compounds are hard (white), medium (yellow), soft (red). Hot weather favors which?",
+              "prompt": "A preview warns of a very hot race. Which compound helps with tyre wear?",
               "options": [
-                {"id": "a", "text": "Hard for durability", "explanation": "Hards last longer but are slower per lap."},
-                {"id": "b", "text": "Soft for speed", "explanation": "Softs are fastest but wear quicker, especially in heat."},
-                {"id": "c", "text": "Medium as a middle ground", "explanation": "Medium is balanced but not the answer in hot weather."}
+                {
+                  "id": "a",
+                  "text": "The hard (white), which lasts longest in the heat.",
+                  "explanation": "Right. Hard tyres are slower per lap but wear less, which is useful when heat is hurting the tyres."
+                },
+                {
+                  "id": "b",
+                  "text": "The soft (red), because it is always the best.",
+                  "explanation": "Softs give the most grip but wear fastest, and heat makes that worse."
+                },
+                {
+                  "id": "c",
+                  "text": "The intermediate (green), because it is cooler.",
+                  "explanation": "Intermediates are for damp tracks, and they would be destroyed on a hot dry one."
+                }
               ],
-              "correctOptionIds": ["b"],
+              "correctOptionIds": [
+                "a"
+              ],
               "explanation": {
-                "correct": "Right. Heat stresses tyres. Softs wear fastest but deliver the pace teams need when track temps rise.",
-                "incorrect": "Hot tracks favor softer compounds for grip, though the trade-off is short tyre life."
+                "correct": "Heat raises tyre wear, so harder compounds that last longer become more attractive. Teams weigh that against the pace they lose.",
+                "incorrect": "Hot tracks punish soft tyres. The harder compounds are slower per lap but survive longer.",
+                "sayThisLine": "It is hot, so the hards might last longest."
               }
             }
           },
           {
-            "id": "sl-01-bin-sprint-strategy",
+            "id": "sl-01-bin-sprint-practice",
             "type": "binary-call",
-            "conceptIds": ["sprint"],
+            "conceptIds": [
+              "sprint",
+              "practice"
+            ],
             "payload": {
-              "prompt": "Is a sprint weekend longer or shorter in total running time than a regular weekend?",
+              "prompt": "On a sprint weekend, how much practice do teams get?",
               "scene": {
                 "kind": "none",
-                "alt": "Saturday has SQ1-SQ3 then a 100km sprint race. Sunday has regular qualifying and the Grand Prix."
+                "alt": "Text only: a sprint weekend has sprint qualifying, a sprint race, then qualifying and the Grand Prix."
               },
               "choices": [
-                {"id": "longer", "label": "Longer running"},
-                {"id": "shorter", "label": "Shorter running"}
+                {
+                  "id": "one",
+                  "label": "One practice session"
+                },
+                {
+                  "id": "three",
+                  "label": "Three practice sessions"
+                }
               ],
-              "correctChoiceId": "longer",
+              "correctChoiceId": "one",
               "explanation": {
-                "correct": "Right. Sprints add a Saturday race, so total track time grows despite one fewer Friday practice.",
-                "incorrect": "Sprints add an extra Saturday race, so even with one fewer Friday session, the total running time is more."
-              }
+                "correct": "A sprint weekend has just one practice session, because the sprint qualifying and sprint race fill the rest of the schedule. Teams have to get the car right quickly.",
+                "incorrect": "A normal weekend has three practice sessions. On a sprint weekend there is only one, so set-up choices are made with very little data.",
+                "sayThisLine": "Only one practice on a sprint weekend, so no room for mistakes."
+              },
+              "ruleTag": "Sprint weekends"
             }
           },
           {
             "id": "sl-01-dec-setup-trade",
             "type": "decision-scenario",
-            "conceptIds": ["track-evolution", "pit-window"],
+            "conceptIds": [
+              "track-evolution",
+              "race-pace-vs-quali-pace"
+            ],
             "payload": {
-              "prompt": "Track improves lap by lap on Friday. Set up for Friday pace or Sunday race conditions?",
+              "prompt": "Friday is cool but Sunday will be hot. How do you set up?",
               "situation": {
-                "narrative": "The track is cool and slippery on Friday morning but will be 15°C hotter and quicker on Sunday.",
+                "narrative": "Friday practice is on a cool, low-grip track. The forecast says Sunday's race will be much hotter.",
                 "facts": [
-                  {"label": "Friday temp", "value": "18°C, wet from overnight"},
-                  {"label": "Sunday forecast", "value": "32°C, dry all day"},
-                  {"label": "Qual Saturday", "value": "Conditions between Friday and Sunday"}
+                  {
+                    "label": "Friday",
+                    "value": "Cool track, low grip"
+                  },
+                  {
+                    "label": "Sunday forecast",
+                    "value": "Much hotter, dry"
+                  },
+                  {
+                    "label": "Practice",
+                    "value": "Limited running before parc ferme"
+                  },
+                  {
+                    "label": "Points",
+                    "value": "Scored on Sunday"
+                  }
                 ]
               },
               "options": [
                 {
-                  "id": "friday",
-                  "label": "Tune for Friday: get the most from today",
-                  "verdict": "poor",
-                  "consequence": "You dial in the car for cool, low-grip conditions. Friday times improve, but Sunday heat changes everything: over-stiff setup wastes pace.",
-                  "considerations": [
-                    "Friday practice is for learning setup sensitivity, not dialling in the race.",
-                    "Track evolution and heat cycles mean a Friday tune-up is obsolete by Sunday."
-                  ]
-                },
-                {
                   "id": "sunday",
-                  "label": "Target Sunday: prepare for the race",
+                  "label": "Aim for Sunday's conditions and use Friday to learn the car.",
                   "verdict": "best",
-                  "consequence": "You build a setup that will work Sunday and Saturday qualifying. Friday times are slower but meaningful for race setup.",
+                  "consequence": "Friday times look slower, but the set-up will be closer to what the car needs in the race, and the team learns how it reacts to change.",
                   "considerations": [
-                    "Sunday is the race. Points come on Sunday, not Friday.",
-                    "A setup that works in heat is the real test of the car's balance."
+                    "The race is where the big points are.",
+                    "Heat changes tyre wear and balance, so conditions matter."
                   ]
                 },
                 {
-                  "id": "saturday",
-                  "label": "Chase Saturday: split the difference",
-                  "verdict": "acceptable",
-                  "consequence": "You aim for qualifying conditions. Friday data informs the choice, Sunday requires minor tweaks.",
+                  "id": "friday",
+                  "label": "Tune for Friday and fix it later.",
+                  "verdict": "poor",
+                  "consequence": "Friday looks good, but the car may be wrong when it gets hot, with little time to adjust.",
                   "considerations": [
-                    "Targeting Saturday qualifying is viable if the team monitors Sunday's expected conditions.",
-                    "This is a middle path, not ideal but workable."
+                    "Friday is a guide, not the target.",
+                    "There is limited time before the set-up locks."
+                  ]
+                },
+                {
+                  "id": "middle",
+                  "label": "Split the difference and aim at Saturday qualifying.",
+                  "verdict": "acceptable",
+                  "consequence": "Qualifying is sorted, but Sunday's heat may still catch the team out.",
+                  "considerations": [
+                    "Qualifying matters for the grid.",
+                    "The race still needs its own plan."
                   ]
                 }
               ],
-              "expertNote": "Race teams dial for race day, using Friday to understand the car's sensitivity.",
-              "sayThisLine": "Friday data points to Sunday pace."
+              "expertNote": "Teams use Friday to understand the car's sensitivity and plan for the conditions they expect on race day.",
+              "sayThisLine": "Friday is a guide. Sunday is the test."
             }
           },
           {
             "id": "sl-01-st-preview-tension",
             "type": "say-this",
-            "conceptIds": ["pit-window", "track-evolution"],
+            "conceptIds": [
+              "tyre-degradation",
+              "pit-window"
+            ],
             "payload": {
-              "statement": {"speaker": "Fan", "text": "They are worried about the new kerbs this weekend. No Friday data yet."},
-              "question": "Why is she concerned?",
+              "statement": {
+                "speaker": "Fan",
+                "text": "Tyre deg is going to be the story this weekend."
+              },
+              "question": "What does she mean?",
               "options": [
-                {"id": "a", "text": "New kerbs mean the car set-up could be wrong", "isCorrect": true, "explanation": "Unfamiliar kerbs change how the car feels and setup balance."},
-                {"id": "b", "text": "Kerbs are less safe", "isCorrect": false, "explanation": "Safety concerns are not mentioned in this context."},
-                {"id": "c", "text": "The team will not have spare parts", "isCorrect": false, "explanation": "Spare parts inventory is unrelated to circuit kerbs."}
+                {
+                  "id": "a",
+                  "text": "The tyres will wear quickly, so stops and stint lengths will decide the race.",
+                  "isCorrect": true,
+                  "explanation": "Right. Deg means degradation: how fast the tyres lose grip."
+                },
+                {
+                  "id": "b",
+                  "text": "The tyres will be very hard to get hold of.",
+                  "isCorrect": false,
+                  "explanation": "Deg is about wear, not supply."
+                },
+                {
+                  "id": "c",
+                  "text": "The track surface is about to be replaced.",
+                  "isCorrect": false,
+                  "explanation": "Deg refers to tyre degradation, not the track itself."
+                }
               ],
-              "translation": "New track features mean the car's behaviour is unpredictable until Friday running. Less time to dial it in.",
+              "translation": "Deg is short for degradation. If it is high, tyres fade fast, so strategy becomes the story.",
               "followUps": [
-                {"line": "Does more Friday running help?", "why": "Shows you understand that practice data builds confidence."}
-              ]
+                {
+                  "line": "Which tyre does she think wears worst?",
+                  "why": "A good follow-up that keeps the conversation going."
+                },
+                {
+                  "line": "Does that mean more stops?",
+                  "why": "High degradation often means more stops, but not always."
+                }
+              ],
+              "noFakeExpertNote": "If you are not sure, ask which tyre she expects to struggle."
             }
           }
         ]
@@ -155,59 +259,110 @@
         "title": "Last race in plain English",
         "objective": "Decode last race's result, strategy calls and controversies.",
         "estimatedMinutes": 10,
-        "conceptIds": ["undercut", "safety-car-stop", "time-penalty", "dnf", "pit-loss"],
+        "conceptIds": [
+          "undercut",
+          "safety-car-stop",
+          "time-penalty",
+          "dnf",
+          "pit-loss"
+        ],
         "activities": [
           {
             "id": "sl-02-mc-undercut-success",
             "type": "multiple-choice",
-            "conceptIds": ["undercut"],
+            "conceptIds": [
+              "undercut",
+              "pit-window"
+            ],
             "payload": {
-              "prompt": "A driver pits on lap 20 while the leader is on lap 21. The undercut works if...?",
+              "prompt": "A chaser pits a lap before the leader. When does the undercut work?",
               "options": [
-                {"id": "a", "text": "Fresh tyres help the undercut car lap faster than the leader does before stopping.", "explanation": "Yes, speed on fresh rubber is the whole point."},
-                {"id": "b", "text": "The pit stop takes less than two seconds.", "explanation": "A fast stop helps but the key is the pace gain afterward."},
-                {"id": "c", "text": "Both cars pit on the same lap.", "explanation": "If they pit together, there is no undercut."}
+                {
+                  "id": "a",
+                  "text": "When fresh tyres make the chaser quick enough to come out ahead after the leader stops.",
+                  "explanation": "Right. The gain comes from pace on new tyres before the leader pits."
+                },
+                {
+                  "id": "b",
+                  "text": "When the pit stop takes under two seconds.",
+                  "explanation": "A quick stop helps, but the undercut depends on the pace on new tyres."
+                },
+                {
+                  "id": "c",
+                  "text": "When both cars pit on the same lap.",
+                  "explanation": "If they pit together, there is no undercut."
+                }
               ],
-              "correctOptionIds": ["a"],
+              "correctOptionIds": [
+                "a"
+              ],
               "explanation": {
-                "correct": "Right. The undercut works because new tyres are quicker. If the undertaker laps faster than the leader does on old tyres, the undertaker jumps ahead when the leader finally stops.",
-                "incorrect": "An undercut needs the undertaker to be quicker on fresh tyres than the leader on old ones, closing the gap and then some."
+                "correct": "The chaser pits first, gains time on fresh tyres while the leader is on old ones, then comes out ahead once the leader stops.",
+                "incorrect": "An undercut needs the chaser to be noticeably quicker on fresh tyres than the leader on old ones.",
+                "sayThisLine": "The undercut worked because the new tyres were quick."
               }
             }
           },
           {
             "id": "sl-02-bin-safety-car-luck",
             "type": "binary-call",
-            "conceptIds": ["safety-car-stop", "pit-loss"],
+            "conceptIds": [
+              "safety-car-stop",
+              "pit-loss"
+            ],
             "payload": {
-              "prompt": "Car stops under safety car (12 seconds pit loss). Was this good luck or bad luck for the car?",
+              "prompt": "A car pits just as the safety car comes out. Good luck or bad luck?",
               "scene": {
                 "kind": "none",
-                "alt": "A car pits during a safety-car period when all cars are bunched and running slow."
+                "alt": "Text only: a car makes a pit stop while the field is slow behind the safety car."
               },
               "choices": [
-                {"id": "good", "label": "Good luck"},
-                {"id": "bad", "label": "Bad luck"}
+                {
+                  "id": "good",
+                  "label": "Good luck"
+                },
+                {
+                  "id": "bad",
+                  "label": "Bad luck"
+                }
               ],
               "correctChoiceId": "good",
               "explanation": {
-                "correct": "Right. A 12-second stop under the safety car is cheap. Normal pit loss is about 20 seconds, so the safety car cut the cost in half.",
-                "incorrect": "Under the safety car, the pit loss is roughly halved because the field is bunched. A 12-second stop is a lucky timing."
-              }
+                "correct": "Under a safety car the field is slow, so a stop costs roughly half as much time as normal. Pitting just as it comes out is a big win.",
+                "incorrect": "Safety cars slow everyone, so a pit stop costs much less. That is why pitting at the right moment is such a gift.",
+                "sayThisLine": "He got a cheap stop under the safety car."
+              },
+              "ruleTag": "Safety car stop"
             }
           },
           {
             "id": "sl-02-mc-penalty-impact",
             "type": "multiple-choice",
-            "conceptIds": ["time-penalty"],
+            "conceptIds": [
+              "time-penalty"
+            ],
             "payload": {
               "prompt": "A driver finishes second and gets a five-second time penalty. What happens to their result?",
               "options": [
-                {"id": "a", "text": "They stay second; penalty points are added to their licence.", "explanation": "Penalty points and time penalties are separate things."},
-                {"id": "b", "text": "Five seconds are added to their race time, potentially dropping their place.", "explanation": "Right; a five-second penalty can change the final order."},
-                {"id": "c", "text": "They are disqualified from this race.", "explanation": "That would be a harsher penalty like a black flag."}
+                {
+                  "id": "a",
+                  "text": "They stay second; penalty points are added to their licence.",
+                  "explanation": "Penalty points and time penalties are separate things."
+                },
+                {
+                  "id": "b",
+                  "text": "Five seconds are added to their race time, potentially dropping their place.",
+                  "explanation": "Right; a five-second penalty can change the final order."
+                },
+                {
+                  "id": "c",
+                  "text": "They are disqualified from this race.",
+                  "explanation": "That would be a harsher penalty like a black flag."
+                }
               ],
-              "correctOptionIds": ["b"],
+              "correctOptionIds": [
+                "b"
+              ],
               "explanation": {
                 "correct": "Right. A time penalty is added to the race time; it can swing the finishing order if the margin is tight.",
                 "incorrect": "A time penalty adds seconds to the final race time, not licence points. Five seconds can drop a driver from second to fourth if others are close."
@@ -217,37 +372,95 @@
           {
             "id": "sl-02-st-dnf-frustration",
             "type": "say-this",
-            "conceptIds": ["dnf"],
+            "conceptIds": [
+              "dnf",
+              "reliability"
+            ],
             "payload": {
-              "statement": {"speaker": "Fan", "text": "He was leading by ten seconds and then DNF. The car was the fastest out there."},
+              "statement": {
+                "speaker": "Fan",
+                "text": "He was leading by ten seconds and then a DNF. That car was the fastest out there."
+              },
               "question": "What is she saying?",
               "options": [
-                {"id": "a", "text": "He retired from the lead due to a failure, despite clear pace", "isCorrect": true, "explanation": "DNF is Did Not Finish; he quit the race while leading."},
-                {"id": "b", "text": "He finished first but lost the title", "isCorrect": false, "explanation": "DNF means he did not finish at all."},
-                {"id": "c", "text": "The car was damaged but he kept racing", "isCorrect": false, "explanation": "Damaged or not, DNF means he stopped."}
+                {
+                  "id": "a",
+                  "text": "He retired from the lead, so the pace earned him nothing.",
+                  "isCorrect": true,
+                  "explanation": "DNF means did not finish. A retirement scores zero, however fast the car was."
+                },
+                {
+                  "id": "b",
+                  "text": "He finished first but lost the title.",
+                  "isCorrect": false,
+                  "explanation": "DNF means he did not finish, so there was no win."
+                },
+                {
+                  "id": "c",
+                  "text": "He was given a penalty but kept racing.",
+                  "isCorrect": false,
+                  "explanation": "A penalty is different. DNF means he stopped racing."
+                }
               ],
-              "translation": "He had to retire (mechanical failure or crash) from a commanding lead. A wasted day because finish position and points matter, not pace.",
+              "translation": "He had to retire from a commanding lead. Points only come from finishing, so a fast car scores nothing if it stops.",
               "followUps": [
-                {"line": "What system failed?", "why": "Shows curiosity about the underlying cause."}
-              ]
+                {
+                  "line": "Was it a mechanical failure or a crash?",
+                  "why": "The cause tells you whether it was bad luck, a mistake or a reliability issue."
+                },
+                {
+                  "line": "How many points did that cost him?",
+                  "why": "A win is worth 25, so the gap can grow quickly."
+                }
+              ],
+              "noFakeExpertNote": "Do not guess the cause. Asking what went wrong is a real-fan question."
             }
           },
           {
             "id": "sl-02-st-strategy-call",
             "type": "say-this",
-            "conceptIds": ["undercut", "pit-loss"],
+            "conceptIds": [
+              "undercut",
+              "overcut"
+            ],
             "payload": {
-              "statement": {"speaker": "Fan", "text": "The pit wall gambled on the undercut and it paid off this time."},
+              "statement": {
+                "speaker": "Fan",
+                "text": "The pit wall gambled on the undercut and it paid off this time."
+              },
               "question": "What did the strategist do?",
               "options": [
-                {"id": "a", "text": "Pitted earlier than the rival to jump ahead on fresh tyres", "isCorrect": true, "explanation": "That is the definition of an undercut strategy."},
-                {"id": "b", "text": "Stayed out longer while the rival pitted to gain clear air", "isCorrect": false, "explanation": "That is an overcut, not an undercut."},
-                {"id": "c", "text": "Took a risk and it did not work", "isCorrect": false, "explanation": "She said it 'paid off', meaning it succeeded."}
+                {
+                  "id": "a",
+                  "text": "Pitted earlier than the rival to jump ahead on fresh tyres.",
+                  "isCorrect": true,
+                  "explanation": "That is an undercut, and she says it worked."
+                },
+                {
+                  "id": "b",
+                  "text": "Stayed out longer than the rival to gain clear air.",
+                  "isCorrect": false,
+                  "explanation": "That is an overcut, the opposite idea."
+                },
+                {
+                  "id": "c",
+                  "text": "Tried it and it failed.",
+                  "isCorrect": false,
+                  "explanation": "She said it paid off, so it worked."
+                }
               ],
-              "translation": "The team called an earlier stop, hoping the fresh tyres would let the driver lap faster than the rival and jump track position.",
+              "translation": "The team stopped first, hoping fresh tyres would let the driver lap faster than the rival and come out ahead.",
               "followUps": [
-                {"line": "Did the other team see it coming?", "why": "Invites thought about strategic surprise."}
-              ]
+                {
+                  "line": "Did the other team see it coming?",
+                  "why": "A good question about whether the rival could have covered the stop."
+                },
+                {
+                  "line": "How many seconds did it gain?",
+                  "why": "The gain on fresh tyres shows whether it was a clear success."
+                }
+              ],
+              "noFakeExpertNote": "If you are unsure who did what, ask which driver pitted first."
             }
           }
         ]
@@ -257,82 +470,150 @@
         "title": "The championship picture",
         "objective": "Read standings and work out who can still win and what they need.",
         "estimatedMinutes": 9,
-        "conceptIds": ["title-permutations", "drivers-championship", "constructors-championship", "points-system"],
+        "conceptIds": [
+          "title-permutations",
+          "drivers-championship",
+          "constructors-championship",
+          "points-system"
+        ],
         "activities": [
           {
             "id": "sl-03-mc-points-math",
             "type": "multiple-choice",
-            "conceptIds": ["points-system"],
+            "conceptIds": [
+              "title-permutations",
+              "points-system"
+            ],
             "payload": {
-              "prompt": "Leader has 175 points with four races left. Each race awards a max of 25 points. Can anyone catch them?",
+              "prompt": "The leader is 60 points clear with two normal races left. Is it over?",
               "options": [
-                {"id": "a", "text": "No; 175 is unbeatable", "explanation": "175 plus three more wins = 250. Rivals could still catch up."},
-                {"id": "b", "text": "Yes; if a rival wins all four races and the leader scores zero", "explanation": "Possible, though unlikely. Math: 175 + 0 vs rival on, say, 155 + 100."},
-                {"id": "c", "text": "Only if there is a red flag or crash", "explanation": "Not true. Raw pace and strategy decide it."}
+                {
+                  "id": "a",
+                  "text": "Yes. Two wins are worth 50, so the chaser cannot catch up.",
+                  "explanation": "Right. Two Grand Prix wins give 50 points, which is fewer than the 60-point gap."
+                },
+                {
+                  "id": "b",
+                  "text": "No. The chaser can win both and catch up.",
+                  "explanation": "Winning both gains 50 points on a rival who scores nothing, so 60 is out of reach."
+                },
+                {
+                  "id": "c",
+                  "text": "Not yet, because fastest lap gives extra points.",
+                  "explanation": "There is no fastest-lap point since 2025."
+                }
               ],
-              "correctOptionIds": ["b"],
+              "correctOptionIds": [
+                "a"
+              ],
               "explanation": {
-                "correct": "Right. With four races and 25 points per win, a 20-point deficit can be closed. Math matters in the title race.",
-                "incorrect": "A 20-point lead with four races left is not safe if rivals are faster or lucky."
+                "correct": "The most a driver can gain on another in a normal race is 25, if he wins and the rival scores nothing. Over two races that is 50, less than the 60-point gap.",
+                "incorrect": "Each normal race can swing at most 25 points. Two races is 50, so a 60-point gap cannot be closed.",
+                "sayThisLine": "He needs fifty and there is only fifty on offer, so it is over."
               }
             }
           },
           {
-            "id": "sl-03-est-permutations",
+            "id": "sl-03-est-max-swing",
             "type": "estimate-slider",
-            "conceptIds": ["title-permutations"],
+            "conceptIds": [
+              "title-permutations",
+              "points-system"
+            ],
             "payload": {
-              "prompt": "Three drivers are within 30 points with six races left. How many realistic final championship outcomes?",
-              "unit": "outcomes",
-              "min": 1,
-              "max": 10,
+              "prompt": "Most points a chaser can gain on a rival in one normal Grand Prix?",
+              "unit": "points",
+              "min": 0,
+              "max": 50,
               "step": 1,
-              "correctValue": 3,
-              "tolerance": {"full": 1, "partial": 2},
+              "correctValue": 25,
+              "tolerance": {
+                "full": 0,
+                "partial": 4
+              },
               "explanation": {
-                "correct": "Right. With six races and tight gaps, all three drivers can realistically win. Three or more outcomes are mathematically possible.",
-                "incorrect": "With six races left and three drivers within 30 points, all three have a realistic chance to clinch depending on race results.",
-                "sayThisLine": "The title stays open as long as the maths is there."
+                "correct": "25 points: a win scores 25, and if the rival scores nothing the chaser gains the full amount. That is the number title-maths starts from.",
+                "incorrect": "The best case is a win for 25 points against a rival who scores zero, which is a 25-point swing. Sprints add a bit more.",
+                "sayThisLine": "A win against a retirement is a twenty-five point swing."
               }
             }
           },
           {
             "id": "sl-03-bin-constructors-race",
             "type": "binary-call",
-            "conceptIds": ["constructors-championship"],
+            "conceptIds": [
+              "constructors-championship"
+            ],
             "payload": {
-              "prompt": "In the constructors' championship, two drivers from the same team score. Does that make it easier or harder to win?",
+              "prompt": "In the constructors' title, whose points count?",
               "scene": {
                 "kind": "none",
-                "alt": "A team with two drivers both finishing in the points, so both sets of points count."
+                "alt": "Text only: a team has two drivers who both score points in a race."
               },
               "choices": [
-                {"id": "easier", "label": "Easier to win"},
-                {"id": "harder", "label": "Harder to win"}
+                {
+                  "id": "both",
+                  "label": "Both drivers' points"
+                },
+                {
+                  "id": "best",
+                  "label": "Only the best driver's"
+                }
               ],
-              "correctChoiceId": "easier",
+              "correctChoiceId": "both",
               "explanation": {
-                "correct": "Right. Two drivers scoring double the points is a big advantage over a rival with one car scoring.",
-                "incorrect": "Two drivers scoring points is better than one. That is why team depth matters in the constructors' championship."
-              }
+                "correct": "Both drivers' points are added together for the team. That is why having two strong drivers, and reliable cars, matters.",
+                "incorrect": "The constructors' title adds the points of both drivers, not just the better one.",
+                "sayThisLine": "Both cars have to score for the team title."
+              },
+              "ruleTag": "Constructors' title"
             }
           },
           {
             "id": "sl-03-st-math-talk",
             "type": "say-this",
-            "conceptIds": ["title-permutations", "drivers-championship"],
+            "conceptIds": [
+              "title-permutations",
+              "points-system"
+            ],
             "payload": {
-              "statement": {"speaker": "Fan", "text": "If he wins the next three and the leader finishes fifth, it is suddenly a fight."},
-              "question": "What is she calculating?",
+              "statement": {
+                "speaker": "Fan",
+                "text": "If he wins the next three and the leader finishes fifth, it is suddenly a fight."
+              },
+              "question": "What is she working out?",
               "options": [
-                {"id": "a", "text": "The gap could narrow dramatically if pace flips", "isCorrect": true, "explanation": "Three wins plus the leader's bad result is a swing."},
-                {"id": "b", "text": "Points are awarded only for wins", "isCorrect": false, "explanation": "Points are awarded down to tenth."},
-                {"id": "c", "text": "The leader will definitely lose the title", "isCorrect": false, "explanation": "Three races change the gap, but not destiny."}
+                {
+                  "id": "a",
+                  "text": "Wins plus a bad run for the leader can close a gap fast.",
+                  "isCorrect": true,
+                  "explanation": "Right. A win is 25 and fifth is 10, so each such race swings 15 points."
+                },
+                {
+                  "id": "b",
+                  "text": "Points are awarded only for wins.",
+                  "isCorrect": false,
+                  "explanation": "Points go down to tenth place."
+                },
+                {
+                  "id": "c",
+                  "text": "The leader will lose the title for certain.",
+                  "isCorrect": false,
+                  "explanation": "It only narrows the gap. Nothing is certain."
+                }
               ],
-              "translation": "A few races of swapped fortune—one driver winning, the other scoring little—can flip a seemingly locked title.",
+              "translation": "One driver winning and the other scoring less can shrink a gap quickly. Three such races would be a 45-point swing.",
               "followUps": [
-                {"line": "How many points is that swing?", "why": "Tests understanding of the point scale."}
-              ]
+                {
+                  "line": "How many points is that?",
+                  "why": "A good prompt to do the sum: 25 minus 10, three times, is 45."
+                },
+                {
+                  "line": "How many races are left?",
+                  "why": "The number of races left decides whether it is possible."
+                }
+              ],
+              "noFakeExpertNote": "You do not need the exact standings. Asking how far behind he is works."
             }
           }
         ]
@@ -342,81 +623,172 @@
         "title": "{{driver}} this season",
         "objective": "Explain how {{driver}} is performing this season and why.",
         "estimatedMinutes": 8,
-        "conceptIds": ["teammate-battle", "race-pace-vs-quali-pace", "gap-and-interval", "dnf"],
+        "conceptIds": [
+          "teammate-battle",
+          "race-pace-vs-quali-pace",
+          "gap-and-interval",
+          "dnf"
+        ],
         "activities": [
           {
             "id": "sl-04-mc-quali-vs-race",
             "type": "multiple-choice",
-            "conceptIds": ["race-pace-vs-quali-pace"],
+            "conceptIds": [
+              "teammate-battle",
+              "race-pace-vs-quali-pace"
+            ],
             "payload": {
-              "prompt": "A driver qualifies 0.5 seconds slower than their teammate but wins the race. What does that tell you?",
+              "prompt": "A driver qualifies behind his teammate but beats him on Sunday. What might explain it?",
               "options": [
-                {"id": "a", "text": "Race pace matters more than qualifying", "explanation": "Sunday matters, and race pace can trump one-lap pace."},
-                {"id": "b", "text": "The car is unbalanced for qualifying", "explanation": "Possible, but the driver's race pace strength is the takeaway."},
-                {"id": "c", "text": "The teammate made a mistake", "explanation": "Maybe, but the winner still had to execute."}
+                {
+                  "id": "a",
+                  "text": "Better race pace or tyre care, or strategy that worked out.",
+                  "explanation": "Right. One lap and a race are different tests, and strategy can change the result."
+                },
+                {
+                  "id": "b",
+                  "text": "The teammate has a slower car.",
+                  "explanation": "Teammates share a car, so that is not the explanation."
+                },
+                {
+                  "id": "c",
+                  "text": "Qualifying does not count for anything.",
+                  "explanation": "Qualifying decides the grid, which matters. It just is not the whole story."
+                }
               ],
-              "correctOptionIds": ["a"],
+              "correctOptionIds": [
+                "a"
+              ],
               "explanation": {
-                "correct": "Right. Qualifying pace and race pace are separate. Some drivers shine over one lap, others over a distance.",
-                "incorrect": "Race wins come from race pace. A driver quicker on Sunday than Saturday is the whole profile."
+                "correct": "Race pace, tyre management and strategy can all beat a better grid slot. That is why fans look at Saturday and Sunday separately.",
+                "incorrect": "A driver can be slower over one lap but stronger over a race. Strategy and luck also play a part.",
+                "sayThisLine": "He was slower in qualifying but better on Sunday."
               }
             }
           },
           {
             "id": "sl-04-bin-teammate-gap",
             "type": "binary-call",
-            "conceptIds": ["teammate-battle"],
+            "conceptIds": [
+              "teammate-battle",
+              "race-pace-vs-quali-pace"
+            ],
             "payload": {
-              "prompt": "Is a 0.1 second qualifying gap to a teammate big or small?",
+              "prompt": "Teammates are a consistent six tenths apart in qualifying. Big gap or small?",
               "scene": {
                 "kind": "none",
-                "alt": "Qualifying session where one driver posts a 1:35.2 and the teammate laps a 1:35.3."
+                "alt": "Text only: a qualifying gap between two teammates in the same car."
               },
               "choices": [
-                {"id": "big", "label": "Significant gap"},
-                {"id": "small", "label": "Very tight"}
+                {
+                  "id": "big",
+                  "label": "Big gap"
+                },
+                {
+                  "id": "small",
+                  "label": "Small gap"
+                }
               ],
               "correctChoiceId": "big",
               "explanation": {
-                "correct": "Right. Tenths are huge in qualifying. One-tenth from the same car and driver in the same heat is a real performance gap.",
-                "incorrect": "In qualifying, a tenth of a second is a sizable gap. Over a season, it compounds into title relevance."
-              }
+                "correct": "Six tenths in the same car is large. Qualifying gaps between teammates are often a few hundredths to a few tenths, so this is a real pace difference.",
+                "incorrect": "In the same car, six tenths every weekend is a large and consistent gap, not noise.",
+                "sayThisLine": "Six tenths in the same car is a serious gap."
+              },
+              "ruleTag": "Teammate gap"
             }
           },
           {
             "id": "sl-04-st-form-chat",
             "type": "say-this",
-            "conceptIds": ["race-pace-vs-quali-pace", "teammate-battle"],
+            "conceptIds": [
+              "race-pace-vs-quali-pace"
+            ],
             "payload": {
-              "statement": {"speaker": "Fan", "text": "He is quicker on Sunday. Qualifying is not where we win."},
-              "question": "What is she saying about {{driver}}'s strengths?",
+              "statement": {
+                "speaker": "Fan",
+                "text": "On Sundays {{driver}} is usually quicker than on Saturdays."
+              },
+              "question": "What does she mean?",
               "options": [
-                {"id": "a", "text": "{{driver}} is stronger in races than over one lap", "isCorrect": true, "explanation": "Sunday pace trumps Saturday pace for her driver."},
-                {"id": "b", "text": "{{driver}} only scores points on race day", "isCorrect": false, "explanation": "Qualifying place sets the race start."},
-                {"id": "c", "text": "{{driver}}'s teammate is faster", "isCorrect": false, "explanation": "Not necessarily; Sunday pace is a strength, not a weakness."}
+                {
+                  "id": "a",
+                  "text": "{{driver}} looks stronger over a race than over one lap.",
+                  "isCorrect": true,
+                  "explanation": "Right. She is separating race pace from one-lap pace."
+                },
+                {
+                  "id": "b",
+                  "text": "{{driver}} only scores points on race day.",
+                  "isCorrect": false,
+                  "explanation": "Points are scored only in races, but that is not her point."
+                },
+                {
+                  "id": "c",
+                  "text": "{{driver}} never qualifies well.",
+                  "isCorrect": false,
+                  "explanation": "She says usually quicker on Sunday, not that qualifying is bad."
+                }
               ],
-              "translation": "{{driver}} may not set the grid on fire in one-lap runs, but over a race distance they find pace.",
+              "translation": "She is saying {{driver}} tends to do better in the race than in qualifying.",
               "followUps": [
-                {"line": "Does that mean qualifying does not matter?", "why": "Explores the interplay of grid position and race pace."}
-              ]
+                {
+                  "line": "Is that tyre care or just patience?",
+                  "why": "Race pace usually comes from looking after the tyres and reading the race."
+                },
+                {
+                  "line": "Does a better grid slot fix it?",
+                  "why": "A better start position usually helps a driver who is strong in races."
+                }
+              ],
+              "noFakeExpertNote": "You can respond without opinions on the driver. Ask what she has noticed."
             }
           },
           {
             "id": "sl-04-st-season-arc",
             "type": "say-this",
-            "conceptIds": ["dnf", "reliability"],
+            "conceptIds": [
+              "dnf",
+              "reliability"
+            ],
             "payload": {
-              "statement": {"speaker": "Fan", "text": "Two DNFs cost him the title this season. The car speed is there, reliability is not."},
+              "statement": {
+                "speaker": "Fan",
+                "text": "{{driver}} has had the pace, but a couple of DNFs have cost a lot of points."
+              },
               "question": "What is her point?",
               "options": [
-                {"id": "a", "text": "{{driver}}'s teammate is faster", "isCorrect": false, "explanation": "Reliability is about finishes, not speed comparison."},
-                {"id": "b", "text": "{{driver}} has the pace but car failures hurt points", "isCorrect": true, "explanation": "A DNF scores zero no matter how fast you were."},
-                {"id": "c", "text": "{{driver}} is not good at defending", "isCorrect": false, "explanation": "Unrelated to mechanical failure."}
+                {
+                  "id": "a",
+                  "text": "Speed is there, but retirements score zero and hurt the points total.",
+                  "isCorrect": true,
+                  "explanation": "Right. A DNF costs the whole race, however fast the car was."
+                },
+                {
+                  "id": "b",
+                  "text": "{{driver}} is not good at overtaking.",
+                  "isCorrect": false,
+                  "explanation": "Her point is about retirements, not overtaking."
+                },
+                {
+                  "id": "c",
+                  "text": "{{driver}}'s teammate is faster.",
+                  "isCorrect": false,
+                  "explanation": "She did not mention the teammate."
+                }
               ],
-              "translation": "{{driver}} is quick but mechanical issues are costing points that would change the title race.",
+              "translation": "She means {{driver}} is quick but losing points because of retirements.",
               "followUps": [
-                {"line": "Is the team fixing the reliability issues?", "why": "Shows you understand that speed and car fitness are separate."}
-              ]
+                {
+                  "line": "Was it the car or an accident?",
+                  "why": "The cause decides whether it is bad luck, a mistake or reliability."
+                },
+                {
+                  "line": "How many points is that?",
+                  "why": "It turns the complaint into a number you can compare."
+                }
+              ],
+              "noFakeExpertNote": "You do not have to know the story. Asking what happened is a great start."
             }
           }
         ]
@@ -426,81 +798,171 @@
         "title": "{{team}} this season",
         "objective": "Explain {{team}}'s form and what to watch in their race.",
         "estimatedMinutes": 8,
-        "conceptIds": ["constructors-championship", "reliability", "power-unit", "regulation-era"],
+        "conceptIds": [
+          "constructors-championship",
+          "reliability",
+          "power-unit",
+          "regulation-era"
+        ],
         "activities": [
           {
             "id": "sl-05-mc-team-form",
             "type": "multiple-choice",
-            "conceptIds": ["constructors-championship"],
+            "conceptIds": [
+              "constructors-championship",
+              "points-system"
+            ],
             "payload": {
-              "prompt": "{{team}} is third in constructors with 140 points, 30 behind second. With eight races left, are they still in it?",
+              "prompt": "Suppose a team is third, 30 points behind second, with eight races left. Still in it?",
               "options": [
-                {"id": "a", "text": "No; 30 points is too big to close", "explanation": "Eight races, max 25 per race: 30 is within reach if {{team}} finds pace."},
-                {"id": "b", "text": "Yes; if {{team}} outscores second-place consistently", "explanation": "Possible, though it requires a sustained turnaround."},
-                {"id": "c", "text": "Maybe, but it depends on reliability", "explanation": "Both pace and finishing are crucial."}
+                {
+                  "id": "a",
+                  "text": "Yes. Eight races offer many points, so 30 is within reach.",
+                  "explanation": "Right. A race can swing more than 25 points, so the gap can close."
+                },
+                {
+                  "id": "b",
+                  "text": "No. Thirty points is too many to ever catch.",
+                  "explanation": "Eight races gives a lot of scope. It is a gap, not a wall."
+                },
+                {
+                  "id": "c",
+                  "text": "Only if the top two drivers retire.",
+                  "explanation": "It helps, but it is not required."
+                }
               ],
-              "correctOptionIds": ["b"],
+              "correctOptionIds": [
+                "a"
+              ],
               "explanation": {
-                "correct": "Right. {{team}} needs to be quicker and consistent. Eight races, 30-point gap, is tight but alive.",
-                "incorrect": "{{team}} is in it if they can outscore their rivals over the final races."
+                "correct": "A team can gain plenty on a rival over eight races through better pace, reliability and both cars scoring. Thirty points is small in that context.",
+                "incorrect": "With eight races left, 30 points is not decisive. Both cars scoring consistently can close it.",
+                "sayThisLine": "Thirty points with eight races to go is alive."
               }
             }
           },
           {
-            "id": "sl-05-bin-power-unit-fate",
+            "id": "sl-05-bin-form-guarantee",
             "type": "binary-call",
-            "conceptIds": ["power-unit", "regulation-era"],
+            "conceptIds": [
+              "regulation-era"
+            ],
             "payload": {
-              "prompt": "{{team}}'s power unit is on the grid in 2026. Is this a boost or a challenge?",
+              "prompt": "In a new rules era, does last year's form guarantee this year's pace?",
               "scene": {
                 "kind": "none",
-                "alt": "A team's engine supplier status for the new regulation era."
+                "alt": "Text only: new rules mean new cars."
               },
               "choices": [
-                {"id": "boost", "label": "Boost for {{team}}"},
-                {"id": "challenge", "label": "Challenge ahead"}
+                {
+                  "id": "no",
+                  "label": "No, it can reshuffle"
+                },
+                {
+                  "id": "yes",
+                  "label": "Yes, same pecking order"
+                }
               ],
-              "correctChoiceId": "challenge",
+              "correctChoiceId": "no",
               "explanation": {
-                "correct": "Right. A regulation reset scrambles the grid. New power unit rules mean all engine makers start from scratch.",
-                "incorrect": "A new regulation era is a reset. {{team}}'s success in 2026 depends on who built the better power unit, not 2025 form."
-              }
+                "correct": "New rules mean new cars, so the pecking order can change a lot. That is why form from the last era says less about {{team}} and everyone else.",
+                "incorrect": "When the rules change, teams start with new designs. Past success is no guarantee.",
+                "sayThisLine": "New rules can shuffle the order."
+              },
+              "ruleTag": "Regulation eras"
             }
           },
           {
             "id": "sl-05-st-upgrade-watch",
             "type": "say-this",
-            "conceptIds": ["regulation-era", "power-unit"],
+            "conceptIds": [
+              "race-pace-vs-quali-pace"
+            ],
             "payload": {
-              "statement": {"speaker": "Fan", "text": "{{team}} brought a big upgrade this month and the pace jumped two tenths."},
-              "question": "What upgrade probably helped?",
+              "statement": {
+                "speaker": "Fan",
+                "text": "{{team}} brought a big upgrade and the pace jumped two tenths."
+              },
+              "question": "What probably helped?",
               "options": [
-                {"id": "a", "text": "A new wing or floor part, improving aero efficiency", "isCorrect": true, "explanation": "Mid-season upgrades are usually aero gains."},
-                {"id": "b", "text": "A new engine that violates regulations", "isCorrect": false, "explanation": "Engine rules are strict; major changes are rare mid-season."},
-                {"id": "c", "text": "A rule change that favored {{team}}", "isCorrect": false, "explanation": "Rules change for all teams equally."}
+                {
+                  "id": "a",
+                  "text": "A new aero part, like a wing or a floor, that improved performance.",
+                  "isCorrect": true,
+                  "explanation": "Right. Mid-season upgrades are most often aerodynamic."
+                },
+                {
+                  "id": "b",
+                  "text": "A new driver joined the team.",
+                  "isCorrect": false,
+                  "explanation": "An upgrade is a car part, not a driver."
+                },
+                {
+                  "id": "c",
+                  "text": "The rules changed in their favour.",
+                  "isCorrect": false,
+                  "explanation": "Rule changes apply to every team."
+                }
               ],
-              "translation": "{{team}} deployed a new aerodynamic part that gave them a step forward in pace.",
+              "translation": "She says {{team}} brought new parts that made the car about two tenths quicker.",
               "followUps": [
-                {"line": "Will it get copied by other teams?", "why": "Shows you understand F1's equipment evolution."}
-              ]
+                {
+                  "line": "Is it an aero or a power unit update?",
+                  "why": "Different updates matter for different reasons, and it shows you are paying attention."
+                },
+                {
+                  "line": "Will other teams catch up?",
+                  "why": "Teams bring upgrades all the time, so the gain can shrink."
+                }
+              ],
+              "noFakeExpertNote": "You can ask what the upgrade actually was. Most fans like explaining it."
             }
           },
           {
             "id": "sl-05-st-reliability-matters",
             "type": "say-this",
-            "conceptIds": ["reliability", "constructors-championship"],
+            "conceptIds": [
+              "reliability",
+              "dnf"
+            ],
             "payload": {
-              "statement": {"speaker": "Fan", "text": "We are second in the constructors but we keep losing cars to failures. If we finish every race, we are first."},
+              "statement": {
+                "speaker": "Fan",
+                "text": "We are fast enough, but we keep losing cars to failures. If we finish every race, we are a lot higher."
+              },
               "question": "What is she telling you?",
               "options": [
-                {"id": "a", "text": "{{team}} has the pace but car reliability is costing points", "isCorrect": true, "explanation": "Pace and finishing are both necessary."},
-                {"id": "b", "text": "{{team}} should blame the engine supplier", "isCorrect": false, "explanation": "Reliability is a team responsibility."},
-                {"id": "c", "text": "{{team}} is guaranteed to win the title", "isCorrect": false, "explanation": "'If we finish every race' is a condition, not a guarantee."}
+                {
+                  "id": "a",
+                  "text": "{{team}} has pace, but reliability is costing points.",
+                  "isCorrect": true,
+                  "explanation": "Right. Pace and finishing are both needed."
+                },
+                {
+                  "id": "b",
+                  "text": "{{team}} is guaranteed to win if they finish.",
+                  "isCorrect": false,
+                  "explanation": "She is saying it would help, not that it is guaranteed."
+                },
+                {
+                  "id": "c",
+                  "text": "{{team}} should stop racing.",
+                  "isCorrect": false,
+                  "explanation": "She is frustrated, not giving up."
+                }
               ],
-              "translation": "{{team}} is fast, but mechanical issues are robbing them of points they would otherwise score.",
+              "translation": "She means the car is quick but too many retirements are costing {{team}} points.",
               "followUps": [
-                {"line": "What systems have been failing?", "why": "Shows you are following the season's storylines."}
-              ]
+                {
+                  "line": "What keeps failing?",
+                  "why": "The cause tells you whether it is the car, the power unit or something else."
+                },
+                {
+                  "line": "Is a fix coming?",
+                  "why": "It shows you care about how they solve the problem."
+                }
+              ],
+              "noFakeExpertNote": "You do not need the technical detail. Ask what keeps breaking."
             }
           }
         ]
@@ -510,81 +972,172 @@
         "title": "The 2026 rules, still in motion",
         "objective": "Follow mid-season tweaks to the regulations and why teams argue about them.",
         "estimatedMinutes": 9,
-        "conceptIds": ["technical-directive", "aduo", "compression-ratio", "active-aero", "energy-store"],
+        "conceptIds": [
+          "technical-directive",
+          "aduo",
+          "compression-ratio",
+          "active-aero",
+          "energy-store"
+        ],
         "activities": [
           {
             "id": "sl-06-mc-technical-directive",
             "type": "multiple-choice",
-            "conceptIds": ["technical-directive"],
+            "conceptIds": [
+              "technical-directive",
+              "flexi-wing"
+            ],
             "payload": {
-              "prompt": "The FIA issues a technical directive in June clarifying the flexi-wing rules. Is this normal?",
+              "prompt": "The FIA issues a technical directive mid-season. Is that unusual?",
               "options": [
-                {"id": "a", "text": "Yes; mid-season directives close loopholes teams find", "explanation": "Correct. Teams exploit ambiguities; the FIA clarifies."},
-                {"id": "b", "text": "No; rules are locked from the start of the season", "explanation": "Regulations can be tweaked if a loophole is found."},
-                {"id": "c", "text": "Only if the FIA made an error in the rulebook", "explanation": "Directives come for loopholes, not just errors."}
+                {
+                  "id": "a",
+                  "text": "No. Directives often close loopholes that teams find once the cars are racing.",
+                  "explanation": "Right. Teams push the edges of the rulebook, and the FIA clarifies how rules will be policed."
+                },
+                {
+                  "id": "b",
+                  "text": "Yes. The rules are locked all season.",
+                  "explanation": "The regulations are fixed, but the FIA can clarify how they are applied."
+                },
+                {
+                  "id": "c",
+                  "text": "Yes. It only happens when someone is disqualified.",
+                  "explanation": "Directives come from rule questions, not from disqualifications."
+                }
               ],
-              "correctOptionIds": ["a"],
+              "correctOptionIds": [
+                "a"
+              ],
               "explanation": {
-                "correct": "Right. Technical directives are the FIA's way of closing ambiguities mid-season.",
-                "incorrect": "Teams push the edges of the rulebook. Directives close the gaps and reset competition."
+                "correct": "A technical directive is an FIA note on how a rule will be policed. It is common for loopholes such as bending wings.",
+                "incorrect": "Directives are a normal tool, used mid-season to clarify or close loopholes.",
+                "sayThisLine": "They closed a loophole with a directive."
               }
             }
           },
           {
-            "id": "sl-06-bin-aduo-fairness",
+            "id": "sl-06-bin-aduo-checkpoints",
             "type": "binary-call",
-            "conceptIds": ["aduo"],
+            "conceptIds": [
+              "aduo"
+            ],
             "payload": {
-              "prompt": "ADUO lets underperforming engine makers take extra upgrades mid-season. Is that fair?",
+              "prompt": "When is ADUO assessed?",
               "scene": {
                 "kind": "none",
-                "alt": "A manufacturer that is off the pace gets extra development chances."
+                "alt": "Text only: ADUO is the engine makers' catch-up mechanism."
               },
               "choices": [
-                {"id": "fair", "label": "Fair relief"},
-                {"id": "unfair", "label": "Unfair advantage"}
+                {
+                  "id": "three",
+                  "label": "After rounds 6, 12 and 18"
+                },
+                {
+                  "id": "once",
+                  "label": "Once, before round 1"
+                }
               ],
-              "correctChoiceId": "fair",
+              "correctChoiceId": "three",
               "explanation": {
-                "correct": "Right. ADUO is a safety net to keep engine suppliers competitive. Without it, one weak supplier could dominate.",
-                "incorrect": "ADUO is a balance mechanism. If one engine supplier falls too far behind, the cost makes racing less compelling for fans."
-              }
+                "correct": "ADUO is reviewed at three checkpoints, after rounds 6, 12 and 18. Engine makers who are far enough behind can get extra upgrade chances.",
+                "incorrect": "ADUO is checked during the season, at three points, not just once at the start.",
+                "sayThisLine": "ADUO gets checked after rounds six, twelve and eighteen."
+              },
+              "ruleTag": "ADUO"
             }
           },
           {
             "id": "sl-06-st-rule-drama",
             "type": "say-this",
-            "conceptIds": ["technical-directive", "compression-ratio"],
+            "conceptIds": [
+              "compression-ratio"
+            ],
             "payload": {
-              "statement": {"speaker": "Fan", "text": "The FIA ruled on compression ratios yesterday. Honda and Ferrari do not agree."},
+              "statement": {
+                "speaker": "Fan",
+                "text": "Some engine makers are arguing about the compression ratio again."
+              },
               "question": "What is the dispute about?",
               "options": [
-                {"id": "a", "text": "How tightly the engine squeezes the fuel-air mix, and how it is measured", "isCorrect": true, "explanation": "Compression ratio is a spec limit; measuring it is where disagreement arises."},
-                {"id": "b", "text": "Who gets more fuel for races", "isCorrect": false, "explanation": "Fuel is a different regulation."},
-                {"id": "c", "text": "Which team is allowed to upgrade their engine", "isCorrect": false, "explanation": "Upgrades are managed separately."}
+                {
+                  "id": "a",
+                  "text": "How tightly the engine squeezes its air-fuel mix, and how the limit is measured.",
+                  "isCorrect": true,
+                  "explanation": "Right. Compression ratio is a limit, and the row is about checking it cold or hot."
+                },
+                {
+                  "id": "b",
+                  "text": "How much fuel a car can carry.",
+                  "isCorrect": false,
+                  "explanation": "Fuel is covered by a separate rule, not this one."
+                },
+                {
+                  "id": "c",
+                  "text": "Which team gets extra tyres.",
+                  "isCorrect": false,
+                  "explanation": "Tyres have nothing to do with it."
+                }
               ],
-              "translation": "Engine makers dispute whether the rulebook's compression-ratio measurement is fair, especially if one method favors someone's design.",
+              "translation": "Engine makers are arguing about how the compression ratio limit is checked, since the ratio can change once an engine is hot.",
               "followUps": [
-                {"line": "Does this affect the race on Sunday?", "why": "Explores how regulations shape competition."}
-              ]
+                {
+                  "line": "Did the rule change?",
+                  "why": "The FIA moved to control the ratio hot as well as cold from 1 June 2026."
+                },
+                {
+                  "line": "Does it change the racing?",
+                  "why": "It affects how much power an engine can make, which affects the pecking order."
+                }
+              ],
+              "noFakeExpertNote": "It is a technical row. Asking who is upset and why is enough."
             }
           },
           {
             "id": "sl-06-st-aero-evolution",
             "type": "say-this",
-            "conceptIds": ["active-aero", "technical-directive"],
+            "conceptIds": [
+              "technical-directive",
+              "regulation-era"
+            ],
             "payload": {
-              "statement": {"speaker": "Fan", "text": "The FIA tightened the rules on active-aero deployment. Now you cannot open the wings in braking."},
-              "question": "Why would the FIA do that?",
+              "statement": {
+                "speaker": "Fan",
+                "text": "The FIA keeps tweaking the 2026 rules mid-season. Why can't they just leave them?"
+              },
+              "question": "What is the fair answer?",
               "options": [
-                {"id": "a", "text": "To prevent dangerous loss of grip during braking", "isCorrect": true, "explanation": "Safety is a core reason for wing regulations."},
-                {"id": "b", "text": "To slow down one team", "isCorrect": false, "explanation": "Rules are applied equally."},
-                {"id": "c", "text": "Fans complained it looked weird", "isCorrect": false, "explanation": "Aesthetics do not drive safety regulations."}
+                {
+                  "id": "a",
+                  "text": "New rules throw up surprises once teams race them, so the FIA adjusts for safety or racing quality.",
+                  "isCorrect": true,
+                  "explanation": "Right. The real cars show problems the paperwork did not."
+                },
+                {
+                  "id": "b",
+                  "text": "They change them at random to annoy teams.",
+                  "isCorrect": false,
+                  "explanation": "Changes are made through discussion and votes, not at random."
+                },
+                {
+                  "id": "c",
+                  "text": "They change them so one team always wins.",
+                  "isCorrect": false,
+                  "explanation": "That would be unfair, and teams would object."
+                }
               ],
-              "translation": "The FIA refined active-aero rules to prevent risky wing movements at high braking loads.",
+              "translation": "When rules are new, they are tested in real racing. If problems appear, the FIA and teams adjust them.",
               "followUps": [
-                {"line": "Did the ruling help or hurt specific teams?", "why": "Shows you understand that regulations have winners and losers."}
-              ]
+                {
+                  "line": "What was the last change?",
+                  "why": "A good question that keeps you following the story."
+                },
+                {
+                  "line": "Who benefits from the change?",
+                  "why": "Rule changes can help some teams more than others, which is why teams argue."
+                }
+              ],
+              "noFakeExpertNote": "You can say you do not know the latest tweak. Asking about it is fine."
             }
           }
         ]
@@ -594,20 +1147,41 @@
         "title": "Silly season: who is moving",
         "objective": "Follow driver-market stories and upcoming seat changes.",
         "estimatedMinutes": 8,
-        "conceptIds": ["driver-market", "junior-programme", "super-licence", "team-orders"],
+        "conceptIds": [
+          "driver-market",
+          "junior-programme",
+          "super-licence",
+          "team-orders"
+        ],
         "activities": [
           {
             "id": "sl-07-mc-silly-season-timing",
             "type": "multiple-choice",
-            "conceptIds": ["driver-market"],
+            "conceptIds": [
+              "driver-market"
+            ],
             "payload": {
               "prompt": "Silly season peaks in which part of the season?",
               "options": [
-                {"id": "a", "text": "Early season, before the title is decided", "explanation": "Early news does happen, but it is quieter."},
-                {"id": "b", "text": "Mid-season, when the title picture clarifies", "explanation": "Right. Teams know who is quick and who is free to move."},
-                {"id": "c", "text": "After the season ends", "explanation": "Announcements come, but the buzz is mid-season."}
+                {
+                  "id": "a",
+                  "text": "Early season, before the title is decided",
+                  "explanation": "Early news does happen, but it is quieter."
+                },
+                {
+                  "id": "b",
+                  "text": "Mid-season, when the title picture clarifies",
+                  "explanation": "Right. Teams know who is quick and who is free to move."
+                },
+                {
+                  "id": "c",
+                  "text": "After the season ends",
+                  "explanation": "Announcements come, but the buzz is mid-season."
+                }
               ],
-              "correctOptionIds": ["b"],
+              "correctOptionIds": [
+                "b"
+              ],
               "explanation": {
                 "correct": "Right. Once teams know their competitive position, they plan for next year. Speculation and signings peak mid-season.",
                 "incorrect": "Silly season is loudest mid-season when teams know their form and start plotting signings."
@@ -615,60 +1189,128 @@
             }
           },
           {
-            "id": "sl-07-bin-reserve-pathway",
+            "id": "sl-07-bin-official-move",
             "type": "binary-call",
-            "conceptIds": ["junior-programme"],
+            "conceptIds": [
+              "driver-market"
+            ],
             "payload": {
-              "prompt": "Does a junior-programme seat or a reserve-driver role carry more opportunity to race?",
+              "prompt": "When is a driver move official?",
               "scene": {
                 "kind": "none",
-                "alt": "Career options for a young driver: academy funding or pit lane standby."
+                "alt": "Text only: rumours and announcements in the driver market."
               },
               "choices": [
-                {"id": "academy", "label": "Junior programme"},
-                {"id": "reserve", "label": "Reserve driver"}
+                {
+                  "id": "team",
+                  "label": "When the team announces it"
+                },
+                {
+                  "id": "report",
+                  "label": "When a journalist reports it"
+                }
               ],
-              "correctChoiceId": "academy",
+              "correctChoiceId": "team",
               "explanation": {
-                "correct": "Right. A junior programme (like Red Bull's) funds F2 and F3 teams. A reserve waits in the paddock for an injury or disqualification.",
-                "incorrect": "A junior programme offers funded racing every weekend. A reserve might never race if both drivers stay healthy."
-              }
+                "correct": "Stories are often right, but a move is official when the team or driver confirms it. Until then, it is silly season talk.",
+                "incorrect": "A report is not an announcement. A move is official when the team or driver confirms it.",
+                "sayThisLine": "It is not official until the team says so."
+              },
+              "ruleTag": "Driver market"
             }
           },
           {
             "id": "sl-07-st-seat-speculation",
             "type": "say-this",
-            "conceptIds": ["driver-market", "super-licence"],
+            "conceptIds": [
+              "super-licence",
+              "feeder-series",
+              "driver-market"
+            ],
             "payload": {
-              "statement": {"speaker": "Fan", "text": "A young driver won F2 this year. Is there a seat for him in 2026?"},
-              "question": "What determines if he gets an F1 drive?",
+              "statement": {
+                "speaker": "Fan",
+                "text": "A young driver has just won F2. Is there a seat for him next year?"
+              },
+              "question": "What decides whether he gets an F1 drive?",
               "options": [
-                {"id": "a", "text": "F2 title, super-licence points, and available seats", "isCorrect": true, "explanation": "Merit, licensing and timing all matter."},
-                {"id": "b", "text": "Just the F2 championship", "isCorrect": false, "explanation": "Many F2 winners wait for a seat."},
-                {"id": "c", "text": "Whether a team likes his name", "isCorrect": false, "explanation": "Driving record and licensing are objective."}
+                {
+                  "id": "a",
+                  "text": "The F2 title, enough super licence points, and a seat actually being free.",
+                  "isCorrect": true,
+                  "explanation": "Right. Merit, licence and timing all matter."
+                },
+                {
+                  "id": "b",
+                  "text": "Only the F2 title.",
+                  "isCorrect": false,
+                  "explanation": "Plenty of F2 champions have had to wait for a seat."
+                },
+                {
+                  "id": "c",
+                  "text": "Whether the team likes his surname.",
+                  "isCorrect": false,
+                  "explanation": "Results and licence points matter more, along with backing."
+                }
               ],
-              "translation": "F2 success earns super-licence points, but empty F1 seats are the real gating factor. Great juniors sometimes wait years.",
+              "translation": "F2 success earns super licence points, but there are only 20 or so seats, so a good junior may have to wait.",
               "followUps": [
-                {"line": "Which teams have open seats next year?", "why": "Shows you are tracking the silly-season movement."}
-              ]
+                {
+                  "line": "Which teams have a seat free?",
+                  "why": "It shows you are tracking where the openings are."
+                },
+                {
+                  "line": "Does his junior programme have a team?",
+                  "why": "Academy ties often decide where a young driver lands."
+                }
+              ],
+              "noFakeExpertNote": "It is fine to say you do not know which seats are open. Ask."
             }
           },
           {
             "id": "sl-07-st-big-move",
             "type": "say-this",
-            "conceptIds": ["driver-market", "team-orders"],
+            "conceptIds": [
+              "driver-market"
+            ],
             "payload": {
-              "statement": {"speaker": "Fan", "text": "Everyone is talking about his contract. Does he stay or chase the big seat?"},
+              "statement": {
+                "speaker": "Fan",
+                "text": "Everyone is talking about his contract. Does he stay or chase a bigger seat?"
+              },
               "question": "What is she asking about?",
               "options": [
-                {"id": "a", "text": "Whether the driver extends at his team or moves to a stronger one", "isCorrect": true, "explanation": "Staying vs. chasing is the age-old choice."},
-                {"id": "b", "text": "Whether he can afford a new contract", "isCorrect": false, "explanation": "Teams offer contracts; drivers do not usually pay them."},
-                {"id": "c", "text": "Whether he will be team principal someday", "isCorrect": false, "explanation": "Unrelated to the current seat."}
+                {
+                  "id": "a",
+                  "text": "Whether he extends with his team or moves to a stronger one.",
+                  "isCorrect": true,
+                  "explanation": "Right. It is the classic silly season choice."
+                },
+                {
+                  "id": "b",
+                  "text": "Whether he can afford a new contract.",
+                  "isCorrect": false,
+                  "explanation": "Teams pay drivers. Drivers do not pay for contracts."
+                },
+                {
+                  "id": "c",
+                  "text": "Whether he will become a team principal.",
+                  "isCorrect": false,
+                  "explanation": "That is a different future."
+                }
               ],
-              "translation": "A talented driver at a mid-grid team is weighing loyalty or a move to a championship-contending team.",
+              "translation": "A driver on a good run is weighing loyalty to his team against a move to one with a better car.",
               "followUps": [
-                {"line": "What would you do?", "why": "Invites her perspective; opinion-based follow-ups are better than just facts."}
-              ]
+                {
+                  "line": "What would you do?",
+                  "why": "Opinions are a friendly follow-up, and they keep the chat going."
+                },
+                {
+                  "line": "Which team might want him?",
+                  "why": "It asks about rumours without stating anything as fact."
+                }
+              ],
+              "noFakeExpertNote": "Rumours are not facts. Treat them as guesses."
             }
           }
         ]
@@ -678,152 +1320,262 @@
         "title": "Circuit primer: {{region}} and the next race",
         "objective": "Prepare for the next race: layout, circuit personality and likely strategy.",
         "estimatedMinutes": 9,
-        "conceptIds": ["street-circuit", "pit-window", "track-evolution", "high-speed-corner", "tyre-degradation"],
+        "conceptIds": [
+          "street-circuit",
+          "pit-window",
+          "track-evolution",
+          "high-speed-corner",
+          "tyre-degradation"
+        ],
         "activities": [
           {
             "id": "sl-08-mc-layout-type",
             "type": "multiple-choice",
-            "conceptIds": ["street-circuit", "high-speed-corner"],
+            "conceptIds": [
+              "street-circuit",
+              "high-speed-corner"
+            ],
             "payload": {
-              "prompt": "{{region}} is known for {{circuitType}}. How does that shape strategy?",
+              "prompt": "A primer says long straights and few slow corners. What does that favour?",
               "options": [
-                {"id": "a", "text": "Street layout: track position and tyres matter most", "explanation": "Tight circuits favour being ahead and managing degradation."},
-                {"id": "b", "text": "High-speed: pace and aero efficiency win", "explanation": "Wings and power matter where grip is high."},
-                {"id": "c", "text": "It does not matter; strategy is the same everywhere", "explanation": "Circuit type shapes everything."}
+                {
+                  "id": "a",
+                  "text": "Low-drag set-ups and strong power, with lots of slipstream battles.",
+                  "explanation": "Right. Straights reward low drag, power and the tow."
+                },
+                {
+                  "id": "b",
+                  "text": "Maximum downforce with big wings.",
+                  "explanation": "Big wings create drag, which costs speed on straights."
+                },
+                {
+                  "id": "c",
+                  "text": "Soft tyres only.",
+                  "explanation": "Tyre choice depends on wear, not on straights."
+                }
               ],
-              "correctOptionIds": ["a"],
+              "correctOptionIds": [
+                "a"
+              ],
               "explanation": {
-                "correct": "Right. Each circuit type demands different trade-offs.",
-                "incorrect": "Track layout shapes pit strategy, tyre choice and setup philosophy."
+                "correct": "On a track of long straights, low-drag set-ups and power matter most, and slipstreaming is a big part of passing.",
+                "incorrect": "Long straights favour low drag and power. Big wings would slow the car down there.",
+                "sayThisLine": "It is a low-drag track, so top speed matters."
               }
             }
           },
           {
-            "id": "sl-08-hot-pit-strategy",
+            "id": "sl-08-hot-dirty-air",
             "type": "hotspot-tap",
-            "conceptIds": ["pit-window"],
+            "conceptIds": [
+              "dirty-air",
+              "high-speed-corner"
+            ],
             "payload": {
-              "prompt": "Where is the pit lane on a Formula 1 circuit?",
+              "prompt": "Tap where following closely is hardest because of dirty air.",
               "diagram": {
-                "diagramId": "circuit-pit-lane-generic",
-                "alt": "Generic F1 circuit showing pit lane and starting grid."
+                "diagramId": "f1-track-generic-overtake",
+                "aspectRatio": 1.3,
+                "alt": "Stylised circuit outline with a long straight on the left ending in a tight hairpin, and a fast sweeping curve on the right."
               },
               "hotspots": [
                 {
-                  "id": "pit-lane",
-                  "label": "Pit lane",
-                  "shape": {"kind": "circle", "cx": 0.2, "cy": 0.5, "r": 0.15}
+                  "id": "hairpin",
+                  "label": "Hairpin after the long straight",
+                  "shape": {
+                    "kind": "circle",
+                    "cx": 0.2,
+                    "cy": 0.12,
+                    "r": 0.08
+                  }
                 },
                 {
-                  "id": "grid",
-                  "label": "Starting grid",
-                  "shape": {"kind": "circle", "cx": 0.8, "cy": 0.5, "r": 0.12}
+                  "id": "sweeper",
+                  "label": "Fast sweeper",
+                  "shape": {
+                    "kind": "circle",
+                    "cx": 0.8,
+                    "cy": 0.6,
+                    "r": 0.08
+                  }
+                },
+                {
+                  "id": "pit",
+                  "label": "Pit entry",
+                  "shape": {
+                    "kind": "rect",
+                    "x": 0.4,
+                    "y": 0.9,
+                    "w": 0.2,
+                    "h": 0.06
+                  }
                 }
               ],
-              "correctHotspotIds": ["pit-lane"],
+              "correctHotspotIds": [
+                "sweeper"
+              ],
               "explanation": {
-                "correct": "Right. The pit lane runs parallel to the main straight where teams service their cars.",
-                "incorrect": "The pit lane is where teams stop for tyres and fuel. The starting grid is where drivers line up for the race start."
+                "correct": "In a fast corner the car ahead's wake steals the follower's downforce when it needs grip most, so staying close is hardest there.",
+                "incorrect": "Dirty air matters most in fast corners, where the follower depends on downforce. Slow hairpins and pit entry are less affected.",
+                "sayThisLine": "He could not stay close in the fast corners."
               }
             }
           },
           {
-            "id": "sl-08-hot-corner-profile",
+            "id": "sl-08-hot-pit-entry",
             "type": "hotspot-tap",
-            "conceptIds": ["high-speed-corner", "braking-zone"],
+            "conceptIds": [
+              "pit-stop",
+              "pit-window"
+            ],
             "payload": {
-              "prompt": "Identify the main overtaking zone on this circuit.",
+              "prompt": "Tap where cars leave the track to pit.",
               "diagram": {
-                "diagramId": "circuit-braking-zone-generic",
-                "alt": "Generic F1 circuit layout highlighting braking zone and high-speed corner."
+                "diagramId": "f1-track-generic-overtake",
+                "aspectRatio": 1.3,
+                "alt": "Stylised circuit outline with a long straight on the left ending in a tight hairpin, and a fast sweeping curve on the right."
               },
               "hotspots": [
                 {
-                  "id": "braking-zone",
-                  "label": "Turn 1 braking zone",
-                  "shape": {"kind": "circle", "cx": 0.6, "cy": 0.4, "r": 0.14}
+                  "id": "hairpin",
+                  "label": "Hairpin after the long straight",
+                  "shape": {
+                    "kind": "circle",
+                    "cx": 0.2,
+                    "cy": 0.12,
+                    "r": 0.08
+                  }
                 },
                 {
-                  "id": "high-speed",
-                  "label": "High-speed sweeper",
-                  "shape": {"kind": "circle", "cx": 0.25, "cy": 0.7, "r": 0.11}
+                  "id": "sweeper",
+                  "label": "Fast sweeper",
+                  "shape": {
+                    "kind": "circle",
+                    "cx": 0.8,
+                    "cy": 0.6,
+                    "r": 0.08
+                  }
+                },
+                {
+                  "id": "pit",
+                  "label": "Pit entry",
+                  "shape": {
+                    "kind": "rect",
+                    "x": 0.4,
+                    "y": 0.9,
+                    "w": 0.2,
+                    "h": 0.06
+                  }
                 }
               ],
-              "correctHotspotIds": ["braking-zone"],
+              "correctHotspotIds": [
+                "pit"
+              ],
               "explanation": {
-                "correct": "Right. Braking zones into slow corners are the main overtaking opportunities.",
-                "incorrect": "High-speed corners rely on grip and precision. Braking zones are safer for passing."
+                "correct": "The pit entry is where cars peel off for a stop. Its position and the speed limit in the lane decide how much time a stop costs at each track.",
+                "incorrect": "Cars leave the racing line at the pit entry, not at a corner. A long pit lane means a bigger pit loss.",
+                "sayThisLine": "A long pit lane makes a stop more expensive."
               }
             }
           },
           {
             "id": "sl-08-bin-one-stop-possible",
             "type": "binary-call",
-            "conceptIds": ["tyre-degradation", "pit-window"],
+            "conceptIds": [
+              "one-stop-strategy",
+              "pit-loss"
+            ],
             "payload": {
-              "prompt": "Is a one-stop strategy likely to work at {{region}} given its length and pace?",
+              "prompt": "Tyres last long at a track with a big pit loss. One stop or two?",
               "scene": {
                 "kind": "none",
-                "alt": "Circuit with moderate pace and tyre-wearing characteristics."
+                "alt": "Text only: a long pit lane makes every stop expensive, and tyres wear slowly."
               },
               "choices": [
-                {"id": "yes", "label": "One-stop is viable"},
-                {"id": "no", "label": "Two stops necessary"}
+                {
+                  "id": "one",
+                  "label": "One stop is likely"
+                },
+                {
+                  "id": "two",
+                  "label": "Two stops is likely"
+                }
               ],
-              "correctChoiceId": "yes",
+              "correctChoiceId": "one",
               "explanation": {
-                "correct": "Right. {{region}} allows one-stop strategies if tyre management is good.",
-                "incorrect": "Track length and wear rates favour one stop if the driver and team execute well."
-              }
+                "correct": "Long-lasting tyres and an expensive pit stop both point to one stop. Fewer stops means less time lost in the pit lane.",
+                "incorrect": "When tyres last and stops cost a lot, teams usually choose one stop rather than two.",
+                "sayThisLine": "Big pit loss and slow wear means one stop."
+              },
+              "ruleTag": "One-stop strategy"
             }
           },
           {
             "id": "sl-08-dec-setup-call",
             "type": "decision-scenario",
-            "conceptIds": ["track-evolution", "pit-window"],
+            "conceptIds": [
+              "one-stop-strategy",
+              "tyre-degradation",
+              "pit-window"
+            ],
             "payload": {
-              "prompt": "Friday practice shows tyres degrade slowly at {{region}}. Do you plan one stop or two?",
+              "prompt": "Practice shows slow tyre wear. One stop or two for {{region|the next race}}?",
               "situation": {
-                "narrative": "Friday data suggests tyres can run 40-45 laps without hitting the cliff. The race is 60 laps.",
+                "narrative": "Friday long runs suggest the tyres last about 40 laps. The race is 60 laps long. Friday is cooler than the forecast for Sunday.",
                 "facts": [
-                  {"label": "Friday tyre life", "value": "40-45 laps before cliff"},
-                  {"label": "Race distance", "value": "60 laps"},
-                  {"label": "Pit loss", "value": "Typical 20 seconds"}
+                  {
+                    "label": "Friday tyre life",
+                    "value": "About 40 laps"
+                  },
+                  {
+                    "label": "Race distance",
+                    "value": "60 laps"
+                  },
+                  {
+                    "label": "Pit loss",
+                    "value": "About 20 seconds"
+                  },
+                  {
+                    "label": "Sunday forecast",
+                    "value": "Hotter than Friday",
+                    "emphasis": "warning"
+                  }
                 ]
               },
               "options": [
                 {
-                  "id": "one-stop",
-                  "label": "Plan for one stop: tyres last, pit once late",
-                  "verdict": "poor",
-                  "consequence": "If tyres degrade faster in the race heat, you hit the cliff and lose pace. A forced second stop under pressure drops you further.",
-                  "considerations": [
-                    "Friday is cool. Race day is hotter and speeds are faster, stressing tyres more than practice suggests.",
-                    "Betting the whole race on Friday data is a high-risk gamble when Sunday conditions are unknown."
-                  ]
-                },
-                {
-                  "id": "two-stop",
-                  "label": "Plan for two stops: pit early, maintain pace",
+                  "id": "flexible",
+                  "label": "Plan one stop, but be ready to add a second if it is hotter.",
                   "verdict": "best",
-                  "consequence": "Two stops cost time, but fresh tyres keep you competitive. You control the race.",
+                  "consequence": "You save time if the tyres hold, and you have a fallback if heat wears them faster.",
                   "considerations": [
-                    "Two stops are safe. If tyres last longer, you can adjust on Sunday.",
-                    "Staying on pace matters in a tight field."
+                    "Sunday is hotter, so wear could be higher.",
+                    "A flexible plan adapts to conditions."
                   ]
                 },
                 {
-                  "id": "decide-sunday",
-                  "label": "Decide Sunday morning based on Saturday data",
-                  "verdict": "acceptable",
-                  "consequence": "You gather more info, but qualifying set-up and Saturday running constrain your options.",
+                  "id": "one",
+                  "label": "Commit to one stop no matter what.",
+                  "verdict": "poor",
+                  "consequence": "If the tyres wear faster in the heat, you hit the cliff and lose a lot of time.",
                   "considerations": [
-                    "Flexibility is good, but Friday prep informs Sunday race planning."
+                    "Friday is cooler than the race.",
+                    "No fallback means no control."
+                  ]
+                },
+                {
+                  "id": "two",
+                  "label": "Plan two stops to be safe.",
+                  "verdict": "acceptable",
+                  "consequence": "Safe on tyres, but you give up about 20 seconds you may not need to lose.",
+                  "considerations": [
+                    "Safe but slow.",
+                    "You can always add a stop later."
                   ]
                 }
               ],
-              "expertNote": "Friday data is a guide, not gospel. Hot-weather degradation is real.",
-              "sayThisLine": "Friday cool, Sunday hot. Plan for heat."
+              "expertNote": "Friday data is a guide. Teams plan a main strategy and keep a fallback ready for conditions changing on race day.",
+              "sayThisLine": "Friday is cooler, so keep a second stop in your back pocket."
             }
           }
         ]
