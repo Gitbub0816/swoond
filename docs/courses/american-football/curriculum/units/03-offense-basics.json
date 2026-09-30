@@ -926,17 +926,40 @@
             "type": "decision-scenario",
             "conceptIds": ["no-huddle", "play-clock"],
             "payload": {
-              "prompt": "It is late in the game, your team is down three, and there are two minutes left. Should you use the huddle or go no-huddle?",
-              "scene": {"kind": "none", "alt": "A football game in the final moments with the offense needing to move quickly down the field."},
-              "choices": [
-                {"id": "huddle", "label": "Use the huddle to discuss the plays", "isCorrect": false},
-                {"id": "nohuddle", "label": "Go no-huddle to move fast and save the clock", "isCorrect": true},
-                {"id": "kneel", "label": "Take a knee and punt", "isCorrect": false}
+              "prompt": "Down 3 with 2 minutes left. Huddle or no-huddle?",
+              "situation": {
+                "narrative": "It is late in the game, your team is down three points with two minutes left on the clock. You need to score fast to win.",
+                "facts": [
+                  {"label": "Score", "value": "Down 3 points", "emphasis": "warning"},
+                  {"label": "Time left", "value": "2 minutes", "emphasis": "warning"},
+                  {"label": "Goal", "value": "Score a touchdown"},
+                  {"label": "Clock", "value": "Running"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "nohuddle",
+                  "label": "Go no-huddle and move fast",
+                  "verdict": "best",
+                  "consequence": "You maximize plays and save the clock for timeouts. Fast tempo wins tight games.",
+                  "considerations": ["No-huddle limits defense substitutions", "Every second counts in two-minute drill", "Speed dictates the pace"]
+                },
+                {
+                  "id": "huddle",
+                  "label": "Use the huddle to discuss plays",
+                  "verdict": "poor",
+                  "consequence": "Each huddle burns 15-20 seconds. You run out of time with the game on the line.",
+                  "considerations": ["Huddles waste clock time", "Defense can substitute", "Rhythm slows down"]
+                },
+                {
+                  "id": "kneel",
+                  "label": "Take a knee and punt",
+                  "verdict": "poor",
+                  "consequence": "Conceding the game without trying. The defense gets the ball back.",
+                  "considerations": ["Kneeling surrenders the outcome", "You need to try", "Two minutes is enough time"]
+                }
               ],
-              "explanation": {
-                "correct": "No-huddle. Every second matters when you need to score and the clock is running. You cannot waste time huddling.",
-                "incorrect": "In the two-minute drill, tempo is everything. No-huddle lets you get plays off faster."
-              }
+              "expertNote": "The two-minute drill is pure tempo. No-huddle offense with sideline throws and timeouts is how you move down the field and get into the end zone under pressure. Every wasted second costs you plays."
             },
             "xp": 10
           },
