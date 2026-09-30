@@ -1112,29 +1112,37 @@
               "red-flag"
             ],
             "payload": {
-              "prompt": "F1 has had tragic accidents, like Senna's death in 1994. How has the sport changed since then?",
-              "context": "Safety has improved dramatically, but it took tragedies to drive change.",
-              "replies": [
+              "statement": {
+                "speaker": "Someone",
+                "text": "F1 has had tragic accidents, like Senna's death in 1994. How has the sport changed since then?"
+              },
+              "options": [
                 {
                   "id": "good",
                   "text": "The sport added more safety features, like barriers and better crash structures.",
-                  "smooth": 22,
+                  "isCorrect": true,
                   "explanation": "True. The sport learned from accidents and constantly improved."
                 },
                 {
                   "id": "better",
-                  "text": "After 1994, the sport learned that driver safety had to be a priority. They improved cockpit design, barriers, medical response, and introduced safety cars and red flags to manage incidents better. Every death drove new rules.",
-                  "smooth": 36,
+                  "text": "After 1994, they prioritized driver safety with better cockpit design, barriers, and medical response. Every death drove new rules.",
+                  "isCorrect": true,
                   "explanation": "Right. F1 went from a sport where drivers died regularly to one where deaths are rare. It was a cultural shift."
                 },
                 {
                   "id": "cringe",
                   "text": "F1 is still dangerous. The safety improvements do not matter.",
-                  "smooth": -16,
+                  "isCorrect": false,
                   "explanation": "Modern F1 is vastly safer than the 1990s. The improvements in cockpits, barriers, medical response, and car design have saved many lives. Progress is real."
                 }
               ],
-              "explanation": "After Senna's death in 1994, F1 underwent a dramatic safety transformation. Cockpit structures improved, crash barriers became safer, medical response was streamlined, and the culture shifted toward valuing driver safety. The sport learned that every incident should prompt improvement."
+              "translation": "After Senna's death in 1994, F1 underwent a dramatic safety transformation. Cockpit structures improved, crash barriers became safer, medical response was streamlined, and the culture shifted toward valuing driver safety.",
+              "followUps": [
+                {
+                  "line": "Every incident prompted improvement, and it saved lives.",
+                  "why": "It shows understanding that safety progress requires learning from tragedy."
+                }
+              ]
             }
           },
           {
@@ -1144,29 +1152,37 @@
               "halo"
             ],
             "payload": {
-              "prompt": "In 2020, Grosjean crashed and his car split in half, but he walked away. How is that possible?",
-              "context": "The halo and modern safety features have made crashes survivable that would have been fatal in earlier eras.",
-              "replies": [
+              "statement": {
+                "speaker": "Someone",
+                "text": "In 2020, Grosjean crashed and his car split in half, but he walked away. How is that possible?"
+              },
+              "options": [
                 {
                   "id": "good",
                   "text": "Modern safety features like the halo and the monocoque protected him in the crash.",
-                  "smooth": 24,
+                  "isCorrect": true,
                   "explanation": "Right. Safety devices saved his life."
                 },
                 {
                   "id": "better",
-                  "text": "The halo kept debris off him, the monocoque kept him safe, and the medical response was instant. A crash that would have killed him in the 1990s is now survivable. That is the progress F1 made.",
-                  "smooth": 35,
+                  "text": "The halo kept debris away, the monocoque kept him safe, and medical response was instant. Modern safety saved his life.",
+                  "isCorrect": true,
                   "explanation": "Exactly. Grosjean's escape is a testament to decades of safety work. Everything—the halo, the cell, the medical team—saved his life."
                 },
                 {
                   "id": "cringe",
                   "text": "He was just lucky. Safety has nothing to do with it.",
-                  "smooth": -18,
+                  "isCorrect": false,
                   "explanation": "Luck played a role, but the halo, monocoque, and medical response were critical. Safety features save lives. That is not luck; that is engineering."
                 }
               ],
-              "explanation": "Grosjean's 2020 crash demonstrated how modern safety has transformed F1. The halo, monocoque, medical response, and fire-suppression systems combined to turn a horrific crash into a survivable event. Every improvement mattered."
+              "translation": "Grosjean's 2020 crash demonstrated how modern safety has transformed F1. The halo, monocoque, medical response, and fire-suppression systems combined to turn a horrific crash into a survivable event.",
+              "followUps": [
+                {
+                  "line": "Every improvement mattered; they saved his life.",
+                  "why": "It shows understanding of how engineering progress translates to safety."
+                }
+              ]
             }
           }
         ]
@@ -1256,23 +1272,35 @@
                 {
                   "id": "pit",
                   "label": "Pit for fresh tyres",
-                  "grade": "best",
-                  "reason": "A 10-second lead minus 2-second pit loss leaves 8 seconds. Fresh tyres for 15 laps is worth it. Stay ahead and finish strong."
+                  "verdict": "best",
+                  "consequence": "A 10-second lead minus 2-second pit loss leaves 8 seconds. Fresh tyres for 15 laps is worth it. Stay ahead and finish strong.",
+                  "considerations": [
+                    "Under a safety car, pit stops are cheap (about 2 seconds).",
+                    "Fresh tyres reduce the risk of a tyre cliff in the final laps."
+                  ]
                 },
                 {
                   "id": "stay",
                   "label": "Stay out and protect the lead",
-                  "grade": "acceptable",
-                  "reason": "A 10-second lead is comfortable. If the tyres hold for 15 laps, staying out avoids the pit risk. But fresh tyres would be safer."
+                  "verdict": "acceptable",
+                  "consequence": "A 10-second lead is comfortable. If the tyres hold for 15 laps, staying out avoids the pit risk. But fresh tyres would be safer.",
+                  "considerations": [
+                    "A 10-second lead is a solid buffer.",
+                    "Old tyres carry risk if the race goes to the end. The pit window is now."
+                  ]
                 },
                 {
                   "id": "wait",
                   "label": "Wait and see if the safety car ends soon",
-                  "grade": "poor",
-                  "reason": "Indecision is risky. The pit window is now; waiting means it might close. The strategy needs clarity."
+                  "verdict": "poor",
+                  "consequence": "Indecision is risky. The pit window is now; waiting means it might close. The strategy needs clarity.",
+                  "considerations": [
+                    "The pit window under a safety car is brief.",
+                    "Waiting could cost the team the chance to pit. Strategy requires clarity."
+                  ]
                 }
               ],
-              "explanation": "Under a safety car, stops are cheap (about 2 seconds). A 10-second lead minus 2 is still 8 ahead, and fresh tyres for 15 laps are safer than older ones. Pitting is the best call."
+              "expertNote": "Under a safety car, stops are cheap (about 2 seconds). A 10-second lead minus 2 is still 8 ahead, and fresh tyres for 15 laps are safer than older ones. Pitting is the best call."
             }
           },
           {
@@ -1304,23 +1332,35 @@
                 {
                   "id": "hush",
                   "label": "Stay silent and let them watch",
-                  "grade": "best",
-                  "reason": "This is the moment. Do not break their focus. Silence is respect."
+                  "verdict": "best",
+                  "consequence": "This is the moment. Do not break their focus. Silence is respect.",
+                  "considerations": [
+                    "Final laps are emotionally intense.",
+                    "Your friend is locked in. Do not interrupt them."
+                  ]
                 },
                 {
                   "id": "chat",
                   "label": "Ask them to explain the restart rule",
-                  "grade": "poor",
-                  "reason": "Now is not the time. They need to focus. Ask after the race."
+                  "verdict": "poor",
+                  "consequence": "Now is not the time. They need to focus. Ask after the race.",
+                  "considerations": [
+                    "This is not a teaching moment.",
+                    "Breaking focus on a critical lap is disrespectful."
+                  ]
                 },
                 {
                   "id": "shout",
                   "label": "Shout encouragement for their driver",
-                  "grade": "acceptable",
-                  "reason": "A shout can be fun, but let them lead. If they shout first, join in. Do not initiate."
+                  "verdict": "acceptable",
+                  "consequence": "A shout can be fun, but let them lead. If they shout first, join in. Do not initiate.",
+                  "considerations": [
+                    "Enthusiasm can be contagious.",
+                    "But let them set the tone; do not impose your energy on them."
+                  ]
                 }
               ],
-              "explanation": "The final lap is sacred. Your friend is locked in. The best thing you can do is stay quiet and watch with them. Save conversations for after the race."
+              "expertNote": "The final lap is sacred. Your friend is locked in. The best thing you can do is stay quiet and watch with them. Save conversations for after the race."
             }
           },
           {
@@ -1330,29 +1370,37 @@
               "gap-and-interval"
             ],
             "payload": {
-              "prompt": "Your friend says: 'He is three seconds behind. He can catch him before the end.' How do you respond?",
-              "context": "You understand that gaps close slowly and time is usually not enough.",
-              "replies": [
+              "statement": {
+                "speaker": "Your friend",
+                "text": "He is three seconds behind. He can catch him before the end."
+              },
+              "options": [
                 {
                   "id": "good",
                   "text": "Three seconds is a lot at this stage. That would need a couple of laps at least.",
-                  "smooth": 24,
+                  "isCorrect": true,
                   "explanation": "Right. Three seconds is a big gap. You gave them perspective."
                 },
                 {
                   "id": "better",
-                  "text": "Three seconds is roughly one pit stop. He would need a safety car or a mistake from the leader to close that gap in the remaining laps. Track position is hard to beat.",
-                  "smooth": 34,
+                  "text": "Three seconds is roughly one pit stop. He would need a safety car or a mistake from the leader to close that gap in the remaining laps.",
+                  "isCorrect": true,
                   "explanation": "Perfect. You explained why the gap is hard to close and what could change it."
                 },
                 {
                   "id": "cringe",
                   "text": "Yeah, he should be able to catch him easily.",
-                  "smooth": -12,
+                  "isCorrect": false,
                   "explanation": "Three seconds is tough to close. Give your friend a realistic picture so they enjoy the race without false hope."
                 }
               ],
-              "explanation": "A three-second gap is about the size of a pit stop. It is hard to close in the remaining laps without a safety car or driver mistake. Explain this gently so your friend understands what is realistic."
+              "translation": "A three-second gap is about the size of a pit stop. It is hard to close in the remaining laps without a safety car or driver mistake.",
+              "followUps": [
+                {
+                  "line": "Track position is hard to beat.",
+                  "why": "It shows understanding of why gaps matter and what would be needed to close them."
+                }
+              ]
             }
           },
           {
@@ -1362,29 +1410,37 @@
               "gap-and-interval"
             ],
             "payload": {
-              "prompt": "The race ends. Your friend's driver finished second. How do you respond?",
-              "context": "You want to celebrate what they watched without dismissing the result.",
-              "replies": [
+              "statement": {
+                "speaker": "You",
+                "text": "The race ends. Your friend's driver finished second. How do you respond?"
+              },
+              "options": [
                 {
                   "id": "good",
                   "text": "That was an amazing race. Second is a great result and he drove really well.",
-                  "smooth": 26,
+                  "isCorrect": true,
                   "explanation": "You acknowledged the result and the effort. Good balance."
                 },
                 {
                   "id": "better",
-                  "text": "Second place. That was a brilliant race—look at the lap times, the overtakes, the strategy calls. Your driver did everything right. The winner was just a bit faster today.",
-                  "smooth": 36,
+                  "text": "That was brilliant—look at the lap times, overtakes, and strategy calls. Your driver did everything right. The winner was just faster today.",
+                  "isCorrect": true,
                   "explanation": "You kept the focus on the quality of the race, not just the placing. That is the fan experience."
                 },
                 {
                   "id": "cringe",
                   "text": "Sorry he didn't win. That must be disappointing.",
-                  "smooth": -10,
+                  "isCorrect": false,
                   "explanation": "Do not amplify the disappointment. Celebrate the race and the driver's effort."
                 }
               ],
-              "explanation": "After the race, celebrate the experience and the driving, not just the result. Even second place can be a great performance if the race was competitive."
+              "translation": "After the race, celebrate the experience and the driving, not just the result. Even second place can be a great performance if the race was competitive.",
+              "followUps": [
+                {
+                  "line": "Focus on the quality of the race, not just the placing.",
+                  "why": "It shows understanding of what makes a fan experience meaningful."
+                }
+              ]
             }
           },
           {
@@ -1404,18 +1460,21 @@
                     {
                       "id": "good",
                       "text": "Was there a car closing in? Sometimes you pit early to cover a threat.",
+                      "coachNote": "You asked a clarifying question to help them think through the strategy.",
                       "smoothDelta": 24,
                       "theirResponse": "Oh, I didn't notice the gap closing. That makes sense."
                     },
                     {
                       "id": "better",
-                      "text": "Let me ask: how close was the second-place car? Sometimes the pit wall sees a threat coming and stops early to cover it, even if it looks safe at the time.",
-                      "smoothDelta": 32,
+                      "text": "Let me ask: how close was the second-place car? Sometimes the pit wall sees a threat and stops early to cover it.",
+                      "coachNote": "You invited them to analyze the situation and explained the pit wall's perspective.",
+                      "smoothDelta": 28,
                       "theirResponse": "Wow, I was too focused on the leader to notice. That is smart strategy."
                     },
                     {
                       "id": "cringe",
                       "text": "They made a mistake. Early stops usually lose the race.",
+                      "coachNote": "Dismissing the pit wall's call without understanding it misses the learning moment.",
                       "smoothDelta": -18,
                       "theirResponse": "But they won the race..."
                     }

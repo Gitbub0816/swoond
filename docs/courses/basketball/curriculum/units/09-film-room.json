@@ -356,8 +356,8 @@
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Exactly. Late switches happen after screen is set, as a reaction defense.",
-                "incorrect": "Not quite. Late switches after screen is set prevent easy rolls or attack mismatches."
+                "correct": "Exactly. A late switch is a reaction: defenders fight the screen first and swap only when the roll would be open.",
+                "incorrect": "Not quite. A late switch happens after the screen is already set, so the defenders swap only when an easy roll or pull-up is about to appear."
               }
             }
           },
@@ -368,14 +368,14 @@
             "payload": {
               "prompt": "What is the risk of top-lock defense?",
               "options": [
-                {"id": "correct", "text": "Roller slips early or passer kicks out to open shooter."},
+                {"id": "correct", "text": "If the handler gets around the screen, the roller's defender has to stop two players."},
                 {"id": "dist-1", "text": "Team always gets fouled."},
                 {"id": "dist-2", "text": "Top-lock has no risks."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. Top-lock leaves passer and kick-out shooters open.",
-                "incorrect": "Not quite. Top-lock risks leaving passer and kick-out shooters open if roller slips."
+                "correct": "Right. Fighting over the screen keeps the handler in front, but if he slips past, one defender suddenly has two players to stop.",
+                "incorrect": "Not quite. Every coverage has a trade-off. Top-lock keeps the handler in front, but if he gets past, the roller's defender is stuck guarding two players."
               }
             }
           }
@@ -507,52 +507,51 @@
             "type": "decision-scenario",
             "conceptIds": ["hub-offense"],
             "payload": {
-              "prompt": "Keep running hub through big with three fouls or switch offense?",
+              "prompt": "Your passing big has three fouls. What does the coach do?",
               "situation": {
-                "narrative": "Passing big has three fouls early. Entire offense built around this player.",
+                "narrative": "Early in the third quarter, the offense runs through the big at the elbow. He picked up his third foul on defense.",
                 "facts": [
-                  {"label": "Big's foul status", "value": "Three fouls with much time left"},
-                  {"label": "Offensive identity", "value": "Built around this player's playmaking"},
-                  {"label": "Backup big", "value": "Capable but not a playmaker"},
-                  {"label": "Game situation", "value": "Close game in second half"}
+                  {"label": "Big's foul status", "value": "Three fouls, most of the game still to play"},
+                  {"label": "Offensive identity", "value": "Built around this player's passing from the elbow"},
+                  {"label": "Backup big", "value": "Solid defender, not a playmaker"},
+                  {"label": "Game situation", "value": "Close game"}
                 ]
               },
               "options": [
                 {
-                  "id": "continue",
-                  "label": "Keep running hub (risk fouling out)",
-                  "verdict": "poor",
-                  "consequence": "He fouls out and offense collapses without its engine.",
-                  "considerations": [
-                    "Loses best player and passer",
-                    "Backup cannot replicate playmaking",
-                    "Disrupts offense if fouled out"
-                  ]
-                },
-                {
-                  "id": "adjust",
-                  "label": "Switch to different offense or guards handling more",
+                  "id": "keep-hub",
+                  "label": "Keep the hub, and protect him on defense",
                   "verdict": "best",
-                  "consequence": "Keeps star available and offense stays competitive.",
+                  "consequence": "The offense keeps its engine, and he guards a quieter player and avoids risky rim help.",
                   "considerations": [
-                    "Keeps star for end of game",
-                    "Guards can run pick-and-roll",
-                    "Reduces foul risk while staying competitive"
+                    "Fouls come on defense, so the fix belongs on defense",
+                    "Passing from the elbow does not add fouls",
+                    "He stays available for the fourth quarter"
                   ]
                 },
                 {
-                  "id": "bench",
-                  "label": "Bench the big, go small",
+                  "id": "sit-stretch",
+                  "label": "Sit him for a few minutes, then bring him back",
                   "verdict": "acceptable",
-                  "consequence": "Avoids fouling out but loses rim protection and scoring.",
+                  "consequence": "He is safer, but the offense loses its hub for a stretch of a close game.",
                   "considerations": [
-                    "Guarantees availability later",
-                    "Small-ball opens floor but loses rebounding",
-                    "May be necessary if not close"
+                    "A rest can make sense if the game is getting away",
+                    "The backup cannot replace his passing",
+                    "A short stretch beats a long one"
+                  ]
+                },
+                {
+                  "id": "drop-hub",
+                  "label": "Stop running the offense through him",
+                  "verdict": "poor",
+                  "consequence": "The offense gets worse and he is no less likely to foul on defense.",
+                  "considerations": [
+                    "Giving up the hub does nothing about defensive fouls",
+                    "It wastes his best skill"
                   ]
                 }
               ],
-              "expertNote": "Good teams adjust offense based on foul trouble. Running same action through three-foul player is risky."
+              "expertNote": "Fouls are a defensive problem. Coaches usually protect a foul-troubled star on defense and keep using his offense."
             }
           }
         ]
@@ -582,14 +581,14 @@
             "payload": {
               "prompt": "Why switch from drop to switch coverage in a series?",
               "options": [
-                {"id": "correct", "text": "Offense hunts big in space, switching eliminates the mismatch."},
+                {"id": "correct", "text": "Guards were pulling up over the big in drop, and switching takes that space away."},
                 {"id": "dist-1", "text": "Drop defense is always better than switch."},
                 {"id": "dist-2", "text": "Team ran out of plays."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. Teams switch to stop mismatch hunting when offense exploits drop.",
-                "incorrect": "Not quite. Teams switch from drop when offense finds the weak defender."
+                "correct": "Right. Drop gives a shooter room to pull up behind the screen. If it keeps hurting, a team may switch, at the price of mismatches.",
+                "incorrect": "Not quite. Teams move off drop when shooters keep pulling up in the space behind the screen. Switching removes that space but can create mismatches."
               }
             }
           },
@@ -705,7 +704,7 @@
             "payload": {
               "prompt": "How is pump fake used in shot creation?",
               "options": [
-                {"id": "correct", "text": "Jump into defender to make him foul or jump, then drive or shoot."},
+                {"id": "correct", "text": "Fake a shot so the defender jumps or leans, then drive or shoot."},
                 {"id": "dist-1", "text": "Pump fake always results in made shot."},
                 {"id": "dist-2", "text": "Pump fake is same as step-back."}
               ],
@@ -722,7 +721,7 @@
             "conceptIds": ["rim-pressure"],
             "payload": {
               "prompt": "Fill in shot-creation terms and moves.",
-              "template": "When a closeout creates {{pressure}}, a scorer uses quick moves like {{move}} to create space.",
+              "template": "A scorer who keeps attacking the paint and forces the defense to collapse applies {{pressure}}. Faking a shot, then stepping under the defender's raised arms, is the {{move}}.",
               "gaps": [
                 {
                   "id": "pressure",
@@ -736,8 +735,8 @@
                 }
               ],
               "explanation": {
-                "correct": "Perfect. Rim pressure requires quick moves like up-and-under to counter.",
-                "incorrect": "Not quite. Rim pressure means hard closeout. Up-and-under is a counter move."
+                "correct": "Perfect. Rim pressure is a player's threat to attack the basket, and the up-and-under is a fake-then-step-under move that beats a defender who jumps at the fake.",
+                "incorrect": "Not quite. Rim pressure is how often and how hard a player attacks the basket. The up-and-under is the fake-then-step-under move, not a crossover or a screen."
               }
             }
           },
@@ -750,14 +749,14 @@
               "pairs": [
                 {"id": "up", "term": "Up-and-under", "definition": "Fake shot (pump) then drive or step under defender's raised hands."},
                 {"id": "touch", "term": "Touch", "definition": "Softness and finesse of layups and floaters; high-touch scorers finish difficult angles."},
-                {"id": "rim", "term": "Rim pressure", "definition": "Defender closing out hard, forcing shooter to have quick counter moves."}
+                {"id": "rim", "term": "Rim pressure", "definition": "A player's threat to attack the basket, forcing the defense to collapse or foul."}
               ],
               "distractorDefinitions": [
                 "Pressure of ball in rim.",
                 "Foul called during shot."
               ],
               "explanation": {
-                "summary": "Up-and-under counters closeouts. Touch is finishing skill. Rim pressure is close defense."
+                "summary": "The up-and-under beats a defender who bites on a fake. Touch is finishing skill. Rim pressure is the constant threat of a drive."
               }
             }
           },
@@ -814,8 +813,8 @@
                   "why": "Recognition that touch and finesse are hallmarks of elite scorers."
                 },
                 {
-                  "line": "Defenders cannot stop that.",
-                  "why": "Good follow-up understanding that touch is a skill only respect can address."
+                  "line": "Hard to guard a shot like that.",
+                  "why": "A warm remark that shows you get why touch is so hard to defend."
                 }
               ],
               "noFakeExpertNote": "Touch is softness and finesse of layups. Great touch means making difficult finishes."
@@ -841,45 +840,45 @@
                 "facts": [
                   {"label": "Ball-screen location", "value": "Top of key"},
                   {"label": "Coverage", "value": "Defender dropped to protect paint"},
-                  {"label": "Roller action", "value": "Received ball but turned it over"},
-                  {"label": "Help defense", "value": "Other defender collapsed quickly"}
+                  {"label": "Roller action", "value": "Caught the pass, then lost the ball"},
+                  {"label": "Help defense", "value": "The weak-side defender left the corner shooter and stepped in"},
+                  {"label": "Corner shooter", "value": "Wide open once help left"}
                 ]
               },
               "options": [
                 {
-                  "id": "help",
-                  "label": "Roller panicked; help came fast.",
+                  "id": "kick-out",
+                  "label": "The roller should have kicked it to the open corner.",
                   "verdict": "best",
-                  "consequence": "Correct. Quick help-side rotation forced difficult decision.",
+                  "consequence": "Yes. The helper left a shooter open, and the quick pass out was the read.",
                   "considerations": [
-                    "Roller had no counter or escape",
-                    "Needs better spacing or secondary option",
-                    "Help came too quickly"
+                    "Help that leaves a shooter gives away a good look",
+                    "Forcing a finish into two defenders is the turnover risk",
+                    "The pass out beats the rotation"
                   ]
                 },
                 {
                   "id": "spacing",
-                  "label": "Poor spacing meant no kick-out option.",
-                  "verdict": "acceptable",
-                  "consequence": "Valid. Without spacing, roller has no escape.",
+                  "label": "The spacing was tight, so the helper did not have to leave far.",
+                  "verdict": "poor",
+                  "consequence": "Not here. The corner shooter was wide open, so the floor was spaced well enough.",
                   "considerations": [
-                    "Spacing would create kick-out option",
-                    "Roller could have thrown better pass",
-                    "Shares responsibility"
+                    "A wide-open shooter means spacing did its job",
+                    "The mistake came after the catch"
                   ]
                 },
                 {
                   "id": "screen",
-                  "label": "Screener set bad screen that blocked roller.",
+                  "label": "The screener set a bad screen that blocked the roller.",
                   "verdict": "poor",
-                  "consequence": "Unlikely. Screen was fine; roller made play mistake.",
+                  "consequence": "No. The roller got the ball, so the screen worked.",
                   "considerations": [
-                    "Weak screen affects pass quality, not turnover risk",
-                    "Roller got ball, so screen worked"
+                    "A weak screen affects the catch, not what happens after it",
+                    "The roller caught it cleanly"
                   ]
                 }
               ],
-              "expertNote": "Diagnose possessions by watching ball and off-ball play. Turnovers usually trace to spacing or execution."
+              "expertNote": "Diagnose a possession by asking who was left open. Here the answer was the corner, and the ball did not get there."
             }
           },
           {
@@ -926,7 +925,7 @@
                   "consequence": "Possibly. Poor spacing could close off drive or corner.",
                   "considerations": [
                     "If teammates not spaced, drive is tougher",
-                    "But step-back three is never best option",
+                    "But a 27-foot step-back is rarely the best look",
                     "Shot creation is half skill; decision-making matters"
                   ]
                 }

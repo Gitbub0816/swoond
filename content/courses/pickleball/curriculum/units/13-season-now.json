@@ -1,0 +1,1218 @@
+{
+  "contractVersion": "1.2.0",
+  "courseId": "pickleball",
+  "unit": {
+    "id": "season-now",
+    "title": "Season Now",
+    "summary": "This week in pickleball: current events, draws, rankings, standings, news and seasonal changes.",
+    "layer": "current-season",
+    "order": 13,
+    "prerequisiteUnitIds": [
+      "pro-game",
+      "rec-life"
+    ],
+    "personalizationSlots": [
+      "league",
+      "team",
+      "player"
+    ],
+    "lessons": [
+      {
+        "id": "live-01",
+        "title": "This week in pickleball",
+        "objective": "Know what's on this week and why it matters.",
+        "conceptIds": [
+          "live-weekly-context"
+        ],
+        "live": {
+          "dataKind": "schedules",
+          "refreshHint": "weekly",
+          "adapterKey": "current-events"
+        },
+        "activities": [
+          {
+            "id": "live-01-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "live-weekly-context"
+            ],
+            "payload": {
+              "prompt": "Why do pro pickleball fans check the schedule every week?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "To find out which tours have events and who's playing."
+                },
+                {
+                  "id": "b",
+                  "text": "To buy tickets for their favorite player."
+                },
+                {
+                  "id": "c",
+                  "text": "To predict who will win."
+                },
+                {
+                  "id": "d",
+                  "text": "To check the weather."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Schedules show what's happening this week across tours and help you follow the action.",
+                "incorrect": "Checking the schedule tells you which events are live and which players are competing.",
+                "sayThisLine": "Events change week to week. That's why the schedule matters."
+              }
+            }
+          },
+          {
+            "id": "live-01-st-1",
+            "type": "say-this",
+            "conceptIds": [
+              "live-weekly-context"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Sam",
+                "text": "Huge week for pickleball. Ben's playing and there's an MLP event."
+              },
+              "question": "What does she mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Multiple important events are happening at the same time.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "She only cares about one player.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "The weather will be big.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "She's tired of pickleball.",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "When multiple events or favorite players are competing at once, it's a big week to follow.",
+              "followUps": [
+                {
+                  "line": "Big weeks mean more to watch and more to talk about.",
+                  "why": "Explains why it matters to her."
+                },
+                {
+                  "line": "She's signaling that this week has something special.",
+                  "why": "Shows you recognized the tone."
+                }
+              ],
+              "noFakeExpertNote": "Fans track schedules to catch their favorite players and events."
+            }
+          },
+          {
+            "id": "live-01-bc-1",
+            "type": "binary-call",
+            "conceptIds": [
+              "live-weekly-context"
+            ],
+            "payload": {
+              "prompt": "This week's schedule tells you everything you need to know about pickleball right now. True?",
+              "scene": {
+                "kind": "none",
+                "alt": "Weekly pickleball schedule."
+              },
+              "choices": [
+                {
+                  "id": "no-context",
+                  "label": "No, rankings and news matter too"
+                },
+                {
+                  "id": "yes-schedule",
+                  "label": "Yes, it's the main thing"
+                }
+              ],
+              "correctChoiceId": "no-context",
+              "explanation": {
+                "correct": "The schedule shows what's happening, but rankings, news and standings add meaning.",
+                "incorrect": "Schedules matter, but context (who's hot, rule changes, standings) makes them meaningful.",
+                "sayThisLine": "Schedule tells you what; rankings and news tell you why it matters."
+              },
+              "ruleTag": "Following the sport"
+            }
+          },
+          {
+            "id": "live-01-ds-1",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "live-weekly-context"
+            ],
+            "payload": {
+              "prompt": "She's watching her favorite pro this week. What should you do?",
+              "situation": {
+                "narrative": "Your person is excited about a match happening this week.",
+                "facts": [
+                  {
+                    "label": "What she said",
+                    "value": "Going to stream Ben's match Thursday night."
+                  },
+                  {
+                    "label": "What you know",
+                    "value": "You know the tours are happening; you can ask about it."
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "ask-to-join",
+                  "label": "Ask to watch it with her",
+                  "verdict": "best",
+                  "consequence": "Perfect. You show interest and get to learn by watching together.",
+                  "considerations": [
+                    "She invited you (sort of)",
+                    "You get to ask questions",
+                    "It's a natural way to follow along"
+                  ]
+                },
+                {
+                  "id": "say-good-luck",
+                  "label": "Say 'good luck' and leave it",
+                  "verdict": "acceptable",
+                  "consequence": "Kind, but you miss a chance to engage with what she loves.",
+                  "considerations": [
+                    "It's a low bar",
+                    "She might ask anyway",
+                    "You could add a question"
+                  ]
+                }
+              ],
+              "expertNote": "Being curious about who's playing and when creates natural conversation."
+            }
+          },
+          {
+            "id": "live-01-fg-1",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "live-weekly-context"
+            ],
+            "payload": {
+              "prompt": "Complete the schedule sentence.",
+              "template": "This week {{tour}} is hosting an event and {{player}} is playing in it.",
+              "gaps": [
+                {
+                  "id": "tour",
+                  "options": [
+                    "the PPA Tour",
+                    "a local league"
+                  ],
+                  "correct": "the PPA Tour"
+                },
+                {
+                  "id": "player",
+                  "options": [
+                    "{{player}}",
+                    "everyone"
+                  ],
+                  "correct": "{{player}}"
+                }
+              ],
+              "explanation": {
+                "correct": "Pro schedules tell you which tour events and which pros are competing.",
+                "incorrect": "Following schedules means tracking tour events and who's playing in them.",
+                "sayThisLine": "Schedule = tour + players this week. That's how you stay current."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "live-02",
+        "title": "Read the draw",
+        "objective": "Follow the current event's bracket and seeding.",
+        "conceptIds": [
+          "draw-reading"
+        ],
+        "live": {
+          "dataKind": "events",
+          "refreshHint": "weekly",
+          "adapterKey": "current-draw"
+        },
+        "activities": [
+          {
+            "id": "live-02-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "draw-reading"
+            ],
+            "payload": {
+              "prompt": "What does reading a draw tell you?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Who plays whom and in what order; top seeds get favorable matchups early."
+                },
+                {
+                  "id": "b",
+                  "text": "How much money the winner gets."
+                },
+                {
+                  "id": "c",
+                  "text": "Which paddle brand most pros use."
+                },
+                {
+                  "id": "d",
+                  "text": "The weather forecast for the tournament."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "A draw shows the bracket, seeding and matchup pairings for the event.",
+                "incorrect": "Reading a draw tells you the structure: who faces whom and when.",
+                "sayThisLine": "Draw shows the bracket. Top seeds avoid each other early."
+              }
+            }
+          },
+          {
+            "id": "live-02-ht-1",
+            "type": "hotspot-tap",
+            "conceptIds": [
+              "draw-reading"
+            ],
+            "payload": {
+              "prompt": "In a tournament bracket, where are the top seeds positioned?",
+              "hotspots": [
+                {
+                  "id": "opposite-halves",
+                  "label": "Opposite sides of the bracket",
+                  "shape": {
+                    "kind": "rect",
+                    "x": 0.1,
+                    "y": 0.2,
+                    "w": 0.35,
+                    "h": 0.6
+                  }
+                },
+                {
+                  "id": "same-half",
+                  "label": "Same half",
+                  "shape": {
+                    "kind": "rect",
+                    "x": 0.55,
+                    "y": 0.2,
+                    "w": 0.35,
+                    "h": 0.6
+                  }
+                }
+              ],
+              "diagram": {
+                "asset": "season/bracket-seeding.svg",
+                "alt": "Tournament bracket with top seeds placed in opposite halves to avoid meeting early."
+              },
+              "correctHotspotIds": [
+                "opposite-halves"
+              ],
+              "explanation": {
+                "correct": "You identified the correct positioning.",
+                "incorrect": "That is not where top seeds are placed to create strong finals."
+              }
+            }
+          },
+          {
+            "id": "live-02-bc-1",
+            "type": "binary-call",
+            "conceptIds": [
+              "draw-reading"
+            ],
+            "payload": {
+              "prompt": "The draw is released before the tournament starts. True?",
+              "scene": {
+                "kind": "none",
+                "alt": "Tournament draw announcement."
+              },
+              "choices": [
+                {
+                  "id": "yes-before",
+                  "label": "Yes, before the event"
+                },
+                {
+                  "id": "no-during",
+                  "label": "No, during the event"
+                }
+              ],
+              "correctChoiceId": "yes-before",
+              "explanation": {
+                "correct": "Draws are published before the event so players can plan and fans can preview matchups.",
+                "incorrect": "The draw comes out beforehand so fans can follow the storyline.",
+                "sayThisLine": "Draw release = hype. That's when fans start the bracket talk."
+              },
+              "ruleTag": "Tournament structure"
+            }
+          },
+          {
+            "id": "live-02-tm-1",
+            "type": "term-match",
+            "conceptIds": [
+              "draw-reading"
+            ],
+            "payload": {
+              "prompt": "Match draw and bracket terms.",
+              "pairs": [
+                {
+                  "id": "seed-pair",
+                  "term": "Seed",
+                  "definition": "A player's seeding rank (1, 2, 3, etc.) based on ranking; top seeds get favorable draw placement."
+                },
+                {
+                  "id": "draw-pair",
+                  "term": "Draw",
+                  "definition": "The published bracket showing who plays whom and the match order."
+                },
+                {
+                  "id": "bye-pair",
+                  "term": "Bye",
+                  "definition": "A free pass to the next round (top seeds get byes in early rounds)."
+                }
+              ],
+              "distractorDefinitions": [
+                "A painting style",
+                "A type of serve"
+              ],
+              "explanation": {
+                "summary": "Seed = rank; draw = bracket; bye = skipping a round.",
+                "sayThisLine": "Top seeds get byes and easier early draws."
+              }
+            }
+          },
+          {
+            "id": "live-02-fg-1",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "draw-reading"
+            ],
+            "payload": {
+              "prompt": "Complete the draw statement.",
+              "template": "When the draw is released, {{player}} is a {{seed}} seed, so {{advantage}}.",
+              "gaps": [
+                {
+                  "id": "seed",
+                  "options": [
+                    "top",
+                    "low"
+                  ],
+                  "correct": "top"
+                },
+                {
+                  "id": "advantage",
+                  "options": [
+                    "she gets an easier path early",
+                    "she has to play the hardest opponents"
+                  ],
+                  "correct": "she gets an easier path early"
+                }
+              ],
+              "explanation": {
+                "correct": "Top seeds are positioned to avoid strong opponents until later rounds.",
+                "incorrect": "Better seeding means a better bracket draw and an easier early path.",
+                "sayThisLine": "Top seed = easier draw. That's why seeding matters."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "live-03",
+        "title": "Rankings movers",
+        "objective": "Interpret who moved in the world rankings and why.",
+        "conceptIds": [
+          "ranking-movement",
+          "world-rankings"
+        ],
+        "live": {
+          "dataKind": "rankings",
+          "refreshHint": "weekly",
+          "adapterKey": "world-rankings"
+        },
+        "activities": [
+          {
+            "id": "live-03-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "ranking-movement"
+            ],
+            "payload": {
+              "prompt": "What causes a player's world ranking to jump up?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Winning a big event and earning ranking points."
+                },
+                {
+                  "id": "b",
+                  "text": "Being popular on social media."
+                },
+                {
+                  "id": "c",
+                  "text": "Having the best paddle."
+                },
+                {
+                  "id": "d",
+                  "text": "Playing the most matches."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Tournament wins and points earned directly improve a player's ranking.",
+                "incorrect": "Rankings move because of tournament results and the points you earned.",
+                "sayThisLine": "Win a slam, your ranking jumps. That's how rankings work."
+              }
+            }
+          },
+          {
+            "id": "live-03-es-1",
+            "type": "estimate-slider",
+            "conceptIds": [
+              "ranking-movement"
+            ],
+            "payload": {
+              "prompt": "How many positions might a player move after winning a major event? (1 = 1 spot, 100 = 100 spots)",
+              "unit": "ranking positions",
+              "min": 1,
+              "max": 100,
+              "step": 5,
+              "correctValue": 20,
+              "tolerance": {
+                "full": 10,
+                "partial": 30
+              },
+              "explanation": {
+                "correct": "A big win typically moves a player 10-30 spots up, depending on their current rank.",
+                "incorrect": "Major events award large point swings that move rankings significantly.",
+                "sayThisLine": "Win a slam, expect a big ranking jump. Sometimes 20+ spots."
+              }
+            }
+          },
+          {
+            "id": "live-03-bc-1",
+            "type": "binary-call",
+            "conceptIds": [
+              "world-rankings"
+            ],
+            "payload": {
+              "prompt": "A player who hasn't won recently might drop in the rankings. True?",
+              "scene": {
+                "kind": "none",
+                "alt": "Ranking decay over time."
+              },
+              "choices": [
+                {
+                  "id": "yes-decay",
+                  "label": "Yes, inactivity drops your rank"
+                },
+                {
+                  "id": "no-static",
+                  "label": "No, they stay the same"
+                }
+              ],
+              "correctChoiceId": "yes-decay",
+              "explanation": {
+                "correct": "Rankings can decay if a player hasn't earned points recently or loses matches.",
+                "incorrect": "Rankings are live; they move as players earn or lose points.",
+                "sayThisLine": "Take time off, your ranking drops. That's how rankings stay current."
+              },
+              "ruleTag": "Ranking system"
+            }
+          },
+          {
+            "id": "live-03-ds-1",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "ranking-movement"
+            ],
+            "payload": {
+              "prompt": "Your person's favorite player just moved up 15 spots. What happened?",
+              "situation": {
+                "narrative": "A ranking jump usually means something good.",
+                "facts": [
+                  {
+                    "label": "What you see",
+                    "value": "Ranking moved from 23rd to 8th."
+                  },
+                  {
+                    "label": "What that means",
+                    "value": "A recent tournament win."
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "big-win",
+                  "label": "They won or did very well in a recent event",
+                  "verdict": "best",
+                  "consequence": "Correct. A ranking jump means recent success and points earned.",
+                  "considerations": [
+                    "Upward movement = recent wins",
+                    "Big jumps = big events",
+                    "That's fan-talk material"
+                  ]
+                },
+                {
+                  "id": "rest",
+                  "label": "They took a break and relaxed",
+                  "verdict": "poor",
+                  "consequence": "No, a break drops rankings. This is good news.",
+                  "considerations": [
+                    "Ranking jumps = recent wins",
+                    "This is a positive story",
+                    "Ask her about the win"
+                  ]
+                }
+              ],
+              "expertNote": "Upward ranking movement signals recent tournament success."
+            }
+          },
+          {
+            "id": "live-03-fg-1",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "ranking-movement"
+            ],
+            "payload": {
+              "prompt": "Complete the ranking statement.",
+              "template": "When a player's ranking jumps, it usually means they {{action}} and earned {{what}}.",
+              "gaps": [
+                {
+                  "id": "action",
+                  "options": [
+                    "won a big tournament",
+                    "took a vacation"
+                  ],
+                  "correct": "won a big tournament"
+                },
+                {
+                  "id": "what",
+                  "options": [
+                    "ranking points",
+                    "a new paddle"
+                  ],
+                  "correct": "ranking points"
+                }
+              ],
+              "explanation": {
+                "correct": "Tournament wins earn points that move rankings up.",
+                "incorrect": "Ranking jumps come from recent tournament success.",
+                "sayThisLine": "Jump in ranking = recent win. Ask her about the event."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "live-04",
+        "title": "MLP standings",
+        "objective": "Read the current MLP table and playoff picture.",
+        "conceptIds": [
+          "mlp-standings"
+        ],
+        "live": {
+          "dataKind": "standings",
+          "refreshHint": "daily",
+          "adapterKey": "mlp-standings"
+        },
+        "activities": [
+          {
+            "id": "live-04-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "mlp-standings"
+            ],
+            "payload": {
+              "prompt": "What do MLP standings show you?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "How many wins and losses each team has and their playoff position."
+                },
+                {
+                  "id": "b",
+                  "text": "How many individual players are on each team."
+                },
+                {
+                  "id": "c",
+                  "text": "Which paddle brand each team uses."
+                },
+                {
+                  "id": "d",
+                  "text": "The age of each team's players."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Standings show wins, losses, win percentage and playoff seeding.",
+                "incorrect": "MLP standings rank teams by their record and show who's in playoff position.",
+                "sayThisLine": "Standings tell you where your team stands in the race."
+              }
+            }
+          },
+          {
+            "id": "live-04-tk-1",
+            "type": "talk-track",
+            "conceptIds": [
+              "mlp-standings"
+            ],
+            "payload": {
+              "title": "Standings watch",
+              "setting": "Sam's team is in a playoff race.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "We're fourth but two games back. Still in it!",
+                  "replies": [
+                    {
+                      "id": "good",
+                      "text": "Two games back with how many left to play?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Five left. We can make it up.",
+                      "coachNote": "Showed you understood standings and asked a practical question."
+                    },
+                    {
+                      "id": "meh",
+                      "text": "That's good!",
+                      "smoothDelta": 5,
+                      "theirResponse": "Yeah, barely. Hoping we can climb.",
+                      "coachNote": "Kind but general. Ask about the path to playoffs."
+                    },
+                    {
+                      "id": "cringe",
+                      "text": "You'll never make playoffs from fourth.",
+                      "smoothDelta": -18,
+                      "theirResponse": "...That's not how standings work.",
+                      "coachNote": "You discouraged her. Standings are fluid; games left matter."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "In MLP, teams climb the standings by winning matches. Being a few games back with games left is still very much in play."
+            }
+          },
+          {
+            "id": "live-04-bc-1",
+            "type": "binary-call",
+            "conceptIds": [
+              "mlp-standings"
+            ],
+            "payload": {
+              "prompt": "A team at 8-3 is definitely in the playoff picture. True?",
+              "scene": {
+                "kind": "none",
+                "alt": "MLP standings at mid-season."
+              },
+              "choices": [
+                {
+                  "id": "yes-safe",
+                  "label": "Yes, that's strong"
+                },
+                {
+                  "id": "no-depends",
+                  "label": "No, games left matter most"
+                }
+              ],
+              "correctChoiceId": "no-depends",
+              "explanation": {
+                "correct": "A record's strength depends on how many games remain and how close teams are.",
+                "incorrect": "Good records help, but where you stand relative to other teams matters more.",
+                "sayThisLine": "Your record matters less than your position and games left."
+              },
+              "ruleTag": "MLP season"
+            }
+          },
+          {
+            "id": "live-04-so-1",
+            "type": "sequence-order",
+            "conceptIds": [
+              "mlp-standings"
+            ],
+            "payload": {
+              "prompt": "Order the MLP season arc.",
+              "items": [
+                {
+                  "id": "item-1",
+                  "text": "Regular season starts (May)"
+                },
+                {
+                  "id": "item-2",
+                  "text": "Mid-season tournaments and climb"
+                },
+                {
+                  "id": "item-3",
+                  "text": "Teams jockey for playoff position (late July)"
+                },
+                {
+                  "id": "item-4",
+                  "text": "Playoffs begin (August)"
+                },
+                {
+                  "id": "item-5",
+                  "text": "Champion crowned"
+                }
+              ],
+              "explanation": {
+                "sayThisLine": "Season starts, teams climb the standings, playoffs decide the champion.",
+                "correct": "MLP seasons flow from opening through playoffs to a final champion.",
+                "incorrect": "The regular season builds standings, then playoffs are the climax."
+              }
+            }
+          },
+          {
+            "id": "live-04-fg-1",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "mlp-standings"
+            ],
+            "payload": {
+              "prompt": "Complete the standings statement.",
+              "template": "In MLP, the standings change {{frequency}} because {{reason}}.",
+              "gaps": [
+                {
+                  "id": "frequency",
+                  "options": [
+                    "every week as teams play",
+                    "never during the season"
+                  ],
+                  "correct": "every week as teams play"
+                },
+                {
+                  "id": "reason",
+                  "options": [
+                    "wins and losses move teams up and down",
+                    "teams quit or join"
+                  ],
+                  "correct": "wins and losses move teams up and down"
+                }
+              ],
+              "explanation": {
+                "correct": "Weekly matches change the standings as teams earn wins and losses.",
+                "incorrect": "Standings are live and change after every match result.",
+                "sayThisLine": "Every week, results reshuffle the standings."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "live-05",
+        "title": "The news explainer",
+        "objective": "Understand why a pickleball headline is a big deal.",
+        "conceptIds": [
+          "rule-news-explainer"
+        ],
+        "live": {
+          "dataKind": "news",
+          "refreshHint": "daily",
+          "adapterKey": "pickleball-news"
+        },
+        "activities": [
+          {
+            "id": "live-05-st-1",
+            "type": "say-this",
+            "conceptIds": [
+              "rule-news-explainer"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Sam",
+                "text": "Did you hear? The spin test starts next month. My paddle might get banned."
+              },
+              "question": "What does she mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "A new rule tests paddles to make sure they're fair; if hers is too spinny, it might not be approved.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "She's going to spin a paddle and fail a fitness test.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "All paddles are being destroyed.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "She's being dramatic about nothing.",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "Equipment regulations change. When they do, some gear has to be re-tested or might not meet new rules.",
+              "followUps": [
+                {
+                  "line": "New equipment rules can affect what gear people use.",
+                  "why": "Shows you understand it's a bigger issue."
+                },
+                {
+                  "line": "Ask her if she's looking to buy a backup paddle.",
+                  "why": "Practical follow-up that shows you listened."
+                }
+              ],
+              "noFakeExpertNote": "Rule and equipment changes are normal and create gear-talk opportunities."
+            }
+          },
+          {
+            "id": "live-05-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "rule-news-explainer"
+            ],
+            "payload": {
+              "prompt": "Why do pickleball fans care about rule changes?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Rules change the game they play or watch and affect strategy."
+                },
+                {
+                  "id": "b",
+                  "text": "They like to complain about everything."
+                },
+                {
+                  "id": "c",
+                  "text": "Rules don't matter; people just talk about them."
+                },
+                {
+                  "id": "d",
+                  "text": "Rules are boring and nobody cares."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Rule changes affect how the game is played and what strategy works.",
+                "incorrect": "New rules matter because they reshape how people play and watch.",
+                "sayThisLine": "Rule changes = new game. That's why fans care."
+              }
+            }
+          },
+          {
+            "id": "live-05-bc-1",
+            "type": "binary-call",
+            "conceptIds": [
+              "rule-news-explainer"
+            ],
+            "payload": {
+              "prompt": "Equipment news like paddle approvals and spin tests affect recreational players. True?",
+              "scene": {
+                "kind": "none",
+                "alt": "Paddle approval and testing."
+              },
+              "choices": [
+                {
+                  "id": "yes-everyone",
+                  "label": "Yes, rules affect all levels"
+                },
+                {
+                  "id": "no-pros-only",
+                  "label": "No, just pros"
+                }
+              ],
+              "correctChoiceId": "yes-everyone",
+              "explanation": {
+                "correct": "USA Pickleball rules apply to all sanctioned play, including rec tournaments.",
+                "incorrect": "When rules change, everyone playing organized pickleball is affected.",
+                "sayThisLine": "Rule changes affect pros and rec players alike."
+              },
+              "ruleTag": "Equipment rules"
+            }
+          },
+          {
+            "id": "live-05-ds-1",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "rule-news-explainer"
+            ],
+            "payload": {
+              "prompt": "She mentions a rule change you don't understand. What do you do?",
+              "situation": {
+                "narrative": "Rule talk can be confusing if you're new.",
+                "facts": [
+                  {
+                    "label": "What she said",
+                    "value": "Something about the serve rules got tighter."
+                  },
+                  {
+                    "label": "What you feel",
+                    "value": "A bit lost."
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "ask-explain",
+                  "label": "Ask her to explain what tightened",
+                  "verdict": "best",
+                  "consequence": "Perfect. She gets to teach you and feels heard.",
+                  "considerations": [
+                    "Shows interest",
+                    "She's the expert",
+                    "Natural conversation"
+                  ]
+                },
+                {
+                  "id": "nod",
+                  "label": "Nod and change the subject",
+                  "verdict": "acceptable",
+                  "consequence": "Safe, but you miss learning and showing interest.",
+                  "considerations": [
+                    "You stay in the clear",
+                    "But no connection made",
+                    "Add a question next time"
+                  ]
+                }
+              ],
+              "expertNote": "Asking about rule changes is a natural way to learn and show interest."
+            }
+          },
+          {
+            "id": "live-05-fg-1",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "rule-news-explainer"
+            ],
+            "payload": {
+              "prompt": "Complete the news statement.",
+              "template": "When there's a rule or equipment change, {{person}} usually {{action}}.",
+              "gaps": [
+                {
+                  "id": "person",
+                  "options": [
+                    "passionate pickleball fans",
+                    "nobody"
+                  ],
+                  "correct": "passionate pickleball fans"
+                },
+                {
+                  "id": "action",
+                  "options": [
+                    "talk about it and debate",
+                    "ignore it completely"
+                  ],
+                  "correct": "talk about it and debate"
+                }
+              ],
+              "explanation": {
+                "correct": "Rule changes spark fan discussion and debate.",
+                "incorrect": "When rules or gear change, it's natural fan-talk material.",
+                "sayThisLine": "Change = debate. Debates = conversation. Listen and ask."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "live-06",
+        "title": "New season primer",
+        "objective": "Reset for a new season or major rulebook update.",
+        "conceptIds": [
+          "season-rollover"
+        ],
+        "live": {
+          "dataKind": "seasonal",
+          "refreshHint": "monthly",
+          "adapterKey": "seasonal-changes"
+        },
+        "activities": [
+          {
+            "id": "live-06-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "season-rollover"
+            ],
+            "payload": {
+              "prompt": "When does the pickleball pro season typically reset?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "August/September for PPA; May for MLP. Rankings reset with each new season."
+                },
+                {
+                  "id": "b",
+                  "text": "Never; rankings carry over from year to year."
+                },
+                {
+                  "id": "c",
+                  "text": "Randomly throughout the year."
+                },
+                {
+                  "id": "d",
+                  "text": "Only when a major rule changes."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Pro seasons have defined windows and rankings reset at season start.",
+                "incorrect": "Each season brings new rankings, new schedules and fresh competition.",
+                "sayThisLine": "Season starts = reset rankings. New tour season = new race."
+              }
+            }
+          },
+          {
+            "id": "live-06-so-1",
+            "type": "sequence-order",
+            "conceptIds": [
+              "season-rollover"
+            ],
+            "payload": {
+              "prompt": "Order the year in pickleball.",
+              "items": [
+                {
+                  "id": "item-1",
+                  "text": "PPA season opens (August/September)"
+                },
+                {
+                  "id": "item-2",
+                  "text": "Rankings and schedules are updated for the new season"
+                },
+                {
+                  "id": "item-3",
+                  "text": "MLP begins (May)"
+                },
+                {
+                  "id": "item-4",
+                  "text": "MLP playoffs and champion (August)"
+                },
+                {
+                  "id": "item-5",
+                  "text": "PPA season continues through spring"
+                }
+              ],
+              "explanation": {
+                "sayThisLine": "PPA late summer to spring. MLP late spring to summer. Overlaps happen.",
+                "correct": "The pro year cycles through two main tours with different seasons.",
+                "incorrect": "Tours have their own calendars; both run on annual cycles."
+              }
+            }
+          },
+          {
+            "id": "live-06-bc-1",
+            "type": "binary-call",
+            "conceptIds": [
+              "season-rollover"
+            ],
+            "payload": {
+              "prompt": "A new season means everyone's ranking goes to zero. True?",
+              "scene": {
+                "kind": "none",
+                "alt": "Season reset and rankings."
+              },
+              "choices": [
+                {
+                  "id": "yes-zero",
+                  "label": "Yes, everyone starts fresh"
+                },
+                {
+                  "id": "no-seeded",
+                  "label": "No, top players get seeded higher"
+                }
+              ],
+              "correctChoiceId": "no-seeded",
+              "explanation": {
+                "correct": "New seasons reset ranking points but seed top players higher in early events.",
+                "incorrect": "While rankings reset, past performance influences seeding and early draw position.",
+                "sayThisLine": "Rankings reset but top players still get respect in early seeding."
+              },
+              "ruleTag": "Season start"
+            }
+          },
+          {
+            "id": "live-06-ds-1",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "season-rollover"
+            ],
+            "payload": {
+              "prompt": "A major rule change comes in January. What's the conversation about?",
+              "situation": {
+                "narrative": "Rule changes are frequent in pickleball.",
+                "facts": [
+                  {
+                    "label": "What happened",
+                    "value": "USA Pickleball updated the serve rule clarity."
+                  },
+                  {
+                    "label": "What that means",
+                    "value": "Players and fans debate how it changes the game."
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "debate-impact",
+                  "label": "People debate how it affects play and strategy",
+                  "verdict": "best",
+                  "consequence": "Correct. Rule changes spark fan analysis of impact.",
+                  "considerations": [
+                    "That's natural fan talk",
+                    "Everyone has an opinion",
+                    "Good conversation starter"
+                  ]
+                },
+                {
+                  "id": "ignore",
+                  "label": "Nobody talks about it; it's not important",
+                  "verdict": "poor",
+                  "consequence": "No, rule changes are major topics in the community.",
+                  "considerations": [
+                    "Rules matter to players",
+                    "Fans analyze impact",
+                    "This is regular discussion"
+                  ]
+                }
+              ],
+              "expertNote": "Rule changes are always fan-discussion material. Debates about impact are natural."
+            }
+          },
+          {
+            "id": "live-06-fg-1",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "season-rollover"
+            ],
+            "payload": {
+              "prompt": "Complete the season statement.",
+              "template": "At season start, the {{item}} is reset or updated for everyone.",
+              "gaps": [
+                {
+                  "id": "item",
+                  "options": [
+                    "calendar and rankings",
+                    "paddle rules"
+                  ],
+                  "correct": "calendar and rankings"
+                }
+              ],
+              "explanation": {
+                "correct": "New seasons bring updated calendars, fresh rankings and often new or clarified rules.",
+                "incorrect": "Season rollover means fresh starts for schedules, rankings and rule clarity.",
+                "sayThisLine": "New season = new calendar, new rankings, same game."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

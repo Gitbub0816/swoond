@@ -44,8 +44,8 @@
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Exactly. A minor sends the player to the sin bin for two minutes. Meanwhile, the other team plays 5-on-4 (or however many skaters vs the shorthanded team has). The penalty ends early if a goal is scored.",
-                "incorrect": "A two-minute minor means the player sits in the penalty box while the opposing team has a power play (one extra skater). It's the most common penalty in hockey."
+                "correct": "Exactly. A minor sends the player to the sin bin for two minutes. Meanwhile, the other team usually plays 5-on-4. The penalty ends early if the power-play team scores.",
+                "incorrect": "A two-minute minor means the player sits in the penalty box while the opposing team has a power play (one extra skater). Nobody is ejected, and there's no fine on the scoreboard; the team just plays a skater short."
               }
             }
           },
@@ -54,15 +54,15 @@
             "type": "term-match",
             "conceptIds": ["hooking-tripping", "minor-penalty"],
             "payload": {
-              "prompt": "Match the penalty to what causes it.",
+              "prompt": "Match three more common minors to what causes them.",
               "pairs": [
-                {"id": "hook", "term": "Hooking", "definition": "Using the stick to hold or impede an opponent; two-minute minor."},
-                {"id": "trip", "term": "Tripping", "definition": "Bringing an opponent down with the stick or a leg; two-minute minor."},
-                {"id": "high", "term": "High stick", "definition": "The stick makes contact above the shoulders; can be a minor or double minor if it draws blood."}
+                {"id": "slash", "term": "Slashing", "definition": "Swinging the stick at an opponent or his stick; a minor, or a major if someone is hurt."},
+                {"id": "rough", "term": "Roughing", "definition": "Shoving, punching or scrapping without a full fight; usually a two-minute minor."},
+                {"id": "delay", "term": "Delay of game", "definition": "Stalling on purpose, such as sending the puck over the glass from your own zone; a two-minute minor."}
               ],
               "explanation": {
-                "summary": "These are the stick fouls that call minors. They are the bread and butter of referee calls; you'll hear them all night.",
-                "sayThisLine": "Hooking and tripping: those are the calls you see all the time."
+                "summary": "Slashing, roughing and delay of game are everyday minors too. Hearing one in a broadcast usually means a two-minute power play is next.",
+                "sayThisLine": "That's slashing, two minutes."
               }
             }
           },
@@ -79,8 +79,8 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. When the power-play team scores, the penalty ends immediately and the player comes out of the box. This is why a goal cuts short a power play.",
-                "incorrect": "Yes, a goal on the power play ends the minor penalty. The player comes out of the box and regular play resumes at full strength."
+                "correct": "True. When the power-play team scores, the minor ends and the penalized player comes out of the box. That's why a power-play goal cuts the power play short.",
+                "incorrect": "A goal by the team on the power play does end a minor. The penalized player leaves the box, and play goes back to full strength unless other penalties are running."
               }
             }
           },
@@ -122,12 +122,12 @@
               "prompt": "Match the stick foul to its description.",
               "pairs": [
                 {"id": "high", "term": "High stick", "definition": "The stick makes contact above the shoulders; a minor, or a double minor if it draws blood."},
-                {"id": "hold", "term": "Holding", "definition": "Using the arms or body to impede an opponent without the puck; a two-minute minor."},
-                {"id": "inter", "term": "Interference", "definition": "Checking or impeding an opponent who does not have the puck; a minor that protects the puck carrier."}
+                {"id": "hold", "term": "Holding", "definition": "Using hands or arms to grab or hold an opponent; a two-minute minor."},
+                {"id": "inter", "term": "Interference", "definition": "Hitting or blocking a player who doesn't have the puck; a two-minute minor."}
               ],
               "explanation": {
-                "summary": "These fouls interrupt play and result in time in the box. The distinction matters: holding and interference are body fouls, high stick is the stick.",
-                "sayThisLine": "That's holding; you can't do that to a player without the puck."
+                "summary": "High stick is a stick foul; holding and interference are about how you treat the other player's body. All three usually mean two minutes.",
+                "sayThisLine": "That's interference; he didn't have the puck."
               }
             }
           },
@@ -144,8 +144,8 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. A high stick that draws blood is a double minor (four minutes total). If a goal is scored during the first two minutes, the second minor still applies.",
-                "incorrect": "Yes, when a high stick draws blood, it's automatically a double minor: four minutes, two consecutive minors. The first minor can end early with a goal, but the second begins."
+                "correct": "True. A high stick that draws blood is a double minor: two consecutive two-minute minors, four minutes total. If the power-play team scores in the first two, only the first minor ends and the second begins.",
+                "incorrect": "A high stick that draws blood is a double minor, served as two back-to-back two-minute minors. A power-play goal in the first two minutes ends that minor only; the second still runs."
               }
             }
           },
@@ -156,14 +156,14 @@
             "payload": {
               "prompt": "Which of these is holding?",
               "options": [
-                {"id": "a", "text": "Using your arms to pin an opponent against the boards"},
-                {"id": "b", "text": "Checking a player who has the puck"},
-                {"id": "c", "text": "Touching the stick of an opponent who has the puck"}
+                {"id": "a", "text": "Wrapping your arms around an opponent to stop him skating"},
+                {"id": "b", "text": "A clean shoulder check on the player with the puck"},
+                {"id": "c", "text": "Lifting an opponent's stick to take the puck"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. Holding is using your body to impede an opponent who doesn't have the puck. Checking is legal; holding is not.",
-                "incorrect": "Holding is when you use your arms, body or stick to prevent an opponent from moving, especially one without the puck. It's a two-minute minor."
+                "correct": "Right. Holding is grabbing an opponent with your hands or arms to keep him from moving. A clean check and a stick lift are both legal.",
+                "incorrect": "Holding means grabbing or clutching an opponent to stop him skating. A clean body check and a stick lift are legal; holding is a two-minute minor."
               }
             }
           },
@@ -173,15 +173,14 @@
             "conceptIds": ["double-minor"],
             "payload": {
               "prompt": "Complete the double minor rule.",
-              "template": "A double minor is {{duration}} of penalties. If the power-play team scores during the first {{minutes}}, the second minor {{happens}}.",
+              "template": "A double minor is {{duration}} minutes of penalties. If the power-play team scores in the first two, the first minor ends and the second {{happens}}.",
               "gaps": [
                 {"id": "duration", "options": ["two", "four", "six"], "correct": "four"},
-                {"id": "minutes", "options": ["one", "two", "three"], "correct": "two"},
-                {"id": "happens", "options": ["ends", "begins", "is skipped"], "correct": "begins"}
+                {"id": "happens", "options": ["is cancelled", "still runs", "is halved"], "correct": "still runs"}
               ],
               "explanation": {
-                "correct": "Exactly. A double minor is four minutes: two consecutive minors. A goal on the power play ends the first minor but starts the second.",
-                "incorrect": "A double minor means four minutes of penalties served as two consecutive two-minute minors. A goal during the first two minutes ends the first but begins the second."
+                "correct": "Exactly. A double minor is two back-to-back minors. A power-play goal ends the one that's running, then the second starts.",
+                "incorrect": "A double minor is four minutes, served as two consecutive two-minute minors. A goal during the first two ends that minor only; the second still has to be served."
               }
             }
           },
@@ -190,20 +189,20 @@
             "type": "say-this",
             "conceptIds": ["high-sticking-holding"],
             "payload": {
-              "statement": {"speaker": "Analyst", "text": "That's holding. You can't grab a player without the puck like that."},
+              "statement": {"speaker": "Analyst", "text": "That's holding. You can't wrap a guy up like that."},
               "question": "What did the player do?",
               "options": [
-                {"id": "a", "text": "They used their body to prevent someone from moving", "isCorrect": true},
-                {"id": "b", "text": "The player they grabbed did not have the puck", "isCorrect": true},
-                {"id": "c", "text": "It will be a two-minute penalty", "isCorrect": true},
-                {"id": "d", "text": "It was a legal check", "isCorrect": false}
+                {"id": "a", "text": "He grabbed an opponent with his hands or arms", "isCorrect": true},
+                {"id": "b", "text": "He'll probably serve a two-minute minor", "isCorrect": true},
+                {"id": "c", "text": "His team may now be shorthanded", "isCorrect": true},
+                {"id": "d", "text": "He made a legal check", "isCorrect": false}
               ],
-              "translation": "Holding means using your body or arms to stop an opponent without the puck. It's not a legal check; it's a two-minute minor.",
+              "translation": "Holding means grabbing or clutching an opponent to stop him. It isn't a legal check; it's normally a two-minute minor.",
               "followUps": [
-                {"line": "Is that different from interference?", "why": "Tests if you know they're similar but distinct fouls."},
-                {"line": "What if the stick was involved?", "why": "Shows you know the difference between stick fouls and body fouls."}
+                {"line": "Is that different from interference?", "why": "Shows you know they're related but separate calls."},
+                {"line": "Did they score on the power play?", "why": "Moves the chat to what happened next."}
               ],
-              "noFakeExpertNote": "Holding and interference are cousins; refs call them when you grab someone without the puck."
+              "noFakeExpertNote": "Holding and interference are cousins, so it's fine to ask which one the ref called."
             }
           }
         ]
@@ -228,8 +227,8 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. A major is five minutes, served in full, even if the power-play team scores. Majors are for dangerous fouls like fighting, boarding or cross-checking.",
-                "incorrect": "Yes, a major penalty is five minutes. Unlike a minor, a goal does not end a major; it runs its full duration. Majors often come with suspensions."
+                "correct": "True. A major is five minutes, served in full, even if the power-play team scores. Majors go to serious fouls, like fighting or a dangerous hit that hurts someone.",
+                "incorrect": "A major is five minutes. Unlike a minor, a power-play goal does not end it; it runs its full duration. The worst ones can also lead to a league suspension."
               }
             }
           },
@@ -246,8 +245,8 @@
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Exactly. Boarding is a dangerous hit into the boards. A minor boarding is a two-minute penalty; a dangerous boarding can be five minutes or more, and may draw a suspension from the Department of Player Safety.",
-                "incorrect": "Boarding means aggressively hitting an opponent into the boards. It's a penalty for a dangerous hit. The severity depends on the impact."
+                "correct": "Exactly. Boarding is a dangerous hit into the boards. A lesser boarding is a two-minute minor; a dangerous one, especially with an injury, is a five-minute major with a game misconduct, and may draw a suspension from the Department of Player Safety.",
+                "incorrect": "Boarding means hitting a defenseless opponent hard into the boards. It's called because the boards make the hit dangerous, and the severity depends on the force and any injury."
               }
             }
           },
@@ -259,12 +258,12 @@
               "prompt": "Match the dangerous foul to its description.",
               "pairs": [
                 {"id": "board", "term": "Boarding", "definition": "Driving an opponent forcefully into the boards; a minor or major depending on severity."},
-                {"id": "charge", "term": "Charging", "definition": "Taking more than two strides before checking an opponent; building up speed for a hard hit."},
-                {"id": "cross", "term": "Cross-checking", "definition": "Using the shaft of the stick (not the blade) to check an opponent; dangerous because of the leverage."}
+                {"id": "charge", "term": "Charging", "definition": "Skating or jumping into an opponent with extra momentum; a minor or major depending on force."},
+                {"id": "cross", "term": "Cross-checking", "definition": "Hitting an opponent with the shaft of the stick, both hands on it; usually a minor, a major if it injures."}
               ],
               "explanation": {
-                "summary": "These are the dangerous fouls that often draw majors or suspensions. They exist to protect player safety.",
-                "sayThisLine": "That's a cross-check; the stick shaft across the body, that's five minutes."
+                "summary": "Each of these starts as a minor, and the referee moves it up to a major when the force or injury is serious. They exist to protect players.",
+                "sayThisLine": "That's a cross-check. Two minutes, or five if someone's hurt."
               }
             }
           },
@@ -274,14 +273,14 @@
             "conceptIds": ["major-penalty"],
             "payload": {
               "prompt": "Complete the major penalty rule.",
-              "template": "A major penalty is {{duration}} minutes and {{goal-rule}}.",
+              "template": "A minor lasts {{minor}} minutes; a major lasts {{major}} and ignores power-play goals.",
               "gaps": [
-                {"id": "duration", "options": ["three", "five", "ten"], "correct": "five"},
-                {"id": "goal-rule", "options": ["ends with a goal", "always runs full time", "gets reduced"], "correct": "always runs full time"}
+                {"id": "minor", "options": ["two", "three", "four"], "correct": "two"},
+                {"id": "major", "options": ["three", "five", "ten"], "correct": "five"}
               ],
               "explanation": {
-                "correct": "Right. A major is five minutes, always served in full. A goal does not end it.",
-                "incorrect": "A major penalty lasts five minutes regardless of scoring. It's served in full because it's for a dangerous foul."
+                "correct": "Right. A minor is two minutes and ends early on a power-play goal. A major is five minutes, always served in full.",
+                "incorrect": "A minor is two minutes; a major is five. Only a minor ends early on a power-play goal, while a major runs its full duration because it's for a more serious foul."
               }
             }
           },
@@ -291,7 +290,7 @@
             "conceptIds": ["cross-check-boarding"],
             "payload": {
               "statement": {"speaker": "Analyst", "text": "That was boarding on the replay. He drove him into the boards pretty hard; five minutes and probably in the Department of Player Safety's office tomorrow."},
-              "question": "What is the ref saying?",
+              "question": "What is the analyst saying?",
               "options": [
                 {"id": "a", "text": "The player made a dangerous hit into the boards", "isCorrect": true},
                 {"id": "b", "text": "It could be reviewed for a suspension", "isCorrect": true},
@@ -321,14 +320,14 @@
             "conceptIds": ["game-misconduct"],
             "payload": {
               "prompt": "Complete the misconduct penalty rule.",
-              "template": "A game misconduct sends a player out for the rest of the game and lasts {{duration}}. The team goes {{strength}} because it's just an ejection, not a penalty.",
+              "template": "A game misconduct ejects a player for {{duration}}. By itself, it leaves his team at {{strength}}.",
               "gaps": [
-                {"id": "duration", "options": ["five minutes", "ten minutes", "the rest of the season"], "correct": "ten minutes"},
-                {"id": "strength", "options": ["down a player", "at full strength", "to four skaters"], "correct": "at full strength"}
+                {"id": "duration", "options": ["one shift", "the rest of the game", "the rest of the season"], "correct": "the rest of the game"},
+                {"id": "strength", "options": ["a man down", "full strength", "four skaters"], "correct": "full strength"}
               ],
               "explanation": {
-                "correct": "Right. A game misconduct is a ten-minute ejection with no power play; the team stays at full strength. It's about removal, not punishment on the scoreboard.",
-                "incorrect": "A game misconduct means the player is gone from the game (ejection). The ten minutes is mainly for the record; the team does not go shorthanded."
+                "correct": "Right. A game misconduct sends the player to the dressing room for the night, but by itself it costs his team no skaters. Any power play comes from a separate minor or major that came with it.",
+                "incorrect": "A game misconduct is an ejection for the rest of the game, not a season-long ban (that's a suspension). On its own, the team isn't shorthanded."
               }
             }
           },
@@ -339,14 +338,14 @@
             "payload": {
               "prompt": "What happens if two players start fighting?",
               "options": [
-                {"id": "a", "text": "Each gets a five-minute major penalty; the team goes down one skater each during the five minutes"},
-                {"id": "b", "text": "Both players are ejected and the team goes shorthanded"},
-                {"id": "c", "text": "Each gets a misconduct and both teams are at full strength"}
+                {"id": "a", "text": "Each gets a five-minute major, and the teams stay at full strength"},
+                {"id": "b", "text": "Both players are ejected and each team plays a skater short"},
+                {"id": "c", "text": "Each gets a two-minute minor and the play goes 4-on-4"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Exactly. Fighting majors are five minutes each. Both teams sit a player, making it 5-on-4... wait, no, both are down, so it's still 5-on-5. The majors run in parallel.",
-                "incorrect": "A fighting major is five minutes for each player involved. Since both teams lose a player, it stays 5-on-5 the whole time. The fight is rare these days in the NHL."
+                "correct": "Exactly. Fighting majors are five minutes each. They offset, so neither team goes shorthanded and it stays 5-on-5.",
+                "incorrect": "In the NHL a fight costs each fighter a five-minute major. Because both teams get one, they cancel out and play continues at full strength. Fights are much rarer than they used to be."
               }
             }
           },
@@ -357,12 +356,12 @@
             "payload": {
               "prompt": "Match the ejection type to its meaning.",
               "pairs": [
-                {"id": "gm", "term": "Game misconduct", "definition": "A ten-minute ejection ending the player's game; no power play, team stays at full strength."},
-                {"id": "mm", "term": "Match penalty", "definition": "An ejection for intent to injure; the rarest penalty in hockey, given for truly dangerous behavior."},
-                {"id": "fight", "term": "Fighting major", "definition": "A five-minute major for each player in a fight; both teams go down one, so it stays 5-on-5."}
+                {"id": "gm", "term": "Game misconduct", "definition": "Ejection for the rest of the game; on its own, the team isn't shorthanded."},
+                {"id": "mm", "term": "Match penalty", "definition": "Ejection for a deliberate attempt to injure; the team plays five minutes shorthanded."},
+                {"id": "fight", "term": "Fighting major", "definition": "Five minutes for each fighter; the majors offset, so both teams stay at full strength."}
               ],
               "explanation": {
-                "summary": "These are the serious consequences: ejection, long-term penalties, and the possibility of suspension. Fighting is allowed in the NHL but rare; the PWHL and international hockey treat it as a punishable infraction.",
+                "summary": "These are the serious consequences: ejection, extra time shorthanded and possible league discipline. The NHL allows a fight to play out as a major; the PWHL and international hockey treat fighting as a more serious offense.",
                 "sayThisLine": "Game misconduct, he's done for the night."
               }
             }
@@ -372,7 +371,7 @@
             "type": "binary-call",
             "conceptIds": ["major-penalty"],
             "payload": {
-              "prompt": "Fighting majors make the game 4-on-4 because both teams lose a player. True or false?",
+              "prompt": "After a fight, both teams play 4-on-4 for five minutes. True or false?",
               "scene": {"kind": "none", "alt": "Two players are escorted to opposite penalty boxes after fighting."},
               "choices": [
                 {"id": "true", "label": "True"},
@@ -380,8 +379,8 @@
               ],
               "correctChoiceId": "false",
               "explanation": {
-                "correct": "False. Both teams lose one player, so it stays 5-on-5 the whole time. The two penalties run in parallel, not sequentially.",
-                "incorrect": "It stays 5-on-5 because both teams are down a player. One fight, two majors, parallel time, same strength. This is why fighting majors don't create power plays."
+                "correct": "False. Matching fighting majors offset, so both teams keep five skaters. Neither side gets a power play.",
+                "incorrect": "It stays 5-on-5. The two majors cancel each other out, which is why a fight on its own doesn't create a power play."
               }
             }
           },
@@ -395,10 +394,10 @@
               "options": [
                 {"id": "a", "text": "Number 18 is ejected from the game", "isCorrect": true},
                 {"id": "b", "text": "The team does not go shorthanded", "isCorrect": true},
-                {"id": "c", "text": "It's a ten-minute penalty (for the record)", "isCorrect": true},
-                {"id": "d", "text": "A goal will end this penalty", "isCorrect": false}
+                {"id": "c", "text": "The league can still review it for further discipline", "isCorrect": true},
+                {"id": "d", "text": "A goal will bring him back", "isCorrect": false}
               ],
-              "translation": "A game misconduct is an ejection. The player leaves, but the team stays at full strength (no power play given up). It ends only at the end of the game or when the ten minutes expire.",
+              "translation": "A game misconduct is an ejection. The player leaves for the night, and on its own the team stays at full strength. The league can still look at it for a suspension.",
               "followUps": [
                 {"line": "Is he done for the season or just tonight?", "why": "Tests if you know a misconduct is just an ejection, separate from suspension."},
                 {"line": "What's the difference between a misconduct and a fighting major?", "why": "Shows you understand the distinctions."}
@@ -429,7 +428,7 @@
               "correctOptionIds": ["a"],
               "explanation": {
                 "correct": "Exactly. A power play is when you have more skaters than the other team because they have a player in the box. A 5-on-4 is the most common.",
-                "incorrect": "A power play is a man-advantage situation: your team has more skaters on the ice because the other team is serving a penalty. It ends when the penalty time expires, a goal is scored, or you get another penalty."
+                "incorrect": "A power play is a man-advantage situation: your team has more skaters on the ice because the other team is serving a penalty. A minor ends when its time runs out or when the team with the advantage scores."
               }
             }
           },
@@ -438,16 +437,15 @@
             "type": "fill-the-gap",
             "conceptIds": ["power-play"],
             "payload": {
-              "prompt": "A power play ends when one of three things happens.",
-              "template": "A power play ends when {{first}}, {{second}}, or {{third}}.",
+              "prompt": "How does a minor-penalty power play end?",
+              "template": "A minor-penalty power play lasts {{time}} minutes, or less if the {{who}} team scores.",
               "gaps": [
-                {"id": "first", "options": ["you score", "time expires", "goalie pulled"], "correct": "you score"},
-                {"id": "second", "options": ["two mins pass", "penalty time expires", "period ends"], "correct": "penalty time expires"},
-                {"id": "third", "options": ["foe gets penalty", "it becomes 4-on-4", "goalie injured"], "correct": "foe gets penalty"}
+                {"id": "time", "options": ["two", "four", "five"], "correct": "two"},
+                {"id": "who", "options": ["shorthanded", "power-play", "home"], "correct": "power-play"}
               ],
               "explanation": {
-                "correct": "Right. You score (early end), the penalty time expires (full time), or the foe gets a penalty (becomes 4-on-4).",
-                "incorrect": "A power play ends when: (1) you score, (2) penalty time expires, or (3) the shorthanded team gets a penalty."
+                "correct": "Right. A minor runs two minutes, and a goal by the team with the advantage ends it early.",
+                "incorrect": "A minor power play is two minutes long. It ends early only when the team with the extra skater scores; a shorthanded goal doesn't end it."
               }
             }
           },
@@ -464,8 +462,8 @@
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Correct. A two-minute minor gives you 5-on-4 power play. A five-minute major also does, but those are rarer. A 5-on-3 is the biggest advantage (two minors at once).",
-                "incorrect": "A 5-on-4 is the most common power-play scenario, resulting from a two-minute minor. A major also creates a power play, but minors are more frequent."
+                "correct": "Correct. A two-minute minor gives you a 5-on-4. A five-minute major also does, but majors are rarer. A 5-on-3 is the bigger advantage (two penalties at once).",
+                "incorrect": "A 5-on-4 most often comes from a two-minute minor. A major can also create one, but minors are far more frequent. A pulled goalie creates an extra attacker, not a power play."
               }
             }
           },
@@ -479,12 +477,12 @@
               "options": [
                 {"id": "a", "text": "The team scored while on the power play", "isCorrect": true},
                 {"id": "b", "text": "The score is now tied at one goal each", "isCorrect": true},
-                {"id": "c", "text": "The other team's penalty is now over", "isCorrect": true},
+                {"id": "c", "text": "If it was a minor, the penalty is now over", "isCorrect": true},
                 {"id": "d", "text": "The game just went to overtime", "isCorrect": false}
               ],
-              "translation": "A power-play goal means the team with the man advantage scored. The penalty ends immediately (for minors) and play resumes at even strength.",
+              "translation": "A power-play goal means the team with the man advantage scored. If the penalty was a minor, it ends right away and play goes back to even strength.",
               "followUps": [
-                {"line": "Does a power-play goal count differently than a regular goal?", "why": "Tests if you know it's worth the same (1 point) but with context."},
+                {"line": "Does a power-play goal count differently than a regular goal?", "why": "Shows you know it's worth one goal, same as any other."},
                 {"line": "What's the team's power-play percentage?", "why": "Shows you know PP% is goals ÷ power plays."}
               ],
               "noFakeExpertNote": "Power-play goals are huge momentum shifts; fans love them because they show special-teams execution."
@@ -512,8 +510,8 @@
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. A shorthanded goal (or 'shorty') is when the team down a man scores. Fans love them because they flip the momentum instantly and end the penalty.",
-                "incorrect": "A shorthanded goal happens when the penalized team scores while defending. It's rare, exciting, and instantly ends the penalty."
+                "correct": "Right. A shorthanded goal (or 'shorty') is when the team down a man scores. Fans love them because they flip the momentum instantly. The penalty still runs, though.",
+                "incorrect": "A shorthanded goal happens when the penalized team scores while defending. It's rare and exciting, and the penalty keeps running (only a power-play goal ends a minor)."
               }
             }
           },
@@ -570,7 +568,7 @@
                 {"line": "What's a good penalty kill percentage?", "why": "Tests if you know ~80% is average."},
                 {"line": "How does this compare to the power play?", "why": "Shows you understand PK% and PP% are related stats."}
               ],
-              "noFakeExpertNote": "Penalty kill is a specific job; players who are good at it are often specialists on the fourth line."
+              "noFakeExpertNote": "Killing penalties is a specialist job; it's fine to ask who their best penalty killers are."
             }
           }
       ]
@@ -589,9 +587,9 @@
             "payload": {
               "prompt": "Order these manpower situations from most to least advantageous for the team on the power play.",
               "items": [
-                {"id": "5on3", "text": "5-on-3 (two minors on the opponent)", "why": "The biggest advantage: five skaters against three; about 90 seconds of 5-on-3 is common."},
+                {"id": "5on3", "text": "5-on-3 (two minors on the opponent)", "why": "The biggest advantage: five skaters against three, until the first penalty ends."},
                 {"id": "5on4", "text": "5-on-4 (one minor on the opponent)", "why": "The most common power play: one extra skater for two minutes."},
-                {"id": "4on4", "text": "4-on-4 (both teams have a minor)", "why": "Actually no power play at all; even strength with fewer skaters, very wide open."}
+                {"id": "4on4", "text": "4-on-4 (both teams have a minor)", "why": "No power play at all: even strength with fewer skaters, so no advantage for either side."}
               ],
               "explanation": {
                 "correct": "Right. 5-on-3 is the best advantage, then 5-on-4, then 4-on-4 (no power play).",
@@ -608,12 +606,12 @@
               "options": [
                 {"id": "a", "text": "Two players on the same team are in the penalty box at the same time (two minors)"},
                 {"id": "b", "text": "One team has a minor and the other gets a major"},
-                {"id": "c", "text": "A power-play team scores without ending the penalty"}
+                {"id": "c", "text": "The team on the power play pulls its goalie"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Exactly. A 5-on-3 is when one team has two penalties running at once. This is usually caused by a sloppy play: two infractions in quick succession. It's the most dangerous power-play setup.",
-                "incorrect": "A 5-on-3 power play means the shorthanded team has two players in the box. This is rare and lethal; teams often score from a 5-on-3 because the two-man advantage is huge."
+                "correct": "Exactly. A 5-on-3 is when one team has two penalties running at the same time, so the other side has five skaters against three. It's the biggest advantage in the game.",
+                "incorrect": "A 5-on-3 means the shorthanded team has two players in the box at once. A minor against one team and a major against the other cancel out, so that doesn't do it."
               }
             }
           },
@@ -623,15 +621,15 @@
             "conceptIds": ["penalty-nuance"],
             "payload": {
               "prompt": "Complete the 4-on-4 rule.",
-              "template": "Mutual minors = {{result}}, creating {{effect}} because only {{total}} skaters remain.",
+              "template": "Matching minors mean {{result}} hockey, so neither team gets a {{what}}, and only {{total}} skaters are on the ice.",
               "gaps": [
-                {"id": "result", "options": ["5-on-5", "4-on-4", "no power play"], "correct": "4-on-4"},
-                {"id": "effect", "options": ["defensive", "wide-open", "predictable"], "correct": "wide-open"},
+                {"id": "result", "options": ["5-on-5", "4-on-4", "3-on-3"], "correct": "4-on-4"},
+                {"id": "what", "options": ["power play", "faceoff", "line change"], "correct": "power play"},
                 {"id": "total", "options": ["four", "six", "eight"], "correct": "eight"}
               ],
               "explanation": {
-                "correct": "Right. Mutual minors = 4-on-4 with no power play. Eight total skaters instead of ten makes it wide-open.",
-                "incorrect": "When both teams get a minor, it becomes 4-on-4 with no power play. The game opens up since there are fewer skaters."
+                "correct": "Right. When both teams get a minor at the same time, each plays a skater short, so it's 4-on-4 with eight skaters and no power play. The extra ice often opens the game up.",
+                "incorrect": "Matching minors cancel each other out as an advantage, but each team still loses a skater, so play is 4-on-4 with eight skaters in total."
               }
             }
           },
@@ -640,7 +638,7 @@
             "type": "binary-call",
             "conceptIds": ["penalty-nuance"],
             "payload": {
-              "prompt": "A 5-on-3 lasts roughly 90 seconds because one minor expires first. True or false?",
+              "prompt": "A 5-on-3 becomes a 5-on-4 when the first penalty runs out. True or false?",
               "scene": {"kind": "none", "alt": "The scoreboard shows two penalty timers, one expiring before the other."},
               "choices": [
                 {"id": "true", "label": "True"},
@@ -648,8 +646,8 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. A 5-on-3 usually lasts about 90 seconds (one player comes out), then it becomes a 5-on-4 for the rest. This is why 5-on-3 is so scary: only 90 seconds of the best advantage.",
-                "incorrect": "Yes, a typical 5-on-3 is 90 seconds because the two minors don't expire at the same time. After 90 seconds, one player returns and it becomes a standard 5-on-4."
+                "correct": "True. As soon as the earlier penalty ends, one player returns and the power play continues as a 5-on-4 until the second penalty ends. The 5-on-3 window is short, so teams try to score in it.",
+                "incorrect": "The 5-on-3 lasts only until the first of the two penalties ends. Then one player returns and it's a regular 5-on-4 for whatever time is left on the other."
               }
             }
           }
@@ -675,8 +673,8 @@
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. A penalty shot is one-on-one against the goalie: the fouled player skates from the center line and tries to score with no defenders. It's a huge gift because most breakaways would not score anyway.",
-                "incorrect": "A penalty shot is awarded for a foul on a breakaway. The player gets a one-on-one chance at the goalie, starting from center ice with a running start. It's one of hockey's most exciting moments."
+                "correct": "Right. A penalty shot is one-on-one against the goalie: the fouled player starts at center ice and tries to score with no defenders. It gives back the scoring chance the foul took away.",
+                "incorrect": "A penalty shot is awarded when a player on a clear breakaway is fouled from behind. He gets a one-on-one try against the goalie, starting from center ice. Shooting and missing, or a pile of penalties, doesn't earn one."
               }
             }
           },
@@ -688,11 +686,11 @@
               "prompt": "Match the scoring opportunity to its description.",
               "pairs": [
                 {"id": "ps", "term": "Penalty shot", "definition": "A one-on-one against the goalie awarded for a foul on a breakaway; starts from center ice."},
-                {"id": "pp", "term": "Power play", "definition": "A team advantage because the opponent has a player in the box; multiple attackers against full defense."},
+                {"id": "pp", "term": "Power play", "definition": "A team advantage because the opponent has a player in the box; more attackers than defenders."},
                 {"id": "ss", "term": "Shootout", "definition": "A best-of-three one-on-one competition to break a tie after 3-on-3 overtime (not used in NHL playoffs)."}
               ],
               "explanation": {
-                "summary": "A penalty shot is the rarest and most dramatic way to score. It's not a power play; it's a single chance, one shot, one goalie.",
+                "summary": "A penalty shot is rare and dramatic. It's not a power play; it's a single chance, one shooter, one goalie. The shootout borrows that one-on-one format.",
                 "sayThisLine": "Penalty shot! He was fouled on the breakaway."
               }
             }
@@ -710,8 +708,8 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. Embellishment (or 'diving') is when a player sells a foul that didn't happen, exaggerates, or falls theatrically. Refs can call embellishment on the diver if they spot it.",
-                "incorrect": "Yes, embellishment is faking or exaggerating a foul. It's a minor penalty against the diver. Fans hate it because it's dishonest, and refs punish it inconsistently."
+                "correct": "True. Embellishment (or 'diving') is when a player sells a foul that didn't happen, exaggerates, or falls theatrically. Referees can call it on the diver, and the league can fine repeat offenders.",
+                "incorrect": "Embellishment is faking or exaggerating contact to draw a penalty. The referee can call a two-minute minor on the diver, which takes away the power play he hoped to earn."
               }
             }
           },

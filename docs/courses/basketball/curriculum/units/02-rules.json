@@ -19,7 +19,7 @@
             "type": "multiple-choice",
             "conceptIds": ["gather-step", "traveling"],
             "payload": {
-              "prompt": "A handler catches a pass and takes two steps before shooting. Traveling?",
+              "prompt": "A handler gathers the ball, then takes two steps and shoots. Traveling?",
               "options": [
                 {"id": "a", "text": "Yes, always a travel"},
                 {"id": "b", "text": "No, the gather step doesn't count against the two-step limit"},
@@ -27,8 +27,8 @@
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. The gather step—securing the ball—doesn't count. After gathering, two more steps are legal. That's three footfalls total.",
-                "incorrect": "The gather is free. After securing the ball, two steps are allowed. Three steps total from the gather is legal.",
+                "correct": "The gather, where the player secures the ball, is not counted as a step. Two more steps are then legal, so the footwork can look like three, and that is why travel calls confuse everyone.",
+                "incorrect": "Securing the ball (the gather) is free. After it, a player may take two steps before shooting or passing. A third step after the gather is when it becomes a travel.",
                 "sayThisLine": "Gather, step one, step two. That's legal."
               }
             }
@@ -65,8 +65,8 @@
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Yes. A player with the ball can pivot on a planted foot as many times as they want. The foot must stay on the floor.",
-                "incorrect": "Once you have the ball, plant one foot as your pivot foot and rotate it as many times as you wish. The foot must stay in contact with the floor.",
+                "correct": "A player holding the ball can spin on the pivot foot as many times as they like. The foot just cannot slide, drag or lift and come back down before the ball is passed, shot or dribbled.",
+                "incorrect": "Once a player holds the ball, one foot becomes the pivot, and it can turn in place as much as the player wants. Only lifting it and putting it down again, or dragging it, is a travel.",
                 "sayThisLine": "Plant a pivot foot and you can spin all day."
               }
             }
@@ -76,17 +76,17 @@
             "type": "binary-call",
             "conceptIds": ["traveling"],
             "payload": {
-              "prompt": "Ball handler gathers and takes four steps before shooting. Traveling?",
-              "scene": {"kind": "none", "alt": "A ball handler secures the ball and takes four visible steps toward the basket."},
+              "prompt": "Ball handler gathers, then takes three more steps without dribbling. Traveling?",
+              "scene": {"kind": "none", "alt": "A ball handler secures the ball and then takes three more steps toward the basket without dribbling."},
               "choices": [
                 {"id": "yes", "label": "Traveling"},
                 {"id": "no", "label": "Legal"}
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Yes, traveling. Gather step plus two is the limit. Four steps means one too many.",
-                "incorrect": "After the gather, only two steps are allowed. Four total steps is traveling.",
-                "sayThisLine": "Gather, one, two—that's all. Four steps is a travel."
+                "correct": "After the gather, two steps are the limit. A third step with no dribble is a travel, and here the player took three.",
+                "incorrect": "The gather is free and two steps after it are legal. Three more steps without a dribble is one too many, so the whistle is deserved.",
+                "sayThisLine": "\"Gather, one, two. That third step is a travel.\""
               },
               "ruleTag": "Traveling limit"
             }
@@ -99,15 +99,15 @@
               "statement": {"speaker": "Alex", "text": "He traveled for sure, too many steps."},
               "question": "What does he mean?",
               "options": [
-                {"id": "a", "text": "The player took too many steps without dribbling", "isCorrect": true},
-                {"id": "b", "text": "The player moved out of bounds", "isCorrect": false},
-                {"id": "c", "text": "The player moved more than two steps after catching the ball", "isCorrect": true},
-                {"id": "d", "text": "The player took a flight somewhere", "isCorrect": false}
+                {"id": "a", "text": "The player took too many steps without dribbling.", "isCorrect": true},
+                {"id": "b", "text": "The player stepped out of bounds.", "isCorrect": false},
+                {"id": "c", "text": "The player took exactly two steps after the catch.", "isCorrect": false},
+                {"id": "d", "text": "The player used the wrong pivot foot for a pass.", "isCorrect": false}
               ],
               "translation": "After catching the ball, the player took more than two steps without dribbling it, which is a violation.",
               "followUps": [
-                {"line": "Was the gather step counted?", "why": "Tests if they know gather doesn't count toward the limit."},
-                {"line": "Do all refs call it the same way?", "why": "Acknowledges travel-call inconsistency fans notice."}
+                {"line": "Was the gather step counted?", "why": "It shows you know the gather is free, and it invites her to explain what she saw."},
+                {"line": "Do refs call it the same way every time?", "why": "Fans argue about travel consistency all the time, so this keeps the talk going."}
               ],
               "noFakeExpertNote": "Travel calls are famously inconsistent; saying 'that looked like a travel' is safe."
             }
@@ -126,17 +126,17 @@
             "type": "binary-call",
             "conceptIds": ["double-dribble"],
             "payload": {
-              "prompt": "A dribbler uses both hands to bounce the ball at the same time. Violation?",
-              "scene": {"kind": "none", "alt": "A dribbler using both hands to bounce the ball at the same time."},
+              "prompt": "A dribbler crosses the ball from the right hand to the left without stopping. Violation?",
+              "scene": {"kind": "none", "alt": "A dribbler bounces the ball with the right hand, then crosses it over and keeps bouncing with the left hand."},
               "choices": [
                 {"id": "yes", "label": "Double dribble"},
                 {"id": "no", "label": "Legal"}
               ],
-              "correctChoiceId": "yes",
+              "correctChoiceId": "no",
               "explanation": {
-                "correct": "Yes, double dribble. Using both hands on the same dribble is a violation.",
-                "incorrect": "Double dribble happens when a player dribbles with both hands at once or touches the ball with both hands during a dribble.",
-                "sayThisLine": "Double-dribbled, both hands on the ball."
+                "correct": "Legal. Changing hands is fine as long as the dribble never stops. A double dribble needs a stop, or both hands on the ball at once, before the dribbling resumes.",
+                "incorrect": "Switching hands mid-dribble is a normal crossover. Double dribble means dribbling again after the dribble ended, or dribbling with both hands at the same time.",
+                "sayThisLine": "\"That crossover was nasty, and completely legal.\""
               },
               "ruleTag": "Double-dribble definition"
             }
@@ -154,9 +154,9 @@
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Yes. Carrying (palming) is a dribble violation. The ball must bounce, not rest in the palm.",
-                "incorrect": "When a dribbler carries or palms the ball, they lose control. It is a turnover.",
-                "sayThisLine": "He carried it, that's a turnover."
+                "correct": "Carrying, or palming, is a dribble violation. The hand has to push the ball down from on top; once it turns under or rests beneath the ball, the dribble has ended.",
+                "incorrect": "A legal dribble pushes the ball from above and lets it bounce. When the hand slides under the ball and carries it along, that is a carry and the other team gets the ball.",
+                "sayThisLine": "\"He carried it. The hand was under the ball.\""
               },
               "ruleTag": "Carrying definition"
             }
@@ -174,9 +174,9 @@
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Yes, backcourt violation. Once a player brings the ball across half court, they cannot bring it back.",
-                "incorrect": "Once a player crosses half court into the front court, they cannot dribble it back across half court.",
-                "sayThisLine": "Backcourt, he brought it back across half."
+                "correct": "Once the offense has brought the ball into the frontcourt, it cannot go back over half court. Doing it is an over-and-back, a turnover on the team with the ball.",
+                "incorrect": "After the ball and the dribbler get into the frontcourt, the offense may not take it back across the half-court line. The defense, however, can knock it back without a violation.",
+                "sayThisLine": "\"Over and back. He took it back across half.\""
               },
               "ruleTag": "Backcourt rule"
             }
@@ -194,9 +194,9 @@
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Yes, double dribble. Once the dribble ends, you cannot dribble again without a pass.",
-                "incorrect": "Once the dribble ends (the ball is caught), you can only shoot, pass, or pivot. Dribbling again is a double-dribble violation.",
-                "sayThisLine": "Picked it up and dribbled again, that's a double."
+                "correct": "Once a player catches the ball with both hands or holds it, the dribble is over. Starting a new dribble is a double dribble, unless someone else touched the ball in between.",
+                "incorrect": "After a player ends the dribble, the only legal moves are to pass, shoot or pivot. Bouncing the ball again without anyone else touching it is a double dribble.",
+                "sayThisLine": "\"He picked it up and dribbled again. That is a double.\""
               },
               "ruleTag": "Dribble resumption"
             }
