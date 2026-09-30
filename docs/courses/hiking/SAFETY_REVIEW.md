@@ -164,7 +164,7 @@ Review of all 149 concepts, 3 branch summaries, 9 talk tracks and the review pol
 - `heat-risk`: was mis-defined (NWS HeatRisk uses local climatology, duration and overnight relief, not humidity and sun).
 - `handrail` example "follow the creek all the way down" modelled the lost-hiker creek myth; replaced with a ridge.
 - `red-flag-warning` example "no risk" fixed; `trip-plan` now says who calls for help; `wilderness-act` adds mechanized transport; `annual-pass` excludes camping and permit fees; giardia and krummholz example exaggerations removed.
-- `talk-tt-04` reply "only 50%, you'll be fine" penalty -5 to -10 (downplays lightning risk).
+- `hk-tt-04` reply "only 50%, you'll be fine" penalty -5 to -10 (downplays lightning risk).
 
 Talk tracks otherwise sound: none teaches faking expertise; cringe replies are graded negative.
 
