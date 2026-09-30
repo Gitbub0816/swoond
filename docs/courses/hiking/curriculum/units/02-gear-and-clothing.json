@@ -1647,30 +1647,70 @@
             ],
             "payload": {
               "safetyNote": "UV damage at altitude happens quickly and can cause severe sunburn and heat illness.",
-              "prompt": "You are above treeline at 10,000 feet. It is 50°F and cloudy. Do you need sunscreen?",
+              "prompt": "Above treeline, cool and cloudy. Time for sunscreen?",
+              "situation": {
+                "narrative": "You are above treeline at 10,000 feet on a cool, cloudy afternoon. The sky is gray and you feel chilled. You have sunscreen in your pack.",
+                "facts": [
+                  {
+                    "label": "Elevation",
+                    "value": "10,000 feet"
+                  },
+                  {
+                    "label": "Temperature",
+                    "value": "50 F"
+                  },
+                  {
+                    "label": "Sky",
+                    "value": "Cloudy and gray"
+                  },
+                  {
+                    "label": "Terrain",
+                    "value": "Bare rock, snow patches"
+                  },
+                  {
+                    "label": "UV risk",
+                    "value": "Altitude + reflection + thin atmosphere",
+                    "emphasis": "warning"
+                  }
+                ]
+              },
               "options": [
                 {
-                  "id": "yes",
-                  "text": "Yes, UV is stronger at altitude and reflects off rocks, even in clouds",
-                  "explanation": "Clouds block heat but not UV. Altitude and reflection double your exposure."
+                  "id": "apply",
+                  "label": "Apply sunscreen now",
+                  "verdict": "best",
+                  "consequence": "Your face, ears, neck and exposed skin get protection. The clouds do not stop UV, and the altitude makes it stronger. Five minutes now prevents bad sunburn.",
+                  "considerations": [
+                    "Clouds block heat but not UV",
+                    "UV is stronger at altitude",
+                    "Snow and rock reflect UV upward"
+                  ]
                 },
                 {
-                  "id": "no",
-                  "text": "No, it is cold and cloudy so you do not need it"
+                  "id": "skip",
+                  "label": "Skip it, you are not that cold",
+                  "verdict": "poor",
+                  "consequence": "The cool weather lulls you into ignoring UV. By evening you are burned red across your face and ears. The burn gets worse over two days.",
+                  "considerations": [
+                    "Temperature is not the same as UV risk",
+                    "Sunburn at altitude happens fast",
+                    "It does not hurt while it is happening"
+                  ]
                 },
                 {
-                  "id": "maybe",
-                  "text": "Maybe, but it is a low priority"
+                  "id": "later",
+                  "label": "Wait until it clears up",
+                  "verdict": "poor",
+                  "consequence": "The clouds thin without clearing. You are still getting hit with UV but do not realize it. Sunburn builds before you react.",
+                  "considerations": [
+                    "Do not wait for perfect conditions",
+                    "Cloudy days can still burn you badly",
+                    "Above treeline is always high risk"
+                  ]
                 }
               ],
-              "correctOptionIds": [
-                "yes"
-              ],
-              "explanation": {
-                "correct": "Altitude means stronger UV. Clouds do not stop UV, only heat. You can sunburn badly on a cool, cloudy mountain day.",
-                "incorrect": "Cool temperature fools people. High altitude plus reflection means dangerous UV even in clouds. Apply sunscreen above treeline, always.",
-                "sayThisLine": "\"Clouds do not stop UV at altitude. I wear sunscreen even on cool days.\""
-              }
+              "expertNote": "Altitude and reflection double UV exposure. Cool cloudy days fool people into skipping sunscreen. Above treeline, always protect your skin.",
+              "sayThisLine": "\"Clouds do not stop UV at altitude. I wear sunscreen even on cool, gray days.\""
             }
           },
           {

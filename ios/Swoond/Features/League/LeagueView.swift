@@ -62,7 +62,7 @@ struct LeagueView: View {
         let promoted = entry.rank <= cutoff
         return HStack(spacing: SWSpace.s12) {
             Text("\(entry.rank)").font(SWText.numeral(20)).foregroundStyle(promoted ? Color.sw.reward : Color.sw.ink5).frame(width: 26, alignment: .leading)
-            Avatar(initial: entry.name, size: 34).overlay(Circle().fill(Color.sw.ink.opacity(0.08)).opacity(0))
+            Avatar(initial: entry.name, size: 34)
             Text(entry.name).font(SWFont.ui(15, weight: .medium)).foregroundStyle(Color.sw.ink).frame(maxWidth: .infinity, alignment: .leading)
             Text("\(entry.weeklyXP) XP").font(SWFont.ui(14)).foregroundStyle(Color.sw.ink3)
         }
@@ -72,8 +72,7 @@ struct LeagueView: View {
         .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).strokeBorder(entry.isLearner ? Color.sw.accent.opacity(0.35) : .clear, lineWidth: 1))
         .overlay(alignment: .bottom) {
             if entry.rank == cutoff && !entry.isLearner {
-                Rectangle().fill(Color.clear).frame(height: 1)
-                    .overlay(DashedLine().stroke(Color.sw.reward.opacity(0.35), style: StrokeStyle(lineWidth: 1, dash: [4, 3])))
+                DashedLine().stroke(Color.sw.reward.opacity(0.35), style: StrokeStyle(lineWidth: 1, dash: [4, 3])).frame(height: 1)
             }
         }
         .accessibilityElement(children: .ignore)

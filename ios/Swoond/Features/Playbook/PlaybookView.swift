@@ -5,7 +5,12 @@ import SwoondCore
 @Observable
 final class PlaybookViewModel {
     private(set) var entries: [PlaybookEntry] = []
-    private(set) var interests: [(id: CourseID, name: String)] = []
+    struct InterestFilter: Identifiable, Equatable {
+        var id: CourseID
+        var name: String
+    }
+
+    private(set) var interests: [InterestFilter] = []
     var query = ""
     var courseFilter: CourseID?
     private(set) var isLoaded = false
@@ -24,13 +29,13 @@ final class PlaybookViewModel {
         var curricula: [Curriculum] = []
         var masteries: [CourseID: CourseMastery] = []
         var names: [CourseID: String] = [:]
-        var interestList: [(id: CourseID, name: String)] = []
+        var interestList: [InterestFilter] = []
         for interest in person.interests {
             let id = interest.courseId
             guard let c = try? await env.content.curriculum(courseId: id, locale: env.locale) else { continue }
             curricula.append(c)
             names[id] = model.interestName(id)
-            interestList.append((id, model.interestName(id)))
+            interestList.append(InterestFilter(id: id, name: model.interestName(id)))
             if let m = try? await env.engine.mastery(courseId: id) { masteries[id] = m }
         }
         entries = PlaybookIndex.entries(curricula: curricula, courseNames: names, mastery: masteries, now: now)
@@ -100,7 +105,7 @@ struct PlaybookView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: SWSpace.s8) {
                 Chip(title: "All", isOn: vm.courseFilter == nil) { vm.courseFilter = nil }
-                ForEach(vm.interests, id: \.id) { interest in
+                ForEach(vm.interests) { interest in
                     Chip(title: interest.name, isOn: vm.courseFilter == interest.id) { vm.courseFilter = interest.id }
                 }
             }
