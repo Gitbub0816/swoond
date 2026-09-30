@@ -4,7 +4,7 @@ Platform-independent Swift core for the Swoon'd iOS app (D-001). Foundation-only
 
 ```
 swift build
-swift test          # swift-testing, ~226 tests
+swift test          # swift-testing, ~270 tests
 ```
 
 One library product, `SwoondCore`, organized by folder (`Sources/SwoondCore/`):
@@ -18,7 +18,10 @@ One library product, `SwoondCore`, organized by folder (`Sources/SwoondCore/`):
 | `Content/` | `ContentRepository`, `BundledContentRepository` (loads `<root>/<courseId>/manifest.json` + `curriculum/*.json`), `StaticContentRepository`, `ContentValidator`, `PersonalizationResolver` |
 | `Repositories/` | `ProgressRepository` / `PersonRepository` protocols; in-memory and JSON-file implementations (atomic writes) |
 | `Providers/` | `LiveDataProvider` + normalized `Fixture`/`Standings`/`LiveContext` + `MockLiveDataProvider`; `EditorialProvider` + `DailyBite` + `MockEditorialProvider` |
-| `Session/` | `LessonPlanner` (pure), `LearningSession` (actor): today's plan, run activities, apply native and Unity results, finish |
+| `Session/` | `LessonPlanner` (pure), `LearningSession` (actor): today's plan, run activities, a Talk Track on its own, apply native and Unity results, finish. Branch-aware (contract 1.2) |
+| `Catalog/` | `InterestCatalog` (20 launch interests, in-app search normalization), `OnboardingDraft` (3-step onboarding state), `PlaybookIndex` (glossary search/filter/status), `CommonGroundCopy` |
+| `Social/` | `BadgeCatalog`/`LearnerStats`, `FriendChallenge` + `ChallengeProvider` (mock), league board in `Progress/LeagueBoard` |
+| `Commerce/`, `Notifications/`, `Settings/` | `PurchaseService` seam (+ mock), `NotificationComposer` (discreet copy policy), `AppSettings`/`SettingsStore`, `ReminderScheduling` seam |
 
 ## How the pieces connect
 

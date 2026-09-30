@@ -21,7 +21,7 @@
             "type": "estimate-slider",
             "conceptIds": ["elevation-gain"],
             "payload": {
-              "prompt": "A 6-mile hike with 2,000 ft gain feels roughly like?",
+              "prompt": "A 6-mile hike with 2,000 ft of gain feels like about how many flat miles?",
               "unit": "miles",
               "min": 6,
               "max": 20,
@@ -32,8 +32,8 @@
                 "partial": 2
               },
               "explanation": {
-                "correct": "The gain adds time and effort. Naismith's rule suggests 2,000 ft gains over an hour, turning 6 miles into 10-mile equivalent difficulty.",
-                "incorrect": "Elevation gain multiplies effort. The 2,000 feet of climbing dominates the hike, making it feel much longer than the mileage alone suggests."
+                "correct": "A common rule of thumb adds one mile of effort for every 500 feet of gain. Two thousand feet adds about four, so 6 miles feels like roughly 10 flat miles.",
+                "incorrect": "Elevation gain multiplies effort. Adding about a mile of effort per 500 feet of climbing turns 6 miles with 2,000 feet into roughly 10 flat-mile equivalents."
               }
             }
           },
@@ -42,15 +42,15 @@
             "type": "multiple-choice",
             "conceptIds": ["elevation-gain"],
             "payload": {
-              "prompt": "Two hikes: 10 miles flat or 5 miles with 3,000 ft gain. Which is typically longer?",
+              "prompt": "Two hikes: 6 miles flat, or 4 miles with 3,000 ft of gain. Which usually takes longer?",
               "options": [
                 {
                   "id": "a",
-                  "text": "The 10-mile flat hike"
+                  "text": "The 6-mile flat hike"
                 },
                 {
                   "id": "b",
-                  "text": "The 5-mile hike with 3,000 ft gain"
+                  "text": "The 4-mile hike with 3,000 ft of gain"
                 },
                 {
                   "id": "c",
@@ -63,9 +63,9 @@
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "The steep one. 3,000 feet of gain adds about 1.5 hours of hiking time by Naismith's rule, making the shorter, steeper hike longer than the flat one.",
-                "incorrect": "Gain is the hidden variable. Distance alone doesn't tell the story. The 5-mile steep hike takes longer than the 10-mile flat one.",
-                "sayThisLine": "Only five miles? What's the elevation gain? That changes everything."
+                "correct": "The steep one. By Naismith's rule, 6 flat miles take about 2 hours, while 4 miles plus 3,000 feet of gain takes about 1.3 plus 1.5, nearly 3 hours.",
+                "incorrect": "Gain is the hidden variable. Distance alone does not tell the story: the shorter, steeper hike takes longer.",
+                "sayThisLine": "Only four miles? What is the elevation gain? That changes everything."
               }
             }
           },
@@ -86,7 +86,7 @@
                 },
                 {
                   "id": "c",
-                  "text": "Very steep, about 18% grade"
+                  "text": "Very steep, about 19% grade"
                 },
                 {
                   "id": "d",
@@ -95,8 +95,8 @@
               ],
               "correctOptionIds": ["c"],
               "explanation": {
-                "correct": "That's a 18% grade: 500 ft rise over 2,640 ft horizontal distance (half a mile). Eighteen percent is noticeably steep, and your quads will feel it.",
-                "incorrect": "Grade is rise over run. Five hundred feet in half a mile is steep—expect a grinding climb and tired legs.",
+                "correct": "That is about a 19% grade: 500 ft of rise over 2,640 ft (half a mile) of horizontal distance. It is steep enough to feel in your quads.",
+                "incorrect": "Grade is rise over run. Five hundred feet in half a mile is about 19 percent: expect a grinding climb and tired legs.",
                 "sayThisLine": "The trail climbs five hundred feet in half a mile. This is going to be steep."
               }
             }
@@ -117,39 +117,35 @@
                 "partial": 1
               },
               "explanation": {
-                "correct": "By Naismith's rule: 8 miles at 3 mph = 2 hours, plus 800 ft ÷ 2,000 ft per hour = 0.4 hours = about 3 hours moving time. Add breaks and you're looking 3.5 to 4.",
-                "incorrect": "Use Naismith's rule: one hour per three miles, plus one hour per 2,000 feet. Eight miles takes about 2.5 hours of pure movement, plus the gain."
+                "correct": "Naismith's rule: 8 miles at 3 mph is about 2.7 hours, plus 800 ft of gain at 2,000 ft per hour is 0.4 hours. That is about 3 hours moving. Add breaks and plan for 3.5 to 4.",
+                "incorrect": "Use Naismith's rule: one hour per three miles, plus one hour per 2,000 feet of gain. Eight miles is about 2.7 hours, plus 0.4 hours for the gain."
               }
             }
           },
           {
-            "id": "rt-01-mc-03",
-            "type": "multiple-choice",
+            "id": "rt-01-bc-gain",
+            "type": "binary-call",
             "conceptIds": ["elevation-gain"],
             "payload": {
-              "prompt": "Why does a trail description list elevation gain separately from mileage?",
-              "options": [
+              "prompt": "Is elevation gain already built into the mileage number?",
+              "scene": {
+                "kind": "none",
+                "alt": "A trail description listing 6 miles and 3,000 feet of gain as two separate numbers."
+              },
+              "choices": [
                 {
-                  "id": "a",
-                  "text": "It's redundant; gain is built into mileage"
+                  "id": "yes",
+                  "label": "Yes, it is redundant"
                 },
                 {
-                  "id": "b",
-                  "text": "Gain matters more than distance for time and effort"
-                },
-                {
-                  "id": "c",
-                  "text": "It's only important for steep trails"
-                },
-                {
-                  "id": "d",
-                  "text": "Trail builders have to track both for regulatory reasons"
+                  "id": "no",
+                  "label": "No, it is a separate key number"
                 }
               ],
-              "correctOptionIds": ["b"],
+              "correctChoiceId": "no",
               "explanation": {
-                "correct": "Gain tells you how much climbing to expect. Two hikes with the same mileage can feel completely different based on elevation gain.",
-                "incorrect": "Distance and gain are independent. Six miles with 3,000 feet is a slog; six miles with 200 feet is a cruise. Both are six miles but totally different hikes.",
+                "correct": "Distance and gain are independent. Gain tells you how much climbing to expect, so two hikes of equal mileage can be totally different days.",
+                "incorrect": "Six miles with 3,000 feet is a slog; six miles with 200 feet is a cruise. Mileage alone hides the climbing.",
                 "sayThisLine": "The gain is the number that actually tells you how hard it is."
               }
             }
@@ -249,33 +245,37 @@
             }
           },
           {
-            "id": "rt-02-mc-01",
-            "type": "multiple-choice",
+            "id": "rt-02-so-grades",
+            "type": "sequence-order",
             "conceptIds": ["grade"],
             "payload": {
-              "prompt": "Which grade feels easier to hike?",
-              "options": [
+              "prompt": "Order these grades from easiest to hardest on your legs.",
+              "items": [
                 {
-                  "id": "a",
-                  "text": "3% grade"
+                  "id": "g3",
+                  "text": "3% grade",
+                  "why": "Barely noticeable, like a gentle rise."
                 },
                 {
-                  "id": "b",
-                  "text": "8% grade"
+                  "id": "g8",
+                  "text": "8% grade",
+                  "why": "A steady, tiring climb."
                 },
                 {
-                  "id": "c",
-                  "text": "15% grade"
+                  "id": "g15",
+                  "text": "15% grade",
+                  "why": "Steep enough to have you breathing hard."
                 },
                 {
-                  "id": "d",
-                  "text": "25% grade"
+                  "id": "g25",
+                  "text": "25% grade",
+                  "why": "Very steep, and a grind on any trail."
                 }
               ],
-              "correctOptionIds": ["a"],
+              "partialCredit": true,
               "explanation": {
-                "correct": "A 3% grade is gentle. Eight percent gets tiring, 15% is steep, 25% is brutal. Lower grade = easier hiking and less knee stress.",
-                "incorrect": "Lower percentage means a gentler slope. Three percent is barely noticeable; twenty-five percent will make your legs burn."
+                "correct": "Lower percent means gentler slope. Three percent is barely noticeable; twenty-five percent will make your legs burn.",
+                "incorrect": "Grade is rise over run, so a bigger percentage is steeper. Line them up from gentlest to steepest."
               }
             }
           },
@@ -329,14 +329,14 @@
               "min": 1,
               "max": 8,
               "step": 0.5,
-              "correctValue": 4.5,
+              "correctValue": 3.5,
               "tolerance": {
                 "full": 0.5,
                 "partial": 1
               },
               "explanation": {
-                "correct": "Naismith: 9 miles at 3 mph = 3 hours. Plus 1,200 ft ÷ 2,000 ft per hour = 0.6 hours. Total ≈ 3.6 hours. Round to 4-4.5 for real-world pace.",
-                "incorrect": "Use the rule: 1 hour per 3 miles, plus 1 hour per 2,000 feet of gain. Nine miles = 3 hours, 1,200 feet = 0.6 hours, total about 3.5 to 4 hours."
+                "correct": "Naismith: 9 miles at 3 mph is 3 hours, plus 1,200 ft at 2,000 ft per hour is 0.6 hours. That is about 3.6 hours of moving time, before breaks.",
+                "incorrect": "Use the rule: 1 hour per 3 miles, plus 1 hour per 2,000 feet of gain. Nine miles is 3 hours, 1,200 feet is 0.6 hours, so about 3.5 hours before breaks."
               }
             }
           },
@@ -426,7 +426,7 @@
               ],
               "correctOptionIds": ["c"],
               "explanation": {
-                "correct": "Naismith's baseline is 3 mph on flat ground, a sustainable pace for most hikers. Steeper terrain or tired legs slow you down.",
+                "correct": "Naismith's baseline is 3 mph on flat ground, a sustainable pace for a fit hiker. Steeper terrain, heavy packs or tired legs slow you down.",
                 "incorrect": "The rule uses 3 mph as the baseline on flat terrain. That is neither power-hiking nor strolling—a real-world pace most people can sustain."
               }
             }
@@ -448,7 +448,7 @@
                 },
                 {
                   "id": "c",
-                  "text": "12:00 PM to 1:00 PM, realistic pace with breaks"
+                  "text": "11:30 AM to 12:30 PM, realistic pace with breaks"
                 },
                 {
                   "id": "d",
@@ -457,8 +457,8 @@
               ],
               "correctOptionIds": ["c"],
               "explanation": {
-                "correct": "Add 30 to 50% to moving time for the real world: lunch, water stops, photos and pace variations. Three and a half hours moving = 5 to 5.5 hours total. Back by noon or one.",
-                "incorrect": "Moving time is not total time. Plan for extra: you will stop for food, water and the view. Double the moving time or add 50 percent to be realistic."
+                "correct": "Add 30 to 50 percent to moving time for lunch, water stops, photos and slower stretches. Three and a half hours moving becomes about 4.5 to 5.25 hours, so back around noon.",
+                "incorrect": "Moving time is not total time. You will stop for food, water and the view, so add 30 to 50 percent, and keep a cushion before dark."
               }
             }
           }
@@ -497,7 +497,7 @@
             "type": "multiple-choice",
             "conceptIds": ["pace"],
             "payload": {
-              "prompt": "Which factors slowest on a hike?",
+              "prompt": "Which usually slows a hiker's pace the most?",
               "options": [
                 {
                   "id": "a",
@@ -529,50 +529,46 @@
             "type": "estimate-slider",
             "conceptIds": ["pace"],
             "payload": {
-              "prompt": "You are at 8,000 ft elevation. Your pace drops to roughly what percent of sea-level pace?",
+              "prompt": "Around 8,000 ft, a fit hiker's pace is roughly what percent of sea-level pace?",
               "unit": "percent",
               "min": 30,
               "max": 100,
               "step": 5,
-              "correctValue": 70,
+              "correctValue": 90,
               "tolerance": {
                 "full": 5,
                 "partial": 10
               },
               "explanation": {
-                "correct": "At altitude, breathing is harder and your body works less efficiently. Expect 70 to 80% of your sea-level pace, and slower as you go higher.",
-                "incorrect": "Altitude slows everyone. At 8,000 feet, most hikers move at 70 to 80% of their normal pace. Higher altitude slows you further."
+                "correct": "Thinner air makes hard effort harder. At 8,000 feet most people slow modestly, to roughly 85 to 95 percent of sea-level pace, and more the higher they go.",
+                "incorrect": "Altitude slows everyone a bit. Around 8,000 feet expect a modest drop, and more as you climb. Headache, nausea or dizziness is more than slowness: rest and do not go higher."
               }
             }
           },
           {
-            "id": "rt-04-mc-02",
-            "type": "multiple-choice",
+            "id": "rt-04-bc-group-pace",
+            "type": "binary-call",
             "conceptIds": ["moving-vs-total-time"],
             "payload": {
-              "prompt": "The group rule for pace is?",
-              "options": [
+              "prompt": "Group hike: should the fastest hiker set the pace?",
+              "scene": {
+                "kind": "none",
+                "alt": "A group of hikers strung out along a trail, with the slowest at the back."
+              },
+              "choices": [
                 {
-                  "id": "a",
-                  "text": "The fastest person sets the pace"
+                  "id": "fast",
+                  "label": "Yes, the fastest leads"
                 },
                 {
-                  "id": "b",
-                  "text": "Everyone keeps up or stays home"
-                },
-                {
-                  "id": "c",
-                  "text": "The slowest person sets the pace and no one gets left behind"
-                },
-                {
-                  "id": "d",
-                  "text": "Split up into faster and slower groups"
+                  "id": "slow",
+                  "label": "No, the slowest sets it"
                 }
               ],
-              "correctOptionIds": ["c"],
+              "correctChoiceId": "slow",
               "explanation": {
-                "correct": "Group hiking means the pace of the slowest. Nobody gets left behind, and nobody waits alone out of earshot. That is how groups stay safe and together.",
-                "incorrect": "The group moves at the pace of the slowest person. This keeps everyone together, builds group cohesion and keeps someone from getting lost or injured alone."
+                "correct": "A group moves at the pace of its slowest member, and nobody gets left behind or waits alone out of earshot. That keeps everyone safe and together.",
+                "incorrect": "Splitting a group leaves the slowest hiker alone, which is when people get lost or hurt. Keep everyone together at the slowest pace."
               }
             }
           },
@@ -583,17 +579,17 @@
             "payload": {
               "prompt": "A 20-pound pack slows your pace by roughly what percent compared to no pack?",
               "unit": "percent",
-              "min": 5,
+              "min": 4,
               "max": 50,
               "step": 2,
-              "correctValue": 15,
+              "correctValue": 10,
               "tolerance": {
                 "full": 2,
                 "partial": 5
               },
               "explanation": {
-                "correct": "Twenty pounds slows most hikers by 10 to 20 percent. Lighter packs are faster; heavier packs slow you more and tire legs faster.",
-                "incorrect": "Pack weight adds up. Twenty pounds might slow you 15 percent or so on typical terrain. Steep or rocky terrain magnifies the impact."
+                "correct": "A 20-pound pack slows most hikers modestly, often somewhere around 5 to 15 percent, and more on steep or rough ground. Lighter packs are faster.",
+                "incorrect": "Pack weight adds up. Twenty pounds might slow you around 10 percent on typical terrain, more on steep or rocky ground."
               }
             }
           }
@@ -621,17 +617,17 @@
                 {
                   "id": "c2",
                   "term": "Class 2",
-                  "definition": "Hiking off-trail, simple rock scramble, hands in pockets"
+                  "definition": "Simple scrambling on rough or off-trail ground; hands only for balance"
                 },
                 {
                   "id": "c3",
                   "term": "Class 3",
-                  "definition": "Hands-on scrambling, exposed drops, must watch placement"
+                  "definition": "Hands-on scrambling; a fall could be serious and some people want a rope"
                 },
                 {
                   "id": "c4",
                   "term": "Class 4+",
-                  "definition": "Roped climbing; beyond hiking"
+                  "definition": "Exposed climbing where ropes are used; beyond hiking, needs training"
                 }
               ],
               "distractorDefinitions": [
@@ -639,7 +635,7 @@
                 "Walking downhill on any terrain"
               ],
               "explanation": {
-                "summary": "The class scale goes from hike to scramble to climb. Class 3 is where hands matter. Class 4 is where ropes come out."
+                "summary": "The class scale goes from hike to scramble to climb. Class 3 is where hands matter and falls get serious. Treat the scale as a reading skill, not permission to try it."
               }
             }
           },
@@ -701,7 +697,7 @@
                 },
                 {
                   "id": "b",
-                  "text": "Off-trail hiking with simple rock scrambling; hands rarely needed"
+                  "text": "Off-trail or rough ground with simple scrambling; hands only for balance"
                 },
                 {
                   "id": "c",
@@ -714,8 +710,8 @@
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Class 2 is off-trail scrambling; you might use your hands to balance but do not really need them. Exposure is minimal to moderate.",
-                "incorrect": "Class 2 is the first level of scramble: some rock work, mostly staying upright, hands used occasionally. Not dangerous, but not a pure hiking trail."
+                "correct": "Class 2 is simple scrambling on rough or off-trail ground; you might use a hand for balance. Falls are still possible, so know your limits and check current conditions.",
+                "incorrect": "Class 2 is the first level of scramble: rough ground and some rock work, with hands used occasionally. It is not a plain trail, so plan for it."
               }
             }
           },
@@ -745,8 +741,8 @@
               ],
               "correctOptionIds": ["c"],
               "explanation": {
-                "correct": "Elevation gain and the class scale tell you the real story: how far you climb and what terrain you face. Apps rate differently; numbers never lie.",
-                "incorrect": "Distance alone misleads. Six miles with 100 feet feels easy; six miles with 3,000 feet feels hard. Gain + class scale is objective."
+                "correct": "Elevation gain and the class scale tell you how far you climb and what terrain you face, so they compare better than app labels. Check current conditions and official sources too.",
+                "incorrect": "Distance alone misleads. Six miles with 100 feet feels easy; six miles with 3,000 feet feels hard. Gain plus class scale is more objective than a label."
               }
             }
           },
@@ -771,13 +767,13 @@
                 },
                 {
                   "id": "d",
-                  "text": "Wearing a helmet for safety"
+                  "text": "Carrying as much gear as possible"
                 }
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Class 3 has exposure and fall risk. You must think through placement, move carefully and test holds before committing. Rushing kills.",
-                "incorrect": "Class 3 demands attention and care. A fall can hurt badly. Test every hold, move deliberately and respect the exposure."
+                "correct": "Class 3 has exposure and fall risk. Test holds, move deliberately, and turn back if it feels beyond you. Beginners should build skills first or go with someone experienced.",
+                "incorrect": "Class 3 demands attention and care. A fall can badly hurt you. Test every hold, move deliberately and respect the exposure. Rushing is how slips happen."
               }
             }
           }
@@ -830,7 +826,7 @@
             "type": "multiple-choice",
             "conceptIds": ["route-vs-trail"],
             "payload": {
-              "prompt": "A guide says 'Route, needs navigation.' Go solo if new to navigation?",
+              "prompt": "A guide says \"Route, needs navigation.\" New to navigation, do you go solo?",
               "options": [
                 {
                   "id": "a",
@@ -838,52 +834,46 @@
                 },
                 {
                   "id": "b",
-                  "text": "Yes, with offline maps and a GPS track"
+                  "text": "Yes, with just a phone and a GPS track"
                 },
                 {
                   "id": "c",
-                  "text": "Go with someone experienced"
+                  "text": "Go with someone experienced, or take a navigation course first"
                 },
                 {
                   "id": "d",
-                  "text": "Avoid it; get formal training first"
+                  "text": "Follow whatever footprints you see"
                 }
               ],
               "correctOptionIds": ["c"],
               "explanation": {
-                "correct": "Routes demand navigation. Go with someone experienced. A trail has tread; a route has only your judgment.",
-                "incorrect": "Routes need map and compass work, terrain reading and decision-making. Learn with a mentor first."
+                "correct": "Routes demand navigation. A trail has tread; a route has only your judgment. Learn with an experienced partner or a course, and carry a paper map and compass.",
+                "incorrect": "Routes need map and compass work, terrain reading and decision-making. Phones can fail, and footprints can lead anywhere. Learn with a mentor first."
               }
             }
           },
           {
-            "id": "rt-06-mc-02",
-            "type": "multiple-choice",
+            "id": "rt-06-fg-exposure",
+            "type": "fill-the-gap",
             "conceptIds": ["exposure"],
             "payload": {
-              "prompt": "What does 'exposure' mean in trail descriptions?",
-              "options": [
+              "prompt": "Complete the exposure idea.",
+              "template": "Exposure means {{what}} beside your route, where {{risk}}.",
+              "gaps": [
                 {
-                  "id": "a",
-                  "text": "How long the hike takes in direct sun"
+                  "id": "what",
+                  "options": ["steep drop-offs or cliffs", "long stretches of direct sun"],
+                  "correct": "steep drop-offs or cliffs"
                 },
                 {
-                  "id": "b",
-                  "text": "Steep drop-offs beside the route where a fall is serious"
-                },
-                {
-                  "id": "c",
-                  "text": "How wet and muddy the trail gets"
-                },
-                {
-                  "id": "d",
-                  "text": "How much rain or wind is forecast"
+                  "id": "risk",
+                  "options": ["a slip could be serious", "a slip just means mud"],
+                  "correct": "a slip could be serious"
                 }
               ],
-              "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Exposure = steep drop-offs beside your path. A fall is bad. Exposure does not mean danger on a wide trail; it means commitment and consequences.",
-                "incorrect": "Exposure is the vertical hazard: cliffs or steep drops beside the route. High exposure means a slip could be serious. It demands attention and care."
+                "correct": "Exposure is the vertical hazard: cliffs or steep drops beside the route. High exposure means a slip could be serious, so it asks for focus and care.",
+                "incorrect": "Exposure is not about sun or mud. It is about how far and how hard you could fall, and it decides how much attention a section needs."
               }
             }
           },
@@ -931,11 +921,11 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "One liter, there's water at mile 4"
+                  "text": "One liter, there is water at mile 4"
                 },
                 {
                   "id": "b",
-                  "text": "Enough from mile 4 to the end, plus a backup filter"
+                  "text": "Enough to reach the creek, then refill and treat there without counting on the spring"
                 },
                 {
                   "id": "c",
@@ -943,13 +933,13 @@
                 },
                 {
                   "id": "d",
-                  "text": "Two liters total, water is listed so it's reliable"
+                  "text": "Two liters total, water is listed so it is reliable"
                 }
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Reliable creek at 4: fill there. Seasonal spring at 8: skip it. Dry for 4: carry from 4 to end.",
-                "incorrect": "Trust 'reliable' and fill there. Skip 'seasonal.' Carry what you need for the dry section."
+                "correct": "Carry enough for the dry first four miles. Refill and treat at the reliable creek at mile 4, and carry enough from there to the end. Seasonal springs can be dry, so do not count on one.",
+                "incorrect": "Trust \"reliable\" and fill there, and treat the water. Do not count on \"seasonal\" sources, and carry what you need for the dry sections."
               }
             }
           }

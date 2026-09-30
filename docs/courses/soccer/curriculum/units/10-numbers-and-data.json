@@ -40,7 +40,7 @@
             "conceptIds": ["xg"],
             "payload": {
               "prompt": "A team wins 3-1 but had 1.2 xG. Unlucky or lucky?",
-              "unit": "expected goals difference",
+              "unit": "goals above xG",
               "min": -2,
               "max": 2,
               "step": 0.1,
@@ -246,7 +246,7 @@
             "conceptIds": ["ppda"],
             "payload": {
               "prompt": "Estimate: heavy press, low PPDA. What range?",
-              "unit": "passes per defensive action",
+              "unit": "passes per action",
               "min": 4,
               "max": 12,
               "step": 0.5,
@@ -453,35 +453,36 @@
             "type": "decision-scenario",
             "conceptIds": ["overperform-underperform"],
             "payload": {
+              "prompt": "Five games: 4 goals from 1.1 xG. Sell or keep?",
               "situation": {
                 "facts": [
                   {"label": "Last 5 games", "value": "Striker scored 4 goals from 1.1 xG"},
                   {"label": "Season average", "value": "0.8 xG per game, 0.7 goals per game"},
-                  {"label": "Offer", "value": "Sell for record fee or keep for the title run"},
-                  {"label": "Window", "value": "January transfer deadline in 3 days"}
+                  {"label": "Offer", "value": "Sell for record fee or keep"},
+                  {"label": "Window", "value": "January deadline in 3 days"}
                 ]
               },
               "options": [
                 {
                   "id": "sell",
-                  "text": "Sell for the record fee",
+                  "label": "Sell for the record fee",
                   "verdict": "poor",
-                  "consequence": "You sell at peak value, but lose your best finisher when form regresses as expected. Title hopes fade.",
-                  "considerations": "Overperformance is temporary, but losing your striker mid-season is costly."
+                  "consequence": "You sell at peak value, but lose your best finisher when form regresses. Title hopes fade.",
+                  "considerations": ["Overperformance is temporary", "Losing mid-season is costly"]
                 },
                 {
                   "id": "keep",
-                  "text": "Keep him and chase the title",
+                  "label": "Keep him and chase the title",
                   "verdict": "best",
-                  "consequence": "He regresses but is still above his season average and your team stays competitive. You benefit from his relative overperformance.",
-                  "considerations": "Expect his goal tally to drop closer to 0.7-0.8 per game, but at that level he still contributes."
+                  "consequence": "He regresses but is still above season average. Team stays competitive as relative overperformance continues.",
+                  "considerations": ["Expect his goal tally to drop closer to 0.7-0.8 per game", "He still contributes at that level"]
                 },
                 {
                   "id": "loan",
-                  "text": "Loan him out to build confidence",
+                  "label": "Loan him out to build confidence",
                   "verdict": "acceptable",
                   "consequence": "You remove the player from pressure, but also from your title challenge. Works if you have depth.",
-                  "considerations": "Risky mid-season when you need production."
+                  "considerations": ["Risky mid-season when you need production", "Gives player a mental reset"]
                 }
               ],
               "expertNote": "A smart team sells strikers at peak overperformance, but a team fighting for a title keeps them. You know form will dip; the question is whether you need him."
@@ -502,8 +503,8 @@
               ],
               "translation": "When a striker is scoring below his expected level, the stats suggest he will score more in the future as his luck improves.",
               "followUps": [
-                {"line": "How many games until he's back to normal?", "why": "Regression takes time, and you're asking about the timeline."},
-                {"line": "Has his xG stayed the same?", "why": "Distinguishes between slump and loss of form."}
+                {"line": "How many games until he's back to normal?", "why": "Regression takes time, ask about the timeline."},
+                {"line": "Has his xG stayed the same?", "why": "Distinguish between slump and loss of form."}
               ],
               "noFakeExpertNote": "Underperformance is encouraging news: the player is getting chances, just not finishing them. Overperformance is the opposite warning sign."
             }
@@ -632,6 +633,8 @@
             "type": "talk-track",
             "conceptIds": ["eye-test-vs-data"],
             "payload": {
+              "title": "Data and feelings in a slump",
+              "setting": "Your team is in good form but the last match felt poor.",
               "exchanges": [
                 {
                   "theirMessage": "Our new striker has 2 goals in 4 games. We're not sure he's the right fit.",
@@ -694,10 +697,10 @@
             "conceptIds": ["eye-test-vs-data"],
             "payload": {
               "prompt": "Complete the balanced view.",
-              "template": "Stats show {{what_stats}} while watching shows {{what_watch}}, so the full picture uses {{how}}.",
+              "template": "Stats show {{what-stats}} while watching shows {{what-watch}}, so the full picture uses {{how}}.",
               "gaps": [
-                {"id": "what_stats", "options": ["the score", "underlying quality", "what the team intended"], "correct": "underlying quality"},
-                {"id": "what_watch", "options": ["everything that happened", "rhythm and momentum", "the team's intentions"], "correct": "rhythm and momentum"},
+                {"id": "what-stats", "options": ["the score", "underlying quality", "what the team intended"], "correct": "underlying quality"},
+                {"id": "what-watch", "options": ["everything that happened", "rhythm and momentum", "the team's intentions"], "correct": "rhythm and momentum"},
                 {"id": "how", "options": ["numbers alone", "feeling alone", "both together"], "correct": "both together"}
               ],
               "explanation": {

@@ -331,24 +331,31 @@ test('type-monoculture: warns when activity type >40% of a ≥12-activity unit',
   try {
     const u1 = join(cur, 'units', '01-the-basics.json');
     edit(u1, (j) => {
-      // Add 9 multiple-choice + 3 other types = 12 activities total (9/12 = 75% > 40%)
+      // Add 5 multiple-choice + 8 other types = 13 activities total (6/13 = 46% > 40% and <= 50%)
       const mc = j.unit.lessons[0].activities.find((a) => a.type === 'multiple-choice');
       const ftg = j.unit.lessons[0].activities.find((a) => a.type === 'fill-the-gap');
       const est = j.unit.lessons[0].activities.find((a) => a.type === 'estimate-slider');
-      for (let i = 0; i < 7; i++) {
+      const tm = j.unit.lessons[0].activities.find((a) => a.type === 'term-match');
+      for (let i = 0; i < 5; i++) {
         const clone = JSON.parse(JSON.stringify(mc));
         clone.id = `mc-extra-${i}`;
         clone.payload.prompt = `What is the meaning of this question number ${i}?`;
         j.unit.lessons[0].activities.push(clone);
       }
-      for (let i = 0; i < 1; i++) {
+      for (let i = 0; i < 2; i++) {
         const clone = JSON.parse(JSON.stringify(ftg));
         clone.id = `ftg-extra-${i}`;
+        clone.payload.text = `Gap text number ${i}`;
         j.unit.lessons[0].activities.push(clone);
       }
-      for (let i = 0; i < 1; i++) {
+      for (let i = 0; i < 2; i++) {
         const clone = JSON.parse(JSON.stringify(est));
         clone.id = `est-extra-${i}`;
+        j.unit.lessons[0].activities.push(clone);
+      }
+      for (let i = 0; i < 2; i++) {
+        const clone = JSON.parse(JSON.stringify(tm));
+        clone.id = `tm-extra-${i}`;
         j.unit.lessons[0].activities.push(clone);
       }
     });

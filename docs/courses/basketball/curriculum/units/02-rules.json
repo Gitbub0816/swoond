@@ -1,0 +1,909 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "basketball",
+  "unit": {
+    "id": "rules",
+    "title": "Rules and Officiating",
+    "layer": "foundations",
+    "order": 1,
+    "lessons": [
+      {
+        "id": "rul-01",
+        "title": "Traveling and the gather step",
+        "objective": "Explain the gather step and why travel calls confuse everyone.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["traveling", "gather-step", "pivot-foot", "euro-step"],
+        "activities": [
+          {
+            "id": "rul-01-mc-gather",
+            "type": "multiple-choice",
+            "conceptIds": ["gather-step", "traveling"],
+            "payload": {
+              "prompt": "A ball handler catches a pass and immediately takes two steps before shooting. Traveling?",
+              "options": [
+                {"id": "a", "text": "Yes, always a travel"},
+                {"id": "b", "text": "No, the gather step doesn't count against the two-step limit"},
+                {"id": "c", "text": "Only if both feet land at the same time"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. The gather step—securing the ball from the dribble—doesn't count. Then two steps are legal. That's three footfalls total.",
+                "incorrect": "The gather is free; it's the security moment. After gathering, two more steps are allowed. Three steps total from the gather.",
+                "sayThisLine": "Gather, step one, step two. That's legal."
+              }
+            }
+          },
+          {
+            "id": "rul-01-mc-euro",
+            "type": "multiple-choice",
+            "conceptIds": ["euro-step"],
+            "payload": {
+              "prompt": "A ball handler does a euro step: one step left, then one step right, evading the defender. Legal?",
+              "options": [
+                {"id": "a", "text": "No, you can only step in one direction"},
+                {"id": "b", "text": "Yes, as long as the steps come after the gather"},
+                {"id": "c", "text": "Only if the defender is moving"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Correct. The euro step is legal in the NBA and college. The first step goes one way, the second the other, both after the gather.",
+                "incorrect": "The euro step is legal because the ball handler takes one step to one side then one to the other, both counted as the two allowed steps after the gather.",
+                "sayThisLine": "Euro step is two steps in different directions. It's legal."
+              }
+            }
+          },
+          {
+            "id": "rul-01-mc-pivot",
+            "type": "multiple-choice",
+            "conceptIds": ["pivot-foot"],
+            "payload": {
+              "prompt": "A player catches the ball and pivots on their right foot, rotating 360 degrees without moving the right foot. Legal?",
+              "options": [
+                {"id": "a", "text": "Yes, a pivot foot can rotate any amount"},
+                {"id": "b", "text": "No, you can only pivot 180 degrees"},
+                {"id": "c", "text": "Only in the post"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Yes. A player with the ball can pivot on a planted foot as many times as they want. The foot must stay in contact with the floor.",
+                "incorrect": "Once you have the ball, you can plant one foot as your pivot foot and rotate it as many times as you wish without traveling, as long as the foot stays on the floor.",
+                "sayThisLine": "Plant a pivot foot and you can spin all day."
+              }
+            }
+          },
+          {
+            "id": "rul-01-bc-four-steps",
+            "type": "binary-call",
+            "conceptIds": ["traveling"],
+            "payload": {
+              "prompt": "Ball handler gathers the ball from the dribble and clearly takes four distinct steps before shooting. Traveling?",
+              "scene": {"kind": "none", "alt": "A ball handler secures the ball and takes four visible steps toward the basket."},
+              "choices": [
+                {"id": "yes", "label": "Traveling"},
+                {"id": "no", "label": "Legal"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes, traveling. Gather step plus two is the limit. Four steps means one too many.",
+                "incorrect": "After the gather, only two steps are allowed. Four total steps is traveling.",
+                "sayThisLine": "Gather, one, two—that's all. Four steps is a travel."
+              },
+              "ruleTag": "Traveling limit"
+            }
+          },
+          {
+            "id": "rul-01-st-travel",
+            "type": "say-this",
+            "conceptIds": ["traveling"],
+            "payload": {
+              "statement": {"speaker": "Alex", "text": "He traveled for sure, too many steps."},
+              "question": "What does he mean?",
+              "options": [
+                {"id": "a", "text": "The player took too many steps without dribbling", "isCorrect": true},
+                {"id": "b", "text": "The player moved out of bounds", "isCorrect": false},
+                {"id": "c", "text": "The player moved more than two steps after catching the ball", "isCorrect": true},
+                {"id": "d", "text": "The player took a flight somewhere", "isCorrect": false}
+              ],
+              "translation": "After catching the ball, the player took more than two steps without dribbling it, which is a violation.",
+              "followUps": [
+                {"line": "Was the gather step counted?", "why": "Tests if they know gather doesn't count toward the limit."},
+                {"line": "Do all refs call it the same way?", "why": "Acknowledges travel-call inconsistency fans notice."}
+              ],
+              "noFakeExpertNote": "Travel calls are famously inconsistent; saying 'that looked like a travel' is safe."
+            }
+          }
+        ]
+      },
+      {
+        "id": "rul-02",
+        "title": "Dribbling violations",
+        "objective": "Tell a double dribble from a carry from a clean dribble.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["double-dribble", "carry-palming", "backcourt-violation"],
+        "activities": [
+          {
+            "id": "rul-02-bc-double",
+            "type": "binary-call",
+            "conceptIds": ["double-dribble"],
+            "payload": {
+              "prompt": "A ball handler dribbles with their right hand, then dribbles with both hands simultaneously. Violation?",
+              "scene": {"kind": "none", "alt": "A dribbler using both hands to bounce the ball at the same time."},
+              "choices": [
+                {"id": "yes", "label": "Double dribble"},
+                {"id": "no", "label": "Legal"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes, double dribble. Once you dribble with one hand, using both hands on the same dribble is a violation.",
+                "incorrect": "Double dribble happens when a player dribbles with both hands at once or touches the ball with both hands during a dribble.",
+                "sayThisLine": "Double-dribbled, both hands on the ball."
+              },
+              "ruleTag": "Double-dribble definition"
+            }
+          },
+          {
+            "id": "rul-02-bc-carry",
+            "type": "binary-call",
+            "conceptIds": ["carry-palming"],
+            "payload": {
+              "prompt": "A dribbler palms the ball (lets it rest in their hand) briefly while moving forward. Violation?",
+              "scene": {"kind": "none", "alt": "A ball handler holding the ball in their palm while the other hand is still on it, not bouncing it."},
+              "choices": [
+                {"id": "yes", "label": "Carrying / Palming"},
+                {"id": "no", "label": "Legal"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes. Carrying (palming) is a dribble violation. The ball must be bounced, not held in the palm.",
+                "incorrect": "When a dribbler carries or palms the ball, they lose control of the dribble. It is a turnover.",
+                "sayThisLine": "He carried it, that's a turnover."
+              },
+              "ruleTag": "Carrying definition"
+            }
+          },
+          {
+            "id": "rul-02-bc-backcourt",
+            "type": "binary-call",
+            "conceptIds": ["backcourt-violation"],
+            "payload": {
+              "prompt": "A ball handler brings the ball up court into the front court, then dribbles it back across half court into the backcourt. Violation?",
+              "scene": {"kind": "none", "alt": "A player advancing the ball into the opponent's half, then turning and dribbling back across half court."},
+              "choices": [
+                {"id": "yes", "label": "Backcourt violation"},
+                {"id": "no", "label": "Legal"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes, backcourt violation. Once a player brings the ball into the front court, they cannot be the first to bring it back.",
+                "incorrect": "When a player with the ball crosses half court into the front court, they cannot dribble it back across half court. It is a turnover.",
+                "sayThisLine": "Backcourt, he brought it back across half."
+              },
+              "ruleTag": "Backcourt rule"
+            }
+          },
+          {
+            "id": "rul-02-bc-pickup",
+            "type": "binary-call",
+            "conceptIds": ["double-dribble"],
+            "payload": {
+              "prompt": "A player dribbles, picks up the ball (stops dribbling), holds it for a moment, then dribbles again. Violation?",
+              "scene": {"kind": "none", "alt": "A dribbler stopping the dribble, cradling the ball, then resuming the dribble."},
+              "choices": [
+                {"id": "yes", "label": "Double dribble"},
+                {"id": "no", "label": "Legal"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes, double dribble. Once you pick up the ball and end your dribble, you cannot dribble again without a pass or turnover.",
+                "incorrect": "Once the dribble ends (the ball is caught), you can only shoot, pass, or pivot. Dribbling again is a double-dribble violation.",
+                "sayThisLine": "Picked it up and dribbled again, that's a double."
+              },
+              "ruleTag": "Dribble resumption"
+            }
+          },
+          {
+            "id": "rul-02-vi-signals",
+            "type": "visual-id",
+            "conceptIds": ["referee-signals"],
+            "payload": {
+              "prompt": "Which referee signal means double dribble or carry?",
+              "diagramId": "referee-signals-1",
+              "alt": "Four referee hand signals: rolling hands over each other, one hand rolling, arm swipe, and three-finger signal.",
+              "options": [
+                {"id": "a", "text": "Rolling hands continuously", "isCorrect": true},
+                {"id": "b", "text": "Single arm rolling motion", "isCorrect": false},
+                {"id": "c", "text": "Sweeping arm horizontally", "isCorrect": false},
+                {"id": "d", "text": "Three fingers up", "isCorrect": false}
+              ],
+              "explanation": {
+                "correct": "Right. The ref rolls both hands over each other to signal double dribble or carry.",
+                "incorrect": "Refs signal dribble violations with rolling hands—the motion mimics a bouncing ball rolling."
+              }
+            }
+          },
+          {
+            "id": "rul-02-mc-carry-ref",
+            "type": "multiple-choice",
+            "conceptIds": ["carry-palming"],
+            "payload": {
+              "prompt": "What does a ref do when they see a player carrying the ball?",
+              "options": [
+                {"id": "a", "text": "Award a free throw"},
+                {"id": "b", "text": "Call a turnover; the other team gets the ball"},
+                {"id": "c", "text": "Give a technical foul"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "The ball is turned over to the other team. It is not a foul, but a violation.",
+                "incorrect": "Dribble violations like carrying result in a turnover. The opposing team gets possession."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "rul-03",
+        "title": "Clock and area violations",
+        "objective": "Know the 3-second, 5-second, 8-second and shot-clock violations.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["three-second-violation", "five-second-violation", "eight-second-violation", "shot-clock-violation"],
+        "activities": [
+          {
+            "id": "rul-03-tm-clocks",
+            "type": "term-match",
+            "conceptIds": ["three-second-violation", "five-second-violation", "eight-second-violation", "shot-clock-violation"],
+            "payload": {
+              "prompt": "Match the violation to the time limit it involves.",
+              "pairs": [
+                {"id": "3s", "term": "3-second violation", "definition": "Offensive player stays in the paint for more than three seconds while their team has the ball."},
+                {"id": "5s", "term": "5-second violation", "definition": "Inbounder takes more than five seconds to get the ball in play, or a closely guarded player holds the ball more than five seconds."},
+                {"id": "8s", "term": "8-second violation", "definition": "A team fails to get the ball across half court within eight seconds (ten seconds in college)."},
+                {"id": "shot", "term": "Shot-clock violation", "definition": "A team fails to get a shot off before the shot clock expires (24 seconds in NBA/WNBA, 30 in college)."}
+              ],
+              "explanation": {
+                "summary": "These clock rules keep the game moving and prevent endless stalling in any area.",
+                "sayThisLine": "Three seconds in the lane, eight to cross half, 24 on the shot clock."
+              }
+            }
+          },
+          {
+            "id": "rul-03-bc-three",
+            "type": "binary-call",
+            "conceptIds": ["three-second-violation"],
+            "payload": {
+              "prompt": "A post player stands in the paint for exactly four seconds while their team has the ball and is not actively guarding a defender. Violation?",
+              "scene": {"kind": "none", "alt": "A player standing in the painted lane area with the ball on the perimeter."},
+              "choices": [
+                {"id": "yes", "label": "3-second violation"},
+                {"id": "no", "label": "Legal"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes, 3-second violation. The limit is three seconds on offense. Four is too long.",
+                "incorrect": "An offensive player can spend at most three consecutive seconds in the paint. Four seconds is a violation.",
+                "sayThisLine": "Three seconds max in the lane on offense."
+              },
+              "ruleTag": "Offensive 3-second"
+            }
+          },
+          {
+            "id": "rul-03-bc-eight",
+            "type": "binary-call",
+            "conceptIds": ["eight-second-violation"],
+            "payload": {
+              "prompt": "A team takes 10 seconds to get the ball from their baseline across half court (in the NBA). Violation?",
+              "scene": {"kind": "none", "alt": "A team slowly advancing the ball down court past the half-court line."},
+              "choices": [
+                {"id": "yes", "label": "8-second violation"},
+                {"id": "no", "label": "Legal"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes, 8-second violation. In the NBA, a team has eight seconds. Ten is too slow.",
+                "incorrect": "The NBA and WNBA allow eight seconds to cross half court. College is ten. Ten seconds in the NBA is a turnover.",
+                "sayThisLine": "Eight seconds to get up court in the NBA."
+              },
+              "ruleTag": "8-second halfcourt"
+            }
+          },
+          {
+            "id": "rul-03-bc-shot",
+            "type": "binary-call",
+            "conceptIds": ["shot-clock-violation"],
+            "payload": {
+              "prompt": "The shot clock shows 2 seconds left, and a player throws the ball up at the basket as the clock hits zero. The ball is in the air and doesn't touch the rim. Does it count?",
+              "scene": {"kind": "none", "alt": "A desperation heave released as the shot clock expires, missing the rim entirely."},
+              "choices": [
+                {"id": "yes", "label": "Shot counts, no violation"},
+                {"id": "no", "label": "Shot-clock violation"}
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Shot-clock violation. The ball must leave the player's hands before the clock expires and must hit the rim or go in.",
+                "incorrect": "For a shot to count, it must leave the shooter's hands before time and hit the rim (or go in). Airball after the buzzer is a violation.",
+                "sayThisLine": "Airball after the shot clock. No good."
+              },
+              "ruleTag": "Shot-clock deadline"
+            }
+          },
+          {
+            "id": "rul-03-fg-times",
+            "type": "fill-the-gap",
+            "conceptIds": ["eight-second-violation", "shot-clock-violation"],
+            "payload": {
+              "prompt": "Complete the clock rules for the NBA.",
+              "template": "A team has {{eight}} seconds to get the ball across half court and {{twentyfour}} seconds to shoot it.",
+              "gaps": [
+                {"id": "eight", "options": ["six", "eight", "ten"], "correct": "eight"},
+                {"id": "twentyfour", "options": ["20", "24", "30"], "correct": "24"}
+              ],
+              "explanation": {
+                "correct": "Right. Eight to cross half, 24 to shoot in the NBA. College is ten and 30.",
+                "incorrect": "NBA rules: eight seconds to get across half court, 24 seconds for a shot. These times differ in college and the WNBA."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "rul-04",
+        "title": "Personal and shooting fouls",
+        "objective": "Sort fouls by type and explain the and-one.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["personal-foul", "shooting-foul", "and-one", "foul-out"],
+        "activities": [
+          {
+            "id": "rul-04-mc-personal",
+            "type": "multiple-choice",
+            "conceptIds": ["personal-foul"],
+            "payload": {
+              "prompt": "A defender pushes an offensive player away from the ball. What foul is this?",
+              "options": [
+                {"id": "a", "text": "Shooting foul"},
+                {"id": "b", "text": "Personal foul"},
+                {"id": "c", "text": "Technical foul"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Personal foul. Pushing, holding or elbowing is contact away from a shot attempt.",
+                "incorrect": "Contact away from a shot is a personal foul. If it happens while shooting, it's a shooting foul."
+              }
+            }
+          },
+          {
+            "id": "rul-04-mc-shooting",
+            "type": "multiple-choice",
+            "conceptIds": ["shooting-foul", "and-one"],
+            "payload": {
+              "prompt": "A defender fouls an offensive player during a shot attempt, and the shot goes in. What happens?",
+              "options": [
+                {"id": "a", "text": "The basket doesn't count"},
+                {"id": "b", "text": "The basket counts and the player shoots one free throw (and-one)"},
+                {"id": "c", "text": "The basket counts and the player shoots two free throws"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Correct. Made shot plus a foul equals an and-one: the basket counts, plus one free throw.",
+                "incorrect": "When a shooter is fouled and makes the shot, it's an and-one: the basket counts and they get one bonus free throw."
+              }
+            }
+          },
+          {
+            "id": "rul-04-mc-foulout",
+            "type": "multiple-choice",
+            "conceptIds": ["foul-out"],
+            "payload": {
+              "prompt": "A player gets their sixth personal foul in the NBA. What happens?",
+              "options": [
+                {"id": "a", "text": "They sit out one quarter"},
+                {"id": "b", "text": "They are fouled out and must leave the game"},
+                {"id": "c", "text": "They lose two free throws"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "They foul out and are ejected. Six fouls disqualifies a player in the NBA and WNBA. College is five.",
+                "incorrect": "In the NBA and WNBA, a sixth personal foul disqualifies the player. They must leave the game."
+              }
+            }
+          },
+          {
+            "id": "rul-04-so-foulseq",
+            "type": "sequence-order",
+            "conceptIds": ["shooting-foul", "and-one"],
+            "payload": {
+              "prompt": "Order the events when a player is fouled while shooting and makes the basket.",
+              "items": [
+                {"id": "foul", "text": "Referee calls shooting foul", "why": "The foul happens during the shot attempt."},
+                {"id": "basket", "text": "Basket counts", "why": "The shot goes in before or after the foul call."},
+                {"id": "line", "text": "Player goes to the free-throw line", "why": "The and-one free throw is awarded."},
+                {"id": "shoot", "text": "Player shoots the free throw", "why": "One bonus attempt is given."}
+              ],
+              "explanation": {
+                "correct": "Foul called, basket counts, then one free throw is shot. That's an and-one.",
+                "incorrect": "When fouled while shooting successfully: foul, basket counts, player shoots one bonus free throw."
+              }
+            }
+          },
+          {
+            "id": "rul-04-es-fouls",
+            "type": "estimate-slider",
+            "conceptIds": ["foul-out"],
+            "payload": {
+              "prompt": "How many personal fouls does a player need in the NBA before fouling out?",
+              "unit": "fouls",
+              "min": 3,
+              "max": 8,
+              "step": 1,
+              "correctValue": 6,
+              "tolerance": {"full": 0, "partial": 1},
+              "explanation": {
+                "correct": "Six fouls in the NBA and WNBA. College is five.",
+                "incorrect": "A player fouls out at six personal fouls in the NBA and WNBA. College is five fouls."
+              }
+            }
+          },
+          {
+            "id": "rul-04-st-andonebonus",
+            "type": "say-this",
+            "conceptIds": ["and-one", "shooting-foul"],
+            "payload": {
+              "statement": {"speaker": "Jordan", "text": "He's in the bonus, so we get two free throws on the next foul."},
+              "question": "What does he mean?",
+              "options": [
+                {"id": "a", "text": "The other team has committed enough fouls that all future fouls result in free throws", "isCorrect": true},
+                {"id": "b", "text": "A player just made a three-pointer and gets extra points", "isCorrect": false},
+                {"id": "c", "text": "The team has earned a reward for playing defense", "isCorrect": false},
+                {"id": "d", "text": "Subsequent fouls will be non-shooting fouls", "isCorrect": false}
+              ],
+              "translation": "The other team has committed enough fouls in the quarter (five in the NBA) that your team is now in the team-foul bonus. Every additional foul will send your team to the free-throw line for two shots.",
+              "followUps": [
+                {"line": "How many fouls until the bonus kicks in?", "why": "Tests knowledge of the foul limit."},
+                {"line": "Do you reset the count each quarter?", "why": "Checks understanding that it resets."}
+              ],
+              "noFakeExpertNote": "Asking 'how many team fouls did they have?' is always safe."
+            }
+          }
+        ]
+      },
+      {
+        "id": "rul-05",
+        "title": "Free throws, the bonus and techs",
+        "objective": "Explain bonus, technical, flagrant and intentional fouls.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["team-fouls-bonus", "free-throw", "technical-foul", "flagrant-foul", "intentional-foul"],
+        "activities": [
+          {
+            "id": "rul-05-tm-fouls",
+            "type": "term-match",
+            "conceptIds": ["technical-foul", "flagrant-foul", "intentional-foul"],
+            "payload": {
+              "prompt": "Match the foul type to its definition.",
+              "pairs": [
+                {"id": "tech", "term": "Technical foul", "definition": "A non-contact foul for unsporting conduct, arguing with the ref, delay of game, or other violations. Awards one free throw."},
+                {"id": "flag1", "term": "Flagrant-1 foul", "definition": "Excessive or unnecessary contact that endangers an opponent. Less severe; awarded two free throws and a possession."},
+                {"id": "flag2", "term": "Flagrant-2 foul", "definition": "Extreme excessive force or dangerous play, resulting in ejection plus two free throws and possession."},
+                {"id": "intent", "term": "Intentional foul", "definition": "A deliberate foul (not based on judgment) to stop play or a specific play, often on an inbounder or to prevent an easy basket."}
+              ],
+              "explanation": {
+                "summary": "Fouls outside normal contact (technical), excessively hard contact (flagrant), and deliberate stops (intentional) all have distinct penalties.",
+                "sayThisLine": "Tech, flagrant, intentional—all different."
+              }
+            }
+          },
+          {
+            "id": "rul-05-ds-tech",
+            "type": "decision-scenario",
+            "conceptIds": ["technical-foul"],
+            "payload": {
+              "prompt": "A coach stands on the sideline and yells at the referee, 'That's a terrible call!' The ref hears and points at the coach. What is called?",
+              "options": [
+                {"id": "a", "text": "Technical foul on the coach", "isCorrect": true},
+                {"id": "b", "text": "Unsportsmanlike conduct on the player", "isCorrect": false},
+                {"id": "c", "text": "Delay of game", "isCorrect": false},
+                {"id": "d", "text": "No foul, free speech", "isCorrect": false}
+              ],
+              "explanation": {
+                "correct": "Technical foul. Arguing or complaining to the ref earns a tech.",
+                "incorrect": "A coach or player arguing with the referee or being disrespectful receives a technical foul."
+              }
+            }
+          },
+          {
+            "id": "rul-05-mc-bonus",
+            "type": "multiple-choice",
+            "conceptIds": ["team-fouls-bonus"],
+            "payload": {
+              "prompt": "In an NBA game, the opposing team has committed five fouls in the quarter. Your team gets the ball. What happens on the next foul?",
+              "options": [
+                {"id": "a", "text": "Regular play continues, no free throws"},
+                {"id": "b", "text": "Your team shoots two free throws"},
+                {"id": "c", "text": "Your team shoots one free throw and keeps the ball"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Your team is in the bonus and shoots two free throws on every subsequent foul (even non-shooting fouls).",
+                "incorrect": "Once a team reaches five fouls in a quarter (NBA), the other team is in the bonus and shoots two free throws for all future fouls."
+              }
+            }
+          },
+          {
+            "id": "rul-05-mc-flagrant",
+            "type": "multiple-choice",
+            "conceptIds": ["flagrant-foul"],
+            "payload": {
+              "prompt": "A defender elbows an offensive player hard in the chest while the player is driving. This is ruled flagrant-2. What is the consequence?",
+              "options": [
+                {"id": "a", "text": "Two free throws and the fouled player keeps the ball"},
+                {"id": "b", "text": "Two free throws, the fouled team gets possession, and the defender is ejected"},
+                {"id": "c", "text": "One technical free throw and a technical is charged"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Flagrant-2 results in ejection (throw-out), two free throws, and possession. Excessive force is not tolerated.",
+                "incorrect": "A flagrant-2 foul is extreme. The player is ejected, the opponent shoots two free throws, and gets the ball back."
+              }
+            }
+          },
+          {
+            "id": "rul-05-fg-bonus",
+            "type": "fill-the-gap",
+            "conceptIds": ["team-fouls-bonus"],
+            "payload": {
+              "prompt": "Complete the NBA bonus foul rule.",
+              "template": "When a team commits {{count}} fouls in a quarter, the opposing team is in the bonus and shoots {{shots}} free throws on all subsequent fouls.",
+              "gaps": [
+                {"id": "count", "options": ["three", "five", "seven"], "correct": "five"},
+                {"id": "shots", "options": ["one", "two", "three"], "correct": "two"}
+              ],
+              "explanation": {
+                "correct": "Right. Five fouls = bonus. Two free throws on every foul thereafter, even non-shooting fouls. College is different: seven for one-and-one, ten for two.",
+                "incorrect": "NBA: five fouls in a quarter triggers the bonus. All subsequent fouls = two free throws."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "rul-06",
+        "title": "Charge or block?",
+        "objective": "Judge charge vs block using position, feet and the restricted-area arc.",
+        "estimatedMinutes": 9,
+        "conceptIds": ["charge", "blocking-foul", "restricted-area-rule", "legal-guarding-position", "verticality"],
+        "activities": [
+          {
+            "id": "rul-06-unity-sim",
+            "type": "unity-sim",
+            "conceptIds": ["charge", "blocking-foul", "restricted-area-rule"],
+            "payload": {
+              "simulationId": "basketball.officiating.charge-block.v1",
+              "prompt": "Watch the play and decide: charge or block?",
+              "configuration": {
+                "scenario": "charge-block-judgment"
+              },
+              "explanation": {
+                "summary": "A charge requires the defender to be set (feet planted) before contact, outside the restricted area. Inside the arc, it's nearly always a block.",
+                "sayThisLine": "Defender has to get there first and be set to draw a charge."
+              }
+            }
+          },
+          {
+            "id": "rul-06-bc-set",
+            "type": "binary-call",
+            "conceptIds": ["legal-guarding-position", "charge"],
+            "payload": {
+              "prompt": "A defender is standing still with both feet planted and their arms up. An offensive player drives into them. Charge or block?",
+              "scene": {"kind": "none", "alt": "A stationary defender with feet planted, arms raised. An offensive player collides into the defender's chest."},
+              "choices": [
+                {"id": "charge", "label": "Charge (offensive foul)"},
+                {"id": "block", "label": "Block (defensive foul)"}
+              ],
+              "correctChoiceId": "charge",
+              "explanation": {
+                "correct": "Charge. The defender was set first (feet planted, legal position) before the offensive player initiated contact.",
+                "incorrect": "If the defender establishes legal guarding position (both feet on floor, hands up or down) before the offensive player commits to driving into them, it's a charge."
+              },
+              "ruleTag": "Charge determination"
+            }
+          },
+          {
+            "id": "rul-06-bc-arc",
+            "type": "binary-call",
+            "conceptIds": ["restricted-area-rule"],
+            "payload": {
+              "prompt": "A help defender is in the restricted area (4-foot arc under the basket). An offensive player drives into them. Can it be a charge?",
+              "scene": {"kind": "none", "alt": "A defender in the restricted arc touching the offensive player driving to the basket."},
+              "choices": [
+                {"id": "charge", "label": "Charge"},
+                {"id": "block", "label": "Block"}
+              ],
+              "correctChoiceId": "block",
+              "explanation": {
+                "correct": "Block. A defender in the restricted area cannot draw a charge; it's automatically a blocking foul (unless the defender is the primary defender).",
+                "incorrect": "Secondary defenders in the restricted arc cannot draw a charge. Contact in that area is a blocking foul on the defender."
+              },
+              "ruleTag": "Restricted area rule"
+            }
+          },
+          {
+            "id": "rul-06-bc-vertical",
+            "type": "binary-call",
+            "conceptIds": ["verticality"],
+            "payload": {
+              "prompt": "A defender has their hands straight up (vertical) and does not move. An offensive player runs into the defender's hands. Foul?",
+              "scene": {"kind": "none", "alt": "A defender with arms raised straight up, standing still. An offensive player collides into the vertical hands."},
+              "choices": [
+                {"id": "yes", "label": "Block (defensive foul)"},
+                {"id": "no", "label": "No foul (charge or play-on)"}
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "No foul. Verticality allows a defender to move arms straight up. Contact by the offensive player running into vertical hands is the ball handler's foul (charge or turnover).",
+                "incorrect": "A defender can move arms vertically without fouling. If the ball handler runs into vertical hands, the ball handler committed the foul, not the defender."
+              },
+              "ruleTag": "Verticality rule"
+            }
+          },
+          {
+            "id": "rul-06-ht-arc",
+            "type": "hotspot-tap",
+            "conceptIds": ["restricted-area-arc"],
+            "payload": {
+              "prompt": "Tap the restricted area (the 4-foot arc where charges cannot be drawn).",
+              "diagram": {
+                "diagramId": "basketball-court-restricted-area",
+                "aspectRatio": 1.5,
+                "alt": "A basketball court showing the restricted area arc under both baskets."
+              },
+              "hotspots": [
+                {"id": "arc-a", "label": "Restricted area", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.05, "r": 0.03}},
+                {"id": "arc-b", "label": "Restricted area", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.95, "r": 0.03}},
+                {"id": "elbow", "label": "Elbow", "shape": {"kind": "circle", "cx": 0.35, "cy": 0.25, "r": 0.02}},
+                {"id": "wing", "label": "Wing", "shape": {"kind": "circle", "cx": 0.15, "cy": 0.5, "r": 0.02}}
+              ],
+              "correctHotspotIds": ["arc-a", "arc-b"],
+              "explanation": {
+                "correct": "Right. The restricted area is the 4-foot arc. Help defenders here cannot draw charges.",
+                "incorrect": "The restricted area is the arc under the basket. Secondary defenders in this area commit a blocking foul if contact occurs."
+              }
+            }
+          },
+          {
+            "id": "rul-06-st-chargeblock",
+            "type": "say-this",
+            "conceptIds": ["charge", "blocking-foul"],
+            "payload": {
+              "statement": {"speaker": "Casey", "text": "That was a charge, he wasn't even in position."},
+              "question": "What is Casey saying?",
+              "options": [
+                {"id": "a", "text": "The defender was not set before the offensive player made contact", "isCorrect": false},
+                {"id": "b", "text": "The defender had an illegal position when contact happened", "isCorrect": false},
+                {"id": "c", "text": "The call was a block but should have been a charge", "isCorrect": true},
+                {"id": "d", "text": "The defender moved into the path after the play started", "isCorrect": true}
+              ],
+              "translation": "Casey believes the defensive player was not set or established legal guarding position in time, so contact is a blocking foul on the defender, not a charge on the ball handler. The defender should not have been called for a charge.",
+              "followUps": [
+                {"line": "Were they in the restricted area?", "why": "Tests if location changes the call."},
+                {"line": "Did the defender have time to get set?", "why": "Asks about establishing position."
+}
+              ],
+              "noFakeExpertNote": "Charge-block is one of the most debated calls in basketball. Saying 'I thought it was a charge' is always okay."
+            }
+          }
+        ]
+      },
+      {
+        "id": "rul-07",
+        "title": "Goaltending and basket interference",
+        "objective": "Know when a ball on the way down or up can no longer be touched.",
+        "estimatedMinutes": 7,
+        "conceptIds": ["goaltending", "basket-interference", "over-the-back"],
+        "activities": [
+          {
+            "id": "rul-07-bc-descent",
+            "type": "binary-call",
+            "conceptIds": ["goaltending"],
+            "payload": {
+              "prompt": "A shot is heading toward the basket. The ball is on its downward path toward the rim when a defender taps it away. Goaltending?",
+              "scene": {"kind": "none", "alt": "A shot falling toward the basket is touched by a defender before it hits the rim."},
+              "choices": [
+                {"id": "yes", "label": "Goaltending"},
+                {"id": "no", "label": "Legal"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes, goaltending. Once a shot is on its way down toward the basket or on the rim, it cannot be touched. The basket counts automatically.",
+                "incorrect": "Goaltending occurs when a player touches a shot that is heading down toward the basket or already on the rim."
+              },
+              "ruleTag": "Goaltending definition"
+            }
+          },
+          {
+            "id": "rul-07-bc-upward",
+            "type": "binary-call",
+            "conceptIds": ["goaltending"],
+            "payload": {
+              "prompt": "A ball is bouncing up off the rim toward the basket (on its upward flight) when a defender swats it. Goaltending or legal?",
+              "scene": {"kind": "none", "alt": "A ball bouncing up from the rim is struck by a defender's hand."},
+              "choices": [
+                {"id": "yes", "label": "Goaltending"},
+                {"id": "no", "label": "Legal"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes, goaltending. A ball on the rim bouncing upward is still part of a live shot. Touching it is goaltending.",
+                "incorrect": "Goaltending includes any touch of a ball that is above the rim or on the rim, whether falling or rising."
+              },
+              "ruleTag": "Upward trajectory"
+            }
+          },
+          {
+            "id": "rul-07-bc-after-clear",
+            "type": "binary-call",
+            "conceptIds": ["goaltending"],
+            "payload": {
+              "prompt": "A shot bounces off the rim, clears the rim area completely, and is on the way down again. Can a defender touch it now?",
+              "scene": {"kind": "none", "alt": "A rebound falling back down toward the basket after bouncing away from the rim."},
+              "choices": [
+                {"id": "yes", "label": "Legal (no goaltending)"},
+                {"id": "no", "label": "Goaltending"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Legal. Once the ball clears the rim and basket area, it's a live rebound. Anyone can grab it.",
+                "incorrect": "Goaltending only applies to a live shot attempt. Once a rebound clears the basket area, it is a free ball."
+              },
+              "ruleTag": "When goaltending ends"
+            }
+          },
+          {
+            "id": "rul-07-ht-basket",
+            "type": "hotspot-tap",
+            "conceptIds": ["basket-interference"],
+            "payload": {
+              "prompt": "Tap the area where touching the rim or backboard can result in basket interference.",
+              "diagram": {
+                "diagramId": "basketball-basket-close-up",
+                "aspectRatio": 1.2,
+                "alt": "A close-up of the basketball rim, backboard and net, showing the area where interference can occur."
+              },
+              "hotspots": [
+                {"id": "rim", "label": "Rim", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.5, "r": 0.08}},
+                {"id": "backboard", "label": "Backboard", "shape": {"kind": "rect", "x": 0.35, "y": 0.05, "w": 0.3, "h": 0.15}},
+                {"id": "net", "label": "Net", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.6, "r": 0.1}},
+                {"id": "side", "label": "Side of court", "shape": {"kind": "circle", "cx": 0.15, "cy": 0.5, "r": 0.08}}
+              ],
+              "correctHotspotIds": ["rim", "backboard", "net"],
+              "explanation": {
+                "correct": "Right. Basket interference involves the rim, backboard, or net while a shot is in the air.",
+                "incorrect": "Basket interference is illegally touching the rim, backboard, or net during a live shot attempt."
+              }
+            }
+          },
+          {
+            "id": "rul-07-mc-interference",
+            "type": "multiple-choice",
+            "conceptIds": ["basket-interference"],
+            "payload": {
+              "prompt": "A player reaches through the net and touches the ball as it falls into the basket. What happens?",
+              "options": [
+                {"id": "a", "text": "The basket does not count"},
+                {"id": "b", "text": "The basket counts anyway (basket interference does not negate a made basket)"},
+                {"id": "c", "text": "Two free throws are awarded instead"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "The basket counts. Basket interference is a violation, but a made basket still counts. It's a technical situation.",
+                "incorrect": "Unlike goaltending, basket interference does not negate a made basket. The basket counts and it is a violation on the defender."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "rul-08",
+        "title": "Replay, challenges and the L2M",
+        "objective": "Explain replay review, coach challenges and the last-two-minute report.",
+        "estimatedMinutes": 7,
+        "conceptIds": ["replay-review", "coachs-challenge", "last-two-minute-report", "flopping", "referee-signals"],
+        "activities": [
+          {
+            "id": "rul-08-vi-signals",
+            "type": "visual-id",
+            "conceptIds": ["referee-signals"],
+            "payload": {
+              "prompt": "Which referee hand signal indicates a foul?",
+              "diagramId": "referee-signals-fouls",
+              "alt": "Four different referee hand signals: waving arms, pointing, arms up in a T, and hands on chest.",
+              "options": [
+                {"id": "a", "text": "Pointing directly at the player", "isCorrect": true},
+                {"id": "b", "text": "Waving both arms horizontally", "isCorrect": false},
+                {"id": "c", "text": "Making a T with both arms", "isCorrect": false},
+                {"id": "d", "text": "Hands placed on chest", "isCorrect": false}
+              ],
+              "explanation": {
+                "correct": "Right. Refs point to indicate a foul and which team gets the ball.",
+                "incorrect": "A referee signals a foul by pointing at the player and indicating which team gets the ball."
+              }
+            }
+          },
+          {
+            "id": "rul-08-vi-timeout",
+            "type": "visual-id",
+            "conceptIds": ["referee-signals"],
+            "payload": {
+              "prompt": "What hand signal do referees use to call a timeout?",
+              "diagramId": "referee-signals-timeout",
+              "alt": "Four referee hand signals: pointing up, making a T with arms, open hand wave, and one arm extended.",
+              "options": [
+                {"id": "a", "text": "Both arms up in a T shape", "isCorrect": true},
+                {"id": "b", "text": "One finger pointing up", "isCorrect": false},
+                {"id": "c", "text": "Open hand wave across chest", "isCorrect": false},
+                {"id": "d", "text": "One arm extended to the side", "isCorrect": false}
+              ],
+              "explanation": {
+                "correct": "Right. The T signal (hands up and out) means timeout.",
+                "incorrect": "Refs signal a timeout by making a T with their arms—one arm vertical, one horizontal."
+              }
+            }
+          },
+          {
+            "id": "rul-08-vi-jump",
+            "type": "visual-id",
+            "conceptIds": ["referee-signals"],
+            "payload": {
+              "prompt": "How do referees signal a jump ball?",
+              "diagramId": "referee-signals-jumpball",
+              "alt": "Four referee hand signals: pointing up, waving arms in a circle, both hands clasped, and arms extended wide.",
+              "options": [
+                {"id": "a", "text": "Both hands moving upward with fingers spread", "isCorrect": true},
+                {"id": "b", "text": "One arm pointing straight up", "isCorrect": false},
+                {"id": "c", "text": "Arms moving in a circle", "isCorrect": false},
+                {"id": "d", "text": "Both hands clasped together", "isCorrect": false}
+              ],
+              "explanation": {
+                "correct": "Right. Both hands up with fingers spread indicates a jump ball.",
+                "incorrect": "Refs signal a jump ball by moving both hands up with fingers spread open."
+              }
+            }
+          },
+          {
+            "id": "rul-08-mc-challenge",
+            "type": "multiple-choice",
+            "conceptIds": ["coachs-challenge"],
+            "payload": {
+              "prompt": "A coach successfully challenges a foul call in the NBA. Can they challenge again later in the game?",
+              "options": [
+                {"id": "a", "text": "No, one challenge per game"},
+                {"id": "b", "text": "Yes, they get a second challenge"},
+                {"id": "c", "text": "Only if the second challenge is in the final two minutes"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Yes. In the NBA, a coach gets a second challenge if the first is successful. A third challenge is not allowed.",
+                "incorrect": "NBA rules as of 2025-26: a coach can challenge once, and if successful, earns a second challenge."
+              }
+            }
+          },
+          {
+            "id": "rul-08-mc-l2m",
+            "type": "multiple-choice",
+            "conceptIds": ["last-two-minute-report"],
+            "payload": {
+              "prompt": "What is the NBA's Last-Two-Minute (L2M) report?",
+              "options": [
+                {"id": "a", "text": "A live feed of player statistics in the final minutes"},
+                {"id": "b", "text": "An official document released after games reviewing all calls in the final two minutes"},
+                {"id": "c", "text": "A coach's challenge review system"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "The L2M report reviews all fouls and judgment calls in the final two minutes for transparency and accountability.",
+                "incorrect": "The NBA releases an L2M report after each game showing all fouls, timing, and whether calls were correct or missed."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
