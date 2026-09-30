@@ -20,6 +20,7 @@ enum SplitCurriculum {
         var curriculumVersion: String
         var locale: String?
         var concepts: [Concept]?
+        var branches: [BranchFacts]?
         var talkTracks: [TalkTrack]?
         var reviewPolicy: ReviewPolicy
         var unitOrder: [UnitID]
@@ -69,6 +70,6 @@ enum SplitCurriculum {
         }
         return Curriculum(contractVersion: root.contractVersion, courseId: root.courseId, curriculumVersion: root.curriculumVersion,
                           locale: root.locale ?? "en-US", concepts: concepts, units: root.unitOrder.map { byId[$0]!.unit },
-                          talkTracks: root.talkTracks, reviewPolicy: root.reviewPolicy)
+                          branches: root.branches, talkTracks: root.talkTracks, reviewPolicy: root.reviewPolicy)
     }
 }

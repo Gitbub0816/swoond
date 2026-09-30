@@ -163,7 +163,7 @@ struct ContentContractTests {
     }
 
     @Test func layersAndActivityTypesMatchSchemaEnums() {
-        #expect(Layer.allCases.map(\.rawValue) == ["foundations", "intermediate", "enthusiast", "current-season", "conversation", "review"])
+        #expect(Layer.allCases.map(\.rawValue) == ["foundations", "intermediate", "enthusiast", "branch", "current-season", "conversation", "review"])
         #expect(ActivityType.allCases.count == 14)
     }
 

@@ -6,6 +6,8 @@
 //   node validate.mjs --no-lint  schema/cross-checks only (skip content lint)
 //   node validate.mjs --course <id>   restrict to one course (skips contract examples)
 //   node validate.mjs --courses-dir <dir> --no-examples   validate an alternate courses tree (used by tests)
+//   node validate.mjs --course <id> --partial   incremental authoring: do not error on unitOrder entries without a unit file yet, or on
+//                                     a missing unity-sim (no-sims); every other check still errors
 //   node validate.mjs --lint-max <n>  max lint issues printed per file (default 25; 0 = all)
 //
 // What is validated:
@@ -22,6 +24,7 @@ import { fileURLToPath } from 'node:url';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import { lintCourse } from './lint.mjs';
+import { checkSpecFile } from './specs.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const CONTRACTS = join(ROOT, 'docs', 'contracts');
@@ -32,6 +35,7 @@ const quiet = argv.includes('--quiet');
 const doLint = !argv.includes('--no-lint');
 const onlyCourse = flagVal('--course');
 const noExamples = argv.includes('--no-examples') || !!onlyCourse;
+const partial = argv.includes('--partial');
 const lintMax = flagVal('--lint-max') !== undefined ? Number(flagVal('--lint-max')) : 25;
 
 const readJson = (p) => JSON.parse(readFileSync(p, 'utf8'));
@@ -53,6 +57,12 @@ for (const p of walk(CONTRACTS).filter((f) => f.endsWith('.schema.json'))) {
   ajv.addSchema(s);
   schemaByPath.set(p, s);
 }
+// Fresh ajv per sim-spec configuration schema (specs use independent $ids / definitions).
+const newSpecAjv = () => {
+  const a = new Ajv2020({ strict: true, allowUnionTypes: true, strictRequired: false, strictTypes: false, allErrors: true });
+  addFormats(a);
+  return a;
+};
 const byRel = (rel) => {
   const s = schemaByPath.get(join(CONTRACTS, rel));
   if (!s) throw new Error(`schema not found: ${rel}`);
@@ -99,7 +109,7 @@ for (const [p, s] of schemaByPath) {
 
 // origin (split layout only): { root, unitFiles: file per merged unit index, conceptFiles: file per merged concept index }.
 // Problems are attributed to the originating file; without origin everything belongs to `file`.
-function validateCurriculum(file, data, origin = null) {
+function validateCurriculum(file, data, origin = null, manifestBranchIds = null) {
   const bag = new Map();
   const add = (f, m) => (bag.get(f) ?? bag.set(f, []).get(f)).push(m);
   const unitFile = (i) => origin?.unitFiles[i] ?? file;
@@ -142,16 +152,30 @@ function validateCurriculum(file, data, origin = null) {
     if (!v) return add(f, `${where}: no schema for activity type ${type}`);
     if (!v(payload)) for (const e of errs(v)) add(f, `${where}: payload ${e}`);
   };
+  // Contract 1.2 branch rules: branches[] ids unique (and known to the manifest when there is one); layer "branch" needs a unit
+  // branchId; activity branchId must be a known branch and must not contradict the unit's branchId.
+  const branchIds = new Set();
+  for (const b of data.branches ?? []) {
+    if (branchIds.has(b.id)) add(origin?.root ?? file, `duplicate branch id ${b.id} in branches[]`);
+    branchIds.add(b.id);
+    if (manifestBranchIds && !manifestBranchIds.has(b.id)) add(origin?.root ?? file, `branches[] id ${b.id} is not a branch in the course manifest`);
+  }
+  const knownBranch = (id) => (manifestBranchIds ? manifestBranchIds.has(id) : branchIds.size === 0 || branchIds.has(id));
   const unitIds = new Set(data.units.map((u) => u.id));
   data.units.forEach((u, i) => {
     const f = unitFile(i);
     dup(f, 'unit', u.id);
-    for (const pre of u.prerequisiteUnitIds ?? []) if (!unitIds.has(pre)) add(f, `unit ${u.id}: unknown prerequisite ${pre}`);
+    if (u.layer === 'branch' && !u.branchId) add(f, `unit ${u.id}: layer "branch" requires a unit branchId`);
+    for (const pre of u.prerequisiteUnitIds ?? []) if (!unitIds.has(pre) && !(origin?.pendingUnitIds?.has(pre))) add(f, `unit ${u.id}: unknown prerequisite ${pre}`);
     for (const l of u.lessons) {
       dup(f, 'lesson', l.id);
       checkConcepts(f, `lesson ${l.id}`, l.conceptIds);
       for (const a of l.activities) {
         dup(f, 'activity', a.id);
+        if (a.branchId !== undefined) {
+          if (!knownBranch(a.branchId)) add(f, `activity ${a.id}: unknown branchId ${a.branchId}`);
+          if (u.branchId && u.branchId !== a.branchId) add(f, `activity ${a.id}: branchId ${a.branchId} contradicts unit ${u.id} branchId ${u.branchId} (never visible)`);
+        }
         checkConcepts(f, `activity ${a.id}`, a.conceptIds);
         checkPayload(f, `activity ${a.id}`, a.type, a.payload);
       }
@@ -201,7 +225,7 @@ function loadSplitCurriculum(cdir, rootPath) {
     else fileIds.set(id, path);
   }
   const order = Array.isArray(root.unitOrder) ? root.unitOrder : [];
-  for (const id of order) if (!fileIds.has(id)) add(rootPath, `unitOrder lists "${id}" but there is no unit file for it`);
+  for (const id of order) if (!fileIds.has(id) && !partial) add(rootPath, `unitOrder lists "${id}" but there is no unit file for it`);
   for (const [id, path] of fileIds) if (!order.includes(id)) add(path, `unit "${id}" is not listed in unitOrder of ${relative(ROOT, rootPath)}`);
 
   // Merge: units in unitOrder; concepts = root then unit-local (in unitOrder), keeping the originating file.
@@ -218,12 +242,25 @@ function loadSplitCurriculum(cdir, rootPath) {
     locale: root.locale ?? 'en-US',
     concepts,
     units: ordered.map((l) => l.data.unit),
+    ...(root.branches ? { branches: root.branches } : {}),
     ...(root.talkTracks ? { talkTracks: root.talkTracks } : {}),
     reviewPolicy: root.reviewPolicy,
   };
-  const origin = { root: rootPath, unitFiles: ordered.map((l) => l.path), conceptFiles };
+  const origin = { root: rootPath, unitFiles: ordered.map((l) => l.path), conceptFiles, pendingUnitIds: partial ? new Set(order.filter((id) => !fileIds.has(id))) : new Set() };
   const lintFiles = [{ path: rootPath, data: { talkTracks: root.talkTracks ?? [] } }, ...ordered.map((l) => ({ path: l.path, data: { unit: l.data.unit } }))];
   return { bad, merged, origin, lintFiles, files: [rootPath, ...loaded.map((l) => l.path)] };
+}
+
+// Every manifest unitySimulations[].specPath must exist, and the spec's configuration JSON Schema must compile (2020-12).
+let specsChecked = 0;
+function checkSimSpecs(manifestPath, data) {
+  for (const s of data.unitySimulations ?? []) {
+    specsChecked++;
+    const p = resolve(ROOT, s.specPath);
+    const problems = checkSpecFile(newSpecAjv, p, s.simulationId);
+    if (problems.length) fail(p, problems.map((m) => `${s.simulationId}: ${m} (manifest ${relative(ROOT, manifestPath)})`));
+    else if (!quiet) console.log(`ok   ${relative(ROOT, p)}  (sim spec config schema)`);
+  }
 }
 
 // 1. Course content
@@ -233,7 +270,7 @@ let lintErrors = 0;
 let lintWarnings = 0;
 function lintStage(dir, manifestData, curricula, scripts = []) {
   if (!curricula.length && !scripts.length) return; // no curriculum yet: nothing to lint
-  const { perFile, info } = lintCourse(dir, manifestData, curricula, scripts);
+  const { perFile, info } = lintCourse(dir, manifestData, curricula, scripts, { partial });
   console.log(`\nLINT ${dir}`);
   for (const l of info) console.log(`  info ${l}`);
   for (const [f, { errors, warnings }] of perFile) {
@@ -262,11 +299,14 @@ for (const dir of existsSync(COURSES) ? readdirSync(COURSES) : []) {
   if (!statSync(cdir).isDirectory()) continue;
   const manifest = join(cdir, 'manifest.json');
   let manifestData = null;
+  let manifestBranchIds = null;
   if (existsSync(manifest)) {
     const data = (manifestData = readJson(manifest));
+    if (Array.isArray(data?.branches)) manifestBranchIds = new Set(data.branches.map((b) => b.id));
     if (validateWith(validators.manifest, manifest, data)) {
       if (data.courseId !== dir) fail(manifest, [`courseId "${data.courseId}" must equal folder name "${dir}"`]);
       else ok(manifest);
+      checkSimSpecs(manifest, data);
     }
   }
   const curricula = [];
@@ -277,13 +317,13 @@ for (const dir of existsSync(COURSES) ? readdirSync(COURSES) : []) {
     const sp = loadSplitCurriculum(cdir, rootPath);
     let good = sp.bad.size === 0;
     for (const [f, msgs] of sp.bad) fail(f, msgs);
-    if (good) good = validateCurriculum(rootPath, sp.merged, sp.origin);
+    if (good) good = validateCurriculum(rootPath, sp.merged, sp.origin, manifestBranchIds);
     if (good) for (const f of sp.files) ok(f, '(split)');
     curricula.push(...sp.lintFiles);
   } else {
     for (const f of walk(curDir).filter((x) => x.endsWith('.json'))) {
       const data = readJson(f);
-      if (validateCurriculum(f, data)) ok(f);
+      if (validateCurriculum(f, data, null, manifestBranchIds)) ok(f);
       // Lint even when schema checks failed, as long as the file has the basic shape.
       if (Array.isArray(data?.units)) curricula.push({ path: f, data });
     }
@@ -330,5 +370,6 @@ for (const type of noExamples ? [] : exerciseValidators.keys()) {
   if (!existsSync(ex)) fail(ex, ['missing example for exercise type']);
 }
 
-console.log(`\n${checked} file(s) valid, ${failures} schema failure(s)` + (doLint ? `, ${lintErrors} lint error(s), ${lintWarnings} lint warning(s).` : ' (lint skipped).'));
+console.log(`\n${specsChecked} sim spec(s) checked.`);
+console.log(`${checked} file(s) valid, ${failures} schema failure(s)` + (doLint ? `, ${lintErrors} lint error(s), ${lintWarnings} lint warning(s).` : ' (lint skipped).'));
 process.exit(failures || lintErrors ? 1 : 0);

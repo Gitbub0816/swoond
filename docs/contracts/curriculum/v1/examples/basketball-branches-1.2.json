@@ -1,0 +1,273 @@
+{
+  "contractVersion": "1.2.0",
+  "courseId": "basketball",
+  "curriculumVersion": "0.1.0",
+  "locale": "en-US",
+  "concepts": [
+    {
+      "id": "shot-clock",
+      "term": "Shot clock",
+      "definition": "The timer that forces a team to shoot before it runs out; the length depends on the league.",
+      "exampleLine": "We are burning the shot clock and still have nothing.",
+      "tier": "foundations"
+    },
+    {
+      "id": "halves-vs-quarters",
+      "term": "Halves vs quarters",
+      "definition": "NBA and WNBA games are split into four quarters; men's college games are split into two halves.",
+      "exampleLine": "College plays halves, so the break comes later.",
+      "tier": "branch"
+    },
+    {
+      "id": "play-in",
+      "term": "Play-In",
+      "definition": "A short tournament that decides the last playoff spots in each NBA conference.",
+      "exampleLine": "They are stuck in the Play-In race this year.",
+      "tier": "current-season"
+    }
+  ],
+  "branches": [
+    {
+      "id": "nba",
+      "displayName": "NBA",
+      "facts": {
+        "shotClockSeconds": 24,
+        "periods": {
+          "count": 4,
+          "minutes": 12
+        },
+        "defaultBranch": true
+      },
+      "lastVerified": "2026-09-30",
+      "sources": [
+        "https://official.nba.com/rulebook/"
+      ]
+    },
+    {
+      "id": "college",
+      "displayName": "College",
+      "facts": {
+        "shotClockSeconds": 30,
+        "periods": {
+          "count": 2,
+          "minutes": 20
+        }
+      },
+      "lastVerified": "2026-09-30"
+    }
+  ],
+  "units": [
+    {
+      "id": "the-game",
+      "title": "The game and its players",
+      "layer": "foundations",
+      "order": 0,
+      "lessons": [
+        {
+          "id": "clocks-01",
+          "title": "The clocks",
+          "objective": "You can say how long a team has to shoot.",
+          "estimatedMinutes": 5,
+          "conceptIds": [
+            "shot-clock"
+          ],
+          "activities": [
+            {
+              "id": "clocks-01-mc",
+              "type": "multiple-choice",
+              "conceptIds": [
+                "shot-clock"
+              ],
+              "payload": {
+                "prompt": "How long is the NBA shot clock?",
+                "options": [
+                  {
+                    "id": "a",
+                    "text": "24 seconds"
+                  },
+                  {
+                    "id": "b",
+                    "text": "30 seconds"
+                  },
+                  {
+                    "id": "c",
+                    "text": "35 seconds"
+                  }
+                ],
+                "correctOptionIds": [
+                  "a"
+                ],
+                "explanation": {
+                  "correct": "It is 24 seconds in the NBA, so the offense has to move quickly.",
+                  "incorrect": "The NBA uses 24 seconds. College uses 30, which is why the branch matters.",
+                  "sayThisLine": "That is a 24-second possession, not a 30."
+                }
+              },
+              "branchId": "nba"
+            },
+            {
+              "id": "clocks-01-mc-college",
+              "type": "multiple-choice",
+              "conceptIds": [
+                "shot-clock"
+              ],
+              "payload": {
+                "prompt": "How long is the men's college shot clock?",
+                "options": [
+                  {
+                    "id": "a",
+                    "text": "24 seconds"
+                  },
+                  {
+                    "id": "b",
+                    "text": "30 seconds"
+                  },
+                  {
+                    "id": "c",
+                    "text": "35 seconds"
+                  }
+                ],
+                "correctOptionIds": [
+                  "b"
+                ],
+                "explanation": {
+                  "correct": "College uses 30 seconds, so possessions run a little longer.",
+                  "incorrect": "College uses 30 seconds; the NBA's 24 is the shorter clock."
+                }
+              },
+              "branchId": "college"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "branch-college",
+      "title": "College basketball",
+      "layer": "branch",
+      "branchId": "college",
+      "order": 1,
+      "prerequisiteUnitIds": [
+        "the-game"
+      ],
+      "lessons": [
+        {
+          "id": "college-01",
+          "title": "Halves, not quarters",
+          "objective": "You can explain why college games have two halves.",
+          "estimatedMinutes": 4,
+          "conceptIds": [
+            "halves-vs-quarters"
+          ],
+          "activities": [
+            {
+              "id": "college-01-mc",
+              "type": "multiple-choice",
+              "conceptIds": [
+                "halves-vs-quarters"
+              ],
+              "payload": {
+                "prompt": "How many periods does a men's college game have?",
+                "options": [
+                  {
+                    "id": "a",
+                    "text": "Two halves"
+                  },
+                  {
+                    "id": "b",
+                    "text": "Four quarters"
+                  },
+                  {
+                    "id": "c",
+                    "text": "Three thirds"
+                  }
+                ],
+                "correctOptionIds": [
+                  "a"
+                ],
+                "explanation": {
+                  "correct": "Men's college games are played in two 20-minute halves.",
+                  "incorrect": "College men play two halves; four quarters is the NBA and WNBA format."
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the-live-season",
+      "title": "This season",
+      "layer": "current-season",
+      "order": 2,
+      "live": {
+        "dataKind": "standings",
+        "refreshHint": "daily",
+        "adapterKey": "live.standings"
+      },
+      "lessons": [
+        {
+          "id": "live-playin-01",
+          "title": "Who is in the Play-In",
+          "objective": "You can explain the Play-In race this week.",
+          "estimatedMinutes": 4,
+          "conceptIds": [
+            "play-in"
+          ],
+          "live": {
+            "dataKind": "standings",
+            "refreshHint": "daily",
+            "adapterKey": "live.standings.playin"
+          },
+          "activities": [
+            {
+              "id": "live-playin-01-mc",
+              "type": "multiple-choice",
+              "conceptIds": [
+                "play-in"
+              ],
+              "payload": {
+                "prompt": "Which seeds play in the NBA Play-In?",
+                "options": [
+                  {
+                    "id": "a",
+                    "text": "Seeds 7 through 10"
+                  },
+                  {
+                    "id": "b",
+                    "text": "Seeds 1 through 4"
+                  },
+                  {
+                    "id": "c",
+                    "text": "Seeds 11 through 15"
+                  }
+                ],
+                "correctOptionIds": [
+                  "a"
+                ],
+                "explanation": {
+                  "correct": "Seeds 7 through 10 in each conference play for the last two playoff spots.",
+                  "incorrect": "The top six seeds are safe; seeds 7 to 10 fight in the Play-In."
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "reviewPolicy": {
+    "algorithm": "leitner-boxes-v1",
+    "intervalsDays": [
+      1,
+      3,
+      7,
+      14,
+      30,
+      60
+    ],
+    "maxItemsPerSession": 10,
+    "masteryThreshold": 0.8,
+    "decayAfterDays": 45
+  }
+}

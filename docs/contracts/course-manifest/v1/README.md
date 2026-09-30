@@ -1,4 +1,6 @@
-# Course Manifest Contract v1
+# Course Manifest Contract v1 (1.1)
+
+Contract 1.1 (D-014, additive): `dynamicData[].kind` gains `injuries`, `transactions` and `regulations`, so courses no longer map injury reports to `alerts`/`rosters`, transfers/trades to `rosters`, or FIA/rulebook documents to `events`. Existing 1.0 manifests stay valid.
 
 `course-manifest.schema.json` implements product spec section 41. One manifest per production course at `docs/courses/<courseId>/manifest.json`. It is the coordination object between curriculum, backend, Astra and native (spec section 41).
 
@@ -16,7 +18,7 @@
 | `interactionTypes[]` | Union of native exercise types and `unity-sim` used |
 | `unitySimulations[]` | `{simulationId, specPath, status, lessonIds}`: Astra work items |
 | `nativeExercises[]` | `{exerciseType, specPath}`: native work items |
-| `dynamicData[]` | `{kind, providerCandidates, refreshFrequency}`: candidates only; adapters own real integration |
+| `dynamicData[]` | `{kind, providerCandidates, refreshFrequency, notes?}`: candidates only; adapters own real integration. `kind`: scores, schedules, standings, statistics, rankings, rosters, events, releases, conditions, news, weather, closures, alerts, new-products, new-media, injuries, transactions, regulations |
 | `editorial` | What Swoon'd does with current commentary (explain and link; never copy) |
 | `personalizationDimensions[]` | Team, driver, artist... |
 | `conversationScenarios` | Count and path (curriculum `talkTracks[]`) |
@@ -30,4 +32,4 @@
 2. `unitySimulations[].specPath` files must exist before `status` moves beyond `planned`.
 3. Every `interactionTypes` entry must be justified in the CDS "Interaction plan".
 4. Do not invent dynamic data needs (spec section 10).
-5. Validate: `node tools/validate/validate.mjs`. Example: `examples/american-football-sample.json` (illustrative, not the real course).
+5. Validate: `node tools/validate/validate.mjs`. The validator also checks that every `unitySimulations[].specPath` exists and that the spec's configuration JSON Schema (json fence under "## 10. Configuration schema") compiles as draft 2020-12. Example: `examples/american-football-sample.json` (illustrative, not the real course).

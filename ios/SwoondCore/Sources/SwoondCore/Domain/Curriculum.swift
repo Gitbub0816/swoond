@@ -6,6 +6,8 @@ public enum Layer: String, Codable, Sendable, CaseIterable, Hashable {
     case foundations
     case intermediate
     case enthusiast
+    /// Contract 1.2: units that exist for one branch only (set the unit `branchId` too).
+    case branch
     case currentSeason = "current-season"
     case conversation
     case review
@@ -61,15 +63,18 @@ public struct Activity: Codable, Sendable, Hashable, Identifiable {
     public var conceptIds: [ConceptID]
     /// Raw payload; validated/decoded per `type` (see `ExerciseSessionFactory`, `simulationPayload`).
     public var payload: JSONValue
+    /// Contract 1.2: shown only when the person's branch matches; `nil` = shared by every branch.
+    public var branchId: BranchID?
     public var reviewEligible: Bool?
     /// XP override; default from XP rules.
     public var xp: Int?
 
-    public init(id: ActivityID, type: ActivityType, conceptIds: [ConceptID], payload: JSONValue, reviewEligible: Bool? = nil, xp: Int? = nil) {
+    public init(id: ActivityID, type: ActivityType, conceptIds: [ConceptID], payload: JSONValue, branchId: BranchID? = nil, reviewEligible: Bool? = nil, xp: Int? = nil) {
         self.id = id
         self.type = type
         self.conceptIds = conceptIds
         self.payload = payload
+        self.branchId = branchId
         self.reviewEligible = reviewEligible
         self.xp = xp
     }
@@ -89,15 +94,23 @@ public struct Lesson: Codable, Sendable, Hashable, Identifiable {
     public var objective: String
     public var estimatedMinutes: Int?
     public var conceptIds: [ConceptID]
+    /// Contract 1.2: per-lesson live-data hook (refines the unit hook).
+    public var live: LiveHook?
     public var activities: [Activity]
 
-    public init(id: LessonID, title: String, objective: String, estimatedMinutes: Int? = nil, conceptIds: [ConceptID], activities: [Activity]) {
+    public init(id: LessonID, title: String, objective: String, estimatedMinutes: Int? = nil, conceptIds: [ConceptID], live: LiveHook? = nil, activities: [Activity]) {
         self.id = id
         self.title = title
         self.objective = objective
         self.estimatedMinutes = estimatedMinutes
         self.conceptIds = conceptIds
+        self.live = live
         self.activities = activities
+    }
+
+    /// Activities visible to a person's branch: shared (no `branchId`) or matching.
+    public func activities(forBranch branchId: BranchID?) -> [Activity] {
+        activities.filter { $0.branchId == nil || $0.branchId == branchId }
     }
 }
 
@@ -105,6 +118,30 @@ public struct LiveHook: Codable, Sendable, Hashable {
     public var dataKind: String?
     public var refreshHint: String?
     public var adapterKey: String?
+
+    public init(dataKind: String? = nil, refreshHint: String? = nil, adapterKey: String? = nil) {
+        self.dataKind = dataKind
+        self.refreshHint = refreshHint
+        self.adapterKey = adapterKey
+    }
+}
+
+/// Contract 1.2: root `branches[]` entry, a facts container for branch-specific data (e.g. F1 team facts).
+public struct BranchFacts: Codable, Sendable, Hashable, Identifiable {
+    public var id: BranchID
+    public var displayName: String?
+    public var facts: [String: JSONValue]
+    /// ISO date (`yyyy-MM-dd`) the facts were last verified.
+    public var lastVerified: String?
+    public var sources: [String]?
+
+    public init(id: BranchID, displayName: String? = nil, facts: [String: JSONValue] = [:], lastVerified: String? = nil, sources: [String]? = nil) {
+        self.id = id
+        self.displayName = displayName
+        self.facts = facts
+        self.lastVerified = lastVerified
+        self.sources = sources
+    }
 }
 
 public struct Unit: Codable, Sendable, Hashable, Identifiable {
@@ -177,17 +214,20 @@ public struct Curriculum: Codable, Sendable, Hashable {
     public var locale: String
     public var concepts: [Concept]
     public var units: [Unit]
+    /// Contract 1.2: branch-specific facts container.
+    public var branches: [BranchFacts]?
     public var talkTracks: [TalkTrack]?
     public var reviewPolicy: ReviewPolicy
 
     public init(contractVersion: String = "1.0.0", courseId: CourseID, curriculumVersion: String = "0.1.0", locale: String = "en-US",
-                concepts: [Concept], units: [Unit], talkTracks: [TalkTrack]? = nil, reviewPolicy: ReviewPolicy = .init()) {
+                concepts: [Concept], units: [Unit], branches: [BranchFacts]? = nil, talkTracks: [TalkTrack]? = nil, reviewPolicy: ReviewPolicy = .init()) {
         self.contractVersion = contractVersion
         self.courseId = courseId
         self.curriculumVersion = curriculumVersion
         self.locale = locale
         self.concepts = concepts
         self.units = units
+        self.branches = branches
         self.talkTracks = talkTracks
         self.reviewPolicy = reviewPolicy
     }
@@ -201,6 +241,9 @@ public struct Curriculum: Codable, Sendable, Hashable {
         units.flatMap { u in u.lessons.map { (u, $0) } }
     }
     public var allActivities: [Activity] { units.flatMap { $0.lessons.flatMap { $0.activities } } }
+
+    /// Facts for one branch, if the course declares any.
+    public func branchFacts(_ id: BranchID) -> BranchFacts? { branches?.first { $0.id == id } }
 
     /// Units visible to a person's branch selection: no `branchId`, or matching.
     public func units(forBranch branchId: BranchID?) -> [Unit] {
