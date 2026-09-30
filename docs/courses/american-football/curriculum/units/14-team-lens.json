@@ -392,22 +392,22 @@
             "type": "term-match",
             "conceptIds": ["team-identity", "quarterback"],
             "payload": {
-              "prompt": "Match {{team}}'s key positions to why they matter.",
+              "prompt": "Match key positions to why they matter.",
               "pairs": [
                 {
                   "id": "qb",
                   "term": "{{player|Quarterback}}",
-                  "definition": "The face of the team. Everyone talks about the quarterback first. {{player}}'s performance and style shape how {{team}} plays."
+                  "definition": "The face of the team. {{player}} shapes how {{team}} plays."
                 },
                 {
                   "id": "star-pass",
-                  "term": "Star wide receiver or tight end",
-                  "definition": "The best pass-catcher on {{team}}. In a pass-heavy identity, this is the second name people mention."
+                  "term": "Star pass-catcher",
+                  "definition": "The best receiver or tight end. Second name in pass-heavy teams."
                 },
                 {
                   "id": "star-run",
-                  "term": "Star running back or edge rusher",
-                  "definition": "In a run-heavy or defense-first identity, this player embodies what {{team}} does."
+                  "term": "Star rusher or RB",
+                  "definition": "The player who embodies {{team}}'s run or defense identity."
                 }
               ],
               "explanation": {
@@ -493,35 +493,30 @@
             "xp": 10
           },
           {
-            "id": "stars-03-vi-role",
-            "type": "visual-id",
+            "id": "stars-03-bc-injury",
+            "type": "binary-call",
             "conceptIds": ["team-identity"],
             "payload": {
-              "prompt": "What role is this player likely playing for {{team}}?",
+              "prompt": "If {{player}} gets injured, {{team}}'s identity changes.",
               "scene": {
-                "kind": "diagram",
-                "alt": "A player lined up wide in an open formation."
+                "kind": "none",
+                "alt": "{{team}}'s star player and team roster."
               },
-              "options": [
+              "choices": [
                 {
-                  "id": "wr",
-                  "text": "Wide receiver or pass-catcher",
-                  "isCorrect": true,
-                  "explanation": "Lined up wide and alone. This player catches passes and creates yards after catch."
+                  "id": "true",
+                  "label": "True"
                 },
                 {
-                  "id": "rb",
-                  "text": "Running back",
-                  "isCorrect": false,
-                  "explanation": "Running backs line up next to the QB or in a set backfield. This is a wide receiver."
-                },
-                {
-                  "id": "def",
-                  "text": "Defender",
-                  "isCorrect": false,
-                  "explanation": "This is the offense. Defenders are on the other side."
+                  "id": "false",
+                  "label": "False"
                 }
-              ]
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. Star injuries reshape {{team}}. The backup fills in but changes the team.",
+                "incorrect": "{{player}} is central to {{team}}. An injury forces adjustments."
+              }
             },
             "xp": 10
           },
@@ -1100,35 +1095,30 @@
             "xp": 10
           },
           {
-            "id": "fans-06-ht-culture",
-            "type": "hotspot-tap",
+            "id": "fans-06-bc-ritual",
+            "type": "binary-call",
             "conceptIds": ["team-identity", "tailgating"],
             "payload": {
-              "prompt": "Tap the core part of {{team}} fan culture.",
+              "prompt": "For {{team}} fans, the tailgate is the core ritual.",
               "scene": {
                 "kind": "none",
-                "alt": "A tailgate with fans, a crowded stadium, and {{team}} jerseys."
+                "alt": "Fans at a pre-game tailgate party."
               },
-              "spots": [
+              "choices": [
                 {
-                  "id": "tailgate",
-                  "label": "The tailgate",
-                  "isCorrect": true,
-                  "explanation": "For most teams, the tailgate is the ritual. {{team}} fans gather hours early, eat, drink, and bond."
+                  "id": "true",
+                  "label": "True"
                 },
                 {
-                  "id": "game",
-                  "label": "The game itself",
-                  "isCorrect": false,
-                  "explanation": "The game is important, but the culture is built around the day."
-                },
-                {
-                  "id": "chant",
-                  "label": "A specific chant or song",
-                  "isCorrect": true,
-                  "explanation": "Most teams have a signature chant or fight song that fans know and love."
+                  "id": "false",
+                  "label": "False"
                 }
-              ]
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. Tailgating is how {{team}} fans gather, connect and celebrate.",
+                "incorrect": "The tailgate is where {{team}} fans build community."
+              }
             },
             "xp": 10
           }
