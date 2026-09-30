@@ -165,7 +165,10 @@ function validateCurriculum(file, data, origin = null, manifestBranchIds = null)
   data.units.forEach((u, i) => {
     const f = unitFile(i);
     dup(f, 'unit', u.id);
-    if (u.layer === 'branch' && !u.branchId) add(f, `unit ${u.id}: layer "branch" requires a unit branchId`);
+    if (u.layer === 'branch' && !u.branchId) add(f, `unit ${u.id}: branch-layer-mismatch: layer "branch" requires a unit branchId`);
+    if (u.branchId !== undefined) {
+      if (!knownBranch(u.branchId)) add(f, `unit ${u.id}: unknown-branch: unknown branchId ${u.branchId}`);
+    }
     for (const pre of u.prerequisiteUnitIds ?? []) if (!unitIds.has(pre) && !(origin?.pendingUnitIds?.has(pre))) add(f, `unit ${u.id}: unknown prerequisite ${pre}`);
     for (const l of u.lessons) {
       dup(f, 'lesson', l.id);
@@ -173,7 +176,7 @@ function validateCurriculum(file, data, origin = null, manifestBranchIds = null)
       for (const a of l.activities) {
         dup(f, 'activity', a.id);
         if (a.branchId !== undefined) {
-          if (!knownBranch(a.branchId)) add(f, `activity ${a.id}: unknown branchId ${a.branchId}`);
+          if (!knownBranch(a.branchId)) add(f, `activity ${a.id}: unknown-branch: unknown branchId ${a.branchId}`);
           if (u.branchId && u.branchId !== a.branchId) add(f, `activity ${a.id}: branchId ${a.branchId} contradicts unit ${u.id} branchId ${u.branchId} (never visible)`);
         }
         checkConcepts(f, `activity ${a.id}`, a.conceptIds);

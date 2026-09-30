@@ -27,7 +27,7 @@ final class PlaybookViewModel {
         let env = model.env
         let now = await env.engine.now()
         var curricula: [Curriculum] = []
-        var masteries: [CourseID: CourseMastery] = []
+        var masteries: [CourseID: CourseMastery] = [:]
         var names: [CourseID: String] = [:]
         var branches: [CourseID: BranchID] = [:]
         var interestList: [InterestFilter] = []

@@ -290,6 +290,13 @@ final class GameSessionViewModel {
 
     // MARK: Helpers
 
+    private func refreshHearts() async {
+        guard let state = try? await model.env.engine.learnerState() else { return }
+        let now = await model.env.engine.now()
+        let status = state.heartsStatus(now: now, rules: model.env.engine.rules)
+        hearts = AppModel.HeartsInfo(current: status.current, max: status.max, isUnlimited: status.isUnlimited, nextHeartAt: status.nextHeartAt)
+    }
+
     /// A LaunchEnvironment for the current appearance and accessibility settings.
     static func launchEnvironment(scheme: LaunchRequest.Theme.ColorScheme, settings: AppSettings) -> LaunchEnvironment {
         let theme: LaunchRequest.Theme = scheme == .light ? .light : .dark

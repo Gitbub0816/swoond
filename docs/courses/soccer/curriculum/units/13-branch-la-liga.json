@@ -60,7 +60,10 @@
             "type": "say-this",
             "conceptIds": ["derby-history"],
             "payload": {
-              "statement": "Clásico weekend is basically a holiday.",
+              "statement": {
+                "speaker": "A Spanish fan",
+                "text": "Clásico weekend is basically a holiday."
+              },
               "options": [
                 {"id": "a", "text": "El Clásico matches are hugely important and draw massive attention in Spain", "isCorrect": true},
                 {"id": "b", "text": "The teams take Clásico weekend off and do not play other matches", "isCorrect": false},
@@ -68,9 +71,9 @@
               ],
               "translation": "El Clásico is so important in Spain that the whole country stops to watch. The passion and history make it feel like more than just a game.",
               "followUps": [
-                "What kind of rivalry exists between them?",
-                "Has one team dominated the other in recent years?",
-                "Where do your friends or family stand on this one?"
+                {"line": "What kind of rivalry exists between them?", "why": "You're curious about the history, not just the result."},
+                {"line": "Has one team dominated the other in recent years?", "why": "A real follow-up that builds on what they said."},
+                {"line": "Where do your friends or family stand on this one?", "why": "You're connecting their passion to people you know."}
               ],
               "noFakeExpertNote": "You don't need to have a take; real fans just name what they saw."
             }
@@ -80,16 +83,19 @@
             "type": "term-match",
             "conceptIds": ["la-liga-clasico"],
             "payload": {
+              "prompt": "Match these Spanish clubs to their roles.",
               "pairs": [
-                {"id": "rm", "term": "Real Madrid", "definition": "Spanish giant with 15 European titles, dominates La Liga alongside Barcelona"},
-                {"id": "barca", "term": "Barcelona", "definition": "Spanish powerhouse known for tiki-taka, rivals Real Madrid for La Liga and European glory"},
-                {"id": "atletico", "term": "Atlético Madrid", "definition": "The challenger, usually third in La Liga, known for grit and tactical discipline"}
+                {"id": "rm", "term": "Real Madrid", "definition": "Spanish giant with 15 European titles, dominates La Liga"},
+                {"id": "barca", "term": "Barcelona", "definition": "Spanish powerhouse known for tiki-taka and European glory"},
+                {"id": "atletico", "term": "Atlético Madrid", "definition": "Challenger, usually third in La Liga, known for grit"}
               ],
               "distractorDefinitions": [
-                "A team that plays in the Spanish second division",
-                "The Spanish national team's training facility",
+                "A team in the Spanish second division",
                 "A La Liga team based in the Basque region"
-              ]
+              ],
+              "explanation": {
+                "summary": "These three clubs define La Liga. Real Madrid and Barcelona are the giants; Atlético is the competitor with character."
+              }
             }
           },
           {
@@ -187,7 +193,10 @@
             "type": "say-this",
             "conceptIds": ["positional-play"],
             "payload": {
-              "statement": "It's not passing for passing's sake, it's positional play.",
+              "statement": {
+                "speaker": "Tactical analyst",
+                "text": "It's not passing for passing's sake, it's positional play."
+              },
               "options": [
                 {"id": "a", "text": "Spanish teams pass a lot but with a purpose: to create spaces and angles", "isCorrect": true},
                 {"id": "b", "text": "They pass the ball to avoid playing real football", "isCorrect": false},
@@ -195,9 +204,9 @@
               ],
               "translation": "Spanish football looks pretty because every pass sets up the next player. It's not just about quantity of passes; it's about quality of position.",
               "followUps": [
-                "Have you noticed how the Spanish style uses the width of the pitch differently?",
-                "Do you prefer watching that style or a more direct approach?",
-                "Who else plays positional play besides the Spanish?"
+                {"line": "Have you noticed how the Spanish style uses the width of the pitch differently?", "why": "You're spotting the tactical pattern they're describing."},
+                {"line": "Do you prefer watching that style or a more direct approach?", "why": "A honest take on what you enjoy, not fake expertise."},
+                {"line": "Who else plays positional play besides the Spanish?", "why": "You're curious about how the style spreads beyond Spain."}
               ],
               "noFakeExpertNote": "You can say what you noticed without being an analyst."
             }
