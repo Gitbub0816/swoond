@@ -366,7 +366,7 @@ Analytics and the business of hockey. Layer `intermediate`. Prerequisites: `stan
 | `eye-broadcast` | Reading a broadcast graphic | Decode the on-screen stats. | `corsi`, `toi`, `faceoff-pct` | term-match, fill-the-gap |
 | `num-free-agency` | Free agency, trades and contracts | Decode contract talk. | `free-agency`, `contract-terms` | term-match, decision-scenario |
 
-### Enthusiast depth (includes branch units)
+### Enthusiast depth and branch units (layers `enthusiast` and `branch`)
 
 | unit id | unit title | prerequisites | lessons (count + titles) | main concepts |
 |---|---|---|---|---|
@@ -409,7 +409,7 @@ The stories. Layer `enthusiast`. Prerequisites: `the-debates`.
 
 #### Unit `nhl-and-your-team`: The NHL and Your Person's Team
 
-NHL specifics and {{team}}. Layer `enthusiast`. Prerequisites: `standings-ot-playoffs`. Branch `nhl`.
+NHL specifics and {{team}}. Layer `branch`. Prerequisites: `standings-ot-playoffs`. Branch `nhl`.
 
 | lesson id | title | objective | conceptIds | planned activities |
 |---|---|---|---|---|
@@ -422,7 +422,7 @@ NHL specifics and {{team}}. Layer `enthusiast`. Prerequisites: `standings-ot-pla
 
 #### Unit `pwhl-branch`: The PWHL
 
-PWHL specifics. Layer `enthusiast`. Prerequisites: `game-on-ice`, `penalties-specialteams`. Branch `pwhl`.
+PWHL specifics. Layer `branch`. Prerequisites: `game-on-ice`, `penalties-specialteams`. Branch `pwhl`.
 
 | lesson id | title | objective | conceptIds | planned activities |
 |---|---|---|---|---|
@@ -435,7 +435,7 @@ PWHL specifics. Layer `enthusiast`. Prerequisites: `game-on-ice`, `penalties-spe
 
 #### Unit `international-branch`: International Hockey
 
-Olympic and IIHF hockey. Layer `enthusiast`. Prerequisites: `game-on-ice`, `rules-of-play`. Branch `international`.
+Olympic and IIHF hockey. Layer `branch`. Prerequisites: `game-on-ice`, `rules-of-play`. Branch `international`.
 
 | lesson id | title | objective | conceptIds | planned activities |
 |---|---|---|---|---|

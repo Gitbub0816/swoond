@@ -46,9 +46,9 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Right. Time on ice (TOI) tracks how many minutes a player is on the ice during the game.",
-                "incorrect": "TOI is simply the minutes played. Star players play 20-25+ minutes; fourth-liners play 8-10.",
-                "sayThisLine": "Time on ice shows who plays the most, which tells you the coach's trust."
+                "correct": "Right. Time on ice (TOI) is how many minutes a player is actually on the ice during the game. The clock stops at whistles, so it's game time, not wall-clock time.",
+                "incorrect": "TOI is simply the minutes a player plays. Top forwards and defensemen often play 18 to 25 minutes; fourth-liners may play closer to 8 to 10.",
+                "sayThisLine": "His time on ice shows how much the coach trusts him."
               }
             }
           },
@@ -70,9 +70,9 @@
                 "partial": 5
               },
               "explanation": {
-                "correct": "Right around 24 minutes. Star defensemen are trusted for heavy minutes because they face the opponent's best players.",
-                "incorrect": "Elite defensemen play 23-26 minutes per night. The coach relies on them for tough matchups and power plays.",
-                "sayThisLine": "A 25-minute defenseman is a top pairing guy who carries the load."
+                "correct": "Right around 24 minutes. Star defensemen log heavy minutes because coaches lean on them at even strength and on special teams.",
+                "incorrect": "Top-pair defensemen usually play around 22 to 26 minutes a night, because coaches use them in tough matchups and on both special teams.",
+                "sayThisLine": "A 25-minute defenseman carries the load on his team."
               }
             }
           },
@@ -102,9 +102,9 @@
                 "b"
               ],
               "explanation": {
-                "correct": "Yes. Plus-minus is a quick snapshot of what happens at even strength when that player is on the ice.",
-                "incorrect": "Plus-minus counts goals for and goals against when the player is on the ice at 5-on-5. If your team scores 3 and gives up 2 while he's playing, he's plus-1.",
-                "sayThisLine": "Plus-minus is noisy, but a high plus or minus tells a story about a player's impact."
+                "correct": "Yes. Plus-minus is a quick snapshot of the goals for and against while that player is on the ice at even strength (power-play goals don't count).",
+                "incorrect": "Plus-minus counts goals for and goals against while the player is on the ice at even strength. If his team scores 3 and gives up 2 while he's playing, he's plus-1.",
+                "sayThisLine": "Plus-minus is a rough guide, since it depends a lot on his linemates."
               }
             }
           },
@@ -126,7 +126,7 @@
                 {
                   "id": "plusminus",
                   "term": "Plus-minus",
-                  "definition": "Goals for minus goals against when the player is on the ice at even strength; reflects overall impact."
+                  "definition": "Goals for minus goals against while he is on the ice at even strength; a noisy snapshot."
                 },
                 {
                   "id": "shifts",
@@ -135,8 +135,8 @@
                 }
               ],
               "explanation": {
-                "summary": "TOI tells you how much a coach plays a player. Plus-minus tells you what happens when he is on the ice.",
-                "sayThisLine": "Read TOI and plus-minus together to understand a player's role and impact."
+                "summary": "TOI tells you how much a coach uses a player. Plus-minus is a rough look at what happens while he's on the ice, and it is heavily shaped by his teammates.",
+                "sayThisLine": "He plays big minutes, but his plus-minus is hurt by the team around him."
               }
             }
           },
@@ -148,39 +148,39 @@
             ],
             "payload": {
               "prompt": "Complete the statement about player minutes.",
-              "template": "A player with {{toi}} TOI plays {{role}}, facing {{matchups}}.",
+              "template": "A defenseman with {{toi}} of TOI is a {{role}} player, often facing {{matchups}}.",
               "gaps": [
                 {
                   "id": "toi",
                   "options": [
-                    "5-7 min",
-                    "15-18 min",
-                    "22-26 min"
+                    "about 6 minutes",
+                    "about 16 minutes",
+                    "about 24 minutes"
                   ],
-                  "correct": "22-26 min"
+                  "correct": "about 24 minutes"
                 },
                 {
                   "id": "role",
                   "options": [
-                    "limited time",
-                    "steady depth work",
-                    "heavy elite minutes"
+                    "sheltered depth",
+                    "top-pair",
+                    "healthy-scratch"
                   ],
-                  "correct": "heavy elite minutes"
+                  "correct": "top-pair"
                 },
                 {
                   "id": "matchups",
                   "options": [
-                    "depth players",
-                    "the opponent's best",
-                    "mixed competition"
+                    "the other team's best",
+                    "no one in particular",
+                    "only the fourth line"
                   ],
-                  "correct": "the opponent's best"
+                  "correct": "the other team's best"
                 }
               ],
               "explanation": {
-                "correct": "Exactly. Heavy TOI (22-26 min) is for impact players facing tough competition every night.",
-                "incorrect": "Elite players get heavy minutes to face the opponent's best every shift."
+                "correct": "Exactly. About 24 minutes marks a top-pair defenseman, who often faces the other team's best forwards.",
+                "incorrect": "Heavy minutes, around 22 to 26, are for a top-pair defenseman, who is usually sent out against the other team's best players."
               }
             }
           }
@@ -221,9 +221,9 @@
                 "b"
               ],
               "explanation": {
-                "correct": "Right. Corsi (CF%) is the percentage of all shot attempts (shots, blocked shots, misses) that a team creates.",
-                "incorrect": "Corsi counts all shot attempts: shots on goal, blocked shots, and missed shots. It is about possession and pace, not goal-scoring.",
-                "sayThisLine": "Above 50 percent Corsi means your team has the puck more. That is control."
+                "correct": "Right. Corsi (CF%) is the share of all shot attempts (shots on goal, blocked shots and misses) that a team takes while a player or team is on the ice.",
+                "incorrect": "Corsi counts all shot attempts: shots on goal, blocked shots and misses. It's a stand-in for who controls play, not a count of goals or wins.",
+                "sayThisLine": "They're over 55 percent Corsi, so they control most of the play."
               }
             }
           },
@@ -235,39 +235,30 @@
             ],
             "payload": {
               "prompt": "Complete the description of Corsi.",
-              "template": "Corsi {{definition}}, {{interpretation}}.",
+              "template": "Corsi counts all {{what}}, so a team above 50 percent usually {{result}}.",
               "gaps": [
                 {
-                  "id": "definition",
+                  "id": "what",
                   "options": [
-                    "shows goals",
-                    "counts shot attempts",
-                    "measures weight"
+                    "shot attempts",
+                    "goals",
+                    "penalties"
                   ],
-                  "correct": "counts shot attempts"
+                  "correct": "shot attempts"
                 },
                 {
-                  "id": "interpretation",
+                  "id": "result",
                   "options": [
-                    "is static",
-                    "shows puck control",
-                    "never changes"
+                    "controls more of the play",
+                    "wins every game",
+                    "kills more penalties"
                   ],
-                  "correct": "shows puck control"
-                },
-                {
-                  "id": "value",
-                  "options": [
-                    "indicates volume",
-                    "predicts winners",
-                    "matters every game"
-                  ],
-                  "correct": "indicates volume"
+                  "correct": "controls more of the play"
                 }
               ],
               "explanation": {
-                "correct": "Yes. Corsi shows possession: who has the puck, not who is winning.",
-                "incorrect": "Corsi is about shot-attempt volume, not outcome. It reveals dominance in play."
+                "correct": "Yes. Corsi counts every shot attempt, so a team over 50 percent is generating more of them and usually has more of the play.",
+                "incorrect": "Corsi counts shot attempts, not goals. Being above 50 percent suggests more of the play, but it doesn't guarantee a win."
               }
             }
           },
@@ -282,33 +273,36 @@
                 "speaker": "Her",
                 "text": "Their Corsi is 52 but they're losing 2-1. How is that possible?"
               },
-              "question": "What would you explain?",
+              "question": "What might be going on?",
               "options": [
                 {
                   "id": "a",
-                  "text": "They have the puck more but shots were lower quality. Goalie or luck.",
-                  "isCorrect": true
+                  "text": "They're getting plenty of attempts, but the shots may be weak or the goalie is hot.",
+                  "isCorrect": true,
+                  "explanation": "Correct. Corsi counts volume, not quality, so a team can out-attempt the other side and still trail."
                 },
                 {
                   "id": "b",
-                  "text": "Corsi doesn't matter. Goals do.",
-                  "isCorrect": false
+                  "text": "Corsi means nothing, only goals count.",
+                  "isCorrect": false,
+                  "explanation": "Corsi is useful, but it's volume, not quality. It just can't explain every game."
                 },
                 {
                   "id": "c",
-                  "text": "They're just a bad team.",
-                  "isCorrect": false
+                  "text": "A team over 50 percent Corsi can't be losing.",
+                  "isCorrect": false,
+                  "explanation": "It can. Corsi doesn't include shot quality, goaltending or luck."
                 }
               ],
-              "translation": "Corsi above 50 with a losing score means shot quality or goaltending favored the other team.",
+              "translation": "A team can have more of the play and still be behind when its shots are low quality or the other goalie is playing well.",
               "followUps": [
                 {
-                  "line": "Is their shot quality lower in the dangerous areas?",
-                  "why": "Identifies the specific issue: volume vs quality."
+                  "line": "Are their shots mostly from the perimeter?",
+                  "why": "It gets at shot quality versus shot volume."
                 },
                 {
-                  "line": "What's their goalie doing tonight?",
-                  "why": "Goaltending can neutralize shot volume."
+                  "line": "How's their goalie doing tonight?",
+                  "why": "A hot goalie can cancel out a lot of shot volume."
                 }
               ]
             }
@@ -337,9 +331,9 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. A team can have fewer attempts but better chances. Corsi is volume; quality matters more for winning.",
-                "incorrect": "Corsi is about possession volume, not scoring chance quality. A team can lose the possession battle and still score more goals.",
-                "sayThisLine": "Low Corsi with a win means the other team out-shot you but you were better where it counted: the slot."
+                "correct": "True. Corsi counts shot attempts, not quality. A team can be out-attempted and still win with better chances or a hot goalie.",
+                "incorrect": "Corsi is volume, not the quality of chances. A team that is out-attempted can still win by scoring on better chances or getting great goaltending.",
+                "sayThisLine": "They were out-attempted, but they won the battle in the slot."
               }
             }
           },
@@ -355,7 +349,7 @@
                 {
                   "id": "corsi",
                   "term": "Corsi (CF%)",
-                  "definition": "Percentage of shot attempts (shots, blocks, misses) a team creates; shows puck possession."
+                  "definition": "Share of shot attempts (shots, blocks, misses) a team takes while a player or team is on the ice."
                 },
                 {
                   "id": "fenwick",
@@ -365,12 +359,12 @@
                 {
                   "id": "possession",
                   "term": "Possession metrics",
-                  "definition": "Stats that measure who controls the puck, not who scores. Volume, not quality."
+                  "definition": "Stats that estimate who controls play, using shot attempts: volume, not quality."
                 }
               ],
               "explanation": {
-                "summary": "Corsi and Fenwick are possession stats. They show who dominated play, not who won the game.",
-                "sayThisLine": "Corsi above 50 means your team has more puck time. Corsi below 50 means the other team does."
+                "summary": "Corsi and Fenwick are possession stats. They show who had more of the play, not who won the game, and neither measures shot quality.",
+                "sayThisLine": "They're well over 50 percent at five-on-five, so they're controlling the game."
               }
             }
           }
@@ -401,29 +395,32 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "Check the xG. If it's 2.5, either luck or a great goalie.",
-                  "isCorrect": true
+                  "text": "Check the xG. If it's around 2.5, the goalie or bad luck kept it at one.",
+                  "isCorrect": true,
+                  "explanation": "Correct. Expected goals tells you how good the shots were, so you can tell whether the goalie or luck made the difference."
                 },
                 {
                   "id": "b",
-                  "text": "Shots are all that matter.",
-                  "isCorrect": false
+                  "text": "Shots are all that matter, so it must be a fluke.",
+                  "isCorrect": false,
+                  "explanation": "Forty shots sounds like a lot, but many could be low quality. xG separates volume from quality."
                 },
                 {
                   "id": "c",
-                  "text": "The team just isn't good.",
-                  "isCorrect": false
+                  "text": "Forty shots always means at least three goals.",
+                  "isCorrect": false,
+                  "explanation": "It doesn't. Shots vary in quality, and goalies vary too."
                 }
               ],
-              "translation": "Expected goals reveals shot quality. If xG exceeds goals, the opposing goalie played well or you had bad luck.",
+              "translation": "Expected goals measures the quality of the shots. If xG is well above the goals scored, the other goalie played well or the team had bad luck.",
               "followUps": [
                 {
                   "line": "What was the expected goals total?",
-                  "why": "xG shows if volume or quality failed."
+                  "why": "It shows whether volume or quality was the issue."
                 },
                 {
-                  "line": "How many were slot shots?",
-                  "why": "High-danger chances reveal goalie performance."
+                  "line": "How many of those were from the slot?",
+                  "why": "High-danger chances say a lot about how good the goalie was."
                 }
               ]
             }
@@ -454,9 +451,9 @@
                 "b"
               ],
               "explanation": {
-                "correct": "Exactly. PDO is ShootingPct% + SavePct%. Over time it reverts to 100 percent, so extremes are often luck.",
-                "incorrect": "PDO combines how often a team scores (ShootingPct%) and how often the goalie saves (SavePct%). A PDO above 102 is usually unsustainable; below 98 usually bounces back.",
-                "sayThisLine": "A team's PDO of 104 is probably lucky. A PDO of 96 is probably unlucky."
+                "correct": "Exactly. PDO adds a team's shooting percentage and its save percentage. Across a league it averages about 100, so a number far from 100 often points to luck.",
+                "incorrect": "PDO combines how often a team scores on its shots and how often its goalie saves the shots against. The league average is about 100, and big departures from it usually fade.",
+                "sayThisLine": "Their PDO is way up at 103, so some of that is luck."
               }
             }
           },
@@ -478,9 +475,9 @@
                 "partial": 2
               },
               "explanation": {
-                "correct": "Right. Over a full season, PDO regresses to 100. Teams that start at 104 often drop as luck evens out.",
-                "incorrect": "PDO tends to 100 over time. Extremes (high or low) are usually corrected by regression to the mean.",
-                "sayThisLine": "PDO trends matter more than single-game PDO. A spike or dip might reverse itself."
+                "correct": "Right. The league average is about 100 by definition, and most teams end up close to it. A team sitting at 103 early usually drifts back as the luck evens out.",
+                "incorrect": "PDO centers on 100. Extremes, high or low, tend to move back toward it over a season.",
+                "sayThisLine": "That PDO is bound to come back toward 100."
               }
             }
           },
@@ -508,9 +505,9 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. Scoring 4 on 3.2 xG is out-performing expectations; they had efficient shots or good luck.",
-                "incorrect": "Yes, they out-scored the xG model. That means their shooters were especially good or lucky on the night.",
-                "sayThisLine": "High xG and low goals = unlucky or a great goalie. Low xG and high goals = efficient shooting or bad opposing goaltending."
+                "correct": "True. Scoring 4 on 3.2 expected goals means they scored more than their shots were worth, thanks to good finishing, good luck or a weak goalie.",
+                "incorrect": "They scored more goals than the shot-quality model expected, so they beat the model on the night, by skill, luck or both.",
+                "sayThisLine": "They scored four on three expected goals, so that finish was a bit lucky."
               }
             }
           },
@@ -522,40 +519,40 @@
               "pdo"
             ],
             "payload": {
-              "prompt": "Complete the statement about luck.",
-              "template": "xG and PDO {{purpose}} by {{method}}, {{result}}.",
+              "prompt": "Complete the PDO definition.",
+              "template": "PDO adds a team's {{a}} percentage to its {{b}} percentage, and a number far from 100 often signals {{c}}.",
               "gaps": [
                 {
-                  "id": "purpose",
+                  "id": "a",
                   "options": [
-                    "confuse",
-                    "reveal luck",
-                    "hide trends"
+                    "shooting",
+                    "penalty",
+                    "faceoff"
                   ],
-                  "correct": "reveal luck"
+                  "correct": "shooting"
                 },
                 {
-                  "id": "method",
+                  "id": "b",
                   "options": [
-                    "guessing",
-                    "measuring quality",
-                    "counting goals"
+                    "save",
+                    "hit",
+                    "blocked-shot"
                   ],
-                  "correct": "measuring quality"
+                  "correct": "save"
                 },
                 {
-                  "id": "result",
+                  "id": "c",
                   "options": [
-                    "nothing",
-                    "predict next play",
-                    "show sustainability"
+                    "luck",
+                    "speed",
+                    "fatigue"
                   ],
-                  "correct": "show sustainability"
+                  "correct": "luck"
                 }
               ],
               "explanation": {
-                "correct": "Yes. These stats show if results are likely to persist.",
-                "incorrect": "xG and PDO reveal whether performance is sustainable or regressing toward average."
+                "correct": "Exactly. PDO is shooting percentage plus save percentage. When it's far from 100, luck is often part of the story and it tends to even out.",
+                "incorrect": "PDO is a team's shooting percentage plus its save percentage. Numbers far from 100 usually include some luck, which tends to regress."
               }
             }
           }
@@ -597,9 +594,9 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Right. PP% is goals scored divided by power play opportunities. A 22% PP is elite; the average is around 20%.",
-                "incorrect": "Power play percentage is a straightforward ratio: goals on the power play divided by power plays taken.",
-                "sayThisLine": "A 25% power play is deadly. A 15% power play is struggling."
+                "correct": "Right. PP% is power-play goals divided by power-play opportunities. The league average is around 20 percent, so 22 is a little above average and 25 or more is elite.",
+                "incorrect": "Power play percentage is a simple ratio: goals on the power play divided by power plays taken. It isn't the share of all goals or a chance for the other team.",
+                "sayThisLine": "Their power play is over 25 percent, so it's a real weapon."
               }
             }
           },
@@ -621,9 +618,9 @@
                 "partial": 4
               },
               "explanation": {
-                "correct": "Around 80 percent. That means teams stop about 4 out of 5 power plays. Below 80 percent is weak.",
-                "incorrect": "League-average penalty kill is about 80%. Teams killing 82%+ are elite. Teams at 77% or below are struggling.",
-                "sayThisLine": "A strong PK% is 82 or higher. A weak PK% is 78 or lower."
+                "correct": "Around 80 percent. That means the average team stops about four out of five power plays.",
+                "incorrect": "The league-average penalty kill is about 80 percent. Much above that is strong; well below it is a problem.",
+                "sayThisLine": "Their penalty kill is in the low 80s, which is solid."
               }
             }
           },
@@ -650,12 +647,12 @@
                 {
                   "id": "fo",
                   "term": "Faceoff percentage (FO%)",
-                  "definition": "The share of faceoffs a player or team wins; matters on the penalty kill and in tight games."
+                  "definition": "The share of faceoffs a player or team wins; it helps with puck possession, especially on special teams."
                 }
               ],
               "explanation": {
-                "summary": "Special teams (power play and penalty kill) decide close games. Faceoff percentage can be a tiebreaker.",
-                "sayThisLine": "A team that is 25% on the PP and 82% on the PK has a huge advantage in power-play situations."
+                "summary": "Power play and penalty kill percentages show how a team does in special-teams moments, which often swing close games. Faceoff percentage is the same idea for draws.",
+                "sayThisLine": "Their special teams are 25 percent on the power play and 82 on the kill."
               }
             }
           },
@@ -683,9 +680,9 @@
               ],
               "correctChoiceId": "false",
               "explanation": {
-                "correct": "False. A 58% faceoff center is very good. Above 55% is solid; above 60% is elite.",
-                "incorrect": "No, 58% is above average. Centers at 50% are average; 55%+ are good; 60%+ are specialists.",
-                "sayThisLine": "A dominant faceoff center wins 60% or more. These guys are valuable in the playoffs."
+                "correct": "False. Fifty percent is average, so a center at 58 percent is very good. The best faceoff men are near 60.",
+                "incorrect": "58 percent is well above average, because 50 percent is the midpoint. Centers who win around 55 to 60 percent are the best on draws.",
+                "sayThisLine": "He wins nearly 60 percent of his draws, which is elite."
               }
             }
           },
@@ -698,35 +695,38 @@
             "payload": {
               "statement": {
                 "speaker": "Her",
-                "text": "Both teams have the same goals and Corsi. One is 23% PP and 81% PK."
+                "text": "Their power play is clicking at 26 percent, and the kill is at 79."
               },
-              "question": "Which wins that matchup?",
+              "question": "What is she telling you?",
               "options": [
                 {
                   "id": "a",
-                  "text": "The one with better special teams. It's the tiebreaker.",
-                  "isCorrect": true
+                  "text": "The power play is excellent, and the penalty kill is about average.",
+                  "isCorrect": true,
+                  "explanation": "Correct. 26 percent on the power play is elite, and 79 percent on the kill is right around league average."
                 },
                 {
                   "id": "b",
-                  "text": "They're equal on all fronts.",
-                  "isCorrect": false
+                  "text": "Both special teams are struggling.",
+                  "isCorrect": false,
+                  "explanation": "No. 26 percent on the power play is well above the league average of about 20."
                 },
                 {
                   "id": "c",
-                  "text": "Whoever scores next.",
-                  "isCorrect": false
+                  "text": "The power play is average, and the penalty kill is elite.",
+                  "isCorrect": false,
+                  "explanation": "That's flipped. The power play is the strong unit here, and the kill is around average."
                 }
               ],
-              "translation": "Special teams break ties. Elite PP and PK swing seasons and playoff series.",
+              "translation": "Their power play scores on about a quarter of its chances, which is excellent, and their penalty kill stops about four out of five, which is about average.",
               "followUps": [
                 {
-                  "line": "How important is the power play in the playoffs?",
-                  "why": "Power plays are even more crucial in tight playoff games."
+                  "line": "Who runs the point on that power play?",
+                  "why": "It's a natural follow-up about the player who quarterbacks the unit."
                 },
                 {
-                  "line": "Does penalty kill defend against comebacks?",
-                  "why": "A strong PK denies the opponent momentum and scoring chances."
+                  "line": "Has the penalty kill been good lately?",
+                  "why": "It's a fair question about the weaker of the two units."
                 }
               ]
             }
@@ -754,11 +754,11 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "A hard limit on team payroll set by the league; for 2026-27 it is $104 million."
+                  "text": "A league-set ceiling on how much a team can spend on its players in total."
                 },
                 {
                   "id": "b",
-                  "text": "The highest salary any player can earn."
+                  "text": "The highest salary any single player can earn."
                 },
                 {
                   "id": "c",
@@ -769,9 +769,9 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Yes. The NHL has a hard cap: every team's total payroll must stay at or below the cap. It is a rigid rule.",
-                "incorrect": "The cap is a hard ceiling, not a suggestion. Teams cannot exceed it; that is why trades and signings are cap-dependent decisions.",
-                "sayThisLine": "The cap is why teams make tough choices about star players and trades."
+                "correct": "Yes. The NHL has a hard cap: a team's payroll has to stay under a league-set ceiling, apart from narrow exceptions like LTIR. The ceiling changes each year.",
+                "incorrect": "The cap is a team-wide ceiling, not a cap on one player and not a suggestion. That's why trades and signings are cap decisions.",
+                "sayThisLine": "That's a cap problem, so they'll have to move salary out."
               }
             }
           },
@@ -801,9 +801,9 @@
                 "b"
               ],
               "explanation": {
-                "correct": "Right. Cap hit is the average annual value (AAV). A 7-year / $56M contract has an $8M cap hit every year.",
-                "incorrect": "Cap hit is the annual salary count against the cap, calculated as total contract value divided by years.",
-                "sayThisLine": "Cap hit is what the player costs against the cap each year, not what he actually earns that year."
+                "correct": "Right. Cap hit is the contract's average annual value. $56 million over seven years is $8 million a year against the cap.",
+                "incorrect": "Cap hit is the average annual value: total contract value divided by years. $56 million over seven years is $8 million.",
+                "sayThisLine": "His cap hit is $8 million, even if his actual pay varies year to year."
               }
             }
           },
@@ -825,9 +825,9 @@
                 "partial": 3
               },
               "explanation": {
-                "correct": "The 2026-27 cap is $104 million. It fluctuates based on league revenue.",
-                "incorrect": "The cap for this season is $104M. Each year it changes based on league revenue and the CBA.",
-                "sayThisLine": "At $104M, most teams have about $5-7M in cap space for moves."
+                "correct": "Nice. The ceiling for 2026-27 is $104 million. It moves from year to year with league revenue and the labor agreement, so the number is worth re-checking each summer.",
+                "incorrect": "The 2026-27 ceiling is $104 million. It changes from year to year with league revenue and the labor agreement.",
+                "sayThisLine": "The cap is around a hundred million, so a big contract is a big deal."
               }
             }
           },
@@ -839,39 +839,30 @@
             ],
             "payload": {
               "prompt": "Complete the statement about cap hits.",
-              "template": "A cap hit {{definition}}, {{impact}}.",
+              "template": "A cap hit is a contract's {{what}} counted against the cap, so a big one {{impact}} a team's flexibility.",
               "gaps": [
                 {
-                  "id": "definition",
+                  "id": "what",
                   "options": [
-                    "is salary",
-                    "is average value",
-                    "is bonus"
+                    "average annual value",
+                    "signing bonus only",
+                    "final-year salary"
                   ],
-                  "correct": "is average value"
+                  "correct": "average annual value"
                 },
                 {
                   "id": "impact",
                   "options": [
-                    "helps trades",
-                    "limits trades",
-                    "is irrelevant"
+                    "limits",
+                    "expands",
+                    "ends"
                   ],
-                  "correct": "limits trades"
-                },
-                {
-                  "id": "example",
-                  "options": [
-                    "always works",
-                    "costs flexibility",
-                    "means nothing"
-                  ],
-                  "correct": "costs flexibility"
+                  "correct": "limits"
                 }
               ],
               "explanation": {
-                "correct": "Yes. A high cap hit limits flexibility. Teams trade to shed cap space.",
-                "incorrect": "Cap hit is the average annual value. A high hit restricts roster moves."
+                "correct": "Yes. A cap hit is the average annual value, and a big one takes up room a team could use to add or keep other players.",
+                "incorrect": "Cap hit is average annual value, not just salary or bonus. A large one limits what else a team can fit under the cap."
               }
             }
           },
@@ -890,29 +881,32 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "Trade or release a player to make room.",
-                  "isCorrect": true
+                  "text": "Move salary out, by trade or other roster moves, to make room.",
+                  "isCorrect": true,
+                  "explanation": "Correct. Under a hard cap, a team has to clear room before it can add salary."
                 },
                 {
                   "id": "b",
-                  "text": "Ignore the cap rule.",
-                  "isCorrect": false
+                  "text": "Sign him anyway and pay a fine.",
+                  "isCorrect": false,
+                  "explanation": "It doesn't work like that. The cap is a hard ceiling, not a soft penalty."
                 },
                 {
                   "id": "c",
-                  "text": "Exceed it for one season.",
-                  "isCorrect": false
+                  "text": "Exceed the cap for the whole season.",
+                  "isCorrect": false,
+                  "explanation": "A team can't stay over the cap. Only narrow exceptions, like LTIR, give room."
                 }
               ],
-              "translation": "The cap is a hard ceiling. To add salary, teams must shed payroll.",
+              "translation": "The cap is a hard ceiling. To add salary, a team has to shed payroll first.",
               "followUps": [
                 {
-                  "line": "Who would they trade?",
-                  "why": "Usually a depth player or someone on an expiring deal."
+                  "line": "Who would they trade to make room?",
+                  "why": "It's a natural question: usually someone with a sizable cap hit."
                 },
                 {
                   "line": "Could they use LTIR?",
-                  "why": "Some teams use injured reserve to add room (controversial)."
+                  "why": "It shows you know there's a narrow exception for long-term injuries."
                 }
               ]
             }
@@ -941,7 +935,7 @@
                 {
                   "id": "ltir",
                   "term": "LTIR (Long-Term Injured Reserve)",
-                  "definition": "A cap tool that lets a team exceed the cap temporarily to replace a player who will miss long term due to injury."
+                  "definition": "A cap exception that lets a team replace an injured player's cap hit while he is out long term."
                 },
                 {
                   "id": "waivers",
@@ -951,12 +945,12 @@
                 {
                   "id": "scratch",
                   "term": "Healthy scratch",
-                  "definition": "A player who is healthy but not in the lineup that night; does not cost cap space but is still employed."
+                  "definition": "A healthy player left out of the lineup that night; his salary still counts against the cap."
                 }
               ],
               "explanation": {
-                "summary": "Teams use LTIR, waivers and scratching to manage rosters and cap space creatively.",
-                "sayThisLine": "LTIR is the most controversial cap move; it is technically legal but feels like a loophole."
+                "summary": "LTIR, waivers and healthy scratches are everyday roster tools. LTIR is also a hot topic, because fans argue about how teams use the cap room it creates.",
+                "sayThisLine": "They're using LTIR to make room for a star."
               }
             }
           },
@@ -971,7 +965,7 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "A player is expected to miss 10+ games due to injury."
+                  "text": "A player is injured and expected to miss a long stretch, at least 10 games and 24 days."
                 },
                 {
                   "id": "b",
@@ -986,9 +980,9 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Right. LTIR requires a medical prognosis that the player will miss the season or 10+ games.",
-                "incorrect": "LTIR is granted when a player has a documented injury expected to sideline him long-term. It is not discretionary.",
-                "sayThisLine": "LTIR lets a team add salary while a player recovers. When he returns, the team has to fit him under the cap."
+                "correct": "Right. LTIR needs a documented injury that keeps a player out for at least 10 games and 24 days. It isn't a vote or a favor.",
+                "incorrect": "LTIR requires a real, documented long-term injury. A commissioner's whim or a team vote doesn't qualify a player.",
+                "sayThisLine": "When he's healthy again, they'll have to fit him under the cap."
               }
             }
           },
@@ -999,7 +993,7 @@
               "waivers"
             ],
             "payload": {
-              "prompt": "If a team puts a player on waivers, they can only trade him if another team claims him. True or false?",
+              "prompt": "When another team claims a player off waivers, his old team gets players or picks back. True or false?",
               "scene": {
                 "kind": "none",
                 "alt": "A player going through the waiver process before being sent down."
@@ -1016,9 +1010,9 @@
               ],
               "correctChoiceId": "false",
               "explanation": {
-                "correct": "False. Waivers is a 24-hour period where teams can claim a player. If no one claims him, he can be sent down or traded at any time.",
-                "incorrect": "Waivers is a process, not a trade requirement. If no team claims the player, the original team can move him as they wish.",
-                "sayThisLine": "A player on waivers can be claimed by any team. If not claimed, the team has full control."
+                "correct": "False. A claim isn't a trade. The team that claims the player simply takes him and his contract, and the old team gets nothing back.",
+                "incorrect": "A waiver claim is not a trade, so no players or picks change hands. The claiming team takes him and his contract as he is.",
+                "sayThisLine": "He went on waivers and got claimed, so they got nothing for him."
               }
             }
           },
@@ -1031,35 +1025,38 @@
             "payload": {
               "statement": {
                 "speaker": "Her",
-                "text": "They're over the cap. Their backup D-man just went on LTIR."
+                "text": "They're over the cap. Their backup D-man just went on LTIR so they can add a star."
               },
-              "question": "What's really happening?",
+              "question": "What is going on?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Clever but shady. It's technically legal.",
-                  "isCorrect": true
+                  "text": "LTIR frees up cap room while the injured player is out.",
+                  "isCorrect": true,
+                  "explanation": "Correct. While he's on LTIR, his cap hit can be replaced, which gives the team room to add a player."
                 },
                 {
                   "id": "b",
-                  "text": "Outright cheating.",
-                  "isCorrect": false
+                  "text": "They broke the cap rule and will be punished.",
+                  "isCorrect": false,
+                  "explanation": "No. LTIR is an allowed exception for players who are hurt long term."
                 },
                 {
                   "id": "c",
-                  "text": "Normal roster management.",
-                  "isCorrect": false
+                  "text": "The defenseman was traded away.",
+                  "isCorrect": false,
+                  "explanation": "LTIR is an injury status, not a trade."
                 }
               ],
-              "translation": "LTIR allows a team to exceed the cap if a player is injured. Fans debate whether this is genius or abuse.",
+              "translation": "An injured player on long-term injured reserve opens cap room for a team, so they can add a player even though they were at the cap. Fans often argue about how teams use this.",
               "followUps": [
                 {
-                  "line": "Does he actually have a real injury?",
-                  "why": "Documentation is required, though scrutiny varies."
+                  "line": "Is he really out long term?",
+                  "why": "LTIR needs a documented injury, so the question matters."
                 },
                 {
-                  "line": "What star are they adding?",
-                  "why": "LTIR is most controversial when used to land superstars."
+                  "line": "Who are they adding?",
+                  "why": "It moves the chat to the exciting part, the new player."
                 }
               ]
             }
@@ -1090,9 +1087,9 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Yes. The original team can then send him to the minors or release him to free agency.",
-                "incorrect": "Waiver clearing allows the team to remove the player from the roster: minor league demotion, AHL assignment, or release.",
-                "sayThisLine": "Clearing waivers is a rite of passage for declining veterans. It means no one wants them at the NHL level."
+                "correct": "Yes. Once he clears, the team can assign him to its AHL affiliate or waive or release him. Waivers exist so other teams get a shot at him first.",
+                "incorrect": "Clearing waivers means no team claimed him, so his team can send him to the minors or release him. He doesn't become a free agent automatically.",
+                "sayThisLine": "He cleared waivers, so he's headed to the AHL."
               }
             }
           }
@@ -1119,7 +1116,7 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "18-year-old prospects, primarily from junior leagues and college."
+                  "text": "Young prospects, mostly 18-year-olds from junior, college and European leagues."
                 },
                 {
                   "id": "b",
@@ -1134,9 +1131,9 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Right. The NHL draft is primarily 18-year-olds from the CHL, NCAA college hockey, European leagues and international junior championships.",
-                "incorrect": "The draft focuses on young talent (18+). Teams develop them in junior or college before they play in the NHL.",
-                "sayThisLine": "The draft is where most future stars are found. Picks at the top are lottery winners; later picks are gambles."
+                "correct": "Right. The draft is where teams pick young prospects, mostly 18-year-olds from junior leagues, US development programs and European clubs.",
+                "incorrect": "The draft is for young, unsigned prospects, most of them 18, not veterans or free agents. Teams then develop them before they play in the NHL.",
+                "sayThisLine": "They took him in the first round at eighteen."
               }
             }
           },
@@ -1156,24 +1153,24 @@
                 },
                 {
                   "id": "junior",
-                  "text": "He plays in junior hockey, college, or European leagues for 2-3 years.",
-                  "why": "Development time is crucial; the player hones skills before turning pro."
+                  "text": "He keeps developing in junior, college or a European league for a few years.",
+                  "why": "Most drafted players need time before they're ready for pro hockey."
                 },
                 {
                   "id": "ahl",
-                  "text": "He plays in the AHL (minor league affiliate) for 1-2 seasons.",
-                  "why": "The AHL is the last step before the NHL. He acclimates to professional play and proximity to call-ups."
+                  "text": "He often plays for the team's AHL affiliate, the minor league.",
+                  "why": "The AHL is a common step between junior hockey and the NHL, though top prospects can skip it."
                 },
                 {
                   "id": "nhl",
                   "text": "He is called up to the NHL and plays his first games.",
-                  "why": "Debut is the culmination of the pipeline. Early NHL play is 'proving his mettle'."
+                  "why": "The NHL debut is the end of the pipeline."
                 }
               ],
               "explanation": {
-                "correct": "Perfect. That is how prospects move from draft to playing in the big league.",
-                "incorrect": "Pipeline: draft → junior/college/Europe → AHL → NHL. Each stage is a filter.",
-                "sayThisLine": "A prospect pipeline is full at each level. Teams carefully manage promotion and demotion."
+                "correct": "That's the usual path: draft, develop, a stop in the AHL, then the NHL. Some stars skip steps, and many prospects never make it.",
+                "incorrect": "The usual order is draft, development in junior, college or Europe, the AHL, and then the NHL. Star prospects can skip a step.",
+                "sayThisLine": "He's still in the pipeline, so he's a year or two away."
               }
             }
           },
@@ -1184,20 +1181,20 @@
               "draft"
             ],
             "payload": {
-              "prompt": "How many players does an NHL team typically select in the draft each year?",
-              "unit": "players",
-              "min": 4,
-              "max": 15,
+              "prompt": "How many rounds does the NHL draft have?",
+              "unit": "rounds",
+              "min": 3,
+              "max": 12,
               "step": 1,
-              "correctValue": 9,
+              "correctValue": 7,
               "tolerance": {
-                "full": 1,
-                "partial": 2
+                "full": 0,
+                "partial": 1
               },
               "explanation": {
-                "correct": "Around 9 picks per team over 7 rounds. Top teams pick later; bottom teams get early picks and compensation picks.",
-                "incorrect": "Teams pick roughly 9 times in a 7-round draft. Early draft picks are highly valued; late picks are depth gambles.",
-                "sayThisLine": "A first-round pick (top 15) is a franchise asset. A seventh-round pick is often a long-shot."
+                "correct": "Seven. Each team holds one pick per round unless it has traded some, so top picks in round one matter most and later rounds are long shots.",
+                "incorrect": "The draft runs seven rounds. Each team starts with one pick per round, and teams trade picks, so the totals vary.",
+                "sayThisLine": "That's a first-round pick, so he's a real prospect."
               }
             }
           },
@@ -1225,9 +1222,9 @@
               ],
               "correctChoiceId": "false",
               "explanation": {
-                "correct": "False. The lottery is random. The worst teams have the best odds, but any lottery team can move up and win the first pick.",
-                "incorrect": "The lottery prevents tanking. The worst teams have high odds but are not guaranteed the first pick; it is randomized.",
-                "sayThisLine": "The lottery is why teams cannot tank and guarantee a star prospect. It is the league's anti-tanking tool."
+                "correct": "False. The lottery is random. The worst teams have the best odds, but a team that didn't finish last can win the top pick.",
+                "incorrect": "The worst team isn't guaranteed the first pick. The lottery gives the worst teams the best odds, which is meant to discourage tanking.",
+                "sayThisLine": "They finished last but the lottery didn't give them the first pick."
               }
             }
           },
@@ -1244,22 +1241,22 @@
                 {
                   "id": "draft",
                   "term": "NHL Draft",
-                  "definition": "Annual event selecting young prospects. Lottery sets top-3 picks; rest by standings."
+                  "definition": "The annual event where teams select young prospects, in an order set partly by a lottery."
                 },
                 {
                   "id": "lottery",
                   "term": "Lottery",
-                  "definition": "Random draw for top-3 picks. Prevents tanking while helping bad teams."
+                  "definition": "A random draw for the top picks; the worst teams get the best odds, which discourages tanking."
                 },
                 {
                   "id": "pipeline",
                   "term": "Prospect pipeline",
-                  "definition": "Path from draft to junior/college to AHL to NHL. Years of development."
+                  "definition": "A team's stream of drafted players developing in junior, college, Europe and the AHL."
                 }
               ],
               "explanation": {
-                "summary": "The draft builds futures. Pipeline development is a long-term investment.",
-                "sayThisLine": "Teams live or die by prospect development. Great pipelines make future stars."
+                "summary": "The draft restocks a team with young players, the lottery shapes the top of the order, and the pipeline is how those players develop over years.",
+                "sayThisLine": "Their prospect pipeline is deep, so the future looks good."
               }
             }
           }
@@ -1290,7 +1287,7 @@
                 {
                   "id": "cf",
                   "term": "CF%",
-                  "definition": "Corsi percentage; shows possession and shot-attempt share for a player or team."
+                  "definition": "Corsi percentage: the share of shot attempts while a player or team is on the ice."
                 },
                 {
                   "id": "toi",
@@ -1304,8 +1301,8 @@
                 }
               ],
               "explanation": {
-                "summary": "Broadcast graphics show key stats quickly. Learning to read them is part of watching like a fan.",
-                "sayThisLine": "TOI and CF% tell you dominance. FO% tells you battle in the dot."
+                "summary": "Broadcast graphics pack a lot into a few letters. TOI is usage, CF% is who has the shot attempts, and FO% is how a player fares on draws.",
+                "sayThisLine": "His CF% is strong, so they've had the shot attempts when he's out there."
               }
             }
           },
@@ -1319,39 +1316,39 @@
             ],
             "payload": {
               "prompt": "Complete the interpretation of broadcast stats.",
-              "template": "A player with {{toi}} TOI, {{cf}} CF%, and {{fo}} FO% is reliable.",
+              "template": "A center with {{toi}} of TOI, {{cf}} CF% and {{fo}} FO% looks like a trusted top-line player.",
               "gaps": [
                 {
                   "id": "toi",
                   "options": [
-                    "3 minutes",
-                    "18 minutes",
-                    "26 minutes"
+                    "about 6 minutes",
+                    "about 20 minutes",
+                    "under 2 minutes"
                   ],
-                  "correct": "26 minutes"
+                  "correct": "about 20 minutes"
                 },
                 {
                   "id": "cf",
                   "options": [
-                    "35%",
-                    "48%",
-                    "55%"
+                    "a 54",
+                    "a 35",
+                    "a 20"
                   ],
-                  "correct": "55%"
+                  "correct": "a 54"
                 },
                 {
                   "id": "fo",
                   "options": [
-                    "42%",
-                    "51%",
-                    "58%"
+                    "a 41",
+                    "a 56",
+                    "a 20"
                   ],
-                  "correct": "58%"
+                  "correct": "a 56"
                 }
               ],
               "explanation": {
-                "correct": "Right. Heavy TOI, positive Corsi, strong FO% = trusted, dominant play.",
-                "incorrect": "These stats together show reliable ice time and solid two-way presence."
+                "correct": "Right. About 20 minutes means he's trusted, a Corsi above 50 means his team has the puck, and winning most draws helps too.",
+                "incorrect": "A trusted top-line center plays heavy minutes, sits above 50 in Corsi and wins more than half his faceoffs."
               }
             }
           },
@@ -1371,29 +1368,32 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "He did not play much and was out-skated when he was on the ice. Likely had a rough night.",
-                  "isCorrect": true
+                  "text": "His team was out-attempted while he was on the ice, and 14 minutes is a normal role for a depth forward.",
+                  "isCorrect": true,
+                  "explanation": "Correct. A 42 percent Corsi means his team had fewer shot attempts when he played, and 14 minutes is typical for a third- or fourth-liner."
                 },
                 {
                   "id": "b",
-                  "text": "He played well overall.",
-                  "isCorrect": false
+                  "text": "He played over 20 minutes as a star.",
+                  "isCorrect": false,
+                  "explanation": "Fourteen minutes isn't star usage for a forward. Top forwards play closer to 18 or more."
                 },
                 {
                   "id": "c",
-                  "text": "You cannot tell from just these two numbers.",
-                  "isCorrect": false
+                  "text": "He won 42 percent of his faceoffs.",
+                  "isCorrect": false,
+                  "explanation": "That mixes up two stats. Corsi is shot attempts; faceoff percentage is labeled FO%."
                 }
               ],
-              "translation": "Low TOI and low Corsi together signal a player who was not trusted by the coach and struggled when given ice.",
+              "translation": "His team took fewer shot attempts than the other side with him on the ice. That's one night and one stat, and 14 minutes is a normal depth role.",
               "followUps": [
                 {
-                  "line": "Did he have any offensive chances?",
-                  "why": "Low Corsi means fewer puck touches and scoring opportunities."
+                  "line": "Who was he lined up against?",
+                  "why": "It shows you know matchups affect Corsi."
                 },
                 {
-                  "line": "Is he typically played more?",
-                  "why": "Unusual low ice time can signal a benching or matchup problem."
+                  "line": "Is that normal for him?",
+                  "why": "Corsi is noisy in one game, so a player's usual numbers matter more."
                 }
               ]
             }
@@ -1424,9 +1424,9 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Right. A 39% FO% center is not winning draws; average is 50%, good is 55%+.",
-                "incorrect": "FO% is the percentage of draws won. Below 45% is a weakness; above 55% is a strength.",
-                "sayThisLine": "A low FO% center is not trusted on the penalty kill or at the end of tight games."
+                "correct": "Right. FO% is the share of faceoffs a player wins. 50 percent is average, so a center at 39 percent is losing a lot of draws.",
+                "incorrect": "FO% is the percentage of draws won, nothing to do with shifts or touches. Around 50 is average, and 39 is well below it.",
+                "sayThisLine": "He's struggling on faceoffs tonight, at 39 percent."
               }
             }
           },
@@ -1438,7 +1438,7 @@
               "toi"
             ],
             "payload": {
-              "prompt": "A defenseman with 25 minutes TOI and 51% Corsi is having a quiet, average night. True or false?",
+              "prompt": "A defenseman with 25 minutes and 51% Corsi held even on shot attempts in heavy minutes. True or false?",
               "scene": {
                 "kind": "none",
                 "alt": "Broadcast showing stats for a defenseman who is close to even in possession."
@@ -1455,9 +1455,9 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. Heavy TOI and nearly 50% Corsi show a player in the thick of play but not dominating. Quiet night means no mistakes, steady work.",
-                "incorrect": "Heavy minutes and neutral Corsi suggest a reliable two-way player who is holding his own. It is not flashy but it is solid.",
-                "sayThisLine": "For a defenseman, a 50% Corsi with 25+ min is a night of steady, competent play without mistakes."
+                "correct": "True. Fifty percent is even, so 51 percent on 25 minutes means his team held its own while he played a lot, often against tough opposition.",
+                "incorrect": "Fifty percent Corsi is break-even, so 51 is a touch better than even. On 25 minutes that's a solid night, not a bad one.",
+                "sayThisLine": "He held even in 25 minutes, which is a solid night for a defenseman."
               }
             }
           }
@@ -1485,22 +1485,22 @@
                 {
                   "id": "rental",
                   "term": "Rental",
-                  "definition": "A player on an expiring contract, acquired before the deadline to help a contender for the playoffs."
+                  "definition": "A player on an expiring contract, acquired before the deadline to help a team's playoff run."
                 },
                 {
                   "id": "nmc",
                   "term": "No-trade clause (NTC)",
-                  "definition": "A clause that gives a player the right to approve any trade; the player controls his destination."
+                  "definition": "A clause that limits where a team can trade a player; a full one lets him veto any trade."
                 },
                 {
                   "id": "ufa",
                   "term": "Unrestricted free agent (UFA)",
-                  "definition": "A player whose contract has expired and can sign with any team on July 1 (free agency)."
+                  "definition": "A veteran whose contract has expired and who can sign with any team once free agency opens."
                 }
               ],
               "explanation": {
-                "summary": "Contract clauses and free agency status determine player mobility and team flexibility.",
-                "sayThisLine": "A no-trade clause makes a player sticky; a rental on an expiring contract is a deadline bargain."
+                "summary": "Contract terms decide how easily a player can move. A rental is temporary, a no-trade clause limits trades and a UFA can pick his team.",
+                "sayThisLine": "He's a rental, so he could be gone in the summer."
               }
             }
           },

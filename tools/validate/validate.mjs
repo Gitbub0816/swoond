@@ -160,11 +160,18 @@ function validateCurriculum(file, data, origin = null, manifestBranchIds = null)
     branchIds.add(b.id);
     if (manifestBranchIds && !manifestBranchIds.has(b.id)) add(origin?.root ?? file, `branches[] id ${b.id} is not a branch in the course manifest`);
   }
-  const knownBranch = (id) => (manifestBranchIds ? manifestBranchIds.has(id) : branchIds.size === 0 || branchIds.has(id));
+  // A branchId must be declared in the root branches[] (absent = none declared = every branchId is unknown) and, when a manifest
+  // exists, in the manifest's branches[] too.
+  const knownBranch = (id) => branchIds.has(id) && (!manifestBranchIds || manifestBranchIds.has(id));
+  // Contract 1.2 features (layer "branch", branchId, lesson live, root branches[]) need contractVersion >= 1.2.0.
+  const uses12 = [];
+  if (data.branches !== undefined) uses12.push('root branches[]');
   const unitIds = new Set(data.units.map((u) => u.id));
   data.units.forEach((u, i) => {
     const f = unitFile(i);
     dup(f, 'unit', u.id);
+    if (u.layer === 'branch') uses12.push(`unit ${u.id} layer "branch"`);
+    if (u.branchId !== undefined) uses12.push(`unit ${u.id} branchId`);
     if (u.layer === 'branch' && !u.branchId) add(f, `unit ${u.id}: branch-layer-mismatch: layer "branch" requires a unit branchId`);
     if (u.branchId !== undefined) {
       if (!knownBranch(u.branchId)) add(f, `unit ${u.id}: unknown-branch: unknown branchId ${u.branchId}`);
@@ -172,10 +179,12 @@ function validateCurriculum(file, data, origin = null, manifestBranchIds = null)
     for (const pre of u.prerequisiteUnitIds ?? []) if (!unitIds.has(pre) && !(origin?.pendingUnitIds?.has(pre))) add(f, `unit ${u.id}: unknown prerequisite ${pre}`);
     for (const l of u.lessons) {
       dup(f, 'lesson', l.id);
+      if (l.live !== undefined) uses12.push(`lesson ${l.id} live`);
       checkConcepts(f, `lesson ${l.id}`, l.conceptIds);
       for (const a of l.activities) {
         dup(f, 'activity', a.id);
         if (a.branchId !== undefined) {
+          uses12.push(`activity ${a.id} branchId`);
           if (!knownBranch(a.branchId)) add(f, `activity ${a.id}: unknown-branch: unknown branchId ${a.branchId}`);
           if (u.branchId && u.branchId !== a.branchId) add(f, `activity ${a.id}: branchId ${a.branchId} contradicts unit ${u.id} branchId ${u.branchId} (never visible)`);
         }
@@ -185,6 +194,10 @@ function validateCurriculum(file, data, origin = null, manifestBranchIds = null)
     }
   });
   const rootFile = origin?.root ?? file;
+  const [maj, min] = String(data.contractVersion).split('.').map(Number);
+  if (uses12.length && !(maj > 1 || (maj === 1 && min >= 2))) {
+    add(rootFile, `contract-version-too-low: contractVersion ${data.contractVersion} but 1.2 features are used (${uses12.slice(0, 3).join('; ')}${uses12.length > 3 ? `; +${uses12.length - 3} more` : ''}); declare 1.2.0`);
+  }
   for (const t of data.talkTracks ?? []) {
     dup(rootFile, 'talkTrack', t.id);
     checkConcepts(rootFile, `talkTrack ${t.id}`, t.conceptIds);

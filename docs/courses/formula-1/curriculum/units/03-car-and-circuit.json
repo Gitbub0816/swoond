@@ -1316,36 +1316,36 @@
               "gap-and-interval"
             ],
             "payload": {
-              "prompt": "What is the difference between gap and interval?",
-              "options": [
+              "prompt": "Match each timing-screen term to what it tells you.",
+              "pairs": [
                 {
-                  "id": "a",
-                  "text": "Gap is the time to the leader; interval is the time to the car ahead.",
-                  "explanation": "Right. Gap tells you how far behind the leader you are. Interval tells you the gap to the car directly ahead."
+                  "id": "gap",
+                  "term": "Gap",
+                  "definition": "The time between a car and the race leader."
                 },
                 {
-                  "id": "b",
-                  "text": "Gap is on the straights; interval is in the corners.",
-                  "explanation": "No. Both are measured over a full lap. Where you measure does not change the definition."
+                  "id": "interval",
+                  "term": "Interval",
+                  "definition": "The time between a car and the car directly ahead of it."
                 },
                 {
-                  "id": "c",
-                  "text": "They mean the same thing; the terms are interchangeable.",
-                  "explanation": "No. Gap is to the leader; interval is to the car ahead (even if they are in 15th)."
+                  "id": "green",
+                  "term": "Green sector",
+                  "definition": "A driver's own best time in that sector so far."
                 },
                 {
-                  "id": "d",
-                  "text": "Gap is the distance in metres; interval is in seconds.",
-                  "explanation": "Both are in seconds (or tenths). The difference is who you are measuring to."
+                  "id": "yellow",
+                  "term": "Yellow sector",
+                  "definition": "Slower than the driver's own best time in that sector."
                 }
               ],
-              "correctOptionIds": [
-                "a"
+              "distractorDefinitions": [
+                "The distance in metres to the pit entry.",
+                "The fastest time anyone has set in that sector."
               ],
               "explanation": {
-                "correct": "Right. The gap is the time between you and the leader. The interval is the time between you and the car directly ahead.",
-                "incorrect": "Gap = time to the leader. Interval = time to the car ahead (position + 1). You check the gap to see if you can catch the leader; you check the interval for your immediate fight.",
-                "sayThisLine": "He is five seconds behind the leader."
+                "summary": "Gap counts back to the leader, interval to the car in front. Green means a personal best, yellow means slower than that, and purple (the overall best) stands apart.",
+                "sayThisLine": "He is five seconds behind the leader, but only a second off the car ahead."
               }
             }
           },
@@ -1396,22 +1396,22 @@
               "gap-and-interval"
             ],
             "payload": {
-              "prompt": "Fill in the blank: 'He is trailing the leader by _____, but his interval to the car ahead is only two seconds.'",
-              "template": "He is trailing the leader by {{gap-time}}, but his interval to the car ahead is only two seconds.",
+              "prompt": "Work out the gap to the leader for second place.",
+              "template": "Third place is 10 seconds behind the leader and 2 seconds behind second, so second place's gap to the leader is {{gap-time}}.",
               "gaps": [
                 {
                   "id": "gap-time",
                   "options": [
-                    "15 seconds",
-                    "5 seconds",
-                    "25 seconds"
+                    "8 seconds",
+                    "12 seconds",
+                    "2 seconds"
                   ],
-                  "correct": "15 seconds"
+                  "correct": "8 seconds"
                 }
               ],
               "explanation": {
-                "correct": "Right. If the gap to the leader is 15 seconds and the interval to the car ahead is 2 seconds, then there is a 13-second gap between P2 and P3.",
-                "incorrect": "The gap is time to the leader. The interval is time to the car ahead. If interval is 2s and the gap is 15s, the car is in 3rd, 13 seconds behind 2nd."
+                "correct": "Right. Third is 10 seconds from the leader, and second is 2 seconds closer to the front than that, so second's gap to the leader is 10 minus 2, which is 8 seconds.",
+                "incorrect": "Gap counts back to the leader, interval to the car ahead. Third's gap is 10 s and second is 2 s ahead of third, so second's gap to the leader is 8 s, not 12."
               }
             }
           },
@@ -1422,8 +1422,8 @@
               "gap-and-interval"
             ],
             "payload": {
-              "prompt": "Fill in the blank: 'The leader is 20 seconds ahead and the _____ to the second-place car is 3 seconds.'",
-              "template": "The leader is 20 seconds ahead and the {{term}} to the second-place car is 3 seconds.",
+              "prompt": "Pick the right timing-screen word.",
+              "template": "Third place is 20 seconds behind the leader but only 3 seconds behind second. That 3 seconds is the {{term}}.",
               "gaps": [
                 {
                   "id": "term",
@@ -1436,8 +1436,8 @@
                 }
               ],
               "explanation": {
-                "correct": "Right. The interval is the time to the car directly ahead. The leader is 20s ahead overall (gap), and P2 is 3s ahead (interval).",
-                "incorrect": "The interval is the time to the car ahead. Since the leader is 20s clear, the interval to P2 is what someone in 3rd sees."
+                "correct": "Right. The interval is the time to the car directly ahead. Third's 20 seconds to the leader is the gap, and the 3 seconds to second place is the interval.",
+                "incorrect": "The 3 seconds is measured to the car directly ahead, which makes it the interval. The gap would be the 20 seconds back to the leader."
               }
             }
           },
@@ -1448,19 +1448,19 @@
               "sector"
             ],
             "payload": {
-              "prompt": "If three purple sectors are 38s, 42s and 40s, what would be the best possible lap time?",
+              "prompt": "A driver's best sectors are 28s, 31s and 27s. What is his ideal lap?",
               "unit": "seconds",
-              "min": 100,
-              "max": 130,
+              "min": 70,
+              "max": 110,
               "step": 0.5,
-              "correctValue": 120,
+              "correctValue": 86,
               "tolerance": {
                 "full": 1,
                 "partial": 3
               },
               "explanation": {
-                "correct": "Right. Three purples of 38 + 42 + 40 = 120 seconds for the lap. That is the theoretical best lap if all three purple sectors happened in the same lap.",
-                "incorrect": "Add them up: 38 + 42 + 40 = 120 seconds. That would be a lap time of 2 minutes. Each sector is timed from one point to the next, so the lap is the sum of all three.",
+                "correct": "Right. 28 + 31 + 27 = 86 seconds. Stitching a driver's best sectors together gives his ideal lap, which is usually a touch quicker than anything he has actually driven.",
+                "incorrect": "Add the three sectors: 28 + 31 + 27 = 86 seconds. A lap is just its three sectors one after another, so the ideal lap is the sum of the best of each.",
                 "sayThisLine": "The lap time is the sum of the three sector times."
               }
             }
@@ -1490,7 +1490,7 @@
                 {
                   "id": "a",
                   "text": "Opened a flap on the rear wing to cut drag and gain top speed when overtaking.",
-                  "explanation": "Right. DRS (Drag Reduction System) opened to allow a tow car within one second to use extra speed on the straight."
+                  "explanation": "Right. DRS (Drag Reduction System) let a car within one second of the car ahead open its rear wing flap on designated straights for extra speed."
                 },
                 {
                   "id": "b",
@@ -1514,7 +1514,7 @@
               "explanation": {
                 "correct": "Right. DRS was a flap on the rear wing that opened to cut drag. A car within one second of the leader could activate it in certain zones.",
                 "incorrect": "DRS (Drag Reduction System) was a movable flap on the rear wing. When open, it cut drag and let the overtaking car go faster on straights.",
-                "sayThisLine": "DRS is gone. It is Overtake Mode now."
+                "sayThisLine": "DRS is gone. It is active aero and Overtake Mode now."
               }
             }
           },
@@ -1530,32 +1530,32 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "The 2009 rule changes created more downforce, so dirty air was choking overtaking. DRS was an aid.",
-                  "explanation": "Right. More wing = more downforce, but also more wake and dirty air behind the car. DRS helped the follower break through."
+                  "text": "Cars lost grip in the turbulent air behind a rival, so passing was very hard. DRS was an aid.",
+                  "explanation": "Right. Cars lean on their wings and floor, so the wake behind one car makes the next one lose downforce. DRS helped the follower get past."
                 },
                 {
                   "id": "b",
                   "text": "Engines were getting too slow, so DRS added power.",
-                  "explanation": "DRS did not add power. Engines were fine. It was a downforce problem."
+                  "explanation": "DRS did not add power. It opened a flap to cut drag. The problem was following closely, not engine speed."
                 },
                 {
                   "id": "c",
                   "text": "Tyres were not lasting long enough.",
-                  "explanation": "DRS helped overtaking, not tyre life."
+                  "explanation": "DRS was about passing, not tyre life."
                 },
                 {
                   "id": "d",
                   "text": "Pit stops were taking too long.",
-                  "explanation": "Pit stops improved through crew efficiency, not DRS."
+                  "explanation": "Pit stop times had nothing to do with DRS. It was introduced to help cars overtake on track."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. The 2009 rule changes added a lot of downforce and created a dirty-air problem. Following cars lost grip and could not overtake. DRS was the band-aid.",
-                "incorrect": "DRS was invented because following cars could not pass due to dirty air (turbulent wake). The wing created so much downforce that the follower was stuck.",
-                "sayThisLine": "DRS was a crutch for overtaking."
+                "correct": "Right. Following closely costs grip in a rival's wake, which made on-track passing hard. DRS, introduced in 2011, gave the car behind a helping hand on the straights.",
+                "incorrect": "DRS was brought in because cars struggled to follow one another closely. The turbulent 'dirty air' behind a car cuts the downforce of the car chasing it.",
+                "sayThisLine": "DRS was there to help cars get past in the dirty air."
               }
             }
           },
@@ -1570,32 +1570,32 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "Active aero (Straight Mode) is a better answer: wings adjust all lap, and Overtake Mode is a boost for the whole car.",
-                  "explanation": "Right. DRS was a one-tool solution. Active aero is more dynamic and fair."
+                  "text": "The 2026 rules replaced it with active aero for every car and Overtake Mode for the chaser.",
+                  "explanation": "Right. The new cars open and close their wings on the move, and the car behind gets extra electrical power from Overtake Mode."
                 },
                 {
                   "id": "b",
-                  "text": "Overtaking was too easy and races were boring.",
-                  "explanation": "Actually, DRS made some races predictable. The new system is meant to improve racing."
+                  "text": "Overtaking had become too easy, so it had to go.",
+                  "explanation": "The issue was not that passing was too easy. The 2026 package aimed to keep racing close while being less reliant on one flap."
                 },
                 {
                   "id": "c",
-                  "text": "The rear wing became too small and DRS did not fit.",
-                  "explanation": "Size is not the issue. The FIA wanted a better system for a new regulation era."
+                  "text": "The new rear wing was too small to hold a flap.",
+                  "explanation": "Wing size was not the reason. The new rules changed how the cars manage drag and power as a whole package."
                 },
                 {
                   "id": "d",
-                  "text": "Engines became too powerful for DRS to help.",
-                  "explanation": "Power levels are controlled. DRS was removed for strategic reasons, not power."
+                  "text": "The new engines were too powerful for DRS to matter.",
+                  "explanation": "Engine power was not why it went. DRS was swapped for active aero and Overtake Mode as part of the new rules."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. DRS was a one-trick fix for dirty air. Active aero is better: wings adjust all lap for better balance, and Overtake Mode is a driver tool.",
-                "incorrect": "DRS was removed because active aero (Straight Mode) is a better solution for the 2026 cars. It lets drivers choose when to open the wings, not just in DRS zones.",
-                "sayThisLine": "DRS was a band-aid. Active aero is the real fix."
+                "correct": "Right. DRS was a one-purpose flap for the car behind. In 2026 the wings are active on every car, and Overtake Mode gives a close follower a burst of electrical power.",
+                "incorrect": "DRS was retired because the 2026 rules replaced it with active aero (Straight and Corner Modes) and Overtake Mode, part of a whole new set of rules.",
+                "sayThisLine": "DRS is retired. It is active aero and Overtake Mode now."
               }
             }
           },
@@ -1624,7 +1624,7 @@
               "correctChoiceId": "history",
               "explanation": {
                 "correct": "Right. DRS is gone. It was retired at the end of 2025. 2026 uses active aero and Overtake Mode instead.",
-                "incorrect": "DRS is retired as of 2026. It is history. The new cars use active aero (Straight Mode / Corner Mode) and Overtake Mode for overtaking."
+                "incorrect": "DRS is retired as of 2026. The new cars use active aero (Straight Mode and Corner Mode) and Overtake Mode instead."
               },
               "ruleTag": "2026 rules"
             }
@@ -1654,8 +1654,8 @@
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Right. DRS could only be used within one second of the car ahead (in DRS zones). If you were trailing by more than one second, DRS was locked.",
-                "incorrect": "Yes. DRS was only allowed if the car was within one second of the leader. It was a follower's tool, not a general speed boost."
+                "correct": "Right. DRS could only be used within one second of the car ahead, and only in designated zones. Further back than that, the flap stayed shut.",
+                "incorrect": "Yes. DRS was only allowed if the car was within one second of the car in front at the detection point. It was a follower's tool, not a general speed boost."
               },
               "ruleTag": "DRS rules"
             }

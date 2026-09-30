@@ -28,8 +28,8 @@
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. Timeouts are called for rest, strategy talks, momentum stops, and play design. A coach has a few per game.",
-                "incorrect": "Not quite. Timeouts give coaches a moment to regroup, rest players and draw up a play or strategy adjustment."
+                "correct": "A timeout stops the clock so a coach can rest players, change the plan, cool off an opponent's run or draw up a play. Each team has a limited number, so when to use them is part of the strategy.",
+                "incorrect": "Timeouts are a coaching tool, not a penalty fix or a scoreboard change. They give a team a moment to rest, regroup and set up the next few possessions."
               }
             }
           },
@@ -40,32 +40,31 @@
             "payload": {
               "prompt": "What is an after-timeout play (ATO)?",
               "options": [
-                {"id": "correct", "text": "A set play designed by the coach during a timeout, often used for crucial possessions late in the game."},
-                {"id": "dist-1", "text": "A play run after the ball goes out of bounds."},
-                {"id": "dist-2", "text": "A play where players take turns shooting."}
+                {"id": "correct", "text": "A play the coach draws up in a timeout and runs when play resumes."},
+                {"id": "dist-1", "text": "Any play run after the ball goes out of bounds."},
+                {"id": "dist-2", "text": "A play where every player takes a turn shooting."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Exactly. An ATO is a coach-designed set play called out during a timeout, especially for high-pressure moments.",
-                "incorrect": "Not quite. An after-timeout play is a specific set design the coach draws up to run after the timeout ends."
+                "correct": "An ATO is designed during a timeout for a specific situation, like getting a good shot late in a game. The defense has had the same time to prepare, which is part of the chess match.",
+                "incorrect": "An after-timeout play is not any out-of-bounds play. It is a set the coach draws up in the huddle and runs as soon as play restarts."
               }
             }
           },
           {
             "id": "str-01-mc-3",
-            "type": "multiple-choice",
+            "type": "fill-the-gap",
             "conceptIds": ["momentum-run"],
             "payload": {
-              "prompt": "What is a momentum run?",
-              "options": [
-                {"id": "correct", "text": "Several consecutive scores by one team, often stopped by a timeout or turnover."},
-                {"id": "dist-1", "text": "A player running at full speed down the court."},
-                {"id": "dist-2", "text": "A running drill during practice."}
+              "prompt": "Complete the definition of a run.",
+              "template": "A run is a string of {{points}} points by one team, often ended when the other coach calls a {{stop}}.",
+              "gaps": [
+                {"id": "points", "options": ["unanswered", "free-throw", "bonus"], "correct": "unanswered"},
+                {"id": "stop", "options": ["timeout", "jump ball", "press"], "correct": "timeout"}
               ],
-              "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. A momentum run is a string of points that swings the game; timeouts are used to stop them.",
-                "incorrect": "Not quite. A momentum run is consecutive scores that build energy; a timeout can interrupt it."
+                "correct": "A run is points scored in a row while the other team does not score, like a 12-0 burst. The coach on the wrong end often calls a timeout to stop it.",
+                "incorrect": "A run needs unanswered points, meaning the other team has not scored in between. A timeout is the usual way a coach tries to stop one."
               }
             }
           },
@@ -74,14 +73,14 @@
             "type": "decision-scenario",
             "conceptIds": ["timeout"],
             "payload": {
-              "prompt": "Should you call a timeout now?",
+              "prompt": "The lead is shrinking fast. Call a timeout?",
               "situation": {
-                "narrative": "Your team is up 10 with eight minutes left. The other team just scored three straight and has the ball again.",
+                "narrative": "Your team led by 15. The other team just went on a 12-0 run, the lead is 3, and they have the ball again with the crowd roaring.",
                 "facts": [
-                  {"label": "Score", "value": "Up 10"},
-                  {"label": "Time remaining", "value": "8 minutes"},
-                  {"label": "Opponent", "value": "Scored 3 straight, on a run"},
-                  {"label": "Timeouts left", "value": "2"}
+                  {"label": "Score", "value": "Up 3, down from 15"},
+                  {"label": "Their run", "value": "12-0 in four minutes"},
+                  {"label": "Time remaining", "value": "6 minutes"},
+                  {"label": "Timeouts left", "value": "3"}
                 ]
               },
               "options": [
@@ -89,26 +88,26 @@
                   "id": "call",
                   "label": "Call a timeout",
                   "verdict": "best",
-                  "consequence": "You stop the run early, rest your defense and reset. The early timeout saves your buffer.",
+                  "consequence": "You stop the run, settle your players and change something, like a coverage or the lineup. You still have timeouts left for the end of the game.",
                   "considerations": [
-                    "A 3-0 run is manageable; stopping it at 3 is better than letting it grow to 10-0",
-                    "You still have timeouts late for end-game scenarios",
-                    "Fresh defense slows their momentum"
+                    "A 12-0 run shows something is broken",
+                    "You still have two timeouts for late in the game",
+                    "It also rests tired starters"
                   ]
                 },
                 {
                   "id": "wait",
-                  "label": "Wait and see",
-                  "verdict": "acceptable",
-                  "consequence": "You keep your timeouts for late-game but allow their run to possibly continue.",
+                  "label": "Wait one more possession",
+                  "verdict": "poor",
+                  "consequence": "You hope the next stop comes on its own. If they score again, the lead is nearly gone and the crowd is deafening.",
                   "considerations": [
-                    "Up 10 gives you cushion even if they score",
-                    "Timeout usage is limited; save them for end-game",
-                    "Risk: run could grow to 10-0 or more"
+                    "The run has already cost 12 points",
+                    "Timeouts are there to be used",
+                    "Waiting only makes sense if the defense just fixed itself"
                   ]
                 }
               ],
-              "expertNote": "Early momentum stops are underrated. A 3-0 run that becomes 10-0 changes a game. If you have timeouts, use one now while ahead and save one for late game."
+              "expertNote": "Coaches call a timeout when a run exposes a real problem, not after every basket. The value is changing something, not just pausing. Saving timeouts for the last minutes matters, but holding all three while a 15-point lead melts is not a strategy."
             }
           },
           {
@@ -127,18 +126,18 @@
                 {"id": "dist-2", "text": "A player made a timeout-related error.", "isCorrect": false},
                 {"id": "dist-3", "text": "The team's time management was bad.", "isCorrect": false}
               ],
-              "translation": "She means the coach's designed play called in the timeout was executed well and led to a good outcome.",
+              "translation": "She means the play the coach drew up in the timeout worked perfectly and got a good shot.",
               "followUps": [
                 {
-                  "line": "Yeah, perfect spacing on that cut.",
-                  "why": "You recognize the play's design and its execution."
+                  "line": "What was the set?",
+                  "why": "It is an honest question that lets her describe the play, and you pick up the vocabulary from her."
                 },
                 {
                   "line": "Who did he call the play for?",
                   "why": "A natural follow-up asking which player the play was designed to get open."
                 }
               ],
-              "noFakeExpertNote": "An ATO is just a play the coach designs during a timeout—nothing mysterious about it."
+              "noFakeExpertNote": "An ATO is just a play drawn up in a timeout. If you did not catch the details, asking which player it was for is a perfectly good question."
             }
           }
         ]
@@ -157,32 +156,31 @@
             "payload": {
               "prompt": "What is the starting five?",
               "options": [
-                {"id": "correct", "text": "The five players who begin the game for a team, typically the best players."},
+                {"id": "correct", "text": "The five players who begin the game for a team."},
                 {"id": "dist-1", "text": "The five players with the most fouls."},
                 {"id": "dist-2", "text": "Five substitutes waiting on the bench."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. The starting five are the players on court at tip-off, usually a team's most important players.",
-                "incorrect": "Not quite. The starting five are the five players who begin the game, not reserves or fouled-out players."
+                "correct": "The starting five are the lineup on the floor at tip-off. They are usually a team's most important players, though a coach may start a role player for the matchup and bring a star off the bench.",
+                "incorrect": "The starting five are simply the five who begin the game. Players who sit on the bench are the reserves, and fouls have nothing to do with it."
               }
             }
           },
           {
             "id": "str-02-mc-2",
-            "type": "multiple-choice",
+            "type": "fill-the-gap",
             "conceptIds": ["rotation-minutes"],
             "payload": {
-              "prompt": "What does rotation mean in basketball?",
-              "options": [
-                {"id": "correct", "text": "The group of players a coach uses and how many minutes each gets per game."},
-                {"id": "dist-1", "text": "Turning the ball over."},
-                {"id": "dist-2", "text": "Spinning a player in a circle for a drill."}
+              "prompt": "Complete the definition of a team's rotation.",
+              "template": "A team's rotation is the group of players a coach {{who}}, and how many {{what}} each one gets.",
+              "gaps": [
+                {"id": "who", "options": ["actually uses", "drafted", "recruited"], "correct": "actually uses"},
+                {"id": "what", "options": ["minutes", "fouls", "timeouts"], "correct": "minutes"}
               ],
-              "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Exactly. A rotation is the coach's playing-time plan: who plays and for how long.",
-                "incorrect": "Not quite. Rotation is the coach's distribution of minutes to players: who plays and when."
+                "correct": "A rotation is the set of players who get real playing time and the minutes each one plays. A coach with nine players in the rotation uses more of the roster than one who uses seven.",
+                "incorrect": "A rotation is about who plays and for how long, not who was drafted or how many fouls they have. Its size shapes how the team looks in close games."
               }
             }
           },
@@ -193,14 +191,14 @@
             "payload": {
               "prompt": "What is a bench unit?",
               "options": [
-                {"id": "correct", "text": "The group of backup players who often play together as a cohesive unit."},
-                {"id": "dist-1", "text": "The bench where substitutes sit waiting."},
-                {"id": "dist-2", "text": "Players who spend most of the game on the sidelines."}
+                {"id": "correct", "text": "A group of reserves who usually play together as a second lineup."},
+                {"id": "dist-1", "text": "The bench where substitutes sit."},
+                {"id": "dist-2", "text": "The starters who rest during a timeout."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. The bench unit is a defined second unit with its own chemistry and role.",
-                "incorrect": "Not quite. The bench unit is the backup group that plays together, not just any reserves."
+                "correct": "A bench unit is the second-team lineup that checks in together. Coaches build it to hold the lead, or cut into a deficit, while the starters rest.",
+                "incorrect": "The furniture is not the unit, and resting starters are still starters. A bench unit is the set of reserves who play together as a lineup."
               }
             }
           },
@@ -209,23 +207,23 @@
             "type": "fill-the-gap",
             "conceptIds": ["stagger-minutes"],
             "payload": {
-              "prompt": "Fill in the blank about staggering stars.",
-              "template": "To keep a star player fresh, a coach {{gap-1}} their minutes so they sit for part of each quarter, then return {{gap-2}}.",
+              "prompt": "Fill in the blanks about staggering stars.",
+              "template": "When a coach staggers minutes, the stars sit at {{gap-1}} times, so at least one star is {{gap-2}}.",
               "gaps": [
                 {
                   "id": "gap-1",
-                  "options": ["staggers", "doubles", "plays"],
-                  "correct": "staggers"
+                  "options": ["different", "the same", "random"],
+                  "correct": "different"
                 },
                 {
                   "id": "gap-2",
-                  "options": ["rested", "injured", "fouled out"],
-                  "correct": "rested"
+                  "options": ["always on the floor", "always on the bench", "in foul trouble"],
+                  "correct": "always on the floor"
                 }
               ],
               "explanation": {
-                "correct": "Right. Staggering keeps a star from playing too much and wearing down.",
-                "incorrect": "Not quite. Staggering minutes means varying when a player sits, so they play fresh bursts instead of full quarters."
+                "correct": "Staggering means the stars rest at different times. One star is always in the game to lead the offense, so the team does not fall apart while the others sit.",
+                "incorrect": "If all the stars sat together the team would sink, and if they all played at once nobody would rest. Staggering spreads the rest so a star is on the floor at all times."
               }
             }
           },
@@ -240,23 +238,23 @@
               },
               "question": "What is she saying about the team?",
               "options": [
-                {"id": "correct", "text": "The coach uses only a few players and gives heavy minutes to a small group.", "isCorrect": true},
-                {"id": "dist-1", "text": "The players are not very tall.", "isCorrect": false},
-                {"id": "dist-2", "text": "The quarter times are shorter.", "isCorrect": false},
-                {"id": "dist-3", "text": "The bench is located close to the court.", "isCorrect": false}
+                {"id": "correct", "text": "The coach plays only a handful of players, and they play a lot.", "isCorrect": true},
+                {"id": "dist-1", "text": "Most of the players on the team are short.", "isCorrect": false},
+                {"id": "dist-2", "text": "The quarters are shorter than normal.", "isCorrect": false},
+                {"id": "dist-3", "text": "The team keeps making quick substitutions.", "isCorrect": false}
               ],
-              "translation": "She means the coach limits playing time to a small core group rather than distributing minutes across many players.",
+              "translation": "She means the coach relies on a small core group and gives them heavy minutes instead of spreading playing time over many players.",
               "followUps": [
                 {
-                  "line": "Yeah, only like eight guys get real minutes.",
-                  "why": "You recognize that a short rotation means fewer total players in the game flow."
+                  "line": "How many guys are actually playing?",
+                  "why": "It is an easy question, and her answer tells you how short is short."
                 },
                 {
-                  "line": "That works if you don't get injuries.",
-                  "why": "A natural follow-up noting the risk of a short rotation in case of injury to key players."
+                  "line": "Does that hurt them if somebody gets hurt?",
+                  "why": "A short rotation leaves little depth, so injuries and fatigue matter more. It is a good thing to wonder about."
                 }
               ],
-              "noFakeExpertNote": "Short rotation just means the coach trusts only a small group of players and plays them a lot."
+              "noFakeExpertNote": "A short rotation just means a few players carry the load. If you want a number, ask her how many players get real minutes."
             }
           }
         ]
@@ -293,14 +291,14 @@
             "payload": {
               "prompt": "What is a two-big lineup used for?",
               "options": [
-                {"id": "correct", "text": "Emphasizing rebounding and interior defense with two traditional centers or power forwards."},
-                {"id": "dist-1", "text": "Playing two very tall players at the same time always."},
-                {"id": "dist-2", "text": "Replacing shooters with stronger players."}
+                {"id": "correct", "text": "Gaining rebounding and rim protection, in exchange for some floor spacing."},
+                {"id": "dist-1", "text": "Running more fast breaks with two speedy guards."},
+                {"id": "dist-2", "text": "Getting more three-point shooters on the floor."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Exactly. Two bigs give you rebounding and paint control at the cost of spacing.",
-                "incorrect": "Not quite. A two-big lineup sacrifices perimeter shooting but gains rebounding and interior strength."
+                "correct": "Two bigs protect the rim and crash the boards, but they usually stand closer to the basket, which can crowd the lane. Coaches use them when the matchup favors size.",
+                "incorrect": "A two-big lineup is the opposite of a speedy, shooting lineup. It buys size, rebounding and rim protection, and pays for it with floor spacing."
               }
             }
           },
@@ -311,14 +309,14 @@
             "payload": {
               "prompt": "What does switchability mean in defense?",
               "options": [
-                {"id": "correct", "text": "The ability of players to defend different positions and sizes after switching on screens."},
-                {"id": "dist-1", "text": "Changing your defense every quarter."},
-                {"id": "dist-2", "text": "Turning the ball over on a screen."}
+                {"id": "correct", "text": "Being able to guard different positions well, so a switch costs nothing."},
+                {"id": "dist-1", "text": "Changing the defense every quarter."},
+                {"id": "dist-2", "text": "Being quick to swap jerseys at halftime."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. Switchable players can guard multiple positions, which is crucial in modern defenses.",
-                "incorrect": "Not quite. Switchability is the ability to switch defenders on screens without creating mismatches."
+                "correct": "Switchable players can guard a guard, a wing or a big for a few possessions. A team full of them can switch every screen without giving up a mismatch.",
+                "incorrect": "Switchability has nothing to do with halves or jerseys. It describes players who can defend several positions, which is what makes switching screens safe."
               }
             }
           },
@@ -327,41 +325,41 @@
             "type": "decision-scenario",
             "conceptIds": ["small-ball"],
             "payload": {
-              "prompt": "Should you go small ball now?",
+              "prompt": "Match their small lineup or stay big?",
               "situation": {
-                "narrative": "Your team is down 5 with 6 minutes left. The opponent just went small with their best shooters. Your center is a traditional rebounder, not a shooter.",
+                "narrative": "Your team is down 5 with six minutes left. The other team went small and its shooters have made four threes in four minutes. Your center is a good rebounder but struggles to guard in space.",
                 "facts": [
                   {"label": "Score", "value": "Down 5"},
                   {"label": "Time", "value": "6 minutes left"},
-                  {"label": "Opponent", "value": "Just went small with shooters"},
-                  {"label": "Your center", "value": "Good rebounder, weak shooter"}
+                  {"label": "Their lineup", "value": "Small, four shooters, four threes made"},
+                  {"label": "Your center", "value": "Good rebounder, slow defending in space", "emphasis": "warning"}
                 ]
               },
               "options": [
                 {
                   "id": "small",
-                  "label": "Go small ball",
+                  "label": "Go small to match",
                   "verdict": "best",
-                  "consequence": "You match their spacing, add pace and try to outscore them in a free-flowing game.",
+                  "consequence": "A quicker lineup can stay with their shooters and switch screens, though you give up some size on the boards.",
                   "considerations": [
-                    "You can't let them control the floor with shooters",
-                    "Small ball matches their spacing and increases pace",
-                    "You give up rebounding but need to score fast"
+                    "Your center is the weak link against their shooting",
+                    "A switchable lineup closes out on threes",
+                    "You will be smaller, so rebounding gets harder"
                   ]
                 },
                 {
                   "id": "stay",
-                  "label": "Keep your center",
+                  "label": "Keep your center in",
                   "verdict": "acceptable",
-                  "consequence": "You keep your rebounder but let them control spacing and pace late in the game.",
+                  "consequence": "You keep your rebounding and rim protection, but your center is stuck defending in space against shooters.",
                   "considerations": [
-                    "Your center's rebounding might help",
-                    "But you'll be undersized if they keep shooting threes",
-                    "Down 5 with 6 left requires pace, not rebounding"
+                    "Their misses are harder to rebound against your size",
+                    "The center may get picked on in pick-and-rolls",
+                    "It is a reasonable bet if he can drop and contest"
                   ]
                 }
               ],
-              "expertNote": "Late-game strategy is about pace. Down 5 with 6 minutes? Match their small ball so you can race up the pace and try to outscore them. Rebounding is secondary to creating possessions."
+              "expertNote": "Coaches weigh what each lineup gives and takes. Small ball buys speed and spacing and costs size. Here the opponent's shooting is the problem, so matching is sensible, but a coach who trusts his center in drop coverage could stay big."
             }
           },
           {
@@ -371,39 +369,39 @@
             "payload": {
               "prompt": "Hunt the mismatch or play it straight?",
               "situation": {
-                "narrative": "Your 7-footer is guarding their 6'3\" wing shooter after a switch. You have three possessions before they might switch back.",
+                "narrative": "After a switch, their 6'3\" wing shooter is now guarding your 7-foot center. The other team may switch back soon.",
                 "facts": [
-                  {"label": "Your player", "value": "7-footer, not a shooter"},
-                  {"label": "Their player", "value": "6'3\" wing, a great shooter"},
+                  {"label": "Your player", "value": "7-footer, good in the post"},
+                  {"label": "Their defender", "value": "6'3\" wing, a great shooter"},
                   {"label": "Game state", "value": "Close, midway through 2nd quarter"},
-                  {"label": "Mismatch", "value": "Clear size and skill difference"}
+                  {"label": "Mismatch", "value": "Big size advantage in the post"}
                 ]
               },
               "options": [
                 {
                   "id": "hunt",
-                  "label": "Hunt the mismatch",
+                  "label": "Hunt the mismatch: feed the post",
                   "verdict": "best",
-                  "consequence": "You post up your 7-footer against their small wing for easy buckets and foul trouble.",
+                  "consequence": "Your big can score over the smaller defender or draw help and pass out. If they double, a shooter is left open.",
                   "considerations": [
-                    "Three possessions to attack the size difference",
-                    "Their shooter will foul quickly on post defense",
-                    "After they switch back, you lose the advantage"
+                    "The height gap is big, so the post is easy to exploit",
+                    "Their shooter may pick up fouls guarding a big",
+                    "They may switch back or send help, so act quickly"
                   ]
                 },
                 {
                   "id": "normal",
-                  "label": "Run normal offense",
+                  "label": "Run your normal offense",
                   "verdict": "poor",
-                  "consequence": "You ignore a clear advantage and let their player move around without attacking the mismatch.",
+                  "consequence": "You let the defense fix the matchup, and a clear advantage goes unused.",
                   "considerations": [
-                    "Wasting a gift from the switch",
-                    "Missing free points and foul opportunities",
-                    "Teams live for these 3-possession windows"
+                    "The switch handed you a size edge",
+                    "A quick feed to the post uses it before they switch back",
+                    "Normal offense is fine when there is no edge"
                   ]
                 }
               ],
-              "expertNote": "Mismatches are gold. A 7-footer vs. a 6'3\" wing? Post him up immediately for three straight possessions. That's when you get easy buckets and fouls."
+              "expertNote": "Offenses go right at a mismatch before the defense can fix it. The catch is the help: if the post gets crowded, the big has to be able to pass back out."
             }
           },
           {
@@ -417,23 +415,23 @@
               },
               "question": "What does she mean?",
               "options": [
-                {"id": "correct", "text": "The opponent's defense struggles when facing a fast-paced lineup with shooters instead of traditional bigs.", "isCorrect": true},
-                {"id": "dist-1", "text": "The players on the team are literally small.", "isCorrect": false},
-                {"id": "dist-2", "text": "The ball they use is undersized.", "isCorrect": false},
-                {"id": "dist-3", "text": "The team's basketball court is smaller.", "isCorrect": false}
+                {"id": "correct", "text": "A lineup of quick shooters is giving the other team's defense trouble.", "isCorrect": true},
+                {"id": "dist-1", "text": "The other team has very short players.", "isCorrect": false},
+                {"id": "dist-2", "text": "The other team keeps running out of bounds.", "isCorrect": false},
+                {"id": "dist-3", "text": "The other team needs to use a smaller ball.", "isCorrect": false}
               ],
-              "translation": "She's saying the team's small, quick lineup is exposing the opponent's defense and creating scoring opportunities.",
+              "translation": "A team is playing quick, shooting players instead of bigs, and the opponent's defense cannot keep up with the spacing and speed.",
               "followUps": [
                 {
-                  "line": "Yeah, they can't defend the perimeter.",
-                  "why": "You recognize that the opponent's big players can't keep up with small ball's pace and shooting."
+                  "line": "Is it their bigs that can't keep up?",
+                  "why": "It shows you understand small ball stretches big defenders, and it gets her talking about the matchup."
                 },
                 {
-                  "line": "Will they adjust to it?",
-                  "why": "A good follow-up asking whether the opponent will also go small to match."
+                  "line": "Will they go small too?",
+                  "why": "A fair question about how coaches respond to each other's lineups."
                 }
               ],
-              "noFakeExpertNote": "Small ball is just playing faster, smaller players who shoot threes. It's not rocket science—just a different lineup."
+              "noFakeExpertNote": "Small ball is just quicker, smaller players who can shoot instead of big men. If she says it about a team, you can ask who is playing center."
             }
           }
         ]
@@ -450,41 +448,41 @@
             "type": "decision-scenario",
             "conceptIds": ["foul-when-up-three"],
             "payload": {
-              "prompt": "Foul on a three-pointer with 5 seconds left?",
+              "prompt": "Up three with six seconds left. Foul or defend?",
               "situation": {
-                "narrative": "Your team is up 3. Opponent has the ball with 5 seconds left, 94 feet away. An opponent receives a pass at the three-point line.",
+                "narrative": "Your team leads by 3. The other team has the ball with six seconds left and needs a three to tie. They are in the bonus, so a foul sends them to the line.",
                 "facts": [
                   {"label": "Score", "value": "Up 3"},
-                  {"label": "Time", "value": "5 seconds left"},
-                  {"label": "Opponent", "value": "Has the ball at the arc, 94 feet away"},
-                  {"label": "Fouls", "value": "You have fouls to give"}
+                  {"label": "Time", "value": "6 seconds left"},
+                  {"label": "Their need", "value": "A three-pointer to tie"},
+                  {"label": "Foul result", "value": "Two free throws for them"}
                 ]
               },
               "options": [
                 {
                   "id": "foul",
-                  "label": "Foul immediately",
+                  "label": "Foul before they can shoot",
                   "verdict": "acceptable",
-                  "consequence": "They get 2 free throws (1 made = OT), but no chance at a three-pointer. Game stays winnable.",
+                  "consequence": "They get two free throws. To tie they must make the first, miss the second on purpose and win the rebound, so a three cannot tie on the spot. But a badly timed foul can send a shooter to the line for three.",
                   "considerations": [
-                    "A three-pointer beats you right there",
-                    "Free throws give you a shot at OT",
-                    "Coaches disagree on this strategy"
+                    "It takes away the tying three",
+                    "They could still tie with a planned miss and a putback",
+                    "A foul on a three-point shooter gives them three shots"
                   ]
                 },
                 {
                   "id": "play",
-                  "label": "Play it straight",
-                  "verdict": "best",
-                  "consequence": "You let them shoot. If they make a three, you lose. If they miss, you win.",
+                  "label": "Defend the three",
+                  "verdict": "acceptable",
+                  "consequence": "They have to get a clean look from deep against a defense that knows what is coming. If it goes in, the game goes to overtime.",
                   "considerations": [
-                    "They are 94 feet away",
-                    "Most teams cannot make a three from that distance",
-                    "Letting the shot speak is the modern choice"
+                    "Covering the arc is hard in six seconds",
+                    "A made three forces overtime",
+                    "It avoids the risk of fouling a shooter"
                   ]
                 }
               ],
-              "expertNote": "Coaches split on this. Modern thinking: let them shoot from 94 feet. The miss rate is so high that a foul is worse than the one-in-fifty chance they hit it."
+              "expertNote": "There is no single right answer. Analysts have argued that fouling is slightly better on average, but many coaches still defend, because a bad foul or an offensive rebound on a missed free throw costs them the game. Fans argue about it every season."
             }
           },
           {
@@ -492,40 +490,41 @@
             "type": "decision-scenario",
             "conceptIds": ["intentional-foul-strategy"],
             "payload": {
-              "prompt": "Intentional foul with 10 seconds left?",
+              "prompt": "Down four with twelve seconds left. Foul?",
               "situation": {
-                "narrative": "You are up 2. Opponent has the ball with 10 seconds left. Your player is about to foul someone running the inbound.",
+                "narrative": "Your team trails by 4 with twelve seconds left. The other team has the ball in the frontcourt and is in the bonus. If you just defend, they can hold the ball until time runs out.",
                 "facts": [
-                  {"label": "Score", "value": "Up 2"},
-                  {"label": "Time", "value": "10 seconds, about to reset to 14 for a possession"},
-                  {"label": "Fouls", "value": "Can give one or two"},
-                  {"label": "Option", "value": "Intentional foul to reset time"}
+                  {"label": "Score", "value": "Down 4"},
+                  {"label": "Time", "value": "12 seconds left"},
+                  {"label": "Their status", "value": "In the bonus, ball in the frontcourt"},
+                  {"label": "If you do nothing", "value": "They can dribble out the clock", "emphasis": "warning"}
                 ]
               },
               "options": [
                 {
                   "id": "foul",
-                  "label": "Intentional foul on the inbound",
+                  "label": "Foul right away",
                   "verdict": "best",
-                  "consequence": "They get 1 FT (in bonus) + possession. But they restart with a new shot clock instead of 10 seconds.",
+                  "consequence": "The clock stops and they shoot two free throws. You are likely still trailing, but you keep a chance at one more possession, which is better than certain defeat.",
                   "considerations": [
-                    "They lose the ticking clock advantage",
-                    "They get possession but more time to plan",
-                    "Tradeoff: more time for them vs. clock reset"
+                    "Without a foul the clock keeps running for them",
+                    "Each free throw they miss gives you the ball",
+                    "The cost is that they may score more points"
                   ]
                 },
                 {
                   "id": "play",
-                  "label": "Let them inbound naturally",
-                  "verdict": "acceptable",
-                  "consequence": "They have 10 seconds to set up a play with no reset.",
+                  "label": "Defend and hope for a turnover",
+                  "verdict": "poor",
+                  "consequence": "They can burn the clock with no risk. By the time they shoot, your team has almost no chance to catch up.",
                   "considerations": [
-                    "Very tight window for them",
-                    "But they still get the shot"
+                    "Turnovers are rare when the other team just holds the ball",
+                    "You give up your clock-stopping tool",
+                    "Down four with twelve seconds, time is the problem"
                   ]
                 }
               ],
-              "expertNote": "Up 2, 10 seconds left? Foul to reset their shot clock. You give up one FT but take away 10 seconds of pressure. They get the ball back but with a fresh clock and the pressure of more time."
+              "expertNote": "The trailing team fouls to stop the clock, and the price is free-throw points. It is worth it only when time is about to win the game for them. Poor free-throw shooters are the best targets, which is what the next lesson's hack-a-player idea is about."
             }
           },
           {
@@ -533,41 +532,41 @@
             "type": "decision-scenario",
             "conceptIds": ["hack-a-player"],
             "payload": {
-              "prompt": "Hack the worst free-throw shooter?",
+              "prompt": "Hack a 55% free-throw shooter early in the half?",
               "situation": {
-                "narrative": "Down 4 with 20 seconds left. Opponent's worst free-throw shooter (65%) just got the ball. You have a foul to give (not in bonus).",
+                "narrative": "Midway through the third quarter, the other team's big man is a 55% free-throw shooter. Your coach wonders whether to foul him on purpose every time he gets the ball.",
                 "facts": [
-                  {"label": "Score", "value": "Down 4"},
-                  {"label": "Time", "value": "20 seconds left"},
-                  {"label": "Opponent FT%", "value": "65% (poor)"},
-                  {"label": "Bonus status", "value": "Not yet (you can foul without FTs)"}
+                  {"label": "Quarter", "value": "Third, with plenty of time left"},
+                  {"label": "Their big man", "value": "55% from the free-throw line"},
+                  {"label": "Expected points", "value": "About 1.1 per two free throws"},
+                  {"label": "Rule", "value": "Away-from-the-play fouls are penalized in the last two minutes of a quarter"}
                 ]
               },
               "options": [
                 {
                   "id": "hack",
-                  "label": "Hack (intentional foul)",
+                  "label": "Hack him when he has the ball",
                   "verdict": "acceptable",
-                  "consequence": "They get 2 FTs but no possession reset. They make one, miss one = up 5. Bad outcome.",
+                  "consequence": "He scores about 1.1 points per trip, which is less than a normal offensive possession, but your own offense gets no stops or rhythm and you pile up fouls.",
                   "considerations": [
-                    "Expected value: 1.3 points for them",
-                    "But 20 seconds is tight; if they miss both, they get no second chance",
-                    "Risky with only 20 seconds left"
+                    "1.1 points is below a typical possession",
+                    "It breaks the game up, which can hurt your own flow",
+                    "You will hit the penalty quickly and give others free throws"
                   ]
                 },
                 {
                   "id": "play",
-                  "label": "Play normal defense",
-                  "verdict": "best",
-                  "consequence": "You defend the shot. If they score, down 6 with little time. If you get a stop, you still have 15+ seconds for a possession.",
+                  "label": "Defend him normally",
+                  "verdict": "acceptable",
+                  "consequence": "He scores at the normal rate near the basket, but your team stays in rhythm and avoids foul trouble.",
                   "considerations": [
-                    "20 seconds is precious; a foul wastes it",
-                    "Hacking only works in extended time (end of 3rd, late 4th)",
-                    "Early-game or normal time: normal defense wins"
+                    "Your defense can still contest his shots",
+                    "It does not hand out free points",
+                    "It does not use his weakness"
                   ]
                 }
               ],
-              "expertNote": "Hack-a-player works when there is time to exploit a poor FT shooter over many possessions. With only 20 seconds left? Play normal defense. Time is your edge."
+              "expertNote": "Hack-a-player is a real strategy and a real argument. The math favors it only when a player is truly bad from the line and the offense is otherwise efficient, and the league's away-from-the-play rule for the end of quarters limits it. Many coaches decide it is not worth the disruption."
             }
           },
           {
@@ -575,16 +574,16 @@
             "type": "multiple-choice",
             "conceptIds": ["last-shot"],
             "payload": {
-              "prompt": "What is the last shot of a quarter or game?",
+              "prompt": "Why do teams often hold the ball for the last shot?",
               "options": [
-                {"id": "correct", "text": "The final attempt a team takes before the buzzer in that quarter or game, often designed for a star or a specific play."},
-                {"id": "dist-1", "text": "A shot that ends a player's career."},
-                {"id": "dist-2", "text": "A three-pointer that beats the buzzer."}
+                {"id": "correct", "text": "So the other team has too little time left to answer."},
+                {"id": "dist-1", "text": "Because the shot clock is turned off at the end of games."},
+                {"id": "dist-2", "text": "Because the league requires the trailing team to shoot last."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. The last shot is the final possession and is usually a designed play for the best option.",
-                "incorrect": "Not quite. The last shot is simply the final attempt a team gets, often drawn up by the coach."
+                "correct": "In a tie game, the team that shoots last can leave the other team no time to respond. It runs the clock down and then runs a play for its best option, often after a timeout.",
+                "incorrect": "The shot clock is on at the end of games and no rule assigns the last shot. Teams hold the ball to use the clock, so the other team cannot answer."
               }
             }
           },

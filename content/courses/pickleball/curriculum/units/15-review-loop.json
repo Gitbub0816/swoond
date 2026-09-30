@@ -4,9 +4,9 @@
   "unit": {
     "id": "review-loop",
     "title": "Perpetual Review",
-    "summary": "Mixed retrieval across the whole course: four review templates for daily, weekly and term-based practice.",
+    "summary": "Mixed retrieval across the whole course: daily, weekly, boss, term and sweep templates for spaced practice.",
     "layer": "review",
-    "order": 14,
+    "order": 15,
     "lessons": [
       {
         "id": "review-01",
@@ -16,11 +16,11 @@
           "kitchen-nvz",
           "two-bounce-rule",
           "dink",
-          "serve-diagonal",
+          "overhead-smash",
+          "net-height",
           "volley-in-kitchen-fault",
           "reset",
-          "attackable-ball",
-          "side-out-scoring"
+          "attackable-ball"
         ],
         "activities": [
           {
@@ -89,8 +89,8 @@
                 }
               ],
               "explanation": {
-                "correct": "Dinks are soft shots that land in the kitchen, a key strategy in pickleball.",
-                "incorrect": "Dinking is the soft game; the ball lands in the opponent's kitchen zone.",
+                "correct": "Dinks are soft shots that land in the opponent's kitchen, a key strategy in pickleball.",
+                "incorrect": "Dinking is the soft game: the ball is hit gently and lands in the opponent's kitchen zone.",
                 "sayThisLine": "Soft shot, opponent's kitchen. That's a dink."
               }
             }
@@ -127,8 +127,8 @@
                 "When the score ties at 11"
               ],
               "explanation": {
-                "summary": "Volley in kitchen = fault. Reset = soft defense. Attackable = high ball you can hit.",
-                "sayThisLine": "Kitchen volleys are faults; resets save you from attacks."
+                "summary": "A kitchen volley is a fault, a reset is a soft defensive shot, and an attackable ball is one high enough to hit down.",
+                "sayThisLine": "Kitchen volleys are faults, and resets save you from attacks."
               }
             }
           },
@@ -164,8 +164,87 @@
               "explanation": {
                 "correct": "Attackable means the ball is high enough (above net height) to hit aggressively downward.",
                 "incorrect": "You attack when the ball pops up high enough to hit down. That's your chance.",
-                "sayThisLine": "High ball = attackable. Time to speed up."
+                "sayThisLine": "High ball means attackable. Time to speed up."
               }
+            }
+          },
+          {
+            "id": "review-01-bc-1",
+            "type": "binary-call",
+            "conceptIds": [
+              "net-height"
+            ],
+            "payload": {
+              "prompt": "The net is exactly the same height all the way across. True?",
+              "scene": {
+                "kind": "none",
+                "alt": "Net height across the court."
+              },
+              "choices": [
+                {
+                  "id": "dips",
+                  "label": "No, it dips lower in the middle"
+                },
+                {
+                  "id": "level",
+                  "label": "Yes, it's perfectly level"
+                }
+              ],
+              "correctChoiceId": "dips",
+              "explanation": {
+                "correct": "The net is 36 inches at the posts and 34 inches at the center, so it dips a little in the middle.",
+                "incorrect": "It is not level. The net is 36 inches at the posts and sags to 34 inches at the center.",
+                "sayThisLine": "It's 36 inches at the posts and 34 in the middle."
+              },
+              "ruleTag": "Net height"
+            }
+          },
+          {
+            "id": "review-01-st-1",
+            "type": "say-this",
+            "conceptIds": [
+              "overhead-smash"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Sam",
+                "text": "I finally hit a clean overhead on their lob. It felt amazing."
+              },
+              "question": "What does she mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "She smashed a high ball downward from above her head.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "She served overhand.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "She hit the ball into the net from above.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "She threw her paddle over the net.",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "An overhead is a smash: when the opponents lob the ball high, you hit it down hard from above your head.",
+              "followUps": [
+                {
+                  "line": "Did it win you the point?",
+                  "why": "A simple question that lets her tell the story."
+                },
+                {
+                  "line": "Is a clean one rare at your level?",
+                  "why": "Shows you know overheads can be tricky to time."
+                }
+              ],
+              "noFakeExpertNote": "You only need to know an overhead is a smash on a high ball. Ask her about the moment."
             }
           }
         ]
@@ -178,11 +257,12 @@
           "serve-foot-fault",
           "kitchen-line-is-kitchen",
           "third-shot-drop",
-          "skill-ratings",
-          "sandbagging",
+          "advance-to-kitchen-line",
+          "side-out-scoring",
+          "benefit-of-the-doubt",
+          "switching",
           "pro-styles",
-          "debate-rally-vs-side-out",
-          "convo-line-call-story"
+          "convo-follow-up-questions"
         ],
         "activities": [
           {
@@ -215,9 +295,9 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Foot fault is when you step on or over the baseline before or while serving.",
-                "incorrect": "Stay behind the baseline when you serve; stepping over is a fault.",
-                "sayThisLine": "Foot fault: over the baseline on the serve."
+                "correct": "A serve foot fault is stepping on or over the baseline (or into the court) before the ball is struck.",
+                "incorrect": "Stay behind the baseline when you serve. Touching the line or stepping into the court before you hit is a fault.",
+                "sayThisLine": "Foot fault means a foot on or over the baseline when you serve."
               }
             }
           },
@@ -245,9 +325,9 @@
               ],
               "correctChoiceId": "yes-fault",
               "explanation": {
-                "correct": "For volleys, the kitchen line counts as being in the kitchen. Toes on the line = fault.",
-                "incorrect": "The line is kitchen; even touching it while volleying is a fault.",
-                "sayThisLine": "Kitchen line is part of the kitchen for the volley rule."
+                "correct": "For volleys, the kitchen line counts as part of the kitchen. A toe on the line is a fault.",
+                "incorrect": "The line is kitchen. Even touching it while volleying is a fault.",
+                "sayThisLine": "The kitchen line is part of the kitchen for the volley rule."
               },
               "ruleTag": "Kitchen rule"
             }
@@ -259,17 +339,17 @@
               "third-shot-drop"
             ],
             "payload": {
-              "prompt": "Your team just returned serve. What's the smart third shot?",
+              "prompt": "Your team served and they returned deep. What is the smart third shot?",
               "situation": {
-                "narrative": "You're the serving team recovering from the return.",
+                "narrative": "You served from the baseline and the return landed deep, while the returners are racing up to the kitchen line.",
                 "facts": [
                   {
                     "label": "Your position",
-                    "value": "Back near baseline after serving"
+                    "value": "Back at the baseline after serving"
                   },
                   {
                     "label": "Their position",
-                    "value": "Close to their baseline, waiting"
+                    "value": "Moving up to their kitchen line"
                   }
                 ]
               },
@@ -278,68 +358,253 @@
                   "id": "third-drop",
                   "label": "Soft drop into their kitchen",
                   "verdict": "best",
-                  "consequence": "Correct. This buys time to advance to the net.",
+                  "consequence": "Right. A drop gives your team time to walk up to the kitchen line without being attacked.",
                   "considerations": [
-                    "You're starting behind",
-                    "A drop gets you time",
+                    "You are starting behind",
+                    "A drop buys time",
                     "Then advance together"
                   ]
                 },
                 {
                   "id": "hard-drive",
                   "label": "Hard drive at them",
-                  "verdict": "acceptable",
-                  "consequence": "Could work but you're starting behind; better to be patient.",
+                  "verdict": "poor",
+                  "consequence": "Risky. They are already at the line, so a hard drive comes back at you fast while you are still at the baseline.",
                   "considerations": [
-                    "You need time to reach net",
-                    "Power when behind is risky",
-                    "Drop then advance is smarter"
+                    "They are set at the net",
+                    "You are out of position",
+                    "A drop would give you time"
                   ]
                 }
               ],
-              "expertNote": "Third-shot drop philosophy: patience buys time to control the net."
+              "expertNote": "Third-shot drop philosophy: patience buys time to reach the net. A drive can work when returners are caught deep, not when they are already set."
             }
           },
           {
             "id": "review-02-tk-1",
             "type": "talk-track",
             "conceptIds": [
-              "skill-ratings",
-              "sandbagging"
+              "pro-styles",
+              "convo-follow-up-questions"
             ],
             "payload": {
-              "title": "Rating talk snippet",
-              "setting": "Your person mentions a tournament player.",
+              "title": "Her partner bangs everything",
+              "setting": "Sam is venting about her doubles partner's hard-hitting style.",
               "startingSmooth": 50,
               "exchanges": [
                 {
-                  "theirMessage": "That guy said he's a 3.0 but played like a 4.0 today.",
+                  "theirMessage": "My doubles partner bangs every single ball. It's exhausting to play with.",
                   "replies": [
                     {
-                      "id": "good",
-                      "text": "Sounds like sandbagging? Did he actually play that well?",
-                      "smoothDelta": 22,
-                      "theirResponse": "Yeah, way better than his rating. Weird.",
-                      "coachNote": "You named it and asked for detail. Good."
+                      "id": "ask-style",
+                      "text": "Is that just how they like to play? How do you handle it?",
+                      "smoothDelta": 24,
+                      "theirResponse": "Yeah, it's their style. I try to set up balls they can attack.",
+                      "coachNote": "You asked about both the style and how she copes."
                     },
                     {
-                      "id": "meh",
-                      "text": "Maybe he's improving?",
-                      "smoothDelta": 5,
-                      "theirResponse": "Maybe, but he played that way the whole time.",
-                      "coachNote": "Could happen, but sandbag is more likely here."
+                      "id": "sympathize",
+                      "text": "That sounds tiring.",
+                      "smoothDelta": 6,
+                      "theirResponse": "It really is.",
+                      "coachNote": "Sympathetic, but a question would keep her talking."
                     },
                     {
-                      "id": "cringe",
-                      "text": "You should report him.",
-                      "smoothDelta": -10,
-                      "theirResponse": "To who? It's open play.",
-                      "coachNote": "Open play has no refs. Don't escalate casually."
+                      "id": "join",
+                      "text": "Bangers are just bad at pickleball.",
+                      "smoothDelta": -16,
+                      "theirResponse": "They're actually really good. It's just not my style.",
+                      "coachNote": "Do not trash a playing style you just learned about."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "We win more when they hold back, though. It's a weird balance.",
+                  "replies": [
+                    {
+                      "id": "reflect",
+                      "text": "So patience wins the long rallies, but they love the big swing?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Exactly. Finding the middle is the hard part.",
+                      "coachNote": "You reflected her point and showed you understood the two styles."
+                    },
+                    {
+                      "id": "ok",
+                      "text": "Interesting.",
+                      "smoothDelta": 3,
+                      "theirResponse": "Yeah.",
+                      "coachNote": "Too short to keep the conversation alive."
+                    },
+                    {
+                      "id": "fix",
+                      "text": "Just tell them to stop.",
+                      "smoothDelta": -12,
+                      "theirResponse": "It's not that simple.",
+                      "coachNote": "Quick fixes ignore the relationship."
                     }
                   ]
                 }
               ],
-              "closingNote": "Sandbagging is playing above your stated rating. Rec tournaments care; open play, less so."
+              "closingNote": "Bangers win with pace and dinkers win with patience. When she vents about a partner's style, ask how she handles it."
+            }
+          },
+          {
+            "id": "review-02-fg-1",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "side-out-scoring",
+              "game-to-11-win-by-2"
+            ],
+            "payload": {
+              "prompt": "Complete the scoring summary.",
+              "template": "In side-out scoring only the {{who}} scores, games usually go to {{points}}, and you must win by {{margin}}.",
+              "gaps": [
+                {
+                  "id": "who",
+                  "options": [
+                    "serving side",
+                    "receiving side"
+                  ],
+                  "correct": "serving side"
+                },
+                {
+                  "id": "points",
+                  "options": [
+                    "11",
+                    "21"
+                  ],
+                  "correct": "11"
+                },
+                {
+                  "id": "margin",
+                  "options": [
+                    "2",
+                    "1"
+                  ],
+                  "correct": "2"
+                }
+              ],
+              "explanation": {
+                "correct": "Only the serving side can score, games usually go to 11, and the winner needs a two-point margin.",
+                "incorrect": "In side-out scoring the serving side scores, a standard game goes to 11, and you need to win by 2.",
+                "sayThisLine": "Only the serving side scores, to 11, win by 2."
+              }
+            }
+          },
+          {
+            "id": "review-02-mc-2",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "advance-to-kitchen-line"
+            ],
+            "payload": {
+              "prompt": "Why does a team want to reach the kitchen line after the third shot?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "From there they can volley and control the pace of the dinks."
+                },
+                {
+                  "id": "b",
+                  "text": "The baseline is out of bounds after the serve."
+                },
+                {
+                  "id": "c",
+                  "text": "The kitchen line earns bonus points."
+                },
+                {
+                  "id": "d",
+                  "text": "The rules require the serving team to stand there."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "At the kitchen line you can volley, pressure the opponents and control the dink rally, which is why teams walk up after the drop.",
+                "incorrect": "It is about position, not rules or points. The kitchen line is the strongest spot because you can volley and take time away from your opponents.",
+                "sayThisLine": "Get to the line, and you control the point."
+              }
+            }
+          },
+          {
+            "id": "review-02-bc-2",
+            "type": "binary-call",
+            "conceptIds": [
+              "benefit-of-the-doubt",
+              "line-calls"
+            ],
+            "payload": {
+              "prompt": "Unsure if their shot landed out on your side? Calling it out is safest. True?",
+              "scene": {
+                "kind": "none",
+                "alt": "Unsure line call."
+              },
+              "choices": [
+                {
+                  "id": "no-good",
+                  "label": "No, if unsure, it's good"
+                },
+                {
+                  "id": "yes-out",
+                  "label": "Yes, out is the safe call"
+                }
+              ],
+              "correctChoiceId": "no-good",
+              "explanation": {
+                "correct": "Right. The benefit of the doubt goes to the opponent, so if you cannot tell, the ball is good.",
+                "incorrect": "If you are not sure a ball was out, it is in. Giving the opponent the benefit of the doubt is the fair and expected call.",
+                "sayThisLine": "If I'm not sure, it's good."
+              },
+              "ruleTag": "Line calls"
+            }
+          },
+          {
+            "id": "review-02-st-1",
+            "type": "say-this",
+            "conceptIds": [
+              "switching"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Sam",
+                "text": "Their lob went right over me, so we switched mid-point."
+              },
+              "question": "What does she mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "She and her partner swapped sides during the rally to cover the lob.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "They changed paddles during the point.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "They switched to rally scoring.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "They replaced a teammate.",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "Switching means partners trade sides during a rally, often to cover a lob or keep a strong side in place.",
+              "followUps": [
+                {
+                  "line": "Did you call it out loud?",
+                  "why": "A specific question about communication between partners."
+                },
+                {
+                  "line": "Do you switch a lot, or only on lobs?",
+                  "why": "Invites her to describe her habits."
+                }
+              ],
+              "noFakeExpertNote": "You do not need the footwork. Ask her how it worked out."
             }
           }
         ]
@@ -353,9 +618,29 @@
           "first-server-exception",
           "two-bounce-rule",
           "volley-in-kitchen-fault",
-          "serving-side-even-odd"
+          "serving-side-even-odd",
+          "bounce-in-kitchen-ok"
         ],
         "activities": [
+          {
+            "id": "review-03-unity-1",
+            "type": "unity-sim",
+            "conceptIds": [
+              "kitchen-momentum",
+              "volley-in-kitchen-fault"
+            ],
+            "payload": {
+              "simulationId": "pickleball.kitchen.momentum-call.v1",
+              "simulationVersion": "1.0.0",
+              "difficulty": 4,
+              "configuration": {
+                "scenarioSetId": "kitchen-mixed",
+                "scenarioCount": 5,
+                "showRouteHints": false,
+                "seed": 11
+              }
+            }
+          },
           {
             "id": "review-03-bc-3",
             "type": "binary-call",
@@ -363,26 +648,26 @@
               "kitchen-momentum"
             ],
             "payload": {
-              "prompt": "Volleying from just outside the kitchen, your momentum pulls you across the line.",
+              "prompt": "You volley from outside the kitchen, but your paddle tip taps the kitchen floor on the follow-through. Legal?",
               "scene": {
                 "kind": "none",
-                "alt": "Player with forward momentum at kitchen."
+                "alt": "Paddle tip touching the kitchen after a volley."
               },
               "choices": [
                 {
                   "id": "yes-fault",
-                  "label": "Fault - momentum violation"
+                  "label": "Fault: paddle touched it"
                 },
                 {
                   "id": "no-legal",
-                  "label": "Legal - you were outside"
+                  "label": "Legal: feet were outside"
                 }
               ],
               "correctChoiceId": "yes-fault",
               "explanation": {
-                "correct": "Momentum carrying you into the kitchen after volleying outside is a fault.",
-                "incorrect": "Even if you start outside, momentum into the zone on the follow-through is a fault.",
-                "sayThisLine": "Momentum counts; don't let it carry you in."
+                "correct": "It is a fault. Anything you are holding or wearing touching the kitchen during or right after a volley counts, even if your feet stayed outside.",
+                "incorrect": "Feet are not the only thing that counts. Your paddle touching the kitchen surface after a volley is a fault too.",
+                "sayThisLine": "It's not just your feet. The paddle counts too."
               },
               "ruleTag": "Kitchen momentum"
             }
@@ -394,26 +679,26 @@
               "first-server-exception"
             ],
             "payload": {
-              "prompt": "At 0-0-2, the first serving team has already had their second server turn. True?",
+              "prompt": "At the start of a game, the first serving team gets two servers before a side out. True?",
               "scene": {
                 "kind": "none",
-                "alt": "Starting score for new game."
+                "alt": "Starting score for a new game."
               },
               "choices": [
                 {
-                  "id": "yes-both",
-                  "label": "Yes, both servers played"
+                  "id": "no-one",
+                  "label": "No, only one server (0-0-2)"
                 },
                 {
-                  "id": "no-one",
-                  "label": "No, just getting started"
+                  "id": "yes-two",
+                  "label": "Yes, like every other turn"
                 }
               ],
               "correctChoiceId": "no-one",
               "explanation": {
-                "correct": "0-0-2 means the first server just served and missed; it's only the first server's turn.",
-                "incorrect": "The 2 in 0-0-2 means only one server has played. This is the exception for the first serving team.",
-                "sayThisLine": "0-0-2: first server just faulted. Only one server gets to serve at the start."
+                "correct": "Right. The first serving team starts as server number two, so the score is called 0-0-2 and one fault gives the serve to the other team.",
+                "incorrect": "Only the very first serving team gets the exception: they start at 0-0-2, as server number two, so they get a single turn before a side out.",
+                "sayThisLine": "We start at 0-0-2, so it's one server for us."
               },
               "ruleTag": "Scoring start"
             }
@@ -427,15 +712,15 @@
             "payload": {
               "prompt": "The score is 6-4-1. Where does server 1 stand?",
               "situation": {
-                "narrative": "Serving side's score is 6. You need to know the service side.",
+                "narrative": "The serving team's score is 6, and you need to know which side to serve from.",
                 "facts": [
                   {
-                    "label": "Server 1's score",
+                    "label": "Serving team's score",
                     "value": "6 points"
                   },
                   {
                     "label": "Question",
-                    "value": "Even or odd = which side?"
+                    "value": "Even or odd means which side?"
                   }
                 ]
               },
@@ -444,10 +729,10 @@
                   "id": "right-side",
                   "label": "Right service box",
                   "verdict": "best",
-                  "consequence": "Correct. 6 is even, so right side. Even right, odd left.",
+                  "consequence": "Correct. Six is even, so the server stands on the right. Even right, odd left.",
                   "considerations": [
-                    "6 is an even score",
-                    "Even = right",
+                    "Six is an even score",
+                    "Even means right",
                     "Simple rule, easy to forget"
                   ]
                 },
@@ -455,15 +740,15 @@
                   "id": "left-side",
                   "label": "Left service box",
                   "verdict": "poor",
-                  "consequence": "No. Even scores serve from the right. Odd from left.",
+                  "consequence": "No. Even scores serve from the right, and odd scores from the left.",
                   "considerations": [
-                    "6 is even",
+                    "Six is even",
                     "Even right, odd left",
                     "This is worth knowing"
                   ]
                 }
               ],
-              "expertNote": "Even right, odd left. Memorize this for score calls."
+              "expertNote": "Even right, odd left. The serving team's own score decides the side."
             }
           },
           {
@@ -490,9 +775,9 @@
               ],
               "correctChoiceId": "yes-legal",
               "explanation": {
-                "correct": "Volleying outside the kitchen is always legal, even if the ball lands in the kitchen.",
-                "incorrect": "As long as you volley outside the kitchen, it doesn't matter where the ball goes.",
-                "sayThisLine": "Volley outside = legal, no matter where the ball goes."
+                "correct": "Volleying from outside the kitchen is legal, even if the ball lands in the kitchen.",
+                "incorrect": "The kitchen rule is about where you stand, not where the ball lands. As long as you volley from outside, the ball can land anywhere in.",
+                "sayThisLine": "Where I stand matters, not where the ball lands."
               },
               "ruleTag": "Kitchen rule"
             }
@@ -504,32 +789,67 @@
               "two-bounce-rule"
             ],
             "payload": {
-              "prompt": "On a return of serve, can you volley it if the serve bounced?",
+              "prompt": "Your team served and they returned it. Can you volley the return before it bounces?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Yes, it bounced so you can volley"
+                  "text": "Yes, the serve already bounced"
                 },
                 {
                   "id": "b",
-                  "text": "No, you must let it bounce"
+                  "text": "No, the return has to bounce first"
                 },
                 {
                   "id": "c",
-                  "text": "Only if it's a drop serve"
+                  "text": "Only if you served with a drop serve"
                 },
                 {
                   "id": "d",
-                  "text": "Only if you're at the net"
+                  "text": "Only if you are at the net"
                 }
               ],
               "correctOptionIds": [
                 "b"
               ],
               "explanation": {
-                "correct": "The return must bounce; volleying a return is a fault.",
-                "incorrect": "Two-bounce rule: serve bounces, return bounces, then you can volley.",
-                "sayThisLine": "Serve bounces, return bounces. Then volley."
+                "correct": "The return must bounce on the serving team's side before anyone volleys. Volleying it is a fault.",
+                "incorrect": "Two-bounce rule: the serve bounces, the return bounces, and only then can anyone volley. Serve type and position do not change that.",
+                "sayThisLine": "The serve bounces, the return bounces, then volleys are fair game."
+              }
+            }
+          },
+          {
+            "id": "review-03-fg-1",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "bounce-in-kitchen-ok",
+              "volley-in-kitchen-fault"
+            ],
+            "payload": {
+              "prompt": "Complete the kitchen rule.",
+              "template": "In the kitchen you may hit a ball after it has {{state}}, but you may not {{action}} it.",
+              "gaps": [
+                {
+                  "id": "state",
+                  "options": [
+                    "bounced",
+                    "been volleyed"
+                  ],
+                  "correct": "bounced"
+                },
+                {
+                  "id": "action",
+                  "options": [
+                    "volley",
+                    "dink"
+                  ],
+                  "correct": "volley"
+                }
+              ],
+              "explanation": {
+                "correct": "You can stand in the kitchen to hit a ball that has bounced. What you cannot do is volley, hitting the ball in the air, while touching it.",
+                "incorrect": "The rule is about volleys. A ball that has bounced can be hit from inside the kitchen, but a volley from there is a fault.",
+                "sayThisLine": "I can step in to hit a bounced ball. I just can't volley from there."
               }
             }
           }
@@ -547,7 +867,10 @@
           "ready-position",
           "stacking",
           "poaching",
-          "dreambreaker"
+          "split-step",
+          "dreambreaker",
+          "rec-formats",
+          "paddle-stack"
         ],
         "activities": [
           {
@@ -564,7 +887,7 @@
                 {
                   "id": "erne-pair",
                   "term": "Erne",
-                  "definition": "A jump or stride outside the kitchen to volley near the net post."
+                  "definition": "Jumping from outside the kitchen to volley the ball near the net post."
                 },
                 {
                   "id": "atp-pair",
@@ -574,7 +897,7 @@
                 {
                   "id": "bert-pair",
                   "term": "Bert",
-                  "definition": "A partner runs behind you to hit the ball instead."
+                  "definition": "A player crosses behind their partner to hit a ball on the partner's side."
                 }
               ],
               "distractorDefinitions": [
@@ -582,8 +905,8 @@
                 "A type of grip"
               ],
               "explanation": {
-                "summary": "Erne = you go around. ATP = ball goes around. Bert = partner behind.",
-                "sayThisLine": "Erne and ATP are around the post; Bert is partner behind."
+                "summary": "An Erne is a jump around the kitchen, an ATP goes around the post, and a Bert is running behind your partner to take their ball.",
+                "sayThisLine": "Erne and ATP go around the kitchen or post, and Bert is behind the partner."
               }
             }
           },
@@ -627,9 +950,9 @@
                 }
               ],
               "explanation": {
-                "correct": "Smash = overhead high balls. Ready = athletic stance with paddle up.",
-                "incorrect": "These fundamentals matter every point.",
-                "sayThisLine": "Paddle up, ready to react. Smash the lobs."
+                "correct": "A smash is an overhead shot on a high ball, and ready position is an athletic stance with the paddle up.",
+                "incorrect": "An overhead smash is hit on a high ball, and ready position means paddle up, knees bent and weight forward so you can move.",
+                "sayThisLine": "Paddle up, ready to react, and smash the lobs."
               }
             }
           },
@@ -665,8 +988,8 @@
                 "A kitchen violation"
               ],
               "explanation": {
-                "summary": "Stacking = formation. Poaching = interception. Split = footwork.",
-                "sayThisLine": "Stack before play; split step as they hit; poach when ready."
+                "summary": "Stacking is a formation, poaching is an interception, and the split step is footwork as the opponent hits.",
+                "sayThisLine": "Stack to start, split step as they hit, and poach when the ball is there."
               }
             }
           },
@@ -674,46 +997,550 @@
             "id": "review-04-fg-2",
             "type": "fill-the-gap",
             "conceptIds": [
-              "bert",
               "dreambreaker"
             ],
             "payload": {
-              "prompt": "Complete the terminology.",
-              "template": "A {{term1}} is when a partner runs behind you. A {{term2}} is an MLP {{event}}.",
+              "prompt": "Complete the MLP tiebreak definition.",
+              "template": "An MLP {{term}} is a rally-scoring tiebreak to {{points}} when a match is {{tied}}.",
               "gaps": [
                 {
-                  "id": "term1",
-                  "options": [
-                    "Bert",
-                    "Bert run",
-                    "Erne behind"
-                  ],
-                  "correct": "Bert"
-                },
-                {
-                  "id": "term2",
+                  "id": "term",
                   "options": [
                     "DreamBreaker",
-                    "tiebreak",
                     "DreamMatch"
                   ],
                   "correct": "DreamBreaker"
                 },
                 {
-                  "id": "event",
+                  "id": "points",
                   "options": [
-                    "tiebreak to 21",
-                    "sudden death",
-                    "fourth game"
+                    "21",
+                    "11"
                   ],
-                  "correct": "tiebreak to 21"
+                  "correct": "21"
+                },
+                {
+                  "id": "tied",
+                  "options": [
+                    "2-2",
+                    "1-1"
+                  ],
+                  "correct": "2-2"
                 }
               ],
               "explanation": {
-                "correct": "Bert = partner behind. DreamBreaker = MLP tiebreak at 2-2 to 21 points.",
-                "incorrect": "These terms come from the game itself and from pro leagues.",
-                "sayThisLine": "Bert is chaos. DreamBreaker is MLP's answer to a tie."
+                "correct": "The DreamBreaker is MLP's rally-scoring tiebreak to 21, played when a match is tied 2-2 after four games.",
+                "incorrect": "An MLP match is four games, so the tie is 2-2. The tiebreak is the DreamBreaker, played to 21 with rally scoring.",
+                "sayThisLine": "DreamBreaker: rally scoring to 21 after a 2-2 tie."
               }
+            }
+          },
+          {
+            "id": "review-04-tm-3",
+            "type": "term-match",
+            "conceptIds": [
+              "paddle-stack",
+              "rec-formats"
+            ],
+            "payload": {
+              "prompt": "Match the rec-night terms.",
+              "pairs": [
+                {
+                  "id": "stack-pair",
+                  "term": "Paddle stack",
+                  "definition": "The line of paddles showing who plays next at open play."
+                },
+                {
+                  "id": "robin-pair",
+                  "term": "Round robin",
+                  "definition": "A format where every player or team plays each of the others."
+                },
+                {
+                  "id": "ladder-pair",
+                  "term": "Ladder",
+                  "definition": "A ranked list where you move up by beating players above you."
+                }
+              ],
+              "distractorDefinitions": [
+                "A rule about serving order",
+                "A paddle warranty"
+              ],
+              "explanation": {
+                "summary": "The paddle stack sets the order at open play, round robins let everyone play everyone, and ladders rank you by beating people above you.",
+                "sayThisLine": "Stack for open play, round robin for everybody, ladder for bragging rights."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "review-05",
+        "title": "Pro and Fan Sweep",
+        "objective": "Mixed review of pro, gear, debate, path and season concepts.",
+        "conceptIds": [
+          "dreambreaker",
+          "mlp-team-format",
+          "debate-noise-and-courts",
+          "draw-reading",
+          "amateur-tournaments",
+          "broadcast-reading",
+          "third-shot-drop"
+        ],
+        "activities": [
+          {
+            "id": "review-05-mc-1",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "dreambreaker",
+              "mlp-team-format"
+            ],
+            "payload": {
+              "prompt": "Her MLP team lost in the DreamBreaker. What was the match tied at before it?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "2-2 in games"
+                },
+                {
+                  "id": "b",
+                  "text": "3-1 in games"
+                },
+                {
+                  "id": "c",
+                  "text": "1-0 in games"
+                },
+                {
+                  "id": "d",
+                  "text": "It is never tied"
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "A DreamBreaker only happens when the four games finish 2-2, so that is where the match stood.",
+                "incorrect": "The four games are women's, men's and two mixed. Only a 2-2 split goes to a DreamBreaker; any other score ends the match.",
+                "sayThisLine": "It was 2-2, so the DreamBreaker decided everything."
+              }
+            }
+          },
+          {
+            "id": "review-05-so-1",
+            "type": "sequence-order",
+            "conceptIds": [
+              "broadcast-reading",
+              "third-shot-drop"
+            ],
+            "payload": {
+              "prompt": "Order how a typical pro rally unfolds.",
+              "items": [
+                {
+                  "id": "serve",
+                  "text": "Serve goes diagonally into the box"
+                },
+                {
+                  "id": "return",
+                  "text": "Return lands deep after the bounce"
+                },
+                {
+                  "id": "drop",
+                  "text": "Third-shot drop lands in the kitchen"
+                },
+                {
+                  "id": "dinks",
+                  "text": "Both teams trade dinks at the line"
+                },
+                {
+                  "id": "attack",
+                  "text": "Someone gets a high ball and speeds it up"
+                }
+              ],
+              "explanation": {
+                "sayThisLine": "Serve, return, drop, dinks, then someone attacks.",
+                "correct": "A pro rally opens with the serve and return, settles with the third-shot drop and a dink battle, and ends when someone gets an attackable ball.",
+                "incorrect": "The order follows the game: serve, return, third-shot drop, dink rally at the kitchen line, then an attack on the first ball that comes up high."
+              }
+            }
+          },
+          {
+            "id": "review-05-bc-1",
+            "type": "binary-call",
+            "conceptIds": [
+              "debate-noise-and-courts"
+            ],
+            "payload": {
+              "prompt": "Quieter paddles and sound barriers are ways communities try to reduce pickleball noise. True?",
+              "scene": {
+                "kind": "none",
+                "alt": "Noise mitigation."
+              },
+              "choices": [
+                {
+                  "id": "yes-fixes",
+                  "label": "Yes, those are common fixes"
+                },
+                {
+                  "id": "no-none",
+                  "label": "No, nothing helps"
+                }
+              ],
+              "correctChoiceId": "yes-fixes",
+              "explanation": {
+                "correct": "Yes. Communities use quieter paddles and balls, sound barriers, location choices and limited hours to keep courts open and neighbors happier.",
+                "incorrect": "There are real options: quieter gear, barriers, placement away from homes and quiet hours. The noise debate is about choosing among them.",
+                "sayThisLine": "There are fixes. Quiet hours and sound barriers help."
+              },
+              "ruleTag": "Community issues"
+            }
+          },
+          {
+            "id": "review-05-st-1",
+            "type": "say-this",
+            "conceptIds": [
+              "draw-reading"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Sam",
+                "text": "The draw just dropped and I'm already nervous about her bracket."
+              },
+              "question": "What does she mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The bracket for the event was just published, and she is looking at her player's path.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "She dropped her paddle.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "The event was cancelled.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "She knocked over the paddle stack.",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "The draw is the published bracket. She is nervous because she can see who her favorite will face.",
+              "followUps": [
+                {
+                  "line": "Who's in the tough part of the draw?",
+                  "why": "Shows you know a draw has a hard side and an easy side."
+                },
+                {
+                  "line": "Is it a good draw or a scary one?",
+                  "why": "Lets her tell you how she feels about it."
+                }
+              ],
+              "noFakeExpertNote": "You only need to know the draw is the bracket. Ask her to walk you through the tough matchups."
+            }
+          },
+          {
+            "id": "review-05-fg-1",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "amateur-tournaments",
+              "tournament-divisions"
+            ],
+            "payload": {
+              "prompt": "Complete the amateur circuit statement.",
+              "template": "An APP event mixes {{who}} brackets, and divisions are usually split by skill and {{other}}.",
+              "gaps": [
+                {
+                  "id": "who",
+                  "options": [
+                    "amateur and pro",
+                    "only pro"
+                  ],
+                  "correct": "amateur and pro"
+                },
+                {
+                  "id": "other",
+                  "options": [
+                    "age",
+                    "paddle color"
+                  ],
+                  "correct": "age"
+                }
+              ],
+              "explanation": {
+                "correct": "The APP circuit includes both amateur and pro brackets, and divisions are commonly split by skill level and age group.",
+                "incorrect": "The APP is not pro-only. Its events include amateur and pro brackets, and divisions group players by skill and often age.",
+                "sayThisLine": "The APP has amateur and pro brackets, split by skill and age."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "review-06",
+        "title": "Conversation Sweep",
+        "objective": "Mixed review of rec-night language and listening skills.",
+        "conceptIds": [
+          "rec-formats",
+          "poaching",
+          "convo-follow-up-questions",
+          "convo-admit-what-you-dont-know"
+        ],
+        "activities": [
+          {
+            "id": "review-06-st-1",
+            "type": "say-this",
+            "conceptIds": [
+              "rec-formats"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Sam",
+                "text": "We're doing a round robin tonight, so I'll get to play everyone."
+              },
+              "question": "What does she mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Every player or team rotates through and plays each of the others.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "A knockout where losers go home early.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "Only the winners keep playing.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "A practice drill with no scoring.",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "A round robin is a format where everyone plays everyone else, so nobody is knocked out early.",
+              "followUps": [
+                {
+                  "line": "So you don't get eliminated? That sounds fun.",
+                  "why": "Shows you understood the format."
+                },
+                {
+                  "line": "Who are you most excited to play?",
+                  "why": "Invites her to share the social side."
+                }
+              ],
+              "noFakeExpertNote": "You only need the basic idea. Ask how they decide the pairings."
+            }
+          },
+          {
+            "id": "review-06-st-2",
+            "type": "say-this",
+            "conceptIds": [
+              "poaching"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Sam",
+                "text": "My partner poached three balls in a row. I barely got to hit."
+              },
+              "question": "What does she mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Her partner kept crossing over to hit balls that were going to her.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "Her partner kept stealing her paddle.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "Her partner kept serving out of turn.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Her partner kept calling lines out.",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "Poaching is stepping across to hit a ball meant for your partner. Sometimes it is a smart move, and sometimes it leaves the partner frustrated.",
+              "followUps": [
+                {
+                  "line": "Did you two talk about it, or did it just happen?",
+                  "why": "Asks about the partner dynamic without judging."
+                },
+                {
+                  "line": "Was it working, at least?",
+                  "why": "A light question that lets her vent and laugh."
+                }
+              ],
+              "noFakeExpertNote": "Poaching can be good or annoying depending on the moment. Ask how she felt about it."
+            }
+          },
+          {
+            "id": "review-06-tk-1",
+            "type": "talk-track",
+            "conceptIds": [
+              "convo-follow-up-questions",
+              "convo-admit-what-you-dont-know"
+            ],
+            "payload": {
+              "title": "She apologizes for gushing",
+              "setting": "Sam realizes she has been talking about pickleball for a while.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "Sorry, I've been talking about pickleball for ten minutes straight.",
+                  "replies": [
+                    {
+                      "id": "dont-apologize",
+                      "text": "Don't apologize. Which part are you most excited about?",
+                      "smoothDelta": 28,
+                      "theirResponse": "Honestly, getting my drop to land. I've finally got it working.",
+                      "coachNote": "You welcomed her passion and asked a question."
+                    },
+                    {
+                      "id": "fine",
+                      "text": "It's fine.",
+                      "smoothDelta": 6,
+                      "theirResponse": "Okay, thanks.",
+                      "coachNote": "Polite, but it closes the door a little."
+                    },
+                    {
+                      "id": "a-lot",
+                      "text": "Yeah, it's a lot.",
+                      "smoothDelta": -18,
+                      "theirResponse": "Oh. Sorry. I'll stop.",
+                      "coachNote": "Never make her feel her passion is too much."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "My friends stopped asking about my games a while ago.",
+                  "replies": [
+                    {
+                      "id": "ask-last",
+                      "text": "I'm asking. Tell me about your last game.",
+                      "smoothDelta": 26,
+                      "theirResponse": "Okay, so we were down 9-4 and then... you don't mind?",
+                      "coachNote": "You offered genuine interest, and it gave her permission to share."
+                    },
+                    {
+                      "id": "sad",
+                      "text": "That's too bad.",
+                      "smoothDelta": 5,
+                      "theirResponse": "Yeah. It's okay.",
+                      "coachNote": "Sympathetic, but you could have offered to listen."
+                    },
+                    {
+                      "id": "understand",
+                      "text": "Well, it is hard to follow if you don't play.",
+                      "smoothDelta": -10,
+                      "theirResponse": "Right. That's the problem.",
+                      "coachNote": "It explains the friends, but it does not include her."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "When she worries she talks too much about pickleball, say you want to hear it. Curiosity is the point."
+            }
+          },
+          {
+            "id": "review-06-ds-1",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "convo-admit-what-you-dont-know"
+            ],
+            "payload": {
+              "prompt": "She uses a term you don't know mid-story. What do you do?",
+              "situation": {
+                "narrative": "She is telling a story and says a pickleball word you have never heard.",
+                "facts": [
+                  {
+                    "label": "What happened",
+                    "value": "An unfamiliar term in the middle of a story"
+                  },
+                  {
+                    "label": "Her mood",
+                    "value": "Excited and on a roll"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "ask-pause",
+                  "label": "Note it and ask at a natural pause",
+                  "verdict": "best",
+                  "consequence": "She happily explains, and you kept her story flowing. Asking shows you care enough to get it right.",
+                  "considerations": [
+                    "Does not derail her story",
+                    "Honest about what you know",
+                    "Invites her to teach"
+                  ]
+                },
+                {
+                  "id": "interrupt",
+                  "label": "Stop her right away and ask what it means",
+                  "verdict": "acceptable",
+                  "consequence": "She will explain, but you may break her momentum. It works if you keep it short.",
+                  "considerations": [
+                    "Honest",
+                    "Interrupts her flow",
+                    "Better to wait a beat"
+                  ]
+                },
+                {
+                  "id": "nod",
+                  "label": "Nod along and pretend you understood",
+                  "verdict": "poor",
+                  "consequence": "You may miss the point of the story, and if she asks you something about it, you will be caught.",
+                  "considerations": [
+                    "Hides that you are learning",
+                    "Risks a wrong reply",
+                    "Faking costs trust"
+                  ]
+                }
+              ],
+              "expertNote": "Saying 'what does that mean?' at a natural pause is honest and warm. She will enjoy teaching you."
+            }
+          },
+          {
+            "id": "review-06-bc-1",
+            "type": "binary-call",
+            "conceptIds": [
+              "rec-formats"
+            ],
+            "payload": {
+              "prompt": "On a ladder, you move up by beating players ranked above you. True?",
+              "scene": {
+                "kind": "none",
+                "alt": "Ladder format."
+              },
+              "choices": [
+                {
+                  "id": "yes-move-up",
+                  "label": "Yes, beat them to move up"
+                },
+                {
+                  "id": "no-random",
+                  "label": "No, positions are random"
+                }
+              ],
+              "correctChoiceId": "yes-move-up",
+              "explanation": {
+                "correct": "Right. A ladder is a ranked list, and you climb by beating players above you.",
+                "incorrect": "A ladder is not random. It is a ranking, and you move up by winning challenge matches against players above you.",
+                "sayThisLine": "On a ladder you climb by beating the people above you."
+              },
+              "ruleTag": "Rec formats"
             }
           }
         ]

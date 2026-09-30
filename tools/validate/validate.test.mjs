@@ -253,6 +253,7 @@ test('1.2: layer "branch" needs a unit branchId; activity branchId must not cont
   try {
     const u2 = join(cur, 'units', '02-defense-basics.json');
     edit(join(cur, '..', 'manifest.json'), (j) => { j.branches = [{ id: 'nfl', displayName: 'NFL', personalizationDimension: 'league' }, { id: 'college-football', displayName: 'College', personalizationDimension: 'league' }]; });
+    edit(join(cur, 'course.json'), (j) => { j.contractVersion = '1.2.0'; j.branches = [{ id: 'nfl', facts: {} }, { id: 'college-football', facts: {} }]; });
     edit(u2, (j) => { j.unit.layer = 'branch'; });
     let r = run('--courses-dir', tmp, '--no-examples', '--no-lint');
     assert.equal(r.status, 1);
@@ -275,6 +276,7 @@ test('1.2: unknown-branch: unit with unknown branchId is an error', () => {
   try {
     const u2 = join(cur, 'units', '02-defense-basics.json');
     edit(join(cur, '..', 'manifest.json'), (j) => { j.branches = [{ id: 'nfl', displayName: 'NFL', personalizationDimension: 'league' }]; });
+    edit(join(cur, 'course.json'), (j) => { j.contractVersion = '1.2.0'; j.branches = [{ id: 'nfl', facts: {} }]; });
     edit(u2, (j) => { j.unit.branchId = 'xfl'; });
     const r = run('--courses-dir', tmp, '--no-examples', '--no-lint');
     assert.equal(r.status, 1);
@@ -287,11 +289,52 @@ test('1.2: branch-layer-mismatch: unit with layer "branch" but no branchId is an
   try {
     const u2 = join(cur, 'units', '02-defense-basics.json');
     edit(join(cur, '..', 'manifest.json'), (j) => { j.branches = [{ id: 'nfl', displayName: 'NFL', personalizationDimension: 'league' }]; });
+    edit(join(cur, 'course.json'), (j) => { j.contractVersion = '1.2.0'; j.branches = [{ id: 'nfl', facts: {} }]; });
     edit(u2, (j) => { j.unit.layer = 'branch'; });
     const r = run('--courses-dir', tmp, '--no-examples', '--no-lint');
     assert.equal(r.status, 1);
     assert.match(r.stderr, /branch-layer-mismatch/);
     assert.match(r.stderr, /layer "branch" requires a unit branchId/);
+  } finally { rmSync(tmp, { recursive: true }); }
+});
+
+test('1.2: contract-version-too-low: 1.2 features under contractVersion 1.1.0 are an error (branch layer, branchId, lesson live, branches[])', () => {
+  const { tmp, cur } = splitCopy();
+  try {
+    const u1 = join(cur, 'units', '01-the-basics.json');
+    const u2 = join(cur, 'units', '02-defense-basics.json');
+    const root = join(cur, 'course.json');
+    edit(join(cur, '..', 'manifest.json'), (j) => { j.branches = [{ id: 'nfl', displayName: 'NFL', personalizationDimension: 'league' }]; });
+    edit(root, (j) => { j.contractVersion = '1.1.0'; });
+    assert.equal(run('--courses-dir', tmp, '--no-examples', '--no-lint').status, 0);
+    const cases = [
+      [() => edit(root, (j) => { j.branches = [{ id: 'nfl', facts: {} }]; }), () => edit(root, (j) => { delete j.branches; })],
+      [() => edit(u1, (j) => { j.unit.lessons[0].live = { dataKind: 'standings' }; }), () => edit(u1, (j) => { delete j.unit.lessons[0].live; })],
+      [() => { edit(root, (j) => { j.branches = [{ id: 'nfl', facts: {} }]; j.contractVersion = '1.1.0'; }); edit(u2, (j) => { j.unit.branchId = 'nfl'; }); }, () => edit(u2, (j) => { delete j.unit.branchId; })],
+    ];
+    for (const [apply, undo] of cases) {
+      apply();
+      const r = run('--courses-dir', tmp, '--no-examples', '--no-lint');
+      assert.equal(r.status, 1);
+      assert.match(r.stderr, /contract-version-too-low/);
+      edit(root, (j) => { j.contractVersion = '1.2.0'; });
+      assert.equal(run('--courses-dir', tmp, '--no-examples', '--no-lint').status, 0);
+      undo();
+      edit(root, (j) => { j.contractVersion = '1.1.0'; delete j.branches; });
+    }
+  } finally { rmSync(tmp, { recursive: true }); }
+});
+
+test('1.2: unknown-branch: a branchId with no root branches[] declared is unknown even if the manifest lists it', () => {
+  const { tmp, cur } = splitCopy();
+  try {
+    const u2 = join(cur, 'units', '02-defense-basics.json');
+    edit(join(cur, '..', 'manifest.json'), (j) => { j.branches = [{ id: 'nfl', displayName: 'NFL', personalizationDimension: 'league' }]; });
+    edit(join(cur, 'course.json'), (j) => { j.contractVersion = '1.2.0'; });
+    edit(u2, (j) => { j.unit.lessons[0].activities[0].branchId = 'nfl'; });
+    const r = run('--courses-dir', tmp, '--no-examples', '--no-lint');
+    assert.equal(r.status, 1);
+    assert.match(r.stderr, /unknown-branch.*unknown branchId nfl/);
   } finally { rmSync(tmp, { recursive: true }); }
 });
 
