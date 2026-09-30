@@ -1,4 +1,6 @@
-# Course Manifest Contract v1 (1.1)
+# Course Manifest Contract v1 (1.2)
+
+Contract 1.2 (D-019, additive): `personalizationDimensions[]` (and so a branch `personalizationDimension`, by convention) gains `era`, `designer`, `actor`, `studio`, `format`, `festival` and `venue` (`series` already existed), requested by the Wave 2 movies, fashion, books and music agents. No new `dynamicData[].kind` was requested by Wave 2 (all 13 manifests fit the 1.1 list). Existing 1.0 and 1.1 manifests stay valid.
 
 Contract 1.1 (D-014, additive): `dynamicData[].kind` gains `injuries`, `transactions` and `regulations`, so courses no longer map injury reports to `alerts`/`rosters`, transfers/trades to `rosters`, or FIA/rulebook documents to `events`. Existing 1.0 manifests stay valid.
 
@@ -20,7 +22,7 @@ Contract 1.1 (D-014, additive): `dynamicData[].kind` gains `injuries`, `transact
 | `nativeExercises[]` | `{exerciseType, specPath}`: native work items |
 | `dynamicData[]` | `{kind, providerCandidates, refreshFrequency, notes?}`: candidates only; adapters own real integration. `kind`: scores, schedules, standings, statistics, rankings, rosters, events, releases, conditions, news, weather, closures, alerts, new-products, new-media, injuries, transactions, regulations |
 | `editorial` | What Swoon'd does with current commentary (explain and link; never copy) |
-| `personalizationDimensions[]` | Team, driver, artist... |
+| `personalizationDimensions[]` | Team, driver, artist... Enum: team, player, driver, league, series, artist, genre, author, region, equipment, destination, franchise, platform, cuisine, director, brand, style, skill-level, era, designer, actor, studio, format, festival, venue (last seven from 1.2) |
 | `conversationScenarios` | Count and path (curriculum `talkTracks[]`) |
 | `masteryModel` | `concept-mastery-v1`, pass threshold, competence statement |
 | `licensingConstraints[]`, `safetyConstraints[]` | Rights and safety rules for content and assets |

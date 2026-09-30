@@ -437,3 +437,17 @@ test('repeated-prompt: say-this repetition is judged on the quoted line, not the
     assert.match(r.stdout, /\[repeated-prompt\] .*used by 3 activities/);
   } finally { rmSync(tmp, { recursive: true }); }
 });
+
+test('manifest 1.2: new personalizationDimensions values validate, unknown ones still fail', () => {
+  const { tmp, cur } = splitCopy();
+  try {
+    const m = join(cur, '..', 'manifest.json');
+    edit(m, (j) => { j.contractVersion = '1.2.0'; j.personalizationDimensions = ['era', 'designer', 'actor', 'studio', 'format', 'festival', 'venue', 'series']; });
+    let r = run('--courses-dir', tmp, '--no-examples');
+    assert.doesNotMatch(r.stdout + r.stderr, /FAIL .*manifest/, r.stdout + r.stderr);
+    edit(m, (j) => { j.personalizationDimensions = ['era', 'not-a-dimension']; });
+    r = run('--courses-dir', tmp, '--no-examples');
+    assert.notEqual(r.status, 0, r.stdout);
+    assert.match(r.stdout + r.stderr, /personalizationDimensions/);
+  } finally { rmSync(tmp, { recursive: true }); }
+});
