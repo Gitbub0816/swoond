@@ -11,13 +11,14 @@
 | Changelog | 1.0.0: initial spec |
 
 ## 2. Course & lesson links
-- `courseId`: `hockey`. Units and lessons that launch this sim: unit `rules-of-play` lesson `rules-offside-call`.
+- `courseId`: `hockey`. Units and lessons that launch this sim: unit `rules-of-play` lesson `rules-offside-call`; unit `rules-of-play` lesson `rules-delayed-offside`.
 - CDS row: `docs/courses/hockey/CDS.md` section 12, family `offside-read`.
 - Manifest entry: `docs/courses/hockey/manifest.json` -> `unitySimulations[]` (`status: spec-draft`).
 - Prerequisite concepts (must be `mastered`, otherwise the lesson shows a native primer first): `offside` primer (native lesson `rules-offside-line`), `zones`.
 
 ## 3. Learning objective(s) & concepts taught
 - **Learner-facing objective:** You can watch a zone entry at full speed and call it: offside, onside, or play on, and say why in one sentence.
+
 | conceptId | term | after the sim the learner can... |
 |---|---|---|
 | offside | Offside | call a normal entry correctly by looking at skates versus the puck and the blue line's leading edge |

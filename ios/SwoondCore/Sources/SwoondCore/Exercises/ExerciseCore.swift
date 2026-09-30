@@ -117,6 +117,13 @@ extension ExerciseSession {
 public struct SeededGenerator: RandomNumberGenerator, Sendable {
     private var state: UInt64
     public init(seed: UInt64) { state = seed }
+
+    /// Stable seed from a string (FNV-1a), so a view can re-derive the same shuffle from an activity id.
+    public init(stableSeed key: String) {
+        var h: UInt64 = 0xcbf2_9ce4_8422_2325
+        for b in key.utf8 { h = (h ^ UInt64(b)) &* 0x0000_0100_0000_01B3 }
+        self.init(seed: h)
+    }
     public mutating func next() -> UInt64 {
         state &+= 0x9E37_79B9_7F4A_7C15
         var z = state
@@ -128,14 +135,15 @@ public struct SeededGenerator: RandomNumberGenerator, Sendable {
 
 /// Builds the right engine for a curriculum activity.
 public enum ExerciseSessionFactory {
-    public static func make(for activity: Activity) throws -> any ExerciseSession {
-        do { return try make(type: activity.type, payload: activity.payload, conceptIds: activity.conceptIds) }
+    public static func make(for activity: Activity, timingMode: TimingTapEngine.AccessibilityMode = .standard) throws -> any ExerciseSession {
+        do { return try make(type: activity.type, payload: activity.payload, conceptIds: activity.conceptIds, timingMode: timingMode) }
         catch let e as ContentError { throw e }
         catch let e as ExerciseError { throw e }
         catch { throw ContentError.invalidPayload(activityId: activity.id, reason: "\(error)") }
     }
 
-    public static func make(type: ActivityType, payload: JSONValue, conceptIds: [ConceptID]) throws -> any ExerciseSession {
+    public static func make(type: ActivityType, payload: JSONValue, conceptIds: [ConceptID],
+                            timingMode: TimingTapEngine.AccessibilityMode = .standard) throws -> any ExerciseSession {
         switch type {
         case .multipleChoice: return try MultipleChoiceEngine(payload: payload.decode(), conceptIds: conceptIds)
         case .binaryCall: return try BinaryCallEngine(payload: payload.decode(), conceptIds: conceptIds)
@@ -144,7 +152,7 @@ public enum ExerciseSessionFactory {
         case .visualId: return try VisualIDEngine(payload: payload.decode(), conceptIds: conceptIds)
         case .decisionScenario: return try DecisionScenarioEngine(payload: payload.decode(), conceptIds: conceptIds)
         case .talkTrack: return try TalkTrackEngine(payload: payload.decode(), conceptIds: conceptIds)
-        case .timingTap: return try TimingTapEngine(payload: payload.decode(), conceptIds: conceptIds)
+        case .timingTap: return try TimingTapEngine(payload: payload.decode(), conceptIds: conceptIds, mode: timingMode)
         case .sayThis: return try SayThisEngine(payload: payload.decode(), conceptIds: conceptIds)
         case .fillTheGap: return try FillTheGapEngine(payload: payload.decode(), conceptIds: conceptIds)
         case .listeningId: return try ListeningIDEngine(payload: payload.decode(), conceptIds: conceptIds)

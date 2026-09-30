@@ -1,0 +1,359 @@
+{
+  "contractVersion": "1.0.0",
+  "courseId": "pickleball",
+  "curriculumVersion": "0.1.0",
+  "locale": "en-US",
+  "concepts": [
+    {
+      "id": "kitchen",
+      "term": "The kitchen",
+      "definition": "The non-volley zone: the 7 feet on each side of the net where you can't hit the ball out of the air.",
+      "exampleLine": "Stay out of the kitchen!",
+      "tier": "foundations",
+      "aliases": [
+        "non-volley zone"
+      ]
+    },
+    {
+      "id": "two-bounce",
+      "term": "Two-bounce rule",
+      "definition": "The serve and the return must each bounce before anyone volleys.",
+      "exampleLine": "That's the two-bounce rule.",
+      "tier": "foundations"
+    },
+    {
+      "id": "volley",
+      "term": "Volley",
+      "definition": "Hitting the ball out of the air without letting it bounce.",
+      "exampleLine": "Nice volley at the net.",
+      "tier": "foundations"
+    },
+    {
+      "id": "dink",
+      "term": "Dink",
+      "definition": "A soft shot that just clears the net and lands in the kitchen.",
+      "exampleLine": "What a sneaky dink.",
+      "tier": "foundations"
+    },
+    {
+      "id": "fault",
+      "term": "Fault",
+      "definition": "A rule violation that ends the rally.",
+      "exampleLine": "That's a fault.",
+      "tier": "foundations"
+    }
+  ],
+  "reviewPolicy": {
+    "algorithm": "leitner-boxes-v1",
+    "intervalsDays": [
+      1,
+      3,
+      7,
+      14,
+      30,
+      60
+    ],
+    "maxItemsPerSession": 10,
+    "masteryThreshold": 0.8,
+    "decayAfterDays": 45,
+    "reviewActivityTypes": [
+      "multiple-choice",
+      "fill-the-gap",
+      "term-match",
+      "say-this",
+      "binary-call"
+    ]
+  },
+  "units": [
+    {
+      "id": "kitchen-rules",
+      "title": "Kitchen rules",
+      "summary": "The one rule everyone gets wrong.",
+      "layer": "foundations",
+      "order": 1,
+      "lessons": [
+        {
+          "id": "kitchen-01",
+          "title": "Volley or bounce?",
+          "objective": "You can say when a volley is legal.",
+          "estimatedMinutes": 3,
+          "conceptIds": [
+            "kitchen",
+            "two-bounce",
+            "volley"
+          ],
+          "activities": [
+            {
+              "id": "kitchen-01-r1",
+              "type": "binary-call",
+              "conceptIds": [
+                "two-bounce"
+              ],
+              "payload": {
+                "prompt": "The serve is coming to you.",
+                "scene": {
+                  "kind": "court-diagram",
+                  "diagramId": "pickleball-court",
+                  "markers": [
+                    {
+                      "role": "player",
+                      "x": 0.5,
+                      "y": 0.88
+                    },
+                    {
+                      "role": "ball",
+                      "x": 0.55,
+                      "y": 0.42
+                    },
+                    {
+                      "role": "opponent",
+                      "x": 0.3,
+                      "y": 0.14
+                    }
+                  ],
+                  "alt": "Pickleball court. You stand at the baseline receiving a serve."
+                },
+                "choices": [
+                  {
+                    "id": "volley",
+                    "label": "Volley it"
+                  },
+                  {
+                    "id": "bounce",
+                    "label": "Let it bounce"
+                  }
+                ],
+                "correctChoiceId": "bounce",
+                "explanation": {
+                  "correct": "Two-bounce rule: the serve and the return must bounce before anyone volleys.",
+                  "incorrect": "Fault. The serve has to bounce first. It's called the two-bounce rule."
+                },
+                "ruleTag": "Two-bounce rule"
+              }
+            },
+            {
+              "id": "kitchen-01-r2",
+              "type": "binary-call",
+              "conceptIds": [
+                "volley"
+              ],
+              "payload": {
+                "prompt": "Mid-rally. You're behind the kitchen line, ball at chest height.",
+                "scene": {
+                  "kind": "court-diagram",
+                  "diagramId": "pickleball-court",
+                  "markers": [
+                    {
+                      "role": "player",
+                      "x": 0.4,
+                      "y": 0.8
+                    },
+                    {
+                      "role": "ball",
+                      "x": 0.42,
+                      "y": 0.7
+                    },
+                    {
+                      "role": "opponent",
+                      "x": 0.3,
+                      "y": 0.14
+                    }
+                  ],
+                  "alt": "Pickleball court. You stand behind the kitchen line with the ball at chest height."
+                },
+                "choices": [
+                  {
+                    "id": "volley",
+                    "label": "Volley it"
+                  },
+                  {
+                    "id": "bounce",
+                    "label": "Let it bounce"
+                  }
+                ],
+                "correctChoiceId": "volley",
+                "explanation": {
+                  "correct": "Hit it out of the air. Outside the kitchen, volleys are fair game.",
+                  "incorrect": "You're outside the kitchen, so volley away. Letting it drop gave them the point."
+                },
+                "ruleTag": "Volley outside the kitchen"
+              }
+            },
+            {
+              "id": "kitchen-01-r3",
+              "type": "binary-call",
+              "conceptIds": [
+                "kitchen"
+              ],
+              "payload": {
+                "prompt": "You crept into the kitchen. The ball is floating right at you.",
+                "scene": {
+                  "kind": "court-diagram",
+                  "diagramId": "pickleball-court",
+                  "markers": [
+                    {
+                      "role": "player",
+                      "x": 0.62,
+                      "y": 0.6
+                    },
+                    {
+                      "role": "ball",
+                      "x": 0.6,
+                      "y": 0.5
+                    },
+                    {
+                      "role": "opponent",
+                      "x": 0.3,
+                      "y": 0.14
+                    }
+                  ],
+                  "alt": "Pickleball court. You stand inside the kitchen as the ball floats toward you."
+                },
+                "choices": [
+                  {
+                    "id": "volley",
+                    "label": "Volley it"
+                  },
+                  {
+                    "id": "bounce",
+                    "label": "Let it bounce"
+                  }
+                ],
+                "correctChoiceId": "bounce",
+                "explanation": {
+                  "correct": "Correct. No volleys inside the kitchen. You'd be surprised how many people get this wrong.",
+                  "incorrect": "Fault! You can't volley while standing in the kitchen. Classic rookie move."
+                },
+                "ruleTag": "Kitchen rule"
+              }
+            }
+          ]
+        },
+        {
+          "id": "court-01",
+          "title": "Know the court.",
+          "objective": "You can point out the kitchen and explain the dink.",
+          "estimatedMinutes": 3,
+          "conceptIds": [
+            "kitchen",
+            "dink",
+            "fault"
+          ],
+          "activities": [
+            {
+              "id": "court-01-hot",
+              "type": "hotspot-tap",
+              "conceptIds": [
+                "kitchen"
+              ],
+              "payload": {
+                "prompt": "Tap the kitchen on your side.",
+                "diagram": {
+                  "diagramId": "pickleball-court",
+                  "aspectRatio": 0.62,
+                  "alt": "Overhead pickleball court with a net across the middle."
+                },
+                "hotspots": [
+                  {
+                    "id": "kitchen",
+                    "label": "Kitchen",
+                    "shape": {
+                      "kind": "rect",
+                      "x": 0.0,
+                      "y": 0.5,
+                      "w": 1.0,
+                      "h": 0.2
+                    }
+                  },
+                  {
+                    "id": "baseline",
+                    "label": "Baseline zone",
+                    "shape": {
+                      "kind": "rect",
+                      "x": 0.0,
+                      "y": 0.72,
+                      "w": 1.0,
+                      "h": 0.28
+                    }
+                  }
+                ],
+                "correctHotspotIds": [
+                  "kitchen"
+                ],
+                "explanation": {
+                  "correct": "The kitchen is the strip right next to the net.",
+                  "incorrect": "The kitchen is the seven-foot strip beside the net."
+                }
+              }
+            },
+            {
+              "id": "court-01-gap",
+              "type": "fill-the-gap",
+              "conceptIds": [
+                "dink"
+              ],
+              "payload": {
+                "prompt": "Complete the sentence.",
+                "template": "A {{shot}} is a soft shot that lands in the {{zone}}.",
+                "gaps": [
+                  {
+                    "id": "shot",
+                    "options": [
+                      "dink",
+                      "smash"
+                    ],
+                    "correct": "dink"
+                  },
+                  {
+                    "id": "zone",
+                    "options": [
+                      "kitchen",
+                      "baseline"
+                    ],
+                    "correct": "kitchen"
+                  }
+                ],
+                "explanation": {
+                  "correct": "Dinks are patient, soft shots into the kitchen.",
+                  "incorrect": "A dink is a soft shot that drops into the kitchen.",
+                  "sayThisLine": "What a sneaky dink."
+                }
+              }
+            },
+            {
+              "id": "court-01-mc",
+              "type": "multiple-choice",
+              "conceptIds": [
+                "fault"
+              ],
+              "payload": {
+                "prompt": "Which of these is a fault?",
+                "options": [
+                  {
+                    "id": "a",
+                    "text": "Volleying while standing in the kitchen"
+                  },
+                  {
+                    "id": "b",
+                    "text": "Volleying from the baseline"
+                  },
+                  {
+                    "id": "c",
+                    "text": "Letting the serve bounce"
+                  }
+                ],
+                "correctOptionIds": [
+                  "a"
+                ],
+                "explanation": {
+                  "correct": "You can't volley from inside the kitchen.",
+                  "incorrect": "Standing in the kitchen and volleying is a fault."
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+{
+  "contractVersion": "1.0.0",
+  "courseId": "nascar",
+  "curriculumVersion": "0.1.0",
+  "locale": "en-US",
+  "concepts": [
+    {
+      "id": "pit-stop",
+      "term": "Pit stop",
+      "definition": "A quick trip off the track where a crew changes tires and adds fuel, usually in about 12 seconds.",
+      "exampleLine": "That pit stop cost him three spots.",
+      "tier": "foundations"
+    },
+    {
+      "id": "draft",
+      "term": "Drafting",
+      "definition": "Following closely behind another car so it punches a hole in the air and you both go faster.",
+      "exampleLine": "He's pulling a huge draft down the back straight.",
+      "tier": "foundations",
+      "aliases": [
+        "slipstream"
+      ]
+    },
+    {
+      "id": "caution",
+      "term": "Caution flag",
+      "definition": "A yellow flag: a crash or debris slows the field behind the pace car and bunches everyone up.",
+      "exampleLine": "That caution completely reset the race.",
+      "tier": "foundations"
+    },
+    {
+      "id": "green-flag",
+      "term": "Green flag",
+      "definition": "The signal that racing is on, at the start or after a caution.",
+      "exampleLine": "Green flag, and they're off.",
+      "tier": "foundations"
+    },
+    {
+      "id": "pole",
+      "term": "Pole position",
+      "definition": "The first starting spot, earned by the fastest qualifying lap.",
+      "exampleLine": "He's starting on the pole tomorrow.",
+      "tier": "foundations"
+    },
+    {
+      "id": "lap-down",
+      "term": "Lap down",
+      "definition": "A car so far behind the leader that the leader has passed it one full lap ago.",
+      "exampleLine": "They're a lap down after that stop.",
+      "tier": "intermediate"
+    }
+  ],
+  "reviewPolicy": {
+    "algorithm": "leitner-boxes-v1",
+    "intervalsDays": [
+      1,
+      3,
+      7,
+      14,
+      30,
+      60
+    ],
+    "maxItemsPerSession": 10,
+    "masteryThreshold": 0.8,
+    "decayAfterDays": 45,
+    "reviewActivityTypes": [
+      "multiple-choice",
+      "fill-the-gap",
+      "term-match",
+      "say-this",
+      "binary-call"
+    ]
+  },
+  "units": [
+    {
+      "id": "pit-lane",
+      "title": "Pit lane",
+      "summary": "Why races are won between the green flags.",
+      "layer": "foundations",
+      "order": 1,
+      "lessons": [
+        {
+          "id": "pit-stop-01",
+          "title": "Nail a 12-second pit stop.",
+          "objective": "You can explain why races are won in the pit lane.",
+          "estimatedMinutes": 3,
+          "conceptIds": [
+            "pit-stop",
+            "caution"
+          ],
+          "activities": [
+            {
+              "id": "pit-stop-01-timing",
+              "type": "timing-tap",
+              "conceptIds": [
+                "pit-stop"
+              ],
+              "payload": {
+                "prompt": "Time the tire change.",
+                "theme": {
+                  "label": "Pit stop",
+                  "resultUnit": "seconds"
+                },
+                "rounds": [
+                  {
+                    "zoneStartPct": 58,
+                    "zoneEndPct": 74,
+                    "sweepSeconds": 1.6
+                  },
+                  {
+                    "zoneStartPct": 64,
+                    "zoneEndPct": 76,
+                    "sweepSeconds": 1.3
+                  },
+                  {
+                    "zoneStartPct": 70,
+                    "zoneEndPct": 79,
+                    "sweepSeconds": 1.1
+                  }
+                ],
+                "explanation": {
+                  "correct": "Pit crews win races by shaving tenths. Precision beats speed.",
+                  "incorrect": "A slow stop can cost track position, which is hard to win back.",
+                  "sayThisLine": "That pit stop cost him three spots."
+                }
+              }
+            },
+            {
+              "id": "pit-stop-01-mc",
+              "type": "multiple-choice",
+              "conceptIds": [
+                "pit-stop"
+              ],
+              "payload": {
+                "prompt": "About how long is a good pit stop?",
+                "options": [
+                  {
+                    "id": "a",
+                    "text": "Around 12 seconds"
+                  },
+                  {
+                    "id": "b",
+                    "text": "Around 2 minutes"
+                  },
+                  {
+                    "id": "c",
+                    "text": "Around 45 seconds"
+                  }
+                ],
+                "correctOptionIds": [
+                  "a"
+                ],
+                "explanation": {
+                  "correct": "Twelve seconds for four tires and fuel. Tenths matter.",
+                  "incorrect": "A crew changes four tires and adds fuel in about 12 seconds.",
+                  "sayThisLine": "That was a slow stop."
+                }
+              }
+            },
+            {
+              "id": "pit-stop-01-match",
+              "type": "term-match",
+              "conceptIds": [
+                "draft",
+                "caution",
+                "green-flag",
+                "pole"
+              ],
+              "payload": {
+                "prompt": "Match the term to what it means.",
+                "pairs": [
+                  {
+                    "id": "draft",
+                    "term": "Draft",
+                    "definition": "Following close to go faster"
+                  },
+                  {
+                    "id": "caution",
+                    "term": "Caution",
+                    "definition": "Yellow flag; the field bunches up"
+                  },
+                  {
+                    "id": "green",
+                    "term": "Green flag",
+                    "definition": "Racing is back on"
+                  }
+                ],
+                "distractorDefinitions": [
+                  "The winner's celebration"
+                ],
+                "explanation": {
+                  "summary": "Flags tell you what the race is doing; the draft is how cars pass.",
+                  "sayThisLine": "That caution reset the whole race."
+                }
+              },
+              "reviewEligible": true
+            }
+          ]
+        },
+        {
+          "id": "flags-01",
+          "title": "Read the pit wall.",
+          "objective": "You can follow why a caution changes a race.",
+          "estimatedMinutes": 3,
+          "conceptIds": [
+            "caution",
+            "lap-down"
+          ],
+          "activities": [
+            {
+              "id": "flags-01-est",
+              "type": "estimate-slider",
+              "conceptIds": [
+                "pit-stop"
+              ],
+              "payload": {
+                "prompt": "How many crew go over the wall?",
+                "unit": "people",
+                "min": 3,
+                "max": 9,
+                "step": 1,
+                "correctValue": 5,
+                "tolerance": {
+                  "full": 0,
+                  "partial": 1
+                },
+                "explanation": {
+                  "correct": "Five: two tire changers, two tire carriers and a jack man, plus a fueler in some setups.",
+                  "incorrect": "Five crew members are allowed over the wall."
+                }
+              }
+            },
+            {
+              "id": "flags-01-gap",
+              "type": "fill-the-gap",
+              "conceptIds": [
+                "caution"
+              ],
+              "payload": {
+                "prompt": "Complete the sentence.",
+                "template": "A {{flag}} flag bunches the field behind the {{car}} car.",
+                "gaps": [
+                  {
+                    "id": "flag",
+                    "options": [
+                      "yellow",
+                      "green"
+                    ],
+                    "correct": "yellow"
+                  },
+                  {
+                    "id": "car",
+                    "options": [
+                      "pace",
+                      "pit"
+                    ],
+                    "correct": "pace"
+                  }
+                ],
+                "explanation": {
+                  "correct": "Yellow means slow down; the pace car leads the field.",
+                  "incorrect": "It's a yellow flag, and the pace car leads everyone around."
+                }
+              }
+            },
+            {
+              "id": "flags-01-mc",
+              "type": "multiple-choice",
+              "conceptIds": [
+                "lap-down"
+              ],
+              "payload": {
+                "prompt": "What does 'a lap down' mean?",
+                "options": [
+                  {
+                    "id": "a",
+                    "text": "The leader passed you a full lap ago"
+                  },
+                  {
+                    "id": "b",
+                    "text": "You skipped a lap"
+                  },
+                  {
+                    "id": "c",
+                    "text": "You are in the lead"
+                  }
+                ],
+                "correctOptionIds": [
+                  "a"
+                ],
+                "explanation": {
+                  "correct": "You are one full lap behind the leader.",
+                  "incorrect": "Being a lap down means the leader has lapped you."
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

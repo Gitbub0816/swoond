@@ -1,0 +1,389 @@
+{
+  "contractVersion": "1.0.0",
+  "courseId": "hockey",
+  "curriculumVersion": "0.1.0",
+  "locale": "en-US",
+  "concepts": [
+    {
+      "id": "power-play",
+      "term": "Power play",
+      "definition": "One team has more skaters because the other took a penalty.",
+      "exampleLine": "They have to score on this power play.",
+      "tier": "foundations"
+    },
+    {
+      "id": "icing",
+      "term": "Icing",
+      "definition": "Shooting the puck from your half past the far goal line. Play stops.",
+      "exampleLine": "That's icing. Faceoff back in their zone.",
+      "tier": "foundations"
+    },
+    {
+      "id": "hat-trick",
+      "term": "Hat trick",
+      "definition": "Three goals by one player in a game. Fans throw hats on the ice.",
+      "exampleLine": "He just got a hat trick!",
+      "tier": "foundations"
+    },
+    {
+      "id": "offside",
+      "term": "Offside",
+      "definition": "An attacker entering the zone before the puck does.",
+      "exampleLine": "Was that offside? It looked close.",
+      "tier": "foundations"
+    },
+    {
+      "id": "penalty-kill",
+      "term": "Penalty kill",
+      "definition": "The team a skater down defends until the penalty ends.",
+      "exampleLine": "If they kill this penalty, they're back in it.",
+      "tier": "foundations"
+    },
+    {
+      "id": "faceoff",
+      "term": "Faceoff",
+      "definition": "The puck is dropped between two players to restart play.",
+      "exampleLine": "They won the faceoff clean.",
+      "tier": "foundations"
+    }
+  ],
+  "reviewPolicy": {
+    "algorithm": "leitner-boxes-v1",
+    "intervalsDays": [
+      1,
+      3,
+      7,
+      14,
+      30,
+      60
+    ],
+    "maxItemsPerSession": 10,
+    "masteryThreshold": 0.8,
+    "decayAfterDays": 45,
+    "reviewActivityTypes": [
+      "multiple-choice",
+      "fill-the-gap",
+      "term-match",
+      "say-this",
+      "binary-call"
+    ]
+  },
+  "talkTracks": [
+    {
+      "id": "hockey-night",
+      "title": "Hockey night",
+      "unlockedByUnitId": "rink-basics",
+      "conceptIds": [
+        "power-play"
+      ],
+      "payload": {
+        "title": "Hockey night",
+        "setting": "She texts you during the game.",
+        "startingSmooth": 50,
+        "exchanges": [
+          {
+            "theirMessage": "Oilers are up 2\u20131. That power play in the 2nd was insane",
+            "replies": [
+              {
+                "id": "a",
+                "text": "Who are the Oilers?",
+                "smoothDelta": -20,
+                "theirResponse": "lol they're only her favorite team",
+                "coachNote": "Oof. She said their name like you'd know it. Recover with a question."
+              },
+              {
+                "id": "b",
+                "text": "Wait, what makes a power play a big deal?",
+                "smoothDelta": 10,
+                "theirResponse": "ok I love that you asked. other team got a penalty so we had an extra skater",
+                "coachNote": "Honest and curious. Genuinely works."
+              },
+              {
+                "id": "c",
+                "text": "Being a man up for two minutes and scoring? Huge.",
+                "smoothDelta": 30,
+                "theirResponse": "wait you watch hockey??",
+                "coachNote": "Smooth. You just explained a power play back to her."
+              }
+            ]
+          },
+          {
+            "theirMessage": "if they win tonight I'm going to be unbearable tomorrow",
+            "replies": [
+              {
+                "id": "a",
+                "text": "Want to watch the next one together?",
+                "smoothDelta": 30,
+                "theirResponse": "...yes?? Thursday",
+                "coachNote": "That's the whole point of this app. Well played."
+              },
+              {
+                "id": "b",
+                "text": "Cool",
+                "smoothDelta": -10,
+                "theirResponse": "wow ok",
+                "coachNote": "One word. Brutal."
+              },
+              {
+                "id": "c",
+                "text": "Is it a series? Like how many games?",
+                "smoothDelta": 15,
+                "theirResponse": "best of 7! we're up 2\u20131 in the series",
+                "coachNote": "Nice. Playoffs are best-of-7. Keep going."
+              }
+            ]
+          }
+        ],
+        "closingNote": "A power play is a two-minute man advantage after a penalty. Ask about it and you're in the conversation."
+      }
+    }
+  ],
+  "units": [
+    {
+      "id": "rink-basics",
+      "title": "Rink basics",
+      "summary": "Power plays, icing and why the crowd groans.",
+      "layer": "foundations",
+      "order": 1,
+      "lessons": [
+        {
+          "id": "rink-01",
+          "title": "Know your penalties.",
+          "objective": "You can explain a power play and icing.",
+          "estimatedMinutes": 3,
+          "conceptIds": [
+            "power-play",
+            "icing",
+            "penalty-kill"
+          ],
+          "activities": [
+            {
+              "id": "rink-01-match",
+              "type": "term-match",
+              "conceptIds": [
+                "power-play",
+                "icing",
+                "hat-trick"
+              ],
+              "payload": {
+                "prompt": "Match the term to what it means.",
+                "pairs": [
+                  {
+                    "id": "pp",
+                    "term": "Power play",
+                    "definition": "One team has an extra skater"
+                  },
+                  {
+                    "id": "ic",
+                    "term": "Icing",
+                    "definition": "Puck shot past the far goal line; play stops"
+                  },
+                  {
+                    "id": "ht",
+                    "term": "Hat trick",
+                    "definition": "Three goals by one player"
+                  }
+                ],
+                "distractorDefinitions": [
+                  "A trick shot behind the net"
+                ],
+                "explanation": {
+                  "summary": "Three terms you'll hear every game.",
+                  "sayThisLine": "That power play goal changed the game."
+                }
+              }
+            },
+            {
+              "id": "rink-01-say",
+              "type": "say-this",
+              "conceptIds": [
+                "power-play",
+                "penalty-kill"
+              ],
+              "payload": {
+                "statement": {
+                  "speaker": "Maya",
+                  "text": "If we kill this penalty, we're right back in it."
+                },
+                "question": "What is she talking about?",
+                "options": [
+                  {
+                    "id": "a",
+                    "text": "Her team defending a man down",
+                    "isCorrect": true
+                  },
+                  {
+                    "id": "b",
+                    "text": "Someone getting hurt",
+                    "isCorrect": false
+                  },
+                  {
+                    "id": "c",
+                    "text": "Surviving the two-minute penalty",
+                    "isCorrect": true
+                  },
+                  {
+                    "id": "d",
+                    "text": "Ending the game early",
+                    "isCorrect": false
+                  }
+                ],
+                "translation": "Her team has a player in the penalty box, and if they defend well until it ends, the game stays close.",
+                "followUps": [
+                  {
+                    "line": "Their penalty kill has been solid all year.",
+                    "why": "Shows you know the phrase without pretending to be an expert."
+                  }
+                ]
+              }
+            },
+            {
+              "id": "rink-01-seq",
+              "type": "sequence-order",
+              "conceptIds": [
+                "faceoff",
+                "icing"
+              ],
+              "payload": {
+                "prompt": "Put the icing sequence in order.",
+                "items": [
+                  {
+                    "id": "shoot",
+                    "text": "A player shoots the puck from their own half"
+                  },
+                  {
+                    "id": "cross",
+                    "text": "It crosses the far goal line untouched"
+                  },
+                  {
+                    "id": "whistle",
+                    "text": "The whistle blows and play stops"
+                  },
+                  {
+                    "id": "face",
+                    "text": "Faceoff back in the shooting team's zone",
+                    "why": "The team that iced it doesn't get to change players."
+                  }
+                ],
+                "explanation": {
+                  "correct": "Shoot, cross, whistle, faceoff.",
+                  "incorrect": "It goes shoot, cross the far line, whistle, then a faceoff back in their zone."
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "rink-02",
+          "title": "Talk it out.",
+          "objective": "You can answer a text about the game.",
+          "estimatedMinutes": 3,
+          "conceptIds": [
+            "power-play"
+          ],
+          "activities": [
+            {
+              "id": "rink-02-talk",
+              "type": "talk-track",
+              "conceptIds": [
+                "power-play"
+              ],
+              "payload": {
+                "title": "Hockey night",
+                "setting": "She texts you during the game.",
+                "startingSmooth": 50,
+                "exchanges": [
+                  {
+                    "theirMessage": "Oilers are up 2\u20131. That power play in the 2nd was insane",
+                    "replies": [
+                      {
+                        "id": "a",
+                        "text": "Who are the Oilers?",
+                        "smoothDelta": -20,
+                        "theirResponse": "lol they're only her favorite team",
+                        "coachNote": "Oof. She said their name like you'd know it. Recover with a question."
+                      },
+                      {
+                        "id": "b",
+                        "text": "Wait, what makes a power play a big deal?",
+                        "smoothDelta": 10,
+                        "theirResponse": "ok I love that you asked. other team got a penalty so we had an extra skater",
+                        "coachNote": "Honest and curious. Genuinely works."
+                      },
+                      {
+                        "id": "c",
+                        "text": "Being a man up for two minutes and scoring? Huge.",
+                        "smoothDelta": 30,
+                        "theirResponse": "wait you watch hockey??",
+                        "coachNote": "Smooth. You just explained a power play back to her."
+                      }
+                    ]
+                  },
+                  {
+                    "theirMessage": "if they win tonight I'm going to be unbearable tomorrow",
+                    "replies": [
+                      {
+                        "id": "a",
+                        "text": "Want to watch the next one together?",
+                        "smoothDelta": 30,
+                        "theirResponse": "...yes?? Thursday",
+                        "coachNote": "That's the whole point of this app. Well played."
+                      },
+                      {
+                        "id": "b",
+                        "text": "Cool",
+                        "smoothDelta": -10,
+                        "theirResponse": "wow ok",
+                        "coachNote": "One word. Brutal."
+                      },
+                      {
+                        "id": "c",
+                        "text": "Is it a series? Like how many games?",
+                        "smoothDelta": 15,
+                        "theirResponse": "best of 7! we're up 2\u20131 in the series",
+                        "coachNote": "Nice. Playoffs are best-of-7. Keep going."
+                      }
+                    ]
+                  }
+                ],
+                "closingNote": "A power play is a two-minute man advantage after a penalty. Ask about it and you're in the conversation."
+              }
+            },
+            {
+              "id": "rink-02-mc",
+              "type": "multiple-choice",
+              "conceptIds": [
+                "offside"
+              ],
+              "payload": {
+                "prompt": "Which is offside?",
+                "options": [
+                  {
+                    "id": "a",
+                    "text": "An attacker enters the zone before the puck"
+                  },
+                  {
+                    "id": "b",
+                    "text": "The goalie leaves the crease"
+                  },
+                  {
+                    "id": "c",
+                    "text": "Two players fight"
+                  }
+                ],
+                "correctOptionIds": [
+                  "a"
+                ],
+                "explanation": {
+                  "correct": "Attackers must let the puck lead them in.",
+                  "incorrect": "Offside is about entering the zone ahead of the puck.",
+                  "sayThisLine": "Was that offside? It looked close."
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

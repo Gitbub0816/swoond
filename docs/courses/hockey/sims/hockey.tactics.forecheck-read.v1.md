@@ -18,6 +18,7 @@
 
 ## 3. Learning objective(s) & concepts taught
 - **Learner-facing objective:** You can look at how a team is forechecking and choose the safest way to break the puck out of your own end.
+
 | conceptId | term | after the sim the learner can... |
 |---|---|---|
 | forecheck | Forecheck | identify 1-2-2, 2-1-2 and left-wing-lock shapes and where they leave space |

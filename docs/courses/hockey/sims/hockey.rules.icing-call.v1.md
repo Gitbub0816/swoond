@@ -18,6 +18,7 @@
 
 ## 3. Learning objective(s) & concepts taught
 - **Learner-facing objective:** You can watch a puck fly down the ice and a footrace start, and say whether the linesman blows it dead for icing or waves it off.
+
 | conceptId | term | after the sim the learner can... |
 |---|---|---|
 | icing | Icing | recognize when a shot from behind the red line across the far goal line is icing and when an exception applies |

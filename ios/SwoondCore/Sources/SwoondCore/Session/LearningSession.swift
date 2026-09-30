@@ -83,6 +83,7 @@ public actor LearningSession {
     private let engine: ProgressEngine
     private let editorial: (any EditorialProvider)?
     private let locale: String
+    private let timingMode: TimingTapEngine.AccessibilityMode
 
     private var curriculumCache: Curriculum?
     private var queue: [Item] = []
@@ -100,13 +101,15 @@ public actor LearningSession {
     private var finishedCalled = false
 
     public init(person: Person, interest: PersonInterest, content: any ContentRepository, engine: ProgressEngine,
-                editorial: (any EditorialProvider)? = nil, locale: String = "en-US") {
+                editorial: (any EditorialProvider)? = nil, locale: String = "en-US",
+                timingMode: TimingTapEngine.AccessibilityMode = .standard) {
         self.person = person
         self.interest = interest
         self.content = content
         self.engine = engine
         self.editorial = editorial
         self.locale = locale
+        self.timingMode = timingMode
     }
 
     public func curriculum() async throws -> Curriculum {
@@ -303,7 +306,7 @@ public actor LearningSession {
         if item.activity.type == .unitySim {
             kind = .simulation(try item.activity.simulationPayload())
         } else {
-            if current == nil { current = try ExerciseSessionFactory.make(for: item.activity) }
+            if current == nil { current = try ExerciseSessionFactory.make(for: item.activity, timingMode: timingMode) }
             kind = .native(current!)
         }
         return ActivityPresentation(activity: item.activity, position: index + 1, total: queue.count, isReview: item.isReview, kind: kind)

@@ -18,6 +18,7 @@
 
 ## 3. Learning objective(s) & concepts taught
 - **Learner-facing objective:** You can see when it is safe to change lines, when it is not allowed, and why coaches get frustrated with a bad change.
+
 | conceptId | term | after the sim the learner can... |
 |---|---|---|
 | line-change | Line change | pick a safe moment to change, given the puck, the bench distance and tired legs |

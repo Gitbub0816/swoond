@@ -18,6 +18,7 @@
 
 ## 3. Learning objective(s) & concepts taught
 - **Learner-facing objective:** You can see who is open in the defensive zone and say which defender should have picked him up, in man coverage or in a zone.
+
 | conceptId | term | after the sim the learner can... |
 |---|---|---|
 | dzone-coverage | Defensive-zone coverage | apply man, zone and collapse coverage to find who owns an open attacker |

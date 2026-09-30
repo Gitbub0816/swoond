@@ -18,6 +18,7 @@
 
 ## 3. Learning objective(s) & concepts taught
 - **Learner-facing objective:** You can look at a power play setup against a penalty kill shape, see where the seam is, and pick the right pass.
+
 | conceptId | term | after the sim the learner can... |
 |---|---|---|
 | pp-formations | Power play formations | recognize 1-3-1 and umbrella and know what job each spot has |
