@@ -577,30 +577,66 @@
             "type": "decision-scenario",
             "conceptIds": ["doubles-vs-singles"],
             "payload": {
-              "title": "When to play singles vs doubles",
-              "setting": "You're at the court and need to pick a format.",
-              "scenario": "You've been playing for a year and you're feeling pretty fit. Your friends ask if you want to play a friendly game, but they have only three people available: you, plus two others. You could play doubles (waiting for a fourth), or you could play singles against one of them.",
-              "dilemma": "Should you suggest doubles or singles?",
-              "options": [
-                {
-                  "id": "doubles",
-                  "text": "Wait for a fourth player and play doubles",
-                  "outcome": "Smart choice. Doubles is where pickleball shines. You'll have fun, stay fresh, and your friends will enjoy it more.",
-                  "smooth": 30
+                "prompt": "Three players are here. Singles or doubles?",
+                "situation": {
+                  "narrative": "Friendly open play. You feel fit and want a good game.",
+                  "facts": [
+                    {
+                      "label": "Players here",
+                      "value": "You plus two friends"
+                    },
+                    {
+                      "label": "Fourth player",
+                      "value": "Likely within 10 minutes"
+                    },
+                    {
+                      "label": "Your fitness",
+                      "value": "Feeling strong"
+                    },
+                    {
+                      "label": "Court",
+                      "value": "Open, no one waiting"
+                    }
+                  ]
                 },
-                {
-                  "id": "singles",
-                  "text": "Play singles now; it's more competitive",
-                  "outcome": "You're good, but singles is taxing and not the spirit of recreational pickleball. Doubles is the social, sustainable format.",
-                  "smooth": -10
-                }
-              ],
-              "correctOptionId": "doubles",
-              "explanation": {
-                "summary": "Doubles is the heart of pickleball for good reasons: it's fun, social, less tiring, and more forgiving of mistakes.",
-                "sayThisLine": "When you have a choice, go doubles. It's what pickleball is about."
+                "options": [
+                  {
+                    "id": "wait-doubles",
+                    "label": "Wait for the fourth and play doubles",
+                    "verdict": "best",
+                    "consequence": "Four players are on court soon, everyone gets a game, and it stays social and less tiring.",
+                    "considerations": [
+                      "Doubles is the standard recreational format",
+                      "Everyone plays, nobody sits out",
+                      "Shared court is less tiring and more forgiving"
+                    ]
+                  },
+                  {
+                    "id": "singles-rotate",
+                    "label": "Play singles now and rotate in the third player",
+                    "verdict": "acceptable",
+                    "consequence": "You get a game right away, but one friend waits and singles covers far more court.",
+                    "considerations": [
+                      "Fine when only two can play",
+                      "Singles is more tiring",
+                      "Someone sits out while you wait"
+                    ]
+                  },
+                  {
+                    "id": "singles-insist",
+                    "label": "Insist on competitive singles against one friend",
+                    "verdict": "poor",
+                    "consequence": "The third friend is left out and the game turns into a tiring workout, not a friendly game.",
+                    "considerations": [
+                      "Ignores what the group wants",
+                      "Leaves a player idle",
+                      "Singles suits two players who both choose it"
+                    ]
+                  }
+                ],
+                "expertNote": "Doubles is the heart of pickleball: social, less tiring, and forgiving. Choose singles when only two players are there, or both want the extra court coverage.",
+                "sayThisLine": "Let's wait for a fourth and play doubles."
               }
-            }
           },
           {
             "id": "court-06-mc-2",

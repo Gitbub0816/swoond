@@ -565,9 +565,9 @@
             "payload": {
               "prompt": "Match each pass rush outcome to its definition.",
               "pairs": [
-                {"id": "sack", "term": "Sack", "definition": "A defender tackles the quarterback behind the line of scrimmage for a loss of yards. Big negative play."},
-                {"id": "pressure", "term": "Pressure", "definition": "A defender forces the quarterback to move or throw quickly, even if there is no tackle. Hard to measure but huge for defense."},
-                {"id": "hurry", "term": "Hurry", "definition": "A defender gets close enough to rush the quarterback's throw, making him uncomfortable and often inaccurate."}
+                {"id": "sack", "term": "Sack", "definition": "Tackled the QB behind the line for a loss of yards. Big negative play."},
+                {"id": "pressure", "term": "Pressure", "definition": "Forces QB to move or throw early, even without a sack. Huge for defense."},
+                {"id": "hurry", "term": "Hurry", "definition": "Gets close to the QB, making his throw rushed and often inaccurate."}
               ],
               "explanation": {
                 "summary": "A sack is the best outcome. Pressure and hurry are real wins even without a sack because they change the play.",
@@ -600,7 +600,7 @@
             "type": "binary-call",
             "conceptIds": ["stunt", "pass-rush"],
             "payload": {
-              "prompt": "A stunt is when two pass rushers swap lanes to confuse the blockers. This can free up a rusher because blockers miss the switch. True or false?",
+              "prompt": "A stunt swaps lanes to confuse blockers and free up a rusher. True or false?",
               "scene": {"kind": "none", "alt": "Two defensive linemen crossing lanes just after the snap, with an offensive lineman left confused about who to block."},
               "choices": [
                 {"id": "true", "label": "True"},
@@ -637,19 +637,20 @@
             "xp": 10
           },
           {
-            "id": "pass-rush-05-ds-rusher-match",
-            "type": "decision-scenario",
+            "id": "pass-rush-05-mc-help",
+            "type": "multiple-choice",
             "conceptIds": ["edge-rusher", "pass-rush"],
             "payload": {
-              "prompt": "An offensive tackle is facing a defensive end who is a Pro Bowl edge rusher. The tackle cannot beat him one-on-one. What can the offense do?",
-              "choices": [
-                {"id": "a", "text": "Ask the tackle to block better; he is just not trying hard enough", "isCorrect": false},
-                {"id": "b", "text": "Help with a second blocker (chip or chip-and-release) or slide the protection toward that rusher", "isCorrect": true},
-                {"id": "c", "text": "Accept the pressure and hope the quarterback escapes", "isCorrect": false}
+              "prompt": "Against an elite edge rusher, how can the offense help the tackle?",
+              "options": [
+                {"id": "a", "text": "Help with a blocker or slide protection"},
+                {"id": "b", "text": "Hope the tackle wins one-on-one"},
+                {"id": "c", "text": "Hope the quarterback escapes"}
               ],
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Yes. Against elite edge rushers, you help with a running back, tight end, or slide protection. One-on-one is a losing battle.",
-                "incorrect": "An elite pass rusher beats a lot of tackles. The offense has to gameplan to account for him."
+                "correct": "Elite edge rushers win matchups. Chip with a back, tight end, or slide protection to give help. That is how offense accounts for them.",
+                "incorrect": "One-on-one against an elite rusher is a losing battle. You need a second blocker or scheme help."
               }
             },
             "xp": 10
@@ -719,19 +720,20 @@
             "xp": 10
           },
           {
-            "id": "blitz-06-ds-risk-reward",
-            "type": "decision-scenario",
+            "id": "blitz-06-mc-risk",
+            "type": "multiple-choice",
             "conceptIds": ["blitz", "cover-0", "cover-1"],
             "payload": {
-              "prompt": "The defense is blitzing a linebacker on a play where the offense has a tight end running a seam route and a slot receiver on a quick out. The quarterback has time to pick a target. Why can this be risky for the defense?",
-              "choices": [
-                {"id": "a", "text": "The defense has fewer defenders in coverage, so the tight end might find grass in the seam, or the slot is wide open underneath", "isCorrect": true},
-                {"id": "b", "text": "The offense will call a penalty on the defense for too many blitzers", "isCorrect": false},
-                {"id": "c", "text": "The quarterback will take a sack because the blitz always works", "isCorrect": false}
+              "prompt": "When blitzing, what is the main risk if the QB has time?",
+              "options": [
+                {"id": "a", "text": "Fewer defenders in coverage, receivers get open"},
+                {"id": "b", "text": "The blitz always fails"},
+                {"id": "c", "text": "Offense calls a penalty"}
               ],
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "That is the blitz gamble. You get more pass rushers but you lose coverage. If the quarterback has time, you are in trouble.",
-                "incorrect": "Blitzing means fewer defensive backs in coverage. That is the downside risk."
+                "correct": "That is the blitz gamble. More pass rushers means fewer in coverage. If QB has time, receivers are open.",
+                "incorrect": "Blitzing sacrifices coverage. More rushing means fewer defending, so open windows if the pressure fails."
               }
             },
             "xp": 10
@@ -917,19 +919,20 @@
             "xp": 10
           },
           {
-            "id": "nickel-07-ds-press",
-            "type": "decision-scenario",
+            "id": "nickel-07-mc-press",
+            "type": "multiple-choice",
             "conceptIds": ["press-coverage", "nickel"],
             "payload": {
-              "prompt": "It is third and long and the offense has receivers running deep routes. The nickel corner plays press coverage (jamming the receiver at the line). What is the risk?",
-              "choices": [
-                {"id": "a", "text": "The receiver will run a shorter route because he is jammed", "isCorrect": false},
-                {"id": "b", "text": "If the receiver beats the jam and gets separation, the corner has no help over the top and it is a deep completion", "isCorrect": true},
-                {"id": "c", "text": "The receiver will be flagged for offensive pass interference", "isCorrect": false}
+              "prompt": "If a nickel corner plays press and the receiver beats the jam, what is the risk?",
+              "options": [
+                {"id": "a", "text": "The receiver runs a shorter route"},
+                {"id": "b", "text": "The receiver has separation with no help over the top; big play"},
+                {"id": "c", "text": "Offensive pass interference is called"}
               ],
+              "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "That is the press coverage risk. You gamble that you can cover the jam. If the receiver wins, it is a big play.",
-                "incorrect": "Press is aggressive. You are betting on your corner's skill. If he loses, the receiver is gone."
+                "correct": "Press coverage is aggressive. If the corner loses the jam, he has no safety help. One-on-one and beaten is a touchdown.",
+                "incorrect": "Press is a gamble. You win the jam or the receiver gets open deep with no help."
               }
             },
             "xp": 10
@@ -1005,7 +1008,7 @@
             "type": "binary-call",
             "conceptIds": ["cover-0"],
             "payload": {
-              "prompt": "Cover 0 is almost always paired with an all-out blitz because without the safety help, you need to get to the quarterback as fast as possible. True or false?",
+              "prompt": "Cover 0 usually pairs with a blitz to get sacks fast. True or false?",
               "scene": {"kind": "none", "alt": "An all-out defensive blitz with all 11 defenders rushing or in man coverage with no help."},
               "choices": [
                 {"id": "true", "label": "True"},

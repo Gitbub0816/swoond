@@ -1,0 +1,18 @@
+# Notes for orchestrator (tennis)
+
+1. **CATALOG.md**: set `tennis` row to Sims `3`, Lessons `119 (16 units)`, status `cds-draft` (manifest says `cds-draft`, wave 2). Update the boundary note to say tennis and pickleball are adjacent, cross-link only.
+2. **Cross-links (P-16 resolved as authored here):** tennis manifest `relatedCourses` lists `pickleball` (`adjacent`); lessons `court-01` and `rec-07` compare the two sports; pickleball's manifest already lists `tennis`. Not done because it is outside the tennis folder: reciprocal wording in `docs/courses/pickleball/CDS.md` (its lesson `court-01` could point back to tennis `rec-07`) and a mention in `OPEN_QUESTIONS.md` P-16 that it is now answered. Please update or tell me to.
+3. **Curriculum JSON not authored** (`curriculum/course.json` is the manifest path). CDS section 11 lists 16 units, 119 lessons and 224 concept ids ready to convert. Unit count (16) exceeds the 8-14 guidance (precedent: P-04).
+4. **Game Kit additions requested (Astra)**, shared by all three sims: tennis `Court` module + `tennis_court` environment key (follows the pickleball Court pattern); `TennisServe` helper (`in|net|long|wide|wrong-box|let`, `ServeOutcomeOracle`); sim-local `RallyMargin` and `RecoveryOracle` (golden-generated fixtures). Reuse GK-7, GK-10, GK-13, GK-15, GK-19. Please add `tennis_court` to GAME_KIT section 5.3 registry keys and a "Tennis" line in section 2.
+5. **Exercises:** `listening-id` intentionally unused (reason in CDS section 12); 41 sample payloads validated with ajv (33 across 11 types, 8 talk tracks); 68 Playbook terms.
+6. **Licensing/data:** no licensed tennis data provider chosen (extend L-02/L-03 to tennis: Sportradar or Stats Perform class); Jeff Sackmann's datasets are CC BY-NC-SA, non-commercial; UTR needs a partner agreement (like DUPR, L-06).
+7. **Facts to re-verify before release (all searched 2026-09-30; single or secondary sources flagged):**
+   - 2026 Slam winners and finals opponents (AO Alcaraz d. Djokovic / Rybakina d. Sabalenka; RG Zverev d. Cobolli / Andreeva d. Chwalinska; Wimbledon Sinner d. Zverev / Noskova d. Muchova; US Open Zverev d. Shelton, 6-3, 7-6, 5-7, 6-2 / Rybakina d. Sabalenka). Summaries came from Wikipedia and a Yahoo results page.
+   - Rankings snapshot of 14 Sep 2026 (Sinner No. 1 with 11,500; Rybakina No. 1 with 9,901).
+   - **WTA Finals moved from Riyadh to Indian Wells (8-15 Nov 2026)**: single search snippet citing an "Iran War"; confirm before printing it anywhere. ATP Finals 15-22 Nov Turin; Davis Cup Finals Bologna 24-29 Nov; Laver Cup 2026 London 25-27 Sep, Europe 13-5.
+   - Wimbledon 2026 "first video review of umpire calls on select courts"; WTA 2026 rulebook requiring electronic line calling at 1000/500/250; wearables trial at 2026 Slams; Roland-Garros the only Slam with human line judges.
+   - 2027 calendar: AO from 17 Jan 2027; seven 12-day Masters; LA 2028 tennis 14-30 July with a 16-team mixed doubles.
+   - Rules figures used in lessons/sims: court 78 x 27/36 ft, net 3 ft centre / 3.5 ft posts, service line 21 ft, 25-second clock, tiebreak formats (10-point deciding tiebreak at all four Slams; Wimbledon joined in 2023), ITF ball and racquet limits, no limit on service lets. Check against the current ITF Rules of Tennis and the 2026 Grand Slam Rulebook.
+   - Origin wording (Wingfield 1874; first Wimbledon 1877).
+8. **Voice review:** anti-doping storylines are "process only" (CDS 16 #8); no jokes about specific real players beyond public facts (P-14 precedent).
+9. **Validator:** `node validate.mjs --course tennis --partial` passes (manifest and 3 sim specs). The curriculum-level checks (`unitySimulations[].lessonIds` match real lessons: serve-05, pc-02, pc-05) run when the curriculum is authored.
