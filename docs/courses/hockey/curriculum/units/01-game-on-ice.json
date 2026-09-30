@@ -139,16 +139,16 @@
             "type": "multiple-choice",
             "conceptIds": ["periods-clock"],
             "payload": {
-              "prompt": "How long is a full hockey game from puck drop to final buzzer?",
+              "prompt": "The referee blows the whistle. What does the game clock do?",
               "options": [
-                {"id": "a", "text": "60 minutes (3 x 20)"},
-                {"id": "b", "text": "About 2 hours and 15 minutes with stoppages"},
-                {"id": "c", "text": "Exactly 90 minutes"}
+                {"id": "a", "text": "Keeps running until the period ends"},
+                {"id": "b", "text": "Stops until play restarts"},
+                {"id": "c", "text": "Runs at half speed"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. Three 20-minute periods plus two 15-minute intermissions (plus commercial breaks and stoppages) add up to roughly 2 hours 15 minutes in the real world.",
-                "incorrect": "A game is three periods of 20 minutes each, plus two intermissions of 15 minutes each, plus stoppages. Total real time is about 2 hours 15 minutes."
+                "correct": "Right. Hockey uses a stop clock: each whistle freezes it and it restarts when play does. That is why 60 minutes of game time takes about two and a half hours.",
+                "incorrect": "The clock stops at every whistle and starts again when play restarts. Only time with the puck live counts, which is why a 60-minute game takes far longer than an hour."
               }
             }
           },
@@ -158,15 +158,15 @@
             "conceptIds": ["periods-clock"],
             "payload": {
               "prompt": "Complete the game structure.",
-              "template": "A hockey game has {{periods}} periods of {{minutes}} minutes each, separated by {{length}} intermissions.",
+              "template": "A hockey game has {{periods}} periods of {{minutes}} minutes each, with {{breaks}} intermissions in between.",
               "gaps": [
                 {"id": "periods", "options": ["two", "three", "four"], "correct": "three"},
                 {"id": "minutes", "options": ["15", "20", "25"], "correct": "20"},
-                {"id": "length", "options": ["10-minute", "15-minute", "20-minute"], "correct": "15-minute"}
+                {"id": "breaks", "options": ["one", "two", "three"], "correct": "two"}
               ],
               "explanation": {
-                "correct": "Right. Three 20-minute periods with 15-minute breaks. In overtime, the period is shorter (5 or 3 minutes depending on the league).",
-                "incorrect": "Hockey is three periods of 20 minutes, with 15-minute intermissions between them."
+                "correct": "Right. Three 20-minute periods with two intermissions between them. A tied regular-season NHL game then adds a five-minute overtime.",
+                "incorrect": "Hockey is three periods of 20 minutes, with an intermission after the first and another after the second."
               }
             }
           },
@@ -175,16 +175,16 @@
             "type": "binary-call",
             "conceptIds": ["stoppage"],
             "payload": {
-              "prompt": "The clock stops when a player is injured. True or false?",
+              "prompt": "A player is hurt and the whistle goes. The clock stops. True or false?",
               "scene": {"kind": "none", "alt": "A player is hurt during play, and the referee blows the whistle."},
               "choices": [
                 {"id": "true", "label": "True"},
                 {"id": "false", "label": "False"}
               ],
-              "correctChoiceId": "false",
+              "correctChoiceId": "true",
               "explanation": {
-                "correct": "False. The game clock never stops during play. An injury stops play (whistle), but the 20-minute clock keeps running.",
-                "incorrect": "The clock runs the entire 20 minutes of each period, even when play is stopped for injuries, penalties or reviews."
+                "correct": "True. The whistle stops the clock, and it starts again when play restarts. Injuries, penalties and reviews all freeze it.",
+                "incorrect": "The clock does stop. Every whistle, whether for an injury, a penalty or a review, freezes it until play restarts."
               }
             }
           },
@@ -196,12 +196,12 @@
               "prompt": "What happens during the intermission between periods?",
               "options": [
                 {"id": "a", "text": "Players rest, coaches draw up new plays, and the Zamboni resurfaces the ice"},
-                {"id": "b", "text": "The teams switch ends and restart"},
+                {"id": "b", "text": "The game clock keeps counting down while everyone waits"},
                 {"id": "c", "text": "Only the goalie comes off the ice"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Exactly. The 15-minute intermission lets players recover, coaches regroup, and the Zamboni cleans and resurfaces the ice so it's smooth for the next period.",
+                "correct": "Exactly. The break lets players recover, coaches regroup, and the Zamboni resurfaces the ice so it's smooth for the next period. Teams also swap ends for the next period.",
                 "incorrect": "During the intermission, teams rest and rehydrate, coaches adjust strategy, and the Zamboni machine resurfaces the ice to keep it playable."
               }
             }
@@ -223,13 +223,13 @@
               "prompt": "How does play start at the beginning of a period or after a goal?",
               "options": [
                 {"id": "a", "text": "The goalie drops the puck"},
-                {"id": "b", "text": "Two centers face off; the referee drops the puck between them"},
+                {"id": "b", "text": "Two centers face off; an official drops the puck between them"},
                 {"id": "c", "text": "A winger throws the puck to center ice"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. A faceoff is when two centers (or other players if centers are in the box) line up and the referee drops the puck between their sticks.",
-                "incorrect": "At the start of play or after a stoppage, the referee holds the puck at center ice and drops it between two opposing players (usually centers) who battle for possession."
+                "correct": "Right. A faceoff is when two opposing centers (usually) line up and an official drops the puck between their sticks. After a goal and at the start of a period, it happens at the center circle.",
+                "incorrect": "Play starts with a faceoff: an official drops the puck between two opposing players, usually centers, who battle for it. After a goal or at the start of a period, that happens at center ice."
               }
             }
           },
@@ -242,7 +242,7 @@
               "pairs": [
                 {"id": "center", "term": "Center", "definition": "The forward who plays in the middle of the ice, often the best passer, and takes most faceoffs for the team."},
                 {"id": "draw", "term": "Draw (faceoff win)", "definition": "When a center gets their stick on the puck first at a faceoff and directs it to a teammate."},
-                {"id": "faceoff", "term": "Faceoff", "definition": "The moment when the referee drops the puck between two players to restart play."}
+                {"id": "faceoff", "term": "Faceoff", "definition": "The moment when an official drops the puck between two players to start or restart play."}
               ],
               "explanation": {
                 "summary": "Faceoffs are where centers shine; winning the draw is about timing and stick position, and it often decides who gets the puck first after a stop.",
@@ -263,8 +263,8 @@
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. There are five faceoff circles: one at center, two in each defensive zone. Play restarts in whichever circle is closest to where play stopped.",
-                "incorrect": "Faceoffs happen at the center circle or in one of the four zone faceoff circles (two per end), depending on where the stoppage occurred."
+                "correct": "Right. There is one circle at center ice and two in each end zone, plus marked dots in the neutral zone. Play usually restarts at the spot nearest to where it stopped.",
+                "incorrect": "Faceoffs happen at the center circle, in the end-zone circles (two per end) or on the neutral-zone dots, depending on where and why play stopped. They are not always in front of the net."
               }
             }
           },
@@ -279,7 +279,7 @@
                 {"id": "a", "text": "To pull the goalie", "isCorrect": false},
                 {"id": "b", "text": "To win the faceoff and quickly move the puck to attack or defend", "isCorrect": true},
                 {"id": "c", "text": "To draw a penalty", "isCorrect": false},
-                {"id": "d", "text": "To control play from the faceoff and start a breakout", "isCorrect": true}
+                {"id": "d", "text": "To ask the referee to move the faceoff spot", "isCorrect": false}
               ],
               "translation": "The opponent's centers are good at faceoffs, so our center needs to win the puck first at the draw and then quickly pass to teammates to start an attack or exit the zone.",
               "followUps": [

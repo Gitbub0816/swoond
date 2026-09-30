@@ -48,7 +48,7 @@
               "startingSmooth": 50,
               "exchanges": [
                 {
-                  "theirMessage": "The PWHL banned fighting and it is made the game safer.",
+                  "theirMessage": "The PWHL doesn't allow fighting, and I think it makes the game safer.",
                   "replies": [
                     {"id": "a", "text": "Do the players seem to miss that part, or does the game feel fine without it?", "smoothDelta": 25, "theirResponse": "The game is fun. Some old-school fans miss it, but the safety is real.", "coachNote": "You're exploring both sides; that is mature."},
                     {"id": "b", "text": "Safety is always good.", "smoothDelta": 8, "theirResponse": "It is.", "coachNote": "You agree, but do not ask or explore."},
@@ -149,15 +149,15 @@
             "payload": {
               "prompt": "Why was the loser point created in the NHL?",
               "options": [
-                {"id": "a", "text": "To make overtime more exciting for fans."},
-                {"id": "b", "text": "To reward competitive close games and discourage early-game tactics."},
-                {"id": "c", "text": "To simplify the standings system."},
-                {"id": "d", "text": "To match European hockey rules."}
+                {"id": "a", "text": "To reward teams for pushing a tied game into overtime."},
+                {"id": "b", "text": "To punish teams that take too many penalties."},
+                {"id": "c", "text": "To give the home team an advantage in close games."},
+                {"id": "d", "text": "To reward the team with the better goalie."}
               ],
-              "correctOptionIds": ["b"],
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Correct. The loser point rewards a team that was close enough to tie late, signaling competitiveness.",
-                "incorrect": "The loser point rewards close losses and discourages pulling the goalie in regulation. It is meant to value competition, though some say it distorts the race."
+                "correct": "Correct. The league wanted fewer tied games and more aggressive overtime, so a team that got a tie to extra time earned a point even in defeat. Some fans still think that muddies the standings.",
+                "incorrect": "The point for an overtime loss exists to reward a team for getting a tied game to extra time. It has nothing to do with penalties, home ice or goalies."
               }
             }
           },
@@ -166,13 +166,13 @@
             "type": "binary-call",
             "conceptIds": ["loser-point"],
             "payload": {
-              "prompt": "Two teams have identical point totals and the same number of regulation wins. They are tied in the standings.",
+              "prompt": "A team that loses in a shootout still earns one NHL standings point.",
               "scene": {"kind": "none", "alt": "Standings comparison of two equal teams."},
               "choices": [{"id": "true", "label": "True"}, {"id": "false", "label": "False"}],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. Points are all the standings show. The tiebreaker is regulation wins, then regulation plus overtime wins (ROW).",
-                "incorrect": "The standings sort by points only. Other stats like overtime losses are tracked separately as tiebreakers if needed."
+                "correct": "True. Any loss after regulation, whether in overtime or a shootout, earns one point. That is the loser point, and it is exactly what the debate is about.",
+                "incorrect": "A shootout loss is still a loss after regulation, so it earns one point. Only a loss inside the 60 minutes gets nothing."
               }
             }
           },
@@ -182,15 +182,16 @@
             "conceptIds": ["loser-point", "points-system"],
             "payload": {
               "prompt": "Complete the PWHL points system.",
-              "template": "The PWHL uses a {{system}} point system: a regulation win is {{rw}} points, an overtime win is {{ow}} points, and a shootout loss is {{sl}} points.",
+              "template": "The PWHL uses a {{system}} point system: a regulation win is {{rw}} points, an overtime or shootout win is {{ow}} points, and an overtime or shootout loss is {{sl}} point.",
               "gaps": [
                 {"id": "system", "options": ["2-1-0", "3-2-1-0", "3-1-0"], "correct": "3-2-1-0"},
                 {"id": "rw", "options": ["2", "3", "1"], "correct": "3"},
+                {"id": "ow", "options": ["2", "3", "1"], "correct": "2"},
                 {"id": "sl", "options": ["0", "1", "2"], "correct": "1"}
               ],
               "explanation": {
-                "correct": "Right. The PWHL's 3-2-1-0 is cleaner than the NHL loser point: regulation win (3), overtime win (2), shootout loss (1), regulation loss (0).",
-                "incorrect": "The PWHL uses 3-2-1-0. This avoids the NHL's loser-point confusion by separating wins and losses into clearer tiers."
+                "correct": "Right. In 3-2-1-0 a regulation win is worth more than an overtime win, so winning in 60 minutes matters. The NHL gives every win two points, which is why the loser point gets argued about.",
+                "incorrect": "The PWHL uses 3-2-1-0: regulation win 3, overtime or shootout win 2, overtime or shootout loss 1, regulation loss 0. That rewards finishing the job in regulation."
               }
             }
           }
@@ -252,13 +253,13 @@
             "type": "binary-call",
             "conceptIds": ["overtime-3v3"],
             "payload": {
-              "prompt": "3-on-3 overtime is sudden death, which means a goal always ends the game immediately.",
+              "prompt": "If nobody scores in NHL regular-season overtime, the game ends as a tie.",
               "scene": {"kind": "none", "alt": "Three players per side in open-ice overtime."},
               "choices": [{"id": "true", "label": "True"}, {"id": "false", "label": "False"}],
               "correctChoiceId": "false",
               "explanation": {
-                "correct": "False. 3-on-3 is sudden death only within its five-minute window. If the period ends scoreless, a shootout breaks the tie.",
-                "incorrect": "3-on-3 sudden death lasts five minutes. If neither team scores in that time, the shootout decides."
+                "correct": "False. Overtime is sudden death for five minutes of 3-on-3. If it stays scoreless, a shootout picks the winner. Ties no longer exist in the NHL.",
+                "incorrect": "Nobody ends a regular-season game in a tie. After five scoreless minutes of 3-on-3, the shootout decides it."
               }
             }
           },

@@ -97,36 +97,20 @@
           },
           {
             "id": "west-coast-01-st-short-game",
-            "type": "say-this",
+            "type": "binary-call",
             "conceptIds": ["west-coast-offense"],
             "payload": {
-              "statement": {
-                "speaker": "Coach",
-                "text": "Our offense is just West Coast short stuff today. No one is getting deep."
+              "prompt": "A West Coast game plan can lean on quick, short passes instead of deep shots. True or false?",
+              "scene": {
+                "kind": "none",
+                "alt": "A quarterback throwing a quick slant to a receiver near the line."
               },
-              "question": "What is he saying about the game plan?",
-              "options": [
-                {
-                  "id": "a",
-                  "text": "The team is from the West Coast and plays short games",
-                  "isCorrect": false
-                },
-                {
-                  "id": "b",
-                  "text": "The quarterback is only throwing to receivers close to the line of scrimmage",
-                  "isCorrect": true
-                },
-                {"id":"c","text":"The team is playing without its star receiver","isCorrect":false},
-                {"id":"d","text":"The game is in a short stadium","isCorrect":false}
-              ],
-              "translation": "Short stuff means quick passes: slants, outs and screens near the line of scrimmage. Deep routes are not part of today's plan, perhaps because of how the defense is lined up.",
-              "followUps": [
-                {
-                  "line": "Would a West Coast coach ever throw deep?",
-                  "why": "Tests whether you know West Coast is a strategy, not a rule against vertical plays."
-                }
-              ],
-              "noFakeExpertNote": "West Coast is a philosophy, not a straight-jacket. Deep routes exist in the system, but the default is fast, short stuff that works on timing."
+              "choices": [{"id":"true","label":"True"},{"id":"false","label":"False"}],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. Quick slants, outs and screens near the line are the heart of the West Coast idea, though deep shots still exist.",
+                "incorrect": "Short and quick is the default in a West Coast plan. Deep routes exist, but they are not the core."
+              }
             },
             "xp": 10
           },
@@ -252,32 +236,17 @@
           },
           {
             "id": "air-raid-02-st-game-script",
-            "type": "say-this",
+            "type": "binary-call",
             "conceptIds": ["air-raid","no-huddle"],
             "payload": {
-              "statement": {
-                "speaker": "Announcer",
-                "text": "No-huddle, hurry-up. They are gassing the defense and forcing a nickel package."
-              },
-              "question": "Why is Air Raid trying to gas the defense?",
-              "options": [
-                {"id":"a","text":"To tire out the players before the playoffs","isCorrect":false},
-                {
-                  "id": "b",
-                  "text": "To keep the defense from substituting and force them into an ill-equipped package",
-                  "isCorrect": true
-                },
-                {"id":"c","text":"To get the crowd excited","isCorrect":false},
-                {"id":"d","text":"Because the offense has no other strategy","isCorrect":false}
-              ],
-              "translation": "When an offense hurries, the defense often cannot substitute. If the defense is stuck in a pass-first nickel package (five defensive backs), it is lighter against the run. That is the trap: tempo limits adjustments and can create mismatches.",
-              "followUps": [
-                {
-                  "line": "What does nickel package mean for the defense?",
-                  "why": "Tests whether you know nickel is more pass-focused and weaker against the run."
-                }
-              ],
-              "noFakeExpertNote": "Air Raid tempo is not random energy. It is a weapon to force the defense into specific packages that cannot do everything."
+              "prompt": "Hurrying up can keep a defense from substituting. True or false?",
+              "scene": {"kind":"none","alt":"An offense snapping quickly as the defense tries to sub."},
+              "choices": [{"id":"true","label":"True"},{"id":"false","label":"False"}],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. Tempo limits substitutions, so a defense stuck in a pass-first package can be lighter against the run. That is the trap.",
+                "incorrect": "Tempo really does limit substitutions and adjustments, which is why offenses use it."
+              }
             },
             "xp": 10
           }

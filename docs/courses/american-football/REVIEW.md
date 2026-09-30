@@ -1,0 +1,25 @@
+
+## Units 10-17
+
+Accuracy and conformance review. Validator status at finish: 0 schema errors, 0 lint errors, 0 warnings for units 10-17. Every lesson keeps 4 or more activities, payloads are unique, sims are unchanged (`football.coverage.read.v1`, `football.run.gaps.v1`). Concepts unchanged.
+
+Schema and lint: unit 17 had 17 schema errors (fill-the-gap items with `blankIndex/correctAnswers` and no template; three term-matches with 2 pairs). Unit 10 sim difficulty changed to 4 to remove a duplicate payload with unit 17.
+
+Type balance, final max share per type: 10 say-this 32%, 11 multiple-choice/binary/say-this 20%, 12 multiple-choice/say-this 24%, 13 20%, 14 20%, 15 24%, 16 say-this 36%, 17 say-this 22%.
+
+Factual corrections (keys or claims that were wrong):
+- 10: box count logic was backwards (six in the box keyed as "pass"; full box described as good to run); Tampa 2 "invented in Tampa", "name stuck because they won" and "Standard Cover 2 covers two-thirds" removed; "Magic" was not a term (replaced with Cover 2); no-huddle "forces base packages" contradicted itself; motion and safety rotation were claimed as dead giveaways (now clues, not guarantees); Shanahan sequence rebuilt as run, flow, fake, throw.
+- 11: EPA of a 10-yard gain at midfield (0.4 to about 0.8); fourth-and-one "55% breakeven" replaced by the roughly two-thirds conversion rate; invented "85-90% of production for 20% of cost" removed; tush push facts aligned with CDS (2025 ban vote 22-10, 24 needed); hindsight "we would have won" and "the league's Steelers did it perfectly" style claims removed; CPOE added as a term; wrong opinion-keyed binary (rule changes are necessary) made factual.
+- 12: Cowboys dynasty seasons (1992, 1993, 1995, not 1995-97); Patriots "8 Super Bowls" (six); Steelers 1980s expert note removed; AFC/NFC origin note (three old NFL teams moved to the AFC); full-merger "one year after Super Bowl I" corrected; Hall of Fame "first ballot", enshrinement and Thanksgiving wording; Immaculate Reception/Helmet Catch definitions tightened.
+- 13: college clock "keeps running after incompletions" was false (removed; clock differences are uncertain so not claimed); college overtime (from the third overtime teams alternate two-point tries, not "score a TD then go for two"); CFP format rewritten to CDS/live-data (four conference champions plus highest-ranked Group of 6 champion, seven at-large, top four byes, first round on campus); eight seed plays the nine seed, not the five; "eight games in the playoffs instead of seven" (four versus three); Power Five wording; Heisman voters (media, past winners, one fan vote); "Heisman winners are consistently top-ten picks" false; portal and revenue sharing hedged (windows, usually eligible, since 2025-26).
+- 14: pipe-default tokens (`{{player|Quarterback}}`) removed, literal placeholders such as "(rival name)" and "(second star)" rewritten; "every defense is either blitz or patient" keyed true (now false); "all four division rivals" (there are three); playoff-path sequence rebuilt; inconsistent 9-6/one-game-left scenario fixed.
+- 15: divisional-round bracket was wrong; wild cards "play the #1 or #2 seed"; tiebreaker order (head-to-head first, not strength of schedule; coin flip is not the main method); injury report timing and designations ("Out" is for that game); free-agency "January 15" window; hard-coded "Week 9" deadline made generic; turnover and third-down claims hedged. No scores, standings or dates are hard-coded; Team A/Team B and Team X are generic.
+- 16: gendered assumption left as "her" per catalog default, but manipulative lines removed ("sexiest", "honesty is attractive"); follow-up lines that pretended you saw the play rewritten to honest questions; unit-10-consistent box-count read; "[penalty]" placeholder; fantasy trash-talk line no longer bluffs a roster; markdown asterisks stripped.
+- 17: Cover 3 definition ("a Cover 2 with one safety inside") wrong; "should have rotated over" keyed as a good question; onside kick wording per CDS (declare at any time, five players on the restraining line); 2-pair term-matches expanded to 3.
+
+Open items for the orchestrator:
+1. `PersonalizationResolver` does not support the CDS `{{team|the home team}}` default syntax; it renders the whole key. Units use plain `{{team}}` and `{{player}}`, so the app must pass `fallbacks` (team "the home team", player "the starting quarterback"). Sentences that start with a token read lowercase with the stock "their team" fallback.
+2. CFP auto-bid rules for 2026-27 follow `live-data.md` (ACC, Big 12, Big Ten, SEC champions plus highest-ranked Group of 6 champion); re-verify in August.
+3. The NFL and college clock differences (first downs, late-game) were left out as uncertain. Add only after checking the 2026 rule books.
+4. Unit 16 declares `team` and `player` slots but uses `{{team}}` once; add tokens only where the sentence still reads with the fallback.
+5. Native sim fallbacks (`coverage-04-fallback`, `run-gaps-05-fallback`) live in units 04/09, not in my range.

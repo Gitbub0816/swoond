@@ -914,28 +914,29 @@
             "type": "hotspot-tap",
             "conceptIds": ["playoff-format"],
             "payload": {
-              "prompt": "Tap the first-round matchup if your team is the three seed and has the best record in the conference.",
-              "description": "Bracket shows 1 seed vs 8, 2 vs 7, 3 vs 6, 4 vs 5 in the first round.",
-              "spots": [
+              "prompt": "Tap the first-round matchup for the three seed in a standard bracket.",
+              "diagram": {
+                "alt": "Playoff bracket showing matchups: 1 vs 8, 2 vs 7, 3 vs 6, 4 vs 5"
+              },
+              "hotspots": [
                 {
                   "id": "three-six",
-                  "label": "Three seed plays six seed",
-                  "correct": true,
-                  "feedback": "Right. Three seed is third-best record; plays sixth seed, the sixth-best."
+                  "label": "Three plays six",
+                  "shape": "matchup"
                 },
                 {
                   "id": "three-seven",
-                  "label": "Three seed plays seven seed",
-                  "correct": false,
-                  "feedback": "No. Seven plays two seed. Seeds pair symmetrically: 1-8, 2-7, 3-6, 4-5."
+                  "label": "Three plays seven",
+                  "shape": "matchup"
                 },
                 {
                   "id": "one-three",
-                  "label": "One seed plays three seed",
-                  "correct": false,
-                  "feedback": "No. One plays eight. First-round seeding is fixed."
+                  "label": "One plays three",
+                  "shape": "matchup"
                 }
-              ]
+              ],
+              "correctHotspotIds": ["three-six"],
+              "explanation": "Seeds pair symmetrically: 1-8, 2-7, 3-6, 4-5. Three seed always faces six seed in first round."
             }
           }
         ]
@@ -1009,7 +1010,7 @@
                   {"label": "Player A", "value": "29 PPG, 7 APG; third-seed team"},
                   {"label": "Player B", "value": "25 PPG, 8 APG; first-seed team"},
                   {"label": "Player C", "value": "23 PPG, 5 APG; second-seed team"},
-                  {"label": "Narrative", "value": "A is a young phenom; B is a veteran leader; C is a role player elevated"}
+                  {"label": "Narrative", "value": "A: phenom; B: veteran leader; C: elevated role player"}
                 ]
               },
               "options": [

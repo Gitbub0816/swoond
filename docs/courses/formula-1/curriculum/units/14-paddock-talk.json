@@ -1303,6 +1303,35 @@
               ],
               "noFakeExpertNote": "You do not need to know all the past penalties. Ask what she thinks was different."
             }
+          },
+          {
+            "id": "pt-05-bc-penalty-call",
+            "type": "binary-call",
+            "conceptIds": [
+              "time-penalty"
+            ],
+            "payload": {
+              "prompt": "He got a 5-second penalty. Does the driver keep his finishing position?",
+              "scene": {
+                "kind": "none",
+                "alt": "Asking whether a time penalty affects final position"
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, usually"
+                },
+                {
+                  "id": "no",
+                  "label": "No, time is added"
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Time penalties add seconds to race time. If the gap was less, position drops.",
+                "incorrect": "Penalties are time, not position. The time added to his total can move him down."
+              }
+            }
           }
         ]
       },
@@ -1513,6 +1542,35 @@
               ],
               "noFakeExpertNote": "You do not need to know aerodynamic limits. Ask how it helps in a chase."
             }
+          },
+          {
+            "id": "pt-06-bc-straight-mode",
+            "type": "binary-call",
+            "conceptIds": [
+              "straight-mode"
+            ],
+            "payload": {
+              "prompt": "Can both drivers use Straight Mode on the same straight?",
+              "scene": {
+                "kind": "none",
+                "alt": "Question about whether Straight Mode is available to both drivers"
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, both can"
+                },
+                {
+                  "id": "no",
+                  "label": "No, only the leader"
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Straight Mode reduces drag for any driver. Both can use it for speed.",
+                "incorrect": "It is not a passing tool. Both drivers benefit equally."
+              }
+            }
           }
         ]
       },
@@ -1709,7 +1767,7 @@
                   "explanation": "This is speculation and banter, not official news."
                 }
               ],
-              "translation": "She is playfully suggesting that your driver is so talented after that pass that Ferrari or McLaren will recruit him for next season—it is friendly rivalry banter.",
+              "translation": "She is playfully suggesting that your driver is so talented after that pass that Ferrari or McLaren will recruit him for next season\u2014it is friendly rivalry banter.",
               "followUps": [
                 {
                   "line": "Is he actually linked to those teams?",
@@ -1721,6 +1779,35 @@
                 }
               ],
               "noFakeExpertNote": "You do not need to know transfer rumors. Ask if she is joking or if there is news."
+            }
+          },
+          {
+            "id": "pt-07-bc-strategy-call",
+            "type": "binary-call",
+            "conceptIds": [
+              "strategy"
+            ],
+            "payload": {
+              "prompt": "If a teammate is ahead and pitting, should your driver pit too?",
+              "scene": {
+                "kind": "none",
+                "alt": "Question about pit strategy relative to teammate"
+              },
+              "choices": [
+                {
+                  "id": "maybe",
+                  "label": "Depends on position"
+                },
+                {
+                  "id": "always",
+                  "label": "Usually yes"
+                }
+              ],
+              "correctChoiceId": "maybe",
+              "explanation": {
+                "correct": "Pit strategy depends on championship position, track position, and fuel. Teammates are not always the model.",
+                "incorrect": "Teammates have different tire life and race position. Strategy is individual."
+              }
             }
           }
         ]
@@ -1946,6 +2033,35 @@
                 }
               ],
               "noFakeExpertNote": "You do not have to know pit loss exactly. Ask why the safety car helps."
+            }
+          },
+          {
+            "id": "pt-08-bc-gap-read",
+            "type": "binary-call",
+            "conceptIds": [
+              "gap-and-interval"
+            ],
+            "payload": {
+              "prompt": "If the gap to the leader is dropping, is the trailing driver definitely faster?",
+              "scene": {
+                "kind": "none",
+                "alt": "Asking whether a closing gap means a faster car"
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, definitely"
+                },
+                {
+                  "id": "maybe",
+                  "label": "Could be tires or fuel"
+                }
+              ],
+              "correctChoiceId": "maybe",
+              "explanation": {
+                "correct": "Gaps close for many reasons: fresher tires, lower fuel, SC restart. Not always pure pace.",
+                "incorrect": "A gap close can mean tire advantage, fuel weight, or safety car restart."
+              }
             }
           }
         ]
