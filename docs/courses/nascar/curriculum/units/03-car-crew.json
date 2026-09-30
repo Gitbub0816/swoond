@@ -261,8 +261,7 @@
                     "kind": "circle",
                     "cx": 0.15,
                     "cy": 0.75,
-                    "w": 0.16,
-                    "h": 0.16
+                    "r": 0.08
                   }
                 }
               ],
@@ -519,51 +518,51 @@
               "tapered-spacer"
             ],
             "payload": {
+              "prompt": "The driver is loose at Bristol with 750 hp. What now?",
               "situation": {
                 "facts": [
                   {
                     "label": "Track type",
-                    "value": "Bristol (short track, 0.533 miles)"
+                    "value": "Bristol (short track, 0.533 mi)"
                   },
                   {
-                    "label": "Tapered spacer size",
+                    "label": "Tapered spacer",
                     "value": "8-inch"
                   },
                   {
                     "label": "Current horsepower",
-                    "value": "750 hp"
+                    "value": "750 hp (2026 spec)"
                   },
                   {
                     "label": "Driver feedback",
-                    "value": "Too loose on exit, hard to control."
+                    "value": "Loose on exit, hard to control."
                   }
                 ]
               },
               "options": [
                 {
                   "id": "stay",
+                  "label": "Keep the 8-inch spacer; fix setup.",
                   "verdict": "best",
-                  "text": "Keep the 8-inch spacer; setup and tires handle the power.",
-                  "consequence": "The driver learns to manage the horsepower. 750 hp at Bristol is the 2026 spec.",
-                  "considerations": "Horsepower is not the issue; balance and tire pressure are."
+                  "consequence": "The driver learns to manage power. 750 hp at Bristol is the rule.",
+                  "considerations": ["Horsepower is not the issue.", "Balance and tire pressure are.", "Setup can fix loose handling."]
                 },
                 {
                   "id": "reduce",
+                  "label": "Request a smaller spacer for less power.",
                   "verdict": "poor",
-                  "text": "Request a smaller spacer for less power.",
-                  "consequence": "NASCAR does not allow spacer changes during the weekend.",
-                  "considerations": "The spacer is fixed by the rules and track type. You solve a loose car with adjustments, not engine power."
+                  "consequence": "NASCAR doesn't allow spacer changes mid-weekend.",
+                  "considerations": ["Spacer is fixed by the rules.", "You solve loose with adjustments.", "Not by reducing power."]
                 },
                 {
                   "id": "fuel",
+                  "label": "Switch to leaner fuel mixture.",
                   "verdict": "acceptable",
-                  "text": "Switch to a leaner fuel mixture for smoother power delivery.",
-                  "consequence": "Helps a bit but not the core issue; the 750 hp is manageable with the right setup.",
-                  "considerations": "Fuel mapping helps, but the real fix is chassis balance and tire pressures."
+                  "consequence": "Fuel mapping helps slightly but doesn't solve the core issue.",
+                  "considerations": ["Fuel mapping can help.", "The real fix is chassis balance.", "Tire pressures matter most."]
                 }
               ],
-              "expertNote": "Short tracks with high horsepower require precision setup, not less power.",
-              "safetyNote": "High horsepower at short, tight tracks demands respect and good setup."
+              "expertNote": "Short tracks need precision setup, not less power."
             }
           }
         ]
@@ -1144,7 +1143,7 @@
             "payload": {
               "statement": {
                 "speaker": "spotter",
-                "text": "Clear high."
+                "text": "Clear high now."
               },
               "options": [
                 {
@@ -1241,51 +1240,51 @@
               "pit-crew"
             ],
             "payload": {
+              "prompt": "The front left is blistering. Pit now or later?",
               "situation": {
                 "facts": [
                   {
                     "label": "Current position",
-                    "value": "Third place, five laps from pit window"
+                    "value": "Third place, five laps to go"
                   },
                   {
                     "label": "Fuel estimate",
-                    "value": "Tank will last to lap 150 (pit window at 140-145)"
+                    "value": "Tank lasts to lap 150"
                   },
                   {
                     "label": "Tire condition",
-                    "value": "Front left showing blistering; rear tires OK"
+                    "value": "Front left blistering"
                   },
                   {
                     "label": "Pit crew status",
-                    "value": "Set and ready"
+                    "value": "Ready to go"
                   }
                 ]
               },
               "options": [
                 {
                   "id": "four",
+                  "label": "Pit now for four tires and fuel.",
                   "verdict": "best",
-                  "text": "Pit for four tires and fuel to fix the front left.",
-                  "consequence": "Fresh tires solve the blister. Team gains grip and protection.",
-                  "considerations": "Blistering means the tire is overheating; fresh rubber is the answer. Four tires costs time but fixes the problem."
+                  "consequence": "Fresh tires solve the blister; team gains grip.",
+                  "considerations": ["Blistering = tire overheating.", "Fresh rubber is the answer.", "Four tires costs time but fixes it."]
                 },
                 {
                   "id": "two",
+                  "label": "Pit for two rear tires only.",
                   "verdict": "acceptable",
-                  "text": "Pit for two tires (rear) and fuel to save time.",
-                  "consequence": "Faster stop, but worn front left tires may continue blistering.",
-                  "considerations": "Two tires is quicker but keeps a bad tire on the car. Acceptable if track position is critical."
+                  "consequence": "Faster stop; bad tire stays on car.",
+                  "considerations": ["Two tires is quicker.", "But front left may fail.", "Acceptable if position is critical."]
                 },
                 {
                   "id": "stayout",
+                  "label": "Stay out; let tires cool.",
                   "verdict": "poor",
-                  "text": "Stay out and let the tires cool down.",
-                  "consequence": "Blistering gets worse; the tire could fail.",
-                  "considerations": "Tire failure at speed is dangerous and ruins the race. Pitting is the only smart move."
+                  "consequence": "Blistering gets worse; tire could fail.",
+                  "considerations": ["Tire failure is dangerous.", "Ruins the race.", "Pitting is the only smart move."]
                 }
               ],
-              "expertNote": "Tire blistering is a sign of trouble; fresh rubber is the answer.",
-              "safetyNote": "A failing tire at race speed is a crash risk; address it immediately."
+              "expertNote": "Tire blistering means trouble; fix it before it fails."
             }
           }
         ]

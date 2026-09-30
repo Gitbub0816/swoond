@@ -1,0 +1,840 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "american-football",
+  "unit": {
+    "id": "flags-and-rules",
+    "title": "Flags and rules",
+    "layer": "intermediate",
+    "order": 5,
+    "prerequisiteUnitIds": ["the-basics"],
+    "personalizationSlots": [],
+    "lessons": [
+      {
+        "id": "before-snap-01",
+        "title": "Before the snap",
+        "objective": "You can tell offside from false start.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["offside", "false-start", "delay-of-game"],
+        "activities": [
+          {
+            "id": "before-snap-01-bc-offside",
+            "type": "binary-call",
+            "conceptIds": ["offside"],
+            "payload": {
+              "prompt": "Defender crosses the line when the ball is snapped.",
+              "scene": {
+                "kind": "field-diagram",
+                "diagramId": "football-line-of-scrimmage",
+                "markers": [
+                  {
+                    "role": "opponent",
+                    "x": 0.5,
+                    "y": 0.42
+                  },
+                  {
+                    "role": "ball",
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                ],
+                "alt": "Overhead view of the line of scrimmage. A defender's helmet is past the ball's line at the snap."
+              },
+              "choices": [
+                {"id": "offside", "label": "Offside"},
+                {"id": "legal", "label": "Legal"}
+              ],
+              "correctChoiceId": "offside",
+              "ruleTag": "Offside",
+              "explanation": {
+                "correct": "Once the ball is snapped a defender may not be beyond the line. Five yards, and the offense usually gets a free play.",
+                "incorrect": "The line of scrimmage is the ball's tip. A defender past it at the snap is offside for five yards.",
+                "sayThisLine": "Their end was offside again."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "before-snap-01-bc-false-start",
+            "type": "binary-call",
+            "conceptIds": ["false-start"],
+            "payload": {
+              "prompt": "An offensive player flinches before the snap, but does not move.",
+              "scene": {
+                "kind": "field-diagram",
+                "diagramId": "football-line-of-scrimmage",
+                "markers": [
+                  {
+                    "role": "player",
+                    "x": 0.5,
+                    "y": 0.5
+                  }
+                ],
+                "alt": "Overhead view of the line. An offensive lineman is at the line of scrimmage looking tense."
+              },
+              "choices": [
+                {"id": "flag", "label": "False start"},
+                {"id": "legal", "label": "Legal play"}
+              ],
+              "correctChoiceId": "legal",
+              "ruleTag": "False start",
+              "explanation": {
+                "correct": "A flinch is not movement. The play is legal only when the player actually moves. False start requires motion.",
+                "incorrect": "False start is illegal movement before the snap, but a flinch or a twitch does not count. The player must move.",
+                "sayThisLine": "He tensed up but did not move, so it is legal."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "before-snap-01-bc-delay",
+            "type": "binary-call",
+            "conceptIds": ["delay-of-game"],
+            "payload": {
+              "prompt": "The play clock hits zero and the offense has not snapped.",
+              "scene": {
+                "kind": "none",
+                "alt": "A scoreboard showing the play clock at zero with the offense lined up but not moving."
+              },
+              "choices": [
+                {"id": "penalty", "label": "Penalty"},
+                {"id": "replay", "label": "Replay the down"}
+              ],
+              "correctChoiceId": "penalty",
+              "ruleTag": "Delay of game",
+              "explanation": {
+                "correct": "When the play clock expires, it is delay of game on the offense: five yards and loss of down.",
+                "incorrect": "The offense must snap before the play clock runs out. Delay of game is five yards, and the offense loses a down.",
+                "sayThisLine": "Delay of game, they ran out of time."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "before-snap-01-tm-flags",
+            "type": "term-match",
+            "conceptIds": ["offside", "false-start", "delay-of-game"],
+            "payload": {
+              "prompt": "Match the pre-snap flag to what triggered it.",
+              "pairs": [
+                {"id": "offside", "term": "Offside", "definition": "A defender is across the line of scrimmage when the ball is snapped."},
+                {"id": "false-start", "term": "False start", "definition": "An offensive player moves before the snap."},
+                {"id": "delay", "term": "Delay of game", "definition": "The offense fails to snap before the play clock runs out."}
+              ],
+              "explanation": {
+                "summary": "Offside is the defense jumping early. False start is the offense moving. Delay of game is running out of time.",
+                "sayThisLine": "False start again? Their tackle is jumpy."
+              }
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "holding-02",
+        "title": "Holding",
+        "objective": "You can explain why holding is called so often and what it costs.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["holding", "penalty-options"],
+        "activities": [
+          {
+            "id": "holding-02-mc-cost",
+            "type": "multiple-choice",
+            "conceptIds": ["holding"],
+            "payload": {
+              "prompt": "How many yards is a holding penalty on offense?",
+              "options": [
+                {"id": "a", "text": "Five yards"},
+                {"id": "b", "text": "Ten yards"},
+                {"id": "c", "text": "Fifteen yards"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Ten yards on the offense. On defense it is only five yards but the offense gets an automatic first down.",
+                "incorrect": "Offensive holding is ten yards from the line of scrimmage. Defensive holding is less (five yards) but gives a free first down."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "holding-02-bc-hold",
+            "type": "binary-call",
+            "conceptIds": ["holding"],
+            "payload": {
+              "prompt": "Offensive tackle grabs a defender's jersey to create space.",
+              "scene": {
+                "kind": "none",
+                "alt": "A football play with an offensive lineman holding a defensive player's uniform."
+              },
+              "choices": [
+                {"id": "flag", "label": "Holding"},
+                {"id": "legal", "label": "Legal block"}
+              ],
+              "correctChoiceId": "flag",
+              "ruleTag": "Holding",
+              "explanation": {
+                "correct": "Grabbing the jersey is illegal holding. Blockers can use their hands but not grab and hang on.",
+                "incorrect": "Grabbing is holding. Blockers can use their hands but must release quickly and not grab fabric or pads."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "holding-02-mc-why",
+            "type": "multiple-choice",
+            "conceptIds": ["holding"],
+            "payload": {
+              "prompt": "Why is holding called less often than other flags?",
+              "options": [
+                {"id": "a", "text": "Referees are lenient on blocking in tight spaces"},
+                {"id": "b", "text": "It is impossible to block without holding"},
+                {"id": "c", "text": "Holding is not actually a penalty in modern football"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Referees allow some hand contact during blocking. Egregious grabs and pulls draw flags, but incidental contact is part of the game.",
+                "incorrect": "Holding is a real penalty but refs tolerate some hand contact in the trenches. Obvious grabs get called."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "holding-02-ds-accept",
+            "type": "decision-scenario",
+            "conceptIds": ["holding", "penalty-options"],
+            "payload": {
+              "prompt": "Holding call benefits your defense. Accept or decline?",
+              "situation": {
+                "narrative": "Your offense is deep downfield, but the receiver caught the pass. The offense held and was called. Ten yards back.",
+                "facts": [
+                  {"label": "Down", "value": "Second down, 8 yards"},
+                  {"label": "Penalty", "value": "Holding, ten yards back"},
+                  {"label": "Play result", "value": "Would have been first down"},
+                  {"label": "Score", "value": "You are leading"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "accept",
+                  "label": "Accept the penalty",
+                  "verdict": "best",
+                  "consequence": "You enforce the penalty and set the offense back ten yards. Easier field position.",
+                  "considerations": ["Holding moves the offense back", "You get better field position", "Defense stays fresh"]
+                },
+                {
+                  "id": "decline",
+                  "label": "Decline and keep the result",
+                  "verdict": "poor",
+                  "consequence": "The offense gets the first down and momentum, negating the benefit of the flag.",
+                  "considerations": ["Offense keeps the ball moving", "They gain more yards", "Field position worsens"]
+                }
+              ],
+              "expertNote": "Usually accept flags that hurt the offense. Unless the play was a bigger yard gain than the penalty, take the yardage."
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "interference-03",
+        "title": "Pass interference",
+        "objective": "You can explain why pass interference is such a big deal.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["pass-interference", "catch-rule"],
+        "activities": [
+          {
+            "id": "interference-03-mc-spot",
+            "type": "multiple-choice",
+            "conceptIds": ["pass-interference"],
+            "payload": {
+              "prompt": "In the NFL, pass interference is a spot foul. What does that mean?",
+              "options": [
+                {"id": "a", "text": "The penalty is enforced where the foul happened"},
+                {"id": "b", "text": "The penalty is enforced at midfield"},
+                {"id": "c", "text": "The offense gets an automatic touchdown"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "A spot foul means the ball is placed at the spot of the foul. If interference happens at the opponent's 10-yard line, the ball goes to the 10.",
+                "incorrect": "Spot foul means the ball is placed where the foul occurred. This can give the offense huge gains and is why fans argue about it."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "interference-03-ds-contact",
+            "type": "decision-scenario",
+            "conceptIds": ["pass-interference"],
+            "payload": {
+              "prompt": "Defender contacts receiver before the ball arrives.",
+              "situation": {
+                "narrative": "The receiver is running a route and the defender is running with him. The defender initiates contact by pushing. The ball is still five yards away.",
+                "facts": [
+                  {"label": "Ball arrival", "value": "Five yards away"},
+                  {"label": "Contact", "value": "Defender pushes receiver"},
+                  {"label": "Result", "value": "Receiver is slowed"},
+                  {"label": "Play", "value": "Ball is catchable"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "pi",
+                  "label": "Pass interference",
+                  "verdict": "best",
+                  "consequence": "The ball is not caught because of the foul. Contact before the ball arrives is interference.",
+                  "considerations": ["Contact happened before the ball arrived", "Receiver was impeded", "It prevented the catch"]
+                },
+                {
+                  "id": "contact",
+                  "label": "Incidental contact, no flag",
+                  "verdict": "poor",
+                  "consequence": "The receiver never gets open because of the push. Interference happened.",
+                  "considerations": ["Contact was intentional", "It was before the ball", "The receiver was affected"]
+                }
+              ],
+              "expertNote": "Pass interference is any contact that inhibits a receiver before the ball arrives. Once the ball is in the air, contact is the catch rule or a penalty flag like holding."
+            },
+            "xp": 10
+          },
+          {
+            "id": "interference-03-bc-pi",
+            "type": "binary-call",
+            "conceptIds": ["pass-interference"],
+            "payload": {
+              "prompt": "Defender and receiver both jump. Defender lands on the receiver.",
+              "scene": {
+                "kind": "none",
+                "alt": "A football play with a defender and receiver competing for a ball in the air, defender on top after landing."
+              },
+              "choices": [
+                {"id": "pi", "label": "Pass interference"},
+                {"id": "legal", "label": "Legal catch attempt"}
+              ],
+              "correctChoiceId": "legal",
+              "ruleTag": "Pass interference",
+              "explanation": {
+                "correct": "Once the ball is in the air, both players can compete. Landing on each other after jumping is legal incidental contact.",
+                "incorrect": "After the ball is in flight, it is a catch battle, not interference. Incidental contact during the jump and landing is allowed."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "interference-03-st-pi",
+            "type": "say-this",
+            "conceptIds": ["pass-interference"],
+            "payload": {
+              "statement": {"speaker": "Coach", "text": "That should have been pass interference. He was all over him."},
+              "question": "What is he saying?",
+              "options": [
+                {"id": "a", "text": "The defender held or grabbed the receiver before the ball arrived", "isCorrect": true},
+                {"id": "b", "text": "The receiver caught the ball illegally", "isCorrect": false},
+                {"id": "c", "text": "The defense committed a penalty and gave up a touchdown", "isCorrect": false},
+                {"id": "d", "text": "Contact after the throw arrived was too physical", "isCorrect": false}
+              ],
+              "translation": "The defender was using his hands or body to prevent the receiver from running his route or catching the ball before the pass arrived.",
+              "followUps": [
+                {"line": "Did the ball get there, or was the contact before it?", "why": "Timing matters: before the ball arrives is interference, after is legal."}
+              ],
+              "noFakeExpertNote": "If unsure, ask: 'Before the ball got there or after?' That tells you if it is interference."
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "safety-04",
+        "title": "Protecting players",
+        "objective": "You can name the hits the league bans and why.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["roughing-the-passer", "hip-drop-tackle", "targeting"],
+        "activities": [
+          {
+            "id": "safety-04-tm-hits",
+            "type": "term-match",
+            "conceptIds": ["roughing-the-passer", "hip-drop-tackle", "targeting"],
+            "payload": {
+              "prompt": "Match the illegal hit to what the rule protects.",
+              "pairs": [
+                {"id": "rtp", "term": "Roughing the passer", "definition": "A defender hits or drives the quarterback down after the ball is released. Fifteen yards."},
+                {"id": "hipd", "term": "Hip-drop tackle", "definition": "A tackle where the defender uses hip and leg drive on the ball carrier's legs, banned since 2024. Fifteen yards."},
+                {"id": "tgt", "term": "Targeting", "definition": "College only: forcible contact to the head or neck area. Ejection when confirmed."}
+              ],
+              "explanation": {
+                "summary": "Roughing protects the quarterback at the moment of release. Hip-drop bans a specific tackle to reduce leg injuries. Targeting bans hits to the head in college.",
+                "sayThisLine": "That is roughing the passer, fifteen yards."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "safety-04-bc-rtp",
+            "type": "binary-call",
+            "conceptIds": ["roughing-the-passer"],
+            "payload": {
+              "prompt": "Defensive end hits QB after he releases the ball.",
+              "scene": {
+                "kind": "none",
+                "alt": "A football play with a defensive lineman hitting the quarterback after the throw."
+              },
+              "choices": [
+                {"id": "flag", "label": "Roughing the passer"},
+                {"id": "legal", "label": "Legal hit"}
+              ],
+              "correctChoiceId": "legal",
+              "ruleTag": "Roughing the passer",
+              "explanation": {
+                "correct": "Once released the ball is gone. The defender can hit the quarterback. Only driving him down after release is roughing.",
+                "incorrect": "The quarterback is protected only during the throw. After releasing the ball, contact is legal unless it is a driving tackle."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "safety-04-mc-hipd",
+            "type": "multiple-choice",
+            "conceptIds": ["hip-drop-tackle"],
+            "payload": {
+              "prompt": "Why did the NFL ban the hip-drop tackle in 2024?",
+              "options": [
+                {"id": "a", "text": "It caused too many leg and knee injuries"},
+                {"id": "b", "text": "It was unpopular with fans"},
+                {"id": "c", "text": "Running backs complained it was unfair"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "The hip-drop uses leverage on a player's legs, risking serious injury. The ban prioritizes safety over an effective tackle technique.",
+                "incorrect": "The ban addresses injury risk. Hip-drop tackles target the legs and can cause ACL and other damage, so the league removed the technique."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "safety-04-say-targeting",
+            "type": "say-this",
+            "conceptIds": ["targeting"],
+            "payload": {
+              "statement": {"speaker": "Announcer", "text": "That is targeting. They are reviewing it for an ejection."},
+              "question": "What did the player do?",
+              "options": [
+                {"id": "a", "text": "Made a forcible hit to the head or neck of a defenseless player", "isCorrect": true},
+                {"id": "b", "text": "Grabbed a receiver's jersey", "isCorrect": false},
+                {"id": "c", "text": "Hit the quarterback after the ball left his hands", "isCorrect": false},
+                {"id": "d", "text": "Missed a tackle and fell down", "isCorrect": false}
+              ],
+              "translation": "The defender hit an opponent in the head or neck area with force and the opponent was vulnerable. This is college football.",
+              "followUps": [
+                {"line": "Is targeting in the NFL too?", "why": "Tests whether you know it is a college-specific rule."}
+              ],
+              "noFakeExpertNote": "Targeting is college football only. The NFL uses roughing and other flags instead."
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "grounding-05",
+        "title": "Grounding and eligibility",
+        "objective": "You can spot intentional grounding and illegal formation.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["intentional-grounding", "illegal-formation", "eligible-receiver"],
+        "activities": [
+          {
+            "id": "grounding-05-bc-ground",
+            "type": "binary-call",
+            "conceptIds": ["intentional-grounding"],
+            "payload": {
+              "prompt": "QB under pressure throws the ball away with no receiver within 10 yards.",
+              "scene": {
+                "kind": "none",
+                "alt": "A football play with the quarterback throwing to an area with no receivers nearby."
+              },
+              "choices": [
+                {"id": "flag", "label": "Intentional grounding"},
+                {"id": "legal", "label": "Legal throw away"}
+              ],
+              "correctChoiceId": "flag",
+              "ruleTag": "Intentional grounding",
+              "explanation": {
+                "correct": "The ball must go to a receiver or the QB must be past the line of scrimmage. An empty throw is grounding: loss of down and yardage.",
+                "incorrect": "Throwing the ball away with no target is grounding. The quarterback must throw toward a receiver or be outside the tackle box."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "grounding-05-bc-eligible",
+            "type": "binary-call",
+            "conceptIds": ["eligible-receiver"],
+            "payload": {
+              "prompt": "Number 73 (right tackle) lines up one yard deep off the line. Forward pass to him.",
+              "scene": {
+                "kind": "none",
+                "alt": "A football formation with a large lineman lined up off the line and a forward pass going to him."
+              },
+              "choices": [
+                {"id": "catch", "label": "Legal catch"},
+                {"id": "flag", "label": "Ineligible receiver"}
+              ],
+              "correctChoiceId": "flag",
+              "ruleTag": "Ineligible receiver",
+              "explanation": {
+                "correct": "Jersey number 73 is an ineligible lineman. Only backs, receivers and tight ends aligned as receivers may catch passes.",
+                "incorrect": "Linemen (numbers 50-79) are ineligible unless they report to the referee before the play. Number 73 cannot catch a pass."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "grounding-05-tm-rules",
+            "type": "term-match",
+            "conceptIds": ["intentional-grounding", "illegal-formation", "eligible-receiver"],
+            "payload": {
+              "prompt": "Match the rule to what it protects or defines.",
+              "pairs": [
+                {"id": "ground", "term": "Intentional grounding", "definition": "Quarterback throws the ball away with no eligible receiver nearby to escape pressure."},
+                {"id": "formation", "term": "Illegal formation", "definition": "The offense does not have seven players on the line of scrimmage at the snap."},
+                {"id": "eligible", "term": "Eligible receiver", "definition": "A player allowed to catch a forward pass, identified by position and number: backs, receivers and tight ends."}
+              ],
+              "explanation": {
+                "summary": "Grounding is a pass thrown away. Illegal formation is missing a lineman. Eligible receivers are the only ones who can legally catch.",
+                "sayThisLine": "That is grounding, no one was near it."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "grounding-05-st-formation",
+            "type": "say-this",
+            "conceptIds": ["illegal-formation"],
+            "payload": {
+              "statement": {"speaker": "Official", "text": "Illegal formation, only six on the line."},
+              "question": "What went wrong?",
+              "options": [
+                {"id": "a", "text": "The offense did not have seven players aligned on the line of scrimmage", "isCorrect": true},
+                {"id": "b", "text": "A receiver ran an illegal route", "isCorrect": false},
+                {"id": "c", "text": "The defense was too close to the line", "isCorrect": false},
+                {"id": "d", "text": "The quarterback was not deep enough", "isCorrect": false}
+              ],
+              "translation": "The offense needs at least seven players with their hand or foot on or near the line of scrimmage at the snap.",
+              "followUps": [
+                {"line": "Which players count as being on the line?", "why": "Tests whether you know it is any position, not just linemen."}
+              ]
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "catch-06",
+        "title": "What is a catch?",
+        "objective": "You can explain the catch rule, and why nobody agrees.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["catch-rule", "college-catch-rule", "replay-review"],
+        "activities": [
+          {
+            "id": "catch-06-mc-feet",
+            "type": "multiple-choice",
+            "conceptIds": ["catch-rule"],
+            "payload": {
+              "prompt": "In the NFL, how many feet must a receiver have in bounds for a catch?",
+              "options": [
+                {"id": "a", "text": "One foot"},
+                {"id": "b", "text": "Two feet"},
+                {"id": "c", "text": "Any body part"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "NFL: two feet (or another body part like a knee or buttocks). College: one foot is enough, which is a key difference between the two games.",
+                "incorrect": "The NFL requires two feet inbounds with control and a football move. College is one foot, and that confusion frustrates fans."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "catch-06-ds-football-move",
+            "type": "decision-scenario",
+            "conceptIds": ["catch-rule"],
+            "payload": {
+              "prompt": "Receiver catches ball and immediately trips out of bounds.",
+              "situation": {
+                "narrative": "A receiver has both feet in bounds, catches the ball and takes one step before tripping and going out of bounds.",
+                "facts": [
+                  {"label": "Feet down", "value": "Two inbounds"},
+                  {"label": "Control", "value": "Yes, visible possession"},
+                  {"label": "Steps taken", "value": "One step before tripping"},
+                  {"label": "Movement", "value": "Forward progress stopped by going out"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "catch",
+                  "label": "It is a catch",
+                  "verdict": "best",
+                  "consequence": "Two feet and control plus a football move (the step). The catch is complete.",
+                  "considerations": ["Two feet are down", "He controlled it", "One step is a football move"]
+                },
+                {
+                  "id": "incomplete",
+                  "label": "Incomplete pass",
+                  "verdict": "poor",
+                  "consequence": "He has all three elements: feet, control and a move. It is caught.",
+                  "considerations": ["Feet are down", "Control is clear", "He moved with it"]
+                }
+              ],
+              "expertNote": "The NFL catch is: control, two feet inbounds, and a football move (step, turn, or catch in motion). Tripping counts as a move."
+            },
+            "xp": 10
+          },
+          {
+            "id": "catch-06-bc-sideline",
+            "type": "binary-call",
+            "conceptIds": ["catch-rule"],
+            "payload": {
+              "prompt": "NFL: receiver gets one foot down inbounds, steps out of bounds. Catch?",
+              "scene": {
+                "kind": "field-diagram",
+                "diagramId": "football-sideline-catch",
+                "markers": [
+                  {
+                    "role": "player",
+                    "x": 0.9,
+                    "y": 0.5
+                  },
+                  {
+                    "role": "ball",
+                    "x": 0.88,
+                    "y": 0.48
+                  }
+                ],
+                "alt": "Overhead of the sideline. A receiver has one foot inside the line, next step lands outside."
+              },
+              "choices": [
+                {"id": "catch", "label": "Catch"},
+                {"id": "incomplete", "label": "Incomplete"}
+              ],
+              "correctChoiceId": "incomplete",
+              "ruleTag": "Catch rule",
+              "explanation": {
+                "correct": "The NFL needs two feet inbounds with control. One foot is not enough. College is one foot, which confuses everyone.",
+                "incorrect": "Two feet in bounds is required in the NFL. One foot counts only in college football."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "catch-06-st-catch",
+            "type": "say-this",
+            "conceptIds": ["catch-rule"],
+            "payload": {
+              "statement": {"speaker": "Fan", "text": "How is that not a catch? He had both hands on it and both feet down!"},
+              "question": "What is she missing?",
+              "options": [
+                {"id": "a", "text": "Hands and feet are not enough; control and a football move matter", "isCorrect": true},
+                {"id": "b", "text": "Catches require three feet on the ground", "isCorrect": false},
+                {"id": "c", "text": "The ball was moving too fast", "isCorrect": false},
+                {"id": "d", "text": "Catches only happen in the end zone", "isCorrect": false}
+              ],
+              "translation": "The catch rule is more complex than just hands and feet. The receiver needs control, both feet inbounds, and a football move to establish the catch.",
+              "followUps": [
+                {"line": "What is a football move?", "why": "Shows you understand the third element of the catch."},
+                {"line": "Is the catch rule different in college?", "why": "Tests if you know college uses one foot instead of two."}
+              ],
+              "noFakeExpertNote": "If unsure, look for: hand control, both feet in bounds (or one in college), and a step or move with the ball. All three matter."
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "review-07",
+        "title": "Flags, replay and challenges",
+        "objective": "You can say what can be reviewed and who decides.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["replay-review", "penalty-options"],
+        "activities": [
+          {
+            "id": "review-07-so-auto-review",
+            "type": "sequence-order",
+            "conceptIds": ["replay-review"],
+            "payload": {
+              "prompt": "Put the review process in order after a scoring play.",
+              "items": [
+                {"id": "play", "text": "Touchdown or field goal is scored", "why": "Scoring plays trigger automatic review."},
+                {"id": "booth", "text": "Official in the booth reviews video", "why": "The command center has all the angles."},
+                {"id": "check", "text": "Official checks with the on-field crew", "why": "Communication between booth and field."},
+                {"id": "call", "text": "Referee announces the ruling", "why": "The on-field ref makes the final call."}
+              ],
+              "explanation": {
+                "correct": "Scoring plays are automatically reviewed in the booth. The official in the booth advises the on-field referee, who makes the call.",
+                "incorrect": "Automatic review of scoring plays goes to the booth. The on-field referee makes the final decision after consulting the booth."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "review-07-bc-challenge",
+            "type": "binary-call",
+            "conceptIds": ["replay-review"],
+            "payload": {
+              "prompt": "Coach has one timeout. Can he challenge a holding call?",
+              "scene": {
+                "kind": "none",
+                "alt": "A coach on the sideline holding a red flag, a referee nearby with a holding marker."
+              },
+              "choices": [
+                {"id": "yes", "label": "Yes, throw the flag"},
+                {"id": "no", "label": "No, only plays can be challenged"}
+              ],
+              "correctChoiceId": "no",
+              "ruleTag": "Replay review",
+              "explanation": {
+                "correct": "Flags cannot be challenged. Coaches can only challenge player catches, fumbles, turnovers and scoring plays, not penalties.",
+                "incorrect": "Coaches can challenge turnovers, catches and scoring plays, but never flags. The referee's call on a penalty stands."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "review-07-mc-reviewable",
+            "type": "multiple-choice",
+            "conceptIds": ["replay-review"],
+            "payload": {
+              "prompt": "Which play can a coach challenge?",
+              "options": [
+                {"id": "a", "text": "Was it a catch or incomplete pass?"},
+                {"id": "b", "text": "Was it pass interference?"},
+                {"id": "c", "text": "Was it holding on the line?"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Catches, fumbles and turnovers are reviewable. Penalties like interference and holding are not challengeable; the referee's call is final.",
+                "incorrect": "Coaches can challenge catches and turnovers, but not penalties. Penalty calls stand once made."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "review-07-st-challenge",
+            "type": "say-this",
+            "conceptIds": ["replay-review", "penalty-options"],
+            "payload": {
+              "statement": {"speaker": "Coach", "text": "I am throwing the red flag! That was forward progress stopped!"},
+              "question": "Is that challengeable?",
+              "options": [
+                {"id": "a", "text": "No, forward progress and the spot of the ball cannot be challenged", "isCorrect": true},
+                {"id": "b", "text": "Yes, always throw the flag and let the booth decide", "isCorrect": false},
+                {"id": "c", "text": "Yes, but only if it is during a timeout", "isCorrect": false},
+                {"id": "d", "text": "Throw the flag on any play with a whistle", "isCorrect": false}
+              ],
+              "translation": "The spot of the ball and forward progress are judgment calls by the referee and not reviewable. Challenging wastes a timeout.",
+              "followUps": [
+                {"line": "What plays CAN be challenged?", "why": "Tests whether you know catch, fumble and turnover calls are reviewable."}
+              ],
+              "noFakeExpertNote": "If unsure, remember: turnovers and catches are in, penalties and spots are out."
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "referee-08",
+        "title": "Speaking referee",
+        "objective": "You can decode a referee announcement.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["offside", "holding", "pass-interference", "penalty-options"],
+        "activities": [
+          {
+            "id": "referee-08-li-offside",
+            "type": "listening-id",
+            "conceptIds": ["offside"],
+            "payload": {
+              "prompt": "Listen to the referee. What is the penalty?",
+              "audio": {
+                "asset": "audio/ref-offside.m4a",
+                "durationMs": 3500,
+                "license": "original-swoond",
+                "description": "A referee's voice: 'Offside, defense, number 72. That is five yards. Offense, ball is next to me.'",
+                "attribution": "Original recording, Swoon'd"
+              },
+              "options": [
+                {"id": "offside", "text": "Offside, defense"},
+                {"id": "holding", "text": "Holding, offense"},
+                {"id": "false-start", "text": "False start, offense"}
+              ],
+              "correctOptionId": "offside",
+              "explanation": {
+                "correct": "Offside on the defense. The ref said so, and it is five yards with the ball in motion.",
+                "incorrect": "Listen for the player name and the team. The ref said 'offside, defense,' number 72."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "referee-08-li-holding",
+            "type": "listening-id",
+            "conceptIds": ["holding"],
+            "payload": {
+              "prompt": "Decode the referee's call.",
+              "audio": {
+                "asset": "audio/ref-holding.m4a",
+                "durationMs": 4000,
+                "license": "original-swoond",
+                "description": "Referee: 'Holding on the offense, number 65, in the backfield. That is ten yards from the previous spot.'",
+                "attribution": "Original recording, Swoon'd"
+              },
+              "options": [
+                {"id": "holding-off", "text": "Holding, offense, 10 yards", "explanation": "Offensive holding is ten yards from the line of scrimmage."},
+                {"id": "holding-def", "text": "Holding, defense, 5 yards", "explanation": "Defensive holding is five yards with a first down, not ten."},
+                {"id": "false-start", "text": "False start, offense, 5 yards", "explanation": "False start is five yards, not ten."}
+              ],
+              "correctOptionId": "holding-off",
+              "explanation": {
+                "correct": "Holding on offense is ten yards. The ref said 'holding on the offense, ten yards from the previous spot.'",
+                "incorrect": "Listen for 'holding' and which team. Offensive holding is ten yards; defensive is five with a free first down."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "referee-08-tm-signals",
+            "type": "term-match",
+            "conceptIds": ["offside", "holding", "pass-interference"],
+            "payload": {
+              "prompt": "Match what the referee says to the penalty.",
+              "pairs": [
+                {"id": "off", "term": "Offside", "definition": "Defender crossed the line at the snap. Five yards, offense gets the ball."},
+                {"id": "hold", "term": "Holding", "definition": "Illegal grabbing. Ten yards on offense, five yards on defense with a first down."},
+                {"id": "pi", "term": "Pass interference", "definition": "Illegal contact before the ball arrives. Spot foul in the NFL."}
+              ],
+              "explanation": {
+                "summary": "Offside is five yards for the defense. Holding is ten (offense) or five (defense). Pass interference is a spot foul.",
+                "sayThisLine": "Holding on the offense, ten yards."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "referee-08-st-announce",
+            "type": "say-this",
+            "conceptIds": ["penalty-options"],
+            "payload": {
+              "statement": {"speaker": "Official", "text": "Holding, offense number 71. Offense has accepted the penalty. That is second down."},
+              "question": "What does this mean?",
+              "options": [
+                {"id": "a", "text": "The offense moved back ten yards and the down count resets", "isCorrect": true},
+                {"id": "b", "text": "The offense can decline and replay the down", "isCorrect": false},
+                {"id": "c", "text": "The defense declined the penalty", "isCorrect": false},
+                {"id": "d", "text": "The offense gets an automatic first down", "isCorrect": false}
+              ],
+              "translation": "The offense chose to accept the holding penalty and take the ten-yard loss. The down stays the same (second down) and play continues.",
+              "followUps": [
+                {"line": "When would the offense decline a penalty?", "why": "Tests whether you know when a play is better than the yardage."}
+              ]
+            },
+            "xp": 10
+          }
+        ]
+      }
+    ]
+  }
+}

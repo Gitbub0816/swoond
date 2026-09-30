@@ -213,42 +213,39 @@
             "xp": 10
           },
           {
-            "id": "man-zone-02-ds-receiver-bunch",
-            "type": "decision-scenario",
+            "id": "man-zone-02-bc-bunch",
+            "type": "binary-call",
             "conceptIds": ["zone-coverage", "man-coverage"],
             "payload": {
-              "prompt": "Four receivers line up in a bunch to the left. The defense is in zone coverage. Why is this good for the offense?",
+              "prompt": "Zone coverage is weak to bunch formations because it overloads one zone. True or false?",
+              "scene": {"kind": "none", "alt": "Multiple receivers bunched to one side against zone defenders spread across the field."},
               "choices": [
-                {"id": "a", "text": "They can flood the zone and create free receivers because zone defenders are overloaded in one area", "isCorrect": true},
-                {"id": "b", "text": "Man coverage defenders cannot follow them because there are too many", "isCorrect": false},
-                {"id": "c", "text": "The quarterback will have more time in the pocket because zone is slower", "isCorrect": false}
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
               ],
+              "correctChoiceId": "true",
               "explanation": {
-                "correct": "Right. Zone coverage spreads defenders across the field, so when many receivers cluster in one zone, some are open.",
-                "incorrect": "Think about what zone coverage is: defenders guard areas. Bunch four receivers in one area and you overwhelm that zone."
+                "correct": "True. Zone spreads defenders. Bunch receivers overwhelm one zone, creating free receivers.",
+                "incorrect": "Yes, zone assigns areas. Four receivers cluster in one area can overload that zone."
               }
             },
             "xp": 10
           },
           {
-            "id": "man-zone-02-vi-tell",
-            "type": "visual-id",
+            "id": "man-zone-02-mc-corner",
+            "type": "multiple-choice",
             "conceptIds": ["man-coverage", "zone-coverage"],
             "payload": {
-              "prompt": "Watch the cornerback at the top of the screen. Is this man or zone coverage?",
-              "diagram": {
-                "diagramId": "coverage-visual-motion",
-                "alt": "A pre-snap view of a defense where the cornerback is aligned tightly on a receiver at the line, looking at him and not the quarterback.",
-                "aspectRatio": 2.5
-              },
+              "prompt": "Corner lined up tight on receiver is typically what coverage?",
               "options": [
-                {"id": "man", "text": "Man coverage: the corner is on top of the receiver", "isCorrect": true},
-                {"id": "zone", "text": "Zone coverage: the corner is five yards off looking at the quarterback", "isCorrect": false},
-                {"id": "blitz", "text": "Blitz coverage: the corner is about to attack the line", "isCorrect": false}
+                {"id": "man", "text": "Man coverage"},
+                {"id": "zone", "text": "Zone coverage"},
+                {"id": "blitz", "text": "Blitz"}
               ],
+              "correctOptionIds": ["man"],
               "explanation": {
-                "correct": "When the corner is right on the receiver pre-snap, it is usually man coverage. He is ready to mirror the receiver off the snap.",
-                "incorrect": "Look at the corner's alignment. If he is tight and looking at the receiver, it is man. If he is off and looking back at the quarterback, it is zone."
+                "correct": "Tight corner pre-snap means man. He will mirror the receiver all over the field.",
+                "incorrect": "Corner pressed tight on a receiver is man coverage. Zone corners line up off and look at QB."
               }
             },
             "xp": 10
@@ -291,9 +288,9 @@
             "payload": {
               "prompt": "Why does a defense choose between one-high and two-high safeties?",
               "options": [
-                {"id": "a", "text": "One-high puts a safety deep to defend the deep pass but risks the underneath zones. Two-high splits the deep field but stacks the box for the run."},
-                {"id": "b", "text": "One-high is used when it is sunny. Two-high is used when it is cloudy."},
-                {"id": "c", "text": "One-high means the defense is in man coverage. Two-high means the defense is in zone coverage."}
+                {"id": "a", "text": "One-high covers deep but risks underneath. Two-high splits deep and stacks box."},
+                {"id": "b", "text": "One-high is for sunny days. Two-high for cloudy days."},
+                {"id": "c", "text": "One-high = man. Two-high = zone."}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
@@ -396,19 +393,20 @@
             "xp": 10
           },
           {
-            "id": "shells-03-ds-shell-choice",
-            "type": "decision-scenario",
+            "id": "shells-03-mc-run",
+            "type": "multiple-choice",
             "conceptIds": ["single-high-shell", "two-high-shell"],
             "payload": {
-              "prompt": "The offense motions a receiver to the slot and you see two safeties split wide. The offense then hands the ball off to the running back going up the middle. Did the defense make a good shell choice?",
-              "choices": [
-                {"id": "a", "text": "Yes, two-high was right because it stops the run up the middle and the slot receiver has nowhere to hide", "isCorrect": true},
-                {"id": "b", "text": "No, one-high would have been better to help over the top on the deep pass", "isCorrect": false},
-                {"id": "c", "text": "It does not matter what shell the defense is in on a running play", "isCorrect": false}
+              "prompt": "Two-high shell on a running play is good because?",
+              "options": [
+                {"id": "a", "text": "Stops the run with more defenders in box"},
+                {"id": "b", "text": "Helps over the top on deep pass"},
+                {"id": "c", "text": "Does not matter for run plays"}
               ],
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Yes. Two-high stacks the box for the run and covers the middle. The choice was good if the offense runs.",
-                "incorrect": "Two-high puts more defenders in position to stop the run, which is what happened. That was the right call."
+                "correct": "Two-high puts both safeties split but closer to line, stacking the box to stop runs. Right call.",
+                "incorrect": "Two-high brings safeties down to help run defense. That is better than one-high on a run."
               }
             },
             "xp": 10
@@ -459,9 +457,9 @@
             "payload": {
               "prompt": "Match each coverage name to what it does.",
               "pairs": [
-                {"id": "cover2", "term": "Cover 2", "definition": "Two safeties split the deep field in half. Corners are tight on receivers. The hole is between corner and safety (the seam)."},
-                {"id": "cover3", "term": "Cover 3", "definition": "Three safeties (or a corner and two safeties) split the deep field in thirds. More underneath help but bigger seams."},
-                {"id": "weak", "term": "Weakness in coverage", "definition": "Cover 2 is weak to seam routes. Cover 3 is weak to sideline routes and to short throws that attack the zones."}
+                {"id": "cover2", "term": "Cover 2", "definition": "Two safeties split deep. Corners tight. Seams are weak."},
+                {"id": "cover3", "term": "Cover 3", "definition": "Three split deep. More underneath help. Bigger seams."},
+                {"id": "weak", "term": "Weakness", "definition": "Cover 2 weak to seams. Cover 3 weak to sidelines."}
               ],
               "explanation": {
                 "summary": "Both are zone coverages. Cover 2 is tighter on receivers but leaves seams. Cover 3 gives up sidelines but is harder to throw deep.",
@@ -475,7 +473,7 @@
             "type": "multiple-choice",
             "conceptIds": ["cover-2", "cover-3", "zone-vs-man"],
             "payload": {
-              "prompt": "The safeties split to the left and right sidelines, and the corners are lined up directly on the receivers. What coverage is this likely to be?",
+              "prompt": "Safeties split sidelines, corners on receivers. What coverage?",
               "options": [
                 {"id": "a", "text": "Cover 3, because three deep defenders can split the field"},
                 {"id": "b", "text": "Cover 2, with two safeties each taking a half of the deep field"},
@@ -494,7 +492,7 @@
             "type": "binary-call",
             "conceptIds": ["cover-2"],
             "payload": {
-              "prompt": "In Cover 2, a seam route between the two safeties is a natural weak spot because each safety assumes the other has the seam. True or false?",
+              "prompt": "In Cover 2, seam route between safeties is open. True or false?",
               "scene": {"kind": "none", "alt": "Two safeties split wide showing a gap down the middle seam of the field where a receiver can run."},
               "choices": [
                 {"id": "true", "label": "True"},
@@ -509,19 +507,20 @@
             "xp": 10
           },
           {
-            "id": "coverage-04-ds-scheme",
-            "type": "decision-scenario",
+            "id": "coverage-04-mc-seams",
+            "type": "multiple-choice",
             "conceptIds": ["cover-2", "cover-3"],
             "payload": {
-              "prompt": "You have three receivers on the left side running seam routes and the defense is in Cover 2. What is the main danger to the offense?",
-              "choices": [
-                {"id": "a", "text": "All three routes will be covered because Cover 2 has three deep help defenders", "isCorrect": false},
-                {"id": "b", "text": "Only one seam will be open because the two safeties are split and two corners are helping", "isCorrect": true},
-                {"id": "c", "text": "The offense will get flagged for too many receivers", "isCorrect": false}
+              "prompt": "Three seam routes on one side versus Cover 2. How many are open?",
+              "options": [
+                {"id": "a", "text": "All three, because Cover 2 has weak seams"},
+                {"id": "b", "text": "Only one, because two safeties split the deep"},
+                {"id": "c", "text": "None, Cover 2 is perfect against seams"}
               ],
+              "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. In Cover 2 with two safeties and two corners on the left, not all three seams are open. The quarterback has to find the one that is.",
-                "incorrect": "Cover 2 only has two deep safeties. With two corners tight, the third route is likely covered."
+                "correct": "Cover 2 has two safeties, so they can't cover all three seams. One will be open for the QB to target.",
+                "incorrect": "Cover 2 only has two deep helps. Three seams means you can only cover two; one is wide."
               }
             },
             "xp": 10

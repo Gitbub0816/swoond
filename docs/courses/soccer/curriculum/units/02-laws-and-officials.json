@@ -21,7 +21,10 @@
             "conceptIds": ["foul"],
             "payload": {
               "prompt": "A defender kicks the attacker's leg while going for the ball. Foul?",
-              "scene": {"kind": "none", "alt": "A defender's foot makes contact with an attacker's leg; the defender did not get the ball first."},
+              "scene": {
+                "kind": "none",
+                "alt": "A defender's foot makes contact with an attacker's leg; the defender did not get the ball first."
+              },
               "choices": [
                 {"id": "yes", "label": "Foul"},
                 {"id": "no", "label": "Not a foul"}
@@ -40,7 +43,7 @@
             "type": "multiple-choice",
             "conceptIds": ["direct-indirect-free-kick"],
             "payload": {
-              "prompt": "After a foul in the opponent's penalty area, what is the restart?",
+              "prompt": "A defender commits a direct free kick foul inside his own penalty area. What is the restart?",
               "options": [
                 {"id": "a", "text": "Indirect free kick"},
                 {"id": "b", "text": "Direct free kick"},
@@ -48,8 +51,8 @@
               ],
               "correctOptionIds": ["c"],
               "explanation": {
-                "correct": "Right. A foul in the box is a penalty, a one-on-one from the spot.",
-                "incorrect": "Fouls inside the penalty area give a penalty kick, not a free kick. That's the highest punishment for contact.",
+                "correct": "Right. A direct free kick offence by the defending team inside its own penalty area is punished with a penalty kick from the spot.",
+                "incorrect": "When a defending player commits a direct free kick offence inside his own penalty area, the restart is a penalty kick rather than a free kick.",
                 "sayThisLine": "In the box, it's a penalty. Outside, it's a free kick."
               }
             }
@@ -60,35 +63,45 @@
             "conceptIds": ["foul"],
             "payload": {
               "prompt": "A striker pushes a centre-back in the back with both hands. Foul?",
-              "scene": {"kind": "none", "alt": "A forward extends both arms and pushes a defender in the shoulders from behind while neither is competing for the ball."},
+              "scene": {
+                "kind": "none",
+                "alt": "A forward extends both arms and pushes a defender in the shoulders from behind while neither is competing for the ball."
+              },
               "choices": [
                 {"id": "yes", "label": "Foul"},
                 {"id": "no", "label": "Not a foul"}
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Yes. Pushing without the ball is excessive force, a foul every time.",
-                "incorrect": "Any push away from the ball is a foul. Excessive force is the rule, and pushing is excessive.",
-                "sayThisLine": "No contact away from the ball, that's the rule."
+                "correct": "Yes. Pushing an opponent is a direct free kick offence when it is careless, reckless or uses excessive force, and shoving someone in the back off the ball is clearly that.",
+                "incorrect": "Pushing an opponent, especially from behind and away from the ball, is a foul. It is a direct free kick, or a penalty if it happens in the box.",
+                "sayThisLine": "Shoving someone off the ball is a foul, plain and simple."
               },
               "ruleTag": "Excessive force"
             }
           },
           {
             "id": "laws-01-mc-direct",
-            "type": "multiple-choice",
+            "type": "fill-the-gap",
             "conceptIds": ["direct-indirect-free-kick"],
             "payload": {
-              "prompt": "Can you score straight from a direct free kick?",
-              "options": [
-                {"id": "a", "text": "Yes, straight into the net counts"},
-                {"id": "b", "text": "No, another player must touch it first"},
-                {"id": "c", "text": "Only if it's outside the box"}
+              "prompt": "Complete the free-kick rule.",
+              "template": "From a {{direct}} free kick you can score straight away, but from an {{indirect}} free kick another player must touch the ball first.",
+              "gaps": [
+                {
+                  "id": "direct",
+                  "options": ["direct", "indirect", "penalty"],
+                  "correct": "direct"
+                },
+                {
+                  "id": "indirect",
+                  "options": ["direct", "indirect", "corner"],
+                  "correct": "indirect"
+                }
               ],
-              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. Direct free kicks can go straight in; the name is the clue.",
-                "incorrect": "A direct free kick can score straight into the goal. The distinction is in the name: direct vs indirect.",
+                "correct": "Right. A direct free kick can go straight into the net; an indirect one needs a second touch first. The name gives you the clue.",
+                "incorrect": "A direct free kick can score directly. An indirect free kick must touch another player before a goal counts, and the referee signals it with a raised arm.",
                 "sayThisLine": "Direct free kicks go straight in if you bend it right."
               }
             }
@@ -99,16 +112,19 @@
             "conceptIds": ["foul"],
             "payload": {
               "prompt": "A defender's hand touches the ball on purpose while trying to stop a shot. Foul?",
-              "scene": {"kind": "none", "alt": "A defender deliberately puts a hand in front of a shot attempt to block it; the hand contact is clear and intentional."},
+              "scene": {
+                "kind": "none",
+                "alt": "A defender deliberately puts a hand in front of a shot attempt to block it; the hand contact is clear and intentional."
+              },
               "choices": [
                 {"id": "yes", "label": "Foul"},
                 {"id": "no", "label": "Not a foul"}
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Yes. Deliberate handball is a foul, and in the box it's a penalty.",
-                "incorrect": "Any deliberate use of the hand to play the ball is a foul. The arm is the rule.",
-                "sayThisLine": "Hand ball stops, it's always a foul."
+                "correct": "Yes. Deliberately using the hand or arm to stop the ball is handball, a direct free kick, or a penalty if it happens in the defender's own box.",
+                "incorrect": "Deliberately putting a hand in the way of a shot is handball. Intent is clear here, so it is a foul and, in the box, a penalty.",
+                "sayThisLine": "Hand to the shot on purpose, that's a foul."
               },
               "ruleTag": "Handball"
             }
@@ -147,8 +163,14 @@
               ],
               "translation": "Jamie is saying the contact was minimal or didn't happen, so it shouldn't have been called a foul.",
               "followUps": [
-                {"line": "Did it look like a dive to you?", "why": "Asks if the attacker exaggerated contact."},
-                {"line": "Did you see the contact in slow motion?", "why": "Brings in the replay angle."}
+                {
+                  "line": "Did it look like a dive to you?",
+                  "why": "Asks if the attacker exaggerated contact."
+                },
+                {
+                  "line": "Did you see the contact in slow motion?",
+                  "why": "Brings in the replay angle."
+                }
               ],
               "noFakeExpertNote": "If you didn't see the contact clearly, ask what Jamie saw."
             }
@@ -169,9 +191,21 @@
             "payload": {
               "prompt": "Match the card to its meaning.",
               "pairs": [
-                {"id": "yellow", "term": "Yellow card", "definition": "A caution for bad behaviour; two yellows in one match mean a red and a sending-off."},
-                {"id": "red-direct", "term": "Direct red card", "definition": "A sending-off for serious foul play or violent conduct; the player is off immediately."},
-                {"id": "red-second", "term": "Red from two yellows", "definition": "A second caution in the same match results in a red and the player leaves the field."}
+                {
+                  "id": "yellow",
+                  "term": "Yellow card",
+                  "definition": "A caution for bad behaviour; two yellows in one match mean a red and a sending-off."
+                },
+                {
+                  "id": "red-direct",
+                  "term": "Direct red card",
+                  "definition": "A sending-off for serious foul play or violent conduct; the player is off immediately."
+                },
+                {
+                  "id": "red-second",
+                  "term": "Red from two yellows",
+                  "definition": "A second caution in the same match results in a red and the player leaves the field."
+                }
               ],
               "explanation": {
                 "summary": "Yellow warns; two yellows or one serious offence and the player is sent off.",
@@ -181,20 +215,35 @@
           },
           {
             "id": "laws-02-mc-persistent-fouls",
-            "type": "multiple-choice",
+            "type": "term-match",
             "conceptIds": ["yellow-card"],
             "payload": {
-              "prompt": "A player keeps fouling every few minutes. What does the referee show?",
-              "options": [
-                {"id": "a", "text": "Nothing, it's just playing hard"},
-                {"id": "b", "text": "A warning and then a yellow if it continues"},
-                {"id": "c", "text": "A yellow for persistent fouling"}
+              "prompt": "Match the offence to how the referee treats it.",
+              "pairs": [
+                {
+                  "id": "persistent",
+                  "term": "Persistent fouling",
+                  "definition": "Repeated fouls after warnings earn a yellow card"
+                },
+                {
+                  "id": "dissent",
+                  "term": "Dissent",
+                  "definition": "Shouting at or abusing the referee earns a yellow card"
+                },
+                {
+                  "id": "violent",
+                  "term": "Violent conduct",
+                  "definition": "Punching, spitting or lashing out earns a straight red"
+                },
+                {
+                  "id": "serious",
+                  "term": "Serious foul play",
+                  "definition": "A dangerous, over-the-top challenge earns a straight red"
+                }
               ],
-              "correctOptionIds": ["c"],
               "explanation": {
-                "correct": "Right. Persistent fouling is a yellow because the referee tells him to stop and he does not.",
-                "incorrect": "If a player keeps fouling after being warned, the yellow comes for persistent offences.",
-                "sayThisLine": "Foul after foul after foul, that's a yellow."
+                "summary": "Yellow cards are for repeated or disrespectful behaviour. Red cards are for violence or dangerous challenges that put an opponent at risk.",
+                "sayThisLine": "That is a yellow for dissent, but the lunge is a straight red."
               }
             }
           },
@@ -204,7 +253,10 @@
             "conceptIds": ["red-card", "yellow-card"],
             "payload": {
               "prompt": "A player gets a yellow in the 30th minute and another yellow in the 75th. Is he sent off?",
-              "scene": {"kind": "none", "alt": "A player receives a yellow card in the first half and another yellow card in the second half of the same match."},
+              "scene": {
+                "kind": "none",
+                "alt": "A player receives a yellow card in the first half and another yellow card in the second half of the same match."
+              },
               "choices": [
                 {"id": "yes", "label": "Sent off"},
                 {"id": "no", "label": "Stays on"}
@@ -245,36 +297,28 @@
               "statement": {"speaker": "Ava", "text": "That was a red all day. He jumped on him with both feet."},
               "question": "What is Ava saying?",
               "options": [
-                {"id": "a", "text": "It was a clear red card offense because of violent conduct", "isCorrect": true},
-                {"id": "b", "text": "The referee should send him off immediately", "isCorrect": true},
-                {"id": "c", "text": "She thinks he fouled someone", "isCorrect": false},
-                {"id": "d", "text": "It was just a bad tackle", "isCorrect": false}
+                {
+                  "id": "a",
+                  "text": "It was serious foul play, so it deserves a straight red",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "The referee should send him off immediately",
+                  "isCorrect": true
+                },
+                {"id": "c", "text": "She thinks it was a normal, fair tackle", "isCorrect": false},
+                {"id": "d", "text": "He should get a yellow for talking back", "isCorrect": false}
               ],
-              "translation": "Ava is saying the player's action was violent and deserves a direct red card dismissal.",
+              "translation": "Ava is saying the challenge was dangerous, jumping in with both feet, so it should be a direct red card and an immediate sending-off.",
               "followUps": [
-                {"line": "Did you see it live or in replay?", "why": "Asks where she got the angle."},
+                {
+                  "line": "Did you see it live or in replay?",
+                  "why": "Asks where she got the angle."
+                },
                 {"line": "Do you think VAR would intervene?", "why": "Tests VAR knowledge."}
               ],
               "noFakeExpertNote": "If you're not sure what happened, ask Ava what she saw."
-            }
-          },
-          {
-            "id": "laws-02-mc-dissent",
-            "type": "multiple-choice",
-            "conceptIds": ["yellow-card"],
-            "payload": {
-              "prompt": "A player yells at the referee after a decision. What is the card?",
-              "options": [
-                {"id": "a", "text": "A free kick for the other team"},
-                {"id": "b", "text": "A yellow card for dissent"},
-                {"id": "c", "text": "Nothing, just a warning"}
-              ],
-              "correctOptionIds": ["b"],
-              "explanation": {
-                "correct": "Right. Dissent, arguing with the ref, is a yellow card.",
-                "incorrect": "Arguing with the referee or abusing him is a yellow. The captain can speak; others cannot.",
-                "sayThisLine": "Can't shout at the ref, that's a yellow."
-              }
             }
           }
         ]
@@ -292,7 +336,10 @@
             "conceptIds": ["advantage"],
             "payload": {
               "prompt": "A midfielder fouls an attacker, but the attacker's teammate is clean through on goal. Does the ref play advantage?",
-              "scene": {"kind": "none", "alt": "A foul occurs, but the fouled player's team immediately has a scoring opportunity with an open path to goal."},
+              "scene": {
+                "kind": "none",
+                "alt": "A foul occurs, but the fouled player's team immediately has a scoring opportunity with an open path to goal."
+              },
               "choices": [
                 {"id": "yes", "label": "Play advantage"},
                 {"id": "no", "label": "Blow the whistle"}
@@ -311,7 +358,7 @@
             "type": "multiple-choice",
             "conceptIds": ["advantage"],
             "payload": {
-              "prompt": "The ref plays advantage, but the attacking team loses the ball immediately. What happens next?",
+              "prompt": "The ref plays advantage, but the fouled team loses the ball within a couple of seconds. What happens?",
               "options": [
                 {"id": "a", "text": "The ref stops play and awards the original free kick"},
                 {"id": "b", "text": "Play continues with no free kick"},
@@ -319,9 +366,9 @@
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. If advantage does not work out, the ref goes back for the original foul.",
-                "incorrect": "Advantage can be rescinded; if the fouled team loses the ball quickly, the ref stops and gives the free kick.",
-                "sayThisLine": "Advantage play, but if you lose it, he goes back."
+                "correct": "Right. If the expected advantage does not develop within a few seconds, the referee can come back and give the original foul. Once the advantage has clearly developed, there is no going back.",
+                "incorrect": "Advantage only stands if it really helps the fouled team. If it fizzles out within a few seconds, the referee can stop play and award the original free kick.",
+                "sayThisLine": "Advantage didn't come off, so he's going back for the free kick."
               }
             }
           },
@@ -331,7 +378,10 @@
             "conceptIds": ["professional-foul"],
             "payload": {
               "prompt": "A defender sees a 3-on-1 break, so he trips the attacker. It stops the counter. Does he get a yellow?",
-              "scene": {"kind": "none", "alt": "With defenders out of position and attackers on a fast break, a defender deliberately fouls to stop the attack and accepts the yellow card."},
+              "scene": {
+                "kind": "none",
+                "alt": "With defenders out of position and attackers on a fast break, a defender deliberately fouls to stop the attack and accepts the yellow card."
+              },
               "choices": [
                 {"id": "yes", "label": "Yes, yellow card"},
                 {"id": "no", "label": "No card"}
@@ -350,7 +400,7 @@
             "type": "multiple-choice",
             "conceptIds": ["advantage"],
             "payload": {
-              "prompt": "A player jumps and leans into an opponent's shoulder to win a header. Is it a foul or advantage?",
+              "prompt": "Two players jump for a header and their shoulders meet. Is it a foul?",
               "options": [
                 {"id": "a", "text": "Always a foul, no contact in the air"},
                 {"id": "b", "text": "Only a foul if he uses both arms"},
@@ -369,17 +419,31 @@
             "type": "say-this",
             "conceptIds": ["professional-foul"],
             "payload": {
-              "statement": {"speaker": "Lee", "text": "Great tactical foul, stopped them on a break for a yellow. That's defending."},
+              "statement": {
+                "speaker": "Lee",
+                "text": "Great tactical foul, stopped them on a break for a yellow. That's defending."
+              },
               "question": "What does Lee mean?",
               "options": [
-                {"id": "a", "text": "The defender deliberately fouled to stop a counter-attack", "isCorrect": true},
-                {"id": "b", "text": "The defender got a yellow but prevented a goal chance", "isCorrect": true},
+                {
+                  "id": "a",
+                  "text": "The defender deliberately fouled to stop a counter-attack",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "The defender got a yellow but prevented a goal chance",
+                  "isCorrect": true
+                },
                 {"id": "c", "text": "It was a clean tackle", "isCorrect": false},
                 {"id": "d", "text": "The defender broke the rules badly", "isCorrect": false}
               ],
               "translation": "Lee is praising the defender for making a smart calculated foul to prevent a dangerous counter-attack.",
               "followUps": [
-                {"line": "Would you take that yellow in that situation?", "why": "Tests decision-making."},
+                {
+                  "line": "Would you take that yellow in that situation?",
+                  "why": "Tests decision-making."
+                },
                 {"line": "Do you think VAR should review it?", "why": "Tests VAR knowledge."}
               ],
               "noFakeExpertNote": "Tactical fouls are legal; they're just a cost-benefit decision players make."
@@ -399,16 +463,52 @@
             "type": "decision-scenario",
             "conceptIds": ["dogso"],
             "payload": {
-              "prompt": "An attacker is through one-on-one with the keeper. The last defender fouls him. What is the card?",
-              "context": "The fouled player had a clear goal-scoring opportunity with only the goalkeeper to beat.",
+              "prompt": "The last defender brings down an attacker clean through. What card?",
+              "situation": {
+                "narrative": "The attacker has the ball under control and is racing toward goal.",
+                "facts": [
+                  {"label": "Location", "value": "Just outside the penalty area"},
+                  {"label": "Defenders", "value": "The fouler is the last one back"},
+                  {"label": "Direction", "value": "Attacker heading straight for goal"},
+                  {
+                    "label": "Foul",
+                    "value": "Trip from behind, no attempt at the ball",
+                    "emphasis": "warning"
+                  }
+                ]
+              },
               "options": [
-                {"id": "a", "text": "A yellow card for the foul"},
-                {"id": "b", "text": "A red card for denying the goal chance"},
-                {"id": "c", "text": "No card, just a free kick"}
+                {
+                  "id": "red",
+                  "label": "Red card for denying an obvious goal-scoring opportunity",
+                  "verdict": "best",
+                  "consequence": "Correct. The defender is sent off and the attacking side gets a direct free kick.",
+                  "considerations": [
+                    "Distance and direction of play favour a goal",
+                    "Nobody else can recover",
+                    "The foul is a trip, not a genuine attempt to play the ball"
+                  ]
+                },
+                {
+                  "id": "yellow",
+                  "label": "Yellow card for a normal foul",
+                  "verdict": "poor",
+                  "consequence": "That undersells it. The defender has removed a clear chance and keeps playing.",
+                  "considerations": [
+                    "A yellow fits when the chance is not obvious",
+                    "Here the attacker had a clear route to goal"
+                  ]
+                },
+                {
+                  "id": "nocard",
+                  "label": "Free kick only, no card",
+                  "verdict": "poor",
+                  "consequence": "A free kick alone would let a defender stop a certain goal and pay almost nothing.",
+                  "considerations": ["Denying a goal chance always carries a card"]
+                }
               ],
-              "correctOptionId": "b",
-              "explanation": "When the last defender denies a clear goal-scoring opportunity, it is a red card. DOGSO stands for Denying an Obvious Goal-Scoring Opportunity. The rule is: stopping a tap-in chance = red, unless the defender challenges for the ball and there is contact that is careless, in which case it is yellow.",
-              "sayThisLine": "DOGSO, last man, straight red, no argument."
+              "expertNote": "Referees run the four Ds: distance to goal, direction of play, defenders who can recover, and control of the ball. Outside the box a foul that denies a goal chance is red even if the defender makes a challenge for the ball.",
+              "sayThisLine": "Last man, clean through, that's DOGSO."
             }
           },
           {
@@ -416,17 +516,20 @@
             "type": "multiple-choice",
             "conceptIds": ["dogso", "red-card"],
             "payload": {
-              "prompt": "The last defender fouls an attacker clean through, but he clearly tried to get the ball. Is it red or yellow?",
+              "prompt": "Just outside the box, the last defender clips an attacker clean through while trying for the ball. Card?",
               "options": [
-                {"id": "a", "text": "Red card, no question"},
-                {"id": "b", "text": "Yellow because he challenged for the ball"},
-                {"id": "c", "text": "Nothing because he tried"}
+                {
+                  "id": "a",
+                  "text": "Red, because outside the area a trying-for-the-ball foul is still DOGSO"
+                },
+                {"id": "b", "text": "Yellow, because he tried to play the ball"},
+                {"id": "c", "text": "No card, because he tried to win it"}
               ],
-              "correctOptionIds": ["b"],
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. If the defender makes a genuine attempt at the ball, a DOGSO foul is yellow, not red.",
-                "incorrect": "DOGSO can be red or yellow: red if it is a blatant denial (no ball attempt), yellow if the defender tried to win it fairly.",
-                "sayThisLine": "He went for the ball, so it's yellow not red."
+                "correct": "Right. Outside the penalty area, a foul that denies an obvious goal chance is a red card even if the defender genuinely tried to play the ball. The lighter yellow only applies inside the box.",
+                "incorrect": "The 'he went for the ball' reduction to yellow only applies inside the penalty area, where the attacker also gets a penalty. Outside the box, denying the goal chance is red.",
+                "sayThisLine": "Outside the box it's a red, even if he went for the ball."
               }
             }
           },
@@ -435,17 +538,20 @@
             "type": "binary-call",
             "conceptIds": ["dogso"],
             "payload": {
-              "prompt": "Two defenders are back. The last one fouls an attacker clear through. Is it DOGSO red?",
-              "scene": {"kind": "none", "alt": "An attacker is through on goal, but there is a second defender nearby who could also defend. The last defender fouls."},
+              "prompt": "A covering defender is right behind the last man, who fouls an attacker. Is it DOGSO red?",
+              "scene": {
+                "kind": "none",
+                "alt": "An attacker is heading toward goal with a defender fouling him, but a second defender is close enough to recover and challenge."
+              },
               "choices": [
                 {"id": "yes", "label": "DOGSO red"},
                 {"id": "no", "label": "Not DOGSO"}
               ],
               "correctChoiceId": "no",
               "explanation": {
-                "correct": "No. With two defenders back, it is not a clear goal-scoring opportunity; it is not DOGSO.",
-                "incorrect": "DOGSO requires the attacker to have a clear, obvious chance. Two defenders means it is not clear, so it is a yellow.",
-                "sayThisLine": "Two back, not clear, so it's yellow not red."
+                "correct": "No. With a second defender close enough to get back and challenge, the chance is not obvious, so it is a foul that usually earns a yellow, not a DOGSO red.",
+                "incorrect": "DOGSO needs an obvious chance. A covering defender who can recover means it is not obvious, so the foul is normally a yellow for stopping a promising attack.",
+                "sayThisLine": "Someone was covering, so it's not DOGSO. Yellow at most."
               },
               "ruleTag": "DOGSO rule"
             }
@@ -455,7 +561,7 @@
             "type": "multiple-choice",
             "conceptIds": ["dogso"],
             "payload": {
-              "prompt": "A striker is clean through on goal. A defender fouls him inside the penalty area for a DOGSO. What is the punishment?",
+              "prompt": "A defender pulls back a clean-through striker by the shirt inside the area, no attempt to play the ball. Punishment?",
               "options": [
                 {"id": "a", "text": "Penalty and red card"},
                 {"id": "b", "text": "Penalty and yellow card"},
@@ -463,9 +569,9 @@
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. DOGSO in the box is a penalty and a red card.",
-                "incorrect": "A clear goal-scoring opportunity denied by a foul in the box is a penalty and a red.",
-                "sayThisLine": "DOGSO in the box, penalty and red."
+                "correct": "Right. Denying an obvious goal-scoring opportunity with a foul that is not a genuine attempt to play the ball, such as holding or pulling, is a penalty and a red card.",
+                "incorrect": "Holding or pulling is not an attempt to play the ball, so the referee awards a penalty and sends the defender off. The yellow-card version only applies when the defender genuinely challenges for the ball.",
+                "sayThisLine": "He pulled him back in the box: penalty and red."
               }
             }
           },
@@ -474,17 +580,20 @@
             "type": "binary-call",
             "conceptIds": ["dogso"],
             "payload": {
-              "prompt": "An attacker is clean through. The keeper comes out and fouls him. Is it a red card?",
-              "scene": {"kind": "none", "alt": "A goalkeeper rushes out of the box and commits a foul on an attacker who is clear through on goal."},
+              "prompt": "The keeper races outside his area and brings down an attacker clean through. Red card?",
+              "scene": {
+                "kind": "none",
+                "alt": "A goalkeeper has left his penalty area and fouls an attacker who is clear through on goal."
+              },
               "choices": [
                 {"id": "yes", "label": "Red card"},
                 {"id": "no", "label": "Not a red"}
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Yes. DOGSO applies to anyone, including the keeper.",
-                "incorrect": "Even the goalkeeper can be sent off for denying a clear goal chance by fouling.",
-                "sayThisLine": "Keeper fouls clean through, that's a red."
+                "correct": "Yes. DOGSO applies to any defender, including the goalkeeper. Outside the area the keeper is treated like any outfield player.",
+                "incorrect": "The goalkeeper is a defender too. Fouling an attacker clean through outside the box denies an obvious goal chance and is a red card.",
+                "sayThisLine": "Keeper's outside the box, clean through: red card."
               },
               "ruleTag": "DOGSO applies to all players"
             }
@@ -494,17 +603,17 @@
             "type": "multiple-choice",
             "conceptIds": ["dogso"],
             "payload": {
-              "prompt": "An attacker has the ball at his feet 15 yards out with one defender between him and goal. Is it DOGSO if fouled?",
+              "prompt": "An attacker is 35 yards out with two defenders goal-side when he is fouled. DOGSO?",
               "options": [
-                {"id": "a", "text": "Yes, definitely DOGSO"},
-                {"id": "b", "text": "No, too far away and one defender is there"},
-                {"id": "c", "text": "Only if he is on his strong foot"}
+                {"id": "a", "text": "Yes, any foul on a runner is DOGSO"},
+                {"id": "b", "text": "No, he is too far out and defenders can still get back"},
+                {"id": "c", "text": "Only if he is on his stronger foot"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. With a defender between the ball and goal, it is not a clear chance.",
-                "incorrect": "DOGSO requires an obvious, clear chance. One defender in the way means it is not clear.",
-                "sayThisLine": "One defender in between, it's not clear, so not DOGSO."
+                "correct": "Right. Distance to goal and the number of defenders who can recover both count against it being an obvious goal chance. It is a foul, but probably not a red.",
+                "incorrect": "Referees weigh distance to goal, direction of play, defenders and control of the ball. At 35 yards with two defenders back, the chance is not obvious.",
+                "sayThisLine": "Too far out and covered, so no DOGSO."
               }
             }
           }
@@ -523,15 +632,18 @@
             "conceptIds": ["handball"],
             "payload": {
               "prompt": "A defender sees the ball coming and holds out an arm to block it. Handball?",
-              "scene": {"kind": "none", "alt": "A defender deliberately extends an arm to block or stop a shot or pass heading toward goal."},
+              "scene": {
+                "kind": "none",
+                "alt": "A defender deliberately extends an arm to block or stop a shot or pass heading toward goal."
+              },
               "choices": [
                 {"id": "yes", "label": "Handball"},
                 {"id": "no", "label": "Not handball"}
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Yes. Deliberate use of the hand is handball, no matter the distance.",
-                "incorrect": "Any deliberate contact with hand or arm is an offence. Intention is clear here.",
+                "correct": "Yes. Deliberately extending an arm to block the ball is handball, whatever the distance.",
+                "incorrect": "Intent is clear when a player sticks an arm out to stop the ball. That is handball, a direct free kick or a penalty in the box.",
                 "sayThisLine": "He put his arm out on purpose, that's handball."
               },
               "ruleTag": "Deliberate handball"
@@ -542,16 +654,19 @@
             "type": "multiple-choice",
             "conceptIds": ["handball"],
             "payload": {
-              "prompt": "A cross comes in and hits a defender's arm close to his body. Is it handball?",
+              "prompt": "A cross hits a defender's arm, which is tucked close to his body. Is it handball?",
               "options": [
-                {"id": "a", "text": "Yes, any arm contact is handball"},
-                {"id": "b", "text": "No, the arm is part of the body"},
-                {"id": "c", "text": "Only if the arm moved away from the body"}
+                {"id": "a", "text": "Yes, any contact with the arm is handball"},
+                {
+                  "id": "b",
+                  "text": "No, an arm in a natural position close to the body is not an offence"
+                },
+                {"id": "c", "text": "Only if the ball was heading for the goal"}
               ],
-              "correctOptionIds": ["c"],
+              "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. Natural position is when the arm is close to the body; moving the arm out makes it handball.",
-                "incorrect": "The rule is about making your body unnaturally bigger. A natural position is allowed; an unnatural one is not.",
+                "correct": "Right. The question is whether the player made his body unnaturally bigger. An arm tucked in at his side is in a natural position, so it is not handball.",
+                "incorrect": "Handball is not simply arm-touches-ball. The referee asks whether the arm made the body unnaturally bigger or was deliberately moved to the ball. Tucked in is natural.",
                 "sayThisLine": "Arm at the side, probably okay. Arm out, probably handball."
               }
             }
@@ -562,7 +677,10 @@
             "conceptIds": ["handball"],
             "payload": {
               "prompt": "A defender's arm is at his side. The ball ricochets off his hip and hits his arm by accident. Handball?",
-              "scene": {"kind": "none", "alt": "A ball deflects unexpectedly and strikes a defender's arm that is in a natural position at the body; contact is incidental."},
+              "scene": {
+                "kind": "none",
+                "alt": "A ball deflects unexpectedly and strikes a defender's arm that is in a natural position at the body; contact is incidental."
+              },
               "choices": [
                 {"id": "yes", "label": "Handball"},
                 {"id": "no", "label": "Not handball"}
@@ -578,21 +696,25 @@
           },
           {
             "id": "laws-05-mc-shoulder",
-            "type": "multiple-choice",
+            "type": "binary-call",
             "conceptIds": ["handball"],
             "payload": {
-              "prompt": "The ball hits a player's shoulder. Is it handball?",
-              "options": [
-                {"id": "a", "text": "Yes, that is the shoulder"},
-                {"id": "b", "text": "No, the shoulder is not the arm"},
-                {"id": "c", "text": "Only if the arm made him bigger"}
+              "prompt": "The ball hits a player's shoulder. Handball?",
+              "scene": {
+                "kind": "none",
+                "alt": "A cross strikes a defender on the shoulder, just above the arm."
+              },
+              "choices": [
+                {"id": "yes", "label": "Handball"},
+                {"id": "no", "label": "Not handball"}
               ],
-              "correctOptionIds": ["b"],
+              "correctChoiceId": "no",
               "explanation": {
-                "correct": "Right. The shoulder is not the arm. The rule is about hand and arm, and the arm is from the armpit down.",
-                "incorrect": "The shoulder is not part of the arm for handball purposes. Contact with the shoulder is not an offence.",
+                "correct": "No. The shoulder is not part of the arm for handball purposes. The arm is judged from the bottom of the armpit down.",
+                "incorrect": "The upper boundary of the arm is the bottom of the armpit, so shoulder contact is never handball.",
                 "sayThisLine": "Shoulder's not the arm, that's not handball."
-              }
+              },
+              "ruleTag": "Arm boundary"
             }
           },
           {
@@ -600,39 +722,56 @@
             "type": "say-this",
             "conceptIds": ["handball"],
             "payload": {
-              "statement": {"speaker": "Casey", "text": "His arm made his body bigger, that should be a handball penalty."},
+              "statement": {
+                "speaker": "Casey",
+                "text": "His arm made his body bigger, that should be a handball penalty."
+              },
               "question": "What is Casey saying?",
               "options": [
-                {"id": "a", "text": "The player's arm was in an unnatural position", "isCorrect": true},
+                {
+                  "id": "a",
+                  "text": "The player's arm was in an unnatural position",
+                  "isCorrect": true
+                },
                 {"id": "b", "text": "The enlarged body meant handball", "isCorrect": true},
                 {"id": "c", "text": "It was accidental so not handball", "isCorrect": false},
                 {"id": "d", "text": "The arm did not touch the ball", "isCorrect": false}
               ],
               "translation": "Casey is arguing that the player's arm was not in a natural position, making his body unnaturally bigger, which is handball.",
               "followUps": [
-                {"line": "Did the arm move or was it always out there?", "why": "Tests understanding of movement vs position."},
-                {"line": "Would you call that if it was a defender vs a striker?", "why": "Notes that handball is applied consistently."}
+                {
+                  "line": "Did the arm move or was it always out there?",
+                  "why": "Tests understanding of movement vs position."
+                },
+                {
+                  "line": "Would you call that if it was a defender vs a striker?",
+                  "why": "Notes that handball is applied consistently."
+                }
               ],
               "noFakeExpertNote": "Handball is the most argued rule; both sides usually have a point."
             }
           },
           {
             "id": "laws-05-mc-handball-penalty",
-            "type": "multiple-choice",
+            "type": "binary-call",
             "conceptIds": ["handball"],
             "payload": {
-              "prompt": "Handball is called in the penalty area. What is the restart?",
-              "options": [
-                {"id": "a", "text": "Direct free kick"},
-                {"id": "b", "text": "Penalty kick"},
-                {"id": "c", "text": "Corner kick"}
+              "prompt": "A defender handles the ball inside his own area. What is the restart?",
+              "scene": {
+                "kind": "none",
+                "alt": "A defender commits a handball offence inside his own penalty area."
+              },
+              "choices": [
+                {"id": "penalty", "label": "Penalty kick"},
+                {"id": "direct", "label": "Direct free kick"}
               ],
-              "correctOptionIds": ["b"],
+              "correctChoiceId": "penalty",
               "explanation": {
-                "correct": "Right. Handball in the box is a penalty.",
-                "incorrect": "Any handball in the penalty area is a penalty kick.",
+                "correct": "Right. A handball offence by the defending team inside its own penalty area is punished with a penalty kick.",
+                "incorrect": "A direct free kick is the restart outside the box. Inside the defender's own area the handball becomes a penalty kick.",
                 "sayThisLine": "Handball in the box, straight to the spot."
-              }
+              },
+              "ruleTag": "Handball in the box"
             }
           }
         ]
@@ -669,7 +808,10 @@
             "conceptIds": ["dissent"],
             "payload": {
               "prompt": "After the ref makes a call, a player yells 'That was wrong!' and argues with him. Yellow card?",
-              "scene": {"kind": "none", "alt": "A player loudly disputes a referee decision by arguing or complaining; the player is clearly challenging the referee's authority."},
+              "scene": {
+                "kind": "none",
+                "alt": "A player loudly disputes a referee decision by arguing or complaining; the player is clearly challenging the referee's authority."
+              },
               "choices": [
                 {"id": "yes", "label": "Yellow card"},
                 {"id": "no", "label": "No card"}
@@ -688,17 +830,20 @@
             "type": "multiple-choice",
             "conceptIds": ["dissent"],
             "payload": {
-              "prompt": "The referee makes a decision. Who is allowed to speak to him about it?",
+              "prompt": "Several players crowd the referee shouting about a decision. What is he likely to do?",
               "options": [
-                {"id": "a", "text": "Any player can ask a question"},
-                {"id": "b", "text": "Only the captain can approach the referee"},
-                {"id": "c", "text": "No one can speak to the ref"}
+                {"id": "a", "text": "Let it go, emotions are part of football"},
+                {
+                  "id": "b",
+                  "text": "Caution the loudest for dissent and ask the captain to calm things down"
+                },
+                {"id": "c", "text": "Send the whole team off"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. Only the captain or armband holder can speak to the referee.",
-                "incorrect": "Only the captain is supposed to talk to the referee about decisions. Others risk a yellow for dissent.",
-                "sayThisLine": "Only the captain talks to the ref, that's the rule now."
+                "correct": "Right. The captain has no special powers, but referees lean on him to keep the group calm. Crowding and shouting at the referee is dissent and can be cautioned.",
+                "incorrect": "Referees do not tolerate crowding and shouting, but they do not send off a whole team either. The usual answer is a caution for the worst offender and a word with the captain.",
+                "sayThisLine": "Only the captain should be talking to the ref."
               }
             }
           },
@@ -707,17 +852,31 @@
             "type": "say-this",
             "conceptIds": ["simulation"],
             "payload": {
-              "statement": {"speaker": "Mo", "text": "He touched him but he went down too easy. That should be a yellow."},
+              "statement": {
+                "speaker": "Mo",
+                "text": "He touched him but he went down too easy. That should be a yellow."
+              },
               "question": "What does Mo mean?",
               "options": [
-                {"id": "a", "text": "The contact was minimal but the player exaggerated", "isCorrect": true},
-                {"id": "b", "text": "It should be a yellow for simulation or diving", "isCorrect": true},
+                {
+                  "id": "a",
+                  "text": "The contact was minimal but the player exaggerated",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "It should be a yellow for simulation or diving",
+                  "isCorrect": true
+                },
                 {"id": "c", "text": "It should be a free kick", "isCorrect": false},
                 {"id": "d", "text": "The player was seriously fouled", "isCorrect": false}
               ],
               "translation": "Mo is saying the player exaggerated minor contact to deceive the referee, which is simulation and should be a yellow.",
               "followUps": [
-                {"line": "Do you think he went down too easy?", "why": "Tests your reading of the contact."},
+                {
+                  "line": "Do you think he went down too easy?",
+                  "why": "Tests your reading of the contact."
+                },
                 {"line": "Would VAR overturn it?", "why": "Tests VAR knowledge on simulation."}
               ],
               "noFakeExpertNote": "Diving is a judgment call; watch the contact and the fall together."
@@ -729,7 +888,10 @@
             "conceptIds": ["dissent"],
             "payload": {
               "prompt": "A player shoves a referee after an argument. Is he sent off?",
-              "scene": {"kind": "none", "alt": "A player makes physical contact with a referee, pushing or touching him in aggression."},
+              "scene": {
+                "kind": "none",
+                "alt": "A player makes physical contact with a referee, pushing or touching him in aggression."
+              },
               "choices": [
                 {"id": "yes", "label": "Red card"},
                 {"id": "no", "label": "Yellow card"}
@@ -759,10 +921,26 @@
             "payload": {
               "prompt": "Match the official to the job.",
               "pairs": [
-                {"id": "ref", "term": "Referee", "definition": "The main official who makes decisions, blows the whistle and issues cards."},
-                {"id": "assistant", "term": "Assistant referees", "definition": "Two officials on the touchlines who flag for out-of-play and offside decisions."},
-                {"id": "fourth", "term": "Fourth official", "definition": "At the bench who manages substitutions, replacement balls and keeps time."},
-                {"id": "var", "term": "Video assistant referee", "definition": "In a room with screens who can recommend reviews for serious errors."}
+                {
+                  "id": "ref",
+                  "term": "Referee",
+                  "definition": "The main official who makes decisions, blows the whistle and issues cards."
+                },
+                {
+                  "id": "assistant",
+                  "term": "Assistant referees",
+                  "definition": "Two officials on the touchlines who flag for out-of-play and offside decisions."
+                },
+                {
+                  "id": "fourth",
+                  "term": "Fourth official",
+                  "definition": "At the bench who manages substitutions, replacement balls and keeps time."
+                },
+                {
+                  "id": "var",
+                  "term": "Video assistant referee",
+                  "definition": "In a room with screens who can recommend reviews for serious errors."
+                }
               ],
               "explanation": {
                 "summary": "Five officials: ref, two assistants on the lines, fourth at the bench, and VAR in a room.",
@@ -794,33 +972,44 @@
             "type": "timing-tap",
             "conceptIds": ["goalkeeper-eight-seconds"],
             "payload": {
-              "prompt": "A goalkeeper catches the ball and holds it. How many seconds can he hold it before it becomes a corner?",
-              "correctValue": 8,
-              "unit": "seconds",
-              "tolerance": {"full": 1, "partial": 2},
+              "prompt": "Tap the moment the keeper's eight seconds run out.",
+              "theme": {"label": "Keeper clock", "resultUnit": "points"},
+              "rounds": [
+                {"zoneStartPct": 76, "zoneEndPct": 84, "sweepSeconds": 3.2},
+                {"zoneStartPct": 78, "zoneEndPct": 83, "sweepSeconds": 2.6},
+                {"zoneStartPct": 79, "zoneEndPct": 82, "sweepSeconds": 2.2}
+              ],
               "explanation": {
-                "correct": "Right. Eight seconds is the limit; a visible five-second countdown shows at the end.",
-                "incorrect": "The goalkeeper has eight seconds maximum. After that, the other team gets a corner.",
-                "sayThisLine": "Eight seconds and the ref counts down with his hand at the end."
-              }
+                "correct": "Sharp. A keeper who holds the ball too long concedes a corner, and the referee counts down the last five seconds with a raised hand.",
+                "incorrect": "A keeper who controls the ball in his hands for more than eight seconds concedes a corner. The referee raises a hand to count the last five seconds.",
+                "sayThisLine": "He held it too long, that's a corner."
+              },
+              "accessibilityAlternative": "tap-to-stop-slow"
             }
           },
           {
             "id": "laws-07-mc-free-kick-wall",
-            "type": "multiple-choice",
+            "type": "fill-the-gap",
             "conceptIds": ["wall-distance"],
             "payload": {
-              "prompt": "A free kick is awarded. How far must the defending wall stand from the ball?",
-              "options": [
-                {"id": "a", "text": "5 yards"},
-                {"id": "b", "text": "10 yards (9.15 metres)"},
-                {"id": "c", "text": "15 yards"}
+              "prompt": "Complete the free-kick distance rule.",
+              "template": "At a free kick the defending wall must stand at least {{yards}} yards ({{metres}} metres) from the ball.",
+              "gaps": [
+                {
+                  "id": "yards",
+                  "options": ["5", "10", "15"],
+                  "correct": "10"
+                },
+                {
+                  "id": "metres",
+                  "options": ["5.5", "9.15", "11.5"],
+                  "correct": "9.15"
+                }
               ],
-              "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. 10 yards or 9.15 metres is the minimum distance.",
-                "incorrect": "Defenders must stand at least 10 yards (9.15 metres) from the ball at a free kick.",
-                "sayThisLine": "Wall's got to be ten yards back, standard."
+                "correct": "Right. Ten yards, which is 9.15 metres, is the minimum distance for the wall.",
+                "incorrect": "The wall must be at least 10 yards (9.15 metres) from the ball until it is kicked. Referees often use vanishing spray to mark the line.",
+                "sayThisLine": "The wall has to be ten yards back, standard."
               }
             }
           },
@@ -829,17 +1018,17 @@
             "type": "multiple-choice",
             "conceptIds": ["backpass-rule"],
             "payload": {
-              "prompt": "A throw-in is taken. The ball goes back to the goalkeeper. Can he catch it?",
+              "prompt": "A teammate throws the ball in to the goalkeeper. Can he pick it up?",
               "options": [
-                {"id": "a", "text": "Yes, throw-ins are not part of the back-pass rule"},
-                {"id": "b", "text": "No, the back-pass rule applies to throw-ins too"},
-                {"id": "c", "text": "Only if he is outside the box"}
+                {"id": "a", "text": "Yes, only kicks count for the back-pass rule"},
+                {"id": "b", "text": "No, the back-pass rule covers throw-ins too"},
+                {"id": "c", "text": "Only if he is outside his box"}
               ],
-              "correctOptionIds": ["a"],
+              "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. The back-pass rule only applies to deliberate kicks, not throw-ins.",
-                "incorrect": "A throw-in to the keeper is allowed; the back-pass rule covers only deliberate kicks from teammates.",
-                "sayThisLine": "Throw-in to the keeper is fine, different rule."
+                "correct": "Right. A keeper cannot handle the ball after a teammate deliberately kicks it to him, or after receiving it directly from a teammate's throw-in. An indirect free kick follows.",
+                "incorrect": "The back-pass rule covers a deliberate kick and also a throw-in from a teammate straight to the keeper. If he handles it, the opponents get an indirect free kick.",
+                "sayThisLine": "A throw-in straight to the keeper counts as a back-pass too."
               }
             }
           },
@@ -876,17 +1065,17 @@
             "type": "multiple-choice",
             "conceptIds": ["time-wasting-countdown"],
             "payload": {
-              "prompt": "A team is delaying a throw-in. The ref shows a five-second countdown. What happens after?",
+              "prompt": "A team drags out a throw-in and the ref begins the five-second countdown. If it runs out?",
               "options": [
-                {"id": "a", "text": "The ref waits longer"},
-                {"id": "b", "text": "Possession goes to the other team or a corner is awarded"},
-                {"id": "c", "text": "The ref shows a yellow card"}
+                {"id": "a", "text": "The ref waits a little longer"},
+                {"id": "b", "text": "The throw-in goes to the other team"},
+                {"id": "c", "text": "The ref shows a red card"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. After the five-second countdown, the other team gets possession or a corner.",
-                "incorrect": "A five-second visual countdown is given for delayed throw-ins and goal kicks; if time runs out, possession or a corner goes to the other team.",
-                "sayThisLine": "Five-second countdown and if they're still stalling, possession to the other side."
+                "correct": "Right. If the countdown runs out, the throw-in is given to the opponents. For a slow goal kick, the opponents get a corner instead.",
+                "incorrect": "The countdown is a real deadline. When the five seconds expire, the restart is taken away: a throw-in goes to the other team and a goal kick becomes a corner.",
+                "sayThisLine": "Five seconds, then the throw goes to the other side."
               }
             }
           },
@@ -895,15 +1084,47 @@
             "type": "decision-scenario",
             "conceptIds": ["injury-stoppage-rule"],
             "payload": {
-              "prompt": "A player is treated on the field for an injury. Can he go right back on the field?",
-              "context": "A player receives medical attention on the pitch after an injury and the treatment is completed.",
+              "prompt": "A treated player is ready to go straight back on. Can he?",
+              "situation": {
+                "narrative": "A midfielder has received treatment on the pitch after a tackle, and play has been stopped for a while.",
+                "facts": [
+                  {"label": "Situation", "value": "Treated on the pitch"},
+                  {"label": "Player says", "value": "He feels fine to continue"},
+                  {
+                    "label": "Rule in force",
+                    "value": "2026/27 one-minute off-field rule",
+                    "emphasis": "warning"
+                  }
+                ]
+              },
               "options": [
-                {"id": "a", "text": "Yes, he can play immediately"},
-                {"id": "b", "text": "No, he must stay off for at least one minute"},
-                {"id": "c", "text": "He must do a fitness test"}
+                {
+                  "id": "wait",
+                  "label": "He leaves the pitch and waits at least one minute",
+                  "verdict": "best",
+                  "consequence": "The team plays a player short for that minute, which discourages using treatment as a time-out.",
+                  "considerations": [
+                    "The rule aims to stop feigned injuries wasting time",
+                    "A minimum of one minute off the pitch"
+                  ]
+                },
+                {
+                  "id": "stay",
+                  "label": "He stays on because he says he is fine",
+                  "verdict": "poor",
+                  "consequence": "The referee sends him off the pitch; the rule is applied regardless of how he feels.",
+                  "considerations": ["It is the referee's call, not the player's"]
+                },
+                {
+                  "id": "sub",
+                  "label": "Bring a substitute on instead, so the team is not short",
+                  "verdict": "acceptable",
+                  "consequence": "Possible, but it uses one of the team's substitutions, so it is a real cost.",
+                  "considerations": ["Substitutions are limited", "The team's aim is to stay at eleven"]
+                }
               ],
-              "correctOptionId": "b",
-              "explanation": "A player who is treated on the pitch must stay off the field for at least one minute after play restarts (a 2026/27 rule clarification). This helps protect player welfare."
+              "expertNote": "The rule targets the tactical use of injury treatment to slow the game. Genuine injuries still get treated immediately, and the referee can deal with real concussion cases separately under the medical protocols.",
+              "sayThisLine": "He's been treated, so he has to wait a minute to come back."
             }
           },
           {
@@ -911,17 +1132,17 @@
             "type": "multiple-choice",
             "conceptIds": ["time-wasting-countdown"],
             "payload": {
-              "prompt": "A goalkeeper is slow on a goal kick, and the ref starts the countdown. When does the countdown start?",
+              "prompt": "A goalkeeper takes ages over a goal kick and the ref starts the countdown. If it runs out?",
               "options": [
-                {"id": "a", "text": "Immediately when play stops"},
-                {"id": "b", "text": "After a warning from the ref"},
-                {"id": "c", "text": "When the goalkeeper picks up the ball"}
+                {"id": "a", "text": "The keeper gets one more warning"},
+                {"id": "b", "text": "The opponents get a corner kick"},
+                {"id": "c", "text": "The referee awards a penalty"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. The ref warns first, then shows the countdown.",
-                "incorrect": "A warning is given first; then the five-second countdown is shown visually.",
-                "sayThisLine": "Warning, then countdown, that's the new rule."
+                "correct": "Right. A goal kick that is not taken within the five-second countdown gives the opponents a corner. It is a big penalty for a small delay.",
+                "incorrect": "The countdown has real teeth. When a goal kick delay runs out the five seconds, the opponents get a corner kick.",
+                "sayThisLine": "Take the goal kick or they get a corner."
               }
             }
           },
@@ -930,19 +1151,22 @@
             "type": "binary-call",
             "conceptIds": ["time-wasting-countdown"],
             "payload": {
-              "prompt": "A substitution is being made. Can the old rule still apply where players walk slowly off?",
-              "scene": {"kind": "none", "alt": "A player is substituted; the departing player walks slowly toward the touchline instead of leaving quickly."},
-              "choices": [
-                {"id": "yes", "label": "Yes, take your time"},
-                {"id": "no", "label": "No, it slows the game"}
-              ],
-              "correctChoiceId": ["no"],
-              "explanation": {
-                "correct": "No. The new rule wants substitutions to be faster; stalling can now get a countdown.",
-                "incorrect": "Substitutes are expected to leave the field quickly now; delay can result in a countdown and possession change.",
-                "sayThisLine": "Substitutes have to leave faster now, no more stalling."
+              "prompt": "A substituted player strolls off. Should he hurry to avoid a penalty for delay?",
+              "scene": {
+                "kind": "none",
+                "alt": "A player is being replaced and walks slowly toward the touchline instead of leaving promptly."
               },
-              "ruleTag": "Substitution exit rule"
+              "choices": [
+                {"id": "yes", "label": "Yes, leave quickly"},
+                {"id": "no", "label": "No, take your time"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes. In 2026/27 the substituted player is expected to leave within ten seconds, so a slow walk off can delay the substitute coming on.",
+                "incorrect": "Substitutions are part of the time-wasting crackdown. A player who takes his time can hold up the replacement, so leaving quickly is the safe move.",
+                "sayThisLine": "Off you go, ten seconds, that's all you get."
+              },
+              "ruleTag": "Ten-second exit"
             }
           },
           {
@@ -950,17 +1174,17 @@
             "type": "multiple-choice",
             "conceptIds": ["injury-stoppage-rule"],
             "payload": {
-              "prompt": "A player has a head injury and is treated on the field. He wants to stay on. What happens?",
+              "prompt": "A player has been treated on the pitch and wants to carry on right away. What is the 2026/27 rule?",
               "options": [
                 {"id": "a", "text": "He can stay if he feels okay"},
-                {"id": "b", "text": "He must come off for at least one minute"},
-                {"id": "c", "text": "The team gets extra subs for injury"}
+                {"id": "b", "text": "He leaves the pitch and can only return after a minute"},
+                {"id": "c", "text": "His team receives an extra substitution"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. After on-field treatment, he sits out at least one minute. Safety first.",
-                "incorrect": "A treated player must remain off the field for at least one minute to protect player welfare.",
-                "sayThisLine": "Treatment on the field, then off for at least a minute."
+                "correct": "Right. After on-pitch treatment the player generally has to leave for at least a minute, which discourages delaying the game with a fake injury. A few exceptions exist, so check the current Laws.",
+                "incorrect": "The 2026/27 change asks a treated player to leave the field for a minute before coming back, a way to stop injuries being used to waste time.",
+                "sayThisLine": "Treatment on the pitch means a minute off, then back on."
               }
             }
           }
