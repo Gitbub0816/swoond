@@ -1487,25 +1487,25 @@
                 {
                   "id": "player",
                   "term": "Player option",
-                  "definition": "The player decides whether to accept the contract for next year or become a free agent."
+                  "definition": "The player decides whether to play the next season on his contract or become a free agent."
                 },
                 {
                   "id": "team",
                   "term": "Team option",
-                  "definition": "The team decides whether to keep the player for the next year or release them."
+                  "definition": "The team decides whether to keep the player for the next season or let the contract end."
                 },
                 {
                   "id": "buyout",
                   "term": "Buyout",
-                  "definition": "A team pays a player to terminate their contract early so both can part ways."
+                  "definition": "A player agrees to take less than the money left on his deal so he can leave the team."
                 }
               ],
               "distractorDefinitions": [
-                "A mutual agreement that lasts forever.",
-                "An option only for rookies."
+                "A contract that can never be changed.",
+                "An option that only rookies are allowed to have."
               ],
               "explanation": {
-                "summary": "Player options let the player choose to opt out; team options let the team decide. Buyouts are negotiated exits."
+                "summary": "The player controls a player option, the team controls a team option, and a buyout is a negotiated exit where the player gives up some pay."
               }
             }
           },
@@ -1520,23 +1520,23 @@
               "options": [
                 {
                   "id": "correct",
-                  "text": "Credit a team earns when losing salary in a trade; used to absorb salary from another team later."
+                  "text": "Room a team earns by trading away more salary than it takes back, to absorb a player later."
                 },
                 {
                   "id": "dist-1",
-                  "text": "Permission to trade with any team without league approval."
+                  "text": "Permission to trade without league approval."
                 },
                 {
                   "id": "dist-2",
-                  "text": "A player who is exempt from the salary cap."
+                  "text": "A player who does not count against the cap."
                 }
               ],
               "correctOptionIds": [
                 "correct"
               ],
               "explanation": {
-                "correct": "Exactly. A trade exception is earned salary flexibility. If you trade away a big contract, you can use that exception later.",
-                "incorrect": "Not quite. A trade exception lets a team absorb salary in a future trade. It is cap flexibility earned from a previous trade."
+                "correct": "When a team trades away more salary than it gets back, it gets a trade exception for the difference. It can take on a player up to that amount later, even over the cap, but only for a limited time.",
+                "incorrect": "A trade exception is not a player or an approval waiver. It is a credit from an earlier trade that lets a team absorb salary in a later one."
               }
             }
           },
@@ -1548,60 +1548,64 @@
               "free-agency"
             ],
             "payload": {
-              "prompt": "A star player's contract expires this summer. Should the team trade him now or let him hit free agency?",
+              "prompt": "A star says he is leaving in free agency. Trade him now?",
               "situation": {
-                "narrative": "The team wants to keep the star but knows he might leave in free agency.",
+                "narrative": "Your team's star is on an expiring contract and his agent has said he plans to test free agency. The team is not a contender, and several teams want to trade for him.",
                 "facts": [
                   {
-                    "label": "Player status",
-                    "value": "Contract expires; team has no match rights"
+                    "label": "Contract",
+                    "value": "Expires this summer"
                   },
                   {
-                    "label": "Team goal",
-                    "value": "Get the best assets (picks or young players) if he leaves"
+                    "label": "His stated plan",
+                    "value": "Test free agency"
                   },
                   {
-                    "label": "Market",
-                    "value": "Other teams are interested in trading for him"
+                    "label": "Team status",
+                    "value": "Not a contender"
+                  },
+                  {
+                    "label": "Trade market",
+                    "value": "Several teams interested"
                   }
                 ]
               },
               "options": [
                 {
                   "id": "trade",
-                  "label": "Trade him now for draft picks",
-                  "verdict": "acceptable",
-                  "consequence": "The team gets assets instead of losing him for nothing. Risk: he might have re-signed.",
+                  "label": "Trade him now for picks and young players",
+                  "verdict": "best",
+                  "consequence": "The team gets assets in return instead of losing him for nothing in the summer. The risk is that he would have stayed after all, which his agent has said is unlikely.",
                   "considerations": [
-                    "Trade brings immediate return (picks, young players)",
-                    "No guarantee he re-signs in free agency",
-                    "Gets something vs. potentially nothing"
+                    "A trade brings picks or young players",
+                    "He has said he plans to leave",
+                    "The team is not contending this season anyway"
                   ]
                 },
                 {
                   "id": "extend",
-                  "label": "Offer a big extension to keep him",
-                  "verdict": "best",
-                  "consequence": "If he accepts, the star stays and the team commits to contending. Risk: he might leave anyway.",
+                  "label": "Offer him the biggest contract allowed",
+                  "verdict": "acceptable",
+                  "consequence": "It costs nothing to ask, and he might say yes. If he has already decided to leave, the team loses its best trade window.",
                   "considerations": [
-                    "Keeps the star if he wants to stay",
-                    "Shows loyalty and commitment",
-                    "Could backfire if he still leaves"
+                    "It can be a real last attempt to keep him",
+                    "He has already signaled he wants out",
+                    "If he refuses, trade interest may fade"
                   ]
                 },
                 {
                   "id": "wait",
-                  "label": "Wait for free agency and see what he wants",
+                  "label": "Wait until free agency and see what happens",
                   "verdict": "poor",
-                  "consequence": "If he leaves, the team gets nothing. Lost leverage and assets.",
+                  "consequence": "If he leaves, the team gets nothing back. It gave up its leverage and the market.",
                   "considerations": [
-                    "Loses negotiating leverage",
-                    "No return if he chooses another team",
-                    "Risky if losing him weakens the team"
+                    "No return if he signs elsewhere",
+                    "Trade offers are best before the deadline",
+                    "It only works if he would re-sign anyway"
                   ]
                 }
               ],
-              "expertNote": "Contending teams offer extensions to keep stars. Teams rebuilding trade for assets. Letting a free agent walk for nothing is rarely the best choice."
+              "expertNote": "When a star has signaled he will leave and the team is not a contender, front offices usually trade him for assets. A contender, or a star who wants to stay, is a different conversation."
             }
           },
           {

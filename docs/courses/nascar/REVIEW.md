@@ -69,3 +69,32 @@ Final largest type share: 09 say-this 29%, 10 multiple-choice 29%, 11 three type
 3. Facts to re-verify before release (not in the CDS): Toyota's 2007 Cup debut; Rockingham's last Cup points race (2004) and North Wilkesboro's (1996) with the 2023 All-Star return; the four-car cap per organization; NASCAR's limits on Cup drivers in O'Reilly and Trucks; the current damaged-vehicle clock length (deliberately not stated); Petty's 200 wins and Gordon's 93.
 4. Unit 14 lesson titles and count changed to match the CDS map (eight lessons). Any progress data keyed to the old `talk-01` to `talk-05` ids should be discarded (content is unreleased).
 5. Unit 07 still warns for multiple-choice at 50% (other reviewer's scope).
+
+## Root file (course.json)
+
+Accuracy review of all 135 concepts, 10 talk tracks, 3 branches and `reviewPolicy`. Hand edits only; ids unchanged.
+
+### Concepts fixed (35)
+- `laps-and-distance`: example said Bristol is "500 laps of a half-mile" as a 500-mile race (it is about 266 miles); definition and example rewritten around laps.
+- `superspeedway`: listed Atlanta (1.54 miles) as "2.5-mile-plus"; now defined by how it races. `track-types`, `short-track`, `intermediate-track` ranges corrected the same way.
+- `chase-2026`: garbled ("are reset and race 10 races"); rewritten.
+- `caution-flag`: "running order freezes" (pit stops reshuffle it); `wave-around` example said "everyone" gets the lap back.
+- `track-bar`: "shifts the axle" (Next Gen has independent rear suspension); `tire-pressure` example prescribed a direction (recipe); `wedge` definition reworded.
+- `fuel-saving-superspeedway`: conflated saving fuel with avoiding crashes; now ties to the 2026 Talladega stage-length change (CDS).
+- `four-tire-stop`: 9-11 seconds now 10-12 (matches the unit review).
+- `banking` example (stadium acoustics), `blocking` (one move is fair, weaving is not), `payback` (penalties possible), `side-draft`, `the-big-one`, `inspection` example ("lost the win"), `loop-data` overclaim, `alliances` (engines), `playoff-format-history` wording, `race-points` (marked 2026 scale), `choose-rule` ("many restarts", lead-lap), `crown-jewel` (Brickyard schedule caveat), and smaller wording fixes (`spotter`, `fuel-cell`, `spoiler-splitter` example, `tapered-spacer` example, `aero-sensitivity` example, `car-balance`, `flat-track`, `nascar-origins` example, `driver-pipeline`, `sponsorship`, `driver-focus` example).
+
+### Talk tracks fixed (8 of 10)
+- `talk-01`: reply c ("What is a pit call?", -15, off-message) became an honest question about staying out (+6).
+- `talk-02`, `talk-04` (closing said "most points at Homestead"; it is cumulative points after the finale), `talk-05` (kinder note on the tight/loose mix-up), `talk-07` ("Did they get fined?" was -18 for a fair question, now -5; closing no longer implies fines follow), `talk-08` (reply c too harsh and its note was garbled), `talk-09` (response claimed the fastest cars ran out of fuel; closing took a side in a live debate), `talk-10` (power-package wording).
+- No track teaches faking expertise; `talk-03` and `talk-06` unchanged.
+
+### Root-level checks
+- `reviewPolicy` passes the schema and is sane (intervals 1/3/7/16/35/90, mastery 0.8, review types are native-friendly). Branches correct.
+- Open item 1 (`{{track}}` vs slot `region`): CDS sections 8 and 12 already declare `region` -> `{{track}}`; nothing in course.json or the manifest is wrong. It is a resolver mapping in the app; not changed.
+
+### Uncertain (verify before release)
+- Whether the choose rule applies on all ovals (softened to "many restarts").
+- Brickyard 400 crown-jewel status and its 2026 schedule slot.
+- `wedge` / `track-bar` in-stop adjustability on the Next Gen car (no CDS source).
+- Four-tire stop time (10-12 s) and horsepower levels are approximations/2026-dated.

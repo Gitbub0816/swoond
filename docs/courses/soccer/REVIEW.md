@@ -41,3 +41,22 @@ Fix counts by kind (schema / type conversion / factual or wording):
 Type monoculture, final multiple-choice share: 01 28%, 02 38%, 03 31%, 04 36%, 05 27%, 06 27%, 07 36%, 08 20%, 09 24%, 10 35%.
 
 Open items for the orchestrator: (1) hotspot-tap coordinates assume the procedural diagrams put the attacking goal at the top (as in exercises.md); confirm when the renderer draws `soccer-pitch-full`, `soccer-pitch-attacking-third` and `soccer-433-shape`. (2) The one-minute injury rule and ten-second substitution exit are worded generally (CDS only names them); check exact IFAB 2026/27 wording and any exceptions before release. (3) PPDA typical ranges and the 75% penalty conversion are approximate, flagged as varying by provider and competition.
+
+## Root file (course.json)
+
+Accuracy review of all 172 concepts, 6 branch summaries, 9 talk tracks and the review policy. Validator: 0 schema, 0 lint errors, 0 warnings.
+
+Fixes (16 edits, ids unchanged):
+- `backpass-rule`: a direct throw-in to the keeper is also covered.
+- `goalkeeper`: "only player allowed to use hands" corrected to handling in open play (outfield throw-ins use hands).
+- `triangles`: "guarantee two options" overclaim softened.
+- `box-midfield`: wrongly defined as a 3-2-5; now a four-player box (two inverted full-backs plus two midfielders).
+- `xa`: now the combined xG of shots a player's passes set up.
+- `form-and-ppg`: "two points a game is title form" (flagged earlier as not title pace) replaced.
+- `world-cup-history`: paused for the Second World War.
+- `shootout-format`: early finish when a side cannot catch up.
+- `mls-structure`, MLS branch summary: "single-entity" replaced by "closed league" (matches unit 14 fix; CDS still says single-entity).
+- `nwsl-structure` example made evergreen (2025); `here-we-go` "tweeted" to "posted"; `time-wasting-countdown` "New for" to "From".
+- `talk-xg` reply "does xG count the big chance he skied?" was wrong (xG does count misses); reworded.
+
+Uncertain: injury-stoppage-rule and time-wasting-countdown follow the CDS (2026/27 IFAB) and need the July re-check; `decayAfterDays` 14 is shorter than the top Leitner intervals (30, 60), left as authored.

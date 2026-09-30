@@ -150,3 +150,22 @@ The CDS unit table lists seven lessons (tn-01 to tn-07) and safety constraint 6 
 ### Consistency confirmed across units 01 to 16
 
 Altitude: do not ascend with symptoms, descend if worse, confusion or breathlessness at rest is an emergency. Lightning: no safe place outdoors, leave ridges early, 30 minutes after last thunder, spread about 50 ft, thunder roughly 10 miles or closer. Heat: confusion or collapse means call and cool. Flash floods: rain upstream counts, go up not along. Lost or hurt: stay put with a shared plan, whistle in threes, never follow a creek down. Avalanche and snow: awareness only, "take a course". Bears: 100 yards, never run, never feed, bear spray only with practice. Fees and permits: dated and "check the official page".
+
+## Root file (course.json)
+
+Review of all 149 concepts, 3 branch summaries, 9 talk tracks and the review policy. Validator: 0 schema, 0 lint errors, 0 warnings. Fixes (17, ids unchanged), safety-relevant first:
+- `hyponatremia`: cause rewritten as drinking more fluid than you lose (not "plain water without salt"); example now "drink to thirst and eat salty snacks"; no dosing.
+- `hydration-rate`: added "drink to thirst rather than forcing fluids".
+- `dehydration-signs` example "I doubled my water" (conflicts with hyponatremia guidance) replaced.
+- `heat-illness`: "hot dry skin" is misleading (exertional heatstroke often still sweats); now confusion, collapse or very high body temperature even if sweating.
+- `altitude-sickness`: worsening symptoms mean going down.
+- `emergency-shelter`: "lets you survive" overclaim softened.
+- `wind-chill` example was impossible (50 F cannot feel like 35); now 40 F feels like 30.
+- `heat-risk`: was mis-defined (NWS HeatRisk uses local climatology, duration and overnight relief, not humidity and sun).
+- `handrail` example "follow the creek all the way down" modelled the lost-hiker creek myth; replaced with a ridge.
+- `red-flag-warning` example "no risk" fixed; `trip-plan` now says who calls for help; `wilderness-act` adds mechanized transport; `annual-pass` excludes camping and permit fees; giardia and krummholz example exaggerations removed.
+- `talk-tt-04` reply "only 50%, you'll be fine" penalty -5 to -10 (downplays lightning risk).
+
+Talk tracks otherwise sound: none teaches faking expertise; cringe replies are graded negative.
+
+For the human expert: (1) `hydration-rate` 0.5 L/hr and `calories-per-hour` 300-500 are rules of thumb; (2) `lapse-rate` 3-5 F per 1,000 ft; (3) `river-crossing` one-line summary (face upstream, unbuckle hip belt) should match current guidance; (4) `lightning-safety` "spread out the group" and 30-minute rule; (5) `decayAfterDays` 45 with a max interval of 60 days: consider a shorter decay for safety concepts.
