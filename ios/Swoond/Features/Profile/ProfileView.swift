@@ -16,22 +16,20 @@ final class ProfileViewModel {
         for person in model.people {
             for interest in person.interests {
                 let id = interest.courseId
-                if let progress = try? await env.engine.courseProgress(personId: person.id, courseId: id) { games += progress.lessonResults.count }
-                guard seenCourses.insert(id).inserted else { continue }
-                guard let curriculum = try? await env.content.curriculum(courseId: id, locale: env.locale),
-                      let mastery = try? await env.engine.mastery(courseId: id) else { continue }
-                mastered += mastery.masteredConceptIds(now: now, policy: curriculum.reviewPolicy).count
-                met += mastery.concepts.values.filter { $0.attempts > 0 }.count
-                // Talk Tracks finished = completed lessons that contain a talk-track activity (any person).
-                var talkLessons = Set<LessonID>()
-                for entry in curriculum.allLessons where entry.lesson.activities.contains(where: { activity in activity.type == .talkTrack }) {
-                    talkLessons.insert(entry.lesson.id)
-                }
-                for person2 in model.people {
-                    if let p = try? await env.engine.courseProgress(personId: person2.id, courseId: id) {
-                        talks += talkLessons.filter { p.isLessonComplete($0) }.count
+                guard let curriculum = try? await env.content.curriculum(courseId: id, locale: env.locale) else { continue }
+                if let progress = try? await env.engine.courseProgress(personId: person.id, courseId: id) {
+                    games += progress.lessonResults.count
+                    // Talk Tracks finished = completed lessons with a talk-track activity visible to this person's branch.
+                    for unit in curriculum.units(forBranch: interest.branchId) {
+                        for lesson in unit.lessons where progress.isLessonComplete(lesson.id) {
+                            if lesson.activities(forBranch: interest.branchId).contains(where: { activity in activity.type == .talkTrack }) { talks += 1 }
+                        }
                     }
                 }
+                // Mastery is per learner and course, so count each course once.
+                guard seenCourses.insert(id).inserted, let mastery = try? await env.engine.mastery(courseId: id) else { continue }
+                mastered += mastery.masteredConceptIds(now: now, policy: curriculum.reviewPolicy).count
+                met += mastery.concepts.values.filter { $0.attempts > 0 }.count
             }
         }
         let learner = model.learner

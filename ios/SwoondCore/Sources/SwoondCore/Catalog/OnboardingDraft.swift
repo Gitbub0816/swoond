@@ -11,6 +11,8 @@ public struct OnboardingDraft: Sendable, Equatable {
     public var selectedCourseIds: [CourseID] = []
     /// The person's "main interest" (weight 2 in Common Ground).
     public var mainInterestId: CourseID?
+    /// Chosen branch per course (e.g. NFL vs college football), when the course declares branches.
+    public var branchByCourse: [CourseID: BranchID] = [:]
 
     public init() {}
 
@@ -37,6 +39,7 @@ public struct OnboardingDraft: Sendable, Equatable {
     public mutating func toggle(_ courseId: CourseID) {
         if let i = selectedCourseIds.firstIndex(of: courseId) {
             selectedCourseIds.remove(at: i)
+            branchByCourse[courseId] = nil
             if mainInterestId == courseId { mainInterestId = nil }
         } else {
             selectedCourseIds.append(courseId)
@@ -48,6 +51,12 @@ public struct OnboardingDraft: Sendable, Equatable {
     public mutating func setMain(_ courseId: CourseID?) {
         guard courseId == nil || selectedCourseIds.contains(courseId ?? "") else { return }
         mainInterestId = courseId
+    }
+
+    /// Choose (or clear) the branch for a selected course.
+    public mutating func setBranch(_ branchId: BranchID?, for courseId: CourseID) {
+        guard selectedCourseIds.contains(courseId) else { return }
+        branchByCourse[courseId] = branchId
     }
 
     /// Advance if allowed. Returns false at the last step (the caller then builds the person).
@@ -65,7 +74,7 @@ public struct OnboardingDraft: Sendable, Equatable {
     /// Build the `Person`. Without an explicit main interest the first selection is main.
     public func makePerson(id: PersonID = UUID().uuidString, createdAt: Date = Date()) -> Person {
         let main = mainInterestId ?? selectedCourseIds.first
-        let interests = selectedCourseIds.map { PersonInterest(courseId: $0, isMainInterest: $0 == main) }
+        let interests = selectedCourseIds.map { PersonInterest(courseId: $0, branchId: branchByCourse[$0], isMainInterest: $0 == main) }
         return Person(id: id, displayName: trimmedName, relationship: relationship, interests: interests, createdAt: createdAt, isActive: true)
     }
 }

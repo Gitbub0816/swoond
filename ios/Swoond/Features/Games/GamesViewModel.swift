@@ -47,7 +47,7 @@ final class GamesViewModel {
             for unit in LessonPlanner.orderedUnits(curriculum, branchId: interest.branchId) {
                 let unlocked = LessonPlanner.isUnlocked(unit, in: curriculum, progress: progress)
                 for lesson in unit.lessons {
-                    let types = lesson.activities.map(\.type).reduce(into: [ActivityType]()) { if !$0.contains($1) { $0.append($1) } }
+                    let types = lesson.activities(forBranch: interest.branchId).map(\.type).reduce(into: [ActivityType]()) { if !$0.contains($1) { $0.append($1) } }
                     rows.append(GameRow(
                         courseId: id, unitId: unit.id, lessonId: lesson.id, title: lesson.title, objective: lesson.objective,
                         minutes: lesson.estimatedMinutes ?? 3, typesLabel: types.prefix(3).map(\.displayName).joined(separator: " \u{B7} "),
@@ -57,7 +57,7 @@ final class GamesViewModel {
             }
             built.append(InterestSection(id: id, name: model.interestName(id), rows: rows))
             if let mastery = try? await env.engine.mastery(courseId: id) {
-                let due = LessonPlanner.dueReviews(in: curriculum, mastery: mastery, now: await env.engine.now())
+                let due = LessonPlanner.dueReviews(in: curriculum, mastery: mastery, now: await env.engine.now(), branchId: interest.branchId)
                 if !due.isEmpty && reviewCourse == nil { reviews = due.count; reviewCourse = id }
             }
         }

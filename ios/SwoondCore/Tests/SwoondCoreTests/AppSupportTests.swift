@@ -54,6 +54,15 @@ struct OnboardingDraftTests {
         #expect(p.interests.map(\.courseId) == ["hockey", "nascar"])
         #expect(p.interests.map(\.isMainInterest) == [false, true])
     }
+    @Test func branchChoicesFlowIntoThePerson() {
+        var d = OnboardingDraft()
+        d.name = "Sam"; d.toggle("american-football"); d.toggle("hockey")
+        d.setBranch("nfl", for: "american-football"); d.setBranch("x", for: "not-selected")
+        #expect(d.branchByCourse == ["american-football": "nfl"])
+        #expect(d.makePerson().interests.map(\.branchId) == ["nfl", nil])
+        d.toggle("american-football")
+        #expect(d.branchByCourse.isEmpty)
+    }
     @Test func defaultMainIsFirstSelection() {
         var d = OnboardingDraft()
         d.name = "Sam"; d.toggle("golf"); d.toggle("wine")

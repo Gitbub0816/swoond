@@ -66,8 +66,8 @@
               "prompt": "Are NASCAR stock cars just modified versions of cars you can buy at a dealership?",
               "scene": {"kind": "none", "alt": "Stock cars follow a rulebook, not street design."},
               "choices": [
-                {"id": "yes", "label": "Yes, they start as normal cars"},
-                {"id": "no", "label": "No, they are built from scratch to a rulebook"}
+                {"id": "yes", "label": "Yes, start as normal cars"},
+                {"id": "no", "label": "No, built from scratch"}
               ],
               "correctChoiceId": "no",
               "explanation": {
@@ -287,6 +287,44 @@
                 "incorrect": "The Daytona 500 is 200 laps because the track is 2.5 miles per lap."
               }
             }
+          },
+          {
+            "id": "n101-03-mc-miles",
+            "type": "multiple-choice",
+            "conceptIds": ["laps-and-distance"],
+            "payload": {
+              "prompt": "Why do races get named by miles instead of laps?",
+              "options": [
+                {"id": "a", "text": "Miles are easier to say on television"},
+                {"id": "b", "text": "Because track lengths differ, so the same race at different tracks would be different lap counts"},
+                {"id": "c", "text": "It is an old tradition from the sport's history"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Naming by miles makes sense because a 500-mile race at Daytona is 200 laps, but 500 laps at Bristol. Miles are constant; laps vary.",
+                "incorrect": "Races are named by miles because track length changes the lap count. A 500-mile race is 500 miles no matter which track hosts it.",
+                "sayThisLine": "The 500-mile race is always 500 miles."
+              }
+            }
+          },
+          {
+            "id": "n101-03-bc-calc",
+            "type": "binary-call",
+            "conceptIds": ["laps-and-distance"],
+            "payload": {
+              "prompt": "A race is 400 miles at a 1-mile track. Is that 400 laps?",
+              "scene": {"kind": "none", "alt": "Do the math: miles divided by track length equals laps."},
+              "choices": [
+                {"id": "yes", "label": "Yes, 400 miles means 400 laps"},
+                {"id": "no", "label": "No, need to divide miles by track length"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "If the track is 1 mile per lap and the race is 400 miles, then 400 miles ÷ 1 = 400 laps.",
+                "incorrect": "Yes, at a 1-mile track 400 miles equals exactly 400 laps. When track length changes, the math changes.",
+                "sayThisLine": "At a 1-mile track, miles and laps match."
+              }
+            }
           }
         ]
       },
@@ -332,6 +370,53 @@
                 "correct": "Qualifying speed sets the grid. The fastest single lap in the qualifying session earns the pole.",
                 "incorrect": "Qualifying determines the starting grid. The fastest qualifier starts on the pole.",
                 "sayThisLine": "He qualified on the pole."
+              }
+            }
+          },
+          {
+            "id": "n101-04-st-pole",
+            "type": "say-this",
+            "conceptIds": ["starting-grid", "clean-air"],
+            "payload": {
+              "statement": {
+                "speaker": "Jamie",
+                "text": "Why does starting position matter so much? The race is 400 laps, anything can happen."
+              },
+              "question": "How would you explain pole position's value?",
+              "options": [
+                {"id": "a", "text": "The pole sitter has clean air and no traffic early", "isCorrect": true},
+                {"id": "b", "text": "They set the fastest qualifying lap", "isCorrect": true},
+                {"id": "c", "text": "Clean air is a real advantage that compounds through the race", "isCorrect": true},
+                {"id": "d", "text": "Starting position does not really matter", "isCorrect": false}
+              ],
+              "translation": "The pole sitter starts with clean air, no one in front, and the cleanest view of the first lap. That is an advantage that can carry through the opening stages. You are right that 400 laps is long, but a good start puts you in control early.",
+              "followUps": [
+                {
+                  "line": "Can you lose that advantage?",
+                  "why": "Pit stops and cautions can shuffle the order, which is why NASCAR is so dynamic."
+                }
+              ]
+            }
+          },
+          {
+            "id": "n101-04-es-grid",
+            "type": "estimate-slider",
+            "conceptIds": ["starting-grid"],
+            "payload": {
+              "prompt": "In a 40-car Cup field, a driver qualifies in 15th. How many cars start ahead of them?",
+              "unit": "cars",
+              "min": 5,
+              "max": 25,
+              "step": 1,
+              "correctValue": 14,
+              "tolerance": {
+                "full": 2,
+                "partial": 5
+              },
+              "explanation": {
+                "correct": "If you qualify 15th, there are 14 cars ahead of you (1st through 14th), then you, then 25 cars behind.",
+                "incorrect": "15th position means 14 cars beat you in qualifying. They start ahead of you on the grid.",
+                "sayThisLine": "Qualifying 15th puts you 15th on the grid."
               }
             }
           }
@@ -396,6 +481,54 @@
                 "sayThisLine": "He is a lap down but still racing."
               }
             }
+          },
+          {
+            "id": "n101-05-tm-flags",
+            "type": "term-match",
+            "conceptIds": ["green-flag", "checkered-flag", "white-flag"],
+            "payload": {
+              "prompt": "Match the flag to what it signals.",
+              "pairs": [
+                {
+                  "id": "green",
+                  "term": "Green flag",
+                  "definition": "Racing is starting or resuming at full speed."
+                },
+                {
+                  "id": "white",
+                  "term": "White flag",
+                  "definition": "One lap remains until the finish."
+                },
+                {
+                  "id": "checkered",
+                  "term": "Checkered flag",
+                  "definition": "The race is finished; the leader has won."
+                }
+              ],
+              "explanation": {
+                "summary": "Green starts it, white warns of the final lap, checkered ends it.",
+                "sayThisLine": "Green, white, checkered: that is the rhythm of a race."
+              }
+            }
+          },
+          {
+            "id": "n101-05-bc-final",
+            "type": "binary-call",
+            "conceptIds": ["running-order", "checkered-flag"],
+            "payload": {
+              "prompt": "When the checkered flag waves, is the running order at that moment the official finishing order?",
+              "scene": {"kind": "none", "alt": "Official results are based on the race official's decision."},
+              "choices": [
+                {"id": "yes", "label": "Yes, the order when the leader crosses wins"},
+                {"id": "no", "label": "No, it gets reviewed and adjusted"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "The running order at the checkered flag is the official finishing order. First across the line wins.",
+                "incorrect": "Yes, when the checkered waves, the running order at that moment is the final result. The first car across is the winner.",
+                "sayThisLine": "Checkered flag, race is done, that order is final."
+              }
+            }
           }
         ]
       },
@@ -448,6 +581,70 @@
                   "why": "That is a great insight into why it feels different from other racing."
                 }
               ]
+            }
+          },
+          {
+            "id": "n101-06-so-history",
+            "type": "sequence-order",
+            "conceptIds": ["nascar-origins"],
+            "payload": {
+              "prompt": "Put the history of stock car racing in order.",
+              "items": [
+                {
+                  "id": "prohibition",
+                  "text": "Prohibition era: bootleggers modify cars to outrun police"
+                },
+                {
+                  "id": "race",
+                  "text": "Bootleggers race each other on back roads for bragging rights"
+                },
+                {
+                  "id": "france",
+                  "text": "Bill France Sr. sees the chaos and organized it into a sport"
+                },
+                {
+                  "id": "nascar",
+                  "text": "NASCAR is founded in 1948 to formalize stock car racing"
+                },
+                {
+                  "id": "pro",
+                  "text": "Stock car racing grows into a professional sport with sponsors and rules"
+                }
+              ],
+              "explanation": {
+                "correct": "Moonshiners raced during Prohibition to outrun police, then for glory. Bill France organized it in 1948. Now it is a major sport.",
+                "incorrect": "Stock car racing began with bootleggers, was organized by Bill France Sr. into NASCAR in 1948, and grew into the professional sport we know today."
+              }
+            }
+          },
+          {
+            "id": "n101-06-fg-origin",
+            "type": "fill-the-gap",
+            "conceptIds": ["nascar-origins"],
+            "payload": {
+              "prompt": "Fill in the NASCAR origin story.",
+              "template": "Stock car racing began with {{origin}} during Prohibition. {{organizer}} organized it into NASCAR in {{year}}.",
+              "gaps": [
+                {
+                  "id": "origin",
+                  "options": ["moonshiners", "factories", "road racers"],
+                  "correct": "moonshiners"
+                },
+                {
+                  "id": "organizer",
+                  "options": ["Bill France Sr.", "Dale Earnhardt", "Richard Petty"],
+                  "correct": "Bill France Sr."
+                },
+                {
+                  "id": "year",
+                  "options": ["1930", "1948", "1960"],
+                  "correct": "1948"
+                }
+              ],
+              "explanation": {
+                "correct": "Moonshiners raced cars, Bill France Sr. organized them into NASCAR in 1948, turning a chaotic hobby into a sport.",
+                "incorrect": "NASCAR was founded by Bill France Sr. in 1948, building on the bootlegger racing culture of Prohibition."
+              }
             }
           }
         ]
@@ -534,6 +731,44 @@
                 }
               ],
               "closingNote": "A race day flows from green flag through stages and pit cycles to the checkered flag."
+            }
+          },
+          {
+            "id": "n101-07-mc-weekend",
+            "type": "multiple-choice",
+            "conceptIds": ["green-flag"],
+            "payload": {
+              "prompt": "When does a typical Cup race weekend happen?",
+              "options": [
+                {"id": "a", "text": "Friday to Saturday"},
+                {"id": "b", "text": "Saturday to Sunday"},
+                {"id": "c", "text": "Most races are on Sunday with practice and qualifying on Friday and Saturday"}
+              ],
+              "correctOptionIds": ["c"],
+              "explanation": {
+                "correct": "Cup races are mostly on Sunday. Teams practice and qualify on Friday and Saturday to set up for the main event.",
+                "incorrect": "Sunday is race day for most Cup events. Friday and Saturday are for practice, qualifying, and preparation.",
+                "sayThisLine": "Race day is Sunday; that is the Cup tradition."
+              }
+            }
+          },
+          {
+            "id": "n101-07-bc-checklist",
+            "type": "binary-call",
+            "conceptIds": ["green-flag", "checkered-flag"],
+            "payload": {
+              "prompt": "Is post-race inspection part of the race day flow?",
+              "scene": {"kind": "none", "alt": "The winning car is checked before results are official."},
+              "choices": [
+                {"id": "yes", "label": "Yes, the winning car is inspected after crossing checkered"},
+                {"id": "no", "label": "No, the race is just the green to checkered laps"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "After the checkered flag, the winning car goes to post-race inspection to verify it meets all rules. If it fails, the result can change.",
+                "incorrect": "Yes, post-race inspection is part of race day. The winner is checked to ensure the car was legal; if not, penalties apply.",
+                "sayThisLine": "Post-race inspection can change who actually won."
+              }
             }
           }
         ]

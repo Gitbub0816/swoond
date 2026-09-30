@@ -788,17 +788,62 @@
             "type": "decision-scenario",
             "conceptIds": ["counterattack", "rest-defence"],
             "payload": {
-              "scenario": "Your team wins the ball on the left side. Three attackers are racing forward. Do you (A) join the attack to make it 4v3, or (B) stay back to cover for a counter?",
+              "prompt": "Three attackers racing forward. Push the fourth or stay back?",
+              "situation": {
+                "narrative": "Your team just won the ball on the left.",
+                "facts": [
+                  {
+                    "label": "Your attackers",
+                    "value": "Three running forward fast"
+                  },
+                  {
+                    "label": "Opponent defenders",
+                    "value": "Out of position, high"
+                  },
+                  {
+                    "label": "Your 4th player",
+                    "value": "Midfield, could push forward"
+                  },
+                  {
+                    "label": "Risk",
+                    "value": "Lose the ball; they break on you",
+                    "emphasis": "warning"
+                  }
+                ]
+              },
               "options": [
-                {"id": "a", "text": "Join the attack, push numbers forward", "reason": "You'd be 4v3 going forward, more chance to score."},
-                {"id": "b", "text": "Stay back and cover", "reason": "If they break your attack, they'd be on you with space."}
+                {
+                  "id": "push",
+                  "label": "Push the 4th player forward",
+                  "verdict": "poor",
+                  "consequence": "4v3 looks great—until they steal the ball and have a free run at your goal.",
+                  "considerations": [
+                    "You have numbers but no cover behind",
+                    "Turnover leaves you exposed"
+                  ]
+                },
+                {
+                  "id": "stay",
+                  "label": "Keep one back for rest defence",
+                  "verdict": "best",
+                  "consequence": "Even if they get the ball, you have a defender ready. Counterattacks need balance.",
+                  "considerations": [
+                    "One back stops the break",
+                    "The three still have numbers ahead"
+                  ]
+                },
+                {
+                  "id": "wait",
+                  "label": "Wait for a second wave",
+                  "verdict": "acceptable",
+                  "consequence": "Safe but slow. The three might create a chance before the second wave arrives.",
+                  "considerations": [
+                    "Overcautious but secure",
+                    "Delay gives opponent time to reset"
+                  ]
+                }
               ],
-              "betterOption": "b",
-              "explanation": {
-                "correct": "Smart. Counterattacks are dangerous because if you lose the ball high, they have space. Always have rest defence.",
-                "incorrect": "If all four push forward and lose the ball, their three attackers have a free run. Rest defence means leaving one player back.",
-                "sayThisLine": "You need rest defence for a counterattack."
-              }
+              "expertNote": "Great counterattacks always have rest defence: one player back to stop the break, so the forward three stay aggressive without fear."
             }
           },
           {

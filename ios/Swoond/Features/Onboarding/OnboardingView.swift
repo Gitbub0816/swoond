@@ -187,9 +187,30 @@ struct OnboardingView: View {
 
             Eyebrow("Their interests \u{B7} tap one to make it the main one").padding(.top, SWSpace.s20)
             VStack(spacing: SWSpace.s6) {
-                ForEach(draft.selectedCourseIds, id: \.self) { id in planRow(id) }
+                ForEach(draft.selectedCourseIds, id: \.self) { id in
+                    planRow(id)
+                    branchChips(id)
+                }
             }
             .padding(.top, SWSpace.s4)
+        }
+    }
+
+    /// Courses with branches (e.g. NFL vs college football) let you say which one they follow.
+    @ViewBuilder
+    private func branchChips(_ courseId: CourseID) -> some View {
+        if let branches = model.courses.first(where: { $0.courseId == courseId })?.branches, !branches.isEmpty {
+            VStack(alignment: .leading, spacing: SWSpace.s6) {
+                Eyebrow("Which one do they follow?").padding(.leading, SWSpace.s4)
+                FlowLayout(spacing: SWSpace.s8, lineSpacing: SWSpace.s8) {
+                    Chip(title: "Not sure", isOn: draft.branchByCourse[courseId] == nil) { draft.setBranch(nil, for: courseId) }
+                    ForEach(branches, id: \.id) { branch in
+                        Chip(title: branch.displayName, isOn: draft.branchByCourse[courseId] == branch.id) { draft.setBranch(branch.id, for: courseId) }
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.bottom, SWSpace.s6)
         }
     }
 

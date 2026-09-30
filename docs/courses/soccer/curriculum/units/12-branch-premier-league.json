@@ -1,0 +1,350 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "soccer",
+  "unit": {
+    "id": "branch-premier-league",
+    "title": "Branch: Premier League",
+    "layer": "branch",
+    "branchId": "premier-league",
+    "order": 11,
+    "prerequisiteUnitIds": ["competitions-and-clubs"],
+    "personalizationSlots": ["team", "player"],
+    "lessons": [
+      {
+        "id": "pl-01",
+        "title": "The Premier League ladder",
+        "objective": "You can explain how Premier League places decide Europe and relegation.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["pl-european-spots", "league-table", "promotion-relegation"],
+        "activities": [
+          {
+            "id": "pl-01-mc-europe",
+            "type": "multiple-choice",
+            "conceptIds": ["pl-european-spots"],
+            "payload": {
+              "prompt": "How many Premier League teams qualify for the Champions League?",
+              "options": [
+                {"id": "a", "text": "Top 2"},
+                {"id": "b", "text": "Top 4"},
+                {"id": "c", "text": "Top 6"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. The top four Premier League teams qualify for the Champions League group stage, though sometimes a fifth place team can also qualify if England earns an extra place.",
+                "incorrect": "England typically has four Champions League spots for the Premier League, though this can vary based on UEFA coefficients.",
+                "sayThisLine": "Top four gets Champions League if England earns the extra place."
+              }
+            }
+          },
+          {
+            "id": "pl-01-ftg-league",
+            "type": "fill-the-gap",
+            "conceptIds": ["league-table", "promotion-relegation"],
+            "payload": {
+              "prompt": "Complete the Premier League structure.",
+              "template": "The Premier League has {{teams}} teams and {{relegated}} are relegated each season.",
+              "gaps": [
+                {"id": "teams", "options": ["18", "20", "22"], "correct": "20"},
+                {"id": "relegated", "options": ["2", "3", "4"], "correct": "3"}
+              ],
+              "explanation": {
+                "correct": "Correct. Twenty teams compete, and the bottom three go down to the Championship.",
+                "incorrect": "The Premier League has 20 clubs, and three teams are relegated to the Championship each season."
+              }
+            }
+          },
+          {
+            "id": "pl-01-mc-champions",
+            "type": "multiple-choice",
+            "conceptIds": ["league-table"],
+            "payload": {
+              "prompt": "Who won the 2025-26 Premier League title?",
+              "options": [
+                {"id": "a", "text": "Arsenal"},
+                {"id": "b", "text": "Manchester City"},
+                {"id": "c", "text": "Liverpool"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Arsenal won the title with 85 points, ending a long wait for the {{team}} faithful.",
+                "incorrect": "Arsenal took the 2025-26 title with 85 points after a strong campaign.",
+                "sayThisLine": "Arsenal finally got it, 85 points, that's champions."
+              }
+            }
+          },
+          {
+            "id": "pl-01-st-top-four",
+            "type": "say-this",
+            "conceptIds": ["pl-european-spots"],
+            "payload": {
+              "statement": {"speaker": "Jamie", "text": "We need top four for Champions League football."},
+              "question": "What does Jamie mean?",
+              "options": [
+                {"id": "a", "text": "His team has to finish in the top four places to play in Europe's biggest club competition", "isCorrect": true},
+                {"id": "b", "text": "His team has already qualified", "isCorrect": false},
+                {"id": "c", "text": "The team needs to win four matches to qualify", "isCorrect": false},
+                {"id": "d", "text": "Finishing fourth automatically wins a trophy", "isCorrect": false}
+              ],
+              "translation": "A top-four finish in the Premier League earns entry into the Champions League, the most prestigious European club competition.",
+              "followUps": [
+                {"line": "Is your team close to top four this season?", "why": "Continues the conversation about their team's position."},
+                {"line": "Have they played in the Champions League before?", "why": "Opens a question about their club's history."}
+              ],
+              "noFakeExpertNote": "If uncertain, ask which European competition their team is in this season."
+            }
+          },
+          {
+            "id": "pl-01-mc-fifth",
+            "type": "multiple-choice",
+            "conceptIds": ["pl-european-spots"],
+            "payload": {
+              "prompt": "When can a 5th place team qualify for the Champions League?",
+              "options": [
+                {"id": "a", "text": "Never, only top four qualify"},
+                {"id": "b", "text": "When England earns an extra European place based on coefficient ranking"},
+                {"id": "c", "text": "If the top four teams refuse to play"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. England's number of Champions League places depends on how English clubs perform in Europe. A strong season can earn a fifth qualifying spot.",
+                "incorrect": "England's European qualification places are determined by UEFA coefficients. A good year for English clubs in Europe can earn a fifth Champions League spot.",
+                "sayThisLine": "Fifth might get in if England earns the extra place."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "pl-02",
+        "title": "FA Cup and the pyramid",
+        "objective": "You can explain the FA Cup and the English pyramid.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["fa-cup", "domestic-cup"],
+        "activities": [
+          {
+            "id": "pl-02-mc-magic",
+            "type": "multiple-choice",
+            "conceptIds": ["fa-cup", "domestic-cup"],
+            "payload": {
+              "prompt": "What makes the FA Cup special compared to the league?",
+              "options": [
+                {"id": "a", "text": "It pays more money"},
+                {"id": "b", "text": "Non-league and lower-division teams can face Premier League giants in the early rounds"},
+                {"id": "c", "text": "It's played only in summer"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Exactly. The FA Cup is a knockout competition that starts with hundreds of teams from the lower divisions and non-league, creating the possibility of giant-killing moments.",
+                "incorrect": "The magic of the FA Cup is that it draws teams from all levels of the English pyramid, so a fifth-tier team could theoretically face a Premier League side.",
+                "sayThisLine": "It's the cup, so anything can happen."
+              }
+            }
+          },
+          {
+            "id": "pl-02-st-cup-magic",
+            "type": "say-this",
+            "conceptIds": ["domestic-cup"],
+            "payload": {
+              "statement": {"speaker": "Sarah", "text": "The cup magic could happen this weekend."},
+              "question": "What is she talking about?",
+              "options": [
+                {"id": "a", "text": "An unlikely upset where a smaller team beats a much bigger one", "isCorrect": true},
+                {"id": "b", "text": "A magical trick will occur during the match", "isCorrect": false},
+                {"id": "c", "text": "The weekend is guaranteed to be fun", "isCorrect": true},
+                {"id": "d", "text": "Her team will definitely win", "isCorrect": false}
+              ],
+              "translation": "In cup competitions, especially the FA Cup, smaller teams can produce unexpected upsets that feel like magic because they overcome much bigger opponents.",
+              "followUps": [
+                {"line": "Has your team had a memorable FA Cup run?", "why": "Asks about their personal experience with the cup."},
+                {"line": "What's the biggest upset you can remember?", "why": "Invites them to share a famous cup moment."}
+              ],
+              "noFakeExpertNote": "You don't need to know every cup story, just that upsets happen and fans love them."
+            }
+          },
+          {
+            "id": "pl-02-mc-pyramid",
+            "type": "multiple-choice",
+            "conceptIds": ["fa-cup"],
+            "payload": {
+              "prompt": "Can a non-league team from the fifth tier or lower enter the FA Cup?",
+              "options": [
+                {"id": "a", "text": "No, only Premier League and Championship teams"},
+                {"id": "b", "text": "Yes, teams from all levels of the English pyramid can enter"},
+                {"id": "c", "text": "Only teams from the top three divisions"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Yes. The FA Cup is open to hundreds of teams across all divisions of the English football pyramid, from the Premier League down to non-league.",
+                "incorrect": "One of the unique features of the FA Cup is that it draws from the entire English pyramid, making giant-killings possible.",
+                "sayThisLine": "The cup is open to everyone, that's why upsets happen."
+              }
+            }
+          },
+          {
+            "id": "pl-02-mc-competitions",
+            "type": "multiple-choice",
+            "conceptIds": ["domestic-cup"],
+            "payload": {
+              "prompt": "How many major competitions do Premier League teams typically compete in?",
+              "options": [
+                {"id": "a", "text": "One (just the league)"},
+                {"id": "b", "text": "Two (league and FA Cup)"},
+                {"id": "c", "text": "Three or more (league, cups and European competitions)"}
+              ],
+              "correctOptionIds": ["c"],
+              "explanation": {
+                "correct": "Right. Premier League teams play in the league, the FA Cup, the League Cup, and if they qualify, European competitions like the Champions League.",
+                "incorrect": "A successful Premier League team in Europe can play in four or five competitions across a season: the league, two domestic cups, and European competition.",
+                "sayThisLine": "They're playing three games a week, that's the full fixture list."
+              }
+            }
+          },
+          {
+            "id": "pl-02-tm-cups",
+            "type": "term-match",
+            "conceptIds": ["fa-cup", "domestic-cup"],
+            "payload": {
+              "prompt": "Match the cup competition to its description.",
+              "pairs": [
+                {"id": "fac", "term": "FA Cup", "definition": "England's historic knockout cup, open to teams across all levels of the pyramid, where smaller teams can face giants."},
+                {"id": "lc", "term": "League Cup", "definition": "A domestic knockout competition for the top divisions, often used by big clubs to rotate their squads."},
+                {"id": "charity", "term": "Domestic cup magic", "definition": "The possibility of an upset where an unexpected team progresses far in a cup run."}
+              ],
+              "explanation": {
+                "summary": "England has multiple domestic cups, but the FA Cup is the most historic and open to the widest range of teams.",
+                "sayThisLine": "The FA Cup is where the real upsets happen."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "pl-03",
+        "title": "Spending rules and the 2026/27 laws",
+        "objective": "You can explain the spending rules and the new law changes fans are discussing.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["financial-rules", "var-new-reviews", "time-wasting-countdown"],
+        "activities": [
+          {
+            "id": "pl-03-mc-spending",
+            "type": "multiple-choice",
+            "conceptIds": ["financial-rules"],
+            "payload": {
+              "prompt": "What is the Premier League's main spending rule designed to do?",
+              "options": [
+                {"id": "a", "text": "Ensure every team spends the same amount"},
+                {"id": "b", "text": "Limit spending and prevent clubs from going into serious debt (Profit and Sustainability Rules)"},
+                {"id": "c", "text": "Give bigger clubs more money to spend"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. The Premier League's Profit and Sustainability Rules (PSR) limit how much clubs can spend relative to their revenue, to prevent financial collapse and promote competitive balance.",
+                "incorrect": "The Premier League's spending rules restrict how much clubs can lose over three years. Teams that break these rules face points deductions.",
+                "sayThisLine": "They got a points deduction for breaking the spending rules."
+              }
+            }
+          },
+          {
+            "id": "pl-03-mc-var-corner",
+            "type": "multiple-choice",
+            "conceptIds": ["var-new-reviews"],
+            "payload": {
+              "prompt": "Under the new 2026/27 rules, can VAR review a wrongly awarded corner?",
+              "options": [
+                {"id": "a", "text": "No, VAR cannot review corner decisions"},
+                {"id": "b", "text": "Yes, if it can be corrected quickly without lengthy review"},
+                {"id": "c", "text": "Yes, always, no matter how long it takes"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Correct. Starting in 2026/27, VAR can review corners if the decision is clearly wrong and the review can be done quickly.",
+                "incorrect": "A new 2026/27 rule allows VAR to review corner decisions, but only if the correction is immediate, not delaying the game.",
+                "sayThisLine": "They can review a corner now, but only if it's quick."
+              }
+            }
+          },
+          {
+            "id": "pl-03-st-countdown",
+            "type": "say-this",
+            "conceptIds": ["time-wasting-countdown"],
+            "payload": {
+              "statement": {"speaker": "commentator", "text": "They're stalling but the ref's got the countdown up now."},
+              "question": "What does this mean?",
+              "options": [
+                {"id": "a", "text": "The team is deliberately wasting time and the referee is enforcing the new five-second restart countdown", "isCorrect": true},
+                {"id": "b", "text": "The referee is timing the entire match", "isCorrect": false},
+                {"id": "c", "text": "The match is ending soon", "isCorrect": false},
+                {"id": "d", "text": "A goal will be scored in five seconds", "isCorrect": false}
+              ],
+              "translation": "The 2026/27 restart countdown forces teams to restart play (throw-in, goal kick) within five seconds, shown visually by the referee, cutting down on deliberate time-wasting.",
+              "followUps": [
+                {"line": "Does your team need to improve at restarting quickly?", "why": "Asks if it affects their play style."},
+                {"line": "Do you think the countdown makes the game better?", "why": "Opens their opinion on the rule change."}
+              ],
+              "noFakeExpertNote": "If you're unsure, note that the ref's hand signals count down the five seconds."
+            }
+          },
+          {
+            "id": "pl-03-ds-transfer-window",
+            "type": "decision-scenario",
+            "conceptIds": ["financial-rules"],
+            "payload": {
+              "situation": {
+                "facts": [
+                  {"label": "Your team's position", "value": "Mid-table, safe from relegation"},
+                  {"label": "Available budget", "value": "£50 million"},
+                  {"label": "Losses over 3 years", "value": "£45 million (can only lose £40 million total under PSR)"},
+                  {"label": "Top target striker", "value": "Available for £60 million"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "spend-big",
+                  "text": "Buy the striker for £60 million anyway",
+                  "verdict": "poor",
+                  "consequence": "You exceed the spending limits and risk a points deduction that could actually hurt your league position more than the striker helps.",
+                  "considerations": "PSR violations are serious; the Premier League has deducted points from multiple clubs for breaches."
+                },
+                {
+                  "id": "spend-budget",
+                  "text": "Spend your full £50 million on a striker and focus on sustainable budget",
+                  "verdict": "best",
+                  "consequence": "You strengthen the squad within financial rules, showing stability to investors and avoiding the risk of points deduction.",
+                  "considerations": "Building within constraints is how successful clubs manage their future; PSR is designed to prevent this exact overspending."
+                },
+                {
+                  "id": "spend-less",
+                  "text": "Wait and reduce losses before making big signings",
+                  "verdict": "acceptable",
+                  "consequence": "You miss out on this target but move closer to sustainable spending and avoid any rules breach.",
+                  "considerations": "A conservative approach but safe; sometimes the best business is the business you don't do."
+                }
+              ],
+              "expertNote": "Experienced Premier League managers weigh immediate success against long-term sustainability. The PSR rules mean a points deduction today can undo signings from tomorrow.",
+              "safetyNote": "This scenario explains the rules; it is not financial or investment advice."
+            }
+          },
+          {
+            "id": "pl-03-mc-psr-purpose",
+            "type": "multiple-choice",
+            "conceptIds": ["financial-rules"],
+            "payload": {
+              "prompt": "Why did the Premier League introduce spending rules?",
+              "options": [
+                {"id": "a", "text": "To make matches more exciting"},
+                {"id": "b", "text": "To prevent clubs going bankrupt and to promote competitive balance"},
+                {"id": "c", "text": "To guarantee teams stay in the league forever"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. Spending rules protect clubs from financial ruin and create fairer competition by preventing unlimited spending by the richest owners.",
+                "incorrect": "The rules aim to maintain the financial health of clubs and stop a small number of rich owners from dominating through spending alone.",
+                "sayThisLine": "Spending rules keep the league competitive and the clubs stable."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

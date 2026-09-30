@@ -29,16 +29,18 @@ final class PlaybookViewModel {
         var curricula: [Curriculum] = []
         var masteries: [CourseID: CourseMastery] = []
         var names: [CourseID: String] = [:]
+        var branches: [CourseID: BranchID] = [:]
         var interestList: [InterestFilter] = []
         for interest in person.interests {
             let id = interest.courseId
             guard let c = try? await env.content.curriculum(courseId: id, locale: env.locale) else { continue }
             curricula.append(c)
             names[id] = model.interestName(id)
+            if let branch = interest.branchId { branches[id] = branch }
             interestList.append(InterestFilter(id: id, name: model.interestName(id)))
             if let m = try? await env.engine.mastery(courseId: id) { masteries[id] = m }
         }
-        entries = PlaybookIndex.entries(curricula: curricula, courseNames: names, mastery: masteries, now: now)
+        entries = PlaybookIndex.entries(curricula: curricula, courseNames: names, mastery: masteries, now: now, branchIds: branches)
         interests = interestList
         if let f = courseFilter, !interestList.contains(where: { $0.id == f }) { courseFilter = nil }
         isLoaded = true
