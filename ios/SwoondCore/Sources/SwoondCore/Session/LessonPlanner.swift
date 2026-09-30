@@ -49,10 +49,12 @@ public enum LessonPlanner {
 
     /// Due concepts (most overdue first, up to `maxItemsPerSession`), each paired with a review-eligible native
     /// activity of an allowed type, preferring one not used last time.
-    public static func dueReviews(in c: Curriculum, mastery: CourseMastery, now: Date) -> [PlannedReview] {
+    public static func dueReviews(in c: Curriculum, mastery: CourseMastery, now: Date, branchId: BranchID? = nil) -> [PlannedReview] {
         let policy = c.reviewPolicy
         let allowed = policy.reviewActivityTypes.map(Set.init)
-        let candidates = c.allActivities.filter { $0.type.isNative && $0.type != .talkTrack && $0.isReviewEligible && (allowed?.contains($0.type) ?? true) }
+        // Contract 1.2: review only draws on units and activities visible to the person's branch.
+        let visibleActivities = c.units(forBranch: branchId).flatMap { $0.lessons.flatMap { $0.activities(forBranch: branchId) } }
+        let candidates = visibleActivities.filter { $0.type.isNative && $0.type != .talkTrack && $0.isReviewEligible && (allowed?.contains($0.type) ?? true) }
         var used = Set<ActivityID>()
         var out: [PlannedReview] = []
         for cid in mastery.dueConceptIds(now: now) {

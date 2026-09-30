@@ -23,18 +23,9 @@
             "payload": {
               "prompt": "How many points is a touchdown worth?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "Six points"
-                },
-                {
-                  "id": "b",
-                  "text": "Seven points"
-                },
-                {
-                  "id": "c",
-                  "text": "One point"
-                }
+                {"id": "a", "text": "Six points"},
+                {"id": "b", "text": "Seven points"},
+                {"id": "c", "text": "One point"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
@@ -46,44 +37,15 @@
             "xp": 10
           },
           {
-            "id": "goal-01-hotspot-1",
-            "type": "hotspot-tap",
-            "conceptIds": ["end-zone"],
-            "payload": {
-              "prompt": "Tap the end zone.",
-              "scene": {
-                "kind": "field-diagram",
-                "diagramId": "football-field-zones",
-                "markers": []
-              },
-              "correctAreas": [{"x": 0.05, "y": 0.5, "radius": 0.15}, {"x": 0.95, "y": 0.5, "radius": 0.15}],
-              "explanation": {
-                "correct": "Those are the end zones, 10 yards deep at each end. Get the ball there and it is six points.",
-                "incorrect": "The end zones are the striped areas at the ends of the field, past the goal line. That is touchdown territory.",
-                "sayThisLine": "Get into the end zone and it is a touchdown."
-              }
-            },
-            "xp": 10
-          },
-          {
             "id": "goal-01-mc-2",
             "type": "multiple-choice",
             "conceptIds": ["possession"],
             "payload": {
               "prompt": "Which team is on offense?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "The one with the ball"
-                },
-                {
-                  "id": "b",
-                  "text": "The one guarding the end zone"
-                },
-                {
-                  "id": "c",
-                  "text": "Both at the same time"
-                }
+                {"id": "a", "text": "The one with the ball"},
+                {"id": "b", "text": "The one guarding the end zone"},
+                {"id": "c", "text": "Both at the same time"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
@@ -101,18 +63,9 @@
             "payload": {
               "prompt": "Where can a team score a touchdown?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "Only if the player runs it in"
-                },
-                {
-                  "id": "b",
-                  "text": "By running or catching the ball in the end zone"
-                },
-                {
-                  "id": "c",
-                  "text": "Only from the 1-yard line"
-                }
+                {"id": "a", "text": "Only if the player runs it in"},
+                {"id": "b", "text": "By running or catching the ball in the end zone"},
+                {"id": "c", "text": "Only from the 1-yard line"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
@@ -124,32 +77,42 @@
             "xp": 10
           },
           {
-            "id": "goal-01-say-this-1",
-            "type": "say-this",
-            "conceptIds": ["end-zone", "touchdown"],
+            "id": "goal-01-mc-4",
+            "type": "multiple-choice",
+            "conceptIds": ["end-zone"],
             "payload": {
-              "setting": "Your friend says the team is close to scoring.",
-              "theirLine": "We are in the end zone!",
-              "replies": [
-                {
-                  "id": "a",
-                  "text": "That was six points.",
-                  "consequence": "right",
-                  "explanation": "Correct. Get the ball into the end zone and it counts as a touchdown, which is six points."
-                },
-                {
-                  "id": "b",
-                  "text": "Now what happens?",
-                  "consequence": "okay",
-                  "explanation": "Close. They scored a touchdown, so six points are on the board. Then the team gets to attempt an extra point kick or a two-point try."
-                },
-                {
-                  "id": "c",
-                  "text": "That should be ten points.",
-                  "consequence": "cringe",
-                  "explanation": "Not quite. A touchdown is six, not ten. After a touchdown the team kicks for one more point (making it seven) or tries a two-point conversion."
-                }
-              ]
+              "prompt": "What is the end zone?",
+              "options": [
+                {"id": "a", "text": "The 10-yard area at each end of the field"},
+                {"id": "b", "text": "The sideline"},
+                {"id": "c", "text": "The area between the 40-yard lines"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "The end zone is the 10-yard area at each end of the field beyond the goal line. Getting the ball there is a touchdown.",
+                "incorrect": "The end zone is the striped area at each end, 10 yards deep past the goal line.",
+                "sayThisLine": "He got into the end zone for six points."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "goal-01-mc-5",
+            "type": "multiple-choice",
+            "conceptIds": ["touchdown"],
+            "payload": {
+              "prompt": "What happens after a team scores a touchdown?",
+              "options": [
+                {"id": "a", "text": "The game ends"},
+                {"id": "b", "text": "They get to attempt an extra point"},
+                {"id": "c", "text": "The other team gets the ball immediately"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "After a touchdown, the team gets one or two more points by attempting an extra point: a kick for one, or a play from the 2-yard line for two.",
+                "incorrect": "A touchdown is not the end of the play. The team gets to attempt to score one or two more points on an extra point try.",
+                "sayThisLine": "Touchdown! Now they shoot for the extra point."
+              }
             },
             "xp": 10
           }
@@ -163,85 +126,81 @@
         "conceptIds": ["end-zone", "line-of-scrimmage", "field-position"],
         "activities": [
           {
-            "id": "field-02-hotspot-1",
-            "type": "hotspot-tap",
+            "id": "field-02-mc-1",
+            "type": "multiple-choice",
             "conceptIds": ["line-of-scrimmage"],
             "payload": {
-              "prompt": "Tap the line of scrimmage. Where the ball sits before the play.",
-              "scene": {
-                "kind": "field-diagram",
-                "diagramId": "football-scrimmage-line",
-                "markers": []
-              },
-              "correctAreas": [{"x": 0.5, "y": 0.5, "radius": 0.02}],
+              "prompt": "What is the line of scrimmage?",
+              "options": [
+                {"id": "a", "text": "The imaginary line where the ball sits before each play"},
+                {"id": "b", "text": "The sideline where the players stand"},
+                {"id": "c", "text": "The line between the end zone and the field"}
+              ],
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "That is the line of scrimmage. Neither team can cross it until the snap. The offense lines up on one side, the defense on the other.",
-                "incorrect": "The line of scrimmage is where the ball sits at the start of each play. It is an imaginary line that neither team can cross before the snap.",
+                "correct": "The line of scrimmage is where the ball is placed before each play. Neither team can cross it until the snap.",
+                "incorrect": "The line of scrimmage is the line where the ball sits at the start of each play. Defenders line up in front, offense behind.",
                 "sayThisLine": "Lined up at the line of scrimmage."
               }
             },
             "xp": 10
           },
           {
-            "id": "field-02-fill-the-gap-1",
-            "type": "fill-the-gap",
+            "id": "field-02-mc-2",
+            "type": "multiple-choice",
             "conceptIds": ["field-position"],
             "payload": {
-              "prompt": "The quarterback took a sack on the 40-yard line. That is good field _____ for the defense.",
-              "correctAnswers": ["position"],
+              "prompt": "Why does field position matter in football?",
+              "options": [
+                {"id": "a", "text": "The closer to the opponent's end zone, the fewer yards you need to score"},
+                {"id": "b", "text": "The middle of the field is always easier to defend"},
+                {"id": "c", "text": "Teams win by controlling the sidelines"}
+              ],
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Field position is where the ball sits. The closer to the other end zone, the fewer yards you need to score. A sack at midfield is good defense.",
-                "incorrect": "You are looking for a word that describes where the ball sits on the field. Closer to the goal line is better field position for the offense.",
+                "correct": "Field position is crucial. The closer you are to the opponent's end zone, the easier it is to score. A sack at midfield is good defense.",
+                "incorrect": "Field position is where the ball sits on the field. Being closer to the opponent's goal line is an advantage.",
                 "sayThisLine": "They pinned us deep. Rough field position."
               }
             },
             "xp": 10
           },
           {
-            "id": "field-02-mc-1",
+            "id": "field-02-mc-3",
             "type": "multiple-choice",
-            "conceptIds": ["end-zone", "line-of-scrimmage"],
+            "conceptIds": ["end-zone"],
             "payload": {
-              "prompt": "How far is the end zone from the line of scrimmage on a kickoff?",
+              "prompt": "How far is each end zone?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "100 yards"
-                },
-                {
-                  "id": "b",
-                  "text": "10 yards"
-                },
-                {
-                  "id": "c",
-                  "text": "It depends on the kick"
-                }
+                {"id": "a", "text": "10 yards deep"},
+                {"id": "b", "text": "5 yards deep"},
+                {"id": "c", "text": "20 yards deep"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "The field is 100 yards long between the goal lines. Each end zone is 10 yards deep beyond that. So from one end zone to the other is 120 yards.",
-                "incorrect": "The field between the goal lines is 100 yards. The end zones add 10 more yards at each end.",
-                "sayThisLine": "Hundred yards between the goal lines."
+                "correct": "Each end zone is 10 yards deep. The field between goal lines is 100 yards, plus 10 yards on each end.",
+                "incorrect": "The end zones are 10 yards deep at each end of the field beyond the goal line.",
+                "sayThisLine": "In the end zone for a touchdown."
               }
             },
             "xp": 10
           },
           {
-            "id": "field-02-hotspot-2",
-            "type": "hotspot-tap",
-            "conceptIds": ["end-zone"],
+            "id": "field-02-mc-4",
+            "type": "multiple-choice",
+            "conceptIds": ["line-of-scrimmage", "field-position"],
             "payload": {
-              "prompt": "Now tap one of the end zones.",
-              "scene": {
-                "kind": "field-diagram",
-                "diagramId": "football-field-zones",
-                "markers": []
-              },
-              "correctAreas": [{"x": 0.05, "y": 0.5, "radius": 0.15}],
+              "prompt": "The ball is at the 40-yard line on the offense's side of the field. How far to the end zone?",
+              "options": [
+                {"id": "a", "text": "60 yards"},
+                {"id": "b", "text": "40 yards"},
+                {"id": "c", "text": "100 yards"}
+              ],
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "That is an end zone. The team defending this end zone is trying to keep the ball out. The other team is trying to get the ball into this end zone to score.",
-                "incorrect": "The end zones are the striped areas beyond the goal line. They are 10 yards deep.",
-                "sayThisLine": "In the end zone for a touchdown."
+                "correct": "The field is 100 yards long. If the ball is at the 40-yard line, it is 60 yards from the opponent's end zone (100 minus 40).",
+                "incorrect": "From the 40-yard line, it is 60 yards to the opponent's end zone. (10 yards for the end zone plus 50 yards to the goal line.)",
+                "sayThisLine": "Sixty yards out, a long field."
               }
             },
             "xp": 10
@@ -262,18 +221,9 @@
             "payload": {
               "prompt": "What does a first down give the offense?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "Four more downs"
-                },
-                {
-                  "id": "b",
-                  "text": "A free field goal"
-                },
-                {
-                  "id": "c",
-                  "text": "An extra timeout"
-                }
+                {"id": "a", "text": "Four more downs"},
+                {"id": "b", "text": "A free field goal"},
+                {"id": "c", "text": "An extra timeout"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
@@ -285,64 +235,15 @@
             "xp": 10
           },
           {
-            "id": "downs-03-fill-the-gap-1",
-            "type": "fill-the-gap",
-            "conceptIds": ["downs"],
-            "payload": {
-              "prompt": "The offense gets four _____ to advance 10 yards.",
-              "correctAnswers": ["downs", "tries", "plays"],
-              "explanation": {
-                "correct": "The offense has four tries (downs) to gain 10 yards. If they do, they get four more. If they fail to gain 10, the other team gets the ball.",
-                "incorrect": "A down is a play. The offense gets four of them to move the ball 10 yards.",
-                "sayThisLine": "Fourth down, they have to go for it."
-              }
-            },
-            "xp": 10
-          },
-          {
-            "id": "downs-03-binary-call-1",
-            "type": "binary-call",
-            "conceptIds": ["downs"],
-            "payload": {
-              "prompt": "Third and five. The running back gains five yards.",
-              "choices": [
-                {
-                  "id": "first-down",
-                  "label": "First down"
-                },
-                {
-                  "id": "not-first",
-                  "label": "Not a first down"
-                }
-              ],
-              "correctChoiceId": "first-down",
-              "explanation": {
-                "correct": "They needed five yards and got five. That is a first down. The count resets to 1st and 10.",
-                "incorrect": "Third and five means they need five yards. They got five, so that is a first down.",
-                "sayThisLine": "Just enough for the first down."
-              }
-            },
-            "xp": 10
-          },
-          {
             "id": "downs-03-mc-2",
             "type": "multiple-choice",
             "conceptIds": ["down-and-distance"],
             "payload": {
               "prompt": "It is third and seven. What does that mean?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "The offense has had two plays, needs seven more yards"
-                },
-                {
-                  "id": "b",
-                  "text": "The offense has seven chances to move the ball"
-                },
-                {
-                  "id": "c",
-                  "text": "It is the third quarter and the score is 7-0"
-                }
+                {"id": "a", "text": "The offense has had two plays, needs seven more yards"},
+                {"id": "b", "text": "The offense has seven chances to move the ball"},
+                {"id": "c", "text": "It is the third quarter and the score is 7-0"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
@@ -360,55 +261,56 @@
             "payload": {
               "prompt": "Why do fans care so much about fourth down?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "It is usually the last chance to keep the ball"
-                },
-                {
-                  "id": "b",
-                  "text": "It is worth more points"
-                },
-                {
-                  "id": "c",
-                  "text": "It is the hardest down to play"
-                }
+                {"id": "a", "text": "It is usually the last chance to keep the ball"},
+                {"id": "b", "text": "It is worth more points"},
+                {"id": "c", "text": "It is the hardest down to play"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
                 "correct": "Fourth down is the last try to gain 10 yards. If they do not make it, the other team gets the ball. So the team must decide: go for it, kick a field goal, or punt.",
-                "incorrect": "Fourth down is crucial because it is the last chance in that sequence. Fail and possession flips.",
+                "incorrect": "Fourth down is crucial because it is the last chance in that sequence. Fail and possession flips to the other team.",
                 "sayThisLine": "Fourth and goal, the pressure is on."
               }
             },
             "xp": 10
           },
           {
-            "id": "downs-03-say-this-1",
-            "type": "say-this",
-            "conceptIds": ["down-and-distance"],
+            "id": "downs-03-mc-4",
+            "type": "multiple-choice",
+            "conceptIds": ["downs"],
             "payload": {
-              "setting": "You are watching and hear someone say it is second and eight.",
-              "theirLine": "Second and eight means they did not get much on first down.",
-              "replies": [
-                {
-                  "id": "a",
-                  "text": "Right, they need eight more yards.",
-                  "consequence": "right",
-                  "explanation": "Correct. Second and eight: the second play, eight yards still needed. They gained two yards on the first play, so eight remain."
-                },
-                {
-                  "id": "b",
-                  "text": "So it is second down?",
-                  "consequence": "okay",
-                  "explanation": "Correct. Second and eight is the second down of this set. They gained two yards on first, so eight yards remain to earn a first down."
-                },
-                {
-                  "id": "c",
-                  "text": "And they score eight points.",
-                  "consequence": "cringe",
-                  "explanation": "No. Second and eight is about down and distance, not points. It means the second play and eight yards still needed."
-                }
-              ]
+              "prompt": "The offense gets how many tries to advance 10 yards?",
+              "options": [
+                {"id": "a", "text": "Four"},
+                {"id": "b", "text": "Three"},
+                {"id": "c", "text": "Five"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "The offense has four tries (downs) to gain 10 yards. If they do, they get four more. If they fail to gain 10, the other team gets the ball.",
+                "incorrect": "A down is a play. The offense gets four of them to move the ball 10 yards.",
+                "sayThisLine": "Fourth down, they have to go for it."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "downs-03-mc-5",
+            "type": "multiple-choice",
+            "conceptIds": ["first-down"],
+            "payload": {
+              "prompt": "Second and three. The running back gains four yards. What is it now?",
+              "options": [
+                {"id": "a", "text": "First and 10"},
+                {"id": "b", "text": "Third and 1"},
+                {"id": "c", "text": "First down"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "They needed 3 yards and got 4. That is a first down. The count resets to 1st and 10.",
+                "incorrect": "When they reach or pass the 10-yard marker, it is a new set of downs: 1st and 10.",
+                "sayThisLine": "Just enough for the first down."
+              }
             },
             "xp": 10
           }
@@ -422,33 +324,17 @@
         "conceptIds": ["first-down-marker", "first-down", "downs"],
         "activities": [
           {
-            "id": "markers-04-binary-call-1",
-            "type": "binary-call",
+            "id": "markers-04-mc-1",
+            "type": "multiple-choice",
             "conceptIds": ["first-down-marker"],
             "payload": {
-              "prompt": "The ball is at the yellow line. Did they get the first down?",
-              "scene": {
-                "kind": "field-diagram",
-                "diagramId": "football-first-down-marker",
-                "markers": [
-                  {
-                    "role": "ball",
-                    "x": 0.5,
-                    "y": 0.5
-                  }
-                ]
-              },
-              "choices": [
-                {
-                  "id": "yes",
-                  "label": "Yes, first down"
-                },
-                {
-                  "id": "no",
-                  "label": "No, short"
-                }
+              "prompt": "What is the yellow line on TV?",
+              "options": [
+                {"id": "a", "text": "The first-down marker showing where 10 yards ends"},
+                {"id": "b", "text": "The sideline"},
+                {"id": "c", "text": "The 50-yard line"}
               ],
-              "correctChoiceId": "yes",
+              "correctOptionIds": ["a"],
               "explanation": {
                 "correct": "The yellow line is the first-down marker. If the ball reaches it or passes it, it is a first down. The chains measure it exactly if it is close.",
                 "incorrect": "The yellow line shows where 10 yards ends. Reach or pass it and the offense gets a new set of downs.",
@@ -458,75 +344,61 @@
             "xp": 10
           },
           {
-            "id": "markers-04-hotspot-1",
-            "type": "hotspot-tap",
-            "conceptIds": ["first-down-marker"],
-            "payload": {
-              "prompt": "Tap where the first-down marker is.",
-              "scene": {
-                "kind": "field-diagram",
-                "diagramId": "football-field-with-marker",
-                "markers": []
-              },
-              "correctAreas": [{"x": 0.4, "y": 0.5, "radius": 0.02}],
-              "explanation": {
-                "correct": "That is the first-down marker (the yellow line on TV). If the ball gets there, the offense earns a new set of downs.",
-                "incorrect": "The first-down marker shows where 10 yards ends from the original line of scrimmage.",
-                "sayThisLine": "Right at the first-down marker."
-              }
-            },
-            "xp": 10
-          },
-          {
-            "id": "markers-04-binary-call-2",
-            "type": "binary-call",
+            "id": "markers-04-mc-2",
+            "type": "multiple-choice",
             "conceptIds": ["first-down"],
             "payload": {
-              "prompt": "Second and three. The receiver gains four yards.",
-              "choices": [
-                {
-                  "id": "first",
-                  "label": "First down"
-                },
-                {
-                  "id": "short",
-                  "label": "Short of the marker"
-                }
+              "prompt": "Second and three. The receiver gains four yards. Is it a first down?",
+              "options": [
+                {"id": "a", "text": "Yes, they gained more than 3 yards"},
+                {"id": "b", "text": "No, they need 10 yards"},
+                {"id": "c", "text": "It depends on field position"}
               ],
-              "correctChoiceId": "first",
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Second and three means they need three yards. They got four, so they passed the marker. That is a first down.",
-                "incorrect": "If they needed three and got four, they reached the marker. That counts as a first down.",
-                "sayThisLine": "He got past the marker."
+                "correct": "They needed 3 yards and got 4, so they reached the marker. That is a first down and the count resets.",
+                "incorrect": "If they needed 3 and got 4, they passed the marker. That is a first down.",
+                "sayThisLine": "He got past the marker for the first down."
               }
             },
             "xp": 10
           },
           {
-            "id": "markers-04-mc-1",
+            "id": "markers-04-mc-3",
             "type": "multiple-choice",
             "conceptIds": ["first-down-marker"],
             "payload": {
               "prompt": "Why do they use the chains on the sideline sometimes?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "To measure if the ball is exactly at the first-down marker"
-                },
-                {
-                  "id": "b",
-                  "text": "To hold the players back"
-                },
-                {
-                  "id": "c",
-                  "text": "For decoration"
-                }
+                {"id": "a", "text": "To measure if the ball is exactly at the first-down marker"},
+                {"id": "b", "text": "To hold the players back"},
+                {"id": "c", "text": "For decoration"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
                 "correct": "When a play is close to the first-down marker, the chains come out. They measure the exact 10 yards to see if it is a first down or not.",
                 "incorrect": "The chains on the sideline are an official measuring tool. They show exactly where 10 yards ends.",
                 "sayThisLine": "It is close, bring out the chains."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "markers-04-mc-4",
+            "type": "multiple-choice",
+            "conceptIds": ["first-down", "downs"],
+            "payload": {
+              "prompt": "First and 10 at the 50-yard line. The offense gains 8 yards. What is the next play?",
+              "options": [
+                {"id": "a", "text": "Second and 2"},
+                {"id": "b", "text": "First and 10"},
+                {"id": "c", "text": "Third and 2"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "They needed 10 yards and got 8. So 2 yards remain. It is now second down and 2 yards to go for a first down.",
+                "incorrect": "If they gained 8 yards but needed 10, the distance goes down. 10 minus 8 equals 2 remaining yards.",
+                "sayThisLine": "Second and two for the first down."
               }
             },
             "xp": 10
@@ -541,13 +413,17 @@
         "conceptIds": ["game-clock", "play-clock", "timeout"],
         "activities": [
           {
-            "id": "clock-05-estimate-slider-1",
-            "type": "estimate-slider",
+            "id": "clock-05-mc-1",
+            "type": "multiple-choice",
             "conceptIds": ["game-clock"],
             "payload": {
               "prompt": "How long are the four quarters of regulation in total minutes?",
-              "correctMin": 55,
-              "correctMax": 65,
+              "options": [
+                {"id": "a", "text": "60 minutes"},
+                {"id": "b", "text": "90 minutes"},
+                {"id": "c", "text": "45 minutes"}
+              ],
+              "correctOptionIds": ["a"],
               "explanation": {
                 "correct": "Sixty minutes of playing time: four 15-minute quarters. In reality, games take about three hours because the clock stops often.",
                 "incorrect": "The game is four quarters of 15 minutes each, so 60 minutes total. But with stoppages, it lasts about three hours.",
@@ -557,24 +433,15 @@
             "xp": 10
           },
           {
-            "id": "clock-05-mc-1",
+            "id": "clock-05-mc-2",
             "type": "multiple-choice",
             "conceptIds": ["game-clock"],
             "payload": {
               "prompt": "Why do games last about three hours when regulation is 60 minutes?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "The clock stops for incompletions, out of bounds, and timeouts"
-                },
-                {
-                  "id": "b",
-                  "text": "They add extra time between quarters"
-                },
-                {
-                  "id": "c",
-                  "text": "Players take too many breaks"
-                }
+                {"id": "a", "text": "The clock stops for incompletions, out of bounds, and timeouts"},
+                {"id": "b", "text": "They add extra time between quarters"},
+                {"id": "c", "text": "Players take too many breaks"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
@@ -586,24 +453,15 @@
             "xp": 10
           },
           {
-            "id": "clock-05-mc-2",
+            "id": "clock-05-mc-3",
             "type": "multiple-choice",
             "conceptIds": ["play-clock"],
             "payload": {
-              "prompt": "What is the play clock and what happens if it runs out?",
+              "prompt": "What is the play clock?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "A 40-second countdown to snap the ball; if it hits zero, it is delay of game"
-                },
-                {
-                  "id": "b",
-                  "text": "The time between plays; if it runs out, the quarter ends"
-                },
-                {
-                  "id": "c",
-                  "text": "The time the quarterback has to throw before a sack"
-                }
+                {"id": "a", "text": "A 40-second countdown to snap the ball; if it hits zero, it is delay of game"},
+                {"id": "b", "text": "The time between plays; if it runs out, the quarter ends"},
+                {"id": "c", "text": "The time the quarterback has to throw before a sack"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
@@ -615,46 +473,41 @@
             "xp": 10
           },
           {
-            "id": "clock-05-timing-tap-1",
-            "type": "timing-tap",
-            "conceptIds": ["play-clock"],
-            "payload": {
-              "prompt": "The play clock just started at 40 seconds. Tap when the offense should snap the ball before delay of game.",
-              "duration": 40000,
-              "targetWindow": [35000, 40000],
-              "explanation": {
-                "correct": "Good. If the offense snaps with a few seconds left, they avoid a delay of game penalty.",
-                "incorrect": "The play clock runs 40 seconds. They need to snap before it hits zero.",
-                "sayThisLine": "They got it off just in time."
-              }
-            },
-            "xp": 10
-          },
-          {
-            "id": "clock-05-mc-3",
+            "id": "clock-05-mc-4",
             "type": "multiple-choice",
             "conceptIds": ["timeout"],
             "payload": {
               "prompt": "How many timeouts does each team get per half?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "Three"
-                },
-                {
-                  "id": "b",
-                  "text": "Two"
-                },
-                {
-                  "id": "c",
-                  "text": "One"
-                }
+                {"id": "a", "text": "Three"},
+                {"id": "b", "text": "Two"},
+                {"id": "c", "text": "One"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
                 "correct": "Each team gets three timeouts per half (six total per game). They use them to stop the clock, draw up a play, or rest.",
                 "incorrect": "Teams get three timeouts each half to stop the clock and regroup. Once they are used up, no more until the next half.",
                 "sayThisLine": "He burned his last timeout to think."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "clock-05-mc-5",
+            "type": "multiple-choice",
+            "conceptIds": ["play-clock"],
+            "payload": {
+              "prompt": "When the play clock resets, how many seconds do teams usually get?",
+              "options": [
+                {"id": "a", "text": "40 seconds"},
+                {"id": "b", "text": "25 seconds"},
+                {"id": "c", "text": "30 seconds"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "The play clock normally counts 40 seconds from the end of one play to the snap of the next. It is reduced to 25 seconds after some stoppages.",
+                "incorrect": "The standard play clock is 40 seconds, though it can be reduced to 25 after certain stoppages like official reviews.",
+                "sayThisLine": "Forty seconds on the play clock."
               }
             },
             "xp": 10
@@ -669,84 +522,21 @@
         "conceptIds": ["touchdown", "field-goal", "extra-point", "two-point-conversion", "safety-score"],
         "activities": [
           {
-            "id": "scoring-06-term-match-1",
-            "type": "term-match",
-            "conceptIds": ["touchdown", "field-goal", "extra-point", "safety-score"],
-            "payload": {
-              "prompt": "Match each score to its point value.",
-              "pairs": [
-                {
-                  "id": "td",
-                  "term": "Touchdown",
-                  "definition": "Getting the ball into the end zone"
-                },
-                {
-                  "id": "fg",
-                  "term": "Field goal",
-                  "definition": "Kicking the ball through the uprights"
-                },
-                {
-                  "id": "xp",
-                  "term": "Extra point",
-                  "definition": "A kick after a touchdown"
-                },
-                {
-                  "id": "safety",
-                  "term": "Safety",
-                  "definition": "Tackling the offense in its own end zone"
-                }
-              ],
-              "distractorDefinitions": [
-                "Punting the ball"
-              ],
-              "explanation": {
-                "summary": "Touchdowns are six. Field goals are three. An extra point kick is one. Two-point tries are two. A safety is two and you get the ball back.",
-                "sayThisLine": "Touchdown, that is six, then the extra point."
-              }
-            },
-            "xp": 10
-          },
-          {
-            "id": "scoring-06-estimate-slider-1",
-            "type": "estimate-slider",
-            "conceptIds": ["field-goal"],
-            "payload": {
-              "prompt": "A kicker just made a 40-yard field goal. How many points is that?",
-              "correctMin": 2,
-              "correctMax": 4,
-              "explanation": {
-                "correct": "Three points for a field goal, no matter how far. A 40-yard kick is in range and makes it.",
-                "incorrect": "Field goals are worth three points. The distance does not change the value, just the difficulty.",
-                "sayThisLine": "That is three points for the field goal."
-              }
-            },
-            "xp": 10
-          },
-          {
             "id": "scoring-06-mc-1",
             "type": "multiple-choice",
-            "conceptIds": ["extra-point"],
+            "conceptIds": ["touchdown"],
             "payload": {
-              "prompt": "After a touchdown, the team attempts an extra point. What is the most common extra point?",
+              "prompt": "How many points is a touchdown worth?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "A kick from the 15-yard line for one point"
-                },
-                {
-                  "id": "b",
-                  "text": "A pass play from the 2-yard line for two points"
-                },
-                {
-                  "id": "c",
-                  "text": "A kick from the end zone for three points"
-                }
+                {"id": "a", "text": "6 points"},
+                {"id": "b", "text": "7 points"},
+                {"id": "c", "text": "3 points"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "The extra point kick is the most common. The ball is snapped from the 15-yard line (a 33-yard kick). Make it and it is one point.",
-                "incorrect": "After a touchdown, the team can kick for one or try from the 2-yard line for two. The kick is more common.",
-                "sayThisLine": "Extra point is good, that is seven total."
+                "correct": "A touchdown is worth 6 points. After a touchdown, the team gets to attempt an extra point (1 or 2 more).",
+                "incorrect": "A touchdown is 6 points by itself. Then the team gets 1 or 2 more on an extra point or two-point conversion.",
+                "sayThisLine": "Touchdown for six points."
               }
             },
             "xp": 10
@@ -754,28 +544,19 @@
           {
             "id": "scoring-06-mc-2",
             "type": "multiple-choice",
-            "conceptIds": ["two-point-conversion"],
+            "conceptIds": ["field-goal"],
             "payload": {
-              "prompt": "When might a team choose a two-point try over an extra point kick?",
+              "prompt": "How many points is a field goal?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "Late in the game when they need to catch up quickly"
-                },
-                {
-                  "id": "b",
-                  "text": "On their first touchdown"
-                },
-                {
-                  "id": "c",
-                  "text": "Never, the kick is always better"
-                }
+                {"id": "a", "text": "1 point"},
+                {"id": "b", "text": "3 points"},
+                {"id": "c", "text": "2 points"}
               ],
-              "correctOptionIds": ["a"],
+              "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Late in a game, if they are behind, a team might go for two to catch up faster. It is riskier (50-50 often) but worth two points instead of one if it works.",
-                "incorrect": "Teams usually kick for one, but when trailing late, going for two is a gamble worth taking.",
-                "sayThisLine": "They are going for two. Bold."
+                "correct": "A field goal is 3 points, earned by kicking the ball through the uprights.",
+                "incorrect": "Field goals are worth 3 points. The distance does not matter, just whether it goes through the uprights.",
+                "sayThisLine": "That is three points for the field goal."
               }
             },
             "xp": 10
@@ -783,28 +564,59 @@
           {
             "id": "scoring-06-mc-3",
             "type": "multiple-choice",
-            "conceptIds": ["touchdown", "field-goal", "safety-score"],
+            "conceptIds": ["extra-point"],
             "payload": {
-              "prompt": "Final score: touchdown and extra point, plus a field goal, plus a safety. Total?",
+              "prompt": "After a touchdown, the team attempts an extra point. What is the most common extra point?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "12 points"
-                },
-                {
-                  "id": "b",
-                  "text": "11 points"
-                },
-                {
-                  "id": "c",
-                  "text": "6 points"
-                }
+                {"id": "a", "text": "A kick from the 15-yard line for 1 point"},
+                {"id": "b", "text": "A pass play from the 2-yard line for 2 points"},
+                {"id": "c", "text": "A kick from the end zone for 3 points"}
               ],
-              "correctOptionIds": ["b"],
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Touchdown (6) plus extra point (1) equals 7. Add a field goal (3) and you have 10. Add a safety (2) and the total is 12... wait, let me check: 6+1+3+2=12. Yes, 12 points.",
-                "incorrect": "Add it up: touchdown (6) + extra point (1) + field goal (3) + safety (2) = 12 points.",
-                "sayThisLine": "They scored 12 points that drive."
+                "correct": "The extra point kick is the most common. The ball is snapped from the 15-yard line (a 33-yard kick). Make it and it is 1 point.",
+                "incorrect": "After a touchdown, the team can kick for 1 or try from the 2-yard line for 2. The kick is more common and easier.",
+                "sayThisLine": "Extra point is good, that is seven total."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "scoring-06-mc-4",
+            "type": "multiple-choice",
+            "conceptIds": ["safety-score"],
+            "payload": {
+              "prompt": "What is a safety in football?",
+              "options": [
+                {"id": "a", "text": "Two points for tackling the offense in its own end zone"},
+                {"id": "b", "text": "A defensive back"},
+                {"id": "c", "text": "A penalty on the defense"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "A safety is worth 2 points and is scored when the offense is tackled in its own end zone. The defense also gets the ball back.",
+                "incorrect": "A safety is a way to score 2 points by tackling the offense in their own end zone. It is also a position on defense, but that is different.",
+                "sayThisLine": "A safety! Two points and we get the ball."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "scoring-06-mc-5",
+            "type": "multiple-choice",
+            "conceptIds": ["touchdown", "field-goal"],
+            "payload": {
+              "prompt": "Final score: touchdown and extra point, plus a field goal. Total points?",
+              "options": [
+                {"id": "a", "text": "10 points"},
+                {"id": "b", "text": "9 points"},
+                {"id": "c", "text": "8 points"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Touchdown (6) plus extra point (1) equals 7. Add a field goal (3) and the total is 10 points.",
+                "incorrect": "Add it up: touchdown (6) + extra point (1) + field goal (3) = 10 points.",
+                "sayThisLine": "They scored 10 points that drive."
               }
             },
             "xp": 10
@@ -819,62 +631,15 @@
         "conceptIds": ["turnover", "interception", "fumble", "punt", "drive"],
         "activities": [
           {
-            "id": "turnovers-07-term-match-1",
-            "type": "term-match",
-            "conceptIds": ["turnover", "interception", "fumble", "punt"],
-            "payload": {
-              "prompt": "Match the term to what it means.",
-              "pairs": [
-                {
-                  "id": "turnover",
-                  "term": "Turnover",
-                  "definition": "The offense loses the ball to the defense by interception or fumble"
-                },
-                {
-                  "id": "int",
-                  "term": "Interception",
-                  "definition": "A pass caught by a defender before the receiver"
-                },
-                {
-                  "id": "fumble",
-                  "term": "Fumble",
-                  "definition": "The ball carrier drops the ball and either team can recover it"
-                },
-                {
-                  "id": "punt",
-                  "term": "Punt",
-                  "definition": "A kick on fourth down that gives the ball to the other team far downfield"
-                }
-              ],
-              "distractorDefinitions": [
-                "An incomplete pass on third down"
-              ],
-              "explanation": {
-                "summary": "Interceptions and fumbles are turnovers. Punts are intentional and do not count as turnovers.",
-                "sayThisLine": "Turnover on downs, they get the ball."
-              }
-            },
-            "xp": 10
-          },
-          {
             "id": "turnovers-07-mc-1",
             "type": "multiple-choice",
             "conceptIds": ["interception"],
             "payload": {
               "prompt": "A pass is thrown, and a linebacker jumps in front of the receiver and catches it. What is that?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "An interception"
-                },
-                {
-                  "id": "b",
-                  "text": "A sack"
-                },
-                {
-                  "id": "c",
-                  "text": "A deflection"
-                }
+                {"id": "a", "text": "An interception"},
+                {"id": "b", "text": "A sack"},
+                {"id": "c", "text": "A deflection"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
@@ -886,57 +651,82 @@
             "xp": 10
           },
           {
-            "id": "turnovers-07-binary-call-1",
-            "type": "binary-call",
+            "id": "turnovers-07-mc-2",
+            "type": "multiple-choice",
             "conceptIds": ["fumble"],
             "payload": {
-              "prompt": "The running back is hit hard and the ball pops out. A lineman falls on it.",
-              "choices": [
-                {
-                  "id": "fumble",
-                  "label": "Fumble"
-                },
-                {
-                  "id": "sack",
-                  "label": "Sack"
-                }
+              "prompt": "The running back is hit hard and the ball pops out. What is that?",
+              "options": [
+                {"id": "a", "text": "A fumble"},
+                {"id": "b", "text": "A sack"},
+                {"id": "c", "text": "An interception"}
               ],
-              "correctChoiceId": "fumble",
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "That is a fumble. The ball came loose and was recovered. If the defense recovered it, they get the ball.",
-                "incorrect": "When a ball carrier loses the ball, that is a fumble. Either team can recover it.",
-                "sayThisLine": "Fumble! Who has it?"
+                "correct": "That is a fumble. The ball came loose and either team can recover it. If the defense recovers, they get the ball.",
+                "incorrect": "When a ball carrier loses the ball, that is a fumble. Either team can recover it and take possession.",
+                "sayThisLine": "Fumble! The ball is loose."
               }
             },
             "xp": 10
           },
           {
-            "id": "turnovers-07-say-this-1",
-            "type": "say-this",
-            "conceptIds": ["turnover", "drive"],
+            "id": "turnovers-07-mc-3",
+            "type": "multiple-choice",
+            "conceptIds": ["turnover"],
             "payload": {
-              "setting": "She is frustrated after a turnover late in the game.",
-              "theirLine": "We had that turnover at the worst time.",
-              "replies": [
-                {
-                  "id": "a",
-                  "text": "Yeah, we were driving and just gave it away.",
-                  "consequence": "right",
-                  "explanation": "Right. A turnover ends the drive and flips possession. Late in the game, that is costly."
-                },
-                {
-                  "id": "b",
-                  "text": "Was it an interception or a fumble?",
-                  "consequence": "right",
-                  "explanation": "Good question. Interception or fumble, both are turnovers. Either way, possession flips to the other team."
-                },
-                {
-                  "id": "c",
-                  "text": "It was just one mistake.",
-                  "consequence": "cringe",
-                  "explanation": "True, but turnovers change games. Late in a game, one turnover can be the difference between winning and losing."
-                }
-              ]
+              "prompt": "What is a turnover?",
+              "options": [
+                {"id": "a", "text": "When the offense loses the ball to the defense by interception or fumble"},
+                {"id": "b", "text": "When a team scores more than 30 points"},
+                {"id": "c", "text": "When the clock runs out in a quarter"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "A turnover is when the offense loses the ball to the defense. Either an interception or a fumble recovery counts as a turnover.",
+                "incorrect": "A turnover flips possession from the offense to the defense. It ends the current drive.",
+                "sayThisLine": "That turnover flipped the whole game."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "turnovers-07-mc-4",
+            "type": "multiple-choice",
+            "conceptIds": ["punt"],
+            "payload": {
+              "prompt": "What is a punt?",
+              "options": [
+                {"id": "a", "text": "A kick on fourth down that sends the ball to the other team downfield"},
+                {"id": "b", "text": "A penalty on the offense"},
+                {"id": "c", "text": "An incomplete pass on third down"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "A punt is a kick on fourth down that gives the ball to the other team as far downfield as possible. It is not a turnover; it is an intentional play.",
+                "incorrect": "A punt is when the offense gives up the ball on fourth down by kicking it. It is not a turnover because it is intentional.",
+                "sayThisLine": "They punted. It was fourth and long anyway."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "turnovers-07-mc-5",
+            "type": "multiple-choice",
+            "conceptIds": ["interception", "fumble", "turnover"],
+            "payload": {
+              "prompt": "Which of these is NOT a turnover?",
+              "options": [
+                {"id": "a", "text": "A punt"},
+                {"id": "b", "text": "An interception"},
+                {"id": "c", "text": "A fumble recovery by the defense"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "A punt is not a turnover because it is an intentional play. The offense chooses to kick on fourth down. Interceptions and fumbles are turnovers.",
+                "incorrect": "Interceptions and fumbles are turnovers. A punt is an intentional play, so it does not count as a turnover.",
+                "sayThisLine": "Punt, not a turnover."
+              }
             },
             "xp": 10
           }

@@ -137,9 +137,123 @@
     {"id": "useful-competence", "term": "Useful competence", "definition": "Enough knowledge to follow a race and ask real questions.", "exampleLine": "\"I follow the strategy now.\"", "tier": "conversation"}
   ],
   "talkTracks": [
-    {"id": "talk-01-pit-call", "title": "Track position vs fresh tires", "conceptIds": ["pit-cycle", "stay-out", "track-position"]},
-    {"id": "talk-02-chase", "title": "Making the Chase", "conceptIds": ["chase-2026", "points-reset"]},
-    {"id": "talk-03-wreck", "title": "Understanding the Big One", "conceptIds": ["the-big-one", "wreck-vs-race", "pack-racing"]}
+    {
+      "id": "talk-01-pit-call",
+      "title": "Track position vs fresh tires",
+      "conceptIds": ["pit-cycle", "stay-out", "track-position"],
+      "payload": {
+        "title": "Track position vs fresh tires",
+        "setting": "They are trying to understand a pit call that cost their driver track position.",
+        "startingSmooth": 50,
+        "exchanges": [
+          {
+            "theirMessage": "Why would the pit crew tell him to stay out when everyone else is pitting?",
+            "replies": [
+              {
+                "id": "a",
+                "text": "Because track position matters more than fresh tires. If he stays out, he inherits the lead and controls the race.",
+                "smoothDelta": 28,
+                "theirResponse": "Oh, so he is gambling that no caution will happen?",
+                "coachNote": "You explained the strategy trade-off."
+              },
+              {
+                "id": "b",
+                "text": "It is a crazy risky call.",
+                "smoothDelta": 6,
+                "theirResponse": "But it did not work out.",
+                "coachNote": "True, but there is more depth to explore."
+              },
+              {
+                "id": "c",
+                "text": "I do not know, pit strategy is complicated.",
+                "smoothDelta": -12,
+                "theirResponse": "Yeah, I wish I understood it better.",
+                "coachNote": "You could explain the logic once you learn it."
+              }
+            ]
+          }
+        ],
+        "closingNote": "Track position lets you control the race; fresh tires give speed. Teams balance these every stop."
+      }
+    },
+    {
+      "id": "talk-02-chase",
+      "title": "Making the Chase",
+      "conceptIds": ["chase-2026", "points-reset"],
+      "payload": {
+        "title": "Making the Chase",
+        "setting": "The regular season is ending and their driver is on the bubble for the Chase.",
+        "startingSmooth": 50,
+        "exchanges": [
+          {
+            "theirMessage": "What does it mean to make the Chase?",
+            "replies": [
+              {
+                "id": "a",
+                "text": "Making the Chase means finishing in the top 16 in points after 26 races and getting reset for the final ten races.",
+                "smoothDelta": 30,
+                "theirResponse": "So it is not about winning races, just points?",
+                "coachNote": "You explained the qualification rule clearly."
+              },
+              {
+                "id": "b",
+                "text": "It is like the playoffs in baseball.",
+                "smoothDelta": 10,
+                "theirResponse": "But is it exactly the same?",
+                "coachNote": "A comparison helps but does not explain the details."
+              },
+              {
+                "id": "c",
+                "text": "Top 16 drivers make it, but everything else is complicated.",
+                "smoothDelta": -6,
+                "theirResponse": "Can you explain it?",
+                "coachNote": "Saying it is complicated does not help them learn."
+              }
+            ]
+          }
+        ],
+        "closingNote": "The Chase is the final ten races where the top 16 in points race for the title with a points reset."
+      }
+    },
+    {
+      "id": "talk-03-wreck",
+      "title": "Understanding the Big One",
+      "conceptIds": ["the-big-one", "wreck-vs-race", "pack-racing"],
+      "payload": {
+        "title": "Understanding the Big One",
+        "setting": "A multi-car wreck just took out half the field at Talladega and they are shocked.",
+        "startingSmooth": 50,
+        "exchanges": [
+          {
+            "theirMessage": "How did one small mistake cause twenty cars to crash?",
+            "replies": [
+              {
+                "id": "a",
+                "text": "In pack racing at superspeedways, cars are so close that one mistake triggers a chain reaction. The Big One is part of that risk.",
+                "smoothDelta": 32,
+                "theirResponse": "That sounds like it could be avoided with better driving?",
+                "coachNote": "You explained the physics of pack racing accurately."
+              },
+              {
+                "id": "b",
+                "text": "That is just what happens at Talladega.",
+                "smoothDelta": 4,
+                "theirResponse": "But why?",
+                "coachNote": "True but not explanatory."
+              },
+              {
+                "id": "c",
+                "text": "Racing is too dangerous.",
+                "smoothDelta": -14,
+                "theirResponse": "Is that why they race?",
+                "coachNote": "That judges the sport rather than explaining it."
+              }
+            ]
+          }
+        ],
+        "closingNote": "The Big One is a multi-car superspeedway crash caused by tight pack racing and one driver error."
+      }
+    }
   ],
   "reviewPolicy": {
     "algorithm": "leitner-boxes-v1",

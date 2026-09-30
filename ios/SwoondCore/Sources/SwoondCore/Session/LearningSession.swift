@@ -137,7 +137,7 @@ public actor LearningSession {
         return DailyPlan(
             personId: person.id, courseId: interest.courseId, day: today,
             nextLesson: LessonPlanner.nextLesson(in: c, progress: progress, branchId: interest.branchId),
-            reviews: LessonPlanner.dueReviews(in: c, mastery: mastery, now: now),
+            reviews: LessonPlanner.dueReviews(in: c, mastery: mastery, now: now, branchId: interest.branchId),
             dailyBite: bite, dailyBiteCompleted: done,
             commonGround: cov, streak: state.currentStreak(now: now, timeZone: await engine.timeZoneValue),
             hearts: state.heartsStatus(now: now, rules: engine.rules), level: state.level)
@@ -168,7 +168,10 @@ public actor LearningSession {
         guard LessonPlanner.isUnlocked(unit, in: c, progress: progress) else { throw SessionError.lessonLocked }
         reset()
         lessonRef = (unitId, lessonId)
-        queue = lesson.activities.map { Item(activity: $0, unitId: unitId, lessonId: lessonId, isReview: false) }
+        // Contract 1.2: only activities shared by every branch or matching this person's branch are played.
+        let visible = lesson.activities(forBranch: interest.branchId)
+        guard !visible.isEmpty else { throw SessionError.lessonNotFound }
+        queue = visible.map { Item(activity: $0, unitId: unitId, lessonId: lessonId, isReview: false) }
         return try present()
     }
 

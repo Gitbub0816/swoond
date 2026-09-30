@@ -7,7 +7,7 @@ public enum CommonGround {
     public static func coverage(curriculum: Curriculum, mastery: CourseMastery, branchId: BranchID?, now: Date) -> Double {
         var ids = Set<ConceptID>()
         for u in curriculum.units(forBranch: branchId) {
-            for l in u.lessons { ids.formUnion(l.conceptIds); for a in l.activities { ids.formUnion(a.conceptIds) } }
+            for l in u.lessons { ids.formUnion(l.conceptIds); for a in l.activities(forBranch: branchId) { ids.formUnion(a.conceptIds) } }
         }
         ids = ids.filter { curriculum.concept($0) != nil }
         guard !ids.isEmpty else { return 0 }
