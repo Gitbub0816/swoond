@@ -19,22 +19,44 @@
           {
             "id": "kickoff-01-ht-dynamic",
             "type": "hotspot-tap",
-            "conceptIds": ["dynamic-kickoff"],
+            "conceptIds": [
+              "dynamic-kickoff"
+            ],
             "payload": {
-              "prompt": "Where does the receiving team line up on the new kickoff?",
+              "prompt": "Where does the receiving team start after a kickoff touchback?",
               "diagram": {
                 "diagramId": "football-kickoff-setup",
-                "alt": "Football field showing the new kickoff setup, with the kicking team at the opponent's 40 and the receiving team at their own 35."
+                "alt": "Football field showing the receiving team's 35-yard line, where the ball is placed after a kickoff touchback."
               },
               "hotspots": [
-                {"id": "40-yard", "label": "40-yard line", "shape": {"kind": "circle", "cx": 0.4, "cy": 0.5, "r": 0.05}},
-                {"id": "35-yard", "label": "35-yard line", "shape": {"kind": "circle", "cx": 0.35, "cy": 0.5, "r": 0.05}}
+                {
+                  "id": "40-yard",
+                  "label": "40-yard line",
+                  "shape": {
+                    "kind": "circle",
+                    "cx": 0.4,
+                    "cy": 0.5,
+                    "r": 0.05
+                  }
+                },
+                {
+                  "id": "35-yard",
+                  "label": "35-yard line",
+                  "shape": {
+                    "kind": "circle",
+                    "cx": 0.35,
+                    "cy": 0.5,
+                    "r": 0.05
+                  }
+                }
               ],
-              "correctHotspotIds": ["35-yard"],
+              "correctHotspotIds": [
+                "35-yard"
+              ],
               "explanation": {
-                "correct": "The new dynamic kickoff puts the receiving team at the 35-yard line, ready to return. This change in 2025 opened up more return opportunities and made the game more exciting.",
-                "incorrect": "The kicking team lines up at the opponent's 40. The receiving team starts at their own 35-yard line on the new kickoff.",
-                "sayThisLine": "The receiving team starts at the 35 on the new kickoff."
+                "correct": "Since 2025, a kickoff touchback comes out to the 35-yard line. The dynamic kickoff arrived in 2024, and the league moved the touchback spot up to encourage returns.",
+                "incorrect": "The 40-yard line is where the kicking team lines up, not where a touchback is spotted. A touchback is placed at the 35.",
+                "sayThisLine": "A touchback on a kickoff comes out to the 35."
               }
             },
             "xp": 10
@@ -42,18 +64,31 @@
           {
             "id": "kickoff-01-mc-why",
             "type": "multiple-choice",
-            "conceptIds": ["dynamic-kickoff"],
+            "conceptIds": [
+              "dynamic-kickoff"
+            ],
             "payload": {
               "prompt": "Why did the NFL change the kickoff in 2024?",
               "options": [
-                {"id": "a", "text": "To create more exciting returns and reduce short fields"},
-                {"id": "b", "text": "To make the kicker more valuable"},
-                {"id": "c", "text": "Because fans complained about touchbacks"}
+                {
+                  "id": "a",
+                  "text": "To keep returns in the game while cutting high-speed collisions"
+                },
+                {
+                  "id": "b",
+                  "text": "To make the kicker more valuable"
+                },
+                {
+                  "id": "c",
+                  "text": "To speed up the game"
+                }
               ],
-              "correctOptionIds": ["a"],
+              "correctOptionIds": [
+                "a"
+              ],
               "explanation": {
-                "correct": "The dynamic kickoff was designed to bring back more returns and make the play safer by spreading out the collision zone. It worked: touchbacks dropped and returns rose.",
-                "incorrect": "The dynamic kickoff was meant to fix the boring touchback problem. Placing the kicking team at the opponent's 40 and the receiving team at their 35 created more room to return."
+                "correct": "Kickoffs had a high injury rate. The dynamic kickoff starts most players close together and limits running starts, so the play stays exciting with fewer big collisions.",
+                "incorrect": "The change was about player safety and keeping the return alive. The kicking team lines up at the receiving team's 40, which shortens the running start."
               }
             },
             "xp": 10
@@ -89,11 +124,11 @@
               "prompt": "Match the kickoff outcome to where the ball ended up.",
               "pairs": [
                 {"id": "return", "term": "Return", "definition": "The returner catches the kick and advances it before being tackled."},
-                {"id": "touchback", "term": "Touchback", "definition": "The ball enters the end zone or goes out of bounds; the receiving team gets the ball at the 35."},
-                {"id": "setup", "term": "Setup zone", "definition": "Where the kicking team lines up before the kick, at the opponent's 40-yard line."}
+                {"id": "touchback", "term": "Touchback", "definition": "A kick that reaches the end zone and is downed there; the receiving team starts at the 35 (since 2025)."},
+                {"id": "setup", "term": "Kickoff setup", "definition": "The kicking team's ten coverage players start on the receiving team's 40; the kicker stays back."}
               ],
               "explanation": {
-                "summary": "A return is when the ball is fielded and advanced. A touchback ends the play in the end zone. The setup zone is where the kicking team begins.",
+                "summary": "A return is when the ball is fielded and advanced. A touchback ends the play in the end zone. The kickoff setup is where the kicking team starts.",
                 "sayThisLine": "He brought it back out of the end zone, so no touchback."
               }
             },
@@ -111,7 +146,9 @@
           {
             "id": "returns-02-bc-signal",
             "type": "binary-call",
-            "conceptIds": ["fair-catch"],
+            "conceptIds": [
+              "fair-catch"
+            ],
             "payload": {
               "prompt": "Returner waves his arm at the kick, then catches it and runs.",
               "scene": {
@@ -119,14 +156,20 @@
                 "alt": "A football play showing a returner waving and then attempting to run with the kickoff."
               },
               "choices": [
-                {"id": "flag", "label": "Illegal, it is a fair catch"},
-                {"id": "legal", "label": "Legal return"}
+                {
+                  "id": "flag",
+                  "label": "Fair catch, the play ends at the catch"
+                },
+                {
+                  "id": "legal",
+                  "label": "Legal return"
+                }
               ],
               "correctChoiceId": "flag",
               "ruleTag": "Fair catch",
               "explanation": {
-                "correct": "Once he waves for a fair catch, he cannot run. The play ends where he catches it. He chose safety over yards.",
-                "incorrect": "A fair catch signal means he cannot advance. Waving committed him to catching it in place."
+                "correct": "Once he signals for a fair catch, he cannot run it back. The play ends where he catches it, and he gets protection from hits. He chose safety over yards.",
+                "incorrect": "A fair catch signal means he cannot advance. Waving commits him to catching it in place."
               }
             },
             "xp": 10
@@ -134,16 +177,31 @@
           {
             "id": "returns-02-ds-fair-or-return",
             "type": "decision-scenario",
-            "conceptIds": ["fair-catch", "touchback"],
+            "conceptIds": [
+              "fair-catch",
+              "touchback"
+            ],
             "payload": {
-              "prompt": "The kick is spiraling high into the air. Call fair catch or let it bounce?",
+              "prompt": "Punt falling at your 12, coverage closing. Fair catch or return?",
               "situation": {
-                "narrative": "Your team is up by three with two minutes left. The opposing kicker just sent a long one floating down from above.",
+                "narrative": "Your team leads by three with two minutes left. The punt is coming down near your 12-yard line with the coverage team arriving fast.",
                 "facts": [
-                  {"label": "Score", "value": "You lead by 3"},
-                  {"label": "Time", "value": "2 minutes left"},
-                  {"label": "Ball location", "value": "At the 20-yard line, still in the air"},
-                  {"label": "Decision", "value": "Fair catch or field return"}
+                  {
+                    "label": "Score",
+                    "value": "You lead by 3"
+                  },
+                  {
+                    "label": "Time",
+                    "value": "2 minutes left"
+                  },
+                  {
+                    "label": "Ball spot",
+                    "value": "Falling near your 12-yard line"
+                  },
+                  {
+                    "label": "Coverage",
+                    "value": "Arriving as the ball lands"
+                  }
                 ]
               },
               "options": [
@@ -151,41 +209,58 @@
                   "id": "fair-catch",
                   "label": "Signal fair catch",
                   "verdict": "best",
-                  "consequence": "You secure the ball at the 20. Your offense runs out the clock and you win.",
-                  "considerations": ["You are ahead and protecting the lead", "The clock is your advantage", "You avoid a fumble risk"]
+                  "consequence": "You secure the ball and avoid a hit. Your offense takes over and can run the clock.",
+                  "considerations": [
+                    "You are ahead and protecting the lead",
+                    "The clock is your advantage",
+                    "You avoid a fumble risk"
+                  ]
                 },
                 {
                   "id": "return",
-                  "label": "Let it bounce and return",
+                  "label": "Catch it and try to return it",
                   "verdict": "poor",
-                  "consequence": "The ball bounces at the 15. Your returner fumbles and they score. Game lost.",
-                  "considerations": ["You are already winning", "Fumbles end drives", "Time is already on your side"]
+                  "consequence": "With tacklers on top of you, a few yards is the best case and a fumble would hand them a short field.",
+                  "considerations": [
+                    "You are already winning",
+                    "Fumbles lose games",
+                    "Coverage is closing fast"
+                  ]
                 }
               ],
-              "expertNote": "Fair catch is about field position and risk. When you are ahead, signal it and protect the ball."
+              "expertNote": "Fair catch is about field position and risk. When you lead and the coverage is on top of you, securing the ball is usually worth more than a few extra yards."
             },
             "xp": 10
           },
           {
             "id": "returns-02-ht-return-spot",
-            "type": "hotspot-tap",
-            "conceptIds": ["touchback"],
+            "type": "multiple-choice",
+            "conceptIds": [
+              "touchback"
+            ],
             "payload": {
-              "prompt": "Where does the receiving team start if the kickoff goes out of bounds?",
-              "diagram": {
-                "diagramId": "football-kickoff-oob",
-                "alt": "Football field showing out-of-bounds kickoff and the receiving team taking over at the 35-yard line."
-              },
-              "hotspots": [
-                {"id": "40-yard", "label": "40-yard line", "shape": {"kind": "circle", "cx": 0.4, "cy": 0.5, "r": 0.05}},
-                {"id": "35-yard", "label": "35-yard line", "shape": {"kind": "circle", "cx": 0.35, "cy": 0.5, "r": 0.05}},
-                {"id": "50-yard", "label": "50-yard line", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.5, "r": 0.05}}
+              "prompt": "After a fair catch, where does the next play start?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "At the spot of the catch"
+                },
+                {
+                  "id": "b",
+                  "text": "At the returner's own 20-yard line"
+                },
+                {
+                  "id": "c",
+                  "text": "At midfield"
+                }
               ],
-              "correctHotspotIds": ["35-yard"],
+              "correctOptionIds": [
+                "a"
+              ],
               "explanation": {
-                "correct": "Out of bounds kickoffs result in a touchback at the 35. Whether the kick goes out of bounds or the returner takes a touchback, the receiving team starts at the 35.",
-                "incorrect": "An out-of-bounds kickoff is not midfield. The receiving team gets the automatic touchback at the 35-yard line.",
-                "sayThisLine": "Out of bounds on the kick. Automatic touchback, they take it at the 35."
+                "correct": "The play ends where the returner catches the ball, and the offense starts from that spot. That is what he gives up for the safety of a fair catch: no return yards.",
+                "incorrect": "A fair catch is marked at the spot of the catch. There is no automatic move to the 20 or midfield.",
+                "sayThisLine": "Fair catch, so they start right where he caught it."
               }
             },
             "xp": 10
@@ -198,11 +273,11 @@
               "prompt": "Match the return scenario to the result.",
               "pairs": [
                 {"id": "fair-catch", "term": "Fair catch signal", "definition": "The returner waves his arm and the play ends where he catches it."},
-                {"id": "touchback-end-zone", "term": "Touchback (end zone)", "definition": "The ball enters the end zone; the receiving team starts at the 35-yard line."},
-                {"id": "out-of-bounds", "term": "Out of bounds", "definition": "The kick goes out of bounds and the receiving team takes it at the 35-yard line."}
+                {"id": "touchback-end-zone", "term": "Touchback (end zone)", "definition": "A kick that reaches the end zone and is downed; the receiving team starts at the 35 (since 2025)."},
+                {"id": "out-of-bounds", "term": "Landing zone", "definition": "The area from the goal line to the 20-yard line where a dynamic kickoff is meant to land."}
               ],
               "explanation": {
-                "summary": "Fair catch stops the play where caught. Touchbacks and out-of-bounds kicks both result in the 35-yard line start.",
+                "summary": "Fair catch stops the play where caught. A kickoff that reaches the end zone comes out to the 35, and the landing zone is where the kick is meant to come down.",
                 "sayThisLine": "He fair-caught it, so the play is dead right there."
               }
             },
@@ -230,8 +305,8 @@
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "A punt is a strategic weapon. You trade a possession for field position: the opponent now starts farther away. Even a 30-yard net punt gains you 40 yards of distance.",
-                "incorrect": "A punt is not surrender, it is math. By moving the opponent back and changing field position, you gain a defensive advantage. It is a smart choice on short yardage far from the end zone."
+                "correct": "A punt trades a possession for field position: the opponent now starts farther from your end zone. A 40-yard net punt pushes them 40 yards away.",
+                "incorrect": "A punt is not surrender, it is field-position math. On fourth down deep in your own territory, pushing the opponent back is often the smartest choice."
               }
             },
             "xp": 10
@@ -239,18 +314,23 @@
           {
             "id": "punting-03-es-distance",
             "type": "estimate-slider",
-            "conceptIds": ["field-position"],
+            "conceptIds": [
+              "field-position"
+            ],
             "payload": {
-              "prompt": "Your team punts from your own 30. The ball travels 50 yards, returner brings it back 5. Net distance?",
+              "prompt": "A punt travels 50 yards and the returner brings it back 5. What is the net?",
               "unit": "yards",
               "min": 20,
               "max": 60,
               "step": 1,
               "correctValue": 45,
-              "tolerance": {"full": 3, "partial": 5},
+              "tolerance": {
+                "full": 3,
+                "partial": 5
+              },
               "explanation": {
-                "correct": "Fifty yards minus five yards of return equals 45 yards net. That moves the opponent from the opponent's 20-yard line back to the 20, gaining you a full 20 yards of field position.",
-                "incorrect": "Calculate hang time and return: 50 yards of travel minus 5 yards of return equals 45 yards net distance."
+                "correct": "Fifty yards minus five yards of return is a 45-yard net. Net punting shows how much field position the kick actually gained.",
+                "incorrect": "Net distance is the kick's length minus the return: 50 minus 5 is 45 yards."
               }
             },
             "xp": 10
@@ -308,7 +388,9 @@
           {
             "id": "kicking-04-es-range",
             "type": "estimate-slider",
-            "conceptIds": ["field-goal-range"],
+            "conceptIds": [
+              "field-goal-range"
+            ],
             "payload": {
               "prompt": "Your offense is at the opponent's 30-yard line. How long is the field goal attempt?",
               "unit": "yards",
@@ -316,10 +398,13 @@
               "max": 65,
               "step": 1,
               "correctValue": 47,
-              "tolerance": {"full": 3, "partial": 5},
+              "tolerance": {
+                "full": 3,
+                "partial": 5
+              },
               "explanation": {
-                "correct": "From the 30-yard line, add about 17 yards for the distance from the goal line to the uprights and the snap depth. 30 plus 17 equals a 47-yard attempt. Most kickers make 85 percent of these.",
-                "incorrect": "Field-goal range is roughly the yard line plus 17 yards. From the 30, that is 47 yards. A long kick, but within range for most NFL kickers."
+                "correct": "Add about 17 yards to the yard line: 10 for the end zone and about 7 for the snap and hold. 30 plus 17 is a 47-yard attempt.",
+                "incorrect": "Field-goal range is roughly the yard line plus 17 yards. From the 30, that is about 47 yards, a long kick but within range for many NFL kickers."
               }
             },
             "xp": 10
@@ -327,22 +412,30 @@
           {
             "id": "kicking-04-bc-attempt",
             "type": "binary-call",
-            "conceptIds": ["field-goal"],
+            "conceptIds": [
+              "field-goal"
+            ],
             "payload": {
-              "prompt": "Offense at the opponent's 40-yard line on fourth and four.",
+              "prompt": "Offense at the opponent's 25-yard line on fourth and four.",
               "scene": {
                 "kind": "none",
                 "alt": "Football scenario showing fourth down decision at the opponent's 40-yard line."
               },
               "choices": [
-                {"id": "field-goal", "label": "Kick the field goal"},
-                {"id": "go-for-it", "label": "Go for it"}
+                {
+                  "id": "field-goal",
+                  "label": "Kick the field goal"
+                },
+                {
+                  "id": "go-for-it",
+                  "label": "Go for it"
+                }
               ],
               "correctChoiceId": "field-goal",
               "ruleTag": "Field-goal decision",
               "explanation": {
-                "correct": "From the 40, it is a 57-yard attempt. That is near the limit even for strong-legged kickers. You have a 40-50 percent chance. Going for it is riskier on fourth and four.",
-                "incorrect": "From the 40, kicking a field goal is the conservative play. A 57-yard attempt is long but possible. Fourth and four is too far to reliably convert."
+                "correct": "From the 25, it is a 42-yard attempt, which NFL kickers usually make. Going for it is a fair debate in some games, but taking three points is a solid choice.",
+                "incorrect": "A field goal from the 25 is a 42-yard kick, close to automatic for most NFL kickers. Going for it risks giving the ball back with nothing."
               }
             },
             "xp": 10
@@ -369,16 +462,31 @@
           {
             "id": "kicking-04-ds-kick-decision",
             "type": "decision-scenario",
-            "conceptIds": ["field-goal", "field-goal-range"],
+            "conceptIds": [
+              "field-goal",
+              "field-goal-range"
+            ],
             "payload": {
-              "prompt": "Your kicker is very inconsistent beyond 45 yards. Take a field goal attempt?",
+              "prompt": "Down 6, 30 seconds left, at the opponent's 50. Kick?",
               "situation": {
                 "narrative": "You are down 6 with 30 seconds left. Your offense just reached the opponent's 50-yard line.",
                 "facts": [
-                  {"label": "Score", "value": "Down 6"},
-                  {"label": "Time", "value": "30 seconds left"},
-                  {"label": "Position", "value": "Opponent's 50-yard line"},
-                  {"label": "Kicker accuracy", "value": "Poor beyond 45 yards"}
+                  {
+                    "label": "Score",
+                    "value": "Down 6"
+                  },
+                  {
+                    "label": "Time",
+                    "value": "30 seconds left"
+                  },
+                  {
+                    "label": "Position",
+                    "value": "Opponent's 50-yard line"
+                  },
+                  {
+                    "label": "Kicker accuracy",
+                    "value": "Poor beyond 45 yards"
+                  }
                 ]
               },
               "options": [
@@ -386,18 +494,26 @@
                   "id": "kick",
                   "label": "Attempt the 67-yard field goal",
                   "verdict": "poor",
-                  "consequence": "The kick is short and falls incomplete. Game over. You lost by 6.",
-                  "considerations": ["It is a 67-yard attempt", "Your kicker is not accurate", "You cannot get the ball back"]
+                  "consequence": "Even a made kick would only cut the lead to three, and 67 yards is beyond almost every kicker. The game ends.",
+                  "considerations": [
+                    "It is a 67-yard attempt",
+                    "Your kicker is not accurate",
+                    "You cannot get the ball back"
+                  ]
                 },
                 {
                   "id": "go-for-it",
                   "label": "Go for the touchdown",
                   "verdict": "best",
-                  "consequence": "You have one play to score 6 points. It is a long shot, but it is your only chance.",
-                  "considerations": ["A field goal is not enough", "You need a touchdown", "Your kicker cannot make this kick"]
+                  "consequence": "You need six points and have time for a few plays. It is a long shot, but it is the only way to win.",
+                  "considerations": [
+                    "A field goal is not enough",
+                    "You need a touchdown",
+                    "Your kicker cannot make this kick"
+                  ]
                 }
               ],
-              "expertNote": "A field goal attempt your kicker will miss is not a good option. Long shots require desperation, and down 6 with seconds left is it."
+              "expertNote": "Down six, only a touchdown wins, so a field goal does not help even for a great kicker. The decision here is about the score, not just the kicker."
             },
             "xp": 10
           }
@@ -413,18 +529,31 @@
           {
             "id": "onside-05-mc-what",
             "type": "multiple-choice",
-            "conceptIds": ["onside-kick"],
+            "conceptIds": [
+              "onside-kick"
+            ],
             "payload": {
               "prompt": "What is an onside kick?",
               "options": [
-                {"id": "a", "text": "A short kick the kicking team tries to recover for a second possession"},
-                {"id": "b", "text": "A kick that stays in bounds for the entire flight"},
-                {"id": "c", "text": "A penalty for kicking out of bounds"}
+                {
+                  "id": "a",
+                  "text": "A short kick the kicking team tries to recover for a second possession"
+                },
+                {
+                  "id": "b",
+                  "text": "A kick that stays in bounds for the entire flight"
+                },
+                {
+                  "id": "c",
+                  "text": "A penalty for kicking out of bounds"
+                }
               ],
-              "correctOptionIds": ["a"],
+              "correctOptionIds": [
+                "a"
+              ],
               "explanation": {
-                "correct": "An onside kick is a short kick (usually under 20 yards) where the kicking team tries to recover it before the receiving team. It is a desperation play when you need the ball back quickly.",
-                "incorrect": "An onside kick is intentionally short, meant for the kicking team to recover. It is legal and used in certain situations: down late in the fourth quarter or after a score."
+                "correct": "An onside kick is a short kick, usually about 10 to 15 yards, that the kicking team tries to recover. It must travel at least 10 yards before the kicking team can touch it.",
+                "incorrect": "An onside kick is intentionally short so the kicking team can try to recover it. It is a desperation play when you need the ball back quickly."
               }
             },
             "xp": 10
@@ -432,43 +561,76 @@
           {
             "id": "onside-05-st-2026-rule",
             "type": "say-this",
-            "conceptIds": ["onside-kick", "rule-change-of-year"],
+            "conceptIds": [
+              "onside-kick",
+              "rule-change-of-year"
+            ],
             "payload": {
-              "statement": {"speaker": "Announcer", "text": "In 2026, the kicking team can declare an onside kick at any time without surprising the receiving team."},
+              "statement": {
+                "speaker": "Announcer",
+                "text": "New for 2026: a team can declare an onside kick any time, not just late in the game."
+              },
               "question": "What changed from before?",
               "options": [
-                {"id": "a", "text": "Onside kicks are now legal all the time, not just in specific situations", "isCorrect": true},
-                {"id": "b", "text": "The receiving team must stand still during an onside kick", "isCorrect": false},
-                {"id": "c", "text": "Onside kicks must travel exactly 10 yards", "isCorrect": false},
-                {"id": "d", "text": "The kicking team gets two onside kicks per game", "isCorrect": false}
+                {
+                  "id": "a",
+                  "text": "Teams no longer have to wait until late in the game to declare an onside kick",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "The receiving team must stand still during an onside kick",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "Onside kicks must travel exactly 10 yards",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "The kicking team gets two onside kicks per game",
+                  "isCorrect": false
+                }
               ],
-              "translation": "Previously, onside kicks were a surprise tactic. Now the kicking team can declare one beforehand, and the receiving team lines up five players on the restraining line.",
+              "translation": "The kicking team can now declare an onside kick at any point, and the receiving team must put five players on the restraining line. Onside kicks stay a low-percentage bet.",
               "followUps": [
-                {"line": "When would you want an onside kick?", "why": "Tests whether you understand field situations where recovering the ball matters more than field position."}
+                {
+                  "line": "When would you want an onside kick?",
+                  "why": "Tests whether you understand field situations where recovering the ball matters more than field position."
+                }
               ],
-              "noFakeExpertNote": "Onside kicks are rare and desperate. Ask yourself: do we need the ball now more than we fear giving up field position?"
+              "noFakeExpertNote": "Onside kicks are rare and risky. Ask yourself whether the team needs the ball back more than it fears giving up field position."
             },
             "xp": 10
           },
           {
             "id": "onside-05-bc-recovery",
             "type": "binary-call",
-            "conceptIds": ["onside-kick"],
+            "conceptIds": [
+              "onside-kick"
+            ],
             "payload": {
-              "prompt": "Onside kick bounces to a kicking-team player at the 48-yard line. Receiving team player was at the 47.",
+              "prompt": "Onside kick goes 12 yards, then a kicking-team player recovers it.",
               "scene": {
                 "kind": "none",
                 "alt": "Football play showing an onside kick recovery with both teams converging on the ball."
               },
               "choices": [
-                {"id": "kicking-team", "label": "Kicking team ball"},
-                {"id": "receiving-team", "label": "Receiving team ball"}
+                {
+                  "id": "kicking-team",
+                  "label": "Kicking team ball"
+                },
+                {
+                  "id": "receiving-team",
+                  "label": "Receiving team ball"
+                }
               ],
               "correctChoiceId": "kicking-team",
               "ruleTag": "Onside kick recovery",
               "explanation": {
-                "correct": "The kicking-team player got there first and recovered. They take over on offense. That is the whole point of an onside kick: surprise recovery.",
-                "incorrect": "The kicking-team player reached the ball first. That is a recovery and the kicking team gets a new drive. Onside kicks are all or nothing."
+                "correct": "The ball travelled at least 10 yards, so the kicking team may legally recover it and keep the ball. That is the whole point of an onside kick.",
+                "incorrect": "A kicking-team recovery counts once the ball has gone 10 yards. If it had gone less, the receiving team would get the ball."
               }
             },
             "xp": 10
@@ -481,11 +643,11 @@
               "prompt": "Match the kick type to when it is used.",
               "pairs": [
                 {"id": "onside", "term": "Onside kick", "definition": "A short kick the kicking team tries to recover, used when desperately needing the ball back."},
-                {"id": "standard", "term": "Standard kickoff", "definition": "A long kick from the 40-yard line to the receiving team at the 35, used to start a half or after a score."},
+                {"id": "standard", "term": "Deep kickoff", "definition": "A deep kick to the landing zone with the coverage team at the receiving team's 40. Starts a half or follows a score."},
                 {"id": "coffin", "term": "Coffin corner punt", "definition": "A punt aimed out of bounds near the goal line to pin the opponent deep."}
               ],
               "explanation": {
-                "summary": "Onside is short and desperate. Standard kickoffs are the norm. Coffin corners are punts, not kicks.",
+                "summary": "Onside is short and desperate. The deep kickoff is the norm. Coffin corners are punts.",
                 "sayThisLine": "That was an onside kick, they are trying to recover it."
               }
             },
@@ -503,19 +665,43 @@
           {
             "id": "specials-06-st-hangtime",
             "type": "say-this",
-            "conceptIds": ["special-teams-unit"],
+            "conceptIds": [
+              "special-teams-unit"
+            ],
             "payload": {
-              "statement": {"speaker": "Coach", "text": "Our hang time stinks. The returner had too much time."},
+              "statement": {
+                "speaker": "Coach",
+                "text": "Our hang time stinks. The returner had too much time."
+              },
               "question": "What is he upset about?",
               "options": [
-                {"id": "a", "text": "The kicker did not give the special teams coverage time to get downfield", "isCorrect": true},
-                {"id": "b", "text": "The returner took too long to decide", "isCorrect": false},
-                {"id": "c", "text": "The game is too long", "isCorrect": false},
-                {"id": "d", "text": "The team waited too long to call timeout", "isCorrect": false}
+                {
+                  "id": "a",
+                  "text": "The kicker did not give the special teams coverage time to get downfield",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "The returner took too long to decide",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "The game is too long",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "The team waited too long to call timeout",
+                  "isCorrect": false
+                }
               ],
-              "translation": "Hang time is how long the ball stays in the air. Short hang time means the returning team gets more time and space to run. The kicker should kick higher.",
+              "translation": "Hang time is how long the ball stays in the air. A short one means the coverage team arrives late, so the returner has more room. The kicker should kick higher.",
               "followUps": [
-                {"line": "How do you improve hang time?", "why": "Tests whether you know it is a kicking technique, not a coverage issue alone."}
+                {
+                  "line": "How do you improve hang time?",
+                  "why": "Tests whether you know it is a kicking technique, not a coverage issue alone."
+                }
               ],
               "noFakeExpertNote": "Special teams is underrated. Ask: Did the kick give us time or did the return look easy?"
             },
@@ -524,21 +710,25 @@
           {
             "id": "specials-06-tt-kickoff-chat",
             "type": "talk-track",
-            "conceptIds": ["special-teams-unit", "touchback", "field-position"],
+            "conceptIds": [
+              "special-teams-unit",
+              "touchback",
+              "field-position"
+            ],
             "payload": {
               "title": "Special teams moment",
               "setting": "Your friend texts you about a terrible return on a big third-quarter kickoff.",
               "startingSmooth": 50,
               "exchanges": [
                 {
-                  "theirMessage": "Did you see that kickoff return? He fumbled at the 30. Now we are in field goal range.",
+                  "theirMessage": "Did you see that kickoff return? Our guy fumbled at the 30 and they recovered. Brutal.",
                   "replies": [
                     {
                       "id": "a",
-                      "text": "Yeah, that fumble cost us the field position we had. What was he thinking?",
+                      "text": "Ouch, a fumble there hands them a short field. Has he been shaky all year?",
                       "smoothDelta": 20,
-                      "theirResponse": "Exactly! The returner got hit and just lost it.",
-                      "coachNote": "You listened to what she said and stayed focused on the fumble, not blaming the player."
+                      "theirResponse": "Honestly, no. It was his first fumble all season.",
+                      "coachNote": "You named why it hurts and asked a real question."
                     },
                     {
                       "id": "b",
@@ -551,13 +741,13 @@
                       "id": "c",
                       "text": "That is what you get with the new kickoff.",
                       "smoothDelta": 0,
-                      "theirResponse": "That is not on the kickoff rule, that is on the returner.",
-                      "coachNote": "True, but it missed her point about field position loss. Listen first."
+                      "theirResponse": "Not really. That one was about ball security.",
+                      "coachNote": "The kickoff rule did not cause a fumble, and it missed her point about field position. Listen first."
                     }
                   ]
                 },
                 {
-                  "theirMessage": "Yeah. And now they kicked a field goal. We were up three and now it is down to six.",
+                  "theirMessage": "Yeah. They kicked a field goal off it. We were up by three and now it is tied.",
                   "replies": [
                     {
                       "id": "a",
@@ -575,10 +765,10 @@
                     },
                     {
                       "id": "c",
-                      "text": "We need to go for it on our next drive. No kicking.",
+                      "text": "We should stop using that guy on returns.",
                       "smoothDelta": -10,
-                      "theirResponse": "That is not how football works. We cannot avoid field goals.",
-                      "coachNote": "Reacting with a plan makes sense, but be open to her take too."
+                      "theirResponse": "Let's not overreact over one play.",
+                      "coachNote": "A fix is fine, but listening to her take first builds trust."
                     }
                   ]
                 }
@@ -609,35 +799,58 @@
           {
             "id": "specials-06-ds-when-catch",
             "type": "decision-scenario",
-            "conceptIds": ["fair-catch", "touchback"],
+            "conceptIds": [
+              "fair-catch",
+              "touchback"
+            ],
             "payload": {
               "prompt": "Punt comes down high at midfield. Fair catch or field return?",
               "situation": {
                 "narrative": "Your team is down 7 with four minutes left. The punt hangs up for almost four seconds.",
                 "facts": [
-                  {"label": "Score", "value": "Down 7"},
-                  {"label": "Time", "value": "4 minutes"},
-                  {"label": "Ball spot", "value": "Midfield"},
-                  {"label": "Coverage", "value": "Punting team downfield and closing"}
+                  {
+                    "label": "Score",
+                    "value": "Down 7"
+                  },
+                  {
+                    "label": "Time",
+                    "value": "4 minutes"
+                  },
+                  {
+                    "label": "Ball spot",
+                    "value": "Midfield"
+                  },
+                  {
+                    "label": "Coverage",
+                    "value": "Gunners arriving as the ball lands"
+                  }
                 ]
               },
               "options": [
                 {
-                  "id": "return",
-                  "label": "Field return",
-                  "verdict": "best",
-                  "consequence": "Your returner breaks one for 15 yards and you are at the opponent's 35. You can score now.",
-                  "considerations": ["You need points soon", "Midfield is not deep", "A return gets you close"]
-                },
-                {
                   "id": "fair",
                   "label": "Fair catch",
+                  "verdict": "best",
+                  "consequence": "You start at midfield with four minutes and no fumble risk. That is plenty of time to score.",
+                  "considerations": [
+                    "Midfield is a solid starting spot",
+                    "Four minutes is enough time",
+                    "You keep the ball secure"
+                  ]
+                },
+                {
+                  "id": "return",
+                  "label": "Field return",
                   "verdict": "acceptable",
-                  "consequence": "You secure it at midfield. Four minutes is enough, but you lose a chance for a big return.",
-                  "considerations": ["You keep the ball secure", "Midfield is a reasonable starting spot", "No fumble risk"]
+                  "consequence": "The coverage is closing, so the upside is a few yards and the downside is a fumble that ends your comeback.",
+                  "considerations": [
+                    "You need points soon",
+                    "A return could gain a little field position",
+                    "A fumble would be costly"
+                  ]
                 }
               ],
-              "expertNote": "Down 7 with time left, field returns are worth the risk at midfield. A fair catch at the 50 is safe but wastes time you need."
+              "expertNote": "A long hang time gives the coverage time to arrive, so a clean fair catch at midfield is usually worth more than a few extra yards. A returner with open space can go."
             },
             "xp": 10
           }

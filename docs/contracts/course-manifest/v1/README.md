@@ -1,4 +1,6 @@
-# Course Manifest Contract v1 (1.2)
+# Course Manifest Contract v1 (1.3)
+
+Contract 1.3 (D-022, additive): `personalizationDimensions[]` (and so a branch `personalizationDimension`, by convention) gains `origin` (coffee origin: country or region of the beans, so `region` stays the learner's locale), `skin-type` and `concern` (skincare; optional flavor tokens, on-device only, never sent to analytics, hidden in discreet mode, no medical conditions; product-owner approval still gates use, OPEN_QUESTIONS P-35) and `member` (K-pop bias within a group). Requested by the Wave 3 coffee, skincare and k-pop agents. `grape` (wine) was not added. Existing 1.0 to 1.2 manifests stay valid.
 
 Contract 1.2 (D-019, additive): `personalizationDimensions[]` (and so a branch `personalizationDimension`, by convention) gains `era`, `designer`, `actor`, `studio`, `format`, `festival` and `venue` (`series` already existed), requested by the Wave 2 movies, fashion, books and music agents. No new `dynamicData[].kind` was requested by Wave 2 (all 13 manifests fit the 1.1 list). Existing 1.0 and 1.1 manifests stay valid.
 
@@ -22,7 +24,7 @@ Contract 1.1 (D-014, additive): `dynamicData[].kind` gains `injuries`, `transact
 | `nativeExercises[]` | `{exerciseType, specPath}`: native work items |
 | `dynamicData[]` | `{kind, providerCandidates, refreshFrequency, notes?}`: candidates only; adapters own real integration. `kind`: scores, schedules, standings, statistics, rankings, rosters, events, releases, conditions, news, weather, closures, alerts, new-products, new-media, injuries, transactions, regulations |
 | `editorial` | What Swoon'd does with current commentary (explain and link; never copy) |
-| `personalizationDimensions[]` | Team, driver, artist... Enum: team, player, driver, league, series, artist, genre, author, region, equipment, destination, franchise, platform, cuisine, director, brand, style, skill-level, era, designer, actor, studio, format, festival, venue (last seven from 1.2) |
+| `personalizationDimensions[]` | Team, driver, artist... Enum: team, player, driver, league, series, artist, genre, author, region, equipment, destination, franchise, platform, cuisine, director, brand, style, skill-level, era, designer, actor, studio, format, festival, venue (seven from 1.2), origin, skin-type, concern, member (last four from 1.3) |
 | `conversationScenarios` | Count and path (curriculum `talkTracks[]`) |
 | `masteryModel` | `concept-mastery-v1`, pass threshold, competence statement |
 | `licensingConstraints[]`, `safetyConstraints[]` | Rights and safety rules for content and assets |

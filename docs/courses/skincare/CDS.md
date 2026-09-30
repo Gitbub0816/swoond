@@ -121,7 +121,7 @@ Structured data and editorial data are separate systems (spec section 11).
 - The learner may optionally set **conversation flavor tokens** for the Person: `{{skinType}}` (dry-leaning, oily-leaning, combination, normal-leaning, sensitive-feeling) and `{{concern}}` (hydration, shine, tone, texture, sun protection). These choose *which examples and vocabulary are shown first* ("her gel cleanser", "her rich night cream"). They are never displayed as facts about her and never drive advice.
 - **Excluded by design:** acne, rosacea, eczema, psoriasis, allergies, pregnancy, medications, age, scars, skin colour. No option for a medical condition exists; if the learner types one in free text, the app shows "That's one for a dermatologist or pharmacist. Swoon'd can help you talk about skincare, not treat it." and stores nothing.
 - Stored on-device only, never sent to analytics, Unity telemetry or notifications; hidden in discreet mode (CLAUDE.md rule). Default unset.
-- **Manifest gap:** the `personalizationDimensions` enum has no `skin-type` or `concern`. The manifest therefore lists `region`, `brand`, `skill-level`; a request to add `skin-type` and `concern` is in `NOTES_FOR_ORCHESTRATOR.md`. Product-owner approval is also requested because a person's skin type is health-adjacent data about a third party (open question 2).
+- **Manifest:** `skin-type` and `concern` were added to the `personalizationDimensions` enum in manifest contract 1.3 (D-022) and are listed in the manifest alongside `region`, `brand`, `skill-level`. Product-owner approval is still needed before the tokens ship (skin type is health-adjacent data about a third party): optional, on-device only, no conditions, never sent to analytics, hidden in discreet mode (OPEN_QUESTIONS P-35).
 
 ## 9. Conversation model
 
@@ -520,7 +520,7 @@ Additional gates: [x] manifest validates (see validator run); [ ] curriculum val
 |---|---|---|---|
 | 1 | Who is the qualified reviewer (licensed dermatologist and/or pharmacist), what is the review contract and turnaround, and do we want a named advisory board? | Product owner | **Blocks release** of every unit |
 | 2 | Is an optional, on-device skin-type and concern token acceptable given that it is health-adjacent data about a third party? Default proposal: flavor tokens only, no conditions, no analytics. | Product owner / Legal | Blocks the personalization slot |
-| 3 | Manifest enum: add `skin-type` and `concern` to `personalizationDimensions`? | Orchestrator | No |
+| 3 | Resolved (D-022, manifest contract 1.3): `skin-type` and `concern` added to the enum and listed in the manifest; use stays gated by question 2 (optional, on-device only, never sent to analytics, product-owner approval, OPEN_QUESTIONS P-35). | Orchestrator | No |
 | 4 | Illustration production: who produces ~40 v1.0 original illustrations (textures, packaging, diagrams, swatches)? | Product / design | Blocks `visual-id` content |
 | 5 | UV index provider (EPA, NWS, Open-Meteo commercial terms). | Product owner | No (fallback link) |
 | 6 | Editorial provider (L-01): link-only headlines and Swoon'd explainers. | Product owner | Blocks automated live cards |

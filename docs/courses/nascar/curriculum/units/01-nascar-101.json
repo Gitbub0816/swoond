@@ -53,7 +53,7 @@
               "followUps": [
                 {
                   "line": "Wait, so pit crew decisions matter more than pure speed?",
-                  "why": "That is the core of why fans love it."
+                  "why": "Often, yes. Pit calls and track position can beat raw speed, and that is a big part of why fans love it."
                 }
               ]
             }
@@ -135,7 +135,7 @@
                 {
                   "id": "truck",
                   "term": "Truck Series",
-                  "definition": "The entry-level national series run in pickup trucks, known for tight racing."
+                  "definition": "The entry-level national series, run in pickup-style trucks, known for short-track, bump-and-run racing."
                 }
               ],
               "explanation": {
@@ -264,13 +264,8 @@
             "conceptIds": ["laps-and-distance"],
             "payload": {
               "prompt": "Fill in the distances.",
-              "template": "A {{track-name}} 500 at Daytona is {{laps}} laps. At Bristol, a half-mile track, a 500-lap race is {{miles}} miles.",
+              "template": "A 500-mile race on a 2.5-mile track like Daytona is {{laps}} laps. On a half-mile track, 500 laps is only {{miles}} miles.",
               "gaps": [
-                {
-                  "id": "track-name",
-                  "options": ["Daytona", "Bristol", "Kansas"],
-                  "correct": "Daytona"
-                },
                 {
                   "id": "laps",
                   "options": ["100", "200", "300"],
@@ -283,8 +278,8 @@
                 }
               ],
               "explanation": {
-                "correct": "Races are named by miles. So 500 miles at Daytona (2.5-mile track) is 200 laps, but 500 laps at Bristol (half-mile) is only 250 miles.",
-                "incorrect": "The Daytona 500 is 200 laps because the track is 2.5 miles per lap."
+                "correct": "Miles divided by track length gives laps: 500 miles at Daytona (2.5 miles a lap) is 200 laps, but 500 laps on a half-mile track is only 250 miles. Bristol is a touch over half a mile, so its 500 laps is a bit more.",
+                "incorrect": "Divide miles by the track length. The Daytona 500 is 200 laps because each lap is 2.5 miles; on a half-mile track, 500 laps covers just 250 miles."
               }
             }
           },
@@ -293,17 +288,17 @@
             "type": "multiple-choice",
             "conceptIds": ["laps-and-distance"],
             "payload": {
-              "prompt": "Why do races get named by miles instead of laps?",
+              "prompt": "Why compare race lengths in miles, not laps?",
               "options": [
-                {"id": "a", "text": "Miles are easier to say on television"},
-                {"id": "b", "text": "Because track lengths differ, so the same race at different tracks would be different lap counts"},
-                {"id": "c", "text": "It is an old tradition from the sport's history"}
+                {"id": "a", "text": "Every track is exactly one mile around"},
+                {"id": "b", "text": "Track lengths differ, so the same lap count means very different distances"},
+                {"id": "c", "text": "Laps are not counted during a race"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Naming by miles makes sense because a 500-mile race at Daytona is 200 laps, but 500 laps at Bristol. Miles are constant; laps vary.",
-                "incorrect": "Races are named by miles because track length changes the lap count. A 500-mile race is 500 miles no matter which track hosts it.",
-                "sayThisLine": "The 500-mile race is always 500 miles."
+                "correct": "A 200-lap race is 500 miles at Daytona but only about 100 miles on a half-mile track. Miles are the fair yardstick; laps vary from track to track.",
+                "incorrect": "Tracks range from about half a mile to 2.66 miles per lap, and laps are counted all race long. Miles let you compare distances fairly.",
+                "sayThisLine": "Two hundred laps is a very different race at Daytona than at a short track."
               }
             }
           },
@@ -359,16 +354,16 @@
             "type": "binary-call",
             "conceptIds": ["qualifying"],
             "payload": {
-              "prompt": "Is the driver who qualifies fastest guaranteed to start on the pole?",
+              "prompt": "Normally, does the fastest qualifier start on the pole?",
               "scene": {"kind": "none", "alt": "Qualifying determines the starting order."},
               "choices": [
-                {"id": "yes", "label": "Yes, fastest in qualifying starts first"},
-                {"id": "no", "label": "No, other factors may change the grid"}
+                {"id": "yes", "label": "Yes, the fastest lap earns the pole"},
+                {"id": "no", "label": "No, the pole is drawn by lot"}
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Qualifying speed sets the grid. The fastest single lap in the qualifying session earns the pole.",
-                "incorrect": "Qualifying determines the starting grid. The fastest qualifier starts on the pole.",
+                "correct": "Qualifying speed sets the grid, so the fastest qualifier earns the pole. Rain-outs and inspection penalties can shuffle it, but that is the exception.",
+                "incorrect": "The pole is earned, not drawn. Fastest in qualifying starts first, unless a rain-out or an inspection penalty changes the grid.",
                 "sayThisLine": "He qualified on the pole."
               }
             }
@@ -386,7 +381,7 @@
               "options": [
                 {"id": "a", "text": "The pole sitter has clean air and no traffic early", "isCorrect": true},
                 {"id": "b", "text": "They set the fastest qualifying lap", "isCorrect": true},
-                {"id": "c", "text": "Clean air is a real advantage that compounds through the race", "isCorrect": true},
+                {"id": "c", "text": "Clean air is a real advantage early, until pit stops reshuffle the order", "isCorrect": true},
                 {"id": "d", "text": "Starting position does not really matter", "isCorrect": false}
               ],
               "translation": "The pole sitter starts with clean air, no one in front, and the cleanest view of the first lap. That is an advantage that can carry through the opening stages. You are right that 400 laps is long, but a good start puts you in control early.",
@@ -516,17 +511,17 @@
             "type": "binary-call",
             "conceptIds": ["running-order", "checkered-flag"],
             "payload": {
-              "prompt": "When the checkered flag waves, is the running order at that moment the official finishing order?",
-              "scene": {"kind": "none", "alt": "Official results are based on the race official's decision."},
+              "prompt": "When the checkered flag waves, does the running order at that moment decide the finish?",
+              "scene": {"kind": "none", "alt": "The order on track when the flag falls sets the result."},
               "choices": [
-                {"id": "yes", "label": "Yes, leader's order is final"},
-                {"id": "no", "label": "No, it gets reviewed"}
+                {"id": "yes", "label": "Yes, that order is the finish"},
+                {"id": "no", "label": "No, the order is re-drawn afterwards"}
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "The running order at the checkered flag is the official finishing order. First across the line wins.",
-                "incorrect": "Yes, when the checkered waves, the running order at that moment is the final result. The first car across is the winner.",
-                "sayThisLine": "Checkered flag, race is done, that order is final."
+                "correct": "The order on track at the checkered flag is the finishing order, and the first car across wins. Post-race inspection can still change it if a car fails.",
+                "incorrect": "Results are not re-drawn. The order when the checkered waves is the finish, apart from rare penalties or disqualifications after inspection.",
+                "sayThisLine": "Checkered flag, race is done, unless inspection says otherwise."
               }
             }
           }
@@ -547,7 +542,7 @@
               "prompt": "Where did stock car racing come from?",
               "options": [
                 {"id": "a", "text": "A factory racing initiative by the car makers"},
-                {"id": "b", "text": "Prohibition-era bootleggers in the Southeast racing to avoid police"},
+                {"id": "b", "text": "Prohibition-era bootleggers in the Southeast who souped up cars to outrun police"},
                 {"id": "c", "text": "A road course series in the Northeast"}
               ],
               "correctOptionIds": ["b"],
@@ -578,7 +573,7 @@
               "followUps": [
                 {
                   "line": "So the spirit of the sport is rebellion?",
-                  "why": "That is a great insight into why it feels different from other racing."
+                  "why": "Partly. The scrappy, working-class roots still shape the culture, even with engineers and sponsors in the mix."
                 }
               ]
             }
@@ -600,7 +595,7 @@
                 },
                 {
                   "id": "france",
-                  "text": "Bill France Sr. sees the chaos and organized it into a sport"
+                  "text": "Bill France Sr. sees the chaos and decides to organize it into a sport"
                 },
                 {
                   "id": "nascar",
@@ -738,16 +733,16 @@
             "type": "multiple-choice",
             "conceptIds": ["green-flag"],
             "payload": {
-              "prompt": "When does a typical Cup race weekend happen?",
+              "prompt": "When is the typical Cup race, and what comes before it?",
               "options": [
-                {"id": "a", "text": "Friday to Saturday"},
-                {"id": "b", "text": "Saturday to Sunday"},
-                {"id": "c", "text": "Most races are on Sunday with practice and qualifying on Friday and Saturday"}
+                {"id": "a", "text": "Most races are on Sunday, after practice and qualifying earlier in the weekend"},
+                {"id": "b", "text": "Races are midweek, with weekends off"},
+                {"id": "c", "text": "The race comes first, then qualifying sets next week's grid"}
               ],
-              "correctOptionIds": ["c"],
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Cup races are mostly on Sunday. Teams practice and qualify on Friday and Saturday to set up for the main event.",
-                "incorrect": "Sunday is race day for most Cup events. Friday and Saturday are for practice, qualifying, and preparation.",
+                "correct": "Most Cup races are on Sunday. Practice and qualifying happen earlier in the weekend, and the exact schedule varies by track, with some races on Saturday night.",
+                "incorrect": "The weekend builds toward race day: practice and qualifying first, then the race, most often on Sunday. Schedules vary, so check the listings.",
                 "sayThisLine": "Race day is Sunday; that is the Cup tradition."
               }
             }

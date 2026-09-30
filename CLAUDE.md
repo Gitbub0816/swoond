@@ -122,7 +122,7 @@ Toolchain: **Xcode 27, Swift 6.4 (Swift 6 language mode), iOS SDK 27, deployment
 ## 9a. Curriculum quality pipeline (D-018)
 
 - Haiku authors per-unit curriculum JSON for non-safety-critical courses only. Orchestrator validates; Sonnet does accuracy review of all units before release.
-- Safety-critical courses (hiking, camping, climbing, food-safety, fitness) authored by Sonnet; require human domain-expert review.
+- Safety-critical courses (hiking, camping, climbing, skincare, food-safety, fitness) authored by Sonnet; require human domain-expert review.
 - Every unit: no schema/lint errors (orchestrator re-runs validator); no templated content; no invented fields; factually correct explanations.
 
 ## 10. How to validate

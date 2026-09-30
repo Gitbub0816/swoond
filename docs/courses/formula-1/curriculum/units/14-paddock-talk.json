@@ -911,47 +911,6 @@
             }
           },
           {
-            "id": "pt-04-tt-track-position-call",
-            "type": "talk-track",
-            "conceptIds": [
-              "track-position"
-            ],
-            "payload": {
-              "title": "Safety and position",
-              "setting": "During the race. A safety car is called.",
-              "startingSmooth": 50,
-              "exchanges": [
-                {
-                  "theirMessage": "Safety car came out. He is losing his second place to the car behind.",
-                  "replies": [
-                    {
-                      "id": "good",
-                      "text": "Can he pit now and stay ahead?",
-                      "smoothDelta": 24,
-                      "theirResponse": "Yes, the field is slowed. Everyone will pit.",
-                      "coachNote": "You are thinking about pit strategy during a neutralisation."
-                    },
-                    {
-                      "id": "meh",
-                      "text": "The safety car always changes things.",
-                      "smoothDelta": 8,
-                      "theirResponse": "It does.",
-                      "coachNote": "True. Ask how it helps or hurts his position."
-                    },
-                    {
-                      "id": "cringe",
-                      "text": "This is unfair. They should restart now.",
-                      "smoothDelta": -16,
-                      "theirResponse": "Safety cars are part of racing.",
-                      "coachNote": "Safety comes first. The race resumes when it is safe."
-                    }
-                  ]
-                }
-              ],
-              "closingNote": "Track position is where you run on the road; at tracks where passing is hard, position beats pace."
-            }
-          },
-          {
             "id": "pt-04-s-undercut-meaning",
             "type": "say-this",
             "conceptIds": [
@@ -1053,6 +1012,58 @@
                 }
               ],
               "noFakeExpertNote": "You do not need to know the calculation. Ask how they decide when to pit."
+            }
+          },
+          {
+            "id": "pt-04-s-strategy-call",
+            "type": "say-this",
+            "conceptIds": [
+              "track-position"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Marcus",
+                "text": "Track position matters more than raw pace here. That is why they stayed out."
+              },
+              "question": "What is he explaining?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Where you finish is about staying ahead, not just being quick",
+                  "isCorrect": true,
+                  "explanation": "On difficult-to-pass tracks, where you run is more important than pure speed."
+                },
+                {
+                  "id": "b",
+                  "text": "They chose not to pit in that moment",
+                  "isCorrect": true,
+                  "explanation": "Staying out means holding position and avoiding worse traffic."
+                },
+                {
+                  "id": "c",
+                  "text": "The track layout favours one team",
+                  "isCorrect": false,
+                  "explanation": "Track position is about your place in the running order, not circuit design."
+                },
+                {
+                  "id": "d",
+                  "text": "He needs more speed to win",
+                  "isCorrect": false,
+                  "explanation": "The point is that speed is not the only factor; position is too."
+                }
+              ],
+              "translation": "On a track where overtaking is difficult, being ahead is more valuable than being a tenth of a second faster, so they chose to keep their track position rather than risk losing it with a pit stop.",
+              "followUps": [
+                {
+                  "line": "When does pit strategy matter more than pace?",
+                  "why": "A real question about the trade-off between speed and position."
+                },
+                {
+                  "line": "What tracks make position most important?",
+                  "why": "Shows you are thinking about circuit characteristics."
+                }
+              ],
+              "noFakeExpertNote": "You do not need to know tire degradation. Ask when pitting hurts more than it helps."
             }
           }
         ]
@@ -1178,48 +1189,6 @@
             }
           },
           {
-            "id": "pt-05-tt-consistency",
-            "type": "talk-track",
-            "conceptIds": [
-              "stewards",
-              "time-penalty"
-            ],
-            "payload": {
-              "title": "Same move, different penalty",
-              "setting": "Two races apart. A similar move was penalised differently.",
-              "startingSmooth": 50,
-              "exchanges": [
-                {
-                  "theirMessage": "Last race, the leader got a five-second penalty for that. This week, nothing. How is that fair?",
-                  "replies": [
-                    {
-                      "id": "good",
-                      "text": "Were the two moves exactly the same?",
-                      "smoothDelta": 24,
-                      "theirResponse": "Pretty much. Same corner, same move.",
-                      "coachNote": "You are thinking critically about whether they are comparable."
-                    },
-                    {
-                      "id": "meh",
-                      "text": "Consistency matters.",
-                      "smoothDelta": 8,
-                      "theirResponse": "It does.",
-                      "coachNote": "True. Ask if context matters."
-                    },
-                    {
-                      "id": "cringe",
-                      "text": "The stewards have favourite drivers.",
-                      "smoothDelta": -18,
-                      "theirResponse": "I doubt that.",
-                      "coachNote": "That is conspiracy thinking. Ask why the outcomes differed instead."
-                    }
-                  ]
-                }
-              ],
-              "closingNote": "Stewarding consistency is a perennial fan debate; context matters (speed, gap, damage, previous incidents)."
-            }
-          },
-          {
             "id": "pt-05-s-penalty-meaning",
             "type": "say-this",
             "conceptIds": [
@@ -1322,6 +1291,59 @@
               ],
               "noFakeExpertNote": "You do not need to memorise the point scale. Ask what qualifies as dangerous driving."
             }
+          },
+          {
+            "id": "pt-05-s-consistency",
+            "type": "say-this",
+            "conceptIds": [
+              "stewards",
+              "time-penalty"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Sarah",
+                "text": "This is not the same as last week. The stewards are being inconsistent."
+              },
+              "question": "What is she complaining about?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Similar incidents got different penalties",
+                  "isCorrect": true,
+                  "explanation": "Inconsistency means the same action got penalised differently before."
+                },
+                {
+                  "id": "b",
+                  "text": "The rule was applied unfairly this time",
+                  "isCorrect": true,
+                  "explanation": "Consistency matters: the penalty should match past precedent."
+                },
+                {
+                  "id": "c",
+                  "text": "The penalty is too harsh",
+                  "isCorrect": false,
+                  "explanation": "She is not saying it is harsh, but that it is inconsistent with precedent."
+                },
+                {
+                  "id": "d",
+                  "text": "There is a new rule this season",
+                  "isCorrect": false,
+                  "explanation": "She is pointing out an inconsistency, not a rule change."
+                }
+              ],
+              "translation": "A penalty her driver received today seems different from how a similar incident was judged in a previous race, which suggests the stewards are not applying the rules consistently.",
+              "followUps": [
+                {
+                  "line": "What incident from last week was similar?",
+                  "why": "Shows you are listening to the comparison she is making."
+                },
+                {
+                  "line": "Do you think the rule should be clearer?",
+                  "why": "A thoughtful question about fairness and clarity."
+                }
+              ],
+              "noFakeExpertNote": "You do not need to know all the past penalties. Ask what she thinks was different."
+            }
           }
         ]
       },
@@ -1416,47 +1438,6 @@
                 }
               ],
               "closingNote": "Clipping happens when the battery runs empty on a straight and the car stops getting electrical power and can even slow."
-            }
-          },
-          {
-            "id": "pt-06-tt-overtake-mode",
-            "type": "talk-track",
-            "conceptIds": [
-              "overtake-mode"
-            ],
-            "payload": {
-              "title": "Overtake Mode fail",
-              "setting": "During a pass attempt. The boost did not work.",
-              "startingSmooth": 50,
-              "exchanges": [
-                {
-                  "theirMessage": "He had Overtake Mode and still could not get by. The dirty air killed the move.",
-                  "replies": [
-                    {
-                      "id": "good",
-                      "text": "Does Overtake Mode work in corners?",
-                      "smoothDelta": 24,
-                      "theirResponse": "No, only on straights. Corners he has no grip.",
-                      "coachNote": "You understand the limitation. That is the key insight."
-                    },
-                    {
-                      "id": "meh",
-                      "text": "That is disappointing.",
-                      "smoothDelta": 7,
-                      "theirResponse": "It is.",
-                      "coachNote": "Sympathetic. Ask why dirty air matters."
-                    },
-                    {
-                      "id": "cringe",
-                      "text": "Overtake Mode should make him faster everywhere.",
-                      "smoothDelta": -16,
-                      "theirResponse": "It does not. It is just a boost on straights.",
-                      "coachNote": "The electrical help only works on straights. Dirty air is a different problem."
-                    }
-                  ]
-                }
-              ],
-              "closingNote": "Overtake Mode is an electrical boost on straights; dirty air reduces downforce in corners, and no boost fixes that."
             }
           },
           {
@@ -1562,6 +1543,58 @@
               ],
               "noFakeExpertNote": "You do not need to know the electrical system. Ask how energy strategy works."
             }
+          },
+          {
+            "id": "pt-06-s-overtake-mode",
+            "type": "say-this",
+            "conceptIds": [
+              "overtake-mode"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "James",
+                "text": "Overtake mode is open on the straights. He can finally hunt down the leader."
+              },
+              "question": "What does he mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The car can run in a high-power setup to chase rivals",
+                  "isCorrect": true,
+                  "explanation": "Overtake Mode is a high-power wing configuration for straights."
+                },
+                {
+                  "id": "b",
+                  "text": "The driver is now free to try passing",
+                  "isCorrect": true,
+                  "explanation": "With the mode active, he has the power to make an attempt."
+                },
+                {
+                  "id": "c",
+                  "text": "The leader made a mistake",
+                  "isCorrect": false,
+                  "explanation": "Overtake Mode is a system setting, not dependent on the leader's error."
+                },
+                {
+                  "id": "d",
+                  "text": "Only one car can use it per lap",
+                  "isCorrect": false,
+                  "explanation": "Any car can use it on any straight when allowed."
+                }
+              ],
+              "translation": "The car's overtake-mode setup (a low-downforce, high-power wing configuration) is now activated, which gives him a power advantage on the straights to attempt a pass on the leader.",
+              "followUps": [
+                {
+                  "line": "How is Overtake Mode different from Straight Mode?",
+                  "why": "A smart question about the two wing configurations."
+                },
+                {
+                  "line": "Can the leader use it too?",
+                  "why": "Shows you understand both cars have the technology."
+                }
+              ],
+              "noFakeExpertNote": "You do not need to know aerodynamic limits. Ask how it helps in a chase."
+            }
           }
         ]
       },
@@ -1655,47 +1688,6 @@
                 }
               ],
               "closingNote": "Silly season is the mid-year speculation about who will drive for whom next season."
-            }
-          },
-          {
-            "id": "pt-07-tt-fan-banter",
-            "type": "talk-track",
-            "conceptIds": [
-              "teammate-battle"
-            ],
-            "payload": {
-              "title": "Friendly rivalry",
-              "setting": "After the race. Both drivers finished; one beat the other.",
-              "startingSmooth": 50,
-              "exchanges": [
-                {
-                  "theirMessage": "Your driver beat mine today! He was quicker in the race, no argument.",
-                  "replies": [
-                    {
-                      "id": "good",
-                      "text": "What did he do better?",
-                      "smoothDelta": 26,
-                      "theirResponse": "Tyre management. He nursed them to the end.",
-                      "coachNote": "You acknowledged the win and asked for insight. That is classy."
-                    },
-                    {
-                      "id": "meh",
-                      "text": "Thanks. He drove well today.",
-                      "smoothDelta": 10,
-                      "theirResponse": "He did. Mine will get him back next week.",
-                      "coachNote": "Humble. A follow-up question makes it better."
-                    },
-                    {
-                      "id": "cringe",
-                      "text": "My driver is always faster. Yours just got lucky.",
-                      "smoothDelta": -20,
-                      "theirResponse": "That is not how it works.",
-                      "coachNote": "Dismissing a loss as luck. Own it and move on."
-                    }
-                  ]
-                }
-              ],
-              "closingNote": "Fan banter is fun when both sides respect the competition and admit when the other driver was better."
             }
           },
           {
@@ -1800,6 +1792,58 @@
                 }
               ],
               "noFakeExpertNote": "You do not have inside info. Ask her what she thinks will happen."
+            }
+          },
+          {
+            "id": "pt-07-s-banter",
+            "type": "say-this",
+            "conceptIds": [
+              "driver-market"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Emma",
+                "text": "Your guy made a great pass on him. He is going to transfer to Ferrari or McLaren, mark my words."
+              },
+              "question": "What is she doing?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Complimenting your driver while speculating about transfers",
+                  "isCorrect": true,
+                  "explanation": "She praised the pass and then joked about him moving teams."
+                },
+                {
+                  "id": "b",
+                  "text": "Teasing by predicting a rival will leave for a big team",
+                  "isCorrect": true,
+                  "explanation": "This is fan banter: light trash-talk about future deals."
+                },
+                {
+                  "id": "c",
+                  "text": "Saying the driver is unhappy in his current seat",
+                  "isCorrect": false,
+                  "explanation": "She is joking about his talent, not his satisfaction."
+                },
+                {
+                  "id": "d",
+                  "text": "Reporting confirmed team news",
+                  "isCorrect": false,
+                  "explanation": "This is speculation and banter, not official news."
+                }
+              ],
+              "translation": "She is playfully suggesting that your driver is so talented after that pass that Ferrari or McLaren will recruit him for next season—it is friendly rivalry banter.",
+              "followUps": [
+                {
+                  "line": "Is he actually linked to those teams?",
+                  "why": "A good question to check if the speculation has truth."
+                },
+                {
+                  "line": "How long is his contract?",
+                  "why": "Shows you understand driver transfers take planning."
+                }
+              ],
+              "noFakeExpertNote": "You do not need to know transfer rumors. Ask if she is joking or if there is news."
             }
           }
         ]

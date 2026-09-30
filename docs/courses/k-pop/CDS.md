@@ -559,5 +559,5 @@ Additional gates: [x] manifest validates (run `node validate.mjs --course k-pop 
 | 6 | Are named groups allowed in dated data cards (comeback calendar) without a licence? Names as facts only. | Legal | No |
 | 7 | Commissioned Korean voice talent vs TTS for word clips (TTS quality and licence). | Product owner | No |
 | 8 | Wellbeing content: adopt a safe-messaging checklist and region-by-region crisis resource list. | Product owner / SME | Yes, for `dbt-03` |
-| 9 | Should `member` become a personalization dimension (proposed manifest 1.2)? Currently bias is part of `artist`. | Orchestrator | No |
+| 9 | Resolved (D-022, manifest contract 1.3): `member` added to `personalizationDimensions` and listed in the manifest; branch dimensions stay `artist`. | Orchestrator | No |
 | 10 | Generation labels: keep 1st-5th with caveats, or avoid numbering? | SME review | No |

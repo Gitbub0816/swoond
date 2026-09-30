@@ -5,7 +5,7 @@ Versioned, platform-neutral interfaces. Each folder holds JSON Schemas (draft 20
 | Contract | Path | Producers / consumers |
 |---|---|---|
 | Unity bridge v1 | `unity-bridge/v1/` | Claude (native host) <-> Astra (Unity) |
-| Course manifest v1 (1.1) | `course-manifest/v1/` | Curriculum authors -> backend, native, Astra |
+| Course manifest v1 (1.3) | `course-manifest/v1/` | Curriculum authors -> backend, native, Astra |
 | Curriculum v1 (1.2) | `curriculum/v1/` | Curriculum authors -> native app / backend |
 | Native exercise payloads v1 | `native-exercises/v1/` | Curriculum authors -> native engines |
 | Sim definition v1 | `sim-definition/v1/` | Astra (Unity data-driven sims) |

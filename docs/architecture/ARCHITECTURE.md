@@ -230,3 +230,21 @@ Timing-tap scoring (design): hit = 100; miss = `max(0, 60 - offPct*3)` where `of
 - **Finished-game bonus:** talk-track and timing-tap already include their +40; `LearningSession.finish()` adds +40 only when no activity did.
 - **Common Ground:** per interest = mean over concepts taught by the branch-visible units of `min(1, mastery / masteryThreshold)`; person score = weighted mean (main interest x2).
 - **Not implemented yet:** `BridgeSession` state machine (ready/max-duration timers, seq ordering), `NotificationComposer` copy policy, streak freeze.
+
+## 14. App backlog from course specs
+
+Native app items raised by the Wave 3 course specs (2026-09-30). Not implemented; each needs the named decision first. Tracking ids refer to `docs/product/OPEN_QUESTIONS.md`. Wave 2 requests (listening-id player, deep-link-out rows, procedural diagram ids, multi-select branches for video-games) are in P-23 and P-32.
+
+- **k-pop, Korean fallback font and Hangul display:** Geist and Instrument Serif do not cover Hangul. Decide the fallback (Noto Sans KR bundled, OFL, or system Apple SD Gothic Neo) and whether Hangul shows beside romanization or romanization only at launch (P-39). Design-spec change needs product-owner approval.
+- **wine, legal-age gate:** age-confirmation flow (self-declared date of birth vs region-based), jurisdiction source, hiding the course and its notifications for under-age learners, and App Store and Google Play alcohol-content rules (P-34, L-27, D-023). Discreet-mode notifications must avoid alcohol words. No streak, XP or badge tied to drinking or tasting volume (P-40).
+- **wine, care gating:** `wine-with-care` items gate conversation practice; if the curriculum schema cannot express gates, implement as unit prerequisites in the app (P-31, P-40).
+- **horror-films, comfort dial:** Person-interest field `comfortLevel` (`gentle` | `balanced` | `full`, default `balanced`), private and not revealed in analytics; needs curriculum 1.3 fields `intensity` and `textTwinOf` and a DECISIONS entry so the engine can serve a text twin under `gentle`, after two skips or on request with identical mastery (P-36). Also a hard loudness cap in the audio player and no courage badges, dares or leaderboards.
+- **coffee, multi-axis branches:** a Person may need one brew-method branch and one origin branch at once; confirm the Person/branch model supports it, or origin becomes activity-level `branchId` (P-23). Person model labels the `origin` dimension per course (`region` stays locale).
+- **video-games and coffee, multi-select branches:** shared with P-23; one model decision covers both courses.
+- **skincare, sensitive personalization:** optional `skin-type` and `concern` flavor tokens stored on-device only, never in analytics or notifications, hidden in discreet mode, off until the product owner approves (P-35). Persistent "Not medical advice" footer on decision scenarios and the `retinoids` and `exfoliants` units (P-35).
+- **skincare, tween-skincare age decision:** lesson `di-05` may need an age gate or product-owner decision; hide until answered (P-34).
+- **k-pop and horror-films, audio companions:** every `listening-id` needs a text or visual twin in the same unit; player needs `maxPlays`, Skip, visible description and captions (P-32).
+- **k-pop, wellbeing resources:** `dbt-03` needs a region-by-region crisis resource list with a named owner (S-26).
+- **climbing, Unity sim fallback:** the thin Tier A sim `climbing.bouldering.problem-read.v1` has a native fallback lesson `rw-08`; the app substitutes it when the sim is unavailable or cut (P-31 (a), P-38).
+- **coffee, diagrams:** `binary-call` has no `diagram` scene kind, so scenes are `none`; a generic `diagram` kind is a future contract item (P-31). Procedural diagram ids for wine, coffee, skincare and horror are listed in P-32.
+- **Cross-course links:** validator and app must tolerate `relatedCourses` ids without a course folder yet (`fitness`, `television`) and cross-course concept refs such as `music:hook` (P-31 (h)).

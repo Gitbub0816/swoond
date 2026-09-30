@@ -451,3 +451,17 @@ test('manifest 1.2: new personalizationDimensions values validate, unknown ones 
     assert.match(r.stdout + r.stderr, /personalizationDimensions/);
   } finally { rmSync(tmp, { recursive: true }); }
 });
+
+test('manifest 1.3: origin, skin-type, concern and member validate, unknown ones still fail', () => {
+  const { tmp, cur } = splitCopy();
+  try {
+    const m = join(cur, '..', 'manifest.json');
+    edit(m, (j) => { j.contractVersion = '1.3.0'; j.personalizationDimensions = ['origin', 'skin-type', 'concern', 'member', 'region']; });
+    let r = run('--courses-dir', tmp, '--no-examples');
+    assert.doesNotMatch(r.stdout + r.stderr, /FAIL .*manifest/, r.stdout + r.stderr);
+    edit(m, (j) => { j.personalizationDimensions = ['origin', 'grape-variety']; });
+    r = run('--courses-dir', tmp, '--no-examples');
+    assert.notEqual(r.status, 0, r.stdout);
+    assert.match(r.stdout + r.stderr, /personalizationDimensions/);
+  } finally { rmSync(tmp, { recursive: true }); }
+});

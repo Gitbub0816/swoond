@@ -559,7 +559,7 @@ Additional gates: [ ] manifest validates (run `tools/validate`); [ ] curriculum 
 | 2 | Food-safety review (Extension educator or food scientist) of cold-brew storage guidance, milk temperatures and the moka-pot and steam lessons before release; mirrors the cooking gate. | Product/Content | Yes for release |
 | 3 | Unit count 22 (5+4+4+6+1+1+1) exceeds 8-14; approve, or fold the six branch units (for example, one `branches` unit with activity-level `branchId`). | Product | No |
 | 4 | Branch model: can a Person hold one brew-method branch and one origin branch at once? | Product/Native | No |
-| 5 | Manifest `personalizationDimensions` has no `origin`; approve using `region` for origin (as drafted) or add `origin` in a contract bump. | Product | No |
+| 5 | Resolved (D-022, manifest contract 1.3): `origin` added to `personalizationDimensions`; the manifest now uses `origin` (and for the three origin branches) while `region` stays the learner's locale. | Product | No |
 | 6 | Price explainer: is ICO's composite indicator usable in-app, or editorial numbers only (ICE futures licensing)? Provider decision L-02/L-03 family. | Legal/Data | No |
 | 7 | Flavor wheel: confirm that an original Swoon'd wheel is acceptable (the SCA and World Coffee Research wheel is referenced by link only). | Legal | No |
 | 8 | Sustainability tone: human review of `sustainability` for neutrality toward certifications and brands. | Content | Yes for `sustainability` release |
