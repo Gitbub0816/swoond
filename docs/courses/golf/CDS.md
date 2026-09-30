@@ -233,3 +233,266 @@ Tokens: `{{skillLevel}}`, `{{player}}`, `{{league}}`, `{{team}}`, `{{equipment}}
 - **Useful competence statement:** "She can follow a round or a golf broadcast, understand par, penalties, formats and the big events, ask a couple of good questions about a shot, a putt or a course, and say 'okay, I get why you love this' without faking it."
 
 ---
+
+## 11. Curriculum map (ongoing course)
+
+Course version target at launch: `curriculumVersion 0.1.0` (structure + first units); see release plan. **20 units, 116 lessons, ~205 concepts** across all six layers. Activity legend: `mc` multiple-choice, `bc` binary-call, `tm` term-match, `so` sequence-order, `vi` visual-id, `ds` decision-scenario, `tk` talk-track, `tt` timing-tap, `st` say-this, `fg` fill-the-gap, `li` listening-id, `es` estimate-slider, `ht` hotspot-tap, `SIM` = Unity sim (id given). Each lesson lists its *lead* activity families; the authored lesson has 4-6 activities (validator rule `thin-lesson`), ends with one item that carries a "line you could say out loud", and adds 1-3 Playbook terms. Every unit's final lesson is a mixed-review capstone with one `tk` or `st` conversation beat. Lesson ids are stable kebab-case. A learner sees about 16 units (only the branch unit that matches their branch appears).
+
+### Layer 1: Foundations
+
+**Unit `the-game`: The Game and the Course** (prereq: none). 7 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `game-01` | So what is golf? | Say in one breath what golf is and how you win. | golf-objective, stroke, round-18 | mc, st |
+| `game-02` | Anatomy of a hole | Name the tee box, fairway, rough, green, cup and flagstick. | tee-box, fairway, rough, green, cup-and-flagstick | ht, tm |
+| `game-03` | Par, and why every hole has one | Explain par as a benchmark tied to length. | par, hole-yardage | mc, es |
+| `game-04` | Sand, water and out of bounds | Recognise the three kinds of trouble. | bunker, penalty-area, out-of-bounds | ht, mc |
+| `game-05` | Eighteen holes | Describe a round: front nine, back nine, the turn, par 72. | front-back-nine, the-turn, course-par-72 | so, mc |
+| `game-06` | What a round feels like | Follow the flow of a round, from tee time to the last putt. | tee-time, pace-of-play, round-flow | so, ds |
+| `game-07` | Golf and its cousins | Tell golf from mini golf, Topgolf, disc golf and a range session. | golf-cousins, self-officiating | mc, bc |
+
+**Unit `scoring`: Keeping Score** (prereq: `the-game`). 6 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `score-01` | Every swing counts | Explain stroke play and count strokes. | stroke-play, stroke-count | mc, fg |
+| `score-02` | Birdie, eagle, bogey | Decode the score names, including the ace. | birdie, eagle-albatross, bogey, hole-in-one | tm, mc |
+| `score-03` | "Three under" | Read a leaderboard line like "-8 thru 14". | score-to-par, leaderboard-reading | mc, st |
+| `score-04` | Reading a scorecard | Read a card hole by hole and add it up. | scorecard, gross-score | ht, mc |
+| `score-05` | When you add a stroke | Know what earns a penalty stroke. | penalty-stroke | ds, bc |
+| `score-06` | What is a good score? | Place scores on the map: breaking 100, 90, 80. | score-benchmarks | es, mc |
+
+**Unit `clubs-and-swings`: Clubs, Swings and Shots** (prereq: `the-game`). 7 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `club-01` | Fourteen clubs | Sort the clubs into families and know the limit. | fourteen-club-limit, club-families | tm, vi |
+| `club-02` | Loft is height, length is distance | Explain what loft and shaft length change. | loft, club-length-distance | es, mc |
+| `club-03` | How far does she hit it? | Place typical carry distances by club and skill. | carry-distance | es, ds |
+| `club-04` | The swing in plain words | Name the phases of a swing and the setup. | swing-phases, grip-stance-alignment | so, mc |
+| `club-05` | Where the ball goes | Explain why a ball curves: face versus path. | swing-path, clubface-angle, face-to-path, start-line, draw, fade, slice, hook, push-pull | SIM `golf.ball-flight.shot-shape.v1`, bc |
+| `club-06` | Bad-shot vocabulary | Decode "fat", "thin", "topped", "shank". | mishits, shank | tm, st |
+| `club-07` | The range is not the course | Know why range swings differ from round swings; warm up. | range-vs-course, warm-up | mc, ds |
+
+**Unit `rules-and-etiquette`: Rules and Etiquette** (prereq: `scoring`). 7 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `rule-01` | Play it as it lies | State golf's central rule and its spirit. | play-it-as-it-lies, loose-impediments | bc, mc |
+| `rule-02` | Lost ball and out of bounds | Handle lost balls and OB: stroke and distance, provisional ball. | stroke-and-distance, provisional-ball, lost-ball | ds, bc |
+| `rule-03` | Penalty areas | Tell red from yellow and know your options. | red-yellow-stakes, penalty-area-relief | ht, ds |
+| `rule-04` | Free relief and dropping | Know when relief is free, and how to drop. | free-relief, drop-knee-height, nearest-point-of-relief, unplayable-ball | ht, ds |
+| `rule-05` | Bunkers and greens | Know the few bunker and green rules everyone asks about. | bunker-rules, putting-green-rules, marking-ball | bc, mc |
+| `rule-06` | Etiquette that shows you belong | Show golf manners: honor, ready golf, pitch marks, rakes. | golf-etiquette, honor-system, ready-golf, pitch-mark-repair | ds, mc |
+| `rule-07` | When to ask an official | Know when you do not know, and the scorecard honesty rule. | rules-official, scorecard-signing, two-balls-when-unsure | ds, st |
+
+**Unit `short-game-and-putting`: The Short Game and Putting** (prereq: `clubs-and-swings`). 7 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `short-01` | Where the strokes go | Explain why the short game decides scores. | short-game-share | mc, st |
+| `short-02` | Putting: line and speed | Say that every putt has a line and a speed; know a lag putt. | putting-line-speed, lag-putt, three-putt | mc, ht |
+| `short-03` | Reading a green | Read slope, fall line and speed; choose an aim point. | break, fall-line, green-speed-stimp, aim-point | SIM `golf.putting.read-the-break.v1`, bc |
+| `short-04` | Chip, pitch, flop, bump-and-run | Tell the four short shots apart. | chip, pitch, flop, bump-and-run | tm, vi |
+| `short-05` | Carry and roll | Pick a landing spot and a club so the roll does the rest. | landing-spot, carry-and-roll | SIM `golf.short-game.carry-and-roll.v1`, bc |
+| `short-06` | Bunker shots | Explain the splash shot and why bounce helps. | bunker-shot, wedge-bounce | mc, so |
+| `short-07` | Nerves, yips and gimmes | Understand the yips and the conceded putt; know an up-and-down. | yips, gimme, up-and-down | st, ds |
+
+### Layer 2: Intermediate
+
+**Unit `course-management`: Course Management** (prereq: `clubs-and-swings`, `short-game-and-putting`). 7 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `mgmt-01` | Play the hole backward | Think green-to-tee and weigh risk and reward. | course-management, risk-reward | mc, ds |
+| `mgmt-02` | Play your miss | Aim so the bad shot is survivable, using your own dispersion. | dispersion, play-your-miss | SIM `golf.strategy.play-your-miss.v1`, ds |
+| `mgmt-03` | The layup | Decide when to lay up on a par 5 or short of trouble. | layup, par-5-strategy | ds, es |
+| `mgmt-04` | Pins and safe sides | Choose the middle of the green and the safe side. | pin-position, short-sided, safe-side | ht, ds |
+| `mgmt-05` | Wind, elevation and lie | Adjust club for wind, elevation and awkward lies. | wind-effect, elevation-effect, lie-types | ds, es |
+| `mgmt-06` | Routine and mindset | Describe a pre-shot routine and how to reset after a bad hole. | pre-shot-routine, course-mindset | mc, st |
+| `mgmt-07` | What strategy sounds like | Follow a strategy conversation about a hole. | convo-strategy-talk | st, tk |
+
+**Unit `formats-and-handicaps`: Formats and Handicaps** (prereq: `scoring`, `rules-and-etiquette`). 9 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `fmt-01` | Stroke play vs match play | Tell the two great formats apart. | match-play, holes-up-down | mc, bc |
+| `fmt-02` | Reading a match | Read "2 up", "dormie", "halved" and "3 & 2". | dormie, match-result-notation, halved-hole | mc, st |
+| `fmt-03` | The scramble | Explain the scramble, golf's favourite team game. | scramble | mc, ds |
+| `fmt-04` | Four-ball, foursomes, shamble | Tell best-ball and alternate-shot formats apart. | four-ball, foursomes, shamble | tm, mc |
+| `fmt-05` | Stableford, skins, Nassau | Understand the friendly-game formats. | stableford, skins, nassau | tm, mc |
+| `fmt-06` | What a handicap is | Explain the Handicap Index as portable skill. | handicap-index, whs | mc, fg |
+| `fmt-07` | Course rating and slope | Explain how a course adjusts a handicap. | course-rating, slope-rating, course-handicap | es, mc |
+| `fmt-08` | Net score | Turn a gross score into a net score. | net-score, stroke-index-allocation | ds, fg |
+| `fmt-09` | Handicap honesty | Explain posting scores and sandbagging. | handicap-integrity, posting-scores | st, ds |
+
+**Unit `courses-and-conditions`: Courses and Conditions** (prereq: `the-game`). 6 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `cond-01` | Links, parkland, heathland, desert | Tell the main course types apart. | course-types, links-golf | vi, mc |
+| `cond-02` | Who designed it | Know why an architect's name matters; recognise a few. | course-architecture, famous-architects | tm, mc |
+| `cond-03` | Grass and green speed | Explain grass types and the Stimpmeter. | grass-types, stimpmeter, firm-and-fast | es, mc |
+| `cond-04` | Tees, setup and the rough | Read tee markers and how a course is set up. | tee-markers, course-setup | ds, ht |
+| `cond-05` | Weather and altitude | Adjust expectations for wind, rain, cold and altitude. | weather-golf, altitude-distance | ds, mc |
+| `cond-06` | Holes everyone talks about | Recognise the famous holes as shared culture. | famous-holes | mc, ht |
+
+### Layer 3: Enthusiast depth
+
+**Unit `gear-and-numbers`: Gear and the Numbers** (prereq: `clubs-and-swings`). 5 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `gear-01` | The ball | Explain layers, compression and why balls differ. | golf-ball-construction, compression | tm, mc |
+| `gear-02` | Drivers, shafts and fitting | Explain loft, flex and lie in a fitting. | club-fitting, shaft-flex, lie-angle | mc, ds |
+| `gear-03` | Wedges: loft, bounce, grind | Explain gapping and bounce. | wedge-loft-gapping, bounce-grind | tm, mc |
+| `gear-04` | Launch monitor numbers | Read ball speed, launch, spin, smash factor. | launch-monitor, ball-speed, spin-rate, smash-factor, launch-angle | es, mc |
+| `gear-05` | Putters, shoes, rangefinders | Recognise putter styles and distance devices. | putter-styles, distance-devices | vi, ds |
+
+**Unit `the-majors`: The Majors** (prereq: `scoring`, `the-game`). 7 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `major-01` | What makes a major | Name the nine majors and why they matter. | majors-men, majors-women | tm, mc |
+| `major-02` | The Masters | Explain Augusta National, the invitation and the green jacket. | masters, augusta-national, green-jacket | mc, ht |
+| `major-03` | The PGA Championship | Place the PGA Championship on the calendar. | pga-championship | mc, st |
+| `major-04` | The U.S. Open | Explain the "hardest test" reputation and setups. | us-open, us-open-setup | mc, ds |
+| `major-05` | The Open | Explain links golf, the claret jug and the oldest major. | the-open, claret-jug | mc, st |
+| `major-06` | The women's majors | Name the five women's majors and their personalities. | womens-majors | tm, mc |
+| `major-07` | Grand slams and counting | Explain career grand slam and major counts. | career-grand-slam, major-count | mc, es |
+
+**Unit `team-cups`: Ryder, Solheim, Presidents** (prereq: `formats-and-handicaps`). 5 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `cup-01` | What the Ryder Cup is | Explain the Ryder Cup in one breath. | ryder-cup, ryder-cup-format | mc, st |
+| `cup-02` | Points and the magic number | Do the points math, including who retains. | cup-points-math | es, ds |
+| `cup-03` | Captains, picks, qualifying | Explain captain's picks and qualification. | captains-picks, cup-qualification | mc, ds |
+| `cup-04` | Solheim Cup and Presidents Cup | Tell the three cups apart. | solheim-cup, presidents-cup | tm, mc |
+| `cup-05` | Why the cups feel different | Explain the atmosphere and Sunday singles. | cup-atmosphere, singles-sunday | st, tk |
+
+**Unit `history-and-debates`: History and Debates** (prereq: `the-game`). 8 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `hist-01` | Scotland, St Andrews and the rulebooks | Tell the origin story and who writes the rules. | golf-origin, st-andrews, rules-bodies | so, mc |
+| `hist-02` | The first stars | Place the early eras and Bobby Jones. | golf-eras, bobby-jones | so, mc |
+| `hist-03` | Hogan, Palmer, Nicklaus | Explain the television era and Nicklaus's 18 majors. | big-three, nicklaus-18 | mc, st |
+| `hist-04` | The Tiger effect | Explain why Woods changed the sport. | tiger-effect | mc, st |
+| `hist-05` | Women in golf | Tell the story of women's golf, from the LPGA's founding on. | womens-golf-history | so, mc |
+| `hist-06` | The distance debate | Represent both sides of the ball debate. | debate-distance | st, ds |
+| `hist-07` | LIV and the tours | Explain the LIV argument without picking a side. | debate-liv-vs-tours | st, ds |
+| `hist-08` | Slow play, cost and access | Explain pace, cost and access debates with care. | debate-pace-and-access | st, ds |
+
+### Layer 4: Branches and personalization
+
+Branch units set `branchId`; layer is `branch`. Shared units also carry activities tagged with `branchId` where rules or examples differ.
+
+**Unit `branch-rec-play`: Her Weekend Golf** (branch `rec-play`; prereq: `scoring`, `formats-and-handicaps`). 3 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `rec-01` | A week at her course | Picture the routine: range, league night, muni vs private. | rec-golf-life, muni-vs-private | mc, tk |
+| `rec-02` | Playing a round with her | Be a good playing partner: pace, carts, encouragement, honesty. | playing-partner-etiquette | ds, tk |
+| `rec-03` | The league and the golf trip | Understand league nights and golf trips. | league-night, golf-trip | mc, st |
+
+**Unit `tour-pga`: PGA TOUR World** (branch `pga-tour`; prereq: `scoring`, `the-majors`). 4 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `pga-01` | How the PGA TOUR works | Explain the season, tour cards and events. | pga-tour-structure, tour-card | mc, so |
+| `pga-02` | FedExCup and the playoffs | Explain the points race and the three playoff events. | fedexcup, tour-championship | mc, es |
+| `pga-03` | Signature events and the cut | Read a signature event and the cut line. | signature-events, cut-line | mc, ds |
+| `pga-04` | Getting to the TOUR | Explain the Korn Ferry pathway and world ranking. | korn-ferry-pathway, world-ranking-owgr | so, mc |
+
+**Unit `tour-lpga`: LPGA World** (branch `lpga-tour`; prereq: `scoring`, `the-majors`). 4 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `lpga-01` | How the LPGA Tour works | Explain the season and how players qualify. | lpga-structure, lpga-q-series | mc, so |
+| `lpga-02` | Race to the CME Globe | Explain the season race and Player of the Year. | race-to-cme-globe, lpga-player-of-year | mc, ds |
+| `lpga-03` | The world ranking and a global tour | Read the women's world ranking; the field's global mix. | womens-world-ranking, lpga-global-field | mc, st |
+| `lpga-04` | The road to the Solheim Cup | Explain qualification and captain picks. | solheim-qualification | mc, ds |
+
+**Unit `tour-liv`: LIV World** (branch `liv-golf`; prereq: `scoring`, `formats-and-handicaps`). 3 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `liv-01` | What LIV is | Explain shotgun starts, 72 holes and team scoring (2026). | liv-format, shotgun-start | mc, so |
+| `liv-02` | Teams, captains, wild cards | Read a LIV field and a team. | liv-teams | mc, tm |
+| `liv-03` | Where LIV stands | Explain funding, eligibility and returning players, neutrally. | liv-status | st, ds |
+
+**Unit `tour-dpwt`: DP World Tour World** (branch `dp-world-tour`; prereq: `scoring`, `the-majors`). 3 lessons.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `dpwt-01` | The DP World Tour | Explain the tour's global calendar and its history. | dpwt-structure, harry-vardon-trophy | mc, so |
+| `dpwt-02` | Race to Dubai and Rolex Series | Read the season race and the big events. | race-to-dubai, rolex-series | mc, ds |
+| `dpwt-03` | The road to the Ryder Cup | Explain how European points and picks work. | ryder-europe-path | mc, st |
+
+### Layer 5: Current season / live
+
+**Unit `season-now`: Season Now** (prereq: `scoring` and either `the-majors` or `branch-rec-play`). Templated; content refreshed by `live` hooks and editorial cards. 6 lesson templates (each instantiated per week or event).
+
+| Lesson id | Title | Objective | conceptIds | Activities | Live hook |
+|---|---|---|---|---|---|
+| `live-01` | This week in golf | Know what is on and why it matters. | live-weekly-context | mc, st | schedules, events |
+| `live-02` | Read the leaderboard | Interpret today's leaderboard, cut line and pairings. | live-leaderboard, cut-line | mc, ht | scores |
+| `live-03` | The race | Interpret FedExCup, Race to the CME Globe, Race to Dubai, or world-ranking movers. | live-ranking-race | mc, es | standings, rankings |
+| `live-04` | Major week preview | Prepare for a major: course, storylines, what to watch. | live-major-preview | mc, st | events, news |
+| `live-05` | The news explainer | Why is a headline a big deal (rules, equipment, LIV, injuries)? | rule-news-explainer | st, mc | news, regulations, new-products |
+| `live-06` | New season primer | Reset for a new season and rules cycle. | season-rollover | mc, so | seasonal |
+
+### Layer 6: Conversation practice and perpetual review
+
+**Unit `conversation-lab`: Conversation Lab** (prereq: any three foundation units; content grows with mastery). 8 lessons; also feeds the Talk tab.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `talk-01` | After her round | Respond with curiosity to a round recap. | convo-follow-up-questions, score-benchmarks | tk, st |
+| `talk-02` | The round that went wrong | Support someone after a bad round without fixing it. | convo-bad-round, yips | tk, st |
+| `talk-03` | Watching the final round | Follow along with someone during a tour event. | convo-watching-together, leaderboard-reading | tk, st |
+| `talk-04` | The gear chat | Ask smart questions about a new driver or wedges. | convo-gear-talk, club-fitting | tk, st |
+| `talk-05` | Handicap talk | Handle "I'm a 14 now" conversations. | convo-handicap-talk, handicap-index | tk, st |
+| `talk-06` | Major Sunday | Share a big finish. | convo-major-sunday, majors-men | tk, st |
+| `talk-07` | "Come play a round" | Accept an invitation honestly. | convo-invitation-to-play, convo-admit-what-you-dont-know | tk, ds |
+| `talk-08` | Say-this gauntlet | Decode five lines in a row. | (all layers, sampled) | st |
+
+**Unit `review-loop`: Perpetual Review** (always available after the first lesson). 4 lesson templates driven by the review policy.
+
+| Lesson id | Title | Objective | conceptIds | Activities |
+|---|---|---|---|---|
+| `review-01` | Daily Bite | 1 card (mc, fg or tm) from due concepts. | (due concepts) | mc, fg |
+| `review-02` | Weekly mix | 3-round session sampled by weakness. | (weak concepts) | mc, bc, ds, tk |
+| `review-03` | Penalty and relief boss | Mastery check on the two most-misunderstood areas: penalties and relief. | penalty-stroke, free-relief, penalty-area-relief, stroke-and-distance | bc, ds, ht |
+| `review-04` | Term blitz | Playbook term drill. | (terms) | tm, fg |
+
+**Review policy:** Leitner boxes at 1d, 3d, 7d, 14d, 30d, 60d; max 12 items per session; new concepts enter after first correct use; a concept below 0.6 re-enters at 1d. Sim results contribute masterySignals with the same weights as native (halved when hints are used).
+
+### Concept targets, personalization slots, release plan
+
+- **Concept count target:** ~205 Playbook concepts (listed in the Appendix below); at least 60 have full Playbook entries with an example line (see `exercises.md` section 3).
+- **Personalization slots:** `{{skillLevel}}`, `{{player}}`, `{{league}}`, `{{team}}`, `{{equipment}}`, `{{region}}` (section 8).
+- **Release plan:**
+  - **Launch (0.1 to 1.0):** units `the-game`, `scoring`, `clubs-and-swings`, `rules-and-etiquette`, `short-game-and-putting`, `course-management`, `formats-and-handicaps`, `courses-and-conditions`, `branch-rec-play`, `conversation-lab`, `review-loop`; sims 1, 2 and 3 (ball flight, putting, play-your-miss) first; branch `rec-play` complete.
+  - **Fast follow (1.1):** `the-majors`, `team-cups`, `tour-pga`, `tour-lpga`, `season-now` with schedule, leaderboard and news cards; sim 4 (carry and roll).
+  - **Ongoing:** `gear-and-numbers`, `history-and-debates`, `tour-liv`, `tour-dpwt`; new lessons per season (new Rules of Golf edition on the four-year cycle; majors calendar April to July; PGA TOUR season January to August with a fall series; LPGA and DP World Tour calendars; Ryder Cup years), new talk tracks weekly during the season.
+
+### Appendix: Playbook concepts (ids)
+
+The game: `golf-objective`, `stroke`, `round-18`, `tee-box`, `fairway`, `rough`, `green`, `cup-and-flagstick`, `par`, `hole-yardage`, `bunker`, `penalty-area`, `out-of-bounds`, `front-back-nine`, `the-turn`, `course-par-72`, `tee-time`, `pace-of-play`, `round-flow`, `golf-cousins`, `self-officiating`.
+Scoring: `stroke-play`, `stroke-count`, `birdie`, `eagle-albatross`, `bogey`, `hole-in-one`, `score-to-par`, `leaderboard-reading`, `scorecard`, `gross-score`, `penalty-stroke`, `score-benchmarks`.
+Clubs and swings: `fourteen-club-limit`, `club-families`, `loft`, `club-length-distance`, `carry-distance`, `swing-phases`, `grip-stance-alignment`, `swing-path`, `clubface-angle`, `face-to-path`, `start-line`, `draw`, `fade`, `slice`, `hook`, `push-pull`, `mishits`, `shank`, `range-vs-course`, `warm-up`.
+Rules: `play-it-as-it-lies`, `loose-impediments`, `stroke-and-distance`, `provisional-ball`, `lost-ball`, `red-yellow-stakes`, `penalty-area-relief`, `free-relief`, `drop-knee-height`, `nearest-point-of-relief`, `unplayable-ball`, `bunker-rules`, `putting-green-rules`, `marking-ball`, `golf-etiquette`, `honor-system`, `ready-golf`, `pitch-mark-repair`, `rules-official`, `scorecard-signing`, `two-balls-when-unsure`.
+Short game: `short-game-share`, `putting-line-speed`, `lag-putt`, `three-putt`, `break`, `fall-line`, `green-speed-stimp`, `aim-point`, `chip`, `pitch`, `flop`, `bump-and-run`, `landing-spot`, `carry-and-roll`, `bunker-shot`, `wedge-bounce`, `yips`, `gimme`, `up-and-down`.
+Management: `course-management`, `risk-reward`, `dispersion`, `play-your-miss`, `layup`, `par-5-strategy`, `pin-position`, `short-sided`, `safe-side`, `wind-effect`, `elevation-effect`, `lie-types`, `pre-shot-routine`, `course-mindset`, `convo-strategy-talk`.
+Formats and handicaps: `match-play`, `holes-up-down`, `dormie`, `match-result-notation`, `halved-hole`, `scramble`, `four-ball`, `foursomes`, `shamble`, `stableford`, `skins`, `nassau`, `handicap-index`, `whs`, `course-rating`, `slope-rating`, `course-handicap`, `net-score`, `stroke-index-allocation`, `handicap-integrity`, `posting-scores`.
+Courses: `course-types`, `links-golf`, `course-architecture`, `famous-architects`, `grass-types`, `stimpmeter`, `firm-and-fast`, `tee-markers`, `course-setup`, `weather-golf`, `altitude-distance`, `famous-holes`.
+Gear: `golf-ball-construction`, `compression`, `club-fitting`, `shaft-flex`, `lie-angle`, `wedge-loft-gapping`, `bounce-grind`, `launch-monitor`, `ball-speed`, `spin-rate`, `smash-factor`, `launch-angle`, `putter-styles`, `distance-devices`.
+Majors and cups: `majors-men`, `majors-women`, `masters`, `augusta-national`, `green-jacket`, `pga-championship`, `us-open`, `us-open-setup`, `the-open`, `claret-jug`, `womens-majors`, `career-grand-slam`, `major-count`, `ryder-cup`, `ryder-cup-format`, `cup-points-math`, `captains-picks`, `cup-qualification`, `solheim-cup`, `presidents-cup`, `cup-atmosphere`, `singles-sunday`.
+History and debates: `golf-origin`, `st-andrews`, `rules-bodies`, `golf-eras`, `bobby-jones`, `big-three`, `nicklaus-18`, `tiger-effect`, `womens-golf-history`, `debate-distance`, `debate-liv-vs-tours`, `debate-pace-and-access`.
+Branches: `rec-golf-life`, `muni-vs-private`, `playing-partner-etiquette`, `league-night`, `golf-trip`, `pga-tour-structure`, `tour-card`, `fedexcup`, `tour-championship`, `signature-events`, `cut-line`, `korn-ferry-pathway`, `world-ranking-owgr`, `lpga-structure`, `lpga-q-series`, `race-to-cme-globe`, `lpga-player-of-year`, `womens-world-ranking`, `lpga-global-field`, `solheim-qualification`, `liv-format`, `shotgun-start`, `liv-teams`, `liv-status`, `dpwt-structure`, `harry-vardon-trophy`, `race-to-dubai`, `rolex-series`, `ryder-europe-path`.
+Live and conversation: `live-weekly-context`, `live-leaderboard`, `live-ranking-race`, `live-major-preview`, `rule-news-explainer`, `season-rollover`, `convo-follow-up-questions`, `convo-bad-round`, `convo-watching-together`, `convo-gear-talk`, `convo-handicap-talk`, `convo-major-sunday`, `convo-invitation-to-play`, `convo-admit-what-you-dont-know`.
+
+---
