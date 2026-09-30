@@ -1,0 +1,1667 @@
+{
+  "contractVersion": "1.2.0",
+  "courseId": "basketball",
+  "unit": {
+    "id": "season-live",
+    "title": "Season Mode (Live)",
+    "layer": "current-season",
+    "order": 14,
+    "prerequisiteUnitIds": [
+      "league-machine"
+    ],
+    "personalizationSlots": [
+      "team",
+      "player",
+      "league",
+      "conference",
+      "rival"
+    ],
+    "live": {
+      "dataKind": "schedule,results,standings,roster,news",
+      "adapterKey": "basketball.season",
+      "refreshHint": "hourly; minutes during games"
+    },
+    "lessons": [
+      {
+        "id": "liv-01",
+        "title": "This week in {{league}}",
+        "objective": "Get the week's key games and context for this week's action.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "live-weekly-brief",
+          "seeding"
+        ],
+        "live": {
+          "dataKind": "schedule",
+          "refreshHint": "daily"
+        },
+        "activities": [
+          {
+            "id": "liv-01-mc-matchup",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "live-weekly-brief"
+            ],
+            "payload": {
+              "prompt": "Why do fans watch the seeding race in {{league}} week to week?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Seeds set playoff matchups and who gets home-court advantage."
+                },
+                {
+                  "id": "b",
+                  "text": "The top seed is automatically crowned champion."
+                },
+                {
+                  "id": "c",
+                  "text": "Seeds are only used to schedule TV games."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Exactly. A better seed means a better first-round matchup and home court, so even a regular-season win can change the playoff picture.",
+                "incorrect": "Not quite. Seeds set the playoff bracket and home-court advantage. The top seed still has to win the series to advance."
+              }
+            }
+          },
+          {
+            "id": "liv-01-st-matchup",
+            "type": "say-this",
+            "conceptIds": [
+              "live-weekly-brief"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "Our team plays three games this week and every one is against a contender."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "A brutal schedule against strong teams tests whether they can compete with the best."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "Easy wins against contenders are guaranteed."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "Playing good teams hurts their playoff chances."
+                },
+                {
+                  "id": "d",
+                  "isCorrect": false,
+                  "text": "Winning does not matter against contenders."
+                }
+              ],
+              "translation": "She means this is a tough week against strong teams, so the results will say a lot about where her team really stands.",
+              "followUps": [
+                {
+                  "line": "Which of the three worries you most?",
+                  "why": "A curious question that invites her to name the game she is nervous about."
+                },
+                {
+                  "line": "That is a tough slate. Are you watching all three?",
+                  "why": "Acknowledges the difficulty without predicting outcomes."
+                }
+              ],
+              "noFakeExpertNote": "You do not need to predict the week. Ask which game she is most nervous about."
+            }
+          },
+          {
+            "id": "liv-01-bc-rival",
+            "type": "binary-call",
+            "conceptIds": [
+              "seeding"
+            ],
+            "payload": {
+              "prompt": "{{team}} beats a direct rival for the same seed. Bigger swing than a normal win?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two teams close together in the standings, one moving up as the other slips."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, it helps them and hurts the rival"
+                },
+                {
+                  "id": "no",
+                  "label": "No, all wins count the same"
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Right. Beating a team you are racing gives you a win and hands them a loss, so the gap moves twice as much. Fans sometimes call it a two-way swing.",
+                "incorrect": "Every win is one win in the standings, but beating a direct rival also adds a loss to their record. That is why fans circle those games."
+              }
+            }
+          },
+          {
+            "id": "liv-01-ds-tie",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "live-weekly-brief",
+              "seeding"
+            ],
+            "payload": {
+              "prompt": "She says {{team}} is tied for the last Play-In spot. What do you ask?",
+              "situation": {
+                "narrative": "It is late in the season and her team is fighting to stay in the Play-In range.",
+                "facts": [
+                  {
+                    "label": "Standing",
+                    "value": "Tied with the team just below"
+                  },
+                  {
+                    "label": "Games left",
+                    "value": "Three, all against contenders"
+                  },
+                  {
+                    "label": "Tiebreaker",
+                    "value": "She is not sure who holds it"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "tiebreaker-next",
+                  "label": "Who do they play next, and who holds the tiebreaker?",
+                  "verdict": "best",
+                  "consequence": "Those two answers decide a tied race, and she gets to explain her team's path.",
+                  "considerations": [
+                    "The head-to-head record is usually the first tiebreaker",
+                    "The schedule shows which games really matter",
+                    "You learn what she is watching"
+                  ]
+                },
+                {
+                  "id": "healthy",
+                  "label": "Is everybody healthy?",
+                  "verdict": "acceptable",
+                  "consequence": "A fair question, but it skips the race itself. Ask about the standings first, then the injuries.",
+                  "considerations": [
+                    "Injuries matter, but they are not the standings",
+                    "It is a good follow-up, not the opener"
+                  ]
+                },
+                {
+                  "id": "who-cares",
+                  "label": "It is just the regular season, so does it matter?",
+                  "verdict": "poor",
+                  "consequence": "It matters a lot to her. In this race, one game can decide whether the season continues.",
+                  "considerations": [
+                    "Dismissing the stakes shuts the conversation down",
+                    "Play-In spots decide who reaches the playoffs"
+                  ]
+                }
+              ],
+              "expertNote": "When two teams are tied, the standings and the tiebreaker are the story. Asking about them shows you followed what she said."
+            }
+          },
+          {
+            "id": "liv-01-fg-games",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "live-weekly-brief"
+            ],
+            "payload": {
+              "prompt": "Fill in the NBA schedule math.",
+              "template": "NBA teams play about {{games-per-week}} games per week on average during the regular season.",
+              "gaps": [
+                {
+                  "id": "games-per-week",
+                  "options": [
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                  ],
+                  "correct": "3"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. An 82-game season over about 25 weeks works out to a little over three games a week, with most weeks holding two to four.",
+                "incorrect": "Not quite. 82 games over about 25 weeks is a little over three a week, so most weeks have two to four games."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "liv-02",
+        "title": "{{team}}: game preview",
+        "objective": "Preview {{team}}'s next game and what to watch for.",
+        "estimatedMinutes": 11,
+        "conceptIds": [
+          "live-game-preview",
+          "matchup-hunting",
+          "rotation-minutes"
+        ],
+        "live": {
+          "dataKind": "schedule,roster",
+          "refreshHint": "twice daily"
+        },
+        "activities": [
+          {
+            "id": "liv-02-mc-preview",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "live-game-preview"
+            ],
+            "payload": {
+              "prompt": "{{team}} plays the second night of a back-to-back. What might you see?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "A star resting or a tighter rotation because of the quick turnaround."
+                },
+                {
+                  "id": "b",
+                  "text": "The score from night one carrying over."
+                },
+                {
+                  "id": "c",
+                  "text": "The second game automatically being postponed."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Back-to-backs are two games in two days, so teams sometimes rest a star or lean on a smaller rotation on night two.",
+                "incorrect": "Not quite. A back-to-back is just two games on consecutive nights. The effect is fatigue, so teams may rest players or shorten the rotation."
+              }
+            }
+          },
+          {
+            "id": "liv-02-st-matchup",
+            "type": "say-this",
+            "conceptIds": [
+              "live-game-preview",
+              "matchup-hunting"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "This matchup is perfect for {{player}}. Their defense is slow."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "She is identifying a mismatch: the opponent's slow defense suits {{player}}'s speed."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "She is insulting the opponent."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "The matchup is bad for {{player}}."
+                },
+                {
+                  "id": "d",
+                  "isCorrect": false,
+                  "text": "Speed has no impact on defense."
+                }
+              ],
+              "translation": "She means the opponent's weak perimeter defense is a gift for a quick player like {{player}}.",
+              "followUps": [
+                {
+                  "line": "Think he will attack it?",
+                  "why": "Good: you are thinking about whether he exploits the matchup."
+                },
+                {
+                  "line": "Who usually guards {{player}} on that team?",
+                  "why": "A curious question that shows you are thinking about the individual matchup."
+                }
+              ],
+              "noFakeExpertNote": "A mismatch is when a defender cannot keep up with the player he guards. Ask her which matchup she is most excited about."
+            }
+          },
+          {
+            "id": "liv-02-ds-status",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "live-game-preview"
+            ],
+            "payload": {
+              "prompt": "{{player}} is listed questionable tonight. What do you ask her?",
+              "situation": {
+                "narrative": "She is checking the injury report before {{team}}'s game.",
+                "facts": [
+                  {
+                    "label": "Status",
+                    "value": "Questionable"
+                  },
+                  {
+                    "label": "Schedule",
+                    "value": "Second night of a back-to-back"
+                  },
+                  {
+                    "label": "Update",
+                    "value": "Final word usually comes near tip-off"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "ask-rest",
+                  "label": "Do they usually rest him on back-to-backs?",
+                  "verdict": "best",
+                  "consequence": "That is the right question. On the second night of a back-to-back, teams sometimes rest a player, so the pattern is worth knowing.",
+                  "considerations": [
+                    "Questionable means it could go either way",
+                    "Back-to-backs are when rest days often happen",
+                    "It shows you understood both words on the report"
+                  ]
+                },
+                {
+                  "id": "ask-when",
+                  "label": "When will we know for sure?",
+                  "verdict": "acceptable",
+                  "consequence": "A fair question, and the honest answer is usually close to game time. It just does not use what you can read on the report.",
+                  "considerations": [
+                    "Teams often update close to tip-off",
+                    "It is a good second question"
+                  ]
+                },
+                {
+                  "id": "definitely-out",
+                  "label": "Questionable means he is definitely out, right?",
+                  "verdict": "poor",
+                  "consequence": "Not quite. Questionable means uncertain. A player labeled questionable plays in many games, so guessing out could make you sound unsure.",
+                  "considerations": [
+                    "Out means out; questionable means uncertain",
+                    "Assuming the worst can upset her"
+                  ]
+                }
+              ],
+              "expertNote": "Injury statuses are a scale. Questionable means it could go either way, and the final word often comes near tip-off. Ask, do not assume."
+            }
+          },
+          {
+            "id": "liv-02-mc-injury",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "live-game-preview"
+            ],
+            "payload": {
+              "prompt": "{{team}}'s star is listed questionable. Where should you check before tip-off?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The league's official injury report and the team's own updates."
+                },
+                {
+                  "id": "b",
+                  "text": "Unverified posts and rumors on social media."
+                },
+                {
+                  "id": "c",
+                  "text": "Last season's box scores."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. The official injury report and the team's own updates are the most reliable places. Rumors can be wrong, and old box scores cannot tell you tonight's status.",
+                "incorrect": "Not quite. The official injury report and team updates are the most reliable. Rumors are guesses, and last season's box scores say nothing about tonight."
+              }
+            }
+          },
+          {
+            "id": "liv-02-tt-preview",
+            "type": "talk-track",
+            "conceptIds": [
+              "live-game-preview"
+            ],
+            "payload": {
+              "title": "Game preview talk",
+              "setting": "She is excited and nervous about tonight's game. You want to talk about what might happen.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "I hope they win tonight. Our playoff chances depend on it.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "What is your team's biggest edge against this opponent?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Good question. We are way faster on the wings.",
+                      "coachNote": "You asked about their team's strength, inviting analysis."
+                    },
+                    {
+                      "id": "b",
+                      "text": "Yeah, this is a must-win.",
+                      "smoothDelta": 3,
+                      "theirResponse": "Exactly. I am so nervous.",
+                      "coachNote": "You agreed but did not add anything new to the talk."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "Do you think {{player}} will go off tonight?",
+                  "replies": [
+                    {
+                      "id": "c",
+                      "text": "Depends on whether their defense can keep up. Does he usually score against this team?",
+                      "smoothDelta": 20,
+                      "theirResponse": "He is always better at home. We are on the road, though.",
+                      "coachNote": "You connected individual skill to matchup; she gave you more info."
+                    },
+                    {
+                      "id": "d",
+                      "text": "He always scores. That is what he does.",
+                      "smoothDelta": -5,
+                      "theirResponse": "True, but some teams can slow him down.",
+                      "coachNote": "You oversimplified. Defenses actually matter."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Game previews are about matchups and momentum. Talk about edges and concerns."
+            }
+          }
+        ]
+      },
+      {
+        "id": "liv-03",
+        "title": "Why is everyone talking about this?",
+        "objective": "Decode the week's biggest basketball story and why fans care.",
+        "estimatedMinutes": 9,
+        "conceptIds": [
+          "live-explainer",
+          "trade"
+        ],
+        "live": {
+          "dataKind": "news",
+          "refreshHint": "hourly"
+        },
+        "activities": [
+          {
+            "id": "liv-03-mc-story",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "live-explainer"
+            ],
+            "payload": {
+              "prompt": "A star signs a supermax-style extension. Why is that big news?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "It ties up a huge share of the team's cap for years, shaping every other move."
+                },
+                {
+                  "id": "b",
+                  "text": "It guarantees the team makes the playoffs."
+                },
+                {
+                  "id": "c",
+                  "text": "The league gives the team a bonus draft pick."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. A supermax-style deal is a very large, long contract. It shows the star's commitment, and it eats a big slice of the cap, which limits what the team can add around him.",
+                "incorrect": "Not quite. Nothing about a contract guarantees wins or draft picks. The news is that a big, long deal shows commitment and uses up a large share of the team's cap."
+              }
+            }
+          },
+          {
+            "id": "liv-03-st-story",
+            "type": "say-this",
+            "conceptIds": [
+              "live-explainer"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "The trade deadline is two weeks away and nobody knows what to expect."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "Nobody knows what will happen; teams decide based on injuries, the standings and cost."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "Trade deadline trades are always quiet."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "All contenders make the same trades."
+                },
+                {
+                  "id": "d",
+                  "isCorrect": false,
+                  "text": "Trades do not happen at the deadline anymore."
+                }
+              ],
+              "translation": "She means the trade deadline is coming and nobody can be sure who will move. Teams decide based on injuries, the standings and what they can afford.",
+              "followUps": [
+                {
+                  "line": "Do you think your team will do anything?",
+                  "why": "Invites her to share her guess and her hopes."
+                },
+                {
+                  "line": "Who would you want them to go get?",
+                  "why": "A fun question that lets her show what she knows about the roster."
+                }
+              ],
+              "noFakeExpertNote": "Nobody knows what happens at the deadline. Ask what she hopes her team does."
+            }
+          },
+          {
+            "id": "liv-03-ds-coach",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "live-explainer"
+            ],
+            "payload": {
+              "prompt": "She says her team fired its coach mid-season. What do you say?",
+              "situation": {
+                "narrative": "The news broke this morning and she is clearly rattled.",
+                "facts": [
+                  {
+                    "label": "Timing",
+                    "value": "Mid-season, playoffs still in reach"
+                  },
+                  {
+                    "label": "Interim",
+                    "value": "An assistant coach takes over"
+                  },
+                  {
+                    "label": "Reason",
+                    "value": "The team has not said"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "ask-how",
+                  "label": "That is a lot. How are you feeling about it?",
+                  "verdict": "best",
+                  "consequence": "She talks about what worries her, and you learn what matters most. You do not need a hot take.",
+                  "considerations": [
+                    "Coaching changes are emotional for fans",
+                    "Nobody outside the team knows the full reason",
+                    "Asking beats guessing"
+                  ]
+                },
+                {
+                  "id": "interim-question",
+                  "label": "Who takes over as the interim coach?",
+                  "verdict": "acceptable",
+                  "consequence": "A reasonable factual question. It goes better after you check in on how she feels.",
+                  "considerations": [
+                    "It shows you want the facts",
+                    "It skips the feeling behind her message"
+                  ]
+                },
+                {
+                  "id": "guess-why",
+                  "label": "Probably locker room drama, right?",
+                  "verdict": "poor",
+                  "consequence": "Nobody knows the reason yet, so a guess can sound like gossip about people she cares about.",
+                  "considerations": [
+                    "The team has not said why",
+                    "Guessing adds drama she did not ask for"
+                  ]
+                }
+              ],
+              "expertNote": "Coaching changes are big news, but the reasons are rarely public. A caring question beats a theory."
+            }
+          },
+          {
+            "id": "liv-03-mc-deadline",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "trade"
+            ],
+            "payload": {
+              "prompt": "What is the trade deadline?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The date after which teams cannot make trades until the season ends."
+                },
+                {
+                  "id": "b",
+                  "text": "The last day a coach can be fired."
+                },
+                {
+                  "id": "c",
+                  "text": "The day the regular season ends."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. After the deadline, trades are frozen until after the season. That is why teams push to make moves right before it, and why fans watch so closely.",
+                "incorrect": "Not quite. The trade deadline is the last date teams can make trades during the season. It is not about coaches or the end of the schedule."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "liv-04",
+        "title": "Injury report decoder",
+        "objective": "Understand injury reports and what they mean for games this week.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "injury-report",
+          "load-management",
+          "game-time-decision"
+        ],
+        "live": {
+          "dataKind": "roster",
+          "refreshHint": "daily, minutes before game"
+        },
+        "activities": [
+          {
+            "id": "liv-04-mc-status",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "injury-report"
+            ],
+            "payload": {
+              "prompt": "A player is listed as questionable for tonight. What does that mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "He has been ruled out and will not play tonight."
+                },
+                {
+                  "id": "b",
+                  "text": "It could go either way; he may play or sit."
+                },
+                {
+                  "id": "c",
+                  "text": "He will definitely play but is limited."
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. Questionable is the middle of the scale, between doubtful and probable. Fans also call it a game-time decision, because the answer often comes near tip-off.",
+                "incorrect": "Not quite. Questionable means uncertain: he may play or may sit. Out means he will not play, and probable means he is likely to."
+              }
+            }
+          },
+          {
+            "id": "liv-04-st-impact",
+            "type": "say-this",
+            "conceptIds": [
+              "injury-report",
+              "game-time-decision"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "Three players are out tonight. That is a huge opportunity for the bench."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "Missing starters mean role players and bench get more minutes and shots."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "Injuries do not affect playing time."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "The bench is always ready to start."
+                },
+                {
+                  "id": "d",
+                  "isCorrect": false,
+                  "text": "Bench players are never good substitutes."
+                }
+              ],
+              "translation": "She means injuries create a chance for lesser-known players to step up.",
+              "followUps": [
+                {
+                  "line": "Who on the bench do you trust to step up?",
+                  "why": "A curious question that lets her name her favorite role player."
+                },
+                {
+                  "line": "Bench mob to the rescue.",
+                  "why": "A lighthearted way to root for the reserves."
+                }
+              ],
+              "noFakeExpertNote": "Injuries open minutes for backups, and some rise to the moment while others do not. Ask who she trusts."
+            }
+          },
+          {
+            "id": "liv-04-bc-rest",
+            "type": "binary-call",
+            "conceptIds": [
+              "load-management"
+            ],
+            "payload": {
+              "prompt": "A healthy star sits out to rest. What do fans call it?",
+              "scene": {
+                "kind": "none",
+                "alt": "A star player in street clothes on the bench while his team plays."
+              },
+              "choices": [
+                {
+                  "id": "load",
+                  "label": "Load management"
+                },
+                {
+                  "id": "technical",
+                  "label": "A technical foul"
+                }
+              ],
+              "correctChoiceId": "load",
+              "explanation": {
+                "correct": "Right. Load management is resting a healthy player, often on the second night of a back-to-back. Fans and teams argue about it, and the league has tried to discourage it.",
+                "incorrect": "Not quite. Resting a healthy player is called load management. A technical foul is a penalty for misconduct."
+              }
+            }
+          },
+          {
+            "id": "liv-04-tm-status",
+            "type": "term-match",
+            "conceptIds": [
+              "injury-report"
+            ],
+            "payload": {
+              "prompt": "Match the injury report word to what it means.",
+              "pairs": [
+                {
+                  "id": "out",
+                  "term": "Out",
+                  "definition": "Ruled out. He will not play."
+                },
+                {
+                  "id": "doubtful",
+                  "term": "Doubtful",
+                  "definition": "Unlikely to play, but not officially ruled out."
+                },
+                {
+                  "id": "questionable",
+                  "term": "Questionable",
+                  "definition": "Could go either way. A game-time decision."
+                },
+                {
+                  "id": "probable",
+                  "term": "Probable",
+                  "definition": "Likely to play."
+                }
+              ],
+              "distractorDefinitions": [
+                "Suspended for the night.",
+                "Playing through a fine."
+              ],
+              "explanation": {
+                "summary": "Injury reports run from out and doubtful through questionable to probable. Fans use game-time decision for a player whose status will not be settled until close to tip-off."
+              }
+            }
+          },
+          {
+            "id": "liv-04-fg-status",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "injury-report"
+            ],
+            "payload": {
+              "prompt": "Fill in the game-time decision idea.",
+              "template": "A {{label}} player has no final status until close to tip-off. Fans call that a {{gtd}}.",
+              "gaps": [
+                {
+                  "id": "label",
+                  "options": [
+                    "questionable",
+                    "out",
+                    "suspended"
+                  ],
+                  "correct": "questionable"
+                },
+                {
+                  "id": "gtd",
+                  "options": [
+                    "game-time decision",
+                    "buzzer beater",
+                    "tip-off fee"
+                  ],
+                  "correct": "game-time decision"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. A questionable player may play or sit, and teams sometimes wait until close to tip-off to decide. Fans call that a game-time decision, or GTD.",
+                "incorrect": "Not quite. A questionable player is the one whose status could go either way, and fans call that wait a game-time decision, or GTD. An out player is already ruled out."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "liv-05",
+        "title": "Standings and seeding race",
+        "objective": "Read the standings, understand seeding and where {{team}} stands.",
+        "estimatedMinutes": 11,
+        "conceptIds": [
+          "live-seeding-race",
+          "seeding",
+          "standings-reading",
+          "play-in",
+          "tiebreaker"
+        ],
+        "live": {
+          "dataKind": "standings",
+          "refreshHint": "minutes after games end"
+        },
+        "activities": [
+          {
+            "id": "liv-05-mc-standing",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "standings-reading"
+            ],
+            "payload": {
+              "prompt": "{{team}} ties another team in the standings. What usually breaks the tie first?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Their head-to-head record against each other."
+                },
+                {
+                  "id": "b",
+                  "text": "A coin flip, every time."
+                },
+                {
+                  "id": "c",
+                  "text": "Which team has sold more tickets."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. The head-to-head record is usually the first tiebreaker, with more steps after it if the teams still cannot be separated. That is why games against rivals matter twice.",
+                "incorrect": "Not quite. Ties are usually broken by the head-to-head record first, then by further steps. A random draw is only the very last resort."
+              }
+            }
+          },
+          {
+            "id": "liv-05-st-seeding",
+            "type": "say-this",
+            "conceptIds": [
+              "live-seeding-race"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "We are sitting 10th. One more loss and we could fall out of the Play-In entirely."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "Her team holds the last Play-In spot, and slipping to 11th would end its season."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "The Play-In guarantees a playoff spot."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "Seeding does not affect the Play-In."
+                },
+                {
+                  "id": "d",
+                  "isCorrect": false,
+                  "text": "Every team has to go through the Play-In."
+                }
+              ],
+              "translation": "She means seeds 7 through 10 play the Play-In for the last two playoff spots, and 10th is the very edge of that group. Fall to 11th and the season is over.",
+              "followUps": [
+                {
+                  "line": "How far back are you from the six seed?",
+                  "why": "A curious question about the gap between the Play-In and a direct playoff spot."
+                },
+                {
+                  "line": "Ten is nerve-racking. What do you need to happen?",
+                  "why": "Acknowledges her nerves and lets her explain the race."
+                }
+              ],
+              "noFakeExpertNote": "Seeds 1 to 6 make the playoffs directly, 7 to 10 play the Play-In, and 11 and below are out. If she says more, ask."
+            }
+          },
+          {
+            "id": "liv-05-ds-finish",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "live-seeding-race",
+              "play-in"
+            ],
+            "payload": {
+              "prompt": "{{team}} is 9th. Which finish would be best for them?",
+              "situation": {
+                "narrative": "Late in the season, {{team}} sits in the Play-In range.",
+                "facts": [
+                  {
+                    "label": "Position",
+                    "value": "9th in the conference"
+                  },
+                  {
+                    "label": "Games left",
+                    "value": "Eight"
+                  },
+                  {
+                    "label": "Gap to 6th",
+                    "value": "Three games"
+                  },
+                  {
+                    "label": "Play-In",
+                    "value": "Seeds 7 to 10 play in"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "reach-six",
+                  "label": "Climb to 6th or better and skip the Play-In",
+                  "verdict": "best",
+                  "consequence": "Yes. Sixth or better goes straight to the playoffs, with no elimination games first.",
+                  "considerations": [
+                    "Seeds 1 to 6 qualify directly",
+                    "They are only three games back with eight to play",
+                    "No do-or-die Play-In games"
+                  ]
+                },
+                {
+                  "id": "reach-eight",
+                  "label": "Finish 8th, which still gets two chances in the Play-In",
+                  "verdict": "acceptable",
+                  "consequence": "Not bad. Seventh and eighth get two chances to win a spot, while ninth and tenth must win two straight games.",
+                  "considerations": [
+                    "Seeds 7 and 8 play each other first, and the loser gets another game",
+                    "It is safer than 9th or 10th",
+                    "Still not as safe as skipping it"
+                  ]
+                },
+                {
+                  "id": "stay-nine",
+                  "label": "Stay 9th, which needs two straight wins to reach the playoffs",
+                  "verdict": "poor",
+                  "consequence": "Ninth is the hardest road in the Play-In: they must win two elimination games in a row.",
+                  "considerations": [
+                    "9th plays 10th, and the loser is eliminated",
+                    "The winner then plays the loser of 7 versus 8 for the last spot"
+                  ]
+                }
+              ],
+              "expertNote": "Seeds 1 to 6 are safe, 7 and 8 get two chances, and 9 and 10 need to win twice in a row. That is why a move up even one or two seeds can matter so much."
+            }
+          },
+          {
+            "id": "liv-05-ftg-gb",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "standings-reading"
+            ],
+            "payload": {
+              "prompt": "Work out games back.",
+              "template": "The leader is 40-20 and the next team is 37-23. That puts the next team {{gb}} games back.",
+              "gaps": [
+                {
+                  "id": "gb",
+                  "options": [
+                    "1.5",
+                    "3",
+                    "6"
+                  ],
+                  "correct": "3"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. Games back is half of the sum of the gap in wins (3) and the gap in losses (3), so (3 + 3) / 2 = 3.",
+                "incorrect": "Not quite. Games back is half of the sum of the win gap (40 minus 37 is 3) and the loss gap (23 minus 20 is 3). That gives (3 + 3) / 2 = 3."
+              }
+            }
+          },
+          {
+            "id": "liv-05-mc-conference",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "seeding"
+            ],
+            "payload": {
+              "prompt": "Why does conference matter in seeding?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Each conference fills eight playoff seeds, and teams rank only against their own conference."
+                },
+                {
+                  "id": "b",
+                  "text": "Conference champions get a bye to the second round."
+                },
+                {
+                  "id": "c",
+                  "text": "All 30 teams are ranked in one big table."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Exactly. Each conference has its own seeds: six directly and two through the Play-In. The East and West champions meet in the Finals.",
+                "incorrect": "Not quite. The league has an Eastern and a Western conference, and each one fills its own eight playoff seeds. There are no byes."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "liv-06",
+        "title": "Trades and free agency explainer",
+        "objective": "Decode trades, signings and the salary cap impact on team building.",
+        "estimatedMinutes": 11,
+        "conceptIds": [
+          "live-transaction-explainer",
+          "trade",
+          "free-agency",
+          "salary-cap",
+          "trade-exception"
+        ],
+        "live": {
+          "dataKind": "news,roster",
+          "refreshHint": "hourly"
+        },
+        "activities": [
+          {
+            "id": "liv-06-mc-trade",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "trade"
+            ],
+            "payload": {
+              "prompt": "Your team trades for a player mid-season. What is the benefit?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Immediate roster upgrade for the playoff push."
+                },
+                {
+                  "id": "b",
+                  "text": "The acquired player is always better than who you gave up."
+                },
+                {
+                  "id": "c",
+                  "text": "Trades never backfire."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. A contender often trades for a player to help right now. There is no guarantee it works, because the team gives something up to get him.",
+                "incorrect": "Not quite. A trade can help right away, but it is a gamble. The acquired player is not always better, and trades can backfire."
+              }
+            }
+          },
+          {
+            "id": "liv-06-st-trade",
+            "type": "say-this",
+            "conceptIds": [
+              "live-transaction-explainer",
+              "trade"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "That trade looks bad long-term but makes sense for this year."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "She means the team sacrificed future assets to win now, a valid playoff-push trade-off."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "The trade is objectively bad."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "All trades help the future."
+                },
+                {
+                  "id": "d",
+                  "isCorrect": false,
+                  "text": "Trades always look good long-term."
+                }
+              ],
+              "translation": "She means the trade helps the team this season but costs it picks or young players that would have helped later.",
+              "followUps": [
+                {
+                  "line": "Does it make you a contender this year?",
+                  "why": "You ask whether the gamble is worth it, and let her answer."
+                },
+                {
+                  "line": "What did they give up?",
+                  "why": "A curious question that lets her walk you through the deal."
+                }
+              ],
+              "noFakeExpertNote": "Contenders often trade future picks or prospects for help now. Ask what they gave up instead of judging the deal."
+            }
+          },
+          {
+            "id": "liv-06-ds-matching",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "live-transaction-explainer",
+              "salary-cap"
+            ],
+            "payload": {
+              "prompt": "She says {{team}} has no cap room. What does that mean for a trade?",
+              "situation": {
+                "narrative": "A star is on the market, and she is wondering if her team can get him.",
+                "facts": [
+                  {
+                    "label": "Payroll",
+                    "value": "Over the salary cap"
+                  },
+                  {
+                    "label": "Target",
+                    "value": "A player paid about $20 million"
+                  },
+                  {
+                    "label": "Roster",
+                    "value": "Mostly mid-size contracts"
+                  },
+                  {
+                    "label": "Rule of thumb",
+                    "value": "Incoming salary must roughly match outgoing"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "match-salary",
+                  "label": "They would have to send out salary to match what they take in",
+                  "verdict": "best",
+                  "consequence": "Yes. A team over the cap generally has to send back roughly matching salary, which is why trades are built around contracts as well as talent.",
+                  "considerations": [
+                    "The cap is soft, so trades are still possible",
+                    "Matching salary is the usual workaround",
+                    "Exceptions and tax rules add more limits"
+                  ]
+                },
+                {
+                  "id": "no-trades",
+                  "label": "They cannot make any trade at all",
+                  "verdict": "poor",
+                  "consequence": "Not true. The NBA cap is soft, and over-the-cap teams trade all the time by matching salaries.",
+                  "considerations": [
+                    "Over the cap does not mean frozen",
+                    "Trades just have to satisfy salary rules"
+                  ]
+                },
+                {
+                  "id": "draft-only",
+                  "label": "Cap room only matters in the draft",
+                  "verdict": "poor",
+                  "consequence": "No. Cap room matters for free agency and trades, not for the draft.",
+                  "considerations": [
+                    "Draft picks have their own salary scale",
+                    "Cap space is mainly a free-agency tool"
+                  ]
+                }
+              ],
+              "expertNote": "The NBA has a soft cap. Over-the-cap teams can still trade by matching salaries, but tax lines and aprons limit how far they can go."
+            }
+          },
+          {
+            "id": "liv-06-tm-cap",
+            "type": "term-match",
+            "conceptIds": [
+              "salary-cap",
+              "trade-exception"
+            ],
+            "payload": {
+              "prompt": "Match salary cap terms to their meanings.",
+              "pairs": [
+                {
+                  "id": "cap",
+                  "term": "Salary cap",
+                  "definition": "A soft limit: above it a team's ways to add players are restricted, but exceptions exist."
+                },
+                {
+                  "id": "exception",
+                  "term": "Trade exception",
+                  "definition": "A credit from an earlier trade that lets a team absorb salary later without sending any back."
+                },
+                {
+                  "id": "apron",
+                  "term": "Apron",
+                  "definition": "A spending line above the luxury tax; crossing it brings tougher roster restrictions."
+                }
+              ],
+              "distractorDefinitions": [
+                "A bonus given to players for winning.",
+                "A percentage increase in a player's salary each year."
+              ],
+              "explanation": {
+                "summary": "The cap is soft and full of exceptions. A trade exception lets a team absorb salary, and the aprons add tougher limits for big spenders. Exact dollar lines reset each year."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "liv-07",
+        "title": "Playoff series tracker",
+        "objective": "Understand playoff seeding, bracket predictions and why every late-season game matters.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "live-series-tracker",
+          "playoff-format",
+          "best-of-seven"
+        ],
+        "live": {
+          "dataKind": "standings",
+          "refreshHint": "daily"
+        },
+        "activities": [
+          {
+            "id": "liv-07-mc-bracket",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "playoff-format"
+            ],
+            "payload": {
+              "prompt": "In the playoffs, why does seeding matter so much?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Seeds determine playoff matchups and home-court advantage throughout the bracket."
+                },
+                {
+                  "id": "b",
+                  "text": "Seeds give byes to higher seeds in the first round."
+                },
+                {
+                  "id": "c",
+                  "text": "Seeding determines which team wins the championship."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. One plays eight, two plays seven, three plays six and four plays five, and the higher seed gets home-court advantage in every series.",
+                "incorrect": "Not quite. Seeding sets the bracket and home court: the higher seed hosts games 1, 2, 5 and 7 of a best-of-seven. There are no byes, and the top seed still has to win the series."
+              }
+            }
+          },
+          {
+            "id": "liv-07-st-matchup",
+            "type": "say-this",
+            "conceptIds": [
+              "live-series-tracker"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "If we slip to sixth, we play the three seed in round one. That is not the matchup I want."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "The bracket is fixed by seed, so sixth means facing the third-best record."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "Seeds are drawn from a hat before each round."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "The sixth seed always gets to pick its opponent."
+                },
+                {
+                  "id": "d",
+                  "isCorrect": false,
+                  "text": "Seeds do not affect first-round matchups."
+                }
+              ],
+              "translation": "She means first-round matchups follow the seeds: one plays eight, two plays seven, three plays six and four plays five. Finishing sixth means drawing the three seed.",
+              "followUps": [
+                {
+                  "line": "Who is the three seed right now?",
+                  "why": "A curious question that invites her to name the team she is worried about."
+                },
+                {
+                  "line": "How many games are between you and fifth?",
+                  "why": "Shows you understand a small move up changes the matchup."
+                }
+              ],
+              "noFakeExpertNote": "The bracket is fixed by seed: 1 vs 8, 2 vs 7, 3 vs 6, 4 vs 5. If she mentions more, ask."
+            }
+          },
+          {
+            "id": "liv-07-ds-stakes",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "live-series-tracker"
+            ],
+            "payload": {
+              "prompt": "{{team}} can move from fourth to third. What is actually at stake?",
+              "situation": {
+                "narrative": "She is explaining why the last few games matter so much.",
+                "facts": [
+                  {
+                    "label": "Now",
+                    "value": "Fourth seed"
+                  },
+                  {
+                    "label": "Within reach",
+                    "value": "Third seed"
+                  },
+                  {
+                    "label": "First round",
+                    "value": "4 plays 5, and 3 plays 6"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "opponent",
+                  "label": "A different first-round opponent, the six seed instead of the five seed",
+                  "verdict": "best",
+                  "consequence": "Right. A higher seed draws a lower-ranked opponent, and keeps home-court advantage in the series.",
+                  "considerations": [
+                    "4 plays 5, but 3 plays 6",
+                    "The six seed had a worse record than the five seed",
+                    "Both seeds still host the first round"
+                  ]
+                },
+                {
+                  "id": "random-bracket",
+                  "label": "Nothing, because the bracket is redrawn at random",
+                  "verdict": "poor",
+                  "consequence": "No. The NBA bracket is set by seed, not redrawn.",
+                  "considerations": [
+                    "Pairings follow the seed numbers",
+                    "That is why late-season games matter"
+                  ]
+                },
+                {
+                  "id": "finals-spot",
+                  "label": "An automatic spot in the Finals",
+                  "verdict": "poor",
+                  "consequence": "No. A seed only sets the path and home court. The team still has to win every series.",
+                  "considerations": [
+                    "There are no automatic rounds",
+                    "A better seed helps, but it guarantees nothing"
+                  ]
+                }
+              ],
+              "expertNote": "Moving up a seed usually means a slightly easier first-round opponent and keeps home court. It helps, but every series still has to be won."
+            }
+          },
+          {
+            "id": "liv-07-tm-pairs",
+            "type": "term-match",
+            "conceptIds": [
+              "playoff-format"
+            ],
+            "payload": {
+              "prompt": "Match each seed to its first-round opponent.",
+              "pairs": [
+                {
+                  "id": "one",
+                  "term": "The 1 seed",
+                  "definition": "Plays the 8 seed"
+                },
+                {
+                  "id": "two",
+                  "term": "The 2 seed",
+                  "definition": "Plays the 7 seed"
+                },
+                {
+                  "id": "three",
+                  "term": "The 3 seed",
+                  "definition": "Plays the 6 seed"
+                },
+                {
+                  "id": "four",
+                  "term": "The 4 seed",
+                  "definition": "Plays the 5 seed"
+                }
+              ],
+              "explanation": {
+                "summary": "The bracket pairs the best seed with the lowest: 1 plays 8, 2 plays 7, 3 plays 6 and 4 plays 5. The seventh and eighth seeds are decided by the Play-In."
+              }
+            }
+          },
+          {
+            "id": "liv-07-ftg-series",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "best-of-seven"
+            ],
+            "payload": {
+              "prompt": "Fill in the NBA playoff series math.",
+              "template": "An NBA playoff series is best-of-{{games}}, so a team needs {{wins}} wins to advance.",
+              "gaps": [
+                {
+                  "id": "games",
+                  "options": [
+                    "five",
+                    "seven",
+                    "nine"
+                  ],
+                  "correct": "seven"
+                },
+                {
+                  "id": "wins",
+                  "options": [
+                    "three",
+                    "four",
+                    "five"
+                  ],
+                  "correct": "four"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. A best-of-seven series ends as soon as one team wins four games, so it lasts four to seven games.",
+                "incorrect": "Not quite. NBA playoff series are best-of-seven, so the first team to win four games advances."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "liv-08",
+        "title": "Awards and All-Star season",
+        "objective": "Understand MVP voting, All-Star selections and why awards matter.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "live-awards-race",
+          "mvp-criteria",
+          "award-voting"
+        ],
+        "live": {
+          "dataKind": "news,standings",
+          "refreshHint": "daily"
+        },
+        "activities": [
+          {
+            "id": "liv-08-mc-mvp",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "mvp-criteria"
+            ],
+            "payload": {
+              "prompt": "What makes a player an MVP candidate?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "A media panel votes, weighing scoring, efficiency, team record and story."
+                },
+                {
+                  "id": "b",
+                  "text": "Whoever scores the most points wins MVP."
+                },
+                {
+                  "id": "c",
+                  "text": "The league computes it from one official formula."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. The MVP is a vote by a media panel, and each voter weighs things differently. There is no formula, which is why people argue about it every year.",
+                "incorrect": "Not quite. There is no scoring-title rule and no official formula. A media panel votes, and voters weigh scoring, efficiency, record and story differently."
+              }
+            }
+          },
+          {
+            "id": "liv-08-st-awards",
+            "type": "say-this",
+            "conceptIds": [
+              "live-awards-race",
+              "mvp-criteria"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Your crush",
+                "text": "{{player}} is putting up numbers but his team is struggling. That hurts his MVP chances."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "She thinks voters lean on team success, so big numbers on a losing team count for less."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "Individual stats are the only MVP criteria."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "Team record does not matter in MVP voting."
+                },
+                {
+                  "id": "d",
+                  "isCorrect": false,
+                  "text": "All-Star selections and MVP are the same thing."
+                }
+              ],
+              "translation": "She means many voters weigh team success, so big numbers on a struggling team may not be enough to win MVP. Not every voter agrees.",
+              "followUps": [
+                {
+                  "line": "Can his team still turn it around?",
+                  "why": "A hopeful question about whether the team's record can still change."
+                },
+                {
+                  "line": "Do you think it should matter that much?",
+                  "why": "Asks for her opinion instead of arguing about what voters should do."
+                }
+              ],
+              "noFakeExpertNote": "MVP voting has no formula. Ask whether she thinks team record should count, and listen."
+            }
+          },
+          {
+            "id": "liv-08-bc-65",
+            "type": "binary-call",
+            "conceptIds": [
+              "award-voting"
+            ],
+            "payload": {
+              "prompt": "Must an NBA star play a minimum number of games to win MVP?",
+              "scene": {
+                "kind": "none",
+                "alt": "An awards ballot with a games-played requirement."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, around 65 games"
+                },
+                {
+                  "id": "no",
+                  "label": "No, any number works"
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Right. The league's 65-game rule says a player generally needs to appear in 65 games, each of a set minimum length, to be eligible for the major awards. It was introduced to discourage load management.",
+                "incorrect": "Not quite. Since the league adopted the 65-game rule, a player generally needs to play at least 65 games to be eligible for the major awards. It was introduced to discourage load management. There are narrow exceptions, so check the current rule."
+              }
+            }
+          },
+          {
+            "id": "liv-08-mc-allstar",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "live-awards-race"
+            ],
+            "payload": {
+              "prompt": "How is the All-Star Game team selected?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Fans, players and media vote for the starters, and coaches choose the reserves."
+                },
+                {
+                  "id": "b",
+                  "text": "The commissioner picks every All-Star from the stats sheet."
+                },
+                {
+                  "id": "c",
+                  "text": "Only players from the top two seeds are eligible."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Starters come from a vote by fans, players and media, and the coaches pick the reserves. The exact game format changes from year to year, so check the current one.",
+                "incorrect": "Not quite. All-Stars are chosen by votes: fans, players and media pick the starters and coaches pick the reserves. Seed does not decide eligibility."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
