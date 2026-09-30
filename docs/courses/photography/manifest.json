@@ -1,0 +1,119 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "photography",
+  "displayName": "Photography",
+  "category": "Arts > Photography",
+  "family": "Arts",
+  "status": "cds-draft",
+  "wave": 2,
+  "simulationPrefix": "photo",
+  "branches": [
+    { "id": "portrait", "displayName": "She shoots people (portrait)", "description": "Faces, light patterns, lens choice for people, posing and consent, retouching honesty.", "personalizationDimension": "genre" },
+    { "id": "street", "displayName": "She shoots the street", "description": "Candid city photography: zone focus, small cameras, decisive moment, etiquette and local law awareness.", "personalizationDimension": "genre" },
+    { "id": "landscape", "displayName": "She shoots landscapes", "description": "Light, weather and planning, tripods and hyperfocal focus, filters, long exposure, safety and Leave No Trace.", "personalizationDimension": "genre" },
+    { "id": "wildlife", "displayName": "She shoots wildlife and birds", "description": "Long lenses, shutter speed for fur and feathers, tracking autofocus, fieldcraft and animal-first ethics.", "personalizationDimension": "genre" },
+    { "id": "film", "displayName": "She shoots film", "description": "Emulsions and looks, exposing film, formats, development and scanning, and why film is having a moment.", "personalizationDimension": "genre" }
+  ],
+  "curriculumVersion": "0.1.0",
+  "foundationalModules": [
+    { "id": "seeing-light", "title": "Seeing Light", "summary": "A photograph is a record of light: hard and soft, direction, colour temperature, dynamic range." },
+    { "id": "exposure-triangle", "title": "The Exposure Triangle", "summary": "Aperture, shutter speed and ISO as one light budget; stops, modes, metering and compensation." },
+    { "id": "focus-and-depth", "title": "Focus and Depth of Field", "summary": "How autofocus decides, what sharp means, depth of field, bokeh and hyperfocal focus." },
+    { "id": "cameras-and-lenses", "title": "Cameras and Lenses", "summary": "Camera kinds, sensor size, focal length, crop factor, perspective compression, primes and zooms, phones." },
+    { "id": "composition", "title": "Composition", "summary": "Framing decisions: thirds as a tool, lines, layers, negative space, edges and simplifying." }
+  ],
+  "interactionTypes": [
+    "multiple-choice", "binary-call", "term-match", "sequence-order", "visual-id", "decision-scenario",
+    "talk-track", "timing-tap", "say-this", "fill-the-gap", "listening-id", "estimate-slider", "hotspot-tap", "unity-sim"
+  ],
+  "unitySimulations": [
+    {
+      "simulationId": "photo.lens.compression-lab.v1",
+      "specPath": "docs/courses/photography/sims/photo.lens.compression-lab.v1.md",
+      "status": "spec-draft",
+      "lessonIds": ["cam-06", "port-01"]
+    },
+    {
+      "simulationId": "photo.focus.depth-of-field.v1",
+      "specPath": "docs/courses/photography/sims/photo.focus.depth-of-field.v1.md",
+      "status": "spec-draft",
+      "lessonIds": ["foc-04", "port-03", "wild-05"]
+    },
+    {
+      "simulationId": "photo.light.direction-lab.v1",
+      "specPath": "docs/courses/photography/sims/photo.light.direction-lab.v1.md",
+      "status": "spec-draft",
+      "lessonIds": ["lf-02", "lf-03", "port-04"]
+    }
+  ],
+  "nativeExercises": [
+    { "exerciseType": "multiple-choice", "specPath": "docs/courses/photography/exercises.md", "estimatedCount": 200 },
+    { "exerciseType": "binary-call", "specPath": "docs/courses/photography/exercises.md", "estimatedCount": 40 },
+    { "exerciseType": "term-match", "specPath": "docs/courses/photography/exercises.md", "estimatedCount": 30 },
+    { "exerciseType": "sequence-order", "specPath": "docs/courses/photography/exercises.md", "estimatedCount": 24 },
+    { "exerciseType": "visual-id", "specPath": "docs/courses/photography/exercises.md", "estimatedCount": 90 },
+    { "exerciseType": "decision-scenario", "specPath": "docs/courses/photography/exercises.md", "estimatedCount": 80 },
+    { "exerciseType": "talk-track", "specPath": "docs/courses/photography/exercises.md", "estimatedCount": 16 },
+    { "exerciseType": "timing-tap", "specPath": "docs/courses/photography/exercises.md", "estimatedCount": 8 },
+    { "exerciseType": "say-this", "specPath": "docs/courses/photography/exercises.md", "estimatedCount": 70 },
+    { "exerciseType": "fill-the-gap", "specPath": "docs/courses/photography/exercises.md", "estimatedCount": 40 },
+    { "exerciseType": "listening-id", "specPath": "docs/courses/photography/exercises.md", "estimatedCount": 8 },
+    { "exerciseType": "estimate-slider", "specPath": "docs/courses/photography/exercises.md", "estimatedCount": 50 },
+    { "exerciseType": "hotspot-tap", "specPath": "docs/courses/photography/exercises.md", "estimatedCount": 24 }
+  ],
+  "dynamicData": [
+    { "kind": "conditions", "providerCandidates": ["On-device astronomical calculation (sun and moon position, twilight, moon phase; no provider)", "NOAA SWPC aurora and Kp products (US government, public)"], "refreshFrequency": "daily", "notes": "Golden hour, blue hour, moon phase and rise, aurora outlook for the learner's region. Computed locally where possible, so it works offline and needs no licence." },
+    { "kind": "weather", "providerCandidates": ["National Weather Service API (public, US)", "Open-Meteo (commercial plan required for a paid app)", "Weather provider chosen for the hiking course (shared adapter)"], "refreshFrequency": "hourly", "notes": "Cloud cover, visibility, fog and humidity to answer 'will tonight's sunset be any good?'. Only when a region is set; hidden otherwise." },
+    { "kind": "events", "providerCandidates": ["NASA eclipse and skywatching calendars (public, curated)", "International Meteor Organization calendar (curated, link-out)", "World Press Photo, Sony World Photography Awards, Wildlife Photographer of the Year, Nikon and Fujifilm events (curated dates, link-out)"], "refreshFrequency": "monthly", "notes": "Meteor showers, eclipses, awards seasons, trade shows and exhibitions. Dates and names are facts; winning images are never redistributed (spec section 40)." },
+    { "kind": "releases", "providerCandidates": ["Manufacturer press pages (Canon, Nikon, Sony, Fujifilm, OM System, Panasonic, Sigma, Tamron, Leica) via curated ingest", "CIPA shipment statistics (public)"], "refreshFrequency": "weekly", "notes": "Camera and lens launches as normalised GearRelease entities (name, mount, sensor, date, source link). Swoon'd explains what the launch means; it does not copy specs sheets wholesale or press images." },
+    { "kind": "new-products", "providerCandidates": ["Kodak, Ilford, Fujifilm, CineStill, Lomography and Harman announcements (curated)", "Adobe, Capture One, DxO release notes (curated link-out)"], "refreshFrequency": "monthly", "notes": "Film stock changes (renames, discontinuations, price moves) and editing-software changes such as new AI tools. Snapshot-dated." },
+    { "kind": "news", "providerCandidates": ["Photography news RSS headlines (link-only)", "Publisher partnership if licensed (L-01)"], "refreshFrequency": "daily", "notes": "Identify why photographers are talking about something today; Swoon'd writes the explainer and links out. Editorial provider decision is open." },
+    { "kind": "alerts", "providerCandidates": ["NOAA SWPC geomagnetic alerts (public)", "National Weather Service alerts (public)"], "refreshFrequency": "hourly", "notes": "Optional: aurora watch and severe-weather cautions on the 'Tonight's light' card. Safety copy always accompanies weather alerts." }
+  ],
+  "editorial": {
+    "approach": "explain-and-link",
+    "sources": ["Camera and lens manufacturer press pages (link-only)", "Independent photography publications (link-only)", "Photography awards and museums (link-only)", "NASA and NOAA public-domain skywatching pages"],
+    "topicsWeExplain": [
+      "why a new camera or lens launch matters (and whether it matters to her)",
+      "why photographers argue about a mount, a firmware lock or third-party lenses",
+      "why a film stock renaming, price change or discontinuation is news",
+      "why an AI editing or authenticity feature (content credentials) is controversial",
+      "why an award-winning photo or a disqualification is being discussed",
+      "why a sky event (eclipse, meteor shower, aurora) is a photo opportunity"
+    ],
+    "copyrightPolicy": "Publisher article text, review text, spec-sheet copy and press images are never copied; news is explained in Swoon'd's own words and linked. Photographers and photographs are discussed and described in words; the photographs themselves are not reproduced (spec section 40)."
+  },
+  "personalizationDimensions": ["equipment", "brand", "genre", "region", "style", "skill-level"],
+  "conversationScenarios": {
+    "count": 16,
+    "path": "docs/courses/photography/curriculum/course.json"
+  },
+  "masteryModel": {
+    "type": "concept-mastery-v1",
+    "passThreshold": 0.8,
+    "usefulCompetenceStatement": "She can follow a conversation about light, exposure, lenses and gear, look at her photo and say something specific and kind about it, ask two good questions about how she got the shot, and say 'okay, I see why you love this' without bluffing."
+  },
+  "licensingConstraints": [
+    { "area": "imagery", "constraint": "Only original Swoon'd imagery (license original-swoond): procedural diagrams, vector illustrations, and in-house photographs with signed releases. Famous photographs are never reproduced; they are named, described in words and linked to the photographer's or a museum's page. Any later use of CC0 or public-domain museum images needs its own registered license id and per-asset provenance." },
+    { "area": "audio", "constraint": "Shutter and film-advance sounds are original recordings or synthesised (original-swoond); no manufacturer sound libraries or video soundtracks." },
+    { "area": "logos-trademarks", "constraint": "Camera, lens, film and software brand names appear as text only (nominative use); no logos, product renders or manufacturer press images in lessons without written permission." },
+    { "area": "video", "constraint": "No embedded third-party video; deep-link to official channels." },
+    { "area": "article-text", "constraint": "Never copy review, news, spec-sheet or publisher text; paraphrase and link." },
+    { "area": "data-provider-terms", "constraint": "Sun, moon and twilight are computed on device. NOAA and NWS data are US-government public data; Open-Meteo needs a commercial plan for a paid app; NASA media usage guidelines apply to any NASA imagery (default: none used)." },
+    { "area": "player-likeness", "constraint": "Photographers are named as facts and their work described; no likeness, fabricated quotes or implied endorsement. Learners are never encouraged to photograph a person without consent." }
+  ],
+  "safetyConstraints": [
+    "Never look at the sun through a camera, viewfinder or lens without a certified solar filter (ISO 12312-2 for eyewear; a purpose-made filter on the front of the lens); eclipse and sun content always carries this warning.",
+    "Landscape and outdoor scenarios follow conservative mainstream guidance: watch tides and surf, stay back from edges, do not shoot in lightning, tell someone your plan, and never trade safety for a shot. Scenarios are learning aids, not outdoor-safety training (see the hiking and camping courses).",
+    "Wildlife content puts the animal first: keep well back (National Park Service guidance is at least 100 yards from bears and wolves and 25 yards from other wildlife), never bait, call or flush animals, avoid nests and dens, no flash on nocturnal or nesting animals.",
+    "Portrait and street content is consent-first: ask, accept 'no', delete on request, take extra care with children, and never covertly photograph anyone, including the person the learner is trying to impress. Local law varies; Swoon'd states etiquette, not legal advice.",
+    "Film chemistry content stays at the level of 'labs exist and DIY development needs proper ventilation, gloves and eye protection from the chemical maker's instructions'; no unsupervised chemistry instructions.",
+    "Never encourage the learner to fake expertise, or to critique someone's work unkindly; the goal is genuine curiosity about why she loves photographing."
+  ],
+  "relatedCourses": [
+    { "courseId": "hiking", "relationship": "adjacent" },
+    { "courseId": "camping", "relationship": "adjacent" },
+    { "courseId": "movies", "relationship": "adjacent" },
+    { "courseId": "cars", "relationship": "sibling-independent" }
+  ]
+}
