@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.swoond.app/unity-bridge/v1/bridge-event.schema.json",
+  "title": "Swoon'd Unity Bridge - Message envelope v1",
+  "description": "Every message crossing the native/Unity boundary, in either direction, is one UTF-8 JSON document of this shape. direction=native-to-unity carries commands (launch, pause, resume, abort). direction=unity-to-native carries events (ready, progress, checkpoint, result, error, requestExit).",
+  "type": "object",
+  "required": ["contractVersion", "direction", "sessionId", "seq", "timestampMs", "type", "payload"],
+  "properties": {
+    "contractVersion": { "type": "string", "pattern": "^1\\.\\d+\\.\\d+$" },
+    "direction": { "type": "string", "enum": ["native-to-unity", "unity-to-native"] },
+    "sessionId": { "type": "string", "format": "uuid" },
+    "seq": { "type": "integer", "minimum": 0, "description": "Monotonic per sender per session, starting at 0." },
+    "timestampMs": { "type": "integer", "minimum": 0, "description": "Sender wall-clock, Unix epoch milliseconds." },
+    "type": { "type": "string", "enum": ["launch", "pause", "resume", "abort", "ready", "progress", "checkpoint", "result", "error", "requestExit"] },
+    "payload": { "type": "object" }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    { "if": { "properties": { "direction": { "const": "native-to-unity" } } }, "then": { "properties": { "type": { "enum": ["launch", "pause", "resume", "abort"] } } } },
+    { "if": { "properties": { "direction": { "const": "unity-to-native" } } }, "then": { "properties": { "type": { "enum": ["ready", "progress", "checkpoint", "result", "error", "requestExit"] } } } },
+    { "if": { "properties": { "type": { "const": "launch" } }, "required": ["type"] }, "then": { "properties": { "payload": { "$ref": "https://schemas.swoond.app/unity-bridge/v1/launch-request.schema.json" } } } },
+    { "if": { "properties": { "type": { "const": "pause" } }, "required": ["type"] }, "then": { "properties": { "payload": { "$ref": "#/$defs/pausePayload" } } } },
+    { "if": { "properties": { "type": { "const": "resume" } }, "required": ["type"] }, "then": { "properties": { "payload": { "type": "object", "additionalProperties": false, "maxProperties": 0 } } } },
+    { "if": { "properties": { "type": { "const": "abort" } }, "required": ["type"] }, "then": { "properties": { "payload": { "$ref": "#/$defs/abortPayload" } } } },
+    { "if": { "properties": { "type": { "const": "ready" } }, "required": ["type"] }, "then": { "properties": { "payload": { "$ref": "#/$defs/readyPayload" } } } },
+    { "if": { "properties": { "type": { "const": "progress" } }, "required": ["type"] }, "then": { "properties": { "payload": { "$ref": "#/$defs/progressPayload" } } } },
+    { "if": { "properties": { "type": { "const": "checkpoint" } }, "required": ["type"] }, "then": { "properties": { "payload": { "$ref": "#/$defs/checkpointPayload" } } } },
+    { "if": { "properties": { "type": { "const": "result" } }, "required": ["type"] }, "then": { "properties": { "payload": { "$ref": "https://schemas.swoond.app/unity-bridge/v1/simulation-result.schema.json" } } } },
+    { "if": { "properties": { "type": { "const": "error" } }, "required": ["type"] }, "then": { "properties": { "payload": { "$ref": "#/$defs/errorPayload" } } } },
+    { "if": { "properties": { "type": { "const": "requestExit" } }, "required": ["type"] }, "then": { "properties": { "payload": { "$ref": "#/$defs/requestExitPayload" } } } }
+  ],
+  "$defs": {
+    "pausePayload": {
+      "type": "object", "additionalProperties": false, "required": ["reason"],
+      "properties": { "reason": { "type": "string", "enum": ["app-backgrounded", "interruption", "native-overlay", "user"] } }
+    },
+    "abortPayload": {
+      "type": "object", "additionalProperties": false, "required": ["reason"],
+      "properties": { "reason": { "type": "string", "enum": ["user-quit", "timeout", "backgrounded-too-long", "memory-pressure", "native-error"] } }
+    },
+    "readyPayload": {
+      "type": "object", "additionalProperties": false,
+      "required": ["unityVersion", "gameKitVersion", "simulationId", "simulationVersion", "supportedContractVersions"],
+      "properties": {
+        "unityVersion": { "type": "string", "examples": ["6000.3.24f1"] },
+        "gameKitVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+        "simulationId": { "type": "string" },
+        "simulationVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+        "supportedContractVersions": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" }, "description": "Exact contract versions this build implements." },
+        "loadTimeMs": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "progressPayload": {
+      "type": "object", "additionalProperties": false, "required": ["fraction"],
+      "properties": {
+        "fraction": { "type": "number", "minimum": 0, "maximum": 1 },
+        "stage": { "type": "string", "enum": ["loading", "playing", "explaining", "summarizing"] },
+        "roundIndex": { "type": "integer", "minimum": 0 },
+        "roundCount": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "checkpointPayload": {
+      "type": "object", "additionalProperties": false, "required": ["checkpointId"],
+      "properties": {
+        "checkpointId": { "type": "string" },
+        "roundIndex": { "type": "integer", "minimum": 0 },
+        "scoreSoFar": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "heartsLostSoFar": { "type": "integer", "minimum": 0 },
+        "resumeState": { "type": "object", "additionalProperties": true, "description": "Opaque to native. Stored and handed back in LaunchRequest.runtime.resumeState." }
+      }
+    },
+    "errorPayload": {
+      "type": "object", "additionalProperties": false, "required": ["code", "message", "recoverable"],
+      "properties": {
+        "code": { "type": "string", "enum": ["CONTRACT_UNSUPPORTED", "SIMULATION_UNKNOWN", "SIMULATION_VERSION_UNSUPPORTED", "CONFIG_INVALID", "ASSET_LOAD_FAILED", "OUT_OF_MEMORY", "INTERNAL_ERROR"] },
+        "message": { "type": "string", "maxLength": 500 },
+        "recoverable": { "type": "boolean", "description": "True if native may relaunch the same request." },
+        "detail": { "type": "object", "additionalProperties": true }
+      }
+    },
+    "requestExitPayload": {
+      "type": "object", "additionalProperties": false, "required": ["reason"],
+      "properties": { "reason": { "type": "string", "enum": ["completed", "user-quit", "needs-native-ui", "fatal"] } }
+    }
+  }
+}

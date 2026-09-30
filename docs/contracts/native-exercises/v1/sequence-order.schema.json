@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.swoond.app/native-exercises/v1/sequence-order.schema.json",
+  "title": "Native exercise payload - sequence-order",
+  "description": "Put 3-8 steps in the correct order. items[] is authored in the correct order; the app shuffles.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "prompt",
+    "items",
+    "explanation"
+  ],
+  "properties": {
+    "prompt": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Display M serif line. Design rule: 12 words or fewer."
+    },
+    "items": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "text"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "why": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240,
+            "description": "Why this step goes here."
+          }
+        }
+      }
+    },
+    "partialCredit": {
+      "type": "boolean",
+      "default": true
+    },
+    "explanation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "correct",
+        "incorrect"
+      ],
+      "properties": {
+        "correct": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400,
+          "description": "Feedback body when right (title \"Nice read.\" is added by the app). Teach how it works, not just the rule name."
+        },
+        "incorrect": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400,
+          "description": "Feedback body when wrong (title \"Not quite.\")."
+        },
+        "sayThisLine": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160,
+          "description": "Optional line you could say out loud; shown serif in quotes."
+        }
+      }
+    }
+  }
+}

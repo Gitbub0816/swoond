@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.swoond.app/native-exercises/v1/hotspot-tap.schema.json",
+  "title": "Native exercise payload - hotspot-tap",
+  "description": "Tap a region on a static or procedural diagram. Coordinates are normalized 0-1 relative to the diagram.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "prompt",
+    "diagram",
+    "hotspots",
+    "correctHotspotIds",
+    "explanation"
+  ],
+  "properties": {
+    "prompt": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Display M serif line. Design rule: 12 words or fewer."
+    },
+    "diagram": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "alt"
+      ],
+      "properties": {
+        "asset": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._/-]*$",
+          "description": "Bundle-relative asset path (content pack), never an absolute URL."
+        },
+        "diagramId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60
+        },
+        "aspectRatio": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "default": 1
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "description": "Accessibility description (VoiceOver)."
+        }
+      }
+    },
+    "hotspots": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "label",
+          "shape"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60,
+            "description": "VoiceOver label and post-answer name."
+          },
+          "shape": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "cx",
+                  "cy",
+                  "r"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "circle"
+                  },
+                  "cx": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "cy": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "r": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 1
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "x",
+                  "y",
+                  "w",
+                  "h"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "rect"
+                  },
+                  "x": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "y": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "w": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 1
+                  },
+                  "h": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 1
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "correctHotspotIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+      }
+    },
+    "explanation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "correct",
+        "incorrect"
+      ],
+      "properties": {
+        "correct": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400,
+          "description": "Feedback body when right (title \"Nice read.\" is added by the app). Teach how it works, not just the rule name."
+        },
+        "incorrect": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400,
+          "description": "Feedback body when wrong (title \"Not quite.\")."
+        },
+        "sayThisLine": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160,
+          "description": "Optional line you could say out loud; shown serif in quotes."
+        }
+      }
+    }
+  },
+  "anyOf": [
+    {
+      "properties": {
+        "diagram": {
+          "required": [
+            "asset"
+          ]
+        }
+      }
+    },
+    {
+      "properties": {
+        "diagram": {
+          "required": [
+            "diagramId"
+          ]
+        }
+      }
+    }
+  ]
+}

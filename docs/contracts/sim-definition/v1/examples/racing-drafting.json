@@ -1,0 +1,30 @@
+{
+  "definitionVersion": "1.0.0",
+  "simulationId": "nascar.drafting.tuck-in.v1",
+  "simulationVersion": "1.0.0",
+  "title": "Why drafting works",
+  "lesson": { "courseId": "nascar", "lessonId": "drafting-01", "conceptIds": ["drafting", "aerodynamic-drag"] },
+  "world": { "environment": "oval_short", "params": { "laps": 2 }, "camera": { "preset": "chase-high", "fov": 60 } },
+  "entities": [
+    { "id": "car_01", "kind": "Vehicle", "role": "player", "params": { "model": "stock-car-lowpoly", "topSpeedKph": 300 } },
+    { "id": "opponent_01", "kind": "Vehicle", "role": "opponent", "params": { "model": "stock-car-lowpoly", "aiPace": 0.92 } },
+    { "id": "opponent_02", "kind": "Vehicle", "role": "opponent", "params": { "model": "stock-car-lowpoly", "aiPace": 0.9 } }
+  ],
+  "player": { "vehicle": "car_01", "controls": "touch-steer-throttle-lite" },
+  "objectives": [
+    {
+      "id": "maintain-draft",
+      "type": "maintain_proximity",
+      "params": { "behind": "opponent_01", "distanceCarLengths": [0.8, 1.5], "durationSeconds": 8 },
+      "conceptIds": ["drafting"]
+    }
+  ],
+  "demonstrate": [{ "id": "drag-visual", "type": "aerodynamic_drag", "params": { "mode": "visual" } }],
+  "success": ["freeze_simulation", "compare_speed", "explain:drafting"],
+  "failure": ["slow_motion_replay", "explain:draft-gap-too-large"],
+  "difficulty": { "1": { "objectives": [{ "id": "maintain-draft", "type": "maintain_proximity", "params": { "durationSeconds": 5 } }] } },
+  "scoring": { "perfectSeconds": 8, "maxScore": 100 },
+  "explanations": [
+    { "id": "drafting", "trigger": "success", "text": "The lead car punches a hole in the air. Tucked in close behind it, you push through less air and go faster for the same effort.", "sayThisLine": "He got a great run off the draft." }
+  ]
+}

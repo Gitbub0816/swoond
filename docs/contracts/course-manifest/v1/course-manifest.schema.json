@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.swoond.app/course-manifest/v1/course-manifest.schema.json",
+  "title": "Swoon'd Course Manifest v1",
+  "description": "Machine-readable coordination object for one production course (product spec section 41). Lives at docs/courses/<courseId>/manifest.json. Curriculum, backend, Astra and native app all read it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contractVersion", "courseId", "displayName", "category", "family", "status", "wave", "simulationPrefix", "branches", "curriculumVersion", "foundationalModules", "interactionTypes", "unitySimulations", "nativeExercises", "dynamicData", "editorial", "personalizationDimensions", "conversationScenarios", "masteryModel", "licensingConstraints", "safetyConstraints", "relatedCourses"],
+  "properties": {
+    "contractVersion": { "type": "string", "pattern": "^1\\.\\d+\\.\\d+$" },
+    "courseId": { "$ref": "#/$defs/kebabId", "description": "Kebab-case, globally unique, equals the folder name under docs/courses/. Never renamed once released." },
+    "displayName": { "type": "string", "minLength": 1, "maxLength": 60 },
+    "category": { "type": "string", "description": "Organizational category path, e.g. 'Sports > Motorsports'. Not a course.", "minLength": 1 },
+    "family": {
+      "type": "string",
+      "enum": ["Sports", "Motorsports", "Outdoors & Adventure", "Gaming", "Music", "Film & Television", "Books & Literature", "Food & Cooking", "Cars & Automotive", "Aviation", "Technology", "Arts", "Crafts", "Fitness", "Animals & Nature", "Travel", "History & Culture", "Fashion & Beauty", "Collecting"]
+    },
+    "status": { "type": "string", "enum": ["not-started", "cds-draft", "cds-approved", "content-in-progress", "in-review", "released"] },
+    "wave": { "type": "integer", "minimum": 1, "maximum": 3 },
+    "simulationPrefix": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$", "description": "First segment of every simulationId of this course, e.g. 'football' for american-football." },
+    "branches": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "displayName"],
+        "properties": {
+          "id": { "$ref": "#/$defs/kebabId" },
+          "displayName": { "type": "string" },
+          "description": { "type": "string" },
+          "personalizationDimension": { "type": "string", "description": "If choosing this branch sets a personalization dimension (e.g. 'league')." }
+        }
+      }
+    },
+    "curriculumVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "foundationalModules": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "title"],
+        "properties": {
+          "id": { "$ref": "#/$defs/kebabId", "description": "Matches a unit id in the curriculum JSON." },
+          "title": { "type": "string" },
+          "summary": { "type": "string" }
+        }
+      }
+    },
+    "interactionTypes": {
+      "type": "array", "uniqueItems": true, "minItems": 1,
+      "items": { "$ref": "#/$defs/activityType" }
+    },
+    "unitySimulations": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["simulationId", "specPath", "status"],
+        "properties": {
+          "simulationId": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*){2}\\.v[1-9][0-9]*$" },
+          "specPath": { "type": "string", "description": "Repo-relative path to the Astra sim spec, e.g. docs/courses/american-football/sims/football.coverage.read.v1.md" },
+          "status": { "type": "string", "enum": ["planned", "spec-draft", "spec-approved", "in-development", "in-review", "released", "deprecated"] },
+          "lessonIds": { "type": "array", "items": { "$ref": "#/$defs/kebabId" } }
+        }
+      }
+    },
+    "nativeExercises": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["exerciseType", "specPath"],
+        "properties": {
+          "exerciseType": { "$ref": "#/$defs/nativeType" },
+          "specPath": { "type": "string", "description": "Repo-relative path to the course's exercises.md (or a section anchor within it)." },
+          "estimatedCount": { "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "dynamicData": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["kind", "providerCandidates", "refreshFrequency"],
+        "properties": {
+          "kind": { "type": "string", "enum": ["scores", "schedules", "standings", "statistics", "rankings", "rosters", "events", "releases", "conditions", "news", "weather", "closures", "alerts", "new-products", "new-media"] },
+          "providerCandidates": { "type": "array", "items": { "type": "string" }, "description": "Candidates only; always accessed through a Swoon'd adapter (spec section 32)." },
+          "refreshFrequency": { "type": "string", "enum": ["minutes-during-events", "hourly", "daily", "weekly", "monthly", "seasonal", "on-release"] },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "editorial": {
+      "type": "object", "additionalProperties": false, "required": ["approach"],
+      "properties": {
+        "approach": { "type": "string", "enum": ["none", "link-only", "explain-and-link", "summarize-explain-and-link"], "description": "What Swoon'd does with current commentary (spec section 8 'Editorial Context' / section 11)." },
+        "sources": { "type": "array", "items": { "type": "string" } },
+        "topicsWeExplain": { "type": "array", "items": { "type": "string" }, "description": "e.g. 'why an injury matters', 'why a rule change is controversial'." },
+        "copyrightPolicy": { "type": "string", "description": "Must state that publisher article text is not copied." }
+      }
+    },
+    "personalizationDimensions": {
+      "type": "array", "uniqueItems": true,
+      "items": { "type": "string", "enum": ["team", "player", "driver", "league", "series", "artist", "genre", "author", "region", "equipment", "destination", "franchise", "platform", "cuisine", "director", "brand", "style", "skill-level"] }
+    },
+    "conversationScenarios": {
+      "type": "object", "additionalProperties": false, "required": ["count", "path"],
+      "properties": {
+        "count": { "type": "integer", "minimum": 0 },
+        "path": { "type": "string", "description": "Repo-relative path to the folder or file holding the scenarios (usually the curriculum JSON talkTracks[])." }
+      }
+    },
+    "masteryModel": {
+      "type": "object", "additionalProperties": false, "required": ["type", "passThreshold"],
+      "properties": {
+        "type": { "type": "string", "enum": ["concept-mastery-v1"], "description": "Concept-level mastery 0..1 per concept, driven by exercise outcomes and sim masterySignals (ARCHITECTURE.md section 6)." },
+        "passThreshold": { "type": "number", "minimum": 0, "maximum": 1, "description": "Mastery value at which a concept counts as 'Mastered'." },
+        "usefulCompetenceStatement": { "type": "string", "description": "One sentence: what the learner can do socially after finishing (spec section 8 Assessment)." }
+      }
+    },
+    "licensingConstraints": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["area", "constraint"],
+        "properties": {
+          "area": { "type": "string", "enum": ["audio", "imagery", "logos-trademarks", "video", "lyrics", "article-text", "data-provider-terms", "player-likeness", "other"] },
+          "constraint": { "type": "string" }
+        }
+      }
+    },
+    "safetyConstraints": { "type": "array", "items": { "type": "string" }, "description": "e.g. hiking: never imply a scenario is a substitute for real-world navigation training." },
+    "relatedCourses": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["courseId", "relationship"],
+        "properties": {
+          "courseId": { "$ref": "#/$defs/kebabId" },
+          "relationship": { "type": "string", "enum": ["shares-foundation", "adjacent", "sibling-independent", "prerequisite-helpful"], "description": "Applies the spec section 6 boundary test." }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "kebabId": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "nativeType": { "type": "string", "enum": ["multiple-choice", "binary-call", "term-match", "sequence-order", "visual-id", "decision-scenario", "talk-track", "timing-tap", "say-this", "fill-the-gap", "listening-id", "estimate-slider", "hotspot-tap"] },
+    "activityType": { "type": "string", "enum": ["multiple-choice", "binary-call", "term-match", "sequence-order", "visual-id", "decision-scenario", "talk-track", "timing-tap", "say-this", "fill-the-gap", "listening-id", "estimate-slider", "hotspot-tap", "unity-sim"] }
+  }
+}

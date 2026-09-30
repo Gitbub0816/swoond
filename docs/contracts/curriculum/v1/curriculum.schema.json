@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.swoond.app/curriculum/v1/curriculum.schema.json",
+  "title": "Swoon'd Curriculum v1",
+  "description": "Ongoing course content: Course -> units[] -> lessons[] -> activities[]. Bundled as JSON for the mock backend; the same shape is served by any future backend. Activity payloads are validated against docs/contracts/native-exercises/v1/<type>.schema.json by tools/validate.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contractVersion", "courseId", "curriculumVersion", "locale", "concepts", "units", "reviewPolicy"],
+  "properties": {
+    "contractVersion": { "type": "string", "pattern": "^1\\.\\d+\\.\\d+$" },
+    "courseId": { "$ref": "#/$defs/kebabId" },
+    "curriculumVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "locale": { "type": "string", "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$" },
+    "concepts": {
+      "type": "array", "minItems": 1,
+      "description": "The course's Playbook: every concept any activity teaches or tests. Also the glossary shown in the Playbook tab.",
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "term", "definition", "exampleLine"],
+        "properties": {
+          "id": { "$ref": "#/$defs/kebabId" },
+          "term": { "type": "string", "maxLength": 60 },
+          "definition": { "type": "string", "maxLength": 400, "description": "Plain English, one to two sentences." },
+          "exampleLine": { "type": "string", "maxLength": 200, "description": "A line you could say out loud, shown in serif italics with quotation marks." },
+          "tier": { "$ref": "#/$defs/layer" },
+          "relatedConceptIds": { "type": "array", "items": { "$ref": "#/$defs/kebabId" } },
+          "aliases": { "type": "array", "items": { "type": "string" }, "description": "Alternate spellings/slang for search." }
+        }
+      }
+    },
+    "units": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "title", "layer", "lessons"],
+        "properties": {
+          "id": { "$ref": "#/$defs/kebabId" },
+          "title": { "type": "string" },
+          "summary": { "type": "string" },
+          "layer": { "$ref": "#/$defs/layer" },
+          "order": { "type": "integer", "minimum": 0 },
+          "prerequisiteUnitIds": { "type": "array", "items": { "$ref": "#/$defs/kebabId" } },
+          "branchId": { "$ref": "#/$defs/kebabId", "description": "If set, unit only appears when the person's branch selection (e.g. nfl) matches." },
+          "personalizationSlots": { "type": "array", "items": { "type": "string" }, "description": "Dimensions whose values substitute into example text via {{dimension}} tokens." },
+          "live": {
+            "type": "object", "additionalProperties": false,
+            "properties": {
+              "dataKind": { "type": "string" },
+              "refreshHint": { "type": "string" },
+              "adapterKey": { "type": "string", "description": "Repository key native app uses to fetch normalized live data for this unit." }
+            },
+            "description": "Present on current-season/live units. Content is generated from normalized data, not authored statically."
+          },
+          "lessons": {
+            "type": "array", "minItems": 1,
+            "items": {
+              "type": "object", "additionalProperties": false, "required": ["id", "title", "objective", "conceptIds", "activities"],
+              "properties": {
+                "id": { "$ref": "#/$defs/kebabId" },
+                "title": { "type": "string" },
+                "objective": { "type": "string", "description": "Learner-facing: 'You can ...'." },
+                "estimatedMinutes": { "type": "integer", "minimum": 1, "maximum": 30 },
+                "conceptIds": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/kebabId" } },
+                "activities": {
+                  "type": "array", "minItems": 1,
+                  "items": { "$ref": "#/$defs/activity" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "talkTracks": {
+      "type": "array",
+      "description": "Standalone conversation practice for the Talk tab. payload conforms to native-exercises/v1/talk-track.schema.json.",
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "title", "conceptIds", "payload"],
+        "properties": {
+          "id": { "$ref": "#/$defs/kebabId" },
+          "title": { "type": "string" },
+          "unlockedByUnitId": { "$ref": "#/$defs/kebabId" },
+          "conceptIds": { "type": "array", "items": { "$ref": "#/$defs/kebabId" } },
+          "payload": { "type": "object" }
+        }
+      }
+    },
+    "reviewPolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["algorithm", "intervalsDays", "maxItemsPerSession", "masteryThreshold"],
+      "properties": {
+        "algorithm": { "type": "string", "enum": ["leitner-boxes-v1"] },
+        "intervalsDays": { "type": "array", "minItems": 3, "items": { "type": "integer", "minimum": 1 }, "description": "Days until next review per box, ascending. e.g. [1,3,7,14,30,60]." },
+        "maxItemsPerSession": { "type": "integer", "minimum": 3, "maximum": 30 },
+        "masteryThreshold": { "type": "number", "minimum": 0, "maximum": 1 },
+        "decayAfterDays": { "type": "integer", "minimum": 1, "description": "Mastery starts decaying if not reviewed this long." },
+        "reviewActivityTypes": { "type": "array", "items": { "$ref": "#/$defs/activityType" }, "description": "Activity types allowed to be used as review cards." }
+      }
+    }
+  },
+  "$defs": {
+    "kebabId": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "layer": { "type": "string", "enum": ["foundations", "intermediate", "enthusiast", "current-season", "conversation", "review"] },
+    "activityType": { "type": "string", "enum": ["multiple-choice", "binary-call", "term-match", "sequence-order", "visual-id", "decision-scenario", "talk-track", "timing-tap", "say-this", "fill-the-gap", "listening-id", "estimate-slider", "hotspot-tap", "unity-sim"] },
+    "activity": {
+      "type": "object", "additionalProperties": false, "required": ["id", "type", "conceptIds", "payload"],
+      "properties": {
+        "id": { "$ref": "#/$defs/kebabId" },
+        "type": { "$ref": "#/$defs/activityType" },
+        "conceptIds": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/kebabId" } },
+        "payload": { "type": "object" },
+        "reviewEligible": { "type": "boolean", "default": true },
+        "xp": { "type": "integer", "minimum": 0, "description": "Override; default from XP rules (ARCHITECTURE.md section 7)." }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "unity-sim" } }, "required": ["type"] },
+          "then": {
+            "properties": {
+              "payload": {
+                "type": "object", "additionalProperties": false, "required": ["simulationId", "simulationVersion", "difficulty"],
+                "properties": {
+                  "simulationId": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*){2}\\.v[1-9][0-9]*$" },
+                  "simulationVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+                  "difficulty": { "type": "integer", "minimum": 1, "maximum": 5 },
+                  "configuration": { "type": "object", "additionalProperties": true }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

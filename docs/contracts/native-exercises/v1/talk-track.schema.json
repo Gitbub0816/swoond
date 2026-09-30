@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.swoond.app/native-exercises/v1/talk-track.schema.json",
+  "title": "Native exercise payload - talk-track",
+  "description": "Chat simulation. Their message, then 2-4 reply options; each reply moves the Smooth score (start 50).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "title",
+    "exchanges"
+  ],
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 60
+    },
+    "setting": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "e.g. \"Texting after her team lost\"."
+    },
+    "startingSmooth": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "default": 50
+    },
+    "exchanges": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "theirMessage",
+          "replies"
+        ],
+        "properties": {
+          "theirMessage": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          },
+          "replies": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 4,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "text",
+                "smoothDelta",
+                "theirResponse",
+                "coachNote"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+                },
+                "text": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                "smoothDelta": {
+                  "type": "integer",
+                  "minimum": -20,
+                  "maximum": 30
+                },
+                "theirResponse": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 240
+                },
+                "coachNote": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160,
+                  "description": "Italic serif gold coach note."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "closingNote": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.swoond.app/native-exercises/v1/estimate-slider.schema.json",
+  "title": "Native exercise payload - estimate-slider",
+  "description": "Estimate a number on a slider; scored by closeness.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "prompt",
+    "unit",
+    "min",
+    "max",
+    "step",
+    "correctValue",
+    "tolerance",
+    "explanation"
+  ],
+  "properties": {
+    "prompt": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Display M serif line. Design rule: 12 words or fewer."
+    },
+    "unit": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 20
+    },
+    "min": {
+      "type": "number"
+    },
+    "max": {
+      "type": "number"
+    },
+    "step": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "correctValue": {
+      "type": "number"
+    },
+    "tolerance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "full",
+        "partial"
+      ],
+      "properties": {
+        "full": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Within this distance = full credit."
+        },
+        "partial": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Within this distance = half credit."
+        }
+      }
+    },
+    "explanation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "correct",
+        "incorrect"
+      ],
+      "properties": {
+        "correct": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400,
+          "description": "Feedback body when right (title \"Nice read.\" is added by the app). Teach how it works, not just the rule name."
+        },
+        "incorrect": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400,
+          "description": "Feedback body when wrong (title \"Not quite.\")."
+        },
+        "sayThisLine": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160,
+          "description": "Optional line you could say out loud; shown serif in quotes."
+        }
+      }
+    }
+  }
+}

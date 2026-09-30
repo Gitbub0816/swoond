@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.swoond.app/native-exercises/v1/say-this.schema.json",
+  "title": "Native exercise payload - say-this",
+  "description": "Conversation interpretation: an enthusiast line, \"What is she talking about?\". Learner selects the concepts, then sees a plain-English translation and good follow-ups.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "statement",
+    "options",
+    "translation",
+    "followUps"
+  ],
+  "properties": {
+    "statement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "speaker",
+        "text"
+      ],
+      "properties": {
+        "speaker": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        }
+      }
+    },
+    "question": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "default": "What is she talking about?"
+    },
+    "options": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "text",
+          "isCorrect"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 140
+          },
+          "explanation": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300,
+            "description": "Per-option note shown after answering."
+          },
+          "isCorrect": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "translation": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300,
+      "description": "Plain-English restatement."
+    },
+    "followUps": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "line",
+          "why"
+        ],
+        "properties": {
+          "line": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "why": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        }
+      }
+    },
+    "noFakeExpertNote": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Reminder to ask genuine questions rather than bluff."
+    }
+  }
+}

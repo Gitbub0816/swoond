@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.swoond.app/native-exercises/v1/listening-id.schema.json",
+  "title": "Native exercise payload - listening-id",
+  "description": "Play a short clip and identify it. Only licensed or original audio; license is mandatory.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "prompt",
+    "audio",
+    "options",
+    "correctOptionId",
+    "explanation"
+  ],
+  "properties": {
+    "prompt": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Display M serif line. Design rule: 12 words or fewer."
+    },
+    "audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asset",
+        "durationMs",
+        "license",
+        "description"
+      ],
+      "properties": {
+        "asset": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._/-]*$",
+          "description": "Bundle-relative asset path (content pack), never an absolute URL."
+        },
+        "durationMs": {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 30000
+        },
+        "license": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "License id from the content pack license registry. No unlicensed recordings."
+        },
+        "attribution": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "description": "Text alternative for deaf/hard-of-hearing learners."
+        },
+        "maxPlays": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "default": 3
+        }
+      }
+    },
+    "options": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "text"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 140
+          },
+          "explanation": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300,
+            "description": "Per-option note shown after answering."
+          }
+        }
+      }
+    },
+    "correctOptionId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "explanation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "correct",
+        "incorrect"
+      ],
+      "properties": {
+        "correct": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400,
+          "description": "Feedback body when right (title \"Nice read.\" is added by the app). Teach how it works, not just the rule name."
+        },
+        "incorrect": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400,
+          "description": "Feedback body when wrong (title \"Not quite.\")."
+        },
+        "sayThisLine": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160,
+          "description": "Optional line you could say out loud; shown serif in quotes."
+        }
+      }
+    },
+    "listenFor": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 120
+      }
+    }
+  }
+}

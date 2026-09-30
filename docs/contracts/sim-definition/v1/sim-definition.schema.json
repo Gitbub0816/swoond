@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.swoond.app/sim-definition/v1/sim-definition.schema.json",
+  "title": "Swoon Game Kit - Simulation Definition v1",
+  "description": "Data-driven simulation definition (product spec section 25). Authored as YAML or JSON; YAML is converted 1:1 to JSON before validation. Owned by Astra; native app never reads it. Primitive names in 'kind'/'type' fields refer to Game Kit primitives (docs/astra/GAME_KIT.md).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["definitionVersion", "simulationId", "simulationVersion", "title", "lesson", "world", "entities", "objectives", "success"],
+  "properties": {
+    "definitionVersion": { "type": "string", "pattern": "^1\\.\\d+\\.\\d+$" },
+    "simulationId": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*){2}\\.v[1-9][0-9]*$" },
+    "simulationVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "title": { "type": "string" },
+    "lesson": {
+      "type": "object", "additionalProperties": false, "required": ["courseId", "conceptIds"],
+      "properties": {
+        "courseId": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+        "lessonId": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+        "conceptIds": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" } }
+      }
+    },
+    "world": {
+      "type": "object", "additionalProperties": false, "required": ["environment"],
+      "properties": {
+        "environment": { "type": "string", "description": "Procedural environment key, e.g. oval_short, football_field, pickleball_court." },
+        "params": { "type": "object", "additionalProperties": true },
+        "camera": { "type": "object", "additionalProperties": true, "description": "CameraRig preset + params." }
+      }
+    },
+    "entities": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "kind"],
+        "properties": {
+          "id": { "type": "string" },
+          "kind": { "type": "string", "description": "Game Kit primitive or sport-module type: Vehicle, Character, Ball, Zone, Path, Target ..." },
+          "role": { "type": "string", "enum": ["player", "opponent", "neutral", "marker"] },
+          "params": { "type": "object", "additionalProperties": true }
+        }
+      }
+    },
+    "player": { "type": "object", "additionalProperties": true, "description": "Which entity the learner controls and how (controls preset)." },
+    "objectives": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "type"],
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string", "description": "Objective primitive, e.g. maintain_proximity, reach_zone, choose_target, time_input." },
+          "params": { "type": "object", "additionalProperties": true },
+          "conceptIds": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" } }
+        }
+      }
+    },
+    "demonstrate": {
+      "type": "array",
+      "items": { "type": "object", "additionalProperties": false, "required": ["id", "type"], "properties": { "id": { "type": "string" }, "type": { "type": "string" }, "params": { "type": "object", "additionalProperties": true } } }
+    },
+    "success": { "$ref": "#/$defs/actionList" },
+    "failure": { "$ref": "#/$defs/actionList" },
+    "difficulty": {
+      "type": "object",
+      "description": "Per-level overrides (1-5), deep-merged over the base definition.",
+      "propertyNames": { "enum": ["1", "2", "3", "4", "5"] },
+      "additionalProperties": { "type": "object", "additionalProperties": true }
+    },
+    "scoring": { "type": "object", "additionalProperties": true },
+    "scenarios": { "type": "array", "items": { "type": "object", "additionalProperties": true }, "description": "Optional scenario data set (or reference to one via scenarioSetId in configuration)." },
+    "explanations": {
+      "type": "array",
+      "items": { "type": "object", "additionalProperties": false, "required": ["id", "text"], "properties": { "id": { "type": "string" }, "trigger": { "type": "string" }, "text": { "type": "string", "maxLength": 400 }, "sayThisLine": { "type": "string" } } }
+    }
+  },
+  "$defs": {
+    "actionList": {
+      "type": "array", "minItems": 1,
+      "items": { "type": "string", "description": "Action primitive name with optional args, e.g. freeze_simulation, compare_speed, explain:drafting." }
+    }
+  }
+}

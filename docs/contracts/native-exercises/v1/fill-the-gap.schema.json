@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.swoond.app/native-exercises/v1/fill-the-gap.schema.json",
+  "title": "Native exercise payload - fill-the-gap",
+  "description": "Sentence with 1-3 gaps filled from a word bank or per-gap choices. Gaps are marked {{gapId}} in template.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "prompt",
+    "template",
+    "gaps",
+    "explanation"
+  ],
+  "properties": {
+    "prompt": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Display M serif line. Design rule: 12 words or fewer."
+    },
+    "template": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300,
+      "description": "Use {{gap-id}} tokens."
+    },
+    "gaps": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "options",
+          "correct"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "options": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 5,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            }
+          },
+          "correct": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          }
+        }
+      }
+    },
+    "explanation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "correct",
+        "incorrect"
+      ],
+      "properties": {
+        "correct": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400,
+          "description": "Feedback body when right (title \"Nice read.\" is added by the app). Teach how it works, not just the rule name."
+        },
+        "incorrect": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400,
+          "description": "Feedback body when wrong (title \"Not quite.\")."
+        },
+        "sayThisLine": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160,
+          "description": "Optional line you could say out loud; shown serif in quotes."
+        }
+      }
+    }
+  }
+}

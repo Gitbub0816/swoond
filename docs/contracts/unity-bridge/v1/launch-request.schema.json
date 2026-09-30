@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.swoond.app/unity-bridge/v1/launch-request.schema.json",
+  "title": "Swoon'd Unity Bridge - LaunchRequest v1",
+  "description": "Sent by the native app to Unity to start one simulation session. Unity must reject (error code CONTRACT_UNSUPPORTED) any request whose contractVersion major it does not support.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contractVersion", "sessionId", "simulationId", "simulationVersion", "courseId", "unitId", "lessonId", "difficulty", "locale", "configuration", "learnerContext", "theme", "runtime"],
+  "properties": {
+    "contractVersion": { "$ref": "#/$defs/contractVersion" },
+    "sessionId": { "type": "string", "format": "uuid", "description": "Unique per launch. Echoed in every event and in the result." },
+    "simulationId": { "$ref": "#/$defs/simulationId" },
+    "simulationVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$", "description": "Semantic version of the sim content/behavior the native app expects (the .vN in simulationId is the major)." },
+    "courseId": { "$ref": "#/$defs/kebabId" },
+    "unitId": { "$ref": "#/$defs/kebabId" },
+    "lessonId": { "$ref": "#/$defs/kebabId" },
+    "difficulty": { "type": "integer", "minimum": 1, "maximum": 5 },
+    "locale": { "type": "string", "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$", "description": "BCP 47, e.g. en-US." },
+    "configuration": {
+      "type": "object",
+      "description": "Simulation-specific configuration. Validated by Unity against the configuration schema in the sim's spec (SIM_SPEC_TEMPLATE section 10). Unknown keys are ignored; invalid values produce error CONFIG_INVALID.",
+      "additionalProperties": true
+    },
+    "learnerContext": { "$ref": "#/$defs/learnerContext" },
+    "theme": { "$ref": "#/$defs/theme" },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maxDurationMs", "heartsRemaining"],
+      "properties": {
+        "maxDurationMs": { "type": "integer", "minimum": 10000, "maximum": 1800000, "default": 600000, "description": "Unity should end the session (completed=false, aborted=true) if exceeded." },
+        "heartsRemaining": { "type": "integer", "minimum": 0, "description": "Informational. Native app owns hearts; Unity reports heartsLost." },
+        "unlimitedHearts": { "type": "boolean", "default": false },
+        "resumeState": { "type": ["object", "null"], "description": "Opaque checkpoint state previously emitted by this sim (checkpoint event). Null for a fresh run.", "additionalProperties": true },
+        "safeAreaInsets": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "top": { "type": "number", "minimum": 0 },
+            "bottom": { "type": "number", "minimum": 0 },
+            "left": { "type": "number", "minimum": 0 },
+            "right": { "type": "number", "minimum": 0 }
+          },
+          "description": "Points (not pixels)."
+        },
+        "debug": { "type": "boolean", "default": false }
+      }
+    }
+  },
+  "$defs": {
+    "contractVersion": { "type": "string", "pattern": "^1\\.\\d+\\.\\d+$", "description": "Semantic version of this contract. v1 documents accept 1.x.y." },
+    "kebabId": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "simulationId": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*){2}\\.v[1-9][0-9]*$", "description": "<simulationPrefix>.<topic>.<name>.v<N>, e.g. football.coverage.read.v1" },
+    "conceptId": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "learnerContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["masteredConcepts", "weakConcepts", "accessibility"],
+      "properties": {
+        "personName": { "type": "string", "maxLength": 60, "description": "DISPLAY ONLY. Never log, never put in telemetry." },
+        "relationship": { "type": "string", "enum": ["crush", "dating-partner", "spouse", "friend", "family-member", "parent", "child", "coworker", "other"], "description": "DISPLAY ONLY." },
+        "personalization": {
+          "type": "object",
+          "description": "Course-defined personalization dimensions (manifest personalizationDimensions), e.g. favoriteTeam, favoriteDriver. Values are display strings or short ids.",
+          "additionalProperties": { "type": ["string", "number", "boolean"] }
+        },
+        "masteredConcepts": { "type": "array", "items": { "$ref": "#/$defs/conceptId" }, "uniqueItems": true },
+        "weakConcepts": { "type": "array", "items": { "$ref": "#/$defs/conceptId" }, "uniqueItems": true },
+        "accessibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["reducedMotion", "hapticsEnabled", "colorBlindMode", "textScale"],
+          "properties": {
+            "reducedMotion": { "type": "boolean" },
+            "hapticsEnabled": { "type": "boolean" },
+            "soundEnabled": { "type": "boolean", "default": true },
+            "colorBlindMode": { "type": "string", "enum": ["none", "protanopia", "deuteranopia", "tritanopia"] },
+            "textScale": { "type": "number", "minimum": 0.8, "maximum": 3.0, "description": "1.0 = default Dynamic Type size." }
+          }
+        }
+      }
+    },
+    "hexColor": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$" },
+    "theme": {
+      "type": "object",
+      "description": "Resolved Swoon'd design tokens (docs/design/DESIGN_SPEC.md section 3) for the active appearance. Colors are hex (#RRGGBB or #RRGGBBAA). Unity must render overlays with these, not hard-coded values.",
+      "additionalProperties": false,
+      "required": ["colorScheme", "colors", "fonts"],
+      "properties": {
+        "colorScheme": { "type": "string", "enum": ["dark", "light"] },
+        "colors": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["bg", "bgDeep", "surface", "surface2", "stroke", "strokeStrong", "ink", "ink2", "ink3", "accent", "accentSoft", "accentTint", "onAccent", "reward", "rewardTint", "court"],
+          "properties": {
+            "bg": { "$ref": "#/$defs/hexColor" },
+            "bgDeep": { "$ref": "#/$defs/hexColor" },
+            "surface": { "$ref": "#/$defs/hexColor" },
+            "surface2": { "$ref": "#/$defs/hexColor" },
+            "stroke": { "$ref": "#/$defs/hexColor" },
+            "strokeStrong": { "$ref": "#/$defs/hexColor" },
+            "ink": { "$ref": "#/$defs/hexColor" },
+            "ink2": { "$ref": "#/$defs/hexColor" },
+            "ink3": { "$ref": "#/$defs/hexColor" },
+            "ink4": { "$ref": "#/$defs/hexColor" },
+            "ink5": { "$ref": "#/$defs/hexColor" },
+            "accent": { "$ref": "#/$defs/hexColor" },
+            "accentSoft": { "$ref": "#/$defs/hexColor" },
+            "accentTint": { "$ref": "#/$defs/hexColor" },
+            "onAccent": { "$ref": "#/$defs/hexColor" },
+            "reward": { "$ref": "#/$defs/hexColor" },
+            "rewardTint": { "$ref": "#/$defs/hexColor" },
+            "court": { "$ref": "#/$defs/hexColor" }
+          }
+        },
+        "fonts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["display", "ui"],
+          "properties": {
+            "display": { "type": "string", "const": "Instrument Serif" },
+            "ui": { "type": "string", "const": "Geist" }
+          }
+        }
+      }
+    }
+  }
+}

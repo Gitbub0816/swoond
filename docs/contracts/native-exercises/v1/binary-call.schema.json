@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.swoond.app/native-exercises/v1/binary-call.schema.json",
+  "title": "Native exercise payload - binary-call",
+  "description": "A situation on a diagram and a two-way call (e.g. Volley it / Let it bounce).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "prompt",
+    "scene",
+    "choices",
+    "correctChoiceId",
+    "explanation"
+  ],
+  "properties": {
+    "prompt": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Display M serif line. Design rule: 12 words or fewer."
+    },
+    "scene": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "alt"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "court-diagram",
+            "field-diagram",
+            "image",
+            "none"
+          ]
+        },
+        "diagramId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60,
+          "description": "Key of a procedural diagram drawn natively (e.g. pickleball-court)."
+        },
+        "markers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "role",
+              "x",
+              "y"
+            ],
+            "properties": {
+              "role": {
+                "type": "string",
+                "enum": [
+                  "player",
+                  "ball",
+                  "opponent",
+                  "target"
+                ]
+              },
+              "x": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "y": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          }
+        },
+        "image": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._/-]*$",
+          "description": "Bundle-relative asset path (content pack), never an absolute URL."
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240,
+          "description": "Accessibility description (VoiceOver)."
+        }
+      }
+    },
+    "choices": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "label"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          }
+        }
+      }
+    },
+    "correctChoiceId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "explanation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "correct",
+        "incorrect"
+      ],
+      "properties": {
+        "correct": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400,
+          "description": "Feedback body when right (title \"Nice read.\" is added by the app). Teach how it works, not just the rule name."
+        },
+        "incorrect": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400,
+          "description": "Feedback body when wrong (title \"Not quite.\")."
+        },
+        "sayThisLine": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160,
+          "description": "Optional line you could say out loud; shown serif in quotes."
+        }
+      }
+    },
+    "ruleTag": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 60,
+      "description": "Rule name shown as a caption, e.g. Two-bounce rule."
+    }
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.swoond.app/native-exercises/v1/decision-scenario.schema.json",
+  "title": "Native exercise payload - decision-scenario",
+  "description": "Judgment call from a fact sheet (product spec section 17 hiking example). Options are graded best/acceptable/poor, not just right/wrong.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "prompt",
+    "situation",
+    "options",
+    "expertNote"
+  ],
+  "properties": {
+    "prompt": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Display M serif line. Design rule: 12 words or fewer."
+    },
+    "situation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "facts"
+      ],
+      "properties": {
+        "narrative": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "facts": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "label",
+              "value"
+            ],
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 40
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 60
+              },
+              "emphasis": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "warning"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "options": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "label",
+          "verdict",
+          "consequence",
+          "considerations"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "best",
+              "acceptable",
+              "poor"
+            ]
+          },
+          "consequence": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300,
+            "description": "What happens if you choose this."
+          },
+          "considerations": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            }
+          }
+        }
+      }
+    },
+    "expertNote": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 400,
+      "description": "What an experienced person weighs in this situation."
+    },
+    "sayThisLine": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "safetyNote": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "description": "Required for safety-relevant courses (hiking, camping, climbing)."
+    }
+  }
+}

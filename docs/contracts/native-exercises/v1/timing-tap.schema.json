@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.swoond.app/native-exercises/v1/timing-tap.schema.json",
+  "title": "Native exercise payload - timing-tap",
+  "description": "A marker sweeps a bar; tap when inside the gold zone. Scoring per design (hit 100, miss max(0, 60 - off*3)).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "prompt",
+    "theme",
+    "rounds",
+    "explanation"
+  ],
+  "properties": {
+    "prompt": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Display M serif line. Design rule: 12 words or fewer."
+    },
+    "theme": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40,
+          "description": "e.g. \"Pit stop\"."
+        },
+        "resultUnit": {
+          "type": "string",
+          "enum": [
+            "seconds",
+            "points"
+          ],
+          "default": "points"
+        }
+      }
+    },
+    "rounds": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "zoneStartPct",
+          "zoneEndPct",
+          "sweepSeconds"
+        ],
+        "properties": {
+          "zoneStartPct": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "zoneEndPct": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "sweepSeconds": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "description": "Seconds for one end-to-end sweep. Lower = faster."
+          }
+        }
+      }
+    },
+    "explanation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "correct",
+        "incorrect"
+      ],
+      "properties": {
+        "correct": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400,
+          "description": "Feedback body when right (title \"Nice read.\" is added by the app). Teach how it works, not just the rule name."
+        },
+        "incorrect": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 400,
+          "description": "Feedback body when wrong (title \"Not quite.\")."
+        },
+        "sayThisLine": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160,
+          "description": "Optional line you could say out loud; shown serif in quotes."
+        }
+      }
+    },
+    "accessibilityAlternative": {
+      "type": "string",
+      "enum": [
+        "tap-to-stop-slow",
+        "hold-and-release"
+      ],
+      "default": "tap-to-stop-slow",
+      "description": "Used when Reduce Motion or Switch Control is on."
+    }
+  }
+}

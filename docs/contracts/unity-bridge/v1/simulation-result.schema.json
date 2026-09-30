@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.swoond.app/unity-bridge/v1/simulation-result.schema.json",
+  "title": "Swoon'd Unity Bridge - SimulationResult v1",
+  "description": "Emitted by Unity exactly once per session inside a 'result' bridge event. The native app is authoritative for XP, hearts, streaks and mastery: it validates, clamps and applies these values.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contractVersion", "sessionId", "simulationId", "simulationVersion", "completed", "aborted", "durationMs", "score", "accuracy", "outcomes", "mistakes", "masterySignals", "xpEarned", "heartsLost", "replayAvailable"],
+  "properties": {
+    "contractVersion": { "type": "string", "pattern": "^1\\.\\d+\\.\\d+$" },
+    "sessionId": { "type": "string", "format": "uuid" },
+    "simulationId": { "type": "string", "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*){2}\\.v[1-9][0-9]*$" },
+    "simulationVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "completed": { "type": "boolean", "description": "True only if the learner reached the sim's defined end state (win or lose). Mutually exclusive with aborted." },
+    "aborted": { "type": "boolean", "description": "True if ended early: user quit, native abort command, timeout, or fatal error." },
+    "abortReason": { "type": "string", "enum": ["user-quit", "native-abort", "timeout", "error", "backgrounded-too-long"] },
+    "durationMs": { "type": "integer", "minimum": 0, "description": "Active play time, excluding time paused." },
+    "score": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "accuracy": { "type": "number", "minimum": 0, "maximum": 1, "description": "Fraction of decisions/rounds judged correct." },
+    "outcomes": {
+      "type": "array",
+      "description": "Per-round / per-objective results, in order.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "success"],
+        "properties": {
+          "id": { "type": "string", "description": "Objective or round id defined in the sim spec, e.g. round-1, read-the-coverage." },
+          "success": { "type": "boolean" },
+          "label": { "type": "string", "maxLength": 120 },
+          "value": { "type": ["number", "string", "boolean", "null"], "description": "Sim-defined measured value (e.g. draft-seconds)." }
+        }
+      }
+    },
+    "mistakes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["conceptId", "description", "at"],
+        "properties": {
+          "conceptId": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+          "description": { "type": "string", "maxLength": 240 },
+          "at": { "type": "integer", "minimum": 0, "description": "Milliseconds since session start (active time)." }
+        }
+      }
+    },
+    "masterySignals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["conceptId", "delta", "evidence"],
+        "properties": {
+          "conceptId": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+          "delta": { "type": "number", "minimum": -1, "maximum": 1 },
+          "evidence": { "type": "string", "maxLength": 240 }
+        }
+      }
+    },
+    "xpEarned": { "type": "integer", "minimum": 0, "description": "Proposed XP. Native clamps to the lesson's XP budget." },
+    "heartsLost": { "type": "integer", "minimum": 0 },
+    "replayAvailable": { "type": "boolean" },
+    "telemetry": {
+      "type": "object",
+      "description": "Non-personal diagnostics: fps stats, load time, peak memory, input counts. Must not contain names, free text from the learner, or device identifiers.",
+      "additionalProperties": true,
+      "properties": {
+        "avgFps": { "type": "number" },
+        "p5Fps": { "type": "number" },
+        "loadTimeMs": { "type": "integer" },
+        "peakMemoryMb": { "type": "number" },
+        "unityVersion": { "type": "string" },
+        "gameKitVersion": { "type": "string" }
+      }
+    }
+  },
+  "allOf": [
+    { "if": { "properties": { "completed": { "const": true } }, "required": ["completed"] }, "then": { "properties": { "aborted": { "const": false } } } },
+    { "if": { "properties": { "aborted": { "const": true } }, "required": ["aborted"] }, "then": { "required": ["abortReason"] } }
+  ]
+}
