@@ -17,20 +17,20 @@ CLAUDE.md                    this file
 README.md                    short intro
 .gitignore
 docs/
-  product/                   SWOOND_PRODUCT_SPEC.md (read-only), DECISIONS.md, GLOSSARY.md
+  product/                   SWOOND_PRODUCT_SPEC.md (read-only), DECISIONS.md, GLOSSARY.md, OPEN_QUESTIONS.md
   design/                    design handoff: DESIGN_SPEC.md, README.md, Swoond.dc.html (read-only)
   architecture/              ARCHITECTURE.md (iOS native app)
   contracts/                 versioned JSON Schemas + examples (platform-neutral)
     unity-bridge/v1/         launch-request / simulation-result / bridge-event, lifecycle README
-    course-manifest/v1/      per-course manifest schema
-    curriculum/v1/           curriculum schema (+ root/unit schemas for the 1.1 split layout)
+    course-manifest/v1/      per-course manifest schema (1.1)
+    curriculum/v1/           curriculum schema (1.2: branch layer, activity branchId, lesson live, branches[]) + root/unit schemas for the split layout
     native-exercises/v1/     one schema + example per native exercise type
     sim-definition/v1/       Astra's data-driven sim schema
   native-exercises/          CATALOG.md (Tier B exercise catalog)
-  astra/                     README (handoff), GAME_KIT.md, ART_DIRECTION.md, SIM_SPEC_TEMPLATE.md
+  astra/                     README (handoff), GAME_KIT.md, ROADMAP.md, ART_DIRECTION.md, SIM_SPEC_TEMPLATE.md
   courses/                   README, CDS_TEMPLATE.md, CATALOG.md, <course-id>/{CDS.md,manifest.json,curriculum/,sims/,exercises.md}
 tools/validate/              Node 22 ESM validator (ajv 2020-12): node validate.mjs
-ios/                         (to be created) SwoondCore Swift package + SwoondApp Xcode project
+ios/                         SwoondCore Swift package (done, Linux tests) + Swoond SwiftUI app (in progress)
 ```
 
 ## 3. Ownership rules (non-negotiable)
@@ -107,7 +107,7 @@ Toolchain: **Xcode 27, Swift 6.4 (Swift 6 language mode), iOS SDK 27, deployment
 1. Boundary test (spec section 6) using `docs/courses/CATALOG.md`.
 2. **CDS**: `docs/courses/CDS_TEMPLATE.md` -> `docs/courses/<id>/CDS.md` (full section 8 + Curriculum map + Interaction plan + section 47 checklist).
 3. **Manifest**: `docs/courses/<id>/manifest.json` (schema `course-manifest/v1`).
-4. **Curriculum JSON**: `docs/courses/<id>/curriculum/*.json` (schema `curriculum/v1`): concepts, units across all layers, talk tracks, review policy.
+4. **Curriculum JSON**: split layout, one unit per file: `docs/courses/<id>/curriculum/course.json` + `units/<NN>-<unit-id>.json` (schema `curriculum/v1`, contract 1.2): concepts, units across all layers (branch units use layer `branch`), talk tracks, review policy. Author by hand, never by script; incremental check: `node validate.mjs --course <id> --partial`.
 5. **Native exercises**: author payloads per `docs/contracts/native-exercises/v1`; plan in `exercises.md`.
 6. **Astra sim specs**: `docs/courses/<id>/sims/<simulationId>.md` from `docs/astra/SIM_SPEC_TEMPLATE.md`; list in manifest `unitySimulations[]`.
 7. **Validation**: `cd tools/validate && npm install && node validate.mjs`; then update `docs/courses/CATALOG.md` status.
@@ -128,7 +128,7 @@ Toolchain: **Xcode 27, Swift 6.4 (Swift 6 language mode), iOS SDK 27, deployment
 | SwiftUI app | Xcode 27 on a Mac: build + test + previews | Before merging app changes (not possible in the cloud container) |
 | Unity sims | Astra's Unity test suites + bridge conformance vs `examples/` | Astra |
 
-The validator: schema validation (ajv, draft 2020-12), unique ids, prerequisite/concept references, and each activity payload against its native-exercise schema. It exits non-zero on failure.
+The validator: schema validation (ajv, draft 2020-12), unique ids, prerequisite/concept/branch references, each activity payload against its native-exercise schema, content lint (placeholders, duplicate/repeated prompts, thin explanations, `thin-lesson` = lessons under 4 activities, `no-sims`), and, per manifest, that every `unitySimulations[].specPath` exists and its configuration JSON Schema compiles. `--course <id> --partial` relaxes missing units and `no-sims` for per-unit authoring. It exits non-zero on failure; `npm test` in `tools/validate` covers it.
 
 ## 11. Key docs
 
@@ -139,6 +139,8 @@ The validator: schema validation (ajv, draft 2020-12), unique ids, prerequisite/
 - Native exercises: `docs/native-exercises/CATALOG.md`
 - Astra: `docs/astra/README.md`, `GAME_KIT.md`, `ART_DIRECTION.md`, `SIM_SPEC_TEMPLATE.md`
 - Courses: `docs/courses/README.md`, `CDS_TEMPLATE.md`, `CATALOG.md`
+- Open decisions, licensing/legal checks, SME reviews, facts to re-verify: `docs/product/OPEN_QUESTIONS.md`
+- Astra build plan: `docs/astra/ROADMAP.md`; consolidated Game Kit requests: `docs/astra/GAME_KIT.md` section 5
 
 ## 12. Toolchain versions (verified 2026-09-30)
 
@@ -149,13 +151,19 @@ Xcode 27; Swift 6.4; iOS SDK 27.0; iOS deployment target 18.0; Unity 6.3 LTS (60
 *(The orchestrator updates this section after each work session.)*
 
 **Status (2026-09-30):**
-- Documentation foundation written: product decisions, glossary, architecture, all contracts (bridge v1, manifest v1, curriculum v1, 13 native exercise schemas, sim-definition v1) with validated examples, native exercise catalog, Astra handoff docs, course templates and catalog, validator tooling.
-- No Swift code, no Unity project, no course content yet. All 28 catalog courses: not started.
+- Foundation done: product decisions (D-001 to D-017), glossary, architecture, all contracts with validated examples (bridge v1, course manifest 1.1, curriculum 1.2, 13 native exercise schemas, sim-definition v1), native exercise catalog, Astra handoff docs, validator with content lint and sim-spec checks (`npm test` green).
+- SwoondCore done: domain, ProgressEngine, ContentLoader (single-file and split layouts, branch-aware), bridge types and BridgeSession, exercise engines, mock providers; `swift test` passes on Linux.
+- SwiftUI app (`ios/Swoond`) in progress; needs Mac verification (Xcode 27). It must handle `Layer.branch` and activity `branchId` (contract 1.2).
+- Wave 1 documentation done for all 8 courses (`cds-draft`): CDS, manifest, exercise and live-data plans, and 41 Astra sim specs (football 5, NASCAR 6, F1 6, pickleball 5, hiking 1, basketball 6, hockey 6, soccer 6), all `spec-draft`. Catalog: `docs/courses/CATALOG.md`.
+- Game Kit: sport modules now specified beyond football and racing (Hockey, Soccer, Basketball, Pickleball court pattern, shared Racing for NASCAR + F1, Terrain for hiking). Consolidated requests (20 generic primitives) in `docs/astra/GAME_KIT.md` section 5; recommended build order in `docs/astra/ROADMAP.md`. Nothing built in Unity yet.
+- Curriculum authoring is moving to the split per-unit layout (one file per unit, hand-authored, content lint enforced: no placeholders, no duplicates, lessons of 4+ activities). Hiking and soccer are in progress; the other six await curriculum.
+- Consolidated open questions (45: product, licensing/legal, SME, facts to re-verify): `docs/product/OPEN_QUESTIONS.md`.
 
 **Next steps (suggested order):**
-1. Product-owner review of DECISIONS.md and its open questions (Q-1..Q-4).
-2. Create `ios/SwoondCore` package: domain types, ProgressEngine (XP/hearts/streak/mastery/review), ContentLoader, bridge Codable types + BridgeSession, mock repositories; `swift test` on Linux with the contract examples as fixtures.
-3. Hand Astra the docs in `docs/astra/` and agree the bridge v1 conformance suite.
-4. Write the American Football CDS (reference course #1), then manifest, curriculum, first sim spec (`football.coverage.read.v1`).
-5. Scaffold `SwoondApp` (design system tokens/fonts, navigation shell, onboarding) - Mac verification required.
-6. Extend the validator to check sim `configuration` against each sim spec's schema fragment (bridge README open question).
+1. Product-owner pass on `docs/product/OPEN_QUESTIONS.md` (P-01 to P-19 first; L-01 news provider and L-02/L-03 data providers block the live layer).
+2. Finish the SwiftUI app shell and Mac verification; wire `BundledContentRepository` to the authored split curricula.
+3. Finish curriculum JSON per unit for all 8 Wave 1 courses (`validate.mjs --course <id> --partial` while incremental), then flip catalog/manifest status to `content-in-progress`.
+4. Hand Astra `docs/astra/` (GAME_KIT section 5, ROADMAP) and agree the bridge v1 conformance suite; first vertical slice `football.coverage.read.v1`.
+5. Line up SME reviews (S-01 to S-06) ahead of each sim's approval; safety review for hiking (S-05).
+6. Follow-up validator work: validate sim `configuration` objects in curriculum activities against each spec's schema; check `unitySimulations[].lessonIds` against curriculum lessons.
+7. Wave 2 (13 courses, `docs/courses/CATALOG.md`) once the Wave 1 curriculum pipeline and first sim slice are proven; reuse Wave 1 modules (Court, Terrain, spatial kit) where they fit.

@@ -105,7 +105,7 @@ Format: `D-NNN - title`, status (Accepted / Superseded), context, decision, cons
 
 ## Open questions (product owner)
 
-The consolidated, deduplicated list (including Wave 1) lives in `docs/product/OPEN_QUESTIONS.md`. Q-1 to Q-4 below are kept for history and appear there as P-01 to P-04.
+The consolidated, deduplicated list (including Wave 1) lives in `docs/product/OPEN_QUESTIONS.md`. Q-1 to Q-4 below are kept for history and appear there as P-01, P-02, L-01 (Q-3) and P-03 (Q-4).
 
 | # | Question | Needed by |
 |---|---|---|

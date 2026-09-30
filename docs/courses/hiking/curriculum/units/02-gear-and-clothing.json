@@ -1883,7 +1883,7 @@
               "fire-and-repair"
             ],
             "payload": {
-              "prompt": "Match the kit to what it fixes.",
+              "prompt": "Match the kit to what it solves.",
               "pairs": [
                 {
                   "id": "first",
@@ -1894,14 +1894,19 @@
                   "id": "repair",
                   "term": "Repair kit",
                   "definition": "Knife or multi-tool, cord, duct tape and safety pins to fix gear on the trail"
+                },
+                {
+                  "id": "fire",
+                  "term": "Fire starter",
+                  "definition": "Matches or lighter for emergency fire in a survival situation"
                 }
               ],
               "distractorDefinitions": [
                 "A surgical suite in a backpack"
               ],
               "explanation": {
-                "summary": "First aid is for your body. Repair kit is for your gear. Both are light and often save a hike.",
-                "sayThisLine": "\"Duct tape wrapped around a pencil fits in your pocket and fixes almost anything.\""
+                "summary": "First aid is for your body, repair for your gear, fire for emergencies. All three are light and part of the essentials.",
+                "sayThisLine": "\"Duct tape wrapped on a pencil fits your pocket and fixes almost anything.\""
               }
             }
           },
@@ -2024,30 +2029,65 @@
             ],
             "payload": {
               "safetyNote": "Treating minor injuries early prevents them from becoming serious or infected.",
-              "prompt": "You have a small cut on your palm from a rock scramble. You have a basic first aid kit. What do you do?",
+              "prompt": "Small cut from rock scramble. How do you treat it?",
+              "situation": {
+                "narrative": "You scraped your palm on a rock during scrambling. It is a small cut with a little bleeding, but it is dirty and exposed. You have water, antibiotic ointment and bandages.",
+                "facts": [
+                  {
+                    "label": "Cut size",
+                    "value": "Small, about an inch long"
+                  },
+                  {
+                    "label": "Contamination",
+                    "value": "Dirt and rock dust in the wound"
+                  },
+                  {
+                    "label": "Gear available",
+                    "value": "Water bottle, antibiotic ointment, bandages"
+                  },
+                  {
+                    "label": "Time to finish",
+                    "value": "2 more hours on trail"
+                  }
+                ]
+              },
               "options": [
                 {
                   "id": "treat",
-                  "text": "Rinse it with water from your bottle, apply antibiotic ointment and cover with a bandage",
-                  "explanation": "Cleaning and covering prevent infection and pain."
+                  "label": "Rinse with water, apply antibiotic ointment and cover with a bandage",
+                  "verdict": "best",
+                  "consequence": "The cut is clean and protected. You finish the hike pain-free and infection-free. The small wound heals normally.",
+                  "considerations": [
+                    "Dirty wounds in the backcountry get infected easily",
+                    "Five minutes of care now prevents days of pain",
+                    "Antibiotics and bandages are light and essential"
+                  ]
                 },
                 {
                   "id": "leave",
-                  "text": "Leave it open, it will heal faster"
+                  "label": "Leave it open to air so it dries faster",
+                  "verdict": "poor",
+                  "consequence": "Dirt stays in the wound. Sweat and friction keep it wet. By the next day it is red, swollen and infected.",
+                  "considerations": [
+                    "Dirt is an infection source",
+                    "Backcountry wounds are at high risk",
+                    "Covering is the correct first aid response"
+                  ]
                 },
                 {
                   "id": "ignore",
-                  "text": "Ignore it, a small cut is not worth fussing over"
+                  "label": "Ignore it, it is too small to matter",
+                  "verdict": "poor",
+                  "consequence": "Two hours of dirt exposure and friction. The wound swells and reddens by evening. Three days later you are treating an infection.",
+                  "considerations": [
+                    "Small cuts can infect as easily as large ones",
+                    "Trail dirt is not clean",
+                    "Prevention takes minutes, treatment takes days"
+                  ]
                 }
               ],
-              "correctOptionIds": [
-                "treat"
-              ],
-              "explanation": {
-                "correct": "Clean the wound, apply antibiotic and cover it. A small cut treated now is less painful and infected later.",
-                "incorrect": "Backcountry wounds can get infected fast. Clean and cover, even small cuts.",
-                "sayThisLine": "\"Small cuts treated now do not turn into infected sores later. I clean and cover every one.\""
-              }
+              "expertNote": "Treat small cuts immediately. Dirty backcountry wounds get infected fast. Clean, antibiotic, bandage.",
+              "sayThisLine": "\"Small cuts treated now do not turn into infected sores later. I clean and bandage every one.\""
             }
           }
         ]

@@ -23,7 +23,10 @@ final class ProfileViewModel {
                 mastered += mastery.masteredConceptIds(now: now, policy: curriculum.reviewPolicy).count
                 met += mastery.concepts.values.filter { $0.attempts > 0 }.count
                 // Talk Tracks finished = completed lessons that contain a talk-track activity (any person).
-                let talkLessons = Set(curriculum.allLessons.filter { $0.lesson.activities.contains { $0.type == .talkTrack } }.map(\.lesson.id))
+                var talkLessons = Set<LessonID>()
+                for entry in curriculum.allLessons where entry.lesson.activities.contains(where: { activity in activity.type == .talkTrack }) {
+                    talkLessons.insert(entry.lesson.id)
+                }
                 for person2 in model.people {
                     if let p = try? await env.engine.courseProgress(personId: person2.id, courseId: id) {
                         talks += talkLessons.filter { p.isLessonComplete($0) }.count
