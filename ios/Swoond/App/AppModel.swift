@@ -33,7 +33,9 @@ final class AppModel {
     private(set) var people: [Person] = []
     private(set) var courses: [CourseSummary] = []
     private(set) var learner = LearnerSnapshot()
-    private(set) var settings: AppSettings
+    var settings: AppSettings {
+        didSet { settingsDidChange(from: oldValue) }
+    }
 
     var selectedTab: AppTab = .learn
     var fullScreen: FullScreenRoute?
@@ -117,15 +119,21 @@ final class AppModel {
 
     // MARK: Settings
 
+    /// Change settings from code (views can also bind straight to `settings`). Persistence, haptics and reminders follow
+    /// in `settingsDidChange`.
     func updateSettings(_ change: (inout AppSettings) -> Void) {
         var next = settings
         change(&next)
-        guard next != settings else { return }
-        let reminderChanged = next.dailyReminder != settings.dailyReminder || next.reminderHour != settings.reminderHour || next.discreetMode != settings.discreetMode
         settings = next
-        env.settingsStore.save(next)
-        Haptics.shared.isEnabled = next.soundsAndHaptics
-        if reminderChanged { Task { await syncReminders(requestPermission: true) } }
+    }
+
+    private func settingsDidChange(from old: AppSettings) {
+        guard settings != old else { return }
+        env.settingsStore.save(settings)
+        Haptics.shared.isEnabled = settings.soundsAndHaptics
+        let reminderChanged = settings.dailyReminder != old.dailyReminder || settings.reminderHour != old.reminderHour
+            || settings.discreetMode != old.discreetMode || settings.activePersonId != old.activePersonId
+        if reminderChanged { Task { await syncReminders(requestPermission: settings.dailyReminder && !old.dailyReminder) } }
     }
 
     /// Schedule or cancel the daily reminder. Copy is composed by Core, so Discreet mode never leaks a name.

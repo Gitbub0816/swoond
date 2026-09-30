@@ -1,0 +1,788 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "soccer",
+  "unit": {
+    "id": "set-pieces",
+    "title": "Set pieces",
+    "layer": "intermediate",
+    "order": 7,
+    "lessons": [
+      {
+        "id": "setpiece-01",
+        "title": "Corner kick basics",
+        "objective": "You can explain how a corner is taken and defended.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["corner-routine", "near-far-post"],
+        "activities": [
+          {
+            "id": "setpiece-01-mc-corner-danger",
+            "type": "multiple-choice",
+            "conceptIds": ["corner-routine"],
+            "payload": {
+              "prompt": "Why is a corner one of the most dangerous attacking plays?",
+              "options": [
+                {"id": "a", "text": "The ball is already in the box"},
+                {"id": "b", "text": "The keeper must stay at the goal line"},
+                {"id": "c", "text": "More attackers than usual get to the box"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Right. A corner kick puts the ball straight into the penalty area where headers and tap-ins happen.",
+                "incorrect": "Corners bring the ball directly into the box, so defenders crowd around it and chaos erupts.",
+                "sayThisLine": "Corner time, everyone's in the box on both sides."
+              }
+            }
+          },
+          {
+            "id": "setpiece-01-ht-corner-posts",
+            "type": "hotspot-tap",
+            "conceptIds": ["near-far-post"],
+            "payload": {
+              "prompt": "Tap the near post and far post on this attacking corner.",
+              "diagram": {
+                "kind": "soccer-pitch-attacking-third",
+                "alt": "A soccer pitch attacking third with goals marked. The corner on the right side is taken. Near post is the closest to the corner taker; far post is the opposite corner."
+              },
+              "spots": [
+                {"id": "near", "label": "Near post", "correctMatch": true},
+                {"id": "far", "label": "Far post", "correctMatch": true}
+              ],
+              "explanation": {
+                "summary": "The near post is closest to where the corner is kicked; the far post is on the opposite corner of the goal.",
+                "sayThisLine": "Near post for the flick-on, far post for the tap-in."
+              }
+            }
+          },
+          {
+            "id": "setpiece-01-bc-defending",
+            "type": "binary-call",
+            "conceptIds": ["corner-routine"],
+            "payload": {
+              "prompt": "The defending team lines two players on each goalpost. Is this allowed?",
+              "scene": {"kind": "none", "alt": "A corner kick scenario where defending players stand on or near the goalposts to block shots and crosses into the goal."},
+              "choices": [
+                {"id": "yes", "label": "Yes, allowed"},
+                {"id": "no", "label": "No, not allowed"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes. Defenders often stand on or near the posts to block any shot or cross that reaches the goal.",
+                "incorrect": "It's a smart and very common tactic. Keepers like having a couple of defenders on the posts to cut off angles.",
+                "sayThisLine": "He's stood on the post ready for anything near goal."
+              },
+              "ruleTag": "Corner defence"
+            }
+          },
+          {
+            "id": "setpiece-01-tm-corner-terms",
+            "type": "term-match",
+            "conceptIds": ["corner-routine", "near-far-post"],
+            "payload": {
+              "prompt": "Match corner-play terms to their meanings.",
+              "pairs": [
+                {"id": "routine", "term": "Corner routine", "definition": "A rehearsed plan: where players start, who runs where, and what delivery type to use."},
+                {"id": "inswing", "term": "Inswinging corner", "definition": "A corner that curves toward the goal, often delivered to the near post for a flick-on."},
+                {"id": "outswing", "term": "Outswinging corner", "definition": "A corner that curves away from goal, often delivered to the far post where an attacker can meet it."}
+              ],
+              "explanation": {
+                "summary": "Corner routines are rehearsed plays; the curve (in or out) and the target post determine the danger.",
+                "sayThisLine": "They have a routine for every corner, the taker knows exactly where it goes."
+              }
+            }
+          },
+          {
+            "id": "setpiece-01-st-goal",
+            "type": "say-this",
+            "conceptIds": ["corner-routine"],
+            "payload": {
+              "statement": {"speaker": "Jake", "text": "We just scored from a set piece! That corner routine worked perfectly."},
+              "question": "What does he mean?",
+              "options": [
+                {"id": "a", "text": "A planned play that the team practiced scored a goal", "isCorrect": true},
+                {"id": "b", "text": "Any random corner that results in a goal", "isCorrect": false},
+                {"id": "c", "text": "The team had a specific movement plan they rehearsed", "isCorrect": true},
+                {"id": "d", "text": "A keeper's mistake led to a goal", "isCorrect": false}
+              ],
+              "translation": "The team executed a rehearsed corner routine: specific players ran specific routes and the delivery hit its target, leading to a goal.",
+              "followUps": [
+                {"line": "Do corners always have a set plan?", "why": "Shows understanding that good teams rehearse these plays."},
+                {"line": "Who usually scores from corners?", "why": "Identifies the types of players likely to finish."}
+              ],
+              "noFakeExpertNote": "You can say 'So the plan actually worked for once!' to show you get how unreliable execution is."
+            }
+          },
+          {
+            "id": "setpiece-01-fg-restart",
+            "type": "fill-the-gap",
+            "conceptIds": ["corner-routine"],
+            "payload": {
+              "prompt": "Complete this corner rule.",
+              "template": "A corner kick is taken from the {{location}} when {{who}} puts the ball over their own {{line}}.",
+              "gaps": [
+                {"id": "location", "options": ["centre circle", "corner arc", "goal line"], "correct": "corner arc"},
+                {"id": "who", "options": ["either team", "the attacking team", "the defending team"], "correct": "the defending team"},
+                {"id": "line", "options": ["touchline", "goal line", "halfway line"], "correct": "goal line"}
+              ],
+              "explanation": {
+                "correct": "Right. Defenders play it over their own goal line, and the corner kick is taken from the corner arc.",
+                "incorrect": "When defenders put the ball over their own goal line, a corner is awarded. It's taken from the corner arc on the same side."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "setpiece-02",
+        "title": "Inswing or outswing",
+        "objective": "You can explain inswingers and outswingers.",
+        "estimatedMinutes": 9,
+        "conceptIds": ["inswinger-outswinger", "near-far-post"],
+        "activities": [
+          {
+            "id": "setpiece-02-tm-curve",
+            "type": "term-match",
+            "conceptIds": ["inswinger-outswinger"],
+            "payload": {
+              "prompt": "Match the corner curve type to its description.",
+              "pairs": [
+                {"id": "in", "term": "Inswinging corner", "definition": "The ball curves toward the goal as it travels through the air; harder for keepers to reach."},
+                {"id": "out", "term": "Outswinging corner", "definition": "The ball curves away from the goal; often aimed for the far post where attackers can meet it."},
+                {"id": "flat", "term": "Flat corner", "definition": "A straight cross with little to no curve; good for the near post or a quick flick-on."}
+              ],
+              "explanation": {
+                "summary": "The curve of the ball determines where it ends up and who can reach it best.",
+                "sayThisLine": "Inswinger from the left, keepers hate those."
+              }
+            }
+          },
+          {
+            "id": "setpiece-02-bc-keeper-challenge",
+            "type": "binary-call",
+            "conceptIds": ["inswinger-outswinger"],
+            "payload": {
+              "prompt": "The corner curves toward goal from right to left. Is this an inswinger or outswinger?",
+              "scene": {"kind": "none", "alt": "A corner kick taken from the right side curves inward across the face of goal toward the left post."},
+              "choices": [
+                {"id": "in", "label": "Inswinger"},
+                {"id": "out", "label": "Outswinger"}
+              ],
+              "correctChoiceId": "in",
+              "explanation": {
+                "correct": "Right, that's an inswinger. It bends toward the goal, which puts pressure on the keeper and makes it harder to claim.",
+                "incorrect": "If it's curving toward the goal, that's an inswinger. Inswingers bend in; outswingers bend out.",
+                "sayThisLine": "Inswinger, the keeper's coming out for it and that's risky."
+              },
+              "ruleTag": "Corner delivery"
+            }
+          },
+          {
+            "id": "setpiece-02-st-curve-talk",
+            "type": "say-this",
+            "conceptIds": ["inswinger-outswinger"],
+            "payload": {
+              "statement": {"speaker": "Sofia", "text": "Keepers hate inswingers more than outswingers."},
+              "question": "Why might that be?",
+              "options": [
+                {"id": "a", "text": "Inswingers curve toward goal, making them harder to reach and claim", "isCorrect": true},
+                {"id": "b", "text": "Outswingers are slower and easier to catch", "isCorrect": false},
+                {"id": "c", "text": "Inswingers give attackers a better angle", "isCorrect": true},
+                {"id": "d", "text": "The keeper must come off the line further for inswingers", "isCorrect": true}
+              ],
+              "translation": "An inswinger curves toward goal, so the keeper must rush out to claim it or block shooting angles. If he's wrong, the inswinger pulls away from him and creates chaos in the box.",
+              "followUps": [
+                {"line": "Do teams always use inswingers then?", "why": "Recognizes that not all teams can deliver them consistently."},
+                {"line": "How do defenders mark on inswingers?", "why": "Shows you're thinking about the defense's job too."}
+              ],
+              "noFakeExpertNote": "You could say 'So the keeper basically has to gamble' if you're watching a corner."
+            }
+          },
+          {
+            "id": "setpiece-02-mc-keeper-skill",
+            "type": "multiple-choice",
+            "conceptIds": ["inswinger-outswinger"],
+            "payload": {
+              "prompt": "For an inswinging corner, what is the keeper's biggest challenge?",
+              "options": [
+                {"id": "a", "text": "Deciding whether to come out or stay on the line"},
+                {"id": "b", "text": "The ball curves away from his hands"},
+                {"id": "c", "text": "The attackers are too slow to reach it"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Exactly. An inswinger creates a split-second decision: come out and risk missing it, or stay back and let it curl in.",
+                "incorrect": "The keeper must judge quickly whether to leave the line to claim it or trust his defence. Too many attackers in the box does not help his odds."
+              }
+            }
+          },
+          {
+            "id": "setpiece-02-fg-delivery",
+            "type": "fill-the-gap",
+            "conceptIds": ["inswinger-outswinger"],
+            "payload": {
+              "prompt": "Complete this about corner delivery.",
+              "template": "An {{type}} corner curves {{direction}}, while an {{opposite}} corner curves {{other-direction}}.",
+              "gaps": [
+                {"id": "type", "options": ["short", "inswinging", "near-post"], "correct": "inswinging"},
+                {"id": "direction", "options": ["toward the goal", "away from play", "straight"], "correct": "toward the goal"},
+                {"id": "opposite", "options": ["outswinging", "flat", "dangerous"], "correct": "outswinging"},
+                {"id": "other-direction", "options": ["away from the goal", "faster", "to the near post"], "correct": "away from the goal"}
+              ],
+              "explanation": {
+                "correct": "Right. Inswingers curve in; outswingers curve out. Different curves suit different targets.",
+                "incorrect": "Inswingers bend toward goal; outswingers bend away. The curve changes the difficulty for the keeper."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "setpiece-03",
+        "title": "Read the corner (sim)",
+        "objective": "You can read a corner routine and predict the target.",
+        "estimatedMinutes": 12,
+        "conceptIds": ["corner-routine", "zonal-man-marking", "set-piece-marking", "near-far-post"],
+        "activities": [
+          {
+            "id": "setpiece-03-sim-corner",
+            "type": "unity-sim",
+            "conceptIds": ["corner-routine", "near-far-post", "zonal-man-marking"],
+            "payload": {
+              "simulationId": "soccer.setpiece.corner-read.v1",
+              "prompt": "Watch the corner routine and predict where it's headed.",
+              "explanation": {
+                "summary": "Reading a corner routine means spotting which players are running where and guessing the delivery.",
+                "sayThisLine": "That routine is always aimed at the near post."
+              }
+            }
+          },
+          {
+            "id": "setpiece-03-mc-routine",
+            "type": "multiple-choice",
+            "conceptIds": ["corner-routine"],
+            "payload": {
+              "prompt": "What makes a corner routine effective?",
+              "options": [
+                {"id": "a", "text": "Surprising the defence with a different target each time"},
+                {"id": "b", "text": "Clear roles so players know exactly where to run"},
+                {"id": "c", "text": "Using only the near post"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Yes. When every player knows their job (flick-on, far post, second ball), the routine flows smoothly.",
+                "incorrect": "A good routine is clear and repeatable. Players know their runs and the taker knows the delivery. Confusion ruins it."
+              }
+            }
+          },
+          {
+            "id": "setpiece-03-ht-posts",
+            "type": "hotspot-tap",
+            "conceptIds": ["near-far-post"],
+            "payload": {
+              "prompt": "Tap both the near and far posts for this corner scenario.",
+              "diagram": {
+                "kind": "soccer-pitch-attacking-third",
+                "alt": "A soccer pitch attacking third with the defending goal shown. The corner kick is being taken from the right side."
+              },
+              "spots": [
+                {"id": "near", "label": "Near post", "correctMatch": true},
+                {"id": "far", "label": "Far post", "correctMatch": true}
+              ],
+              "explanation": {
+                "summary": "Near post is closest to the corner taker; far post is the opposite corner. Routines target one or the other.",
+                "sayThisLine": "It's going to the far post, watch the marker get beaten."
+              }
+            }
+          },
+          {
+            "id": "setpiece-03-tm-marking",
+            "type": "term-match",
+            "conceptIds": ["zonal-man-marking", "set-piece-marking"],
+            "payload": {
+              "prompt": "Match the set-piece marking systems.",
+              "pairs": [
+                {"id": "zonal", "term": "Zonal marking", "definition": "Defenders guard areas of the box; they move to cover space rather than follow a specific attacker."},
+                {"id": "man", "term": "Man marking", "definition": "Each defender marks a specific attacker and follows them to the box, even if they wander."},
+                {"id": "hybrid", "term": "Hybrid marking", "definition": "A mix: some defenders mark zones, others mark specific attackers."}
+              ],
+              "explanation": {
+                "summary": "Teams choose their marking system for corners to either cover space or track dangerous attackers.",
+                "sayThisLine": "Are they playing zonal or man-marking? Tells you where to run."
+              }
+            }
+          },
+          {
+            "id": "setpiece-03-st-read",
+            "type": "say-this",
+            "conceptIds": ["corner-routine"],
+            "payload": {
+              "statement": {"speaker": "Alex", "text": "Their routine is so easy to read. Everyone knows it's the near post every time."},
+              "question": "What does he mean?",
+              "options": [
+                {"id": "a", "text": "The team always aims at the near post on every corner", "isCorrect": true},
+                {"id": "b", "text": "The defence can predict where the ball is going", "isCorrect": true},
+                {"id": "c", "text": "Predictable corners are easier to defend", "isCorrect": true},
+                {"id": "d", "text": "The routine never works", "isCorrect": false}
+              ],
+              "translation": "A routine that never changes is a routine everyone knows. If the opposition spotting where the corner is headed before the taker even delivers it, the defence can cheat and close that space.",
+              "followUps": [
+                {"line": "How can a team fix a predictable routine?", "why": "Shows you're thinking about variety and disguise."},
+                {"line": "Do good teams use the same routine?", "why": "Recognizes that variation matters."}
+              ],
+              "noFakeExpertNote": "You can ask 'So do they ever switch it up?' to show you get that surprise helps."
+            }
+          },
+          {
+            "id": "setpiece-03-ds-defending",
+            "type": "decision-scenario",
+            "conceptIds": ["corner-routine", "set-piece-marking"],
+            "payload": {
+              "situation": {
+                "facts": [
+                  {"label": "Corner type", "value": "Inswinging from the right"},
+                  {"label": "Their routine", "value": "Near post flick-on, far post tap-in"},
+                  {"label": "Your marking", "value": "Man-marking on both posts"},
+                  {"label": "Situation", "value": "Down 1-0 with five minutes left"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "stay", "text": "Keep your man-marking, trust your posts are covered",
+                  "verdict": "acceptable",
+                  "consequence": "Safe but predictable. They know they need to beat your markers.",
+                  "considerations": "Man-marking works if your defenders are strong in the air."
+                },
+                {
+                  "id": "switch", "text": "Switch to zonal, pack the box and block the space",
+                  "verdict": "best",
+                  "consequence": "You control the space; they cannot flick on. More compact, harder to beat.",
+                  "considerations": "Zonal is better when you need a goal because it fills space, though it can leave an attacker free."
+                },
+                {
+                  "id": "rush", "text": "Push everyone forward to attack and ignore the corner",
+                  "verdict": "poor",
+                  "consequence": "Leaving the box empty when the corner comes in is a goal waiting to happen, especially down 1-0.",
+                  "considerations": "Even in a must-score situation, corners are too dangerous to leave undefended."
+                }
+              ],
+              "expertNote": "Good teams switch marking systems based on the score and the opponent's routine. Being flexible matters.",
+              "safetyNote": ""
+            }
+          }
+        ]
+      },
+      {
+        "id": "setpiece-04",
+        "title": "Free-kick craft",
+        "objective": "You can explain free-kick technique.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["free-kick-technique", "wall-distance"],
+        "activities": [
+          {
+            "id": "setpiece-04-mc-technique",
+            "type": "multiple-choice",
+            "conceptIds": ["free-kick-technique"],
+            "payload": {
+              "prompt": "What is the main difference between a direct and indirect free kick?",
+              "options": [
+                {"id": "a", "text": "A direct free kick can score straight into the goal"},
+                {"id": "b", "text": "An indirect free kick is closer to goal"},
+                {"id": "c", "text": "Indirect free kicks are slower"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Right. A direct free kick can go straight in; an indirect must touch another player first.",
+                "incorrect": "Direct free kicks can go straight into the goal. Indirect ones need another touch before they're a goal."
+              }
+            }
+          },
+          {
+            "id": "setpiece-04-ht-wall",
+            "type": "hotspot-tap",
+            "conceptIds": ["wall-distance"],
+            "payload": {
+              "prompt": "Mark where the defensive wall should stand for a free kick.",
+              "diagram": {
+                "kind": "soccer-pitch-attacking-third",
+                "alt": "A pitch with a free kick marked. The defensive wall must stand 10 yards (9.15 metres) from the ball."
+              },
+              "spots": [
+                {"id": "wall", "label": "Wall position", "correctMatch": true}
+              ],
+              "explanation": {
+                "summary": "The wall stands at least 10 yards from the ball. That is the minimum distance by the laws.",
+                "sayThisLine": "The wall's too close, the ref will back them off."
+              }
+            }
+          },
+          {
+            "id": "setpiece-04-st-curve",
+            "type": "say-this",
+            "conceptIds": ["free-kick-technique"],
+            "payload": {
+              "statement": {"speaker": "Morgan", "text": "He bent it round the wall and top corner. Absolute worldie."},
+              "question": "What technique did he use?",
+              "options": [
+                {"id": "a", "text": "A curving free kick that bypassed the wall and scored high", "isCorrect": true},
+                {"id": "b", "text": "A straight shot that the wall could not block", "isCorrect": false},
+                {"id": "c", "text": "A free kick that curved away from the goalkeeper", "isCorrect": true},
+                {"id": "d", "text": "A low drive under the wall", "isCorrect": false}
+              ],
+              "translation": "He struck the free kick with curve (bend or dip) so it traveled around the wall and went into the top corner. That is a high-difficulty, high-skill shot.",
+              "followUps": [
+                {"line": "How do you bend a free kick like that?", "why": "Shows you're curious about technique."},
+                {"line": "Do keepers have time to react to a curved free kick?", "why": "Recognizes the speed advantage."}
+              ],
+              "noFakeExpertNote": "You could say 'I couldn't do that in a million years' and most fans would agree."
+            }
+          },
+          {
+            "id": "setpiece-04-bc-wall",
+            "type": "binary-call",
+            "conceptIds": ["wall-distance"],
+            "payload": {
+              "prompt": "The referee measures and finds the wall is only 8 yards from the ball. Does he move them back?",
+              "scene": {"kind": "none", "alt": "A free kick scenario where the defensive wall is positioned too close to the ball."},
+              "choices": [
+                {"id": "yes", "label": "Yes, move back"},
+                {"id": "no", "label": "No, it is fine"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes. The wall must be at least 10 yards from the ball. If it is not, the referee will back them up.",
+                "incorrect": "The law is clear: 10 yards (9.15 metres) minimum. The referee will make sure the wall stands far enough back."
+              },
+              "ruleTag": "Free kick rules"
+            }
+          },
+          {
+            "id": "setpiece-04-ds-kick",
+            "type": "decision-scenario",
+            "conceptIds": ["free-kick-technique"],
+            "payload": {
+              "situation": {
+                "facts": [
+                  {"label": "Distance", "value": "20 yards from goal"},
+                  {"label": "Position", "value": "Dead centre, no angle"},
+                  {"label": "Wall", "value": "Six defenders lined up"},
+                  {"label": "Your skill", "value": "Good curve, average power"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "curve", "text": "Strike it with curve to bend it around the wall",
+                  "verdict": "best",
+                  "consequence": "Bending it gives you the best chance to reach the top corner or far post, bypassing the wall cleanly.",
+                  "considerations": "This is the classic free kick technique from 20 yards at centre."
+                },
+                {
+                  "id": "power", "text": "Hit it with power and accuracy over the wall",
+                  "verdict": "acceptable",
+                  "consequence": "Power over the wall can work but is harder to place precisely and gives the keeper more time.",
+                  "considerations": "Requires better timing and accuracy than bending it."
+                },
+                {
+                  "id": "short", "text": "Pass it short to a teammate to a better angle",
+                  "verdict": "acceptable",
+                  "consequence": "A short pass can reset the situation and find a teammate with a clearer sight on goal.",
+                  "considerations": "Tactically smart if teammates are ready, but you lose the direct threat."
+                }
+              ],
+              "expertNote": "Twenty yards from centre is the free kick that rewards technique and curve. Power works but is riskier.",
+              "safetyNote": ""
+            }
+          },
+          {
+            "id": "setpiece-04-tm-delivery",
+            "type": "term-match",
+            "conceptIds": ["free-kick-technique"],
+            "payload": {
+              "prompt": "Match free kick delivery types.",
+              "pairs": [
+                {"id": "dip", "term": "Dip", "definition": "The ball rises and then drops suddenly into the box, catching the keeper off guard."},
+                {"id": "curve", "term": "Curve", "definition": "The ball bends left or right around the wall and toward goal."},
+                {"id": "chip", "term": "Chip", "definition": "A high, floating kick over the wall and into the box for a header."}
+              ],
+              "explanation": {
+                "summary": "Free kick technique has many options: dip surprises keepers, curve beats the wall, chips go over it.",
+                "sayThisLine": "That one dipped at the last second, the keeper never stood a chance."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "setpiece-05",
+        "title": "Penalties",
+        "objective": "You can explain penalty strategy and the shootout.",
+        "estimatedMinutes": 9,
+        "conceptIds": ["penalty-strategy", "shootout-format"],
+        "activities": [
+          {
+            "id": "setpiece-05-mc-strategy",
+            "type": "multiple-choice",
+            "conceptIds": ["penalty-strategy"],
+            "payload": {
+              "prompt": "What is a key penalty strategy for a taker?",
+              "options": [
+                {"id": "a", "text": "Always aim for the same spot"},
+                {"id": "b", "text": "Vary where you aim based on the keeper's habits"},
+                {"id": "c", "text": "Kick as hard as possible every time"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. Good penalty takers study the keeper's diving patterns and aim for a different corner.",
+                "incorrect": "Varying where you shoot keeps the keeper guessing. If he knows you always go right, he's already diving."
+              }
+            }
+          },
+          {
+            "id": "setpiece-05-ds-shootout",
+            "type": "decision-scenario",
+            "conceptIds": ["shootout-format"],
+            "payload": {
+              "situation": {
+                "facts": [
+                  {"label": "Match", "value": "Tied after extra time"},
+                  {"label": "Shootout", "value": "Going to penalties"},
+                  {"label": "Status", "value": "2-2 after four rounds"},
+                  {"label": "Next shot", "value": "Your fifth, sudden death begins"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "wait", "text": "Wait for the keeper to move, then chip it (Panenka)",
+                  "verdict": "poor",
+                  "consequence": "Overconfident in a sudden-death shootout. Keeper saves it and your team is out.",
+                  "considerations": "Fancy chips fail in high-pressure moments. Not the time to show off."
+                },
+                {
+                  "id": "power", "text": "Strike it hard to your chosen corner with confidence",
+                  "verdict": "best",
+                  "consequence": "A strong, placed shot gives you the best chance. Keeper has less time to react.",
+                  "considerations": "Sudden death is not the place for tricks; accuracy and conviction matter most."
+                },
+                {
+                  "id": "safe", "text": "Aim for the centre, betting the keeper dives",
+                  "verdict": "acceptable",
+                  "consequence": "The centre is a smaller target. It works if the keeper is nervous, but gives up the power of your corners.",
+                  "considerations": "A middle shot is safer but leaves the goal less well protected."
+                }
+              ],
+              "expertNote": "Sudden death is won by players with nerve and precision, not tricks. Confidence and a specific target win.",
+              "safetyNote": ""
+            }
+          },
+          {
+            "id": "setpiece-05-st-shootout",
+            "type": "say-this",
+            "conceptIds": ["shootout-format"],
+            "payload": {
+              "statement": {"speaker": "Casey", "text": "Five each and then sudden death. My heart can't take this."},
+              "question": "What does she mean?",
+              "options": [
+                {"id": "a", "text": "Teams take five penalties each, then if tied, sudden death (alternating one-on-one) continues", "isCorrect": true},
+                {"id": "b", "text": "After five penalties the match ends", "isCorrect": false},
+                {"id": "c", "text": "The tension of sudden death where one miss ends everything", "isCorrect": true},
+                {"id": "d", "text": "Sudden death happens immediately", "isCorrect": false}
+              ],
+              "translation": "The shootout format is five penalties per team; if tied at 5-5, sudden death begins: alternating one shot each until one team scores and the other does not.",
+              "followUps": [
+                {"line": "Who goes first in sudden death?", "why": "Tests understanding of the pressure advantage."},
+                {"line": "Has sudden death ever lasted a long time?", "why": "Shows you're thinking about real shootouts."}
+              ],
+              "noFakeExpertNote": "It is perfectly normal to be nervous during shootouts. Most fans are."
+            }
+          },
+          {
+            "id": "setpiece-05-mc-format",
+            "type": "multiple-choice",
+            "conceptIds": ["shootout-format"],
+            "payload": {
+              "prompt": "In a penalty shootout, what happens after each team has taken five penalties?",
+              "options": [
+                {"id": "a", "text": "The match ends"},
+                {"id": "b", "text": "Sudden death begins: alternate penalties until one team scores and the other misses"},
+                {"id": "c", "text": "The team with more shots left wins"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Exactly. Five each is the first stage. If it is still tied, sudden death continues until one team's advantage is clear.",
+                "incorrect": "After five each, sudden death is used to break the tie. Teams take turns, and the first one to score while the other misses wins."
+              }
+            }
+          },
+          {
+            "id": "setpiece-05-es-save-rate",
+            "type": "estimate-slider",
+            "conceptIds": ["penalty-strategy"],
+            "payload": {
+              "prompt": "In professional football, what percentage of penalties are scored?",
+              "unit": "percent",
+              "min": 50,
+              "max": 90,
+              "step": 5,
+              "correctValue": 75,
+              "tolerance": {"full": 5, "partial": 10},
+              "explanation": {
+                "correct": "Close. About 75% of professional penalties go in, depending on the competition and pressure.",
+                "incorrect": "Roughly 75% of penalties score at the top level. That means keepers save about one in four, which is why penalty strategy matters so much.",
+                "sayThisLine": "If he scores, we're through. Miss and we're out."
+              }
+            }
+          },
+          {
+            "id": "setpiece-05-tm-penalty",
+            "type": "term-match",
+            "conceptIds": ["penalty-strategy"],
+            "payload": {
+              "prompt": "Match penalty technique terms.",
+              "pairs": [
+                {"id": "panenka", "term": "Panenka chip", "definition": "A cheeky, floating chip down the middle that bets the keeper dives. High risk, high reward."},
+                {"id": "power", "term": "Power shot", "definition": "A hard strike to the corner that gives the keeper minimal time to react."},
+                {"id": "placement", "term": "Placement shot", "definition": "Striking the ball to a chosen corner with accuracy rather than maximum power."}
+              ],
+              "explanation": {
+                "summary": "Penalties are won by reading the keeper and choosing a technique that exploits their habits.",
+                "sayThisLine": "He uses a Panenka but keepers know it now, so it doesn't work anymore."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "setpiece-06",
+        "title": "Short corners, blocks and second balls",
+        "objective": "You can spot the short-corner trick and the second ball.",
+        "estimatedMinutes": 11,
+        "conceptIds": ["short-corner", "screening-blocking", "second-ball", "long-throw"],
+        "activities": [
+          {
+            "id": "setpiece-06-sim-second",
+            "type": "unity-sim",
+            "conceptIds": ["short-corner", "second-ball"],
+            "payload": {
+              "simulationId": "soccer.setpiece.corner-read.v1",
+              "prompt": "Watch for the short corner and the second ball that follows.",
+              "explanation": {
+                "summary": "Short corners pull defenders out of position, creating space for the second ball.",
+                "sayThisLine": "Short corner into chaos at the second ball."
+              }
+            }
+          },
+          {
+            "id": "setpiece-06-mc-short",
+            "type": "multiple-choice",
+            "conceptIds": ["short-corner"],
+            "payload": {
+              "prompt": "Why do teams take a short corner instead of crossing directly?",
+              "options": [
+                {"id": "a", "text": "To pull defenders out of the box and change the angle of attack"},
+                {"id": "b", "text": "Because the taker is not skilled at crosses"},
+                {"id": "c", "text": "To waste time when losing"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Yes. A short corner draws defenders toward the ball, opening space elsewhere in the box.",
+                "incorrect": "Short corners are tactical: they pull defenders out of position, which creates gaps for a follow-up attack or a cross from a new angle."
+              }
+            }
+          },
+          {
+            "id": "setpiece-06-tm-play",
+            "type": "term-match",
+            "conceptIds": ["second-ball", "short-corner", "long-throw"],
+            "payload": {
+              "prompt": "Match set piece concepts.",
+              "pairs": [
+                {"id": "short", "term": "Short corner", "definition": "A corner played short to a teammate to pull defenders out and reset the attack."},
+                {"id": "second", "term": "Second ball", "definition": "The loose ball after a clearance, header or deflection. Often where goals are scored in set piece chaos."},
+                {"id": "throw", "term": "Long throw", "definition": "A throw-in launched into the box like a cross, sometimes a weapon for teams with tall players."}
+              ],
+              "explanation": {
+                "summary": "Set pieces are battles for the first ball, but the second ball often decides who scores.",
+                "sayThisLine": "Set pieces are all about winning the second ball."
+              }
+            }
+          },
+          {
+            "id": "setpiece-06-st-chaos",
+            "type": "say-this",
+            "conceptIds": ["second-ball"],
+            "payload": {
+              "statement": {"speaker": "Devin", "text": "Corner came in, defender headed it away, and she was there for the second ball. Tap-in."},
+              "question": "What does this explain?",
+              "options": [
+                {"id": "a", "text": "A defender's clearance created a loose ball that an attacker finished", "isCorrect": true},
+                {"id": "b", "text": "The first defender's clearance won the play", "isCorrect": false},
+                {"id": "c", "text": "The importance of following up on cleared balls", "isCorrect": true},
+                {"id": "d", "text": "A goalkeeper error led to the goal", "isCorrect": false}
+              ],
+              "translation": "The corner was cleared by a header, but the second ball (the loose ball from that clearance) fell to an attacker who scored easily. Set piece goals often come from the second ball, not the first delivery.",
+              "followUps": [
+                {"line": "Who should be hunting the second ball?", "why": "Shows you're thinking about positioning and anticipation."},
+                {"line": "Why do defences struggle with second balls?", "why": "Recognizes the chaos of the box."}
+              ],
+              "noFakeExpertNote": "You could say 'So first ball or not, the fight keeps going' and fans will respect that."
+            }
+          },
+          {
+            "id": "setpiece-06-ds-block",
+            "type": "decision-scenario",
+            "conceptIds": ["screening-blocking"],
+            "payload": {
+              "situation": {
+                "facts": [
+                  {"label": "Set piece", "value": "Free kick from 18 yards"},
+                  {"label": "Situation", "value": "Defending a dangerous set piece"},
+                  {"label": "Wall", "value": "Five players in a wall"},
+                  {"label": "Threat", "value": "Attacker at near post for a flick-on"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "block", "text": "Have a defender block the near post to prevent the flick-on",
+                  "verdict": "best",
+                  "consequence": "Blocking the near post cuts off the most dangerous target and forces the taker to change their plan.",
+                  "considerations": "Positioning a defender on the post is a smart, legal tactic."
+                },
+                {
+                  "id": "foul", "text": "Foul the attacker to stop the run",
+                  "verdict": "poor",
+                  "consequence": "A foul in the box is a penalty. That is infinitely worse than conceding a goal from the free kick.",
+                  "considerations": "Never foul in the box to stop a set piece."
+                },
+                {
+                  "id": "guess", "text": "Guess the delivery and react",
+                  "verdict": "acceptable",
+                  "consequence": "Reactive defence can work but leaves too much to chance. The taker has already planned the play.",
+                  "considerations": "Proactive blocking is better than guessing."
+                }
+              ],
+              "expertNote": "The best defence on set pieces is anticipation and blocking dangerous spaces, not fouling.",
+              "safetyNote": ""
+            }
+          },
+          {
+            "id": "setpiece-06-bc-throw",
+            "type": "binary-call",
+            "conceptIds": ["long-throw"],
+            "payload": {
+              "prompt": "A team launches a long throw into the opponent's penalty box. Can they score directly from it?",
+              "scene": {"kind": "none", "alt": "A long throw-in trajectory launching into the box as an attacking play."},
+              "choices": [
+                {"id": "yes", "label": "Yes, directly"},
+                {"id": "no", "label": "No, another player must touch it"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Yes. A throw-in can score directly if it goes in. Unlike a goal kick, a throw-in goal is permitted.",
+                "incorrect": "Actually, yes. A throw-in can go straight in. It is one of the few ways to score directly from a restart."
+              },
+              "ruleTag": "Throw-in rules"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

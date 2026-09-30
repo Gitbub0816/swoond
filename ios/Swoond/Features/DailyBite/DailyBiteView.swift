@@ -13,7 +13,7 @@ final class DailyBiteViewModel {
         let env = model.env
         let interest = person.interest(for: courseId) ?? PersonInterest(courseId: courseId)
         let today = await env.engine.today()
-        bite = try? await env.editorial.dailyBite(courseId: courseId, personalization: interest.personalization, on: today) ?? nil
+        bite = try? await env.editorial.dailyBite(courseId: courseId, personalization: interest.personalization, on: today)
         isLoaded = true
     }
 
