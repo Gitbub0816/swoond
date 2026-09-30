@@ -58,10 +58,10 @@
               "xg"
             ],
             "payload": {
-              "prompt": "A team wins 3-1 but had 1.2 xG. Unlucky or lucky?",
+              "prompt": "A team scores 3 goals from 1.2 xG. How many goals above xG is that?",
               "unit": "goals above xG",
               "min": -2,
-              "max": 2,
+              "max": 3,
               "step": 0.1,
               "correctValue": 1.8,
               "tolerance": {
@@ -69,9 +69,9 @@
                 "partial": 0.6
               },
               "explanation": {
-                "correct": "Right. Scoring 3 from 1.2 xG means they were clinical and lucky: they converted chances at a rate well above the model's predictions.",
-                "incorrect": "They had only 1.2 xG but scored 3, so they exceeded the expected value by about 1.8 goals. That's a huge overperformance.",
-                "sayThisLine": "We finished clinical today, turned half-chances into goals."
+                "correct": "Right. Three goals from 1.2 xG is 1.8 above expectation. That is a hot finishing day and usually does not repeat every match.",
+                "incorrect": "Subtract the xG from the goals: 3 minus 1.2 is 1.8 goals above expectation. That is a big overperformance in one match.",
+                "sayThisLine": "They were clinical today, turned half-chances into goals."
               }
             }
           },
@@ -105,7 +105,7 @@
                 },
                 {
                   "id": "d",
-                  "text": "His team should have won based on the quality of chances",
+                  "text": "His team created far better chances than the score suggests",
                   "isCorrect": true
                 }
               ],
@@ -135,21 +135,21 @@
                 {
                   "id": "xg",
                   "term": "xG",
-                  "definition": "The probability that a shot becomes a goal, based on angle, distance and defensive pressure."
+                  "definition": "The probability that a shot becomes a goal, based on things like angle and distance"
                 },
                 {
-                  "id": "stat",
-                  "term": "Shot-quality stat",
-                  "definition": "A number that summarizes how dangerous a team's chances were in a match."
+                  "id": "xga",
+                  "term": "xG against",
+                  "definition": "The quality of chances a team allows its opponents"
                 },
                 {
-                  "id": "luck",
+                  "id": "over",
                   "term": "Overperformance",
-                  "definition": "Scoring more goals than xG predicted, usually unsustainable over time."
+                  "definition": "Scoring more goals than xG predicted, which is usually hard to sustain"
                 }
               ],
               "explanation": {
-                "summary": "xG isolates chance quality from finishing. A team outperforming its xG is running hot.",
+                "summary": "xG separates chance quality from finishing luck. A team beating its xG is running hot, and one below it may be unlucky.",
                 "sayThisLine": "We were clinical, the striker finished everything on offer."
               }
             }
@@ -162,30 +162,30 @@
             ],
             "payload": {
               "prompt": "Complete the insight.",
-              "template": "A team losing 2-0 with 3.5 xG was {{performance}}, and {{outlook}}.",
+              "template": "A team that loses 2-0 despite 3.5 xG was {{luck}}, and its finishing is likely to {{trend}} over time.",
               "gaps": [
                 {
-                  "id": "performance",
+                  "id": "luck",
                   "options": [
+                    "unlucky",
                     "lucky",
-                    "clinical",
                     "outplayed"
                   ],
-                  "correct": "lucky"
+                  "correct": "unlucky"
                 },
                 {
-                  "id": "outlook",
+                  "id": "trend",
                   "options": [
-                    "should improve next match",
-                    "likely to regress",
-                    "was deserving of the loss"
+                    "improve",
+                    "get worse",
+                    "stay exactly the same"
                   ],
-                  "correct": "likely to regress"
+                  "correct": "improve"
                 }
               ],
               "explanation": {
-                "correct": "Right. Scoring only 2 from 3.5 xG means they underperformed, and underperformance tends to reverse.",
-                "incorrect": "Underperformance (low goals from high xG) usually corrects over time as a team's actual finishing rate returns to normal."
+                "correct": "Right. Creating 3.5 xG but scoring nothing suggests bad finishing luck. Over many matches, results tend to move back toward the chances created, although one game is a small sample.",
+                "incorrect": "3.5 xG means the team created chances worth 3.5 goals, so a 2-0 loss points to unlucky finishing or great goalkeeping. Over time, finishing tends to drift back toward expectations."
               }
             }
           }
@@ -227,9 +227,8 @@
                 "b"
               ],
               "explanation": {
-                "correct": "Exactly. He's setting up low-xG chances that his team is converting at a high rate. High assists, low xA = efficient teammates.",
-                "incorrect": "Low xA (expected assists) means the chances he's creating aren't high-quality on paper, but his teammates are finishing them anyway.",
-                "sayThisLine": "He's finding the strikers in good positions, they're doing the rest."
+                "correct": "Exactly. His passes create chances the model rates as fairly modest, but his teammates are finishing them. That can mean clinical finishers or some good luck.",
+                "incorrect": "Low xA means the chances he creates are not that high quality on paper, so many assists suggest his teammates are finishing well or getting lucky."
               }
             }
           },
@@ -289,10 +288,10 @@
               "progressive-pass"
             ],
             "payload": {
-              "prompt": "A 20-yard pass from defence into the attacking third. Progressive pass?",
+              "prompt": "A midfielder in the opponent's half plays 15 yards straight toward goal. Progressive pass?",
               "scene": {
                 "kind": "none",
-                "alt": "A defender passes the ball forward from the defensive third to a teammate in the attacking third, moving it significantly closer to goal."
+                "alt": "A midfielder standing in the opponent's half passes the ball 15 yards toward the goal to a teammate, moving it much closer."
               },
               "choices": [
                 {
@@ -306,9 +305,9 @@
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Yes. A progressive pass meaningfully moves the ball towards the opponent's goal. This does.",
-                "incorrect": "A pass that advances the ball significantly towards goal is progressive. A 20-yard leap forward definitely is.",
-                "sayThisLine": "One touch, one pass, and we're in the attacking third."
+                "correct": "Yes. A progressive pass moves the ball meaningfully closer to the opponent's goal. Stats providers usually count passes that gain about ten yards or more.",
+                "incorrect": "Any forward pass that moves the ball a meaningful distance toward goal counts. Sideways and backwards passes do not.",
+                "sayThisLine": "One pass and they're into the final third."
               },
               "ruleTag": "Progressive definition"
             }
@@ -366,8 +365,8 @@
                 },
                 {
                   "id": "thread",
-                  "term": "Threading a pass",
-                  "definition": "A precise pass that splits defenders and puts a teammate through on goal."
+                  "term": "Key pass",
+                  "definition": "A pass that leads directly to a shot by a teammate"
                 }
               ],
               "explanation": {
@@ -414,9 +413,8 @@
                 "b"
               ],
               "explanation": {
-                "correct": "Exactly. PPDA is passes allowed per defensive action. Low PPDA means the defense acts often, interrupting the opponent's build-up.",
-                "incorrect": "PPDA measures how many passes the opponent gets before a defensive action (tackle, interception, foul) stops them. Low = more pressing.",
-                "sayThisLine": "We're in their face, not giving them space to settle."
+                "correct": "Exactly. PPDA is passes allowed per defensive action, usually counted in the opponent's half. A low number means the team stops its opponent's passing quickly, so it presses hard.",
+                "incorrect": "PPDA counts how many passes the opponent makes for each tackle, interception or foul by the defending side. Low means the team interrupts play after just a few passes."
               }
             }
           },
@@ -427,20 +425,20 @@
               "ppda"
             ],
             "payload": {
-              "prompt": "Estimate: heavy press, low PPDA. What range?",
+              "prompt": "Roughly what PPDA does an elite high-pressing team have?",
               "unit": "passes per action",
               "min": 4,
-              "max": 12,
+              "max": 16,
               "step": 0.5,
-              "correctValue": 6,
+              "correctValue": 8,
               "tolerance": {
-                "full": 1,
-                "partial": 2
+                "full": 1.5,
+                "partial": 3
               },
               "explanation": {
-                "correct": "Right. A heavy press sits under 8 PPDA, often 6 or lower, meaning an action every few passes.",
-                "incorrect": "Heavy pressing teams force a defensive action very frequently. PPDA of 6 or below indicates relentless pressure.",
-                "sayThisLine": "We're winning the ball every five or six passes, they can't build out."
+                "correct": "Close. Elite pressing teams often sit in the high single figures, while the league average and deeper-defending sides are higher. It varies by league and data provider.",
+                "incorrect": "Intense pressing teams allow only around 7 to 9 passes before making a defensive action. Teams that sit deep let opponents pass 12 or more times first. Exact numbers vary by league and provider.",
+                "sayThisLine": "They stop you after seven or eight passes, they can't build out."
               }
             }
           },
@@ -501,28 +499,28 @@
               "high-press"
             ],
             "payload": {
-              "prompt": "A team has a 10+ PPDA. Most likely they are doing what?",
+              "prompt": "A team's PPDA is far higher than the league average. What does that suggest?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Pressing high and compact"
+                  "text": "It presses high and hard"
                 },
                 {
                   "id": "b",
-                  "text": "Sitting deep and defending blocks"
+                  "text": "It sits deeper and lets the opponent pass"
                 },
                 {
                   "id": "c",
-                  "text": "Playing long balls"
+                  "text": "It only plays long balls"
                 }
               ],
               "correctOptionIds": [
                 "b"
               ],
               "explanation": {
-                "correct": "Right. High PPDA means the opponent gets many passes before an action, suggesting a low block that lets them build out.",
-                "incorrect": "PPDA above 10 indicates a passive defensive shape that allows the opponent to move the ball comfortably before challenging.",
-                "sayThisLine": "They're camped in their half, we can build out from the back."
+                "correct": "Right. A high PPDA means the opponent gets lots of passes before a defensive action, which usually points to a deeper, more passive defensive style.",
+                "incorrect": "A very high PPDA means few defensive actions in the opponent's half, so the team probably drops deeper and lets the other side have the ball.",
+                "sayThisLine": "They sit deep, we can build out from the back."
               }
             }
           },
@@ -534,30 +532,28 @@
             ],
             "payload": {
               "prompt": "Complete the press assessment.",
-              "template": "PPDA under 6 means {{intensity}}, while PPDA over 11 means {{defense}}.",
+              "template": "A {{low}} PPDA means a team presses intensely, while a {{high}} PPDA means it lets the opponent pass more before it acts.",
               "gaps": [
                 {
-                  "id": "intensity",
+                  "id": "low",
                   "options": [
-                    "a passive defence",
-                    "relentless pressure",
-                    "long-ball tactics"
+                    "low",
+                    "high"
                   ],
-                  "correct": "relentless pressure"
+                  "correct": "low"
                 },
                 {
-                  "id": "defense",
+                  "id": "high",
                   "options": [
-                    "a deep block",
-                    "an aggressive press",
-                    "a counter-attack"
+                    "low",
+                    "high"
                   ],
-                  "correct": "a deep block"
+                  "correct": "high"
                 }
               ],
               "explanation": {
-                "correct": "Correct. Low PPDA = pressing team; high PPDA = sitting-deep team.",
-                "incorrect": "PPDA inversely measures pressing intensity. Under 6 is relentless, over 11 is reactive."
+                "correct": "Correct. PPDA counts passes allowed per defensive action, so a low number means constant pressure and a high number means a more passive defence.",
+                "incorrect": "PPDA is passes allowed per defensive action. The fewer passes allowed, the more intense the press, so low means pressing hard and high means sitting off."
               }
             }
           }
@@ -661,10 +657,10 @@
               "possession-stat"
             ],
             "payload": {
-              "prompt": "Team A: 55% possession, 12 shots on target. Team B: 45% possession, 8 shots. Team A more dangerous?",
+              "prompt": "Team A: 65% possession, 2 shots. Team B: 35%, 9 shots on target. Is A more dangerous?",
               "scene": {
                 "kind": "none",
-                "alt": "Two teams' statistics shown side by side: Team A with more passes and possession, Team B with fewer passes but more efficient shooting."
+                "alt": "Two teams' match statistics side by side: Team A with most of the ball but few shots, Team B with little of the ball and many shots on target."
               },
               "choices": [
                 {
@@ -678,9 +674,9 @@
               ],
               "correctChoiceId": "no",
               "explanation": {
-                "correct": "Right. More possession does not guarantee more danger. Team A's shots outnumber Team B's, so Team A is more threatening.",
-                "incorrect": "Possession alone is not the measure. Team A took more shots on target, which is the better indicator of attacking threat.",
-                "sayThisLine": "They had less ball but sharper in the box."
+                "correct": "Right. Possession alone does not measure danger. Team B created far more shots on target, so it was the bigger threat.",
+                "incorrect": "More possession does not mean more danger. Team B had far more shots on target, which is a better sign of who threatened the goal.",
+                "sayThisLine": "They had less of the ball but were sharper in the box."
               },
               "ruleTag": "Possession vs. threat"
             }
@@ -800,60 +796,63 @@
               "overperform-underperform"
             ],
             "payload": {
-              "prompt": "Five games: 4 goals from 1.1 xG. Sell or keep?",
+              "prompt": "Four goals in five games from 1.1 xG. Take the record fee?",
               "situation": {
+                "narrative": "Your striker is scoring far more than his chances suggest. A club has offered a record fee, and the window shuts in three days.",
                 "facts": [
                   {
                     "label": "Last 5 games",
-                    "value": "Striker scored 4 goals from 1.1 xG"
+                    "value": "4 goals from 1.1 xG"
                   },
                   {
-                    "label": "Season average",
-                    "value": "0.8 xG per game, 0.7 goals per game"
+                    "label": "Season rate",
+                    "value": "About 0.7 goals per game, 0.8 xG"
                   },
                   {
                     "label": "Offer",
-                    "value": "Sell for record fee or keep"
+                    "value": "A record fee",
+                    "emphasis": "warning"
                   },
                   {
-                    "label": "Window",
-                    "value": "January deadline in 3 days"
+                    "label": "Replacement",
+                    "value": "Two good options are available"
                   }
                 ]
               },
               "options": [
                 {
-                  "id": "sell",
-                  "label": "Sell for the record fee",
-                  "verdict": "poor",
-                  "consequence": "You sell at peak value, but lose your best finisher when form regresses. Title hopes fade.",
+                  "id": "price",
+                  "label": "Value him at his season rate and take the record fee if it beats that",
+                  "verdict": "best",
+                  "consequence": "You are selling a good striker at a price based on a hot streak, and you can sign a replacement.",
                   "considerations": [
-                    "Overperformance is temporary",
-                    "Losing mid-season is costly"
+                    "A streak above xG usually cools off",
+                    "The fee reflects hot form rather than his usual output"
                   ]
                 },
                 {
                   "id": "keep",
-                  "label": "Keep him and chase the title",
-                  "verdict": "best",
-                  "consequence": "He regresses but is still above season average. Team stays competitive as relative overperformance continues.",
+                  "label": "Keep him: he is still a good scorer",
+                  "verdict": "acceptable",
+                  "consequence": "Reasonable, especially if you lack a replacement, but you would be turning down a price that is high compared with his usual output.",
                   "considerations": [
-                    "Expect his goal tally to drop closer to 0.7-0.8 per game",
-                    "He still contributes at that level"
+                    "He is still a good striker",
+                    "Cashing in at a peak could pay for a replacement"
                   ]
                 },
                 {
-                  "id": "loan",
-                  "label": "Loan him out to build confidence",
-                  "verdict": "acceptable",
-                  "consequence": "You remove the player from pressure, but also from your title challenge. Works if you have depth.",
+                  "id": "refuse",
+                  "label": "Refuse: he has clearly found a new level",
+                  "verdict": "poor",
+                  "consequence": "You are treating a short hot streak as permanent. Small samples fool people.",
                   "considerations": [
-                    "Risky mid-season when you need production",
-                    "Gives player a mental reset"
+                    "Four games is a small sample",
+                    "His xG says he is not creating chances at that rate"
                   ]
                 }
               ],
-              "expertNote": "A smart team sells strikers at peak overperformance, but a team fighting for a title keeps them. You know form will dip; the question is whether you need him."
+              "expertNote": "A short streak above xG tells you about luck as much as skill. A smart club prices the player on his longer-term output and the quality of his chances, then decides whether the fee beats that.",
+              "sayThisLine": "Four goals from 1.1 xG won't last."
             }
           },
           {
@@ -911,27 +910,28 @@
               "overperform-underperform"
             ],
             "payload": {
-              "prompt": "Over a season, most strikers' goal totals move towards their xG. Over how long?",
+              "prompt": "How much data do you need before trusting a striker's finishing numbers?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Within one week"
+                  "text": "One match is enough"
                 },
                 {
                   "id": "b",
-                  "text": "Over 10-15 matches"
+                  "text": "A big sample, such as a full season or more"
                 },
                 {
                   "id": "c",
-                  "text": "Regression is instant"
+                  "text": "Three or four shots"
                 }
               ],
               "correctOptionIds": [
                 "b"
               ],
               "explanation": {
-                "correct": "Correct. Regression to the mean takes a full sample size of games, usually 10-15 matches or more.",
-                "incorrect": "Regression is not instant. It takes multiple games for a player's actual finishing to reflect their quality of chances."
+                "correct": "Right. Finishing is noisy, so small samples mislead. A big sample, often a full season or more, shows whether he consistently beats his xG.",
+                "incorrect": "A handful of shots or one match is far too little. Finishing results bounce around, so you need a large sample before calling someone a great or poor finisher.",
+                "sayThisLine": "It's too early to say, that's a small sample."
               }
             }
           },
@@ -944,7 +944,7 @@
             ],
             "payload": {
               "prompt": "Complete the forward's profile.",
-              "template": "A forward with 1.2 xG per game but 1.8 goals per game is {{status}}, and this {{sustainability}}.",
+              "template": "A forward with 0.6 xG per game but 0.9 goals per game is {{status}}, and this is {{sustain}}.",
               "gaps": [
                 {
                   "id": "status",
@@ -956,18 +956,18 @@
                   "correct": "overperforming"
                 },
                 {
-                  "id": "sustainability",
+                  "id": "sustain",
                   "options": [
-                    "will continue indefinitely",
-                    "is likely unsustainable",
-                    "means his xG is too low"
+                    "likely to cool off",
+                    "guaranteed to continue",
+                    "proof his xG is wrong"
                   ],
-                  "correct": "is likely unsustainable"
+                  "correct": "likely to cool off"
                 }
               ],
               "explanation": {
-                "correct": "Right. Outscoring your xG is great short-term, but it regresses. Expect his goal tally to drop towards 1.2.",
-                "incorrect": "Overperformance (more goals than xG) usually reverses. Over time, actual scoring gravitates towards expected levels."
+                "correct": "Right. Scoring more than your xG is great in the short term, but it tends to drift back toward the chances you create.",
+                "incorrect": "He is scoring 0.9 goals per game from chances worth 0.6, so he is overperforming. That gap usually narrows over time."
               }
             }
           }
@@ -1093,8 +1093,8 @@
                 }
               ],
               "explanation": {
-                "summary": "Numbers isolate skills: carries show dribbling, shots on target show composure in the box, PPG shows consistency.",
-                "sayThisLine": "Look at their shots on target; they're clinical, it's not luck."
+                "summary": "Points per game shows consistency, progressive carries show how a player moves the ball forward, and shots on target show how often shots test the keeper.",
+                "sayThisLine": "Look at their shots on target, that's not luck."
               }
             }
           },
@@ -1106,7 +1106,7 @@
               "form-and-ppg"
             ],
             "payload": {
-              "prompt": "A team is averaging 2.1 points per game in the last 5 but the last match 'felt sloppy'. What's the smartest take?",
+              "prompt": "A team averages 2.2 points per game over five, but the last match felt sloppy. Smartest take?",
               "options": [
                 {
                   "id": "a",
@@ -1125,8 +1125,8 @@
                 "c"
               ],
               "explanation": {
-                "correct": "Smart. 2.1 PPG over 5 matches is good; one sloppy win doesn't erase that. But watch the next game to see if sloppiness is a pattern.",
-                "incorrect": "Numbers show output (points), not quality. One ugly win doesn't cancel recent good form, but you should check if it becomes a trend."
+                "correct": "Smart. 2.2 points per game over five matches is good form, and one sloppy win does not erase that. Watch the next game to see if the sloppiness becomes a pattern.",
+                "incorrect": "Points show results, not how good the play was. One ugly win doesn't cancel good form, but it is worth checking whether it becomes a trend."
               }
             }
           },
@@ -1145,9 +1145,9 @@
                   "replies": [
                     {
                       "id": "a",
-                      "text": "What's his xG? If it's low, he's just having a quiet run.",
+                      "text": "What's his xG? If it's higher than his goals, he's just unlucky.",
                       "smoothDelta": 20,
-                      "theirResponse": "Actually, 1.8 xG so he's slightly underperforming. That's reassuring.",
+                      "theirResponse": "Actually, his xG is 2.9, so he's been a bit unlucky. That's reassuring.",
                       "coachNote": "You're reading between the stats and the feeling. Smart question."
                     },
                     {
@@ -1173,7 +1173,7 @@
                       "id": "a",
                       "text": "Good form is tough form sometimes. How's the defensive record?",
                       "smoothDelta": 20,
-                      "theirResponse": "Only 8 goals in 5, so yeah, we're solid at the back.",
+                      "theirResponse": "Only 3 conceded in 5, so yes, we're solid at the back.",
                       "coachNote": "You're validating the stats while acknowledging the grind. Both are real."
                     },
                     {
