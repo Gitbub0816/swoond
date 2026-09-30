@@ -17,15 +17,22 @@ public struct AppSettings: Codable, Sendable, Equatable {
     public var reminderHour: Int
     public var soundsAndHaptics: Bool
     public var activePersonId: PersonID?
+    /// What the learner calls themselves on Profile (optional).
+    public var learnerName: String?
+    /// First launch, for "Joined March".
+    public var joinedAt: Date?
 
     public init(appearance: Appearance = .dark, discreetMode: Bool = true, dailyReminder: Bool = true, reminderHour: Int = 20,
-                soundsAndHaptics: Bool = true, activePersonId: PersonID? = nil) {
+                soundsAndHaptics: Bool = true, activePersonId: PersonID? = nil,
+                learnerName: String? = nil, joinedAt: Date? = nil) {
         self.appearance = appearance
         self.discreetMode = discreetMode
         self.dailyReminder = dailyReminder
         self.reminderHour = min(23, max(0, reminderHour))
         self.soundsAndHaptics = soundsAndHaptics
         self.activePersonId = activePersonId
+        self.learnerName = learnerName
+        self.joinedAt = joinedAt
     }
 
     /// "8:00 PM".

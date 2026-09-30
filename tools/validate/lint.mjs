@@ -42,6 +42,15 @@ const promptOf = (p) => {
   return null;
 };
 
+// Text whose repetition is a real duplicate. Most types repeat their prompt; say-this has a stock question
+// ("What does she mean?") by design, so its identity is the quoted enthusiast line; talk-track is a fixed frame
+// (its identity is covered by duplicate-payload).
+const repeatKeyOf = (type, p) => {
+  if (type === 'talk-track') return null;
+  if (type === 'say-this') return typeof p?.statement?.text === 'string' ? p.statement.text : null;
+  return promptOf(p)?.[1] ?? null;
+};
+
 // Option-like texts inside one activity, for the non-empty / distinct check.
 function optionTexts(p) {
   const out = [];
@@ -115,9 +124,9 @@ export function lintCourse(courseId, manifest, files, scripts = [], opts = {}) {
   for (const a of acts) {
     const k = `${a.type}|${canonical(a.payload)}`;
     (byPayload.get(k) ?? byPayload.set(k, []).get(k)).push(a);
-    const pr = promptOf(a.payload);
-    if (pr && a.type !== 'unity-sim') {
-      const n = pr[1].trim().toLowerCase().replace(/\s+/g, ' ');
+    const rk = a.type === 'unity-sim' ? null : repeatKeyOf(a.type, a.payload);
+    if (rk) {
+      const n = rk.trim().toLowerCase().replace(/\s+/g, ' ');
       (byPrompt.get(n) ?? byPrompt.set(n, []).get(n)).push(a);
     }
   }

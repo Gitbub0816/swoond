@@ -19,6 +19,7 @@ final class AppModel {
 
     struct LearnerSnapshot: Equatable {
         var streak = 0
+        var longestStreak = 0
         var hearts = HeartsInfo()
         var totalXP = 0
         var level = 1
@@ -67,6 +68,10 @@ final class AppModel {
         courses = (try? await env.content.courseIndex()) ?? []
         people = (try? await env.personRepository.people()) ?? []
         await refreshLearner()
+        if settings.joinedAt == nil {
+            let now = await env.engine.now()
+            updateSettings { $0.joinedAt = now }
+        }
         phase = people.isEmpty ? .onboarding : .ready
         await syncReminders(requestPermission: false)
     }
@@ -77,6 +82,7 @@ final class AppModel {
         let hearts = state.heartsStatus(now: now, rules: env.engine.rules)
         learner = LearnerSnapshot(
             streak: state.currentStreak(now: now, timeZone: env.timeZone),
+            longestStreak: state.streak.longest,
             hearts: HeartsInfo(current: hearts.current, max: hearts.max, isUnlimited: hearts.isUnlimited, nextHeartAt: hearts.nextHeartAt),
             totalXP: state.totalXP,
             level: state.level,

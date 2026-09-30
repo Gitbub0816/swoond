@@ -1,0 +1,431 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "nascar",
+  "unit": {
+    "id": "nascar-101",
+    "title": "NASCAR 101",
+    "layer": "foundations",
+    "order": 0,
+    "lessons": [
+      {
+        "id": "n101-01",
+        "title": "What NASCAR actually is",
+        "objective": "Explain in one sentence what stock car racing is and why fans love it.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["stock-car", "oval-racing"],
+        "activities": [
+          {
+            "id": "n101-01-mc-what",
+            "type": "multiple-choice",
+            "conceptIds": ["stock-car"],
+            "payload": {
+              "prompt": "What makes a stock car different from a showroom car?",
+              "options": [
+                {"id": "a", "text": "It is just a car from the dealership"},
+                {"id": "b", "text": "It is built to a strict rulebook and optimized for racing"},
+                {"id": "c", "text": "It is slower but cheaper"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Stock cars look like showroom models but are built from scratch to NASCAR rules. Parts are shared, chassis is custom, and aerodynamics are tightly controlled.",
+                "incorrect": "A stock car is purpose-built to a rulebook, not a street car. The shape may look familiar, but everything underneath is racing-spec.",
+                "sayThisLine": "It looks like a Camry, but it is absolutely not a Camry."
+              }
+            }
+          },
+          {
+            "id": "n101-01-st-why",
+            "type": "say-this",
+            "conceptIds": ["oval-racing"],
+            "payload": {
+              "statement": {
+                "speaker": "Chris",
+                "text": "It is just a bunch of left turns. How is that interesting?"
+              },
+              "question": "What would you tell Chris?",
+              "options": [
+                {"id": "a", "text": "The strategy in traffic", "isCorrect": true},
+                {"id": "b", "text": "The car balance and setup challenges", "isCorrect": true},
+                {"id": "c", "text": "The races are fast and unpredictable", "isCorrect": true},
+                {"id": "d", "text": "They should watch Formula 1 instead", "isCorrect": false}
+              ],
+              "translation": "Oval racing is chess at 180 mph. Setup, tire wear, fuel mileage, track position and pit strategy are the game. Left turns are just the shape.",
+              "followUps": [
+                {
+                  "line": "Wait, so pit crew decisions matter more than pure speed?",
+                  "why": "That is the core of why fans love it."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "n101-02",
+        "title": "The three series ladder",
+        "objective": "Name Cup, O'Reilly and Trucks and how drivers climb.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["series-ladder", "cup-series", "oreilly-series", "truck-series"],
+        "activities": [
+          {
+            "id": "n101-02-tm-series",
+            "type": "term-match",
+            "conceptIds": ["series-ladder"],
+            "payload": {
+              "prompt": "Match the series to its description.",
+              "pairs": [
+                {
+                  "id": "cup",
+                  "term": "Cup Series",
+                  "definition": "The top national series with 36 races, 40-car fields and the biggest names and money."
+                },
+                {
+                  "id": "oreilly",
+                  "term": "O'Reilly Series",
+                  "definition": "The middle rung where rising drivers and Cup part-timers race in a full schedule."
+                },
+                {
+                  "id": "truck",
+                  "term": "Truck Series",
+                  "definition": "The entry-level national series run in pickup trucks, known for tight racing."
+                }
+              ],
+              "explanation": {
+                "summary": "Trucks is where drivers learn, O'Reilly is the middle step, and Cup is the goal.",
+                "sayThisLine": "He came up through Trucks, then O'Reilly, now he is in Cup."
+              }
+            }
+          },
+          {
+            "id": "n101-02-mc-ladder",
+            "type": "multiple-choice",
+            "conceptIds": ["series-ladder"],
+            "payload": {
+              "prompt": "In which order do most drivers climb the NASCAR ladder?",
+              "options": [
+                {"id": "a", "text": "Cup, O'Reilly, Trucks"},
+                {"id": "b", "text": "Trucks, O'Reilly, Cup"},
+                {"id": "c", "text": "O'Reilly, Trucks, Cup"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Drivers usually start in Trucks to learn the oval, then move to O'Reilly and finally chase Cup.",
+                "incorrect": "The ladder goes Trucks (entry), O'Reilly (middle), Cup (top). It rewards patience and development.",
+                "sayThisLine": "He came up through Trucks first."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "n101-03",
+        "title": "Laps, miles and the 500",
+        "objective": "Read a race distance and convert laps to miles at a given track.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["laps-and-distance"],
+        "activities": [
+          {
+            "id": "n101-03-es-laps",
+            "type": "estimate-slider",
+            "conceptIds": ["laps-and-distance"],
+            "payload": {
+              "prompt": "The Daytona 500 is 500 miles. The track is 2.5 miles per lap. How many laps?",
+              "unit": "laps",
+              "min": 100,
+              "max": 400,
+              "step": 10,
+              "correctValue": 200,
+              "tolerance": {
+                "full": 10,
+                "partial": 40
+              },
+              "explanation": {
+                "correct": "500 miles ÷ 2.5 miles per lap = 200 laps. The 500 in the name is miles, not laps.",
+                "incorrect": "The 500 in the name is miles. On a 2.5-mile track that is 200 laps.",
+                "sayThisLine": "It is 200 laps around Daytona."
+              }
+            }
+          },
+          {
+            "id": "n101-03-fg-distance",
+            "type": "fill-the-gap",
+            "conceptIds": ["laps-and-distance"],
+            "payload": {
+              "prompt": "Fill in the distances.",
+              "template": "A {{trackName}} 500 at Daytona is {{laps}} laps. At Bristol, a half-mile track, a 500-lap race is {{miles}} miles.",
+              "gaps": [
+                {
+                  "id": "trackName",
+                  "options": ["Daytona", "Bristol", "Kansas"],
+                  "correct": "Daytona"
+                },
+                {
+                  "id": "laps",
+                  "options": ["100", "200", "300"],
+                  "correct": "200"
+                },
+                {
+                  "id": "miles",
+                  "options": ["200", "250", "500"],
+                  "correct": "250"
+                }
+              ],
+              "explanation": {
+                "correct": "Races are named by miles. So 500 miles at Daytona (2.5-mile track) is 200 laps, but 500 laps at Bristol (half-mile) is only 250 miles.",
+                "incorrect": "The Daytona 500 is 200 laps because the track is 2.5 miles per lap."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "n101-04",
+        "title": "The starting grid",
+        "objective": "Explain how the field lines up and why the front row matters.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["starting-grid", "qualifying"],
+        "activities": [
+          {
+            "id": "n101-04-mc-grid",
+            "type": "multiple-choice",
+            "conceptIds": ["starting-grid"],
+            "payload": {
+              "prompt": "Why does starting on the pole (front row, first place) matter?",
+              "options": [
+                {"id": "a", "text": "Clean air and no one in front means more speed and control"},
+                {"id": "b", "text": "It guarantees winning the race"},
+                {"id": "c", "text": "There is no advantage, it is just a stat"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "The pole sitter has clean air at the green flag and no dirty air or traffic to slow them down early. That is a real advantage.",
+                "incorrect": "Starting position matters but does not guarantee victory. Pole position is valuable because the leader has clean air without traffic.",
+                "sayThisLine": "He starts on the pole, so clean air at the green flag."
+              }
+            }
+          },
+          {
+            "id": "n101-04-bc-qualify",
+            "type": "binary-call",
+            "conceptIds": ["qualifying"],
+            "payload": {
+              "prompt": "Is the driver who qualifies fastest guaranteed to start on the pole?",
+              "scene": {"kind": "none", "alt": "Qualifying determines the starting order."},
+              "choices": [
+                {"id": "yes", "label": "Yes, fastest in qualifying starts first"},
+                {"id": "no", "label": "No, other factors may change the grid"}
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Qualifying speed sets the grid. The fastest single lap in the qualifying session earns the pole.",
+                "incorrect": "Qualifying determines the starting grid. The fastest qualifier starts on the pole.",
+                "sayThisLine": "He qualified on the pole."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "n101-05",
+        "title": "How you win",
+        "objective": "Follow a green-to-checkered race and the meaning of running order.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["running-order", "checkered-flag", "lap-down"],
+        "activities": [
+          {
+            "id": "n101-05-so-flow",
+            "type": "sequence-order",
+            "conceptIds": ["checkered-flag", "running-order"],
+            "payload": {
+              "prompt": "Put the finish of a race in order.",
+              "items": [
+                {
+                  "id": "start",
+                  "text": "Green flag, field is racing"
+                },
+                {
+                  "id": "run",
+                  "text": "Running order changes through pit stops and restarts"
+                },
+                {
+                  "id": "final",
+                  "text": "White flag, one lap to go"
+                },
+                {
+                  "id": "check",
+                  "text": "Checkered flag, race is finished"
+                },
+                {
+                  "id": "order",
+                  "text": "Running order at the checkered is the final result"
+                }
+              ],
+              "explanation": {
+                "correct": "Green to checkered: racing happens, pit stops and cautions reshuffle the field, the white flag says one lap, then the checkered ends it. The order when the winner crosses is final.",
+                "incorrect": "A race starts with a green flag, the running order changes through the race, and the checkered flag ends it. The order at the checkered is the final result."
+              }
+            }
+          },
+          {
+            "id": "n101-05-mc-lapped",
+            "type": "multiple-choice",
+            "conceptIds": ["lap-down"],
+            "payload": {
+              "prompt": "A driver is \"a lap down.\" What does that mean?",
+              "options": [
+                {"id": "a", "text": "The leader has lapped them; they are one full lap behind"},
+                {"id": "b", "text": "They are out of the race"},
+                {"id": "c", "text": "They cannot pass anyone"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "A lapped car has been passed by the leader by a full lap. They keep racing but are not in contention to win.",
+                "incorrect": "Lapped means the leader has passed you by a complete lap. You keep racing but cannot win.",
+                "sayThisLine": "He is a lap down but still racing."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "n101-06",
+        "title": "Where it came from",
+        "objective": "Tell the moonshine-to-Daytona story in two sentences.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["nascar-origins"],
+        "activities": [
+          {
+            "id": "n101-06-mc-origins",
+            "type": "multiple-choice",
+            "conceptIds": ["nascar-origins"],
+            "payload": {
+              "prompt": "Where did stock car racing come from?",
+              "options": [
+                {"id": "a", "text": "A factory racing initiative by the car makers"},
+                {"id": "b", "text": "Prohibition-era bootleggers in the Southeast racing to avoid police"},
+                {"id": "c", "text": "A road course series in the Northeast"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Stock car racing roots go back to Prohibition bootleggers who raced souped-up cars to avoid the law. Bill France Sr. organized it into NASCAR in 1948.",
+                "incorrect": "NASCAR grew out of Prohibition-era bootleggers racing modified cars. Bill France Sr. founded NASCAR in 1948 to organize the chaos into a sport.",
+                "sayThisLine": "Moonshiners are why it exists."
+              }
+            }
+          },
+          {
+            "id": "n101-06-st-story",
+            "type": "say-this",
+            "conceptIds": ["nascar-origins"],
+            "payload": {
+              "statement": {
+                "speaker": "Taylor",
+                "text": "So stock car racing is basically moonshiners racing?"
+              },
+              "question": "What would you say to that?",
+              "options": [
+                {"id": "a", "text": "Yes, that is where it came from in the 1930s and 40s", "isCorrect": true},
+                {"id": "b", "text": "But it evolved into an organized sport in 1948", "isCorrect": true},
+                {"id": "c", "text": "Now it is a high-tech professional series", "isCorrect": true},
+                {"id": "d", "text": "No, stock cars are made by the factories", "isCorrect": false}
+              ],
+              "translation": "Yes, the roots are bootleggers racing modified cars to outrun police during Prohibition. Bill France Sr. took that culture and organized it into NASCAR in 1948. It is still that DNA, but with engineering, sponsorship and a rulebook.",
+              "followUps": [
+                {
+                  "line": "So the spirit of the sport is rebellion?",
+                  "why": "That is a great insight into why it feels different from other racing."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "n101-07",
+        "title": "Race day, start to finish",
+        "objective": "Describe a race-day timeline and a typical Sunday.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["green-flag", "checkered-flag"],
+        "activities": [
+          {
+            "id": "n101-07-so-schedule",
+            "type": "sequence-order",
+            "conceptIds": ["green-flag"],
+            "payload": {
+              "prompt": "Order a race-day schedule from start to finish.",
+              "items": [
+                {
+                  "id": "arrive",
+                  "text": "Fans arrive, teams practice and qualify"
+                },
+                {
+                  "id": "grid",
+                  "text": "Cars line up on the grid in qualifying order"
+                },
+                {
+                  "id": "green",
+                  "text": "Green flag, racing begins"
+                },
+                {
+                  "id": "stages",
+                  "text": "Stages split the race with planned cautions and pit stops"
+                },
+                {
+                  "id": "check",
+                  "text": "Checkered flag ends the race"
+                },
+                {
+                  "id": "post",
+                  "text": "Post-race inspection checks the winning car"
+                }
+              ],
+              "explanation": {
+                "correct": "A race day: fans arrive, practice and qualifying set the grid, the green flag starts racing, stages break the race and give pit opportunities, the checkered ends it, and post-race inspection verifies the winner's car.",
+                "incorrect": "A typical race day runs from morning practice through qualifying, then the race itself with stages, cautions and pit stops, ending at the checkered flag, followed by post-race inspection."
+              }
+            }
+          },
+          {
+            "id": "n101-07-tt-day",
+            "type": "talk-track",
+            "conceptIds": ["checkered-flag"],
+            "payload": {
+              "title": "Race day, start to finish",
+              "setting": "She is excited about watching her first full NASCAR race on Sunday.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "I have never watched a whole race. What should I expect?",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "It starts with green and ends with checkered. The stages break it up and pit stops reshuffle the order.",
+                      "smoothDelta": 26,
+                      "theirResponse": "Oh, so it is not just 3 hours of laps?",
+                      "coachNote": "You explained the rhythm of a race."
+                    },
+                    {
+                      "id": "b",
+                      "text": "It is four hours of racing.",
+                      "smoothDelta": 4,
+                      "theirResponse": "That is a lot of laps.",
+                      "coachNote": "True but not much help."
+                    },
+                    {
+                      "id": "c",
+                      "text": "Just watch and you will understand.",
+                      "smoothDelta": -8,
+                      "theirResponse": "That is not helpful.",
+                      "coachNote": "A little guidance goes a long way."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "A race day flows from green flag through stages and pit cycles to the checkered flag."
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

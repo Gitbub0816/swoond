@@ -293,3 +293,33 @@ test('manifest 1.1: dynamicData kinds injuries, transactions, regulations are va
     assert.equal(run('--courses-dir', tmp, '--no-examples', '--no-lint').status, 1);
   } finally { rmSync(tmp, { recursive: true }); }
 });
+
+// ---- repeated-prompt: say-this has a stock question by design ----
+test('repeated-prompt: say-this repetition is judged on the quoted line, not the stock question', () => {
+  const { tmp, cur } = splitCopy();
+  try {
+    const u2 = join(cur, 'units', '02-defense-basics.json');
+    const clones = (lines) => (j) => {
+      const base = j.unit.lessons[0].activities.find((a) => a.type === 'say-this');
+      lines.forEach((text, i) => {
+        const c = JSON.parse(JSON.stringify(base));
+        c.id = `coverage-04-say-${i}`;
+        c.payload.statement.text = text;
+        c.payload.translation = `${c.payload.translation} (variant ${i})`;
+        j.unit.lessons[0].activities.push(c);
+      });
+    };
+    // Same stock question on 4 activities (base + 3 clones) but four different lines: fine.
+    edit(u2, clones(['Their nickel package gets torched on third down.', 'The safeties keep biting on every play fake.', 'We cannot cover the seam route at all.']));
+    let r = run('--courses-dir', tmp, '--no-examples');
+    assert.equal(r.status, 0, r.stdout + r.stderr);
+    assert.doesNotMatch(r.stdout, /repeated-prompt/);
+    // The same quoted line on 3 activities is a real repeat.
+    edit(u2, (j) => { j.unit.lessons[0].activities = j.unit.lessons[0].activities.filter((a) => !a.id.startsWith('coverage-04-say-')); });
+    edit(u2, clones(['Same line again.', 'Same line again.']));
+    edit(u2, (j) => { j.unit.lessons[0].activities.find((a) => a.type === 'say-this').payload.statement.text = 'Same line again.'; });
+    r = run('--courses-dir', tmp, '--no-examples');
+    assert.equal(r.status, 1);
+    assert.match(r.stdout, /\[repeated-prompt\] .*used by 3 activities/);
+  } finally { rmSync(tmp, { recursive: true }); }
+});

@@ -80,3 +80,25 @@ extension Relationship {
         }
     }
 }
+
+extension ActivityType {
+    /// Short learner-facing name for game lists ("Timing", "Talk track").
+    public var displayName: String {
+        switch self {
+        case .multipleChoice: return "Multiple choice"
+        case .binaryCall: return "The call"
+        case .termMatch: return "Match"
+        case .sequenceOrder: return "Put in order"
+        case .visualId: return "Spot it"
+        case .decisionScenario: return "Judgment call"
+        case .talkTrack: return "Talk track"
+        case .timingTap: return "Timing"
+        case .sayThis: return "Decode it"
+        case .fillTheGap: return "Fill the gap"
+        case .listeningId: return "Listen"
+        case .estimateSlider: return "Estimate"
+        case .hotspotTap: return "Tap the spot"
+        case .unitySim: return "Simulation"
+        }
+    }
+}

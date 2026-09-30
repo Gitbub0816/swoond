@@ -345,8 +345,8 @@
             "type": "fill-the-gap",
             "conceptIds": ["naismiths-rule"],
             "payload": {
-              "prompt": "Complete the rule.",
-              "template": "Naismith's rule: {{one}} hour per {{three}} miles, plus {{one2}} hour per {{two}} thousand feet of gain.",
+              "prompt": "Complete Naismith's rule.",
+              "template": "{{one}} hour per {{three}} miles, plus {{one2}} hour per 2,000 feet of gain.",
               "gaps": [
                 {
                   "id": "one",
@@ -371,19 +371,11 @@
                     "one-half"
                   ],
                   "correct": "one"
-                },
-                {
-                  "id": "two",
-                  "options": [
-                    "two",
-                    "three"
-                  ],
-                  "correct": "two"
                 }
               ],
               "explanation": {
-                "correct": "That is Naismith's rule. It gives you a baseline, then add contingencies for rest, food and the real world.",
-                "incorrect": "One hour per three miles for the distance part. One hour per 2,000 feet of elevation gain for the climbing part."
+                "correct": "That is Naismith's rule: distance and gain set your baseline time.",
+                "incorrect": "One hour per three miles plus one hour per 2,000 feet of climbing."
               }
             }
           },
@@ -656,28 +648,44 @@
             "type": "say-this",
             "conceptIds": ["difficulty-ratings"],
             "payload": {
-              "statement": "The trail is rated moderate on AllTrails but strenuous on the park website.",
+              "statement": {
+                "speaker": "Her",
+                "text": "The trail is moderate on AllTrails but strenuous on the park site."
+              },
+              "question": "What is she talking about?",
               "options": [
                 {
-                  "id": "opt1",
+                  "id": "ratings-vary",
+                  "text": "Difficulty ratings differ by app and agency",
                   "isCorrect": true
                 },
                 {
-                  "id": "opt2",
+                  "id": "metrics-matter",
+                  "text": "Check miles and elevation gain, not labels",
                   "isCorrect": true
                 },
                 {
-                  "id": "opt3",
+                  "id": "moderate-hard",
+                  "text": "Moderate and strenuous mean the same thing",
                   "isCorrect": false
                 }
               ],
-              "translation": "Difficulty ratings vary widely across apps and agencies. One person's moderate is another's strenuous. Check the objective metrics: mileage, gain, and terrain.",
+              "translation": "Difficulty ratings vary widely across apps. One's moderate is another's strenuous. Check objective metrics instead.",
               "followUps": [
-                "Look at the hard numbers: miles and feet of gain, not the label.",
-                "Ask locals or read recent trip reports for real feedback.",
-                "One app's moderate might be another's strenuous depending on their scale."
+                {
+                  "line": "Look at miles and feet of gain, not the label alone.",
+                  "why": "The numbers tell you more than the subjective rating."
+                },
+                {
+                  "line": "Ask locals or read trip reports for real feedback.",
+                  "why": "Recent experience beats any rating system."
+                },
+                {
+                  "line": "Ask what moderate means to her before comparing.",
+                  "why": "Everyone's scale is different; clarify first."
+                }
               ],
-              "noFakeExpertNote": "Difficulty labels are subjective and not standardized. It's honest to ask 'What does moderate mean to you?' rather than trusting a label."
+              "noFakeExpertNote": "Ratings are subjective. Asking 'What does moderate mean?' shows honesty, not ignorance."
             }
           },
           {
@@ -822,29 +830,29 @@
             "type": "multiple-choice",
             "conceptIds": ["route-vs-trail"],
             "payload": {
-              "prompt": "You read a guide saying 'Route, requires navigation skills and map work.' Should you go solo if you have never navigated before?",
+              "prompt": "A guide says 'Route, needs navigation.' Go solo if new to navigation?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Sure, routes are fine, routes are easy"
+                  "text": "Sure, routes are easy"
                 },
                 {
                   "id": "b",
-                  "text": "Yes, but download offline maps and a GPS track first"
+                  "text": "Yes, with offline maps and a GPS track"
                 },
                 {
                   "id": "c",
-                  "text": "Go with someone experienced in route finding"
+                  "text": "Go with someone experienced"
                 },
                 {
                   "id": "d",
-                  "text": "Avoid it until you have formal navigation training"
+                  "text": "Avoid it; get formal training first"
                 }
               ],
               "correctOptionIds": ["c"],
               "explanation": {
-                "correct": "Routes demand navigation. Go with someone experienced or take a course first. A trail has tread; a route has only your judgment.",
-                "incorrect": "Routes are not trails. They require map and compass work, terrain reading and decision-making. Learn with a mentor first."
+                "correct": "Routes demand navigation. Go with someone experienced. A trail has tread; a route has only your judgment.",
+                "incorrect": "Routes need map and compass work, terrain reading and decision-making. Learn with a mentor first."
               }
             }
           },
@@ -919,29 +927,29 @@
             "type": "multiple-choice",
             "conceptIds": ["water-source-reliability"],
             "payload": {
-              "prompt": "Trail description lists: 'Creek at mile 4, reliable. Spring at mile 8, seasonal. Dry for last 4 miles.' What do you carry?",
+              "prompt": "Creek at 4 mi (reliable), spring at 8 mi (seasonal), dry for last 4. Carry?",
               "options": [
                 {
                   "id": "a",
-                  "text": "One liter, you will have water at mile 4"
+                  "text": "One liter, there's water at mile 4"
                 },
                 {
                   "id": "b",
-                  "text": "Enough to carry from mile 4 to the end, and a backup filter"
+                  "text": "Enough from mile 4 to the end, plus a backup filter"
                 },
                 {
                   "id": "c",
-                  "text": "Just download the route, water is always somewhere"
+                  "text": "Just download the route, water is always there"
                 },
                 {
                   "id": "d",
-                  "text": "Two liters total, water is listed, so it is reliable"
+                  "text": "Two liters total, water is listed so it's reliable"
                 }
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Reliable creek at mile 4: filter and fill. Seasonal spring at mile 8: do not count on it. Dry for last 4 miles: carry enough from mile 4 to the end.",
-                "incorrect": "Water reliability matters. You can trust 'reliable' and fill there, skip 'seasonal,' and carry for the dry section. Plan around what you can trust."
+                "correct": "Reliable creek at 4: fill there. Seasonal spring at 8: skip it. Dry for 4: carry from 4 to end.",
+                "incorrect": "Trust 'reliable' and fill there. Skip 'seasonal.' Carry what you need for the dry section."
               }
             }
           }

@@ -222,3 +222,15 @@ struct SettingsAndTalkTests {
         #expect(await CommonGround.scoreTolerant(for: person, content: repo, engine: engine) == 0)
     }
 }
+
+@Suite("Settings compatibility")
+struct SettingsCompatibilityTests {
+    @Test func decodesSettingsSavedBeforeProfileFieldsExisted() throws {
+        let old = #"{"appearance":"light","discreetMode":true,"dailyReminder":false,"reminderHour":9,"soundsAndHaptics":true}"#
+        let s = try JSONDecoder().decode(AppSettings.self, from: Data(old.utf8))
+        #expect(s.appearance == .light && s.learnerName == nil && s.joinedAt == nil && s.reminderHour == 9)
+    }
+    @Test func activityDisplayNamesAreDefinedForEveryType() {
+        for t in ActivityType.allCases { #expect(!t.displayName.isEmpty) }
+    }
+}
