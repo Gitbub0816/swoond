@@ -19,17 +19,17 @@ Checklist for unit authors: `SAFETY_REVIEW_CHECKLIST.md`.
 
 | Native type | Planned use | Est. authored items at launch | Samples below |
 |---|---|---|---|
-| `multiple-choice` | see CDS section 12 | 117 | 5 |
+| `multiple-choice` | see CDS section 12 | 118 | 5 |
 | `binary-call` | see CDS section 12 | 62 | 3 |
-| `term-match` | see CDS section 12 | 37 | 3 |
-| `sequence-order` | see CDS section 12 | 12 | 3 |
+| `term-match` | see CDS section 12 | 38 | 3 |
+| `sequence-order` | see CDS section 12 | 13 | 3 |
 | `visual-id` | see CDS section 12 | 14 | 3 |
 | `decision-scenario` | see CDS section 12 | 51 | 10 |
 | `talk-track` | see CDS section 12 | 11 | 8 |
 | `say-this` | see CDS section 12 | 104 | 4 |
 | `fill-the-gap` | see CDS section 12 | 39 | 3 |
 | `estimate-slider` | see CDS section 12 | 7 | 3 |
-| `hotspot-tap` | see CDS section 12 | 8 | 3 |
+| `hotspot-tap` | see CDS section 12 | 10 | 3 |
 | `timing-tap` | Not used (no 1D timing concept) | 0 | n/a |
 | `listening-id` | Not used (no audio at launch) | 0 | n/a |
 
