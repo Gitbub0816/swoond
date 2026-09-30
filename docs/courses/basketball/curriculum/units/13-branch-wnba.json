@@ -65,7 +65,8 @@
                 {"id": "item-4", "text": "Finals (October 17+)"}
               ],
               "explanation": {
-                "summary": "The WNBA regular season runs May to September, with Commissioner's Cup as a mid-season tournament. Playoffs begin late September."
+                "correct": "The season flows: regular play, mid-season Cup, then playoffs.",
+                "incorrect": "The WNBA runs May–September for regular season, with Commissioner's Cup mid-season and playoffs in late September."
               }
             }
           },
@@ -74,11 +75,15 @@
             "type": "fill-the-gap",
             "conceptIds": ["commissioners-cup"],
             "payload": {
-              "prompt": "The Commissioner's Cup is a mid-season WNBA tournament like the ___ in the NBA.",
+              "prompt": "The Commissioner's Cup is a mid-season WNBA tournament like the {{blank}} in the NBA.",
+              "template": "The Commissioner's Cup is a mid-season WNBA tournament like the {{gap1}} in the NBA.",
               "gaps": [
-                {"id": "gap-1", "correctAnswers": ["Cup", "NBA Cup", "in-season tournament"]}
+                {"id": "gap1", "options": ["Cup", "in-season tournament", "playoffs"], "correct": "Cup"}
               ],
-              "explanation": "The Commissioner's Cup is the WNBA's in-season tournament, similar to the NBA Cup (formerly known as the In-Season Tournament)."
+              "explanation": {
+                "correct": "The Cup is the WNBA's in-season tournament, matching the NBA Cup format.",
+                "incorrect": "The Commissioner's Cup mirrors the NBA Cup, a mid-season tournament."
+              }
             }
           },
           {
@@ -274,14 +279,19 @@
             "type": "estimate-slider",
             "conceptIds": ["wnba-salary-cap"],
             "payload": {
-              "prompt": "Estimate: WNBA cap vs NBA cap ratio. The WNBA cap is what % of the NBA cap?",
+              "prompt": "WNBA cap as % of NBA cap (2026)?",
+              "unit": "%",
               "min": 1,
               "max": 20,
-              "correctValue": 4.5,
-              "correctRange": [3, 6],
+              "step": 1,
+              "correctValue": 5,
+              "tolerance": {
+                "full": 1,
+                "partial": 3
+              },
               "explanation": {
-                "correct": "Close. The 2026 WNBA cap (~$7M) is about 4–5% of the NBA cap (~$155M). A huge gap, but the WNBA is growing.",
-                "incorrect": "The WNBA cap is about 4–5% of the NBA cap. The league has signed new media deals to raise salaries significantly."
+                "correct": "Close. WNBA ~$7M is about 4–5% of NBA ~$155M. Gap is shrinking.",
+                "incorrect": "WNBA cap is 4–5% of NBA. New media deals (ESPN, Amazon Prime) are raising salaries."
               }
             }
           },
@@ -290,14 +300,19 @@
             "type": "estimate-slider",
             "conceptIds": ["wnba-cba"],
             "payload": {
-              "prompt": "Estimate: WNBA regular-season game count timeline. In what year does the WNBA reach 50 games?",
+              "prompt": "Year WNBA reaches 50 games (2026 CBA)?",
+              "unit": "year",
               "min": 2026,
               "max": 2032,
-              "correctValue": 2027,
-              "correctRange": [2027, 2028],
+              "step": 1,
+              "correctValue": 2028,
+              "tolerance": {
+                "full": 1,
+                "partial": 2
+              },
               "explanation": {
-                "correct": "Right. The CBA phases it in: 44 games in 2026, rising to 50 by 2027–28, and 52 by 2029–32.",
-                "incorrect": "The 2026 CBA growth plan: 44 games in 2026, 50 by 2027–28, 52 by 2029–32."
+                "correct": "Right. CBA: 44 games 2026, rising to 50 by 2027–28, then 52 by 2029.",
+                "incorrect": "2026 CBA phases: 44 games 2026, 50 by 2027–28, 52 by 2029–32."
               }
             }
           },

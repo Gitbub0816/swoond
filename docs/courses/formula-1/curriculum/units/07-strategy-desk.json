@@ -127,7 +127,7 @@
               "one-stop-strategy"
             ],
             "payload": {
-              "prompt": "Match each strategy concept to its definition.",
+              "prompt": "Match stint concepts to their definitions.",
               "pairs": [
                 {
                   "id": "stint",
@@ -147,8 +147,7 @@
               ],
               "distractorDefinitions": [
                 "A penalty issued by the FIA.",
-                "A rule that applies only to the top three teams.",
-                "A tactic used by backmarker teams."
+                "A rule that applies only to the top three teams."
               ],
               "explanation": {
                 "summary": "Strategy concepts explained.",
@@ -177,25 +176,29 @@
               "undercut"
             ],
             "payload": {
-              "statement": {
-                "speaker": "Strategist",
-                "text": "He is 1.5 seconds ahead, we pit now to get fresh tyres. His tyres are old; the undercut works if we emerge ahead."
+              "prompt": "Does the undercut work here?",
+              "scene": {
+                "kind": "none",
+                "alt": "A strategic pit stop scenario"
               },
-              "question": "Is this the right call?",
-              "options": [
+              "choices": [
                 {
                   "id": "yes",
-                  "text": "Yes, fresh tyres should be fast enough to jump him.",
-                  "explanation": "Maybe. An undercut only works if the lap time gain from fresh tyres exceeds pit loss and track position.",
-                  "isCorrect": false
+                  "label": "Yes, pit and undercut.",
+                  "isCorrect": true
                 },
                 {
                   "id": "no",
-                  "text": "No, 1.5 seconds is not enough unless he is much slower on old tyres.",
-                  "explanation": "Right. Pit loss is about 20 seconds; you need a big time gain to undercut.",
-                  "isCorrect": true
+                  "label": "No, stay out longer.",
+                  "isCorrect": false
                 }
-              ]
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "The undercut works when you pit earlier and gain track position via a better tyre.",
+                "incorrect": "You need fresh tyres to make up the pit loss. Pitting early is the undercut strategy.",
+                "sayThisLine": "Fresh tyres undercut a rival's track position."
+              }
             }
           },
           {
@@ -205,52 +208,61 @@
               "pit-loss"
             ],
             "payload": {
-              "statement": {
-                "speaker": "Commentator",
-                "text": "He loses about 25 seconds going through the pit lane and getting up to speed. That is the pit loss."
+              "prompt": "Is pit loss about 20\u201325 seconds?",
+              "scene": {
+                "kind": "none",
+                "alt": "A pit stop scenario"
               },
-              "question": "Is that accurate?",
-              "options": [
+              "choices": [
                 {
                   "id": "yes",
-                  "text": "Yes, pit loss is roughly 20 to 25 seconds at most circuits.",
-                  "explanation": "Right. This is the cost of a stop: speed limit, stop time, and getting back up to pace.",
+                  "label": "Yes, pit loss is 20\u201325 seconds total.",
                   "isCorrect": true
                 },
                 {
                   "id": "no",
-                  "text": "No, modern stops are much faster, under 10 seconds.",
-                  "explanation": "The stop itself is 2 seconds, but pit lane speed limits and getting back to racing pace add up to 20-25 seconds total."
+                  "label": "No, modern stops are under 10 seconds.",
+                  "isCorrect": false
                 }
-              ]
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Pit loss includes speed limit, stop time, and acceleration back to racing pace.",
+                "incorrect": "The stop itself is 2 seconds, but total pit loss is 20\u201325 seconds.",
+                "sayThisLine": "Pit loss is 20\u201325 seconds: limit, stop time, acceleration."
+              }
             }
           },
           {
             "id": "sd-02-bin-overcut-patience",
             "type": "binary-call",
             "conceptIds": [
-              "overcut",
-              "track-position"
+              "overcut"
             ],
             "payload": {
-              "statement": {
-                "speaker": "Race engineer",
-                "text": "Stay out; we use the overcut. You are on old tyres but in clear air; he will pit and be stuck in traffic."
+              "prompt": "Should you try an overcut here?",
+              "scene": {
+                "kind": "none",
+                "alt": "A race strategy scenario"
               },
-              "question": "Does this make sense?",
-              "options": [
+              "choices": [
                 {
                   "id": "yes",
-                  "text": "Yes",
-                  "explanation": "Right. The overcut bets that clear air and tyre life beat a rival's fresh tyres in dirty air.",
+                  "label": "Yes, stay out and pass them after they pit.",
                   "isCorrect": true
                 },
                 {
                   "id": "no",
-                  "text": "No",
-                  "explanation": "The overcut can work. Track position and clean air sometimes beat fresh tyres."
+                  "label": "No, pit first to avoid being undercut.",
+                  "isCorrect": false
                 }
-              ]
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "The overcut is staying out, letting them pit first, then pitting to new tyres and passing.",
+                "incorrect": "Pitting first gives them the chance to overcut you. Patience is the overcut.",
+                "sayThisLine": "Overcut: patience beats speed early, tyres late."
+              }
             }
           },
           {
@@ -604,7 +616,7 @@
               "double-stack"
             ],
             "payload": {
-              "prompt": "Match each strategy concept to its definition.",
+              "prompt": "Match pit-stop concepts to their definitions.",
               "pairs": [
                 {
                   "id": "safety-car-stop",
@@ -624,8 +636,7 @@
               ],
               "distractorDefinitions": [
                 "A penalty issued by the FIA.",
-                "A rule that applies only to the top three teams.",
-                "A tactic used by backmarker teams."
+                "A rule that applies only to the top three teams."
               ],
               "explanation": {
                 "summary": "Strategy concepts explained.",
@@ -785,7 +796,7 @@
               "safety-car-stop"
             ],
             "payload": {
-              "prompt": "Match each strategy concept to its definition.",
+              "prompt": "Match safety-car concepts to their definitions.",
               "pairs": [
                 {
                   "id": "virtual-safety-car",
@@ -805,8 +816,7 @@
               ],
               "distractorDefinitions": [
                 "A penalty issued by the FIA.",
-                "A rule that applies only to the top three teams.",
-                "A tactic used by backmarker teams."
+                "A rule that applies only to the top three teams."
               ],
               "explanation": {
                 "summary": "Strategy concepts explained.",
@@ -831,26 +841,58 @@
             "id": "sd-06-dec-grid-tyre-choice",
             "type": "decision-scenario",
             "conceptIds": [
-              "offset-strategy",
-              "hard-medium-soft"
+              "offset-strategy"
             ],
             "payload": {
-              "setup": "Qualifying is close. P1 starts on softs (the fastest on the grid). P2 is you. Do you also start on softs to match, or start on mediums for longer life?",
-              "question": "Which tyre do you choose for race start?",
+              "prompt": "Start on softs or mediums for P2?",
+              "situation": {
+                "narrative": "Qualifying is done. P1 starts on soft tyres (fastest). You are P2. You must decide your race start compound: soft (matching P1) or medium (offset for a later stop).",
+                "facts": [
+                  {
+                    "label": "P1 tyre choice",
+                    "value": "Soft"
+                  },
+                  {
+                    "label": "Your grid position",
+                    "value": "P2"
+                  },
+                  {
+                    "label": "Soft tyre stint",
+                    "value": "~20 laps"
+                  },
+                  {
+                    "label": "Medium tyre stint",
+                    "value": "~30 laps",
+                    "emphasis": "warning"
+                  }
+                ]
+              },
               "options": [
                 {
-                  "id": "mediums",
-                  "text": "Start on mediums for longer life",
-                  "explanation": "Right. This is an offset: you sacrifice qualifying position for a later pit stop.",
-                  "isCorrect": true
+                  "id": "soft",
+                  "label": "Start on soft tyres to match P1.",
+                  "verdict": "acceptable",
+                  "consequence": "You both pit around the same time. Similar track position throughout.",
+                  "considerations": [
+                    "Matches your rival's strategy",
+                    "No pit-window advantage",
+                    "Consistent race but no strategic edge"
+                  ]
                 },
                 {
-                  "id": "softs",
-                  "text": "Start on softs to match P1.",
-                  "explanation": "Both on softs means both pit at similar times. An offset lets you gap the rival."
+                  "id": "medium",
+                  "label": "Start on mediums (offset strategy).",
+                  "verdict": "best",
+                  "consequence": "You pit 10+ laps later. Fresh tyres give you track advantage after P1 pits.",
+                  "considerations": [
+                    "Opens a different pit window",
+                    "Fresh tyres can pass them after their stop",
+                    "Offset strategy is about timing, not pace"
+                  ]
                 }
               ],
-              "translation": "Offset strategies use different starting compounds to open different pit windows."
+              "expertNote": "Offset strategy means different starting compounds to pit at different times and gain track position.",
+              "sayThisLine": "Offset: start different to pit different and gain track position."
             }
           },
           {
@@ -898,26 +940,58 @@
             "id": "sd-06-dec-traffic-vs-life",
             "type": "decision-scenario",
             "conceptIds": [
-              "offset-strategy",
-              "pit-window"
+              "offset-strategy"
             ],
             "payload": {
-              "setup": "The optimal window for your tyres is laps 25-28. But if you pit in that window, you will rejoin in traffic behind two cars. If you pit at lap 20 (offset), you rejoin alone in clean air.",
-              "question": "Do you pit early for clean air or wait for optimal tyre wear?",
+              "prompt": "Risk traffic or extend tyres to avoid it?",
+              "situation": {
+                "narrative": "You are in the undercut pit window. P1 has not pitted yet. Pit now and risk getting held up by backmarkers. Stay out 3 more laps and avoid traffic but lose tyre life.",
+                "facts": [
+                  {
+                    "label": "Your tyre life left",
+                    "value": "3 laps"
+                  },
+                  {
+                    "label": "Gap to P1",
+                    "value": "0.8 seconds"
+                  },
+                  {
+                    "label": "Traffic risk",
+                    "value": "Medium",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Pit window status",
+                    "value": "Open (undercut available)"
+                  }
+                ]
+              },
               "options": [
                 {
-                  "id": "early",
-                  "text": "Pit early for clear air",
-                  "explanation": "Right. Clear air often beats the tyre advantage of waiting. Offset for clarity.",
-                  "isCorrect": true
+                  "id": "pit-now",
+                  "label": "Pit now for the undercut.",
+                  "verdict": "best",
+                  "consequence": "You pit with fresh tyres and gain track position despite traffic.",
+                  "considerations": [
+                    "Undercut timing is critical",
+                    "Traffic delays are usually small",
+                    "Fresh tyres more valuable than avoiding traffic"
+                  ]
                 },
                 {
-                  "id": "late",
-                  "text": "Wait for peak tyre window.",
-                  "explanation": "Traffic and dirty air slow you down; clear air is often more valuable."
+                  "id": "extend",
+                  "label": "Extend 3 more laps to avoid traffic.",
+                  "verdict": "poor",
+                  "consequence": "Tyres degrade. P1 pits while you are still out. You lose the undercut advantage.",
+                  "considerations": [
+                    "Pit loss overrides short traffic delays",
+                    "Tyres degrade fast on worn compound",
+                    "You give up the undercut window"
+                  ]
                 }
               ],
-              "translation": "Clean air is sometimes worth more than waiting for peak tyre window."
+              "expertNote": "Undercut pit windows are tight. Traffic delays matter less than tyre advantage.",
+              "sayThisLine": "Undercut timing beats avoiding traffic. Pit when tyres say so."
             }
           },
           {
@@ -978,142 +1052,137 @@
             "id": "sd-07-dec-switch-timing",
             "type": "decision-scenario",
             "conceptIds": [
-              "crossover-point",
-              "intermediate-tyre"
+              "tyre-switching"
             ],
             "payload": {
-              "prompt": "Switch to intermediates now or wait?",
+              "prompt": "Switch now or wait until P1 pits?",
               "situation": {
-                "narrative": "The track is drying. Wets are slower now by 0.5 seconds per lap. Inters are available. A pit stop costs 20 seconds.",
+                "narrative": "Rain is getting heavier. You are on intermediates, P1 is also on inters and is 0.6 seconds ahead. Both of you could switch to wets soon. Do you switch now or wait to see if P1 pits first?",
                 "facts": [
                   {
-                    "label": "Wet tyre pace loss",
-                    "value": "0.5 sec/lap"
+                    "label": "Rain trend",
+                    "value": "Increasing"
                   },
                   {
-                    "label": "Pit loss time",
-                    "value": "20 seconds"
-                  },
-                  {
-                    "label": "Track status",
-                    "value": "Drying"
-                  },
-                  {
-                    "label": "Crossover lap count",
-                    "value": "Need ~40 laps to break even"
-                  }
-                ]
-              },
-              "options": [
-                {
-                  "id": "wait",
-                  "label": "Wait for clearer crossover advantage",
-                  "verdict": "best",
-                  "consequence": "You stay out, losing 0.5 sec/lap, until inters are 2 tenths faster (40 laps to break even).",
-                  "considerations": [
-                    "0.5 sec/lap loss is small if you have 40 laps left",
-                    "Pitting now only gains if race runs to lap 40+",
-                    "Wait for a clearer advantage"
-                  ]
-                },
-                {
-                  "id": "pit",
-                  "label": "Pit now to get ahead",
-                  "verdict": "acceptable",
-                  "consequence": "You pit and hope inters gain back 20 seconds before race end.",
-                  "considerations": [
-                    "Early switch can catch others off guard",
-                    "If race is short, you never make up the 20 seconds",
-                    "Risky unless you know race length"
-                  ]
-                }
-              ],
-              "expertNote": "The crossover point is where pit loss equals the tyre advantage over remaining laps. Wait for clarity.",
-              "sayThisLine": "Crossover timing is about pit loss vs tyre advantage over remaining race laps."
-            }
-          },
-          {
-            "id": "sd-07-est-crossover-gap",
-            "type": "decision-scenario",
-            "conceptIds": [
-              "crossover-point"
-            ],
-            "payload": {
-              "prompt": "Switch to full wets or stay on inters?",
-              "situation": {
-                "narrative": "It is raining hard now. There is standing water on corners. You are on intermediates. Your team radios that full wets are available.",
-                "facts": [
-                  {
-                    "label": "Rain intensity",
-                    "value": "Heavy"
-                  },
-                  {
-                    "label": "Standing water",
-                    "value": "Yes, on corners"
-                  },
-                  {
-                    "label": "Current tyres",
+                    "label": "Current tyres (you)",
                     "value": "Intermediates"
                   },
                   {
-                    "label": "Risk on inters",
-                    "value": "Aquaplaning possible",
+                    "label": "Current tyres (P1)",
+                    "value": "Intermediates"
+                  },
+                  {
+                    "label": "Gap to P1",
+                    "value": "0.6 seconds",
                     "emphasis": "warning"
                   }
                 ]
               },
               "options": [
                 {
-                  "id": "wets",
-                  "label": "Pit for full wets",
+                  "id": "switch-first",
+                  "label": "Switch to wets now, gain the initiative.",
                   "verdict": "best",
-                  "consequence": "You switch to wets. Better grip in standing water and lower aquaplane risk.",
+                  "consequence": "You pit first with fresh wets. Pit loss is your only cost; you regain pace quickly.",
                   "considerations": [
-                    "Full wets handle standing water better than inters",
-                    "Aquaplane is dangerous and unpredictable",
-                    "Pit loss is worth the safety and grip"
+                    "Fresh wets give immediate grip gain",
+                    "P1 must react to your pit",
+                    "Being first means you set the pace"
                   ]
                 },
                 {
-                  "id": "inters",
-                  "label": "Stay on inters; wets are not faster",
-                  "verdict": "poor",
-                  "consequence": "You risk aquaplaning and losing control. Wets are actually faster in standing water.",
+                  "id": "react",
+                  "label": "Wait and react when P1 pits.",
+                  "verdict": "acceptable",
+                  "consequence": "You both switch at about the same time. P1 has a small head start out of the pits.",
                   "considerations": [
-                    "In heavy rain with standing water, wets are faster",
-                    "Aquaplane can cause a crash or DNF",
-                    "Staying is overconfident"
+                    "Reduces risk of wrong tyre choice",
+                    "Gives P1 the pit initiative",
+                    "You follow, not lead"
                   ]
                 }
               ],
-              "expertNote": "Full wets are for heavy rain and standing water. Inters are for damp tracks. Know the difference.",
-              "sayThisLine": "Wets for standing water, inters for damp. Know the rain type."
+              "expertNote": "Tyre-switch timing is a gamble. Being first gives you freshness; reacting gives information.",
+              "sayThisLine": "Switch early for pace, late for info. Choose your risk."
+            }
+          },
+          {
+            "id": "sd-07-est-crossover-gap",
+            "type": "estimate-slider",
+            "conceptIds": [
+              "crossover-point"
+            ],
+            "payload": {
+              "prompt": "At what lap does full-wet tyre become faster than intermediate?",
+              "unit": "laps",
+              "min": 1,
+              "max": 30,
+              "step": 1,
+              "correctValue": 8,
+              "tolerance": 2,
+              "explanation": {
+                "correct": "Around lap 8, wets are faster than inters in heavy rain. Crossover depends on rain intensity.",
+                "incorrect": "Crossover varies by rain rate. In heavy rain, wets catch up by lap 8\u201310.",
+                "sayThisLine": "Rain-tyre crossover is around lap 8 in heavy conditions."
+              }
             }
           },
           {
             "id": "sd-07-dec-rain-heaviness",
             "type": "decision-scenario",
             "conceptIds": [
-              "full-wet-tyre",
-              "intermediate-tyre"
+              "tyre-switching"
             ],
             "payload": {
-              "setup": "It is raining hard; there is standing water on corners. You are on inters. Radio says wets are available. Do you pit for wets or stay on inters?",
-              "question": "What is the right choice?",
+              "prompt": "Switch to full wets or stay on inters?",
+              "situation": {
+                "narrative": "Rain is intensifying. Standing water is forming on corners. You are on intermediate tyres. Your team radios that full wets are ready and available.",
+                "facts": [
+                  {
+                    "label": "Rain intensity",
+                    "value": "Heavy and rising"
+                  },
+                  {
+                    "label": "Standing water",
+                    "value": "Yes, on corners",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Current tyres",
+                    "value": "Intermediates"
+                  },
+                  {
+                    "label": "Wets available",
+                    "value": "Yes"
+                  }
+                ]
+              },
               "options": [
                 {
                   "id": "wets",
-                  "text": "Pit for wets",
-                  "explanation": "Right. Full wets handle heavy rain and standing water. Inters will aquaplane.",
-                  "isCorrect": true
+                  "label": "Pit for full wets now.",
+                  "verdict": "best",
+                  "consequence": "Full wets grip the water. Lower aquaplane risk, better pace in standing water.",
+                  "considerations": [
+                    "Full wets are built for standing water",
+                    "Aquaplane is dangerous and unpredictable",
+                    "Pit loss is worth the safety and grip"
+                  ]
                 },
                 {
                   "id": "inters",
-                  "text": "Stay on inters",
-                  "explanation": "In standing water, wets are faster and safer. Staying on inters is risky."
+                  "label": "Stay on inters; they are still working.",
+                  "verdict": "poor",
+                  "consequence": "Inters degrade in standing water. Risk of aquaplaning and loss of control.",
+                  "considerations": [
+                    "In standing water, wets are faster",
+                    "Aquaplane can cause a crash or DNF",
+                    "Waiting costs lap time and safety"
+                  ]
                 }
               ],
-              "translation": "Full wets are for heavy rain and standing water. Inters are for damp tracks."
+              "expertNote": "Full wets are for standing water and heavy rain. Inters are for a damp track.",
+              "sayThisLine": "Wets for standing water, inters for damp. Know the rain."
             }
           },
           {
@@ -1348,7 +1417,7 @@
               "offset-strategy"
             ],
             "payload": {
-              "prompt": "Match each strategy concept to its definition.",
+              "prompt": "Match race-planning concepts to their definitions.",
               "pairs": [
                 {
                   "id": "track-evolution",
@@ -1368,8 +1437,7 @@
               ],
               "distractorDefinitions": [
                 "A penalty issued by the FIA.",
-                "A rule that applies only to the top three teams.",
-                "A tactic used by backmarker teams."
+                "A rule that applies only to the top three teams."
               ],
               "explanation": {
                 "summary": "Strategy concepts explained.",
