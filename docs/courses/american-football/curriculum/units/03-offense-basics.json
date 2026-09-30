@@ -1,0 +1,895 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "american-football",
+  "unit": {
+    "id": "offense-basics",
+    "title": "How offense works",
+    "layer": "foundations",
+    "order": 3,
+    "prerequisiteUnitIds": ["the-basics", "players-positions"],
+    "personalizationSlots": [],
+    "lessons": [
+      {
+        "id": "formations-01",
+        "title": "Lining up",
+        "objective": "You can read a basic formation and count receivers.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["formation", "personnel-grouping"],
+        "activities": [
+          {
+            "id": "formations-01-hs-basic",
+            "type": "hotspot-tap",
+            "conceptIds": ["formation", "personnel-grouping"],
+            "payload": {
+              "prompt": "Tap the three receivers in this spread formation.",
+              "diagram": {
+                "diagramId": "football-formation-spread",
+                "alt": "A football field showing the offense lined up with three receivers split wide and running backs in the backfield.",
+                "aspectRatio": 2.5
+              },
+              "hotspots": [
+                {
+                  "id": "receiver-left",
+                  "label": "Left receiver",
+                  "shape": {"kind": "circle", "cx": 0.1, "cy": 0.5, "r": 0.04}
+                },
+                {
+                  "id": "receiver-right",
+                  "label": "Right receiver",
+                  "shape": {"kind": "circle", "cx": 0.9, "cy": 0.5, "r": 0.04}
+                },
+                {
+                  "id": "receiver-slot",
+                  "label": "Slot receiver",
+                  "shape": {"kind": "circle", "cx": 0.75, "cy": 0.5, "r": 0.04}
+                },
+                {
+                  "id": "qb",
+                  "label": "Quarterback",
+                  "shape": {"kind": "circle", "cx": 0.5, "cy": 0.25, "r": 0.03}
+                },
+                {
+                  "id": "rb",
+                  "label": "Running back",
+                  "shape": {"kind": "circle", "cx": 0.5, "cy": 0.35, "r": 0.03}
+                }
+              ],
+              "correctHotspotIds": ["receiver-left", "receiver-right", "receiver-slot"],
+              "explanation": {
+                "correct": "Right. Three receivers split out and one in the slot. That is a passing formation with plenty of options.",
+                "incorrect": "Look for the receivers lined up out wide or in the slot. The quarterback and running back are in the backfield."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "formations-01-mc-11",
+            "type": "multiple-choice",
+            "conceptIds": ["personnel-grouping"],
+            "payload": {
+              "prompt": "What does 11 personnel mean?",
+              "options": [
+                {"id": "a", "text": "One running back, one tight end, three receivers"},
+                {"id": "b", "text": "Eleven defensive players"},
+                {"id": "c", "text": "One quarterback, one lineman, nine receivers"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Exactly. The first digit is running backs, the second is tight ends. 11 means one of each, leaving three receivers.",
+                "incorrect": "Personnel grouping tells you how many running backs and tight ends are on the field. 11 is one back, one tight end, three receivers."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "formations-01-bc-empty",
+            "type": "binary-call",
+            "conceptIds": ["formation", "personnel-grouping"],
+            "payload": {
+              "prompt": "An empty backfield has no running backs at all, only receivers. True or false?",
+              "scene": {"kind": "none", "alt": "A football formation with five receivers spread wide and the quarterback alone in the backfield."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. Empty means no backs, so five receivers. It signals pass, but it also removes a blocker.",
+                "incorrect": "Yes, empty backfield means five receivers and no running backs. It is a passing formation that removes a blocker."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "formations-01-hs-tight",
+            "type": "hotspot-tap",
+            "conceptIds": ["formation", "personnel-grouping"],
+            "payload": {
+              "prompt": "Tap where the tight end lines up in this I-formation.",
+              "diagram": {
+                "diagramId": "football-formation-i",
+                "alt": "A football field showing the offense in I-formation with quarterback, two running backs in line, and tight end next to the tackle.",
+                "aspectRatio": 2.5
+              },
+              "hotspots": [
+                {
+                  "id": "tight-end",
+                  "label": "Tight end",
+                  "shape": {"kind": "circle", "cx": 0.65, "cy": 0.5, "r": 0.04}
+                },
+                {
+                  "id": "tackle",
+                  "label": "Right tackle",
+                  "shape": {"kind": "circle", "cx": 0.6, "cy": 0.5, "r": 0.03}
+                },
+                {
+                  "id": "rb-deep",
+                  "label": "Deep running back",
+                  "shape": {"kind": "circle", "cx": 0.5, "cy": 0.35, "r": 0.03}
+                },
+                {
+                  "id": "rb-close",
+                  "label": "Fullback",
+                  "shape": {"kind": "circle", "cx": 0.5, "cy": 0.3, "r": 0.03}
+                }
+              ],
+              "correctHotspotIds": ["tight-end"],
+              "explanation": {
+                "correct": "Yes, the tight end lines up on the line of scrimmage next to the tackle. In I-formation, he can block or release as a receiver.",
+                "incorrect": "The tight end is the hybrid on the line of scrimmage, usually close to the tackle on either side."
+              }
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "snap-02",
+        "title": "Shotgun and under center",
+        "objective": "You can tell shotgun from under center and guess the play type.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["shotgun", "under-center"],
+        "activities": [
+          {
+            "id": "snap-02-bc-shotgun",
+            "type": "binary-call",
+            "conceptIds": ["shotgun"],
+            "payload": {
+              "prompt": "Shotgun means the quarterback is five yards deeper and catches the snap from the center. True or false?",
+              "scene": {"kind": "none", "alt": "A football formation with the quarterback several yards behind the center, waiting for the snap."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. Shotgun gives the quarterback time to see the defense and throw, but removes the handoff option.",
+                "incorrect": "Yes, shotgun lines up the quarterback several yards back. It is better for passing plays but harder to run."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "snap-02-mc-guess",
+            "type": "multiple-choice",
+            "conceptIds": ["shotgun", "under-center"],
+            "payload": {
+              "prompt": "The quarterback is under center on third and short. What is the play likely to be?",
+              "options": [
+                {"id": "a", "text": "A handoff or a quarterback sneak"},
+                {"id": "b", "text": "A deep pass downfield"},
+                {"id": "c", "text": "A play-action pass"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Right. Under center is better for running and sneaks. Short yardage usually means run the ball.",
+                "incorrect": "Under center gives the quarterback an easy handoff. Short yardage usually calls for a run or sneak, not a pass."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "snap-02-hs-position",
+            "type": "hotspot-tap",
+            "conceptIds": ["shotgun", "under-center"],
+            "payload": {
+              "prompt": "Tap where the quarterback lines up in shotgun.",
+              "diagram": {
+                "diagramId": "football-snap-shotgun",
+                "alt": "A football field showing the line of scrimmage with the center and quarterback positions marked, the quarterback several yards back.",
+                "aspectRatio": 2.5
+              },
+              "hotspots": [
+                {
+                  "id": "center",
+                  "label": "Center",
+                  "shape": {"kind": "circle", "cx": 0.5, "cy": 0.5, "r": 0.04}
+                },
+                {
+                  "id": "near",
+                  "label": "Close behind center",
+                  "shape": {"kind": "circle", "cx": 0.5, "cy": 0.6, "r": 0.04}
+                },
+                {
+                  "id": "shotgun",
+                  "label": "Shotgun depth",
+                  "shape": {"kind": "circle", "cx": 0.5, "cy": 0.8, "r": 0.04}
+                },
+                {
+                  "id": "deep",
+                  "label": "Way back",
+                  "shape": {"kind": "circle", "cx": 0.5, "cy": 0.95, "r": 0.04}
+                }
+              ],
+              "correctHotspotIds": ["shotgun"],
+              "explanation": {
+                "correct": "Right, shotgun lines up the quarterback several yards back, around the 5-yard depth. He catches a snap and throws.",
+                "incorrect": "Shotgun positions the quarterback five yards or so behind the center, far enough to see the coverage."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "snap-02-tm-snap",
+            "type": "term-match",
+            "conceptIds": ["shotgun", "under-center"],
+            "payload": {
+              "prompt": "Match the quarterback positions to their setups.",
+              "pairs": [
+                {"id": "shotgun", "term": "Shotgun", "definition": "The quarterback lines up five yards behind the center and catches the snap in the air."},
+                {"id": "undercenter", "term": "Under center", "definition": "The quarterback takes the snap directly from the center with the ball handed or snapped into his hands."},
+                {"id": "playaction", "term": "Play-action", "definition": "The quarterback fakes a handoff or run before looking to throw."}
+              ],
+              "explanation": {
+                "summary": "Shotgun is deep and passing; under center is close and running or faking. Play-action is the hybrid.",
+                "sayThisLine": "Shotgun to throw, under center to run, play-action to trick."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "snap-02-bc-advantage",
+            "type": "binary-call",
+            "conceptIds": ["shotgun", "under-center"],
+            "payload": {
+              "prompt": "Shotgun is better for running plays because the quarterback has more room to hand the ball. True or false?",
+              "scene": {"kind": "none", "alt": "A quarterback in shotgun formation attempting to hand the ball to a running back while also showing pass."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "false",
+              "explanation": {
+                "correct": "False. Shotgun is actually worse for runs because the quarterback is far back and the handoff is awkward. Under center is better.",
+                "incorrect": "No, shotgun makes handoffs harder because the quarterback is so far from the line. Under center is cleaner for runs."
+              }
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "runs-03",
+        "title": "The running game",
+        "objective": "You can describe how a handoff turns into yards.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["running-back", "offensive-line", "line-of-scrimmage"],
+        "activities": [
+          {
+            "id": "runs-03-mc-blocks",
+            "type": "multiple-choice",
+            "conceptIds": ["offensive-line", "line-of-scrimmage"],
+            "payload": {
+              "prompt": "What does the offensive line do on a run play?",
+              "options": [
+                {"id": "a", "text": "They block defenders to open a hole for the running back"},
+                {"id": "b", "text": "They try to intercept passes"},
+                {"id": "c", "text": "They line up on the defensive side of the ball"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Exactly. The offensive line's job on runs is to stay in front of their guys and create a gap for the runner to find.",
+                "incorrect": "The offensive line blocks. They do not throw or catch. They make holes by moving defenders out of the way."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "runs-03-so-sequence",
+            "type": "sequence-order",
+            "conceptIds": ["running-back", "offensive-line"],
+            "payload": {
+              "prompt": "Put these steps of a run play in order.",
+              "items": [
+                {"id": "snap", "text": "The center snaps the ball to the quarterback"},
+                {"id": "handoff", "text": "The quarterback hands the ball to the running back"},
+                {"id": "block", "text": "The offensive line blocks their defenders"},
+                {"id": "run", "text": "The running back finds the hole and runs"}
+              ],
+              "correctOrder": ["snap", "block", "handoff", "run"],
+              "explanation": {
+                "correct": "Right. The line moves first to create the hole, then the handoff happens, then the back runs through it.",
+                "incorrect": "The blocks need to happen before or with the handoff so the hole is open when the runner arrives."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "runs-03-hs-vision",
+            "type": "hotspot-tap",
+            "conceptIds": ["running-back", "offensive-line"],
+            "payload": {
+              "prompt": "Tap the open gap the running back should run through.",
+              "diagram": {
+                "diagramId": "football-run-gap",
+                "alt": "A football play diagram showing the offensive line, running back, and defensive players with one clear lane open.",
+                "aspectRatio": 2.5
+              },
+              "hotspots": [
+                {
+                  "id": "gap-a",
+                  "label": "Gap A - blocked defender",
+                  "shape": {"kind": "rect", "x": 0.45, "y": 0.3, "w": 0.08, "h": 0.4}
+                },
+                {
+                  "id": "gap-open",
+                  "label": "Open gap",
+                  "shape": {"kind": "rect", "x": 0.55, "y": 0.3, "w": 0.1, "h": 0.4}
+                },
+                {
+                  "id": "gap-c",
+                  "label": "Gap C - defender unblocked",
+                  "shape": {"kind": "rect", "x": 0.68, "y": 0.3, "w": 0.08, "h": 0.4}
+                }
+              ],
+              "correctHotspotIds": ["gap-open"],
+              "explanation": {
+                "correct": "Yes, that is the hole. The running back plants and accelerates through the opening.",
+                "incorrect": "Look for the gap where the blockers have moved their defenders. The runner reads and hits that hole."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "runs-03-bc-reading",
+            "type": "binary-call",
+            "conceptIds": ["running-back"],
+            "payload": {
+              "prompt": "Running backs always follow the play call exactly, even if a better hole opens up. True or false?",
+              "scene": {"kind": "none", "alt": "A football play with a running back seeing an alternate opening and cutting away from the original play design."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "false",
+              "explanation": {
+                "correct": "False. Good running backs read the blocks and cut to the open hole, even if it is not the planned lane.",
+                "incorrect": "No, great running backs have vision. They see the blocks develop and take the best gap, not always the design."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "runs-03-ds-cutback",
+            "type": "decision-scenario",
+            "conceptIds": ["running-back", "offensive-line"],
+            "payload": {
+              "prompt": "The play is designed to go outside but the edge is covered. The running back sees a lane up the middle. What should he do?",
+              "scene": {"kind": "none", "alt": "A running back with a blocked gap outside and an open lane between the tackles."},
+              "choices": [
+                {"id": "cutback", "label": "Cut it back inside where it is open", "isCorrect": true},
+                {"id": "bounce", "label": "Bounce it to the outside anyway", "isCorrect": false},
+                {"id": "retreat", "label": "Go backward to avoid the defender", "isCorrect": false}
+              ],
+              "explanation": {
+                "correct": "Cut it back. The blockers have opened a hole inside. Live runners take what is there, not what was planned.",
+                "incorrect": "Good backs do not force a designed play. They read and find the open hole."
+              }
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "routes-04",
+        "title": "The route tree",
+        "objective": "You can name the six main routes.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["route-tree", "slant-route", "go-route", "out-route", "post-route", "curl-route"],
+        "activities": [
+          {
+            "id": "routes-04-tm-routes",
+            "type": "term-match",
+            "conceptIds": ["route-tree", "slant-route", "go-route", "out-route", "post-route", "curl-route"],
+            "payload": {
+              "prompt": "Match these routes to their descriptions.",
+              "pairs": [
+                {"id": "slant", "term": "Slant route", "definition": "Quick cut across the middle after one to three steps, beating defenders inside."},
+                {"id": "go", "term": "Go (or fade) route", "definition": "A straight sprint downfield, the deep shot to take the top off the defense."},
+                {"id": "out", "term": "Out route", "definition": "Run deep, then cut sharply to the sideline at 8-10 yards to stop the clock."},
+                {"id": "post", "term": "Post route", "definition": "Run deep, then cut diagonally toward the goal posts for an over-the-middle throw."},
+                {"id": "curl", "term": "Curl route", "definition": "Run downfield then sit down in a gap, waiting for the quarterback to throw."}
+              ],
+              "explanation": {
+                "summary": "Five main routes cover all the depths and angles: quick inside (slant), deep (go), sideline (out), middle (post) and settling (curl).",
+                "sayThisLine": "Slant in, go deep, out to the sideline, post to the middle, curl to settle."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "routes-04-vi-depth",
+            "type": "visual-id",
+            "conceptIds": ["route-tree", "slant-route", "curl-route", "post-route"],
+            "payload": {
+              "prompt": "Which route breaks the deepest downfield?",
+              "images": [
+                {
+                  "diagramId": "route-slant",
+                  "alt": "A receiver running a slant route, cutting inside after three steps."
+                },
+                {
+                  "diagramId": "route-post",
+                  "alt": "A receiver running a post route, going deep then cutting diagonally toward the middle."
+                },
+                {
+                  "diagramId": "route-curl",
+                  "alt": "A receiver running a curl route, going out and settling in a zone."
+                }
+              ],
+              "correctImageId": "route-post",
+              "explanation": {
+                "correct": "The post route. It runs the deepest before the break, opening up the field underneath.",
+                "incorrect": "Look for the route that goes down the field the deepest. The post route goes deep, then cuts toward the middle."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "routes-04-mc-sideline",
+            "type": "multiple-choice",
+            "conceptIds": ["out-route"],
+            "payload": {
+              "prompt": "Why do teams throw out routes on the sideline late in a close game?",
+              "options": [
+                {"id": "a", "text": "Out routes are easier to catch than other routes"},
+                {"id": "b", "text": "The sideline stops the clock when the receiver goes out of bounds"},
+                {"id": "c", "text": "Out routes are always complete passes"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. The clock stops when the ball goes out of bounds, which saves time.",
+                "incorrect": "Out routes to the sideline stop the clock because an incomplete pass or out-of-bounds is a stopped clock."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "routes-04-hs-combinations",
+            "type": "hotspot-tap",
+            "conceptIds": ["route-tree", "slant-route", "post-route"],
+            "payload": {
+              "prompt": "Tap the receiver running the slant route in this play.",
+              "diagram": {
+                "diagramId": "football-route-combo",
+                "alt": "A play diagram showing three receivers: one running slant, one running post, one running out.",
+                "aspectRatio": 2.5
+              },
+              "hotspots": [
+                {
+                  "id": "slant",
+                  "label": "Slant route",
+                  "shape": {"kind": "circle", "cx": 0.35, "cy": 0.5, "r": 0.05}
+                },
+                {
+                  "id": "post",
+                  "label": "Post route",
+                  "shape": {"kind": "circle", "cx": 0.65, "cy": 0.3, "r": 0.05}
+                },
+                {
+                  "id": "out",
+                  "label": "Out route",
+                  "shape": {"kind": "circle", "cx": 0.9, "cy": 0.6, "r": 0.05}
+                }
+              ],
+              "correctHotspotIds": ["slant"],
+              "explanation": {
+                "correct": "Yes, the slant is the quick route cutting inside. It is ready in 1-2 seconds.",
+                "incorrect": "The slant cuts inside quickly. Look for the route heading toward the middle, not deep or wide."
+              }
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "route-lab-05",
+        "title": "Route lab",
+        "objective": "You can build a route so the break comes at the right depth and angle.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["route-tree", "post-route", "out-route", "curl-route"],
+        "activities": [
+          {
+            "id": "route-lab-05-sim",
+            "type": "unity-sim",
+            "conceptIds": ["route-tree", "post-route", "out-route", "curl-route"],
+            "payload": {
+              "simulationId": "football.routes.build.v1"
+            },
+            "xp": 20
+          },
+          {
+            "id": "route-lab-05-mc-depth",
+            "type": "multiple-choice",
+            "conceptIds": ["route-tree", "post-route", "curl-route"],
+            "payload": {
+              "prompt": "A post route breaks at what depth?",
+              "options": [
+                {"id": "a", "text": "3 to 5 yards"},
+                {"id": "b", "text": "8 to 10 yards"},
+                {"id": "c", "text": "15 yards or deeper"}
+              ],
+              "correctOptionIds": ["c"],
+              "explanation": {
+                "correct": "Post routes go deep, usually 15 yards or more before the break. That opens up the underneath.",
+                "incorrect": "Posts are deep routes. They go down at least 15 yards before cutting toward the goal posts."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "route-lab-05-bc-break",
+            "type": "binary-call",
+            "conceptIds": ["route-tree", "curl-route"],
+            "payload": {
+              "prompt": "A curl route always breaks at the same depth every time. True or false?",
+              "scene": {"kind": "none", "alt": "A receiver running a curl route, settling in the zone at an ideal depth."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "false",
+              "explanation": {
+                "correct": "False. The curl is flexible. The receiver sits down in an open zone, which changes based on coverage.",
+                "incorrect": "No, curls adjust. The receiver reads where the zone is soft and sits there, not a fixed depth."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "route-lab-05-ds-angle",
+            "type": "decision-scenario",
+            "conceptIds": ["out-route", "route-tree"],
+            "payload": {
+              "prompt": "You are running an out route and the defense is playing tight on the sideline. Should you break your route, or stick with the sideline cut?",
+              "scene": {"kind": "none", "alt": "A receiver about to make an out route cut while a defender closes quickly."},
+              "choices": [
+                {"id": "stick", "label": "Stick to the sideline cut as designed", "isCorrect": false},
+                {"id": "adjust", "label": "Adjust your break angle up the field instead", "isCorrect": true},
+                {"id": "retreat", "label": "Run backward to get away", "isCorrect": false}
+              ],
+              "explanation": {
+                "correct": "Adjust. A receiver who sees coverage can adapt the break slightly to the field to find separation.",
+                "incorrect": "A receiver should read the coverage and adjust the route slightly if needed to get open."
+              }
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "play-action-06",
+        "title": "The fake",
+        "objective": "You can explain why a fake handoff works.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["play-action", "run-pass-option"],
+        "activities": [
+          {
+            "id": "play-action-06-mc-key",
+            "type": "multiple-choice",
+            "conceptIds": ["play-action"],
+            "payload": {
+              "prompt": "Why does a play-action pass work so well?",
+              "options": [
+                {"id": "a", "text": "Because the defense has to respect the run game, so they move up and open up space behind them"},
+                {"id": "b", "text": "Because the quarterback throws the ball faster than normal"},
+                {"id": "c", "text": "Because the receivers run different routes"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Exactly. If a team has been running the ball well, the defense commits forward to stop the run, leaving the deep field wide open.",
+                "incorrect": "Play-action works because it uses the defense's fear of the run against them. They move up, opening the deep middle."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "play-action-06-st-fake",
+            "type": "say-this",
+            "conceptIds": ["play-action"],
+            "payload": {
+              "statement": {"speaker": "Announcer", "text": "That play-action got everybody on the defense. The safety bit on the fake handoff."},
+              "question": "What just happened?",
+              "options": [
+                {"id": "a", "text": "The quarterback handed the ball to a running back, who ran for a touchdown", "isCorrect": false},
+                {"id": "b", "text": "The quarterback pretended to hand the ball, froze the defense, and threw downfield", "isCorrect": true},
+                {"id": "c", "text": "The defense stopped a run play and the offense had to punt", "isCorrect": false},
+                {"id": "d", "text": "A defensive player caught an interception", "isCorrect": false}
+              ],
+              "translation": "When the safety 'bites' on a fake, he moves up thinking it is a run, leaving the deep middle open for a pass.",
+              "followUps": [
+                {"line": "Does that only work if the run game is going well?", "why": "Tests whether you understand that play-action depends on respecting the running game."},
+                {"line": "Could they run the same formation and actually hand it off?", "why": "Shows you grasp that play-action disguises the real play intention."}
+              ],
+              "noFakeExpertNote": "If unsure, ask: 'Did the quarterback hand the ball or fake it?' The answer tells you everything."
+            },
+            "xp": 10
+          },
+          {
+            "id": "play-action-06-bc-run",
+            "type": "binary-call",
+            "conceptIds": ["play-action"],
+            "payload": {
+              "prompt": "Play-action works better when the offense has not been running the ball much that game. True or false?",
+              "scene": {"kind": "none", "alt": "A football play with the defense spread out after play-action, receivers running free."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "false",
+              "explanation": {
+                "correct": "False. Play-action works BETTER when the run game is established. The defense respects it more.",
+                "incorrect": "No, play-action needs a good run game to work. If the defense does not fear the run, the fake means nothing."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "play-action-06-hs-fake",
+            "type": "hotspot-tap",
+            "conceptIds": ["play-action"],
+            "payload": {
+              "prompt": "Tap the linebacker who is out of position after the play-action fake.",
+              "diagram": {
+                "diagramId": "football-play-action",
+                "alt": "A play diagram showing a play-action with the quarterback faking a handoff while a linebacker crashes forward.",
+                "aspectRatio": 2.5
+              },
+              "hotspots": [
+                {
+                  "id": "lb-fake",
+                  "label": "Linebacker moving up",
+                  "shape": {"kind": "circle", "cx": 0.5, "cy": 0.3, "r": 0.05}
+                },
+                {
+                  "id": "receiver",
+                  "label": "Receiver in empty space",
+                  "shape": {"kind": "circle", "cx": 0.65, "cy": 0.1, "r": 0.04}
+                },
+                {
+                  "id": "qb",
+                  "label": "Quarterback rolling out",
+                  "shape": {"kind": "circle", "cx": 0.35, "cy": 0.5, "r": 0.04}
+                }
+              ],
+              "correctHotspotIds": ["lb-fake"],
+              "explanation": {
+                "correct": "Yes, the linebacker crashed forward on the fake. Now he is out of position to defend the deep pass.",
+                "incorrect": "Look for the defender who moved forward thinking it was a run. Play-action pulls them out of coverage."
+              }
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "screens-07",
+        "title": "Screens and quick passes",
+        "objective": "You can say why a screen beats a blitz.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["screen-pass", "slant-route", "blitz"],
+        "activities": [
+          {
+            "id": "screens-07-bc-rush",
+            "type": "binary-call",
+            "conceptIds": ["screen-pass", "blitz"],
+            "payload": {
+              "prompt": "A screen pass is a short throw to a running back with offensive linemen in front to block. True or false?",
+              "scene": {"kind": "none", "alt": "A football play showing a screen pass setup with blockers in front of the receiver."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. Screens use the rushing defenders' own aggression against them by setting up blockers.",
+                "incorrect": "Yes, a screen is a short pass behind the line with blockers set in front. It punishes an aggressive pass rush."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "screens-07-ds-trap",
+            "type": "decision-scenario",
+            "conceptIds": ["screen-pass", "blitz"],
+            "payload": {
+              "prompt": "The defense is blitzing heavily. You have a screen pass called. What is the advantage?",
+              "scene": {"kind": "none", "alt": "A formation with defenders aggressively rushing and offensive linemen setting up to block outside."},
+              "choices": [
+                {"id": "trap", "label": "The rushing defenders become blockers for you", "isCorrect": true},
+                {"id": "run", "label": "The ball carrier can run deep downfield", "isCorrect": false},
+                {"id": "kick", "label": "You should switch to a field goal attempt", "isCorrect": false}
+              ],
+              "explanation": {
+                "correct": "Yes. When a blitz is coming hard, they are wide open out of position. A screen catches them off-guard.",
+                "incorrect": "The screen is designed to turn the aggressive blitzers into your blockers on the perimeter."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "screens-07-mc-timing",
+            "type": "multiple-choice",
+            "conceptIds": ["screen-pass"],
+            "payload": {
+              "prompt": "When should the offensive linemen move out to block on a screen pass?",
+              "options": [
+                {"id": "a", "text": "After the ball is caught, they release and get in front"},
+                {"id": "b", "text": "Before the snap, they line up in front"},
+                {"id": "c", "text": "When they see the quarterback throw the screen"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "They move after the catch so they are in position as blockers when the back gets the ball.",
+                "incorrect": "The linemen stay on the line at the snap, then release downfield after the throw to block."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "screens-07-hs-setup",
+            "type": "hotspot-tap",
+            "conceptIds": ["screen-pass", "slant-route"],
+            "payload": {
+              "prompt": "Tap where the running back is when the screen pass is thrown.",
+              "diagram": {
+                "diagramId": "football-screen-pass",
+                "alt": "A play diagram showing a screen pass with the running back moving into the short passing area.",
+                "aspectRatio": 2.5
+              },
+              "hotspots": [
+                {
+                  "id": "backfield",
+                  "label": "Running back near backfield",
+                  "shape": {"kind": "circle", "cx": 0.5, "cy": 0.35, "r": 0.04}
+                },
+                {
+                  "id": "flats",
+                  "label": "Running back in the flats",
+                  "shape": {"kind": "circle", "cx": 0.65, "cy": 0.5, "r": 0.04}
+                },
+                {
+                  "id": "deep",
+                  "label": "Running back deep",
+                  "shape": {"kind": "circle", "cx": 0.8, "cy": 0.3, "r": 0.04}
+                }
+              ],
+              "correctHotspotIds": ["flats"],
+              "explanation": {
+                "correct": "In the flats, short and out. The screen hits them right there with blockers setting up.",
+                "incorrect": "Screens are short throws. The back is in the flat area near the sideline, not deep."
+              }
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "tempo-08",
+        "title": "Tempo and the huddle",
+        "objective": "You can spot no-huddle and an audible.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["no-huddle", "audible", "play-clock"],
+        "activities": [
+          {
+            "id": "tempo-08-st-huddle",
+            "type": "say-this",
+            "conceptIds": ["no-huddle"],
+            "payload": {
+              "statement": {"speaker": "Announcer", "text": "They are in a no-huddle offense. The offense lines up quickly without gathering in a huddle."},
+              "question": "What is the goal of no-huddle?",
+              "options": [
+                {"id": "a", "text": "The offense saves time and the defense cannot substitute", "isCorrect": true},
+                {"id": "b", "text": "It is always used on fourth down", "isCorrect": false},
+                {"id": "c", "text": "The quarterback can skip calling a play", "isCorrect": false},
+                {"id": "d", "text": "The defense gets to rest more", "isCorrect": false}
+              ],
+              "translation": "No-huddle tempo puts pressure on the defense by not letting them substitute fresh players, wearing them down.",
+              "followUps": [
+                {"line": "Does the offense have to be faster at calling plays in no-huddle?", "why": "Tests if you understand the clock pressure on both sides."},
+                {"line": "Is no-huddle always the best option?", "why": "Shows you know teams choose it strategically, not always."}
+              ],
+              "noFakeExpertNote": "If unsure, think: what does the offense gain by not huddling? Answer: speed and surprise."
+            },
+            "xp": 10
+          },
+          {
+            "id": "tempo-08-mc-audible",
+            "type": "multiple-choice",
+            "conceptIds": ["audible"],
+            "payload": {
+              "prompt": "What is an audible?",
+              "options": [
+                {"id": "a", "text": "When the quarterback changes the play at the line after reading the defense"},
+                {"id": "b", "text": "When the quarterback yells at the defense"},
+                {"id": "c", "text": "A penalty for moving before the snap"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Right. An audible is the quarterback changing the play based on what the defense is showing.",
+                "incorrect": "An audible is a pre-snap change. The quarterback sees the defense and switches to a better call."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "tempo-08-bc-call",
+            "type": "binary-call",
+            "conceptIds": ["audible", "play-clock"],
+            "payload": {
+              "prompt": "A quarterback has 40 seconds on the play clock to call an audible and snap. True or false?",
+              "scene": {"kind": "none", "alt": "A scoreboard showing the play clock counting down with the quarterback making calls at the line."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. The play clock starts at 40 seconds, so the quarterback has that window to signal and execute.",
+                "incorrect": "Yes, the play clock is 40 seconds. The quarterback must snap by then or it is delay of game."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "tempo-08-ds-tempo",
+            "type": "decision-scenario",
+            "conceptIds": ["no-huddle", "play-clock"],
+            "payload": {
+              "prompt": "It is late in the game, your team is down three, and there are two minutes left. Should you use the huddle or go no-huddle?",
+              "scene": {"kind": "none", "alt": "A football game in the final moments with the offense needing to move quickly down the field."},
+              "choices": [
+                {"id": "huddle", "label": "Use the huddle to discuss the plays", "isCorrect": false},
+                {"id": "nohuddle", "label": "Go no-huddle to move fast and save the clock", "isCorrect": true},
+                {"id": "kneel", "label": "Take a knee and punt", "isCorrect": false}
+              ],
+              "explanation": {
+                "correct": "No-huddle. Every second matters when you need to score and the clock is running. You cannot waste time huddling.",
+                "incorrect": "In the two-minute drill, tempo is everything. No-huddle lets you get plays off faster."
+              }
+            },
+            "xp": 10
+          },
+          {
+            "id": "tempo-08-tm-terms",
+            "type": "term-match",
+            "conceptIds": ["no-huddle", "audible", "play-clock"],
+            "payload": {
+              "prompt": "Match these tempo and signaling terms to their meanings.",
+              "pairs": [
+                {"id": "nohuddle", "term": "No-huddle", "definition": "The offense lines up and gets ready to snap without gathering to discuss the play."},
+                {"id": "audible", "term": "Audible", "definition": "The quarterback changes the play at the line based on seeing the defense alignment."},
+                {"id": "playclock", "term": "Play clock", "definition": "The 40-second countdown (25 after some stoppages) to snap the ball. Miss it and it is delay of game."}
+              ],
+              "explanation": {
+                "summary": "No-huddle tempo, audible changes, and the play clock pressure all shape how fast an offense moves.",
+                "sayThisLine": "No-huddle, audible, play clock: three ways tempo changes the game."
+              }
+            },
+            "xp": 10
+          }
+        ]
+      }
+    ]
+  }
+}
