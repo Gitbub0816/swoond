@@ -542,11 +542,11 @@
             "type": "fill-the-gap",
             "conceptIds": ["injury-report"],
             "payload": {
-              "prompt": "Standard NBA injury statuses are: out, questionable, {{gtdStatus}}, and doubtful.",
-              "template": "Standard NBA injury statuses are: out, questionable, {{gtdStatus}}, and doubtful.",
+              "prompt": "Standard NBA injury statuses are: out, questionable, {{gtd-status}}, and doubtful.",
+              "template": "Standard NBA injury statuses are: out, questionable, {{gtd-status}}, and doubtful.",
               "gaps": [
                 {
-                  "id": "gtdStatus",
+                  "id": "gtd-status",
                   "options": [
                     "game-time decision",
                     "game day decision",
@@ -660,28 +660,29 @@
             "type": "hotspot-tap",
             "conceptIds": ["standings-reading"],
             "payload": {
-              "prompt": "In the standings table, tap where to find how many games back {{team}} is from the one seed.",
-              "description": "A standings table shows seed, team, wins, losses, and games back (GB).",
-              "spots": [
+              "prompt": "In the standings table, tap where to find how many games back {{team}} is.",
+              "diagram": {
+                "alt": "Standings table with columns: seed, team, wins, losses, games-back (GB)"
+              },
+              "hotspots": [
                 {
                   "id": "gb-column",
-                  "label": "Games Back column (GB)",
-                  "correct": true,
-                  "feedback": "Right. GB shows the gap between a team and the leader."
+                  "label": "Games Back (GB)",
+                  "shape": "column"
                 },
                 {
-                  "id": "wins",
+                  "id": "wins-column",
                   "label": "Wins column",
-                  "correct": false,
-                  "feedback": "Wins alone do not show the gap. You need games back to see how close they are."
+                  "shape": "column"
                 },
                 {
-                  "id": "seed",
+                  "id": "seed-column",
                   "label": "Seed number",
-                  "correct": false,
-                  "feedback": "Seed tells you rank but not how far back. Look at GB for distance."
+                  "shape": "column"
                 }
-              ]
+              ],
+              "correctHotspotIds": ["gb-column"],
+              "explanation": "Games Back (GB) shows the gap between a team and the leader. Wins and seed rank the team, but GB tells distance."
             }
           },
           {
@@ -822,7 +823,7 @@
         "title": "Playoff series tracker",
         "objective": "Understand playoff seeding, bracket predictions and why every late-season game matters.",
         "estimatedMinutes": 10,
-        "conceptIds": ["live-series-tracker", "playoff-format", "best-of-seven", "first-round"],
+        "conceptIds": ["live-series-tracker", "playoff-format", "best-of-seven"],
         "live": {
           "dataKind": "standings",
           "refreshHint": "daily"

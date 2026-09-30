@@ -34,7 +34,7 @@
             ],
             "payload": {
               "title": "Game night text",
-              "setting": "She texts you after her team's big win.",
+              "setting": "She texts you after {{team}}'s big win.",
               "startingSmooth": 50,
               "exchanges": [
                 {
@@ -78,29 +78,29 @@
             "payload": {
               "statement": {
                 "speaker": "Her",
-                "text": "I cannot believe he missed that wide-open receiver. The whole secondary was exposed."
+                "text": "Our quarterback missed a wide-open receiver. The whole secondary was out of position and he still did not see it."
               },
               "question": "What is she saying?",
               "options": [
                 {
                   "id": "correct-read",
-                  "text": "The quarterback made a bad decision and the defense was vulnerable.",
+                  "text": "Her quarterback missed an easy throw against a defense that was out of position.",
                   "isCorrect": true
                 },
                 {
                   "id": "close-wrong",
                   "text": "A defensive player made a mistake, letting the offense score.",
                   "isCorrect": false,
-                  "explanation": "She's criticizing the quarterback's throw, not the secondary's play. 'Exposed' means the defense was wide open because he didn't use a free receiver."
+                  "explanation": "She is criticizing the quarterback. The defense was out of position, which made the miss even more frustrating."
                 },
                 {
                   "id": "far-wrong",
-                  "text": "Her team's offense scored because the receiver was good.",
+                  "text": "Her offense scored because the receiver was great.",
                   "isCorrect": false,
-                  "explanation": "She's upset at a *missed* opportunity. The receiver was open, but the quarterback didn't throw to him."
+                  "explanation": "She is upset about a missed opportunity. The receiver was open, but the throw did not come."
                 }
               ],
-              "translation": "The quarterback had an easy completion but chose wrong, and that shows the defense wasn't the real problem.",
+              "translation": "The quarterback had an easy completion available but did not take it. The defense was out of position, so it was a big lost chance.",
               "followUps": [
                 {
                   "line": "Yeah, that receiver was totally open. Why do you think he missed him?",
@@ -149,8 +149,8 @@
                   "verdict": "best",
                   "consequence": "She feels heard and gets to explain. You learn the context and can engage genuinely.",
                   "considerations": [
-                    "Honesty is attractive and builds trust.",
-                    "Getting her to explain also teaches you more than a guess.",
+                    "Honesty builds trust.",
+                    "Getting her to explain teaches you more than a guess.",
                     "You can ask follow-ups that show real curiosity."
                   ]
                 },
@@ -168,7 +168,7 @@
                   "id": "fake-expert",
                   "label": "Yeah, with that time and down, you have to go for it.",
                   "verdict": "poor",
-                  "consequence": "She corrects you ('it was third and one, not fourth and five') and the moment awkward.",
+                  "consequence": "She corrects you ('it was third and one, not fourth and five') and the moment gets awkward.",
                   "considerations": [
                     "Guessing specifics backfires when you miss the details.",
                     "It kills curiosity: you sound like you know, so why ask more?",
@@ -190,31 +190,31 @@
               "follow-up-question"
             ],
             "payload": {
-              "prompt": "Complete a question you could ask after a big play.",
-              "template": "Did the ball get to the {{first-person}} or was it an {{play-type}}?",
+              "prompt": "Complete a clean question after a big play.",
+              "template": "Did that throw get {{gap1}}, or was it an {{gap2}}?",
               "gaps": [
                 {
-                  "id": "first-person",
+                  "id": "gap1",
                   "options": [
-                    "end zone",
-                    "receiver",
-                    "line of scrimmage"
+                    "caught",
+                    "kicked",
+                    "fumbled"
                   ],
-                  "correct": "receiver"
+                  "correct": "caught"
                 },
                 {
-                  "id": "play-type",
+                  "id": "gap2",
                   "options": [
-                    "touchdown",
                     "interception",
-                    "penalty"
+                    "end zone",
+                    "timeout"
                   ],
                   "correct": "interception"
                 }
               ],
               "explanation": {
-                "correct": "Asking 'was it a completion or an interception' is a great way to follow up after a big play. It shows you understood something happened but want her to explain.",
-                "incorrect": "When she describes a play, asking clarifying questions shows you are listening and want to learn more about what she saw."
+                "correct": "Asking 'was it caught or intercepted?' is a fair way to follow a big play. It shows you understand what could have happened and invites her to tell the story.",
+                "incorrect": "After she describes a play, a clear question about what happened shows you are listening and want to learn more."
               }
             },
             "xp": 10
@@ -229,20 +229,20 @@
             "payload": {
               "statement": {
                 "speaker": "Her",
-                "text": "Their run defense is terrible. We ran for 200 yards and hardly tried."
+                "text": "Their run defense is terrible. We ran for 200 yards and it felt easy."
               },
               "question": "What would you ask next?",
               "options": [
                 {
                   "id": "best",
-                  "text": "Yeah, I noticed that. Do you think they'll adjust next week, or are they just short-handed?",
+                  "text": "That is a lot of yards. Do you think they will fix it next week, or are they just short-handed?",
                   "isCorrect": true
                 },
                 {
                   "id": "surface",
                   "text": "Wow, 200 yards is a lot. Did you enjoy the running game?",
                   "isCorrect": false,
-                  "explanation": "You're asking about her emotion, not the strategy. A better follow-up digs into the *why*: what caused the problem?"
+                  "explanation": "You're asking about her emotion, not the strategy. A better follow-up digs into the why: what caused the problem?"
                 },
                 {
                   "id": "wrong",
@@ -254,11 +254,11 @@
               "translation": "A good follow-up agrees, then asks a curious 'why' or 'what's next' question.",
               "followUps": [
                 {
-                  "line": "Do you think they'll adjust next week, or are they just short-handed?",
-                  "why": "This shows you listened and want to understand the deeper pattern, not just react to the score."
+                  "line": "Do you think they will fix it next week, or are they just short-handed?",
+                  "why": "It shows you listened and want the deeper pattern, not just the score."
                 }
               ],
-              "noFakeExpertNote": "Naming something you noticed ('I saw the run game was working') is better than naming something you guessed."
+              "noFakeExpertNote": "Name what she told you ('200 yards is a lot') rather than something you guessed."
             },
             "xp": 10
           }
@@ -308,7 +308,7 @@
                       "text": "It is just a game.",
                       "smoothDelta": -20,
                       "theirResponse": "Clearly this does not matter to you.",
-                      "coachNote": "Dismissing her feelings pushes her away. What she cares about matters to you because *she* matters."
+                      "coachNote": "Dismissing her feelings pushes her away. What she cares about matters to you because she matters."
                     }
                   ]
                 }
@@ -352,7 +352,7 @@
                   "consequence": "She vents. You learn what matters to her. Your listening is the gift.",
                   "considerations": [
                     "Pregame anxiety deserves room to talk, not quick reassurance.",
-                    "Asking specifics shows you care about *her* stress, not just the game.",
+                    "Asking specifics shows you care about her stress, not just the game.",
                     "You can respond better once you know what worries her."
                   ]
                 },
@@ -391,7 +391,7 @@
             "payload": {
               "statement": {
                 "speaker": "Her",
-                "text": "Our passing game has been so inconsistent this season. I have no idea if we can keep up if they go deep."
+                "text": "Our passing game has been so inconsistent this season. I am afraid we cannot keep up if they throw deep on us."
               },
               "question": "What is she really saying?",
               "options": [
@@ -404,7 +404,7 @@
                   "id": "surface",
                   "text": "The passing game has been bad all year.",
                   "isCorrect": false,
-                  "explanation": "She is saying more than the stat: she's expressing a specific fear about this game. The passing game is her worry *because* it matters for Sunday."
+                  "explanation": "She is saying more than the stat: she's expressing a specific fear about this game. The passing game is her worry because it matters for Sunday."
                 },
                 {
                   "id": "opposite",
@@ -416,12 +416,12 @@
               "translation": "She is identifying a vulnerability in her team's game and connecting it to a real threat in the upcoming opponent.",
               "followUps": [
                 {
-                  "line": "That passing inconsistency sounds frustrating. Do you think it's a personnel thing or scheme?",
-                  "why": "You named her concern and asked a thoughtful question about root cause."
+                  "line": "That passing inconsistency sounds frustrating. Do you think it is the players or the scheme?",
+                  "why": "You named her concern and asked a thoughtful question about the cause."
                 },
                 {
-                  "line": "Yeah, their passing game has been rocky. But remember Week 4 when they clicked? Could that show up Sunday?",
-                  "why": "You acknowledge her worry, then remind her of a counter-example without dismissing her fear."
+                  "line": "Has the passing game looked better in any game this year?",
+                  "why": "You acknowledge her worry and ask about a counter-example, without dismissing her fear."
                 }
               ],
               "noFakeExpertNote": "If you have not watched enough games to answer this, ask her to explain. That is more useful than a guess."
@@ -509,7 +509,7 @@
                       "id": "blame-ref",
                       "text": "These refs are always terrible.",
                       "smoothDelta": 5,
-                      "theirResponse": "Yeah, but that was *really* bad.",
+                      "theirResponse": "Yeah, but that was really bad.",
                       "coachNote": "You validated her frustration but missed the specific play. She wanted to describe it to you."
                     },
                     {
@@ -536,40 +536,40 @@
             "payload": {
               "statement": {
                 "speaker": "Her",
-                "text": "Third and four? They are definitely going to run it. The defense is in zone coverage, not enough bodies in the box."
+                "text": "Third and four and they only have six in the box? I think they run it here."
               },
               "question": "What is she predicting?",
               "options": [
                 {
                   "id": "correct",
-                  "text": "She expects a run play because the defense (zone coverage) is not set up well to stop it.",
+                  "text": "She expects a run because the defense has few defenders near the line.",
                   "isCorrect": true
                 },
                 {
                   "id": "close-wrong",
-                  "text": "The defense is weak because they are in zone instead of man.",
+                  "text": "She expects a pass because the defense is light in the box.",
                   "isCorrect": false,
-                  "explanation": "Zone vs man is not a weakness by itself. Her point is that *this particular* zone setup leaves gaps a run game can exploit."
+                  "explanation": "A light box tends to invite the run, since fewer defenders are near the line. That is her reasoning."
                 },
                 {
                   "id": "wrong",
                   "text": "She is saying the quarterback should throw deep.",
                   "isCorrect": false,
-                  "explanation": "She is reading the defense to predict what offense will do. Deep passing would play into the strength of that zone coverage."
+                  "explanation": "She is reading the defense to predict what the offense will do. Nothing in her line is about a deep pass."
                 }
               ],
-              "translation": "She is reading the defense setup and predicting the offense will call a run to exploit a gap.",
+              "translation": "She is reading the defense before the snap. Only six defenders near the line means fewer to stop a run, so she predicts a run.",
               "followUps": [
                 {
-                  "line": "So the run should work if they execute?",
-                  "why": "You connect the read to the likely outcome. Shows you're following her logic."
+                  "line": "So fewer defenders near the line means a run is more likely?",
+                  "why": "You connect her read to the likely play and check that you understood it."
                 },
                 {
-                  "line": "That is smart. Is that because zone leaves gaps, or because they don't have enough defenders close?",
-                  "why": "You ask for the reasoning, which teaches you more and shows genuine curiosity."
+                  "line": "How do you count who is in the box?",
+                  "why": "A real question about how she sees it teaches you more than nodding."
                 }
               ],
-              "noFakeExpertNote": "If you do not see the coverage she is referring to, ask her to point it out. That is more interesting than pretending."
+              "noFakeExpertNote": "If you cannot see what she is pointing at, ask her to show you. That is more interesting than pretending."
             },
             "xp": 10
           },
@@ -583,7 +583,7 @@
             "payload": {
               "prompt": "The referee makes a call she disagrees with. She texts angrily.",
               "situation": {
-                "narrative": "She texts: 'THAT IS THE WORST CALL I HAVE EVER SEEN!! That should have been [penalty]!!' You did not see it live.",
+                "narrative": "She texts: 'THAT IS THE WORST CALL I HAVE EVER SEEN!! That was holding!!' You did not see it live.",
                 "facts": [
                   {
                     "label": "You",
@@ -826,7 +826,7 @@
                   "id": "close-wrong",
                   "text": "She is angry at the defense and wants them to lose.",
                   "isCorrect": false,
-                  "explanation": "She is not wishing failure; she is *explaining* failure. The criticism is about performance on that play, not a deep grudge."
+                  "explanation": "She is not wishing failure; she is explaining failure. The criticism is about performance on that play, not a deep grudge."
                 },
                 {
                   "id": "surface",
@@ -838,12 +838,12 @@
               "translation": "She is pinpointing exactly where the defense failed, which is how fans make sense of a loss.",
               "followUps": [
                 {
-                  "line": "Yeah, that safety was in the wrong spot. Do you think he misread the coverage or did the linebacker miss their assignment?",
-                  "why": "You name what you saw and ask a follow-up about root cause. Shows you are thinking with her."
+                  "line": "Which play looked worst for the defense, in your view?",
+                  "why": "You ask her to point to the moment, which shows you want to understand it her way."
                 },
                 {
-                  "line": "That safety looked confused. Was that play-calling, or did he have a bad day?",
-                  "why": "You acknowledge the mistake and ask whether it was a systemic issue (call) or a one-off."
+                  "line": "Was that a bad call, or did somebody just miss an assignment?",
+                  "why": "You ask whether it was the plan or a mistake, without pretending you saw it."
                 }
               ],
               "noFakeExpertNote": "After a loss, analysis is how she processes. Asking 'Why do you think that happened?' lets her think it through with you."
@@ -925,7 +925,7 @@
                       "text": "You sound so happy! Tell me everything!",
                       "smoothDelta": 20,
                       "theirResponse": "Okay so with 90 seconds left, we were down by three...",
-                      "coachNote": "You matched her energy and asked her to relive it with you. That is celebrating *with* her, not watching from the sideline."
+                      "coachNote": "You matched her energy and asked her to relive it with you. That is celebrating with her, not watching from the sideline."
                     },
                     {
                       "id": "neutral",
@@ -976,18 +976,18 @@
                   "id": "wrong",
                   "text": "The quarterback threw a lot of touchdowns.",
                   "isCorrect": false,
-                  "explanation": "She is praising *how* he played (movement, decision-making), not just the stats. Those are different things."
+                  "explanation": "She is praising how he played (movement, decision-making), not just the stats. Those are different things."
                 }
               ],
               "translation": "She is calling out the specific skill (pocket movement and finding receivers) that made him standout today.",
               "followUps": [
                 {
-                  "line": "Yeah, he had the pocket awareness. Did you notice a specific play that showed it best?",
-                  "why": "You agree and ask her to zoom in on a moment. That is engaging with her analysis."
+                  "line": "What was the best play he made, in your view?",
+                  "why": "You invite her to zoom in on a moment she loved."
                 },
                 {
-                  "line": "That kind of play-making is what the team was missing. Do you think it is repeatable or just a great day?",
-                  "why": "You connect the performance to the bigger picture (team need) and ask about consistency."
+                  "line": "Do you think he can keep that up, or was it just a great day?",
+                  "why": "You connect the game to the bigger picture and ask about consistency."
                 }
               ],
               "noFakeExpertNote": "If you did not see the game, you can still celebrate her joy and ask her to describe what made him great."
@@ -1023,7 +1023,7 @@
               "options": [
                 {
                   "id": "best-engage",
-                  "label": "You're right. Win big AND fix what's broken. What worried you?",
+                  "label": "Great win. What worried you most about how they played?",
                   "verdict": "best",
                   "consequence": "You honor both her joy and her skepticism. You go deeper into what specifically concerns her.",
                   "considerations": [
@@ -1081,7 +1081,7 @@
                   "id": "close",
                   "text": "The offense executed the plays the coaches called.",
                   "isCorrect": false,
-                  "explanation": "That's part of it, but she is specifically crediting the *adjustment*—the coaching decision to change strategy, not just the execution."
+                  "explanation": "That's part of it, but she is specifically crediting the adjustment—the coaching decision to change strategy, not just the execution."
                 },
                 {
                   "id": "wrong",
@@ -1093,12 +1093,12 @@
               "translation": "She is attributing the win partly to smart in-game coaching adjustments in a crucial moment.",
               "followUps": [
                 {
-                  "line": "Yeah, I noticed that shift too. Did you see what specifically changed?",
-                  "why": "You validate her observation and ask her to zoom in. Shows you were tracking the same thing."
+                  "line": "What changed in the fourth quarter, in your view?",
+                  "why": "You ask her to describe what she saw instead of pretending you did."
                 },
                 {
-                  "line": "That is what separates good teams from great ones: adjustments. Did your team telegraph it, or did the coaches disguise it?",
-                  "why": "You connect her observation to a bigger principle about coaching excellence."
+                  "line": "Did the coaches call something new, or adjust what they already do?",
+                  "why": "You ask about the idea behind the adjustment, which shows curiosity."
                 }
               ],
               "noFakeExpertNote": "If you missed the adjustment, ask her to describe it. Coaching moves are interesting to analyze, and she clearly saw it."
@@ -1140,13 +1140,13 @@
                   "id": "close",
                   "text": "The running back is injured and might need surgery.",
                   "isCorrect": false,
-                  "explanation": "She is focused on his availability for *this week's game*, not his long-term health. Questionable means he might play Sunday."
+                  "explanation": "She is focused on his availability for this week's game, not his long-term health. Questionable means he might play Sunday."
                 },
                 {
                   "id": "wrong",
                   "text": "She wants to drop her running back.",
                   "isCorrect": false,
-                  "explanation": "Questionable does not mean he is out. She is hoping he *does* play so she can use him this week."
+                  "explanation": "Questionable does not mean he is out. She is hoping he does play so she can use him this week."
                 }
               ],
               "translation": "A key player's availability for Sunday is uncertain, and if he sits out, her fantasy points will drop because she has no backup plan.",
@@ -1181,10 +1181,10 @@
                   "replies": [
                     {
                       "id": "play-along",
-                      "text": "Bring it on! My running back is hungry for yards.",
+                      "text": "Bring it on! I may not know my players, but I know how to talk trash.",
                       "smoothDelta": 15,
                       "theirResponse": "Oh it's ON. May the best team win!",
-                      "coachNote": "You played back with confidence even if you don't follow fantasy closely. Playful trash talk builds the bond."
+                      "coachNote": "You played back with honest confidence. Playful trash talk builds the bond."
                     },
                     {
                       "id": "neutral",
@@ -1230,7 +1230,7 @@
                   "id": "close",
                   "text": "The tight end was bad last week so he should stay dropped.",
                   "isCorrect": false,
-                  "explanation": "She is not debating the drop itself. She is regretting that she dropped him *before* seeing this week's breakout. It is about timing and luck."
+                  "explanation": "She is not debating the drop itself. She is regretting that she dropped him before seeing this week's breakout. It is about timing and luck."
                 },
                 {
                   "id": "wrong",
@@ -1356,7 +1356,7 @@
                   },
                   {
                     "label": "The moment",
-                    "value": "Intimate: she is teaching you"
+                    "value": "She is teaching you"
                   }
                 ]
               },
@@ -1365,11 +1365,11 @@
                   "id": "best-ask",
                   "label": "I'm not sure what blitz from the strong side looks like. Point it out?",
                   "verdict": "best",
-                  "consequence": "She lights up explaining. You learn something. She feels like a teacher, which is powerful.",
+                  "consequence": "She enjoys explaining, and you learn something. She feels respected as a teacher.",
                   "considerations": [
-                    "Admitting you don't know invites her to share her knowledge.",
-                    "Teach me' is one of the sexiest things you can say to an expert.",
-                    "The watch party becomes a bonding moment, not a performance."
+                    "Admitting you do not know invites her to share her knowledge.",
+                    "Asking her to point it out is a real question, not a performance.",
+                    "The watch party becomes a bonding moment."
                   ]
                 },
                 {
@@ -1394,7 +1394,7 @@
                   ]
                 }
               ],
-              "expertNote": "Asking her to explain a concept is not weakness. It is an invitation to share her passion. Most people love teaching.",
+              "expertNote": "Asking her to explain a concept is not weakness. It is an invitation to share something she loves.",
               "sayThisLine": "I don't know that term. Can you show me what you mean?"
             },
             "xp": 10
@@ -1465,13 +1465,13 @@
                   "id": "close",
                   "text": "Play-action is always the right call.",
                   "isCorrect": false,
-                  "explanation": "She is not saying that. She is showing you how, *in this moment*, the play-action worked because the safety was vulnerable to it."
+                  "explanation": "She is not saying that. She is showing you how, in this moment, the play-action worked because the safety was vulnerable to it."
                 },
                 {
                   "id": "surface",
                   "text": "The middle of the field is open.",
                   "isCorrect": false,
-                  "explanation": "That's what happened, but she is teaching you *why*: the safety's mistake created the opening. Cause and effect."
+                  "explanation": "That's what happened, but she is teaching you why: the safety's mistake created the opening. Cause and effect."
                 }
               ],
               "translation": "She is pointing out how one defender's mistake (reacting to a fake) unlocked the whole middle of the field.",
@@ -1520,7 +1520,7 @@
                 }
               ],
               "explanation": {
-                "correct": "Asking her to explain *why* a fake worked shows you are following the cause-and-effect chain. That is how you learn strategy.",
+                "correct": "Asking her to explain why a fake worked shows you are following the cause-and-effect chain. That is how you learn strategy.",
                 "incorrect": "After she points out a play, asking 'why did that work?' or 'why did they fall for it?' shows you are thinking critically with her."
               }
             },
@@ -1679,7 +1679,7 @@
                   "id": "far-wrong",
                   "text": "Their offensive line is not very good.",
                   "isCorrect": false,
-                  "explanation": "She is saying they *are* effective; she is just attributing it partly to not being caught for illegal contact."
+                  "explanation": "She is saying they are effective; she is just attributing it partly to not being caught for illegal contact."
                 }
               ],
               "translation": "She is suggesting that inconsistent penalty enforcement is giving one team an advantage.",
