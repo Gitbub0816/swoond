@@ -1,0 +1,408 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "hockey",
+  "unit": {
+    "id": "perpetual-review",
+    "title": "Keep It Fresh",
+    "layer": "review",
+    "order": 16,
+    "prerequisiteUnitIds": ["game-on-ice"],
+    "lessons": [
+      {
+        "id": "rev-daily-bite",
+        "title": "Daily Bite",
+        "objective": "Review a few due cards each day.",
+        "estimatedMinutes": 5,
+        "conceptIds": ["faceoff", "icing", "offside"],
+        "activities": [
+          {
+            "id": "rev-daily-01-bc-offside-basics",
+            "type": "binary-call",
+            "conceptIds": ["offside"],
+            "payload": {
+              "prompt": "A player can be onside if their skate is touching the blue line when the puck enters the zone.",
+              "scene": {"kind": "none", "alt": "Diagram of skate on blue line during zone entry."},
+              "choices": [{"id": "true", "label": "True"}, {"id": "false", "label": "False"}],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "Right. A skate on the line is onside; both skates must be completely over the line to be offside.",
+                "incorrect": "Actually, a skate touching the line is onside. Both skates over the leading edge is offside."
+              }
+            }
+          },
+          {
+            "id": "rev-daily-02-ftg-icing-penalty",
+            "type": "fill-the-gap",
+            "conceptIds": ["icing"],
+            "payload": {
+              "prompt": "After an icing call, the team that iced cannot {{penalty}}.",
+              "template": "After an icing call, the team that iced cannot {{can-or-cannot}}.",
+              "gaps": [
+                {"id": "can-or-cannot", "options": ["change lines", "take a timeout", "score goals"], "correct": "change lines"}
+              ],
+              "explanation": {
+                "correct": "Correct. The iced team must defend from the faceoff and cannot sub fresh legs.",
+                "incorrect": "The penalty for icing is that the team cannot change players; they're stuck with whoever is out."
+              }
+            }
+          },
+          {
+            "id": "rev-daily-03-mc-faceoff-advantage",
+            "type": "multiple-choice",
+            "conceptIds": ["faceoff"],
+            "payload": {
+              "prompt": "Why do teams use their best centers at faceoffs late in close games?",
+              "options": [
+                {"id": "a", "text": "They wear special gloves that help them win draws."},
+                {"id": "b", "text": "Winning the draw can lead to possession and a scoring chance."},
+                {"id": "c", "text": "Centers are required to take all draws by the rules."},
+                {"id": "d", "text": "It does not matter who takes the draw."}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Exactly. A won faceoff puts your team in control at a crucial moment.",
+                "incorrect": "Winning the draw gives your team the puck first, which is why centers who excel at draws take big draws."
+              }
+            }
+          },
+          {
+            "id": "rev-daily-04-st-icing-talk",
+            "type": "say-this",
+            "conceptIds": ["icing"],
+            "payload": {
+              "statement": {
+                "speaker": "Maya",
+                "text": "They iced it four times in the third. The defense was tired."
+              },
+              "question": "What is Maya saying?",
+              "options": [
+                {"id": "a", "text": "The team shot the puck down the ice multiple times; the defense had to skate a lot.", "isCorrect": true, "explanation": "Right. Each icing meant a faceoff in the defensive zone and no line change."},
+                {"id": "b", "text": "The team intentionally froze the puck to rest.", "isCorrect": false, "explanation": "Icing is shooting it past the goal line, not freezing it. And the icing team can't change."},
+                {"id": "c", "text": "The defense was so good they blocked four shots.", "isCorrect": false, "explanation": "Icing is a clear down the ice, not a block. The tired legs come from not being able to change."}
+              ],
+              "translation": "Repeated icing means the defense stayed out longer and got tired.",
+              "followUps": [
+                {"line": "Did the team use its timeout to give them a breather?", "why": "Shows you understand timeout strategy."},
+                {"line": "Would the goalie have had to make more saves?", "why": "Tests if you grasp the exhaustion leads to danger."}
+              ],
+              "noFakeExpertNote": "Icing as a tactic and its cost (tired legs) is real talk."
+            }
+          }
+        ]
+      },
+      {
+        "id": "rev-weekly-mix",
+        "title": "Weekly mix",
+        "objective": "Interleave concepts from every layer.",
+        "estimatedMinutes": 6,
+        "conceptIds": ["power-play", "forecheck", "salary-cap"],
+        "activities": [
+          {
+            "id": "rev-weekly-01-mc-pp-scoring",
+            "type": "multiple-choice",
+            "conceptIds": ["power-play"],
+            "payload": {
+              "prompt": "If a team scores on the power play, what happens to the penalty?",
+              "options": [
+                {"id": "a", "text": "The penalty still runs until two minutes are up."},
+                {"id": "b", "text": "On a minor, the penalty ends early. On a major, it runs full."},
+                {"id": "c", "text": "The power play lasts for the next faceoff only."},
+                {"id": "d", "text": "The opposing team gets a power play to tie it up."}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. A minor penalty ends when the power-play team scores; a major runs the full five even if you score.",
+                "incorrect": "Minor penalties end on a power-play goal. Majors do not; they always run to completion."
+              }
+            }
+          },
+          {
+            "id": "rev-weekly-02-st-forecheck-shape",
+            "type": "say-this",
+            "conceptIds": ["forecheck"],
+            "payload": {
+              "statement": {
+                "speaker": "Jess",
+                "text": "They run a 1-2-2 forecheck; it's a real grinder up front."
+              },
+              "question": "What is Jess saying?",
+              "options": [
+                {"id": "a", "text": "One forward pressures deep; two midway; two defense backup. It's physical.", "isCorrect": true, "explanation": "Correct. That's the 1-2-2 setup and it's designed to force turnovers."},
+                {"id": "b", "text": "They send two forwards deep to force a breakaway.", "isCorrect": false, "explanation": "In a 1-2-2, only one goes deep. The two midway support that pressure."},
+                {"id": "c", "text": "The team plays a defensive trap in the neutral zone.", "isCorrect": false, "explanation": "A 1-2-2 is an offensive forecheck, not a trap. It's about pressure, not clogging."}
+              ],
+              "translation": "A 1-2-2 forecheck is one deep, two mid, two back; it's a hard-pressing system.",
+              "followUps": [
+                {"line": "Does that forecheck cause turnovers or give up space?", "why": "Tests if you know the trade-off."},
+                {"line": "Could they switch to a less aggressive system?", "why": "Shows you understand options."}
+              ],
+              "noFakeExpertNote": "Forecheck shapes and their philosophies are real."
+            }
+          },
+          {
+            "id": "rev-weekly-03-tm-cap-terms",
+            "type": "term-match",
+            "conceptIds": ["salary-cap"],
+            "payload": {
+              "prompt": "Match the salary cap term to its meaning.",
+              "sets": [
+                {
+                  "id": "set1",
+                  "term": "Cap hit",
+                  "correctOptionId": "cap-hit-def"
+                },
+                {
+                  "id": "set2",
+                  "term": "LTIR",
+                  "correctOptionId": "ltir-def"
+                },
+                {
+                  "id": "set3",
+                  "term": "Waivers",
+                  "correctOptionId": "waivers-def"
+                }
+              ],
+              "options": [
+                {"id": "cap-hit-def", "text": "The average annual value of a contract counted against the cap."},
+                {"id": "ltir-def", "text": "A roster tool that lets a team exceed the cap to replace a long-term injured player."},
+                {"id": "waivers-def", "text": "A process where other teams can claim a player before he goes to the minors."},
+                {"id": "roster-def", "text": "The total number of players on a team's active roster."}
+              ],
+              "explanation": {
+                "correct": "Great. These are the three main roster-maneuvering tools.",
+                "incorrect": "Check the definitions: cap hit is the yearly value, LTIR lets you exceed the cap, waivers is the claim process."
+              }
+            }
+          },
+          {
+            "id": "rev-weekly-04-es-pk-percentage",
+            "type": "estimate-slider",
+            "conceptIds": ["penalty-kill"],
+            "payload": {
+              "prompt": "What is a strong penalty-kill percentage in the NHL?",
+              "min": 50,
+              "max": 95,
+              "step": 1,
+              "unit": "%",
+              "correctRange": {"min": 82, "max": 88},
+              "explanation": {
+                "correct": "Around 80-88% is strong. The league average is usually around 80%.",
+                "lowExplanation": "That's too low; strong PKs are in the 80s.",
+                "highExplanation": "That's very elite; around 80-88% is typical for a strong kill."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "rev-what-did-she-mean",
+        "title": "What did she mean?",
+        "objective": "Decode fan lines.",
+        "estimatedMinutes": 5,
+        "conceptIds": ["hockey-slang", "team-identity"],
+        "activities": [
+          {
+            "id": "rev-decode-01-st-biscuit",
+            "type": "say-this",
+            "conceptIds": ["hockey-slang"],
+            "payload": {
+              "statement": {
+                "speaker": "Alex",
+                "text": "He buried the biscuit bar down."
+              },
+              "question": "What is Alex saying?",
+              "options": [
+                {"id": "a", "text": "He scored by shooting the puck into the top corner off the crossbar.", "isCorrect": true, "explanation": "Correct. Biscuit is slang for the puck, and bar down is off the crossbar and in."},
+                {"id": "b", "text": "He scored after the other team iced the puck.", "isCorrect": false, "explanation": "Bar down is a shot off the crossbar. Biscuit is the puck. It's about the goal, not an icing."},
+                {"id": "c", "text": "He passed the puck to a teammate on the boards.", "isCorrect": false, "explanation": "Buried means scored. Bar down is a specific shot type: off the crossbar and in."}
+              ],
+              "translation": "He scored a goal by shooting the puck off the crossbar.",
+              "followUps": [
+                {"line": "Do most goals go bar down?", "why": "Tests if you know it's a highlight-reel finish."},
+                {"line": "Could that shot have hit the post instead?", "why": "Shows you understand near-misses."}
+              ],
+              "noFakeExpertNote": "Bar down is a real slang term for a top-corner goal."
+            }
+          },
+          {
+            "id": "rev-decode-02-st-dangle",
+            "type": "say-this",
+            "conceptIds": ["hockey-slang"],
+            "payload": {
+              "statement": {
+                "speaker": "Sam",
+                "text": "That defender got dangled so bad."
+              },
+              "question": "What is Sam saying?",
+              "options": [
+                {"id": "a", "text": "An attacker made a fancy stick-handling move that fooled the defender.", "isCorrect": true, "explanation": "Right. A dangle is a stickhandling move; you dangled someone when you fooled them."},
+                {"id": "b", "text": "The defender was hanging from the boards after a hit.", "isCorrect": false, "explanation": "Dangled is about stick-handling moves, not physical play."},
+                {"id": "c", "text": "The defender was pulled for an extra attacker late in the game.", "isCorrect": false, "explanation": "Dangled means a deke or stick move that fools a player. Nothing to do with line changes."}
+              ],
+              "translation": "A stick-handling move fooled the defender.",
+              "followUps": [
+                {"line": "Is a dangle something you practice?", "why": "Tests if you know it's a skill."},
+                {"line": "What happens after a good dangle?", "why": "Shows you understand the play flow."}
+              ],
+              "noFakeExpertNote": "Dangle is real hockey slang for a stickhandling fake."
+            }
+          },
+          {
+            "id": "rev-decode-03-st-identity",
+            "type": "say-this",
+            "conceptIds": ["team-identity"],
+            "payload": {
+              "statement": {
+                "speaker": "Chris",
+                "text": "This team plays a heavy game; they wear you down."
+              },
+              "question": "What is Chris saying?",
+              "options": [
+                {"id": "a", "text": "The team uses physical play and grinding to tire opponents out.", "isCorrect": true, "explanation": "Correct. Heavy play is built on physicality and wearing down the other side."},
+                {"id": "b", "text": "The team has larger players than most teams.", "isCorrect": false, "explanation": "Heavy refers to style, not player size. It means physical, grinding hockey."},
+                {"id": "c", "text": "The team has poor speed and slow transitions.", "isCorrect": false, "explanation": "Heavy can be slow, but it is about the style: hitting, physical play, grinding."}
+              ],
+              "translation": "The team plays with physicality and grinding tactics.",
+              "followUps": [
+                {"line": "Would that style work against a fast, skilled team?", "why": "Tests if you see the trade-offs."},
+                {"line": "How does playing heavy tire the goalie?", "why": "Shows you think about defense."}
+              ],
+              "noFakeExpertNote": "Team identity and play styles are real ways fans talk about hockey."
+            }
+          },
+          {
+            "id": "rev-decode-04-tm-slang-mix",
+            "type": "term-match",
+            "conceptIds": ["hockey-slang"],
+            "payload": {
+              "prompt": "Match the hockey slang term to its meaning.",
+              "sets": [
+                {
+                  "id": "set1",
+                  "term": "Sauce",
+                  "correctOptionId": "sauce-def"
+                },
+                {
+                  "id": "set2",
+                  "term": "Snipe",
+                  "correctOptionId": "snipe-def"
+                },
+                {
+                  "id": "set3",
+                  "term": "Chirp",
+                  "correctOptionId": "chirp-def"
+                }
+              ],
+              "options": [
+                {"id": "sauce-def", "text": "A saucer pass, a puck floating over sticks."},
+                {"id": "snipe-def", "text": "A perfectly placed shot, usually top shelf."},
+                {"id": "chirp-def", "text": "Trash talk between players on the ice."},
+                {"id": "pass-def", "text": "A direct pass along the boards."}
+              ],
+              "explanation": {
+                "correct": "Perfect. These are key slang terms for understanding fan talk.",
+                "incorrect": "Sauce is a floating pass. Snipe is an accurate shot. Chirp is trash talk."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "rev-season-refresh",
+        "title": "New season refresh",
+        "objective": "Refresh after rule changes.",
+        "estimatedMinutes": 5,
+        "conceptIds": ["new-rules-26", "season-84"],
+        "activities": [
+          {
+            "id": "rev-season-01-mc-rules-2627",
+            "type": "multiple-choice",
+            "conceptIds": ["new-rules-26"],
+            "payload": {
+              "prompt": "What is a new rule for the 2026-27 NHL season?",
+              "options": [
+                {"id": "a", "text": "Neck protection is required for rookies with no prior NHL games."},
+                {"id": "b", "text": "All players must wear full cages instead of visors."},
+                {"id": "c", "text": "The regular season is now 78 games instead of 82."},
+                {"id": "d", "text": "Teams can no longer use the coach's challenge."}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Right. Starting 2026-27, neck protection is mandatory for players who have never played in the NHL before.",
+                "incorrect": "The new rule for 2026-27 is neck protection for rookies. Visors and cages vary by choice or rulebook."
+              }
+            }
+          },
+          {
+            "id": "rev-season-02-bc-84-game-schedule",
+            "type": "binary-call",
+            "conceptIds": ["season-84"],
+            "payload": {
+              "prompt": "Starting in 2026-27, the NHL regular season is 84 games.",
+              "scene": {"kind": "none", "alt": "Calendar showing 84-game season schedule."},
+              "choices": [{"id": "true", "label": "True"}, {"id": "false", "label": "False"}],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. The 2026-27 season increased from 82 to 84 games with extra divisional play.",
+                "incorrect": "Actually, 2026-27 added two games for a total of 84 games, focusing on divisional opponents."
+              }
+            }
+          },
+          {
+            "id": "rev-season-03-tm-rule-changes",
+            "type": "term-match",
+            "conceptIds": ["new-rules-26"],
+            "payload": {
+              "prompt": "Match the 2026-27 rule or change to its detail.",
+              "sets": [
+                {
+                  "id": "set1",
+                  "term": "Neck protection",
+                  "correctOptionId": "neck-detail"
+                },
+                {
+                  "id": "set2",
+                  "term": "Game schedule",
+                  "correctOptionId": "schedule-detail"
+                },
+                {
+                  "id": "set3",
+                  "term": "Emergency backup goalie",
+                  "correctOptionId": "ebug-detail"
+                }
+              ],
+              "options": [
+                {"id": "neck-detail", "text": "Mandatory for players with no prior NHL games."},
+                {"id": "schedule-detail", "text": "84 games with two extra divisional matchups."},
+                {"id": "ebug-detail", "text": "Dedicated backup goalies must travel with the team."},
+                {"id": "cap-detail", "text": "The salary cap dropped five percent."}
+              ],
+              "explanation": {
+                "correct": "Great recap of the key 2026-27 changes.",
+                "incorrect": "Check the 2026-27 changes: neck protection, 84-game schedule with extra divisional play, and dedicated emergency backup goalies."
+              }
+            }
+          },
+          {
+            "id": "rev-season-04-es-season-length",
+            "type": "estimate-slider",
+            "conceptIds": ["season-84"],
+            "payload": {
+              "prompt": "How many extra divisional games were added in 2026-27?",
+              "min": 0,
+              "max": 5,
+              "step": 1,
+              "unit": "games",
+              "correctRange": {"min": 2, "max": 2},
+              "explanation": {
+                "correct": "Correct. Two extra divisional games brought the total from 82 to 84.",
+                "lowExplanation": "The jump from 82 to 84 is two games, both against divisional opponents.",
+                "highExplanation": "It was just two extra divisional games, going from 82 to 84 total."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
