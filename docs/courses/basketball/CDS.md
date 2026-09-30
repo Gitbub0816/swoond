@@ -186,7 +186,7 @@ Tokens: `{{team}}`, `{{player}}`, `{{league}}`, `{{conference}}`, `{{rival}}`. T
 - **Measurement beyond XP:** say-this pass rate (F >= 0.75), talk-track success rate (Smooth >= 60), review retention at 7/30/60 days, and an optional, non-intrusive check-in after two weeks: "Did you talk about it? How did it go?" (feedback only; never gates progress).
 
 ## 11. Curriculum map (ongoing course)
-Designed as an ONGOING course, not a deck: 15 units, 114 lessons, 389 concepts. Layers: Foundations (31 lessons), Intermediate (31), Enthusiast depth (23), Branches / personalization (13), Current-season / live (8, perpetual), Conversation practice (8, perpetual), plus perpetual spaced review (a policy, not a unit). The unit count is 15 (slightly above the 8-14 planning range) because branches (college, WNBA), the live layer and the Conversation Lab are units in their own right and are kept separate from the 12 content units.
+Designed as an ONGOING course, not a deck: 15 units, 114 lessons, 389 concepts. Layers: Foundations (31 lessons), Intermediate (31), Enthusiast depth (23), Branches / personalization (13), Current-season / live (8, perpetual), Conversation practice (8, perpetual), plus perpetual spaced review (a policy, not a unit). The unit count is 15 (slightly above the 8-14 planning range) because branches (college, WNBA), the live layer and the Conversation Lab are units in their own right and are kept separate from the 11 core content units (4 foundations, 4 intermediate, 3 enthusiast).
 
 | Layer | Purpose | Minimum expectation | Met by |
 |---|---|---|---|
