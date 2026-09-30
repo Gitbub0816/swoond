@@ -41,13 +41,32 @@
             "payload": {
               "prompt": "Order the steps of joining open play.",
               "items": [
-                {"id": "step1", "text": "Stack your paddle with others waiting to play."},
-                {"id": "step2", "text": "Watch the current game and wait your turn."},
-                {"id": "step3", "text": "Step on the court when your paddle is called."},
-                {"id": "step4", "text": "If you lose, go to the back of the stack."},
-                {"id": "step5", "text": "If you win, you stay and play the next group."}
+                {
+                  "id": "step1",
+                  "text": "Stack your paddle with others waiting to play.",
+                  "why": "This registers your group in the rotation queue."
+                },
+                {
+                  "id": "step2",
+                  "text": "Watch the current game and wait your turn.",
+                  "why": "You're waiting for your paddle to be called to the court."
+                },
+                {
+                  "id": "step3",
+                  "text": "Step on the court when your paddle is called.",
+                  "why": "Your group is now up to play against the current winners."
+                },
+                {
+                  "id": "step5",
+                  "text": "If you win, you stay and play the next group.",
+                  "why": "Winners-stay is the open-play rule; you earned another game."
+                },
+                {
+                  "id": "step4",
+                  "text": "If you lose, go to the back of the stack.",
+                  "why": "Losers queue again; the next group challenges the new winners."
+                }
               ],
-              "correctOrder": ["step1", "step2", "step3", "step5", "step4"],
               "explanation": {
                 "correct": "You stack, wait, step on when called, and then winners stay (step 5) before losers go to the back (step 4).",
                 "incorrect": "The order is: stack, wait, play, then check the result—winners stay, losers queue again.",
@@ -265,7 +284,7 @@
               "explanation": {
                 "correct": "Benefit of the doubt: when unsure, call it in. That's fair play.",
                 "incorrect": "The principle is simple: when in doubt, the ball is in. Give your opponent the benefit.",
-                "sayThisLine": "In doubt? Call it in."
+                "sayThisLine": "When unsure, call it in—that's fair sportsmanship."
               }
             }
           },
@@ -553,7 +572,7 @@
             "conceptIds": ["skill-ratings"],
             "payload": {
               "prompt": "Complete the skill-level statement.",
-              "template": "A {{level}} player can {{skill}}, while a {{level2}} player is still working on {{improvement}}.",
+              "template": "A {{level}} player can {{skill}}, while a {{level2}} is still building {{improvement}}.",
               "gaps": [
                 {
                   "id": "level",
@@ -566,20 +585,15 @@
                   "correct": "hit varied shots and move as a team"
                 },
                 {
-                  "id": "level2",
-                  "options": ["3.5", "5.0"],
-                  "correct": "3.5"
-                },
-                {
-                  "id": "improvement",
-                  "options": ["consistency on the drop", "playing professionally"],
-                  "correct": "consistency on the drop"
+                  "id": "level2-and-improvement",
+                  "options": ["3.5 / consistency on the drop", "5.0 / professional skills"],
+                  "correct": "3.5 / consistency on the drop"
                 }
               ],
               "explanation": {
-                "correct": "Each level has benchmarks. 4.0 is advanced; 3.5 is solid intermediate.",
+                "correct": "Each level has benchmarks. 4.0 is advanced; 3.5 is solid intermediate working on consistency.",
                 "incorrect": "Ratings progress: 3.0 basics, 3.5 intermediate, 4.0 advanced, 4.5+ expert.",
-                "sayThisLine": "Each rating means different skills and goals."
+                "sayThisLine": "Each rating means different skills and goals worth working toward."
               }
             }
           },
@@ -694,8 +708,8 @@
                 "alt": "DUPR and sandbagging relationship."
               },
               "choices": [
-                {"id": "yes", "label": "Yes, because DUPR is based on match results"},
-                {"id": "no", "label": "No, everyone can still cheat"}
+                {"id": "yes", "label": "Yes, based on match results"},
+                {"id": "no", "label": "No, everyone can cheat"}
               ],
               "correctChoiceId": "yes",
               "explanation": {
