@@ -31,36 +31,36 @@
               "points-system"
             ],
             "payload": {
-              "prompt": "How many points does the leader of the championship score after winning a race?",
+              "prompt": "How many points does a Grand Prix win score?",
               "options": [
                 {
                   "id": "a",
                   "text": "25 points",
-                  "explanation": "Right. A win is 25 points, largest gap to second place."
+                  "explanation": "Right. A win is 25, then 18 for second and 15 for third."
                 },
                 {
                   "id": "b",
                   "text": "20 points",
-                  "explanation": "No, that was before 2025. A win is now 25."
+                  "explanation": "Not any more. The scale has been 25 for a win since 2010."
                 },
                 {
                   "id": "c",
-                  "text": "18 points plus fastest lap",
-                  "explanation": "No. Fastest lap stopped awarding a point after 2024."
+                  "text": "18 points plus one for fastest lap",
+                  "explanation": "Eighteen is second place, and the fastest-lap point was dropped from 2025."
                 },
                 {
                   "id": "d",
                   "text": "15 points",
-                  "explanation": "That's third place. The winner gets 25."
+                  "explanation": "Fifteen is third place. The winner gets 25."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. 25 points for the win, the biggest chunk available.",
-                "incorrect": "A race win is worth 25 points: top ten score 25-18-15-12-10-8-6-4-2-1.",
-                "sayThisLine": "A win is 25 points, the biggest margin."
+                "correct": "A win is worth 25 points, and the top ten score 25-18-15-12-10-8-6-4-2-1.",
+                "incorrect": "A win scores 25. Second scores 18, third 15, and there is no extra point for fastest lap.",
+                "sayThisLine": "A win is twenty-five points."
               }
             }
           },
@@ -151,7 +151,7 @@
               "safety-car"
             ],
             "payload": {
-              "prompt": "When a safety car is deployed, it {{result}} the field by slowing everyone to the same pace.",
+              "prompt": "Complete the safety car sentence.",
               "template": "When a safety car is deployed, it {{result}} the field by slowing everyone to the same pace.",
               "gaps": [
                 {
@@ -165,8 +165,8 @@
                 }
               ],
               "explanation": {
-                "correct": "Right. The safety car bunches the pack, erasing gaps built up in the race.",
-                "incorrect": "A safety car bunches (closes the gaps in) the field."
+                "correct": "Right. The safety car bunches the pack, erasing the gaps built up in the race.",
+                "incorrect": "A safety car bunches the field, closing up all the gaps between cars."
               }
             }
           },
@@ -174,52 +174,54 @@
             "id": "rv-01-sth-active-aero-modes",
             "type": "say-this",
             "conceptIds": [
-              "active-aero"
+              "active-aero",
+              "straight-mode",
+              "corner-mode"
             ],
             "payload": {
               "statement": {
                 "speaker": "Her",
-                "text": "On the back straight he opened the wings. They stayed open through the chicane and he nearly crashed."
+                "text": "The wings open on the straights and close for the corners. It is like a two-speed wing."
               },
-              "question": "What is she talking about?",
+              "question": "What is she describing?",
               "options": [
                 {
                   "id": "opt1",
-                  "text": "Straight Mode opened but should have closed for the chicane.",
+                  "text": "Active aero: Straight Mode for low drag and Corner Mode for grip.",
                   "isCorrect": true,
-                  "explanation": "Yes. Wings open for straights (low drag), close for corners (grip)."
+                  "explanation": "Yes. The wings move to trade drag against downforce as the lap changes."
                 },
                 {
                   "id": "opt2",
-                  "text": "The driver made a pit-stop error.",
+                  "text": "A pit-stop routine for changing the wings.",
                   "isCorrect": false,
-                  "explanation": "No pit stops here. This is about wing timing."
+                  "explanation": "The wings move while the car is on track, not in the pits."
                 },
                 {
                   "id": "opt3",
-                  "text": "The car had a mechanical failure.",
+                  "text": "A mechanical failure that makes the wings flap.",
                   "isCorrect": false,
-                  "explanation": "Not a mechanical issue. Active aero timing is driver-controlled."
+                  "explanation": "It is a designed feature of the 2026 cars."
                 },
                 {
                   "id": "opt4",
-                  "text": "The penalty for staying in Straight Mode too long.",
+                  "text": "A penalty for running the wing too low.",
                   "isCorrect": false,
-                  "explanation": "Not penalised; it's a driving mistake."
+                  "explanation": "It is not a penalty. It is how the cars work."
                 }
               ],
-              "translation": "The driver forgot to close the wings for the chicane, losing grip and nearly crashing.",
+              "translation": "The 2026 cars have moving wings. On straights they go to low drag, and for braking and corners they return to the high-downforce setting.",
               "followUps": [
                 {
-                  "line": "How often does he usually get the timing right?",
-                  "why": "Shows interest in his mistakes and learning curve rather than judgment."
+                  "line": "Is the switch manual or automatic?",
+                  "why": "A genuine question about how active aero is controlled."
                 },
                 {
-                  "line": "Is the timing automatic or does he manually switch the wings?",
-                  "why": "Curiosity about how active aero works, not bluffing."
+                  "line": "Was that what DRS did?",
+                  "why": "DRS only opened one flap for a chasing car. Active aero is for everyone."
                 }
               ],
-              "noFakeExpertNote": "Active aero is driver-managed; mistakes are part of learning the new system."
+              "noFakeExpertNote": "If you are not sure about the details, ask how the switching works."
             }
           }
         ]
@@ -326,32 +328,32 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "Five seconds is added to the driver's final race time.",
-                  "explanation": "Right. It is usually served in the pits or at the end."
+                  "text": "Five seconds is added to the driver's race time, often served at a pit stop.",
+                  "explanation": "Right. The driver's finishing order is worked out after the time is added."
                 },
                 {
                   "id": "b",
-                  "text": "The driver loses five positions on the grid of the next race.",
-                  "explanation": "That is a grid penalty for a future race, not a time penalty."
+                  "text": "The driver starts five places lower at the next race.",
+                  "explanation": "That is a grid penalty, which is a different thing."
                 },
                 {
                   "id": "c",
-                  "text": "The driver must stop for exactly five seconds in the pits.",
-                  "explanation": "Close: stops often serve the time, but it is not always five seconds standing still."
+                  "text": "The whole race is paused for five seconds.",
+                  "explanation": "Only the penalised driver is affected."
                 },
                 {
                   "id": "d",
-                  "text": "The race is paused for five seconds.",
-                  "explanation": "No, only the penalised driver is affected."
+                  "text": "The driver loses five championship points.",
+                  "explanation": "Time penalties change the order, not the points directly."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. Five seconds added to the finishing time can drop you several places.",
-                "incorrect": "A time penalty adds seconds to a driver's race time.",
-                "sayThisLine": "A five-second penalty added ten places to the final order."
+                "correct": "Five seconds added to the finishing time can drop a driver several places if the gaps behind are small.",
+                "incorrect": "A time penalty adds seconds to a driver's race time. The classification is worked out with the extra time included.",
+                "sayThisLine": "Five seconds could cost him two places."
               }
             }
           },
@@ -362,7 +364,7 @@
               "tyre-degradation"
             ],
             "payload": {
-              "prompt": "If tyres {{condition}} too quickly, the team must pit earlier than planned.",
+              "prompt": "Complete the tyre sentence.",
               "template": "If tyres {{condition}} too quickly, the team must pit earlier than planned.",
               "gaps": [
                 {
@@ -377,7 +379,7 @@
               ],
               "explanation": {
                 "correct": "Right. Fast degradation forces an early stop to avoid the tyre cliff.",
-                "incorrect": "If tyres degrade too fast, the team pits earlier."
+                "incorrect": "If tyres degrade too fast, the team has to pit earlier than planned."
               }
             }
           },
@@ -488,7 +490,8 @@
             "type": "term-match",
             "conceptIds": [
               "pit-window",
-              "slipstream"
+              "slipstream",
+              "dirty-air"
             ],
             "payload": {
               "prompt": "Match strategy and racing terms.",
@@ -504,7 +507,7 @@
                   "definition": "Drafting behind a car ahead to cut drag and gain speed."
                 },
                 {
-                  "id": "trade-off",
+                  "id": "dirty-air",
                   "term": "Dirty air",
                   "definition": "The turbulent wake that steals grip from the following car."
                 }
@@ -514,8 +517,8 @@
                 "A type of tyre compound."
               ],
               "explanation": {
-                "summary": "Pit window is when to stop; slipstream is tow gain; dirty air is the cost.",
-                "sayThisLine": "The pit window is closing; the slipstream is hard to find in dirty air."
+                "summary": "Pit window is when to stop, the slipstream is the tow gain, and dirty air is the price of following closely.",
+                "sayThisLine": "The pit window is closing, and the slipstream is hard to find in dirty air."
               }
             }
           },
@@ -523,10 +526,11 @@
             "id": "rv-03-fil-constructor-plural",
             "type": "fill-the-gap",
             "conceptIds": [
-              "constructor"
+              "constructor",
+              "constructors-championship"
             ],
             "payload": {
-              "prompt": "The {{award}} Championship is won by the team that scores the most points across both drivers.",
+              "prompt": "Which championship is for teams?",
               "template": "The {{award}} Championship is won by the team that scores the most points across both drivers.",
               "gaps": [
                 {
@@ -540,8 +544,8 @@
                 }
               ],
               "explanation": {
-                "correct": "Right. The Constructors' Championship; the Drivers' Championship is individual.",
-                "incorrect": "It is the Constructors' Championship for teams."
+                "correct": "Right. The Constructors' Championship adds both drivers' points. The Drivers' Championship is individual.",
+                "incorrect": "It is the Constructors' Championship for teams. The Drivers' Championship is for individuals."
               }
             }
           },
@@ -552,7 +556,7 @@
               "slipstream"
             ],
             "payload": {
-              "prompt": "The {{effect}} behind a car ahead lets the following driver cut drag on the straight.",
+              "prompt": "Complete the tow sentence.",
               "template": "The {{effect}} behind a car ahead lets the following driver cut drag on the straight.",
               "gaps": [
                 {
@@ -566,8 +570,8 @@
                 }
               ],
               "explanation": {
-                "correct": "Right. The slipstream or tow lets you gain speed down the straight.",
-                "incorrect": "The slipstream (tow) cuts drag, letting the car accelerate faster."
+                "correct": "Right. The slipstream, or tow, cuts drag and lets the car behind gain speed down the straight.",
+                "incorrect": "The slipstream, also called the tow, is what reduces drag for the car behind."
               }
             }
           },
@@ -673,15 +677,15 @@
             "payload": {
               "statement": {
                 "speaker": "Her",
-                "text": "He is within a second! Can he get the button? Maybe he will get a run on the exit."
+                "text": "He is within a second at the detection point. Overtake Mode is on!"
               },
               "question": "What is she talking about?",
               "options": [
                 {
                   "id": "opt1",
-                  "text": "He is close enough to activate Overtake Mode for an electrical boost.",
+                  "text": "He is close enough to get an electrical boost to attack the car ahead.",
                   "isCorrect": true,
-                  "explanation": "Yes. Within one second at the detection zone = Overtake Mode eligible."
+                  "explanation": "Yes. Within one second at the detection point makes him eligible for Overtake Mode."
                 },
                 {
                   "id": "opt2",
@@ -691,29 +695,29 @@
                 },
                 {
                   "id": "opt3",
-                  "text": "He is about to pit during a safety car.",
+                  "text": "He is about to pit under a safety car.",
                   "isCorrect": false,
-                  "explanation": "Not about pitting. It is about a passing attempt."
+                  "explanation": "She is talking about a passing attempt, not a pit stop."
                 },
                 {
                   "id": "opt4",
-                  "text": "He has one more lap to pass before penalty points.",
+                  "text": "He has one lap left before he gets penalty points.",
                   "isCorrect": false,
-                  "explanation": "Not about lap limits or penalties; it is about Overtake Mode."
+                  "explanation": "It has nothing to do with penalties."
                 }
               ],
-              "translation": "He is close enough to use Overtake Mode (an electrical boost when within one second) to help him pass on the next straight.",
+              "translation": "He is close enough to the car ahead at the detection point to get extra electrical power, which should help him attack on the straight.",
               "followUps": [
                 {
-                  "line": "Does Overtake Mode guarantee an overtake?",
-                  "why": "Asks if the boost always works; it does not if dirty air kills grip."
+                  "line": "Does Overtake Mode guarantee a pass?",
+                  "why": "It does not. Dirty air and timing matter as well."
                 },
                 {
                   "line": "How is that different from DRS?",
-                  "why": "Natural follow-up showing you know the old system and what changed."
+                  "why": "A natural follow-up that shows you know what changed."
                 }
               ],
-              "noFakeExpertNote": "Overtake Mode is not a guarantee; dirty air and timing matter."
+              "noFakeExpertNote": "Overtake Mode is a boost, not a guarantee. Ask if he made the pass."
             }
           },
           {
@@ -821,55 +825,56 @@
             }
           },
           {
-            "id": "rv-04-sth-mode-switch-mistake",
+            "id": "rv-04-sth-boost-wasted",
             "type": "say-this",
             "conceptIds": [
+              "boost-button",
               "overtake-mode"
             ],
             "payload": {
               "statement": {
                 "speaker": "Her",
-                "text": "He activated Overtake Mode too early on the straight. Wasted it before the braking zone where he could have actually passed."
+                "text": "He hit the boost button too early on the straight and wasted it before the braking zone where he could have passed."
               },
               "question": "What is she talking about?",
               "options": [
                 {
                   "id": "opt1",
-                  "text": "He used his limited Overtake Mode boost at the wrong place for a passing attempt.",
+                  "text": "He used his limited boost at the wrong moment for a passing attempt.",
                   "isCorrect": true,
-                  "explanation": "Yes. Overtake Mode has limited uses; timing matters."
+                  "explanation": "Yes. Boost is a driver button that is limited in how often it can be used, so timing matters."
                 },
                 {
                   "id": "opt2",
-                  "text": "He pitted at the wrong time and wasted a pit stop.",
+                  "text": "He pitted at the wrong time.",
                   "isCorrect": false,
-                  "explanation": "This is about Overtake Mode timing, not pit stops."
+                  "explanation": "She is talking about the boost button, not a pit stop."
                 },
                 {
                   "id": "opt3",
-                  "text": "He drove in Straight Mode when he should have used Corner Mode.",
+                  "text": "He left his wings open in the braking zone.",
                   "isCorrect": false,
-                  "explanation": "Overtake Mode is the electrical boost, not a wing mode."
+                  "explanation": "Boost is electrical deployment, not a wing mode."
                 },
                 {
                   "id": "opt4",
-                  "text": "He got a penalty for misusing the system.",
+                  "text": "He got a penalty for pressing the button.",
                   "isCorrect": false,
-                  "explanation": "Using Overtake Mode is not penalised; bad timing is just poor strategy."
+                  "explanation": "Using boost is allowed. Bad timing is just poor strategy."
                 }
               ],
-              "translation": "He used his Overtake Mode electrical boost inefficiently, activating it when he could not actually pass, instead of saving it for the braking zone where an overtake was possible.",
+              "translation": "He pushed the boost button too soon, so the extra electrical power was spent before the place where it would have helped him pass.",
               "followUps": [
                 {
-                  "line": "Does he get unlimited uses of Overtake Mode?",
-                  "why": "Shows interest in the rules and resource management."
+                  "line": "Is boost unlimited?",
+                  "why": "It is limited in how much and how often a driver can use it, so each use counts."
                 },
                 {
-                  "line": "Could the engineer have helped him time it better?",
-                  "why": "Asks about team strategy rather than driver blame."
+                  "line": "Could the engineer have told him when?",
+                  "why": "Teams give advice over the radio, so it is a fair question about teamwork."
                 }
               ],
-              "noFakeExpertNote": "Overtake Mode timing is a strategy skill; over-use is wasteful."
+              "noFakeExpertNote": "Boost timing is a skill. If you are unsure, ask what he should have waited for."
             }
           },
           {
