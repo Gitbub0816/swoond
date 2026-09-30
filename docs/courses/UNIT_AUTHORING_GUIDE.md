@@ -15,7 +15,7 @@ reviewPolicy, unitOrder) + `docs/courses/<courseId>/curriculum/units/NN-<unit-id
 ## Hard rules
 1. **Hand-written only.** Write the JSON directly with the Write/Edit tools. No generator scripts (`.sh/.py/.js/...`) anywhere — the validator fails them, and templated output is rejected on review.
 2. **Every lesson in the unit** from the CDS map, with the CDS lesson ids.
-3. **4–8 activities per lesson** (aim for 5), using the activity types the CDS plans for that lesson. `unity-sim` activities count and must use the manifest's `simulationId`; if the CDS names a native fallback for a sim, include that fallback too.
+3. **4–8 activities per lesson** (aim for 5), using the activity types the CDS plans for that lesson. `unity-sim` activities count and must use the manifest's `simulationId`; if the CDS names a native fallback for a sim, include that fallback too. ≤50% of a unit's activities may be one type.
 4. **Unique and specific**: no two activities share a payload or prompt; each tests that lesson's concepts.
 5. **Factually correct** for the current season/rules stated in the CDS. If unsure, leave it out rather than guess.
 6. **Voice**: warm, a little flirty, never condescending — the learner is learning for someone they care about. Explanations ≥ 25 chars and actually explain *why*.

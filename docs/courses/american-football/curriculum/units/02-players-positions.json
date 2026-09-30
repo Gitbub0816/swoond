@@ -164,44 +164,48 @@
           },
           {
             "id": "backfield-02-vi-lineup",
-            "type": "visual-id",
-            "conceptIds": ["running-back", "wide-receiver", "tight-end"],
+            "type": "hotspot-tap",
+            "conceptIds": ["wide-receiver"],
             "payload": {
-              "prompt": "Which skill position is highlighted in the receiver slot?",
-              "image": {
+              "prompt": "Tap the wide receiver split out wide in this formation.",
+              "diagram": {
                 "diagramId": "football-formation-highlight",
-                "alt": "An offensive formation with one player highlighted split out wide from the line.",
+                "alt": "An offensive formation showing a player split out wide from the line.",
                 "aspectRatio": 2.5
               },
-              "options": [
-                {"id": "a", "text": "Running back"},
-                {"id": "b", "text": "Wide receiver"},
-                {"id": "c", "text": "Tight end"}
+              "hotspots": [
+                {"id": "wr-wide", "label": "Wide receiver split out", "shape": {"kind": "circle", "cx": 0.15, "cy": 0.5, "r": 0.05}},
+                {"id": "rb-back", "label": "Running back in backfield", "shape": {"kind": "circle", "cx": 0.45, "cy": 0.5, "r": 0.05}},
+                {"id": "te-line", "label": "Tight end on line", "shape": {"kind": "circle", "cx": 0.75, "cy": 0.5, "r": 0.05}}
               ],
-              "correctOptionId": "b",
+              "correctHotspotIds": ["wr-wide"],
               "explanation": {
                 "correct": "Right. A wide receiver split out alone is in the receiver slot, away from the line of scrimmage.",
-                "incorrect": "In this formation, the player split out wide is a receiver. Running backs and tight ends stay closer to the line."
+                "incorrect": "Look for the player spread out wide from the line. That positioning makes him the receiver."
               }
             },
             "xp": 10
           },
           {
             "id": "backfield-02-vi-depth",
-            "type": "visual-id",
+            "type": "hotspot-tap",
             "conceptIds": ["tight-end"],
             "payload": {
-              "prompt": "Which position is lined up on the line of scrimmage closest to the offensive line?",
-              "image": "football-skill-positions",
-              "options": [
-                {"id": "a", "text": "Running back in the backfield"},
-                {"id": "b", "text": "Tight end on the line"},
-                {"id": "c", "text": "Wide receiver split out"}
+              "prompt": "Tap the tight end lined up on the line of scrimmage.",
+              "diagram": {
+                "diagramId": "football-skill-positions",
+                "alt": "A formation showing running back depth, tight end on the line, and wide receiver split out.",
+                "aspectRatio": 2.5
+              },
+              "hotspots": [
+                {"id": "rb-depth", "label": "Running back", "shape": {"kind": "circle", "cx": 0.45, "cy": 0.35, "r": 0.04}},
+                {"id": "te-line", "label": "Tight end on the line", "shape": {"kind": "circle", "cx": 0.75, "cy": 0.5, "r": 0.05}},
+                {"id": "wr-wide", "label": "Wide receiver", "shape": {"kind": "circle", "cx": 0.15, "cy": 0.5, "r": 0.04}}
               ],
-              "correctOptionId": "b",
+              "correctHotspotIds": ["te-line"],
               "explanation": {
                 "correct": "The tight end lines up right on the line next to the offensive line. Running backs stay back; receivers split out wide.",
-                "incorrect": "Look for the player who lines up next to the big men on the line. That is the tight end, the hybrid player."
+                "incorrect": "Look for the player who lines up next to the big men on the line. That is the tight end."
               }
             },
             "xp": 10
@@ -581,18 +585,23 @@
         "activities": [
           {
             "id": "numbers-06-vi-qb",
-            "type": "visual-id",
+            "type": "hotspot-tap",
             "conceptIds": ["jersey-numbers"],
             "payload": {
-              "prompt": "Which player is most likely the quarterback by jersey number?",
-              "image": "football-players-numbers",
-              "options": [
-                {"id": "a", "text": "Player 7"},
-                {"id": "b", "text": "Player 42"},
-                {"id": "c", "text": "Player 63"},
-                {"id": "d", "text": "Player 89"}
+              "prompt": "Tap the player most likely to be the quarterback by jersey number.",
+              "diagram": {
+                "diagramId": "football-players-numbers",
+                "alt": "Five football players in uniform showing different jersey numbers: 7, 42, 63, 89, and 15.",
+                "aspectRatio": 2.5
+              },
+              "hotspots": [
+                {"id": "p7", "label": "Player 7", "shape": {"kind": "circle", "cx": 0.2, "cy": 0.5, "r": 0.05}},
+                {"id": "p42", "label": "Player 42", "shape": {"kind": "circle", "cx": 0.4, "cy": 0.5, "r": 0.05}},
+                {"id": "p63", "label": "Player 63", "shape": {"kind": "circle", "cx": 0.6, "cy": 0.5, "r": 0.05}},
+                {"id": "p89", "label": "Player 89", "shape": {"kind": "circle", "cx": 0.8, "cy": 0.5, "r": 0.05}},
+                {"id": "p15", "label": "Player 15", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.2, "r": 0.04}}
               ],
-              "correctOptionId": "a",
+              "correctHotspotIds": ["p7"],
               "explanation": {
                 "correct": "Quarterbacks wear 1-19. Number 7 is in that range. It is a strong signal for the position.",
                 "incorrect": "Look at the jersey numbers. Quarterbacks wear 1-19, so the lower numbers signal QB, not linemen or receivers."
@@ -602,17 +611,21 @@
           },
           {
             "id": "numbers-06-vi-lineman",
-            "type": "visual-id",
+            "type": "hotspot-tap",
             "conceptIds": ["jersey-numbers"],
             "payload": {
-              "prompt": "Which player is most likely a lineman by jersey number?",
-              "image": "football-lineman-numbers",
-              "options": [
-                {"id": "a", "text": "Player 19"},
-                {"id": "b", "text": "Player 76"},
-                {"id": "c", "text": "Player 34"}
+              "prompt": "Tap the player most likely to be a lineman by jersey number.",
+              "diagram": {
+                "diagramId": "football-lineman-numbers",
+                "alt": "Three football players showing jersey numbers 19, 76, and 34.",
+                "aspectRatio": 2.5
+              },
+              "hotspots": [
+                {"id": "p19", "label": "Player 19", "shape": {"kind": "circle", "cx": 0.2, "cy": 0.5, "r": 0.05}},
+                {"id": "p76", "label": "Player 76", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.5, "r": 0.05}},
+                {"id": "p34", "label": "Player 34", "shape": {"kind": "circle", "cx": 0.8, "cy": 0.5, "r": 0.05}}
               ],
-              "correctOptionId": "b",
+              "correctHotspotIds": ["p76"],
               "explanation": {
                 "correct": "Linemen wear 50-79. Player 76 fits perfectly. Numbers are shorthand to spot positions instantly.",
                 "incorrect": "Look at the number ranges. Linemen wear 50-79, so the higher numbers signal offensive or defensive line."

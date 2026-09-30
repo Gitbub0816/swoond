@@ -1,0 +1,91 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  content:
+    name: Content validation
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tools/validate
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: tools/validate/package-lock.json
+      - run: npm ci
+      - run: npm test
+      # TODO: drop --partial once all courses are fully authored.
+      - run: node validate.mjs --partial
+
+  core-linux:
+    name: SwoondCore (Linux)
+    runs-on: ubuntu-latest
+    container: swift:6.3
+    defaults:
+      run:
+        working-directory: ios/SwoondCore
+    steps:
+      - uses: actions/checkout@v7
+      - run: swift --version
+      - run: swift build --build-tests
+      - run: swift test
+
+  ios-build:
+    name: iOS build and test
+    runs-on: macos-26
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7
+      - name: Select newest installed Xcode
+        run: |
+          latest=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
+          sudo xcode-select -s "$latest/Contents/Developer"
+          xcodebuild -version
+          swift --version
+      - name: SwoondCore tests (macOS)
+        working-directory: ios/SwoondCore
+        run: swift test
+      - name: Install XcodeGen and generate project
+        run: |
+          brew install xcodegen
+          cd ios && xcodegen
+      - name: Build app (Simulator)
+        working-directory: ios
+        run: |
+          set -o pipefail
+          xcodebuild -project Swoond.xcodeproj -scheme Swoond \
+            -destination 'generic/platform=iOS Simulator' -configuration Debug \
+            build CODE_SIGNING_ALLOWED=NO | tee "$RUNNER_TEMP/build.log"
+      - name: Pick simulator
+        id: sim
+        run: echo "dest=$(tools/ci/pick-simulator.sh)" >> "$GITHUB_OUTPUT"
+      - name: Test app (SwoondTests)
+        working-directory: ios
+        run: |
+          set -o pipefail
+          xcodebuild -project Swoond.xcodeproj -scheme Swoond \
+            -destination "${{ steps.sim.outputs.dest }}" -configuration Debug \
+            -resultBundlePath "$RUNNER_TEMP/Swoond.xcresult" \
+            test CODE_SIGNING_ALLOWED=NO | tee "$RUNNER_TEMP/test.log"
+      - name: Upload logs and xcresult
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ios-diagnostics
+          path: |
+            ${{ runner.temp }}/*.log
+            ${{ runner.temp }}/Swoond.xcresult
+          if-no-files-found: ignore

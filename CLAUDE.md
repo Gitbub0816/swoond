@@ -130,6 +130,16 @@ Toolchain: **Xcode 27, Swift 6.4 (Swift 6 language mode), iOS SDK 27, deployment
 
 The validator: schema validation (ajv, draft 2020-12), unique ids, prerequisite/concept/branch references, each activity payload against its native-exercise schema, content lint (placeholders, duplicate/repeated prompts, thin explanations, `thin-lesson` = lessons under 4 activities, `no-sims`), and, per manifest, that every `unitySimulations[].specPath` exists and its configuration JSON Schema compiles. `--course <id> --partial` relaxes missing units and `no-sims` for per-unit authoring. It exits non-zero on failure; `npm test` in `tools/validate` covers it.
 
+## 10a. CI
+
+`.github/workflows/ci.yml` runs on every push and pull request (per-ref concurrency, in-progress runs cancelled):
+
+- `content` (ubuntu): Node 22, `npm ci` + `npm test` in `tools/validate`, then `node validate.mjs --partial`. TODO: drop `--partial` once all courses are fully authored.
+- `core-linux` (ubuntu, `swift:6.3` container): `swift build --build-tests` and `swift test` in `ios/SwoondCore`.
+- `ios-build` (`macos-26`, newest installed Xcode; the runner image may lag the Xcode 27 toolchain): `swift test` for SwoondCore, XcodeGen, Debug simulator build of scheme `Swoond` (`CODE_SIGNING_ALLOWED=NO`), then SwoondTests on a simulator chosen by `tools/ci/pick-simulator.sh`. Logs and the xcresult upload as the `ios-diagnostics` artifact on failure.
+
+Keep the local commands in section 10 green before pushing; bump the action versions and runner label when the toolchain in section 12 moves.
+
 ## 11. Key docs
 
 - Product: `docs/product/SWOOND_PRODUCT_SPEC.md`, `docs/product/DECISIONS.md`, `docs/product/GLOSSARY.md`
