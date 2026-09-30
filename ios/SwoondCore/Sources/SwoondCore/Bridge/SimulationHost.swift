@@ -22,7 +22,7 @@ public actor MockSimulationHost: SimulationHost {
 
     public nonisolated let events: AsyncStream<BridgeEvent>
     private let continuation: AsyncStream<BridgeEvent>.Continuation
-    private let clock: any Clock
+    private let clock: any SwoondClock
     private var behavior: Behavior
     private var latencyNanoseconds: UInt64
     private var seq = 0
@@ -30,7 +30,7 @@ public actor MockSimulationHost: SimulationHost {
     public private(set) var launchedRequests: [LaunchRequest] = []
     public private(set) var isPaused = false
 
-    public init(behavior: Behavior = .completes, latencyNanoseconds: UInt64 = 0, clock: any Clock = SystemClock()) {
+    public init(behavior: Behavior = .completes, latencyNanoseconds: UInt64 = 0, clock: any SwoondClock = SystemClock()) {
         let (stream, cont) = AsyncStream<BridgeEvent>.makeStream(bufferingPolicy: .unbounded)
         self.events = stream
         self.continuation = cont

@@ -43,7 +43,7 @@ enum Fixtures {
         StaticContentRepository(manifests: [try manifest()], curricula: [try curriculum()])
     }
 
-    static func engine(clock: any Clock, tz: TimeZone = utc, state: LearnerState = LearnerState()) -> (ProgressEngine, InMemoryProgressRepository) {
+    static func engine(clock: any SwoondClock, tz: TimeZone = utc, state: LearnerState = LearnerState()) -> (ProgressEngine, InMemoryProgressRepository) {
         let repo = InMemoryProgressRepository(initialState: state)
         return (ProgressEngine(repository: repo, clock: clock, timeZone: tz), repo)
     }

@@ -9,14 +9,14 @@ public struct ProgressUpdate: Sendable, Equatable {
     public var xpGained: Int { xpAward?.amount ?? 0 }
 }
 
-/// Applies outcomes to persisted learner state. All time comes from the injected `Clock`/`TimeZone`.
+/// Applies outcomes to persisted learner state. All time comes from the injected `SwoondClock`/`TimeZone`.
 public actor ProgressEngine {
     private let repository: any ProgressRepository
-    private let clock: any Clock
+    private let clock: any SwoondClock
     private let timeZone: TimeZone
     public nonisolated let rules: ProgressRules
 
-    public init(repository: any ProgressRepository, clock: any Clock = SystemClock(), timeZone: TimeZone = .current,
+    public init(repository: any ProgressRepository, clock: any SwoondClock = SystemClock(), timeZone: TimeZone = .current,
                 rules: ProgressRules = .default) {
         self.repository = repository
         self.clock = clock
