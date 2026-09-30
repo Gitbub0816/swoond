@@ -278,7 +278,7 @@
         "id": "sim-refresh-03",
         "title": "Sim refresher",
         "objective": "You can re-run a sim on a concept that is fading.",
-        "estimatedMinutes": 10,
+        "estimatedMinutes": 14,
         "conceptIds": ["cover-2", "run-gap"],
         "activities": [
           {
@@ -287,9 +287,32 @@
             "conceptIds": ["cover-2", "zone-vs-man", "man-coverage"],
             "payload": {
               "simulationId": "football.coverage.read.v1",
-              "scenarioHint": "Read a Cover 2 and find the open receiver in the seam."
+              "simulationVersion": "1.0.0",
+              "difficulty": 3
             },
             "xp": 15
+          },
+          {
+            "id": "sim-refresh-03-bc-1",
+            "type": "binary-call",
+            "conceptIds": ["cover-2"],
+            "payload": {
+              "prompt": "In Cover 2, the two safeties split the deep field into halves. True or false?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two safeties lined up deep with corners underneath covering the flats."
+              },
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. Cover 2 splits the field in half with one safety per side. Corners handle the outside receivers.",
+                "incorrect": "Yes, that is what Cover 2 is: two safeties split the deep half-field."
+              }
+            },
+            "xp": 10
           },
           {
             "id": "sim-refresh-03-unity-2",
@@ -297,9 +320,35 @@
             "conceptIds": ["run-gap", "inside-zone", "outside-zone"],
             "payload": {
               "simulationId": "football.run.gaps.v1",
-              "scenarioHint": "Follow a run play and identify which gap cracked open."
+              "simulationVersion": "1.0.0",
+              "difficulty": 3
             },
             "xp": 15
+          },
+          {
+            "id": "sim-refresh-03-tm-1",
+            "type": "term-match",
+            "conceptIds": ["inside-zone", "outside-zone"],
+            "payload": {
+              "prompt": "Match the run scheme to its look.",
+              "pairs": [
+                {
+                  "id": "inside",
+                  "term": "Inside zone",
+                  "definition": "The back reads blocks and cuts through the first crease; mostly between the tackles."
+                },
+                {
+                  "id": "outside",
+                  "term": "Outside zone",
+                  "definition": "The back stretches the play sideways, plants and cuts upfield in a lane."
+                }
+              ],
+              "explanation": {
+                "summary": "Inside zone hits straight up. Outside zone bounces it wide then cuts.",
+                "sayThisLine": "Inside is up the gut. Outside stretches then cuts."
+              }
+            },
+            "xp": 10
           }
         ]
       },

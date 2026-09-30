@@ -175,7 +175,7 @@ Tokens: `{{origin}}`, `{{brewMethod}}`, `{{equipment}}`, `{{skillLevel}}`, `{{st
 
 ## 11. Curriculum map (ongoing course)
 
-Designed as an ongoing course. **22 units, 120 lessons, about 200 Playbook concepts** (exact count in the Appendix). The unit count exceeds the 8-14 guidance for the same reason as cooking (layer minimums of 5 foundation + 4 intermediate + 4 enthusiast, plus six branch units, live, conversation and review); a learner sees about 15 units (core 13 plus the matching brew-method and origin branch units, live, conversation, review). Ship in phases (release plan below); fold option in `NOTES_FOR_ORCHESTRATOR.md` #3.
+Designed as an ongoing course. **22 units, 120 lessons, 259 Playbook concepts** (exact count in the Appendix). The unit count exceeds the 8-14 guidance for the same reason as cooking (layer minimums of 5 foundation + 4 intermediate + 4 enthusiast, plus six branch units, live, conversation and review); a learner sees about 15 units (core 13 plus the matching brew-method and origin branch units, live, conversation, review). Ship in phases (release plan below); fold option in `NOTES_FOR_ORCHESTRATOR.md` #3.
 
 Activity abbreviations: `mc` multiple-choice, `bc` binary-call, `tm` term-match, `so` sequence-order, `vi` visual-id, `ds` decision-scenario, `tk` talk-track, `tt` timing-tap, `st` say-this, `fg` fill-the-gap, `li` listening-id, `es` estimate-slider, `ht` hotspot-tap. Every lesson lists 4+ planned activity families; no lesson uses a Unity sim.
 
@@ -437,7 +437,7 @@ Branch units set `branchId`; the shared core is the `everyday` default. Each has
 
 ### Concept targets, personalization slots, release plan
 
-- **Concept count target:** about 200 Playbook concepts (Appendix below); 60+ terms drafted with definitions and example lines in `exercises.md` section 3 (62 at time of writing).
+- **Concept count target:** 259 Playbook concepts (Appendix below); 60+ terms drafted with definitions and example lines in `exercises.md` section 3 (62 at time of writing).
 - **Personalization slots:** `{{origin}}`, `{{brewMethod}}`, `{{equipment}}`, `{{skillLevel}}`, `{{style}}`, `{{roaster}}` (section 8).
 - **Release plan:**
   - **Launch (v0.1-1.0):** foundations (5 units), intermediate (4 units), `cafe-menu`, `third-wave`, `gear-and-debates`, `conversation-lab`, `review-loop`; brew-method branches `espresso`, `pour-over`; origin branches `africa` and `latin-america`; `now-in-coffee` with harvest-calendar and event cards only.
@@ -470,3 +470,99 @@ Branch units set `branchId`; the shared core is the `everyday` default. Each has
 
 ---
 
+## 12. Interaction plan
+
+Tier rubric (`CLAUDE.md` section 4): Unity only where spatial reasoning, movement, physics, timing in a scene or camera perspective materially improves learning and a native exercise would teach it clearly worse. **No row below is Tier A.** Every Unity candidate was evaluated in section 5 and rejected. `unitySimulations` in the manifest is empty; there is no `sims/` folder; `interactionTypes` excludes `unity-sim`. Native rows follow `docs/native-exercises/CATALOG.md`.
+
+| Lesson / activity family | Concepts | Type (native exercise) | Justification (why this and not the alternative) | Tier | Est. count |
+|---|---|---|---|---|---|
+| Diagnosis: "my espresso is sour", "the pour-over drained in 1:20", "the French press is silty", "which grinder first?" | under-extraction, over-extraction, dial-in-fix-table, espresso-diagnostics, grinder-importance | `decision-scenario` | Coffee is decisions from numbers and taste. A fact sheet (dose, yield, time, grind, taste) with best/acceptable/poor teaches judgment and the one-variable rule. A sim would only animate the outcome. | B | ~120 |
+| Numbers: ratios, temperatures, brew times, shot yields, milk temperatures, ratios of drinks | brew-ratio, water-temp-range, espresso-ratio, contact-time, milk-temperature-safety, tds | `estimate-slider` | The course's numeric spine: closeness matters more than exact values. Safety values (milk and serving temperatures, cold-brew storage) use tight tolerances. | B | ~55 |
+| Processes: cherry to cup, pour-over steps, puck prep, steaming stages, cupping order | coffee-supply-chain, pour-over-basics, puck-prep, steam-wand, cupping-protocol | `sequence-order` | Order is the concept and each step carries a `why` (catalog #4). | B | ~40 |
+| Rule and fact checks (origins, processes, roast levels, drinks, certifications) | most | `multiple-choice` | Default recall and understanding card; distractors are the misconceptions in section 2. | B | ~210 |
+| Sour or bitter? Myth or fact? | acidity-vs-sourness, dark-is-stronger-myth, crema-myths, honey-no-honey-myth, moka-pot-safety | `binary-call` | Two-way judgments; `scene.kind` is `none` (no diagram library needed). | B | ~55 |
+| Vocabulary: terms, varieties, drinks, gear, certifications | doppio-ristretto-lungo, geisha, burr-geometry, fair-trade | `term-match`, `fill-the-gap` | Recall and recognition in context. | B | ~60 |
+| Recognize grind sizes, roast levels, drink builds, machine parts, filter shapes, process stages | grind-size, roast-levels, cappuccino-latte-flat-white, machine-types, cone-shapes | `visual-id` | Recognition is the skill. Procedural vector art only (`original-swoond`). | B | ~45 |
+| Diagrams: the coffee belt and origin map, espresso machine parts, puck cross-section, V60 cone, flavor wheel, roast curve | coffee-belt, machine-types, channeling, cone-shapes, flavor-wheel, first-crack | `hotspot-tap` | Static diagram with correct regions; no motion needed (catalog #13). Replaces the rejected map and puck sims. | B | ~35 |
+| Steam stretching vs texturing, pouring shot, rolling boil, grinder pitch, first crack | milk-stretching, steam-safety, first-crack | `listening-id` | Sound is a real barista cue. Original or synthesized audio (`original-swoond`); "Skip" and a text alternative are always available. | B | ~14 |
+| Feel: stop the shot at the right yield, end the bloom | espresso-dose-yield-time, bloom | `timing-tap` | Only 1D rhythm; explicitly not speed pressure; slow mode always on; never used for safety. | B | ~8 |
+| Conversation | all | `talk-track`, `say-this` | Native conversation practice: 18 talk tracks and ~70 say-this items. | B | 18 + ~70 |
+
+**Native exercise types used:** multiple-choice, binary-call, term-match, sequence-order, visual-id, decision-scenario, talk-track, timing-tap, say-this, fill-the-gap, listening-id, estimate-slider, hotspot-tap (all 13; the last four are used lightly). **`unity-sim` unused.** Estimated total native items ~700 across 120 lessons and the review loop.
+
+**Accessibility:** `listening-id` always has a text alternative and Skip; `visual-id` `alt` describes distinguishing features without revealing the answer; `timing-tap` uses `tap-to-stop-slow`; no exercise relies on color alone (roast ladder and grind ladder use labels and numbers).
+
+---
+
+## 13. Licensing & safety
+
+| Area | Handling |
+|---|---|
+| Imagery | Procedural or original illustration only (`license: original-swoond`): grind ladder, roast ladder, drink builds (cup cross-sections), espresso machine parts, puck cross-section, V60 and Chemex cones, origin map, flavor wheel, roast curve. **No third-party photographs** of farms, bags, cafés, roasters or competitors. |
+| Audio | Original or synthesized steam, pour, grinder, boil and crack sounds (`original-swoond`). No video or podcast audio. |
+| Logos / trademarks | Brands (Hario V60, Chemex, AeroPress, Bialetti, Breville, La Marzocco, Baratza, Comandante, Fellow, Nespresso, Starbucks, Third Wave Water, Fair Trade USA, Rainforest Alliance) and SCA, Q Grader, Cup of Excellence, World Barista Championship appear only as text where a lesson needs them; no logos. Flavor wheel: Swoon'd draws an original wheel with original categories; the SCA and World Coffee Research Coffee Taster's Flavor Wheel is cited and linked, not reproduced. |
+| Video | No embedded competition or brewing video; deep-link to official pages. |
+| Recipes and standards text | Named recipes (for example, the 4:6 method, well-known French press and V60 techniques) are cited by name and creator as facts; Swoon'd writes its own explanation and does not copy recipe text or competition routines. The SCA Golden Cup numbers are stated as facts with attribution. |
+| Article text | Never copied; explain and link (spec section 11). |
+| Lyrics / music | N/A. |
+| Data terms | ICO composite price indicator is publicly available (verify reuse terms at adapter build); ICE futures data is licensed and is **not** assumed; European Commission pages are link-out; trade publications are link-only. |
+| Player likeness | Champions and authors are named as facts only; no likeness, no quotes beyond short fair-use facts, no endorsement implication. |
+| Ethics and trade claims | Fair Trade, direct trade and certifications are described neutrally and with critiques; Swoon'd does not claim that any brand is ethical or unethical. |
+
+**Safety (conservative mainstream guidance; state in manifest `safetyConstraints`; Swoon'd builds appreciation and understanding, not a substitute for training):**
+- **Hot water, steam and burns.** Brewing water is 195 to 205 F, far above scalding temperature; teach pouring away from the body, stable kettles, never carrying hot vessels near children or pets, handle and spout awareness, and **letting hot drinks cool before sipping** (serving drinks are hot enough to burn). Steam wands: purge before and after, keep the tip under the milk surface, never point at people, wipe and purge after each use; steam and portafilters are pressure and burn hazards. Do not remove a portafilter during extraction. For a scald, cool running water and seek medical care for anything serious; no medical advice beyond that mainstream first step.
+- **Milk temperature.** Teach "hot but drinkable" (roughly 140 to 155 F / 60 to 68 C for most milk drinks) and never scalding; children's drinks cooler. No heating milk to boiling.
+- **Moka pot.** Fill water only to the valve, never seal the safety valve, never heat an empty or dry pot or use excessive flame; open only when cool; follow the manufacturer's instructions.
+- **Cold brew and storage.** Refrigerate cold brew, keep equipment clean, use it within about a week (conservative mainstream guidance; **[verify at release]** against current food-safety guidance), and do not leave brewed coffee with milk unrefrigerated for long; discard if it smells or looks off. Cold brew is not "pasteurized"; do not teach long room-temperature steeps as safe.
+- **Grinders.** Unplug before cleaning; never put fingers near burrs; blade grinders are a hand-injury risk when opened. **Descaling** only with descaler or methods approved by the machine's manufacturer; rinse thoroughly; never mix chemicals.
+- **Allergens and milk alternatives.** Ask first and read labels; nut, soy, oat (gluten cross-contact risk) and dairy allergies exist; no medical advice; never imply an allergen is "fine in small amounts".
+- **Caffeine and health.** **No health claims, no benefit or risk claims, no dosage guidance.** `caffeine-basics` states only neutral facts (caffeine is a stimulant found in coffee; content varies by bean, brew and serving size; decaf still contains a little) and always says that anyone with a medical question, including pregnancy, medication or heart conditions, should ask a health professional. Swoon'd does not recommend how much to drink and does not say coffee is healthy or unhealthy.
+- **Dark-humor rule.** Jokes target the learner's ignorance, never the crush, never her taste, never baristas or farmers.
+- Never encourage the learner to fake coffee expertise or claim credit for a brew they did not make.
+
+---
+
+## 14. Content assets
+
+| Asset | Type | Source | License id |
+|---|---|---|---|
+| Grind-size ladder (Turkish to coarse), roast ladder (light to dark) | Procedural / original vector | Swoon'd | `original-swoond` |
+| Drink cross-sections (espresso, cortado, cappuccino, latte, flat white, americano, macchiato) | Procedural | Swoon'd | `original-swoond` |
+| Espresso machine parts (group head, portafilter, wand, gauge), grinder parts | Procedural | Swoon'd | `original-swoond` |
+| Puck cross-section (even vs channeled), extraction chart, roast curve | Procedural | Swoon'd | `original-swoond` |
+| V60, Kalita, Chemex, AeroPress, French press, moka pot silhouettes | Original vector | Swoon'd | `original-swoond` |
+| Coffee belt and origin map; cherry cross-section; processing flow diagrams | Procedural | Swoon'd | `original-swoond` |
+| Original flavor-wheel graphic | Original vector | Swoon'd (categories written by Swoon'd; not the SCA wheel) | `original-swoond` |
+| Steam stretching and texturing, pouring shot, grinder, boil, crack | Synthesized / recorded in-house | Swoon'd | `original-swoond` |
+| Harvest calendar, events and news cards | Data cards, no images | Curated | n/a |
+
+## 15. Section 47 quality checklist
+
+- [x] 1. **What does a beginner need to understand?** Seeds not beans, species, origins and varieties, processing, roast levels, and the four brewing variables that explain extraction (sections 2, 3).
+- [x] 2. **What do enthusiasts care about?** Origin and process, freshness, grinders, ratios and recipes, dialing in, milk texture, specialty culture, ethics of sourcing, and the big debates (section 4).
+- [x] 3. **What current information matters?** Harvest arrivals, price explainers, regulations, championships, news (section 6). No scoreboard data.
+- [x] 4. **What should be interactive?** Diagnostic decision scenarios, estimates, sequencing, recognition and hotspot diagrams, sounds, conversation; zero Unity sims (sections 5, 12).
+- [x] 5. **What should NOT be gamified?** Caffeine and health, safety, farmers and trade, her taste, roast and origin ranking, latte-art performance, allergens (section 5).
+- [x] 6. **How should it personalize?** Origin (`region`), brew method (`format`), equipment, skill level, style, roaster (section 8).
+- [x] 7. **What does conversational competence look like?** Decode her bag and brew stories, ask honest technique questions, order well, admit gaps, offer to try (sections 9, 10).
+- [x] 8. **What data providers are needed?** Curated harvest, event and media calendars; ICO public indicator (price explainer); European Commission pages (link-out); trade publications (link-only) (`live-data.md`).
+- [x] 9. **What licensing constraints apply?** Original art and audio only, brand text mentions, no publisher text, no reproduction of the SCA flavor wheel or standards text, ICE data not assumed (section 13).
+- [x] 10. **How will Swoon'd measure useful understanding?** Concept mastery 0.8, safety gate, review ladder, talk-track Smooth >= 60, competence statement (section 10).
+
+Additional gates: [ ] manifest validates (run `tools/validate`); [ ] curriculum validates (not yet authored); [x] no Unity sims, so no sim specs to approve; [ ] every image/audio asset has a license id (assets not yet produced; ids defined); [ ] safety review of `brew-basics` (`bb-09`), `methods` (`me-06`, `me-07`), `espresso-and-milk` (`es-06`, `es-08`) and branch lessons `be-03`, `bi-03` (recommended release gate; see `NOTES_FOR_ORCHESTRATOR.md`); [ ] voice review; [x] no copied publisher text (all copy original).
+
+## 16. Open questions
+
+| # | Question | Owner | Blocking? |
+|---|---|---|---|
+| 1 | Approve zero Unity sims for coffee (rationale in sections 5 and 12). Any candidate to re-open must name the concept, the failing native design and the rubric signal. | Product | No |
+| 2 | Food-safety review (Extension educator or food scientist) of cold-brew storage guidance, milk temperatures and the moka-pot and steam lessons before release; mirrors the cooking gate. | Product/Content | Yes for release |
+| 3 | Unit count 22 (5+4+4+6+1+1+1) exceeds 8-14; approve, or fold the six branch units (for example, one `branches` unit with activity-level `branchId`). | Product | No |
+| 4 | Branch model: can a Person hold one brew-method branch and one origin branch at once? | Product/Native | No |
+| 5 | Manifest `personalizationDimensions` has no `origin`; approve using `region` for origin (as drafted) or add `origin` in a contract bump. | Product | No |
+| 6 | Price explainer: is ICO's composite indicator usable in-app, or editorial numbers only (ICE futures licensing)? Provider decision L-02/L-03 family. | Legal/Data | No |
+| 7 | Flavor wheel: confirm that an original Swoon'd wheel is acceptable (the SCA and World Coffee Research wheel is referenced by link only). | Legal | No |
+| 8 | Sustainability tone: human review of `sustainability` for neutrality toward certifications and brands. | Content | Yes for `sustainability` release |
+| 9 | Caffeine and pregnancy or heart-condition notes: confirm the "ask a health professional" framing (no claims) is acceptable copy. | Product/Legal | No |
+| 10 | Original audio: synthesize or record in-house the steam, pour, grinder and crack sounds? | Product | No (synthesize for MVP) |
+| 11 | Dated facts (WBC 2025 and 2026, EUDR date, price history, tariffs) need an owner for monthly refresh. | Content | No |

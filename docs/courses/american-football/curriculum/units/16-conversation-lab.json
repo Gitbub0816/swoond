@@ -1,0 +1,1580 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "american-football",
+  "unit": {
+    "id": "conversation-lab",
+    "title": "Conversation lab",
+    "layer": "enthusiast",
+    "order": 16,
+    "prerequisiteUnitIds": ["the-basics"],
+    "personalizationSlots": ["team", "player"],
+    "concepts": [],
+    "lessons": [
+      {
+        "id": "first-text-01",
+        "title": "The first text",
+        "objective": "You can reply to game talk without sounding lost or faking expertise.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["follow-up-question", "listen-first", "honest-not-expert"],
+        "activities": [
+          {
+            "id": "first-text-01-tt-opener",
+            "type": "talk-track",
+            "conceptIds": ["listen-first", "honest-not-expert"],
+            "payload": {
+              "title": "Game night text",
+              "setting": "She texts you after her team's big win.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "Did you see the end of that game?? That last drive was insane!",
+                  "replies": [
+                    {
+                      "id": "listen-back",
+                      "text": "No, I missed it. Tell me what happened!",
+                      "smoothDelta": 15,
+                      "theirResponse": "Okay so we were down 3 with 90 seconds left...",
+                      "coachNote": "Honesty and curiosity build trust. This opens the conversation."
+                    },
+                    {
+                      "id": "fake-expert",
+                      "text": "Yeah, that coverage was so predictable.",
+                      "smoothDelta": -15,
+                      "theirResponse": "Uh, what? I'm talking about our offense.",
+                      "coachNote": "Faking expertise backfires when details don't match. Ask instead."
+                    },
+                    {
+                      "id": "generic",
+                      "text": "Wow, so exciting!",
+                      "smoothDelta": 5,
+                      "theirResponse": "Yeah, but what did you think about the call on fourth down?",
+                      "coachNote": "Generic is okay, but asking what happened first feels more genuine."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Let her talk first. Your curiosity is more valuable than fake expertise."
+            },
+            "xp": 40
+          },
+          {
+            "id": "first-text-01-st-decode",
+            "type": "say-this",
+            "conceptIds": ["listen-first", "follow-up-question"],
+            "payload": {
+              "statement": {
+                "speaker": "Her",
+                "text": "I cannot believe he missed that wide-open receiver. The whole secondary was exposed."
+              },
+              "question": "What is she saying?",
+              "options": [
+                {
+                  "id": "correct-read",
+                  "text": "The quarterback made a bad decision and the defense was vulnerable.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "close-wrong",
+                  "text": "A defensive player made a mistake, letting the offense score.",
+                  "isCorrect": false,
+                  "explanation": "She's criticizing the quarterback's throw, not the secondary's play. 'Exposed' means the defense was wide open because he didn't use a free receiver."
+                },
+                {
+                  "id": "far-wrong",
+                  "text": "Her team's offense scored because the receiver was good.",
+                  "isCorrect": false,
+                  "explanation": "She's upset at a *missed* opportunity. The receiver was open, but the quarterback didn't throw to him."
+                }
+              ],
+              "translation": "The quarterback had an easy completion but chose wrong, and that shows the defense wasn't the real problem.",
+              "followUps": [
+                {
+                  "line": "Yeah, that receiver was totally open. Why do you think he missed him?",
+                  "why": "Curious, not combative. You're asking to learn, not defending a player."
+                },
+                {
+                  "line": "I noticed he was open too. Is that a recurring thing, or did the coverage just fool him?",
+                  "why": "You name what you actually saw, then ask a real follow-up about pattern vs incident."
+                }
+              ],
+              "noFakeExpertNote": "If you did not see the play, say so and ask her to describe it. That's more meaningful than pretending."
+            },
+            "xp": 10
+          },
+          {
+            "id": "first-text-01-ds-reply",
+            "type": "decision-scenario",
+            "conceptIds": ["honest-not-expert", "listen-first"],
+            "payload": {
+              "prompt": "She asks your opinion on a play you did not see.",
+              "situation": {
+                "narrative": "You missed the game. She just described a controversial fourth-down call in a close game.",
+                "facts": [
+                  {
+                    "label": "Time left",
+                    "value": "5 minutes, down 4"
+                  },
+                  {
+                    "label": "Your knowledge",
+                    "value": "You did not watch the play"
+                  },
+                  {
+                    "label": "She is excited",
+                    "value": "Clearly wants to talk about it",
+                    "emphasis": "none"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "honest-ask",
+                  "label": "I did not see it. Walk me through it?",
+                  "verdict": "best",
+                  "consequence": "She feels heard and gets to explain. You learn the context and can engage genuinely.",
+                  "considerations": [
+                    "Honesty is attractive and builds trust.",
+                    "Getting her to explain also teaches you more than a guess.",
+                    "You can ask follow-ups that show real curiosity."
+                  ]
+                },
+                {
+                  "id": "neutral-guess",
+                  "label": "That sounds like a bold call. Did it work out?",
+                  "verdict": "acceptable",
+                  "consequence": "You stay engaged without pretending to know. She might describe the outcome, filling in gaps.",
+                  "considerations": [
+                    "This is polite and keeps the conversation alive.",
+                    "But it misses the chance to show genuine interest in her take."
+                  ]
+                },
+                {
+                  "id": "fake-expert",
+                  "label": "Yeah, with that time and down, you have to go for it.",
+                  "verdict": "poor",
+                  "consequence": "She corrects you ('it was third and one, not fourth and five') and the moment awkward.",
+                  "considerations": [
+                    "Guessing specifics backfires when you miss the details.",
+                    "It kills curiosity: you sound like you know, so why ask more?",
+                    "She will see through you if the facts do not match."
+                  ]
+                }
+              ],
+              "expertNote": "Experts know what they do not know. Admitting a gap invites her to teach you, which makes her feel valued.",
+              "sayThisLine": "I did not catch that one. Walk me through what happened?"
+            },
+            "xp": 10
+          },
+          {
+            "id": "first-text-01-fg-terms",
+            "type": "fill-the-gap",
+            "conceptIds": ["touchdown", "interception", "follow-up-question"],
+            "payload": {
+              "template": "After she describes a big play, you can ask: 'Did the ball get to the {{gap1}} or was it an {{gap2}}?'",
+              "gaps": [
+                {
+                  "options": [
+                    "end zone",
+                    "receiver",
+                    "line of scrimmage"
+                  ],
+                  "correct": "receiver"
+                },
+                {
+                  "options": [
+                    "touchdown",
+                    "interception",
+                    "penalty"
+                  ],
+                  "correct": "interception"
+                }
+              ]
+            },
+            "xp": 10
+          },
+          {
+            "id": "first-text-01-st-followup",
+            "type": "say-this",
+            "conceptIds": ["follow-up-question", "listen-first"],
+            "payload": {
+              "statement": {
+                "speaker": "Her",
+                "text": "Their run defense is terrible. We ran for 200 yards and hardly tried."
+              },
+              "question": "What would you ask next?",
+              "options": [
+                {
+                  "id": "best",
+                  "text": "Yeah, I noticed that. Do you think they'll adjust next week, or are they just short-handed?",
+                  "isCorrect": true
+                },
+                {
+                  "id": "surface",
+                  "text": "Wow, 200 yards is a lot. Did you enjoy the running game?",
+                  "isCorrect": false,
+                  "explanation": "You're asking about her emotion, not the strategy. A better follow-up digs into the *why*: what caused the problem?"
+                },
+                {
+                  "id": "wrong",
+                  "text": "Our defense is even worse. We gave up 300 passing.",
+                  "isCorrect": false,
+                  "explanation": "You're pivoting to your own team, not asking more about hers. She will feel like you did not listen."
+                }
+              ],
+              "translation": "A good follow-up agrees, then asks a curious 'why' or 'what's next' question.",
+              "followUps": [
+                {
+                  "line": "Do you think they'll adjust next week, or are they just short-handed?",
+                  "why": "This shows you listened and want to understand the deeper pattern, not just react to the score."
+                }
+              ],
+              "noFakeExpertNote": "Naming something you noticed ('I saw the run game was working') is better than naming something you guessed."
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "pregame-02",
+        "title": "Pregame nerves",
+        "objective": "You can ease tension before a big game with genuine interest, not false confidence.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["follow-up-question", "listen-first", "honest-not-expert"],
+        "activities": [
+          {
+            "id": "pregame-02-tt-stress",
+            "type": "talk-track",
+            "conceptIds": ["listen-first"],
+            "payload": {
+              "title": "Before the big one",
+              "setting": "She texts Thursday before a playoff game she cares about.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "I cannot stop thinking about Sunday. I am so nervous. What if they blow it?",
+                  "replies": [
+                    {
+                      "id": "hear-her",
+                      "text": "Playoff games are intense. What part worries you most?",
+                      "smoothDelta": 20,
+                      "theirResponse": "Their defense keeps giving up big plays. If that happens Sunday...",
+                      "coachNote": "You named her emotion and asked what specifically worries her. That's listening."
+                    },
+                    {
+                      "id": "reassure",
+                      "text": "They are going to crush it, do not worry.",
+                      "smoothDelta": -10,
+                      "theirResponse": "How do you know? Have you been following the team?",
+                      "coachNote": "False confidence sounds hollow when she's genuinely stressed. Better to ask what worries her."
+                    },
+                    {
+                      "id": "minimize",
+                      "text": "It is just a game.",
+                      "smoothDelta": -20,
+                      "theirResponse": "Clearly this does not matter to you.",
+                      "coachNote": "Dismissing her feelings pushes her away. What she cares about matters to you because *she* matters."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Pregame stress is real. Listening to her worry is better than pretending it will be fine."
+            },
+            "xp": 40
+          },
+          {
+            "id": "pregame-02-ds-ask",
+            "type": "decision-scenario",
+            "conceptIds": ["listen-first", "honest-not-expert"],
+            "payload": {
+              "prompt": "She is nervous about a playoff game starting tomorrow.",
+              "situation": {
+                "narrative": "She sends you a message: 'I am so anxious. What if they lose?' You want to help.",
+                "facts": [
+                  {
+                    "label": "Opponent",
+                    "value": "Top-ranked defense"
+                  },
+                  {
+                    "label": "What she needs",
+                    "value": "To feel heard, not lectured"
+                  },
+                  {
+                    "label": "Your role",
+                    "value": "Supportive, not expert",
+                    "emphasis": "none"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "best-listen",
+                  "label": "What specifically worries you? I'm here.",
+                  "verdict": "best",
+                  "consequence": "She vents. You learn what matters to her. Your listening is the gift.",
+                  "considerations": [
+                    "Pregame anxiety deserves room to talk, not quick reassurance.",
+                    "Asking specifics shows you care about *her* stress, not just the game.",
+                    "You can respond better once you know what worries her."
+                  ]
+                },
+                {
+                  "id": "okay-stats",
+                  "label": "Their defense is good but your team has faced worse.",
+                  "verdict": "acceptable",
+                  "consequence": "You offer context. It might help, or it might feel dismissive of her worry.",
+                  "considerations": [
+                    "Stats and facts can be grounding for some people.",
+                    "But if she needs emotional support first, facts feel like you are not listening."
+                  ]
+                },
+                {
+                  "id": "poor-dismiss",
+                  "label": "Worrying won't change anything. Just enjoy the game!",
+                  "verdict": "poor",
+                  "consequence": "She feels unheard and stops confiding in you about the things she cares about.",
+                  "considerations": [
+                    "Telling someone not to worry rarely works.",
+                    "It feels like you think her feelings are not valid.",
+                    "You miss the chance to be someone she trusts with the hard stuff."
+                  ]
+                }
+              ],
+              "expertNote": "Anxiety before a big game is normal for someone who cares deeply. Listening is more valuable than reassuring."
+            },
+            "xp": 10
+          },
+          {
+            "id": "pregame-02-st-nerves",
+            "type": "say-this",
+            "conceptIds": ["honest-not-expert"],
+            "payload": {
+              "statement": {
+                "speaker": "Her",
+                "text": "Our passing game has been so inconsistent this season. I have no idea if we can keep up if they go deep."
+              },
+              "question": "What is she really saying?",
+              "options": [
+                {
+                  "id": "correct",
+                  "text": "She is worried that a weakness (passing) will hurt them in this specific matchup (a team that throws deep).",
+                  "isCorrect": true
+                },
+                {
+                  "id": "surface",
+                  "text": "The passing game has been bad all year.",
+                  "isCorrect": false,
+                  "explanation": "She is saying more than the stat: she's expressing a specific fear about this game. The passing game is her worry *because* it matters for Sunday."
+                },
+                {
+                  "id": "opposite",
+                  "text": "She thinks the team should throw more often.",
+                  "isCorrect": false,
+                  "explanation": "She is expressing anxiety, not a play-calling critique. She worries her team is weak in an area the opponent will exploit."
+                }
+              ],
+              "translation": "She is identifying a vulnerability in her team's game and connecting it to a real threat in the upcoming opponent.",
+              "followUps": [
+                {
+                  "line": "That passing inconsistency sounds frustrating. Do you think it's a personnel thing or scheme?",
+                  "why": "You named her concern and asked a thoughtful question about root cause."
+                },
+                {
+                  "line": "Yeah, their passing game has been rocky. But remember Week 4 when they clicked? Could that show up Sunday?",
+                  "why": "You acknowledge her worry, then remind her of a counter-example without dismissing her fear."
+                }
+              ],
+              "noFakeExpertNote": "If you have not watched enough games to answer this, ask her to explain. That is more useful than a guess."
+            },
+            "xp": 10
+          },
+          {
+            "id": "pregame-02-tt-support",
+            "type": "talk-track",
+            "conceptIds": ["listen-first", "follow-up-question"],
+            "payload": {
+              "title": "The night before",
+              "setting": "Saturday evening, the game is tomorrow.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "I am so ready for this game but also terrified. Does that make sense?",
+                  "replies": [
+                    {
+                      "id": "validate",
+                      "text": "That makes perfect sense. Both things are real. How are you feeling now?",
+                      "smoothDelta": 20,
+                      "theirResponse": "Honestly, just trying to sleep. It's all I can think about.",
+                      "coachNote": "You named the paradox as normal, which gives her permission to feel both ways. That's what support looks like."
+                    },
+                    {
+                      "id": "pivot",
+                      "text": "Let's talk about something else to take your mind off it.",
+                      "smoothDelta": 5,
+                      "theirResponse": "I appreciate that, but I kind of want to talk about the game.",
+                      "coachNote": "Distraction can help sometimes, but she wants to process. Let her lead."
+                    },
+                    {
+                      "id": "pressure",
+                      "text": "You need to calm down or you will play bad.",
+                      "smoothDelta": -15,
+                      "theirResponse": "Great, now I am stressed about being too stressed.",
+                      "coachNote": "Pressure about emotions makes it worse. Normalize the feeling instead."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "The night before is when anxiety peaks. Being a steady presence matters more than advice."
+            },
+            "xp": 40
+          }
+        ]
+      },
+      {
+        "id": "during-game-03",
+        "title": "During the game",
+        "objective": "You can follow along in real time without pretending to understand every call.",
+        "estimatedMinutes": 12,
+        "conceptIds": ["follow-up-question", "listen-first", "honest-not-expert"],
+        "activities": [
+          {
+            "id": "during-game-03-tt-reactions",
+            "type": "talk-track",
+            "conceptIds": ["listen-first"],
+            "payload": {
+              "title": "Live game reaction",
+              "setting": "Early in the game, she texts about a controversial call.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "THAT WAS HOLDING!! Did you see that?? How does the ref miss that???",
+                  "replies": [
+                    {
+                      "id": "ask-context",
+                      "text": "I missed it. What happened on the play?",
+                      "smoothDelta": 15,
+                      "theirResponse": "Their lineman grabbed our pass rusher. Obvious penalty. We got robbed.",
+                      "coachNote": "Asking for context lets her vent and brings you into the moment. Honesty is better than bluffing."
+                    },
+                    {
+                      "id": "blame-ref",
+                      "text": "These refs are always terrible.",
+                      "smoothDelta": 5,
+                      "theirResponse": "Yeah, but that was *really* bad.",
+                      "coachNote": "You validated her frustration but missed the specific play. She wanted to describe it to you."
+                    },
+                    {
+                      "id": "fake-confirm",
+                      "text": "Yeah, that was totally holding. I hate when they call it inconsistent.",
+                      "smoothDelta": -10,
+                      "theirResponse": "Wait, did you actually see it?",
+                      "coachNote": "She caught you guessing. When you did not see it, say so. Honesty keeps trust."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "During a game, real-time reactions are messy. Admit what you missed and ask her to paint the picture."
+            },
+            "xp": 40
+          },
+          {
+            "id": "during-game-03-st-live",
+            "type": "say-this",
+            "conceptIds": ["follow-up-question", "zone-vs-man"],
+            "payload": {
+              "statement": {
+                "speaker": "Her",
+                "text": "Third and four? They are definitely going to run it. The defense is in zone coverage, not enough bodies in the box."
+              },
+              "question": "What is she predicting?",
+              "options": [
+                {
+                  "id": "correct",
+                  "text": "She expects a run play because the defense (zone coverage) is not set up well to stop it.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "close-wrong",
+                  "text": "The defense is weak because they are in zone instead of man.",
+                  "isCorrect": false,
+                  "explanation": "Zone vs man is not a weakness by itself. Her point is that *this particular* zone setup leaves gaps a run game can exploit."
+                },
+                {
+                  "id": "wrong",
+                  "text": "She is saying the quarterback should throw deep.",
+                  "isCorrect": false,
+                  "explanation": "She is reading the defense to predict what offense will do. Deep passing would play into the strength of that zone coverage."
+                }
+              ],
+              "translation": "She is reading the defense setup and predicting the offense will call a run to exploit a gap.",
+              "followUps": [
+                {
+                  "line": "So the run should work if they execute?",
+                  "why": "You connect the read to the likely outcome. Shows you're following her logic."
+                },
+                {
+                  "line": "That is smart. Is that because zone leaves gaps, or because they don't have enough defenders close?",
+                  "why": "You ask for the reasoning, which teaches you more and shows genuine curiosity."
+                }
+              ],
+              "noFakeExpertNote": "If you do not see the coverage she is referring to, ask her to point it out. That is more interesting than pretending."
+            },
+            "xp": 10
+          },
+          {
+            "id": "during-game-03-ds-call",
+            "type": "decision-scenario",
+            "conceptIds": ["honest-not-expert", "listen-first"],
+            "payload": {
+              "prompt": "The referee makes a call she disagrees with. She texts angrily.",
+              "situation": {
+                "narrative": "She texts: 'THAT IS THE WORST CALL I HAVE EVER SEEN!! That should have been [penalty]!!' You did not see it live.",
+                "facts": [
+                  {
+                    "label": "You",
+                    "value": "Did not see the replay yet"
+                  },
+                  {
+                    "label": "She is",
+                    "value": "Very upset, needs to vent"
+                  },
+                  {
+                    "label": "The call",
+                    "value": "Might be right or wrong; you don't know"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "best-hear",
+                  "label": "Wow, that sounds brutal. What did you see?",
+                  "verdict": "best",
+                  "consequence": "She describes it. You listen. Her anger is validated, and you get the context. Even if the call was right, her perspective matters.",
+                  "considerations": [
+                    "You do not have to agree the call was wrong to hear her frustration.",
+                    "Letting her vent often cools emotions faster than defending the ref.",
+                    "You learn how to read what bothered her about the play."
+                  ]
+                },
+                {
+                  "id": "neutral-wait",
+                  "label": "That stinks. Let me see the replay when it comes.",
+                  "verdict": "acceptable",
+                  "consequence": "You're staying neutral. She might appreciate the honesty, but she misses the immediate validation.",
+                  "considerations": [
+                    "This is honest: you are admitting you didn't see it.",
+                    "But it feels a bit distant when she wants immediate support."
+                  ]
+                },
+                {
+                  "id": "poor-defend",
+                  "label": "Sometimes these calls are tricky. Maybe they saw something.",
+                  "verdict": "poor",
+                  "consequence": "She feels like you are siding with the refs instead of with her when she is upset.",
+                  "considerations": [
+                    "Defending the call when she is venting feels dismissive.",
+                    "Even if the call was technically right, she needed you to hear her first.",
+                    "She will remember you took the ref's side over hers."
+                  ]
+                }
+              ],
+              "expertNote": "In moments of frustration, fans need acknowledgment before analysis. Save the 'well actually' for later if it matters.",
+              "sayThisLine": "That sounds frustrating. Tell me what happened?"
+            },
+            "xp": 10
+          },
+          {
+            "id": "during-game-03-st-predict",
+            "type": "say-this",
+            "conceptIds": ["follow-up-question"],
+            "payload": {
+              "statement": {
+                "speaker": "Her",
+                "text": "Down 10 with eight minutes left. We are cooked. Our run game has nothing today."
+              },
+              "question": "What is she really saying?",
+              "options": [
+                {
+                  "id": "correct",
+                  "text": "The game is likely lost because the team's best offensive weapon (the run) is not working.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "surface",
+                  "text": "The run game is not working well.",
+                  "isCorrect": false,
+                  "explanation": "That's the surface. She is drawing a conclusion: without the run game working, they cannot come back down 10."
+                },
+                {
+                  "id": "opposite",
+                  "text": "They should pass more to catch up.",
+                  "isCorrect": false,
+                  "explanation": "She is not saying what they should do. She is assessing why they are losing. That's a read, not a play call."
+                }
+              ],
+              "translation": "She is identifying why the team is losing: their offense relies on a run game that is not effective today.",
+              "followUps": [
+                {
+                  "line": "Do you think the defense is shutting down the run, or is our line not getting push?",
+                  "why": "You ask for the root cause of the run-game failure, showing you are thinking about the 'why' with her."
+                },
+                {
+                  "line": "Yeah, without the run game, passing becomes predictable. Have they tried any new looks?",
+                  "why": "You connect the run game to other aspects of the offense, which shows strategic thinking."
+                }
+              ],
+              "noFakeExpertNote": "It's okay to say 'I did not notice the run game was struggling' and ask her what she is seeing."
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "after-loss-04",
+        "title": "After a tough loss",
+        "objective": "You can sit with disappointment without trying to fix it or compare pain.",
+        "estimatedMinutes": 12,
+        "conceptIds": ["listen-first", "honest-not-expert"],
+        "activities": [
+          {
+            "id": "after-loss-04-tt-vent",
+            "type": "talk-track",
+            "conceptIds": ["listen-first"],
+            "payload": {
+              "title": "The hard loss",
+              "setting": "Right after her team lost a close game they should have won.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "I cannot believe they lost that. I am so mad I could scream.",
+                  "replies": [
+                    {
+                      "id": "sit-with-it",
+                      "text": "That is brutal. I'm here.",
+                      "smoothDelta": 15,
+                      "theirResponse": "The fourth quarter was inexcusable. They just gave it away.",
+                      "coachNote": "You did not try to cheer her up or minimize the loss. Sometimes just showing up is enough."
+                    },
+                    {
+                      "id": "compare-pain",
+                      "text": "I know, my team lost too. It sucks.",
+                      "smoothDelta": -5,
+                      "theirResponse": "I don't want to talk about your team right now.",
+                      "coachNote": "She needs space to process her loss, not to hear about yours. That can wait."
+                    },
+                    {
+                      "id": "fix",
+                      "text": "Look on the bright side, you still have the tiebreaker.",
+                      "smoothDelta": -15,
+                      "theirResponse": "I do not care about the tiebreaker right now.",
+                      "coachNote": "After a tough loss, she needs time to grieve, not optimism. The silver lining comes later."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "After a loss, your job is not to fix it or cheer her up. Your job is to listen."
+            },
+            "xp": 40
+          },
+          {
+            "id": "after-loss-04-ds-support",
+            "type": "decision-scenario",
+            "conceptIds": ["listen-first", "honest-not-expert"],
+            "payload": {
+              "prompt": "Her team lost a heartbreaking game in the final seconds.",
+              "situation": {
+                "narrative": "She is devastated. She texts: 'We should have won. I am so disappointed. I do not want to talk about it but I also cannot stop thinking about it.'",
+                "facts": [
+                  {
+                    "label": "Her emotion",
+                    "value": "Mixed: needs space and needs to vent"
+                  },
+                  {
+                    "label": "Time since loss",
+                    "value": "Less than an hour"
+                  },
+                  {
+                    "label": "What helps now",
+                    "value": "Presence, not optimism"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "best-present",
+                  "label": "I am here. We can talk about it when you are ready.",
+                  "verdict": "best",
+                  "consequence": "You offer unconditional presence. She knows she can vent to you when she needs to, without pressure.",
+                  "considerations": [
+                    "A loss this fresh needs time to breathe before analysis.",
+                    "Telling her you are available (without pushing) respects her mixed feelings.",
+                    "She can reach out when the sting fades enough to talk."
+                  ]
+                },
+                {
+                  "id": "okay-distract",
+                  "label": "Want to grab food and take your mind off it?",
+                  "verdict": "acceptable",
+                  "consequence": "You offer a distraction. It might help, or it might feel like you are avoiding the hurt with her.",
+                  "considerations": [
+                    "Sometimes action is healing.",
+                    "But she might feel like you don't understand how much this matters."
+                  ]
+                },
+                {
+                  "id": "poor-force",
+                  "label": "You need to talk about this. It is not healthy to keep it in.",
+                  "verdict": "poor",
+                  "consequence": "You force processing before she is ready. She withdraws and stops sharing with you about hard stuff.",
+                  "considerations": [
+                    "Pressuring someone to process emotions rarely works.",
+                    "She needs permission to sit with the pain, not a mandate to resolve it.",
+                    "This teaches her that you care more about fixing her feelings than about being present."
+                  ]
+                }
+              ],
+              "expertNote": "After a loss, the first response is not about solutions or meaning. It is about permission to be upset.",
+              "sayThisLine": "I am here. We can talk through it whenever you are ready."
+            },
+            "xp": 10
+          },
+          {
+            "id": "after-loss-04-st-blame",
+            "type": "say-this",
+            "conceptIds": ["listen-first", "follow-up-question"],
+            "payload": {
+              "statement": {
+                "speaker": "Her",
+                "text": "Our defense absolutely choked. The coverage was not even close. That safety looked lost out there."
+              },
+              "question": "What is she doing?",
+              "options": [
+                {
+                  "id": "correct",
+                  "text": "She is identifying a specific breakdown on a key play to explain why they lost.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "close-wrong",
+                  "text": "She is angry at the defense and wants them to lose.",
+                  "isCorrect": false,
+                  "explanation": "She is not wishing failure; she is *explaining* failure. The criticism is about performance on that play, not a deep grudge."
+                },
+                {
+                  "id": "surface",
+                  "text": "The defense played badly.",
+                  "isCorrect": false,
+                  "explanation": "That's the surface. She is digging into a specific breakdown (coverage, a specific player) to understand the loss."
+                }
+              ],
+              "translation": "She is pinpointing exactly where the defense failed, which is how fans make sense of a loss.",
+              "followUps": [
+                {
+                  "line": "Yeah, that safety was in the wrong spot. Do you think he misread the coverage or did the linebacker miss their assignment?",
+                  "why": "You name what you saw and ask a follow-up about root cause. Shows you are thinking with her."
+                },
+                {
+                  "line": "That safety looked confused. Was that play-calling, or did he have a bad day?",
+                  "why": "You acknowledge the mistake and ask whether it was a systemic issue (call) or a one-off."
+                }
+              ],
+              "noFakeExpertNote": "After a loss, analysis is how she processes. Asking 'Why do you think that happened?' lets her think it through with you."
+            },
+            "xp": 10
+          },
+          {
+            "id": "after-loss-04-tt-next",
+            "type": "talk-track",
+            "conceptIds": ["listen-first", "follow-up-question"],
+            "payload": {
+              "title": "Day after",
+              "setting": "The next day, her initial anger has faded but the disappointment lingers.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "I'm still upset about yesterday. I know I need to move on, but it hurts.",
+                  "replies": [
+                    {
+                      "id": "validate-pain",
+                      "text": "It makes sense. That loss hit different. What's the hardest part for you right now?",
+                      "smoothDelta": 20,
+                      "theirResponse": "We had it and threw it away. That is what gets me.",
+                      "coachNote": "You normalized lingering hurt and asked for the core pain. That is listening, not rushing to fix."
+                    },
+                    {
+                      "id": "look-forward",
+                      "text": "Next week is a new chance. You will beat them in a rematch.",
+                      "smoothDelta": 5,
+                      "theirResponse": "I know, but I just want to sit with this for a bit.",
+                      "coachNote": "Looking ahead is natural, but she needs permission to grieve first. Let the pain breathe."
+                    },
+                    {
+                      "id": "move-on",
+                      "text": "You have to let it go or it will eat you up.",
+                      "smoothDelta": -10,
+                      "theirResponse": "I will. Just not yet.",
+                      "coachNote": "She is asking for time, not a deadline. Respecting that matters."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "The pain after a loss fades, but not on anyone else's timeline. Your patience means everything."
+            },
+            "xp": 40
+          }
+        ]
+      },
+      {
+        "id": "after-win-05",
+        "title": "After a big win",
+        "objective": "You can celebrate a win authentically, even when you did not see every play.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["follow-up-question", "listen-first"],
+        "activities": [
+          {
+            "id": "after-win-05-tt-celebrate",
+            "type": "talk-track",
+            "conceptIds": ["listen-first", "follow-up-question"],
+            "payload": {
+              "title": "We won!",
+              "setting": "Right after her team wins a big playoff game.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "WE DID IT!!! Did you see that last drive?? I am freaking out!!!",
+                  "replies": [
+                    {
+                      "id": "joy",
+                      "text": "You sound so happy! Tell me everything!",
+                      "smoothDelta": 20,
+                      "theirResponse": "Okay so with 90 seconds left, we were down by three...",
+                      "coachNote": "You matched her energy and asked her to relive it with you. That is celebrating *with* her, not watching from the sideline."
+                    },
+                    {
+                      "id": "neutral",
+                      "text": "Cool, you won. That is great.",
+                      "smoothDelta": 5,
+                      "theirResponse": "Cool? COOL?? This was the biggest game of the season!",
+                      "coachNote": "You did not match her joy. Enthusiasm is important, even if you did not watch every play."
+                    },
+                    {
+                      "id": "dampener",
+                      "text": "Nice, but they still have to get through the next round.",
+                      "smoothDelta": -15,
+                      "theirResponse": "Can I just be happy for 5 minutes?",
+                      "coachNote": "You took her joy and pivoted to future worries. Let her have this moment first."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "A big win is joyful. Your enthusiasm, even if you missed some plays, matters to her."
+            },
+            "xp": 40
+          },
+          {
+            "id": "after-win-05-st-hero",
+            "type": "say-this",
+            "conceptIds": ["follow-up-question"],
+            "payload": {
+              "statement": {
+                "speaker": "Her",
+                "text": "Number 12 was incredible today. The way he moved in the pocket and found guys, that is superstar stuff."
+              },
+              "question": "What is she expressing?",
+              "options": [
+                {
+                  "id": "correct",
+                  "text": "She is praising a player's performance, specifically his ability to escape pressure and make big throws.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "close",
+                  "text": "She thinks the team should always play this way.",
+                  "isCorrect": false,
+                  "explanation": "She is not making a rule or demand. She is celebrating how well one player executed on this one day."
+                },
+                {
+                  "id": "wrong",
+                  "text": "The quarterback threw a lot of touchdowns.",
+                  "isCorrect": false,
+                  "explanation": "She is praising *how* he played (movement, decision-making), not just the stats. Those are different things."
+                }
+              ],
+              "translation": "She is calling out the specific skill (pocket movement and finding receivers) that made him standout today.",
+              "followUps": [
+                {
+                  "line": "Yeah, he had the pocket awareness. Did you notice a specific play that showed it best?",
+                  "why": "You agree and ask her to zoom in on a moment. That is engaging with her analysis."
+                },
+                {
+                  "line": "That kind of play-making is what the team was missing. Do you think it is repeatable or just a great day?",
+                  "why": "You connect the performance to the bigger picture (team need) and ask about consistency."
+                }
+              ],
+              "noFakeExpertNote": "If you did not see the game, you can still celebrate her joy and ask her to describe what made him great."
+            },
+            "xp": 10
+          },
+          {
+            "id": "after-win-05-ds-credit",
+            "type": "decision-scenario",
+            "conceptIds": ["listen-first", "follow-up-question"],
+            "payload": {
+              "prompt": "After the win, she is torn between crediting the team and criticizing one part.",
+              "situation": {
+                "narrative": "She says: 'That was amazing, but we got lucky. The defense was bad and the other team made mistakes. We won but we are not really a great team yet.'",
+                "facts": [
+                  {
+                    "label": "They won",
+                    "value": "Decisive victory"
+                  },
+                  {
+                    "label": "She is doing",
+                    "value": "Celebrating and critiquing at once"
+                  },
+                  {
+                    "label": "Her concern",
+                    "value": "Sustainable dominance, not one-game luck"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "best-engage",
+                  "label": "You're both right. We won big AND there are things to clean up. What worried you most?",
+                  "verdict": "best",
+                  "consequence": "You honor both her joy and her skepticism. You go deeper into what specifically concerns her.",
+                  "considerations": [
+                    "Great fans celebrate wins while staying clear-eyed about flaws.",
+                    "She is not being negative; she is being thoughtful.",
+                    "Asking 'what worried you' lets her unpack the critique with you."
+                  ]
+                },
+                {
+                  "id": "okay-celebrate",
+                  "label": "That was a huge win. We can worry about that stuff next week.",
+                  "verdict": "acceptable",
+                  "consequence": "You focus on the joy. She might feel like you are not taking her analysis seriously.",
+                  "considerations": [
+                    "It is fair to protect the celebration.",
+                    "But she also wants her concerns heard, not dismissed as buzzkills."
+                  ]
+                },
+                {
+                  "id": "poor-agree-negative",
+                  "label": "Yeah, we are not actually that good. That was sloppy.",
+                  "verdict": "poor",
+                  "consequence": "You killed the joy by agreeing with the harshest take. She will feel like you don't believe in her team.",
+                  "considerations": [
+                    "A win is a win. Spiking it immediately with 'we are not good' feels disloyal.",
+                    "She can be realistic on Monday. Right now, let her celebrate."
+                  ]
+                }
+              ],
+              "expertNote": "Good fans celebrate wins fully, then get clear-eyed on tape. Both are true. You can hold both at once.",
+              "sayThisLine": "Amazing win. What part of the game was most impressive to you?"
+            },
+            "xp": 10
+          },
+          {
+            "id": "after-win-05-st-ownership",
+            "type": "say-this",
+            "conceptIds": ["follow-up-question", "listen-first"],
+            "payload": {
+              "statement": {
+                "speaker": "Her",
+                "text": "I know we should not overlook the opponent, but that fourth-quarter adjustment by our coaches was genius."
+              },
+              "question": "What is she crediting?",
+              "options": [
+                {
+                  "id": "correct",
+                  "text": "She is praising a coaching decision that changed the game in the fourth quarter.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "close",
+                  "text": "The offense executed the plays the coaches called.",
+                  "isCorrect": false,
+                  "explanation": "That's part of it, but she is specifically crediting the *adjustment*—the coaching decision to change strategy, not just the execution."
+                },
+                {
+                  "id": "wrong",
+                  "text": "The opponent was weak and that is why we won.",
+                  "isCorrect": false,
+                  "explanation": "She acknowledged the opponent was good ('we should not overlook them'). She is crediting the coaching move, not the opponent's weakness."
+                }
+              ],
+              "translation": "She is attributing the win partly to smart in-game coaching adjustments in a crucial moment.",
+              "followUps": [
+                {
+                  "line": "Yeah, I noticed that shift too. Did you see what specifically changed?",
+                  "why": "You validate her observation and ask her to zoom in. Shows you were tracking the same thing."
+                },
+                {
+                  "line": "That is what separates good teams from great ones: adjustments. Did your team telegraph it, or did the coaches disguise it?",
+                  "why": "You connect her observation to a bigger principle about coaching excellence."
+                }
+              ],
+              "noFakeExpertNote": "If you missed the adjustment, ask her to describe it. Coaching moves are interesting to analyze, and she clearly saw it."
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "fantasy-talk-06",
+        "title": "Fantasy and trash talk",
+        "objective": "You can join trash talk and fantasy league talk without faking expertise.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["fantasy-football", "follow-up-question", "listen-first"],
+        "activities": [
+          {
+            "id": "fantasy-talk-06-st-lineup",
+            "type": "say-this",
+            "conceptIds": ["fantasy-football"],
+            "payload": {
+              "statement": {
+                "speaker": "Her",
+                "text": "My running back is on the injury report as questionable. If he does not play, I have no one on the bench. I am going to lose my matchup."
+              },
+              "question": "What is she worried about?",
+              "options": [
+                {
+                  "id": "correct",
+                  "text": "A starting player may not be available due to injury, and she has no backup, so she will score fewer points.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "close",
+                  "text": "The running back is injured and might need surgery.",
+                  "isCorrect": false,
+                  "explanation": "She is focused on his availability for *this week's game*, not his long-term health. Questionable means he might play Sunday."
+                },
+                {
+                  "id": "wrong",
+                  "text": "She wants to drop her running back.",
+                  "isCorrect": false,
+                  "explanation": "Questionable does not mean he is out. She is hoping he *does* play so she can use him this week."
+                }
+              ],
+              "translation": "A key player's availability for Sunday is uncertain, and if he sits out, her fantasy points will drop because she has no backup plan.",
+              "followUps": [
+                {
+                  "line": "Yeah, that is a tough spot. What is your backup plan if he does not play?",
+                  "why": "You name the problem and ask how she is preparing. That is practical support."
+                },
+                {
+                  "line": "When does the injury report update? We might know more by Sunday morning.",
+                  "why": "You acknowledge the uncertainty and point to when more info comes. Shows you understand the timeline."
+                }
+              ],
+              "noFakeExpertNote": "If you don't play fantasy, you can still help her think through the problem. 'Who would you start instead?' is a good question."
+            },
+            "xp": 10
+          },
+          {
+            "id": "fantasy-talk-06-tt-trash",
+            "type": "talk-track",
+            "conceptIds": ["fantasy-football", "follow-up-question"],
+            "payload": {
+              "title": "Trash talk",
+              "setting": "She is in a fantasy league with friends. This week, her matchup is against someone she knows.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "I'm about to destroy your team in fantasy this week. My receivers are unreal.",
+                  "replies": [
+                    {
+                      "id": "play-along",
+                      "text": "Bring it on! My running back is hungry for yards.",
+                      "smoothDelta": 15,
+                      "theirResponse": "Oh it's ON. May the best team win!",
+                      "coachNote": "You played back with confidence even if you don't follow fantasy closely. Playful trash talk builds the bond."
+                    },
+                    {
+                      "id": "neutral",
+                      "text": "Good luck to your team.",
+                      "smoothDelta": 5,
+                      "theirResponse": "Um, that is boring. I said trash talk, not pleasantries.",
+                      "coachNote": "You were polite, but trash talk needs some swagger. Match her energy, even if you are joking."
+                    },
+                    {
+                      "id": "withdraw",
+                      "text": "I don't know enough about fantasy to talk trash.",
+                      "smoothDelta": -5,
+                      "theirResponse": "It doesn't matter, just play along!",
+                      "coachNote": "She wants to have fun with you, not a detailed analysis. Confidence, even joking, is what she's after."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Fantasy trash talk is about camaraderie and playfulness, not knowledge. Match her energy."
+            },
+            "xp": 40
+          },
+          {
+            "id": "fantasy-talk-06-st-waiver",
+            "type": "say-this",
+            "conceptIds": ["fantasy-football", "follow-up-question"],
+            "payload": {
+              "statement": {
+                "speaker": "Her",
+                "text": "I dropped my tight end after last week. Now he just went off for 20 points and he is gone. I was so stupid."
+              },
+              "question": "What is she expressing?",
+              "options": [
+                {
+                  "id": "correct",
+                  "text": "She made a move she regrets: releasing a player who performed well the next week, so she cannot get him back.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "close",
+                  "text": "The tight end was bad last week so he should stay dropped.",
+                  "isCorrect": false,
+                  "explanation": "She is not debating the drop itself. She is regretting that she dropped him *before* seeing this week's breakout. It is about timing and luck."
+                },
+                {
+                  "id": "wrong",
+                  "text": "She thinks she is not good at fantasy football.",
+                  "isCorrect": false,
+                  "explanation": "She is not doubting her skills broadly. She is frustrated about one decision. 'Stupid' is emotion, not a real self-assessment."
+                }
+              ],
+              "translation": "She made a roster move that looked bad last week, but looks terrible in hindsight because the player just had a great week.",
+              "followUps": [
+                {
+                  "line": "Waiver pickups are a gamble. You can't predict breakouts. That's fantasy.",
+                  "why": "You normalize the regret. It shows you understand that fantasy has luck baked in."
+                },
+                {
+                  "line": "That hurts. But you also can't have known he'd go off this week. These things happen.",
+                  "why": "You validate the frustration while reminding her that the future was unknowable."
+                }
+              ],
+              "noFakeExpertNote": "If you do not play fantasy, you can still be empathetic: 'That has to be frustrating when a player bounces back after you let them go.'"
+            },
+            "xp": 10
+          },
+          {
+            "id": "fantasy-talk-06-ds-trade",
+            "type": "decision-scenario",
+            "conceptIds": ["fantasy-football", "follow-up-question"],
+            "payload": {
+              "prompt": "She is considering a trade in her fantasy league.",
+              "situation": {
+                "narrative": "She is thinking about trading away her star receiver for a running back and a lower-tier receiver. Her reasoning: she needs depth at RB.",
+                "facts": [
+                  {
+                    "label": "Giving up",
+                    "value": "One high-end receiver"
+                  },
+                  {
+                    "label": "Getting",
+                    "value": "One RB, one mid-tier receiver"
+                  },
+                  {
+                    "label": "Her need",
+                    "value": "Depth at running back"
+                  },
+                  {
+                    "label": "League level",
+                    "value": "Casual, with friends"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "best-engage",
+                  "label": "That could work depending on the players. Who is the RB and who is the other receiver?",
+                  "verdict": "best",
+                  "consequence": "You take her strategy seriously and ask for details. Even if you don't play, you are helping her think it through.",
+                  "considerations": [
+                    "She wants someone to talk it out with, not an expert ruling.",
+                    "Asking who the specific players are lets her think through the upside and risk."
+                  ]
+                },
+                {
+                  "id": "okay-defer",
+                  "label": "If you need RB depth, that makes sense. What do you think?",
+                  "verdict": "acceptable",
+                  "consequence": "You validate the reasoning and bounce it back to her. She will decide, but you supported the thinking.",
+                  "considerations": [
+                    "You are not an expert, so staying humble is fine.",
+                    "But she might want more engagement to really think it through."
+                  ]
+                },
+                {
+                  "id": "poor-dismiss",
+                  "label": "I don't really follow fantasy. Sounds fine.",
+                  "verdict": "poor",
+                  "consequence": "She feels like you don't care about something she cares about. You made it feel unimportant.",
+                  "considerations": [
+                    "You don't have to be an expert to be engaged.",
+                    "Dismissing it says 'your interests bore me', which stings."
+                  ]
+                }
+              ],
+              "expertNote": "You don't have to know fantasy to help her think out loud. Questions like 'who else is on waivers?' or 'how does that help your playoff run?' show you care about her reasoning.",
+              "sayThisLine": "That could work. Tell me about the players you're swapping."
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "watch-party-07",
+        "title": "The watch party",
+        "objective": "You can watch a game with a fan without stealing the moment or faking confidence.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["listen-first", "honest-not-expert", "follow-up-question"],
+        "activities": [
+          {
+            "id": "watch-party-07-ds-comfort",
+            "type": "decision-scenario",
+            "conceptIds": ["listen-first", "honest-not-expert"],
+            "payload": {
+              "prompt": "You are watching the game at her place. She is calling plays; you are lost.",
+              "situation": {
+                "narrative": "Early in the game, she says: 'Watch, they are going to blitz from the strong side.' You are not sure what that means, but you don't want to look clueless.",
+                "facts": [
+                  {
+                    "label": "You",
+                    "value": "Still learning the difference between defenses"
+                  },
+                  {
+                    "label": "She is",
+                    "value": "Engaged and sharing her knowledge"
+                  },
+                  {
+                    "label": "The moment",
+                    "value": "Intimate: she is teaching you"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "best-ask",
+                  "label": "I'm not sure what blitz from the strong side looks like. Point it out?",
+                  "verdict": "best",
+                  "consequence": "She lights up explaining. You learn something. She feels like a teacher, which is powerful.",
+                  "considerations": [
+                    "Admitting you don't know invites her to share her knowledge.",
+                    "Teach me' is one of the sexiest things you can say to an expert.",
+                    "The watch party becomes a bonding moment, not a performance."
+                  ]
+                },
+                {
+                  "id": "okay-nod",
+                  "label": "Yeah, I see it.",
+                  "verdict": "acceptable",
+                  "consequence": "You stay safe. But you miss the chance to learn and to make her feel valued as a teacher.",
+                  "considerations": [
+                    "This protects your ego in the short term.",
+                    "But over time, pretending makes the relationship shallower."
+                  ]
+                },
+                {
+                  "id": "poor-change",
+                  "label": "Did you see that run? That was awesome.",
+                  "verdict": "poor",
+                  "consequence": "You change the subject to avoid admitting you don't understand her point. She notices and stops teaching you.",
+                  "considerations": [
+                    "Deflection is a form of dishonesty.",
+                    "She invested in sharing something, and you dodged it.",
+                    "Over time, she will stop trying to bring you in."
+                  ]
+                }
+              ],
+              "expertNote": "Asking her to explain a concept is not weakness. It is an invitation to share her passion. Most people love teaching.",
+              "sayThisLine": "I don't know that term. Can you show me what you mean?"
+            },
+            "xp": 10
+          },
+          {
+            "id": "watch-party-07-tt-live",
+            "type": "talk-track",
+            "conceptIds": ["listen-first", "follow-up-question"],
+            "payload": {
+              "title": "In the moment",
+              "setting": "You are watching together. A big play just happened. She is excited.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "DID YOU SEE THAT?? That is the play we have been waiting for all season!",
+                  "replies": [
+                    {
+                      "id": "engage",
+                      "text": "That was wild! What makes that play so special for you?",
+                      "smoothDelta": 20,
+                      "theirResponse": "Because it proves the offense can get deep. I have been saying...",
+                      "coachNote": "You matched her excitement and asked her to go deeper. That keeps her talking and you learning."
+                    },
+                    {
+                      "id": "quiet",
+                      "text": "Yeah, cool play.",
+                      "smoothDelta": 5,
+                      "theirResponse": "Cool? COOL? This is everything we needed to see!",
+                      "coachNote": "You did not match her energy. She was sharing something important and you went flat."
+                    },
+                    {
+                      "id": "know-better",
+                      "text": "It's a good play but not that special. Every team can do that.",
+                      "smoothDelta": -15,
+                      "theirResponse": "You clearly were not paying attention all season.",
+                      "coachNote": "You undermined her joy by dismissing it as common. That shuts down the moment."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "A watch party is her moment to share passion. Your job is to witness and celebrate, not critique."
+            },
+            "xp": 40
+          },
+          {
+            "id": "watch-party-07-st-read",
+            "type": "say-this",
+            "conceptIds": ["follow-up-question", "zone-vs-man"],
+            "payload": {
+              "statement": {
+                "speaker": "Her",
+                "text": "Watch the safety. He bites on the play-action. The whole middle is open now."
+              },
+              "question": "What is she teaching you to see?",
+              "options": [
+                {
+                  "id": "correct",
+                  "text": "A defender fell for a fake and left a gap that the offense can exploit.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "close",
+                  "text": "Play-action is always the right call.",
+                  "isCorrect": false,
+                  "explanation": "She is not saying that. She is showing you how, *in this moment*, the play-action worked because the safety was vulnerable to it."
+                },
+                {
+                  "id": "surface",
+                  "text": "The middle of the field is open.",
+                  "isCorrect": false,
+                  "explanation": "That's what happened, but she is teaching you *why*: the safety's mistake created the opening. Cause and effect."
+                }
+              ],
+              "translation": "She is pointing out how one defender's mistake (reacting to a fake) unlocked the whole middle of the field.",
+              "followUps": [
+                {
+                  "line": "So the play-action worked because he trusted the run fake?",
+                  "why": "You are connecting the deception to the consequence. Shows you're following the cause-and-effect chain."
+                },
+                {
+                  "line": "Is that why defenses have to stay disciplined? One guy bites and everything breaks?",
+                  "why": "You zoom out to the principle. Shows you are learning the bigger picture from her example."
+                }
+              ],
+              "noFakeExpertNote": "If you missed the play, say 'Can you rewind that?' or 'I missed it, tell me what you saw.' Learning together is better than pretending."
+            },
+            "xp": 10
+          }
+        ]
+      },
+      {
+        "id": "friendly-debate-08",
+        "title": "Friendly debate",
+        "objective": "You can disagree about football without it feeling personal or condescending.",
+        "estimatedMinutes": 12,
+        "conceptIds": ["follow-up-question", "listen-first", "honest-not-expert"],
+        "activities": [
+          {
+            "id": "friendly-debate-08-tt-differ",
+            "type": "talk-track",
+            "conceptIds": ["listen-first", "follow-up-question"],
+            "payload": {
+              "title": "We disagree",
+              "setting": "She thinks the team should go for it on fourth down. You think they should punt.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "They have to go for it! Punting is giving up.",
+                  "replies": [
+                    {
+                      "id": "curious",
+                      "text": "I see why, but the field position looks risky. Walk me through the math?",
+                      "smoothDelta": 15,
+                      "theirResponse": "Okay so if we get it, we score. If we miss...",
+                      "coachNote": "You disagreed but stayed curious and asked her reasoning. That is respect, not dismissal."
+                    },
+                    {
+                      "id": "defer",
+                      "text": "You're probably right. You know this better than me.",
+                      "smoothDelta": 10,
+                      "theirResponse": "But I want to hear your take. What are you thinking?",
+                      "coachNote": "Deferring is nice, but she wants your real opinion. That shows respect for her knowledge and your own thoughts."
+                    },
+                    {
+                      "id": "override",
+                      "text": "No, punting is the smart play. They need field position.",
+                      "smoothDelta": -10,
+                      "theirResponse": "Okay, but that is so conservative.",
+                      "coachNote": "You shut down dialogue by stating your opinion as fact. Debate is about exploring, not winning."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "The best conversations include disagreement. Ask her reasoning before stating yours."
+            },
+            "xp": 40
+          },
+          {
+            "id": "friendly-debate-08-ds-point",
+            "type": "decision-scenario",
+            "conceptIds": ["listen-first", "follow-up-question"],
+            "payload": {
+              "prompt": "You and her are debating a controversial call from the game.",
+              "situation": {
+                "narrative": "A penalty was called late in the game. She thinks it was the right call. You think it changed the outcome unfairly.",
+                "facts": [
+                  {
+                    "label": "The call",
+                    "value": "Pass interference, 30-yard penalty"
+                  },
+                  {
+                    "label": "Time left",
+                    "value": "3 minutes"
+                  },
+                  {
+                    "label": "Her take",
+                    "value": "Correct call, defender was too handsy"
+                  },
+                  {
+                    "label": "Your instinct",
+                    "value": "Game-deciding penalty, let them play"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "best-engage",
+                  "label": "I saw it different, but I want to hear why you think it's right.",
+                  "verdict": "best",
+                  "consequence": "You name your disagreement but invite her perspective. You are debating, not debunking her.",
+                  "considerations": [
+                    "Debate is more interesting when both people have a stake.",
+                    "Asking for her reasoning shows respect, even in disagreement.",
+                    "The conversation deepens instead of shutting down."
+                  ]
+                },
+                {
+                  "id": "okay-hedge",
+                  "label": "I can see both ways. The contact was tight, but so was the coverage.",
+                  "verdict": "acceptable",
+                  "consequence": "You validate both perspectives. She might feel like you are avoiding taking a real position.",
+                  "considerations": [
+                    "This is diplomatic and fair.",
+                    "But good debates need genuine disagreement, or they feel hollow."
+                  ]
+                },
+                {
+                  "id": "poor-shut-down",
+                  "label": "That call was trash. The refs rigged it.",
+                  "verdict": "poor",
+                  "consequence": "You blamed external forces instead of engaging her view. The debate becomes about refs, not the play.",
+                  "considerations": [
+                    "Blaming refs avoids real debate.",
+                    "She will feel like you didn't actually consider her logic.",
+                    "It feels like you're trying to win, not understand."
+                  ]
+                }
+              ],
+              "expertNote": "The best debates between people who care about each other stay focused on the play and the reasoning, not on ego or winning.",
+              "sayThisLine": "I read that differently, but I respect your take. Tell me what you saw."
+            },
+            "xp": 10
+          },
+          {
+            "id": "friendly-debate-08-st-opinion",
+            "type": "say-this",
+            "conceptIds": ["follow-up-question"],
+            "payload": {
+              "statement": {
+                "speaker": "Her",
+                "text": "Our offensive line is holding every play. That is why they are so good. The refs just refuse to call it on them."
+              },
+              "question": "What is she claiming?",
+              "options": [
+                {
+                  "id": "correct",
+                  "text": "She is saying the team's success is partly due to penalties not being called equally against their line.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "close-wrong",
+                  "text": "She thinks holding should be a legal play.",
+                  "isCorrect": false,
+                  "explanation": "She is not arguing for a rule change. She is saying the rule is enforced inconsistently. That is a fairness complaint, not a rule critique."
+                },
+                {
+                  "id": "far-wrong",
+                  "text": "Their offensive line is not very good.",
+                  "isCorrect": false,
+                  "explanation": "She is saying they *are* effective; she is just attributing it partly to not being caught for illegal contact."
+                }
+              ],
+              "translation": "She is suggesting that inconsistent penalty enforcement is giving one team an advantage.",
+              "followUps": [
+                {
+                  "line": "Have you noticed our line doing it too, or is it just them?",
+                  "why": "You ask for specifics and whether it is bias or just part of the game. Shows you are thinking critically."
+                },
+                {
+                  "line": "Yeah, that holding seems to go both ways sometimes. Do you think it changes the outcome of games?",
+                  "why": "You acknowledge her point and ask about impact. You are engaging her logic, not shutting it down."
+                }
+              ],
+              "noFakeExpertNote": "If you didn't see the line commits, you can ask her to point one out on replay. That is way more useful than agreeing blindly."
+            },
+            "xp": 10
+          },
+          {
+            "id": "friendly-debate-08-tt-disagree",
+            "type": "talk-track",
+            "conceptIds": ["listen-first", "honest-not-expert"],
+            "payload": {
+              "title": "Later in the week",
+              "setting": "You are still talking about the game. A disagreement came up. Now you're moving past it.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "I know we disagreed about that call, but you made a good point about field position.",
+                  "replies": [
+                    {
+                      "id": "reciprocate",
+                      "text": "You made me see the other side too. Either way, it was a close call.",
+                      "smoothDelta": 20,
+                      "theirResponse": "See, that is why I like talking football with you. You actually listen.",
+                      "coachNote": "You acknowledged her point and found common ground. That is how friendships handle disagreement."
+                    },
+                    {
+                      "id": "drop-it",
+                      "text": "Yeah, well, I still think punting was right.",
+                      "smoothDelta": 5,
+                      "theirResponse": "I know, that's fine. I just wanted to acknowledge your side.",
+                      "coachNote": "You stayed firm, which is fine. But she was trying to connect and you missed it a bit."
+                    },
+                    {
+                      "id": "apologize",
+                      "text": "I'm sorry, you were totally right and I was wrong.",
+                      "smoothDelta": 5,
+                      "theirResponse": "No, I liked having someone disagree. It made me think more.",
+                      "coachNote": "Over-apologizing can feel like you are dismissing your own thought. She wanted a real debate, not capitulation."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "After a good debate, acknowledging each other's points (without capitulating) deepens connection."
+            },
+            "xp": 40
+          }
+        ]
+      }
+    ]
+  }
+}

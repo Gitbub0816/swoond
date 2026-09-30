@@ -159,16 +159,16 @@
               "team-organization"
             ],
             "payload": {
-              "prompt": "An owner must choose between two crew chiefs: one with great car setup skills, one with excellent pit-stop strategy. Which hire wins races?",
+              "prompt": "Two crew chief candidates: one is a car setup expert, one is a strategy master. Which is the better hire?",
               "situation": {
                 "facts": [
                   {
                     "label": "Candidate A",
-                    "value": "Elite at car balance; has won many setup battles"
+                    "value": "Master of car setup and balance"
                   },
                   {
                     "label": "Candidate B",
-                    "value": "Brilliant at pit strategy; knows track position and fuel calls inside out"
+                    "value": "Expert in pit strategy and timing"
                   },
                   {
                     "label": "Context",
@@ -584,27 +584,26 @@
             ],
             "payload": {
               "prompt": "Put the driver pipeline in order, from entry to Cup.",
-              "template": "1. {{first}} 2. {{second}} 3. {{third}} 4. {{fourth}} 5. {{fifth}}",
               "items": [
                 {
                   "id": "short-track",
-                  "label": "Short-track racing (local/regional)"
+                  "text": "Short-track racing (local/regional)"
                 },
                 {
                   "id": "arca",
-                  "label": "ARCA series"
+                  "text": "ARCA series"
                 },
                 {
                   "id": "truck",
-                  "label": "Craftsman Truck Series"
+                  "text": "Craftsman Truck Series"
                 },
                 {
                   "id": "oreilly",
-                  "label": "O'Reilly Auto Parts Series"
+                  "text": "O'Reilly Auto Parts Series"
                 },
                 {
                   "id": "cup",
-                  "label": "NASCAR Cup Series"
+                  "text": "NASCAR Cup Series"
                 }
               ],
               "explanation": {
@@ -801,33 +800,31 @@
             }
           },
           {
-            "id": "team-05-vi-paint",
-            "type": "visual-id",
+            "id": "team-05-bc-paint-scheme",
+            "type": "binary-call",
             "conceptIds": [
               "sponsorship"
             ],
             "payload": {
-              "prompt": "Sponsorship is visible on cars as paint schemes, logos and colors. A paint scheme is:",
-              "options": [
+              "prompt": "Do fans recognize a car by its sponsor's paint scheme and colors?",
+              "scene": {
+                "kind": "none",
+                "alt": "A NASCAR car with sponsor branding on the hood and sides."
+              },
+              "choices": [
                 {
-                  "id": "a",
-                  "text": "The sponsor's logo and brand colors painted on the car, hood and sides."
+                  "id": "yes",
+                  "label": "Yes, fans know the car by its paint scheme."
                 },
                 {
-                  "id": "b",
-                  "text": "A safety regulation that every car must follow."
-                },
-                {
-                  "id": "c",
-                  "text": "The number of races a sponsor will fund."
+                  "id": "no",
+                  "label": "No, fans only use car numbers."
                 }
               ],
-              "correctOptionIds": [
-                "a"
-              ],
+              "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Yes. A paint scheme is the visual branding. Fans recognize cars by their sponsor colors and logos.",
-                "incorrect": "A paint scheme is the car's livery: sponsor logos, brand colors and designs. Fans often refer to a car by its sponsor name or colors, not just its number."
+                "correct": "Exactly. Fans recognize cars by their sponsor colors and logos first, then the number. The paint scheme is the car's identity.",
+                "incorrect": "Paint schemes are how fans recognize cars. Sponsor livery is the car's visual brand; fans call cars by sponsor name or colors, not just numbers."
               }
             }
           },
@@ -1286,11 +1283,11 @@
               "choices": [
                 {
                   "id": "yes",
-                  "label": "Yes, brand identity matters a lot to fans."
+                  "label": "Yes, brand identity matters to fans."
                 },
                 {
                   "id": "no",
-                  "label": "No, all brands are the same to fans."
+                  "label": "No, brands are the same to fans."
                 }
               ],
               "correctChoiceId": "yes",

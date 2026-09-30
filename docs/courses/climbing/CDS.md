@@ -397,7 +397,7 @@ Designed as an ongoing course. Counts are in the layer summary. "Sim" lessons la
 |---|---|---|
 | Foundations | 5 (`what-is-climbing`, `reading-the-wall`, `grades-and-numbers`, `send-talk`, `movement-words`) | 35 |
 | Intermediate | 4 (`gym-culture`, `safety-culture`, `roped-world`, `outdoor-ethics`) | 29 |
-| Enthusiast depth | 4 (`crags-and-places`, `legends-and-lines`, `competition-climbing`, `debates-and-culture`) | 28 |
+| Enthusiast depth | 4 (`crags-and-places`, `legends-and-lines`, `competition-climbing`, `debates-and-culture`) | 29 |
 | Branches | 3 (`branch-bouldering`, `branch-sport-climbing`, `branch-trad-big-wall`) | 15 |
 | Current-season / live | 1 (`current-season`) | 3 |
 | Conversation practice | 1 (`talk-the-wall`) | 6 |
@@ -408,7 +408,7 @@ Designed as an ongoing course. Counts are in the layer summary. "Sim" lessons la
 - **Review policy:** spaced review intervals 1, 3, 7, 21, 60 days after mastery; at most 12 review items per session; safety-culture concepts (`safety-culture`, `buddy-check`, `certified-instruction`, `belayer`, `instructor-led`, `hazard-humility`) are re-asked at the longest interval permanently and in a different scenario form each time. Review never times or scores safety scenarios.
 - **Current-season layer:** climbing has a genuine, light current context: comp weekends, crag season and friction talk, closure notices, and "why is everyone talking about this" ascents. It is a 3-lesson hook layer with `live` unit hooks; it is deliberately small. No fake seasons or scores.
 - **Personalization slots:** `{{venue}}`, `{{region}}`, `{{favoriteClimber}}`, `{{skillLevel}}` in `talk-the-wall`, `current-season` and three branch lessons.
-- **Release plan:** launch = foundations, intermediate, enthusiast, `branch-bouldering`, conversation and review (units 1-14, 16, 18, 19; 105 lessons) plus a static-only `current-season`. Later: `branch-sport-climbing` and `branch-trad-big-wall`, live data once IFSC licensing (L-series) is settled, and Wave 3 follow-ups (alpine culture if a mountaineering course is created). Safety-critical units (`what-is-climbing` wc-07, `gym-culture`, `safety-culture`, `roped-world`, `outdoor-ethics`, sport and trad branches) gate on human safety review before release.
+- **Release plan:** launch = foundations, intermediate, enthusiast, `branch-bouldering`, conversation and review (units 1-14, 18, 19; 107 lessons) plus a static-only `current-season` (3 lessons). Later: `branch-sport-climbing` and `branch-trad-big-wall`, live data once IFSC licensing (L-series) is settled, and Wave 3 follow-ups (alpine culture if a mountaineering course is created). Safety-critical units (`what-is-climbing` wc-07, `gym-culture`, `safety-culture`, `roped-world`, `outdoor-ethics`, sport and trad branches) gate on human safety review before release.
 
 ## 12. Interaction plan
 | Lesson / activity family | Concepts | Type | Justification (why this and not the alternative) | Tier | Est. count |
