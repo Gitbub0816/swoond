@@ -1,0 +1,1574 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "nascar",
+  "unit": {
+    "id": "pit-strategy",
+    "title": "Pit Stops & Strategy",
+    "layer": "intermediate",
+    "order": 5,
+    "lessons": [
+      {
+        "id": "pits-01",
+        "title": "Anatomy of a pit stop",
+        "objective": "Put a four-tire pit stop in order and read a time.",
+        "estimatedMinutes": 11,
+        "conceptIds": [
+          "pit-crew",
+          "pit-stop-timing",
+          "four-tire-stop"
+        ],
+        "activities": [
+          {
+            "id": "pits-01-so-pit-crew-order",
+            "type": "sequence-order",
+            "conceptIds": [
+              "pit-crew",
+              "four-tire-stop"
+            ],
+            "payload": {
+              "prompt": "Put the pit-stop steps in order.",
+              "items": [
+                {
+                  "id": "jack",
+                  "text": "Jack man lifts the rear of the car.",
+                  "why": "The car must be elevated before the rear tires can be changed."
+                },
+                {
+                  "id": "tires",
+                  "text": "Two tire changers remove old tires and bolt new ones.",
+                  "why": "This happens simultaneously on both rear wheels while the car is up."
+                },
+                {
+                  "id": "fuel",
+                  "text": "Fueler inserts the fuel nozzle and fills the cell.",
+                  "why": "Fuel is pumped during the same window as tire work to save time."
+                },
+                {
+                  "id": "carrier",
+                  "text": "Tire carrier brings fresh tires to the changers.",
+                  "why": "Carrier ensures tires are positioned for the changers before they arrive."
+                },
+                {
+                  "id": "leave",
+                  "text": "Jack man drops the car and crew clears pit road.",
+                  "why": "The car must touch down and leave before the stop is timed."
+                }
+              ],
+              "partialCredit": true,
+              "explanation": {
+                "correct": "Spot on. A pit stop is choreography: the carrier stages tires, the changers work both rears while jacked up, the fueler pumps, and the jack drops. All in under 12 seconds.",
+                "incorrect": "A four-tire pit stop follows a tight sequence: jack up, tire carrier runs tires in, both changers work the rear tires, fueler fills, and then jack down and leave. Every second counts."
+              }
+            }
+          },
+          {
+            "id": "pits-01-es-pit-stop-time",
+            "type": "estimate-slider",
+            "conceptIds": [
+              "pit-stop-timing"
+            ],
+            "payload": {
+              "prompt": "How many seconds for an elite four-tire pit stop?",
+              "unit": "seconds",
+              "min": 6,
+              "max": 15,
+              "step": 1,
+              "correctValue": 10,
+              "tolerance": {
+                "full": 2,
+                "partial": 3
+              },
+              "explanation": {
+                "correct": "Right in range. Elite crews do four-tire stops in 9-11 seconds; 11-12 is still solid.",
+                "incorrect": "Top pit crews perform a four-tire stop in 9-11 seconds. That is why a two-tire stop (6-8 sec) can gain track position even though it leaves old rubber on two wheels."
+              }
+            }
+          },
+          {
+            "id": "pits-01-mc-five-over-wall",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "pit-crew"
+            ],
+            "payload": {
+              "prompt": "How many crew members go over the wall during a pit stop?",
+              "options": [
+                {
+                  "id": "three",
+                  "text": "Three: driver, spotter, and crew chief."
+                },
+                {
+                  "id": "five",
+                  "text": "Five: two tire changers, jack man, fueler, and tire carrier."
+                },
+                {
+                  "id": "seven",
+                  "text": "Seven: everyone except the driver and engineer."
+                }
+              ],
+              "correctOptionIds": [
+                "five"
+              ],
+              "explanation": {
+                "correct": "Exactly. Exactly five specialized crew members jump the wall: the two tire changers on the rear, the jack man, the fueler, and the tire carrier who feeds tires.",
+                "incorrect": "Five crew members cross the pit wall: two tire changers (rear), a jack man, a fueler, and a tire carrier. No more, no fewer. Their roles are so specialized that adding a sixth person would slow things down."
+              }
+            }
+          },
+          {
+            "id": "pits-01-bc-four-tire-time",
+            "type": "binary-call",
+            "conceptIds": [
+              "four-tire-stop"
+            ],
+            "payload": {
+              "prompt": "A four-tire pit stop is always longer than a two-tire stop?",
+              "scene": {
+                "kind": "none",
+                "alt": "Split-screen showing two pit stops side-by-side."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, four tires always take longer."
+                },
+                {
+                  "id": "no",
+                  "label": "No, it depends on execution."
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Right. Four tires are more work than two; a four-tire stop is about 9-12 seconds while two tires can be 6-8 seconds.",
+                "incorrect": "A four-tire stop (9-12 seconds) always takes longer than a two-tire stop (6-8 seconds) because twice the tire work is done. The crew's speed is elite, but the task is simply larger."
+              }
+            }
+          },
+          {
+            "id": "pits-01-st-over-the-wall",
+            "type": "say-this",
+            "conceptIds": [
+              "pit-crew"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "crew chief",
+                "text": "The over-the-wall crew nailed it."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "The five pit crew members did an excellent stop."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "Everyone on the team showed up to the track."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "The car flew over the wall during the race."
+                }
+              ],
+              "translation": "The five specialists who jumped the wall executed a great pit stop.",
+              "followUps": [
+                {
+                  "line": "'Over the wall' is pit crew slang for the five who service the car during a stop.",
+                  "why": "They cross the wall barrier that separates pit road from the garage."
+                },
+                {
+                  "line": "A great stop can win or lose a race depending on track position and cautions.",
+                  "why": "Fans and teams talk about 'how good the stop was' because it decides strategy."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "pits-02",
+        "title": "Pit road penalties",
+        "objective": "Spot a pit road penalty and what it costs.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "pit-penalty",
+          "pit-road-speed"
+        ],
+        "activities": [
+          {
+            "id": "pits-02-mc-pit-road-speed",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "pit-road-speed"
+            ],
+            "payload": {
+              "prompt": "What is a pit road speed limit?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The maximum speed allowed on pit road, monitored in timing zones; it changes by track."
+                },
+                {
+                  "id": "b",
+                  "text": "A guideline that teams can exceed if they have good brakes."
+                },
+                {
+                  "id": "c",
+                  "text": "The speed at which tire changers work fastest."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Pit road speed is a hard limit enforced by timing equipment at each track. Daytona might be 55 mph; Charlotte, 65 mph; Bristol, 50 mph. Speeding costs a drive-through or tail-end penalty.",
+                "incorrect": "Pit road speed is a track-specific posted limit enforced by radar or timing loops. Each track's limit differs because pit road width and safety zones vary. Exceeding it triggers a penalty."
+              }
+            }
+          },
+          {
+            "id": "pits-02-bc-speeding-entry",
+            "type": "binary-call",
+            "conceptIds": [
+              "pit-penalty",
+              "pit-road-speed"
+            ],
+            "payload": {
+              "prompt": "Can a driver get a pit road penalty for speeding on entry to pit road?",
+              "scene": {
+                "kind": "none",
+                "alt": "Pit road entry diagram showing timing zones."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, speeding on entry costs a penalty."
+                },
+                {
+                  "id": "no",
+                  "label": "No, only leaving pit road is timed."
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Exactly. Entry and exit are both timed. Speeding on entry (before the stall) is a penalty; so is speeding on exit.",
+                "incorrect": "Pit road enforcement covers both entry and exit. A driver can be penalized for exceeding the limit on entry to pit road or on the way out. Both zones are monitored."
+              }
+            }
+          },
+          {
+            "id": "pits-02-mc-penalty-types",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "pit-penalty"
+            ],
+            "payload": {
+              "prompt": "What is a 'too-many-men' penalty?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "More than five crew members go over the wall."
+                },
+                {
+                  "id": "b",
+                  "text": "The pit crew stays on pit road longer than allowed."
+                },
+                {
+                  "id": "c",
+                  "text": "The car is not properly fueled before leaving."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Exactly. If a sixth person steps over the wall or fails to clear pit road in time, it is a too-many-men penalty and costs track position.",
+                "incorrect": "A 'too-many-men' penalty happens when more than five crew members go over the wall or a crew member fails to clear pit road before the car leaves. It costs track position: a drive-through or tail-end penalty."
+              }
+            }
+          },
+          {
+            "id": "pits-02-tm-pit-infractions",
+            "type": "term-match",
+            "conceptIds": [
+              "pit-penalty",
+              "pit-road-speed"
+            ],
+            "payload": {
+              "prompt": "Match the pit road infraction to its consequence.",
+              "pairs": [
+                {
+                  "id": "speed",
+                  "term": "Speeding on pit road",
+                  "definition": "Exceeding the posted speed limit on entry or exit; costs a drive-through or tail-end penalty."
+                },
+                {
+                  "id": "tmm",
+                  "term": "Too-many-men",
+                  "definition": "More than five crew members go over the wall; results in a drive-through or position penalty."
+                },
+                {
+                  "id": "box",
+                  "term": "Box violation",
+                  "definition": "Illegal work done on the car outside the pit stall; can cost time or position."
+                },
+                {
+                  "id": "unsafe",
+                  "term": "Unsafe release",
+                  "definition": "Car leaves the stall before tires are secure or fueling is complete; automatic penalty."
+                }
+              ],
+              "distractorDefinitions": [
+                "Wearing the wrong color pit suit.",
+                "Changing tires when the driver did not request it."
+              ],
+              "explanation": {
+                "summary": "Pit road penalties are enforced strictly because safety and fairness depend on it. Speeding, too many men, illegal work, and unsafe releases cost position instantly."
+              }
+            }
+          },
+          {
+            "id": "pits-02-ds-penalty-call",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "pit-penalty"
+            ],
+            "payload": {
+              "prompt": "The crew lost a lug nut. Penalty coming?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Pit stop",
+                    "value": "Front-right tire change"
+                  },
+                  {
+                    "label": "Finding",
+                    "value": "One lug nut unsecured after stop"
+                  },
+                  {
+                    "label": "Position before stop",
+                    "value": "Second place"
+                  },
+                  {
+                    "label": "Laps remaining",
+                    "value": "50"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "yes",
+                  "label": "Yes, unsafe release penalty.",
+                  "verdict": "best",
+                  "consequence": "NASCAR flags the stop and assesses a penalty. The car must pit again or take a drive-through.",
+                  "considerations": [
+                    "Safety is non-negotiable.",
+                    "An unsecured wheel is a hazard.",
+                    "Penalties enforce the rules fairly."
+                  ]
+                },
+                {
+                  "id": "maybe",
+                  "label": "Only if the tire falls off.",
+                  "verdict": "poor",
+                  "consequence": "NASCAR penalizes incomplete stops before a tire fails, for safety. The crew is responsible for secure wheels.",
+                  "considerations": [
+                    "Inspectors check every stop.",
+                    "A loose wheel is dangerous.",
+                    "Prevention is the rule, not waiting for failure."
+                  ]
+                },
+                {
+                  "id": "no",
+                  "label": "No, if it holds, no penalty.",
+                  "verdict": "poor",
+                  "consequence": "Pit road inspection and tech catch this. NASCAR enforces pre-emptively.",
+                  "considerations": [
+                    "Inspectors review every stop.",
+                    "A loose lug nut is an unsafe release.",
+                    "It is caught immediately, not race outcome-dependent."
+                  ]
+                }
+              ],
+              "expertNote": "Pit road safety is absolute. Loose wheels, incomplete work and unsafe releases are penalized before they become wrecks."
+            }
+          }
+        ]
+      },
+      {
+        "id": "pits-03",
+        "title": "Track position",
+        "objective": "Explain why running in front can beat speed.",
+        "estimatedMinutes": 11,
+        "conceptIds": [
+          "track-position",
+          "clean-air"
+        ],
+        "activities": [
+          {
+            "id": "pits-03-mc-track-position-def",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "track-position"
+            ],
+            "payload": {
+              "prompt": "What is track position?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Where a car runs on the track (low, middle, high)."
+                },
+                {
+                  "id": "b",
+                  "text": "A car's current ranking among other cars on track."
+                },
+                {
+                  "id": "c",
+                  "text": "The speed a car has coming out of a turn."
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. Track position is a car's current order among the field. Being in front is track position advantage because clean air and tire wear give an edge.",
+                "incorrect": "Track position is where you rank in the running order. A car leading 100th has the best track position; 40th has the worst. Position matters because the leader avoids dirty air and gets the first choice of pit strategy."
+              }
+            }
+          },
+          {
+            "id": "pits-03-ds-track-position-bet",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "track-position",
+              "clean-air"
+            ],
+            "payload": {
+              "prompt": "He's faster but running third; stay out to chase first?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Current position",
+                    "value": "Third place"
+                  },
+                  {
+                    "label": "Car speed vs leader",
+                    "value": "0.1 seconds faster per lap"
+                  },
+                  {
+                    "label": "Laps remaining",
+                    "value": "75"
+                  },
+                  {
+                    "label": "Tire age",
+                    "value": "25 laps old, losing grip"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "pit",
+                  "label": "Pit now for fresh tires.",
+                  "verdict": "best",
+                  "consequence": "Fresh tires let the car hunt down the leader. Speed gains overcome lost position during the stop.",
+                  "considerations": [
+                    "Tire falloff is real at lap 25.",
+                    "Fresh rubber will be faster than old.",
+                    "The 0.1-second pace advantage can close the gap."
+                  ]
+                },
+                {
+                  "id": "stayout",
+                  "label": "Stay out; he has track position.",
+                  "verdict": "acceptable",
+                  "consequence": "Old tires cost more than track position gains. Tires fade and the faster driver may not catch the leader.",
+                  "considerations": [
+                    "Track position is an advantage.",
+                    "But tire falloff hurts more.",
+                    "Staying out is a gamble on cautions."
+                  ]
+                },
+                {
+                  "id": "chase",
+                  "label": "Chase the leader and brake hard.",
+                  "verdict": "poor",
+                  "consequence": "Brake wear and dirty air will slow any passing attempt. Pit stop is the only way to gain the advantage.",
+                  "considerations": [
+                    "Dirty air kills grip.",
+                    "Old tires can't hang with fresh ones.",
+                    "Passing requires better equipment, not just aggression."
+                  ]
+                }
+              ],
+              "expertNote": "Track position is valuable, but speed wins in the long run. Fresh tires beat old tires, even if you lose a position in the pit stop."
+            }
+          },
+          {
+            "id": "pits-03-bc-position-vs-speed",
+            "type": "binary-call",
+            "conceptIds": [
+              "track-position"
+            ],
+            "payload": {
+              "prompt": "Does the car in front always win at the finish?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two cars in traffic, leader with worn tires and follower with fresh ones."
+              },
+              "choices": [
+                {
+                  "id": "no",
+                  "label": "No, speed and fresh tires beat it."
+                },
+                {
+                  "id": "yes",
+                  "label": "Yes, leading is everything."
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Right. A faster car with fresh tires can catch and pass a leader on old rubber. Track position matters, but it is not absolute.",
+                "incorrect": "Track position is a big edge (clean air, first pit call), but speed, tire falloff, fuel mileage and strategy can flip the order. Leading does not guarantee winning."
+              }
+            }
+          },
+          {
+            "id": "pits-03-tm-racing-concepts",
+            "type": "term-match",
+            "conceptIds": [
+              "track-position",
+              "clean-air"
+            ],
+            "payload": {
+              "prompt": "Match the concept to its definition.",
+              "pairs": [
+                {
+                  "id": "tp",
+                  "term": "Track position",
+                  "definition": "A car's current running order in the field; the lead car has the best track position."
+                },
+                {
+                  "id": "ca",
+                  "term": "Clean air",
+                  "definition": "Smooth airflow on a car's nose and splitter when running out front; no cars ahead disturbing the flow."
+                },
+                {
+                  "id": "da",
+                  "term": "Dirty air",
+                  "definition": "Turbulent air behind another car that reduces front grip and makes passing harder."
+                },
+                {
+                  "id": "gf",
+                  "term": "Gap",
+                  "definition": "The distance in time or positions between cars; 'closing the gap' means catching up."
+                }
+              ],
+              "distractorDefinitions": [
+                "The fastest lap recorded in practice.",
+                "How loud a car's engine sounds."
+              ],
+              "explanation": {
+                "summary": "Track position and air are linked: leading gives clean air and speed. Following puts you in dirty air and costs grip. Pit strategy reshuffles the order."
+              }
+            }
+          },
+          {
+            "id": "pits-03-fg-staying-ahead",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "track-position"
+            ],
+            "payload": {
+              "prompt": "A car in front has {{advantage}} over the car behind.",
+              "template": "A car in front has {{advantage}} over the car behind.",
+              "gaps": [
+                {
+                  "id": "advantage",
+                  "options": [
+                    "track position and clean air",
+                    "better brakes",
+                    "a larger fuel tank"
+                  ],
+                  "correct": "track position and clean air"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. The leader has track position (runs first) and clean air (smooth airflow). Both are advantages.",
+                "incorrect": "The leading car has track position (runs ahead of the field) and clean air (no cars in front disturbing the airflow). Both give an edge in speed and control."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "pits-04",
+        "title": "Four tires, two tires",
+        "objective": "Choose between four and two tires.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "four-tire-stop",
+          "two-tire-stop"
+        ],
+        "activities": [
+          {
+            "id": "pits-04-tm-tire-choices",
+            "type": "term-match",
+            "conceptIds": [
+              "four-tire-stop",
+              "two-tire-stop"
+            ],
+            "payload": {
+              "prompt": "Match the stop type to its benefit and cost.",
+              "pairs": [
+                {
+                  "id": "four",
+                  "term": "Four-tire stop",
+                  "definition": "All four tires changed (9-11 sec); maximum grip but lose track position in the stall."
+                },
+                {
+                  "id": "two",
+                  "term": "Two-tire stop",
+                  "definition": "Two rear tires changed (6-8 sec); faster exit and track position, but fronts age."
+                },
+                {
+                  "id": "late",
+                  "term": "Late-race tire choice",
+                  "definition": "Four tires almost always beat two tires when fewer than 30 laps remain; grip is paramount."
+                }
+              ],
+              "distractorDefinitions": [
+                "A tire check to see if the pressure is correct.",
+                "Changing the driver midway through the race."
+              ],
+              "explanation": {
+                "summary": "Early race: two tires trade grip for position. Late race: four tires restore grip. The decision hinges on how many laps are left."
+              }
+            }
+          },
+          {
+            "id": "pits-04-mc-two-tire-reason",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "two-tire-stop"
+            ],
+            "payload": {
+              "prompt": "Why would a crew chief choose two tires?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The front tires are still good enough to race on."
+                },
+                {
+                  "id": "b",
+                  "text": "It is faster off pit road, gaining track position."
+                },
+                {
+                  "id": "c",
+                  "text": "It is cheaper than changing four tires."
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. A two-tire stop (6-8 sec) is faster than four tires (9-11 sec), so the driver exits pit road sooner and ahead of rivals who pit four.",
+                "incorrect": "The two-tire stop saves time because fewer wheels to change. That quicker exit lets the car hold or gain track position, even if the tires are not perfectly fresh."
+              }
+            }
+          },
+          {
+            "id": "pits-04-ds-tire-choice",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "four-tire-stop",
+              "two-tire-stop"
+            ],
+            "payload": {
+              "prompt": "20 laps to go. Pit four or two?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Current position",
+                    "value": "Fifth place"
+                  },
+                  {
+                    "label": "Tire age",
+                    "value": "All four at 40 laps (significant wear)"
+                  },
+                  {
+                    "label": "Fuel",
+                    "value": "Tank will last to the end"
+                  },
+                  {
+                    "label": "Gap to leader",
+                    "value": "Two seconds"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "four",
+                  "label": "Change all four tires.",
+                  "verdict": "best",
+                  "consequence": "Fresh rubber on all corners restores grip. Losing a position or two during the stop is worth it with 20 laps left.",
+                  "considerations": [
+                    "40-lap tire wear is severe.",
+                    "Fresh tires will be way faster.",
+                    "Grip is critical late in a race."
+                  ]
+                },
+                {
+                  "id": "two",
+                  "label": "Change only rear tires.",
+                  "verdict": "acceptable",
+                  "consequence": "Faster off pit road; keeps the driver in the hunt. Fronts may fade and limit passing attempts.",
+                  "considerations": [
+                    "Two tires saves time.",
+                    "You stay in position longer.",
+                    "But old fronts limit your moves on restart."
+                  ]
+                },
+                {
+                  "id": "none",
+                  "label": "Stay out; save time.",
+                  "verdict": "poor",
+                  "consequence": "40-lap-old tires will lose pace late. Grip fades and the car will fall back.",
+                  "considerations": [
+                    "Tire falloff is real.",
+                    "You will lose to fresher cars.",
+                    "A pit stop is worth it."
+                  ]
+                }
+              ],
+              "expertNote": "With 20 laps to go and severe tire wear, fresh rubber is worth a pit stop, even at risk of losing position. Late-race grip is the race."
+            }
+          },
+          {
+            "id": "pits-04-bc-two-tire-decision",
+            "type": "binary-call",
+            "conceptIds": [
+              "two-tire-stop"
+            ],
+            "payload": {
+              "prompt": "Is a two-tire stop usually good late in the race?",
+              "scene": {
+                "kind": "none",
+                "alt": "Pit road view showing cars exiting with two-tire service vs four-tire service."
+              },
+              "choices": [
+                {
+                  "id": "no",
+                  "label": "No, you need fresh grip late."
+                },
+                {
+                  "id": "yes",
+                  "label": "Yes, saving time is the goal."
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Correct. Late in a race, tires are critical; worn fronts are a liability. Four tires are almost always the choice in the final laps.",
+                "incorrect": "Late in a race, grip matters more than track position. A two-tire stop leaves you with old fronts that will fade. Four tires are the call with fewer than 30 laps left."
+              }
+            }
+          },
+          {
+            "id": "pits-04-fg-pit-strategy",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "four-tire-stop"
+            ],
+            "payload": {
+              "prompt": "A four-tire pit stop takes {{duration}} seconds.",
+              "template": "A four-tire pit stop takes {{duration}} seconds.",
+              "gaps": [
+                {
+                  "id": "duration",
+                  "options": [
+                    "6-8",
+                    "9-11",
+                    "15-20"
+                  ],
+                  "correct": "9-11"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. A good four-tire stop runs 9-11 seconds; slower crews might take 11-12.",
+                "incorrect": "Elite pit crews perform a four-tire stop in 9-11 seconds. That is fast enough that the advantage of gaining track position with a two-tire stop (6-8 sec) has to be weighed carefully."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "pits-05",
+        "title": "Fuel windows",
+        "objective": "Estimate how many laps a tank lasts.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "fuel-window",
+          "fuel-cell"
+        ],
+        "activities": [
+          {
+            "id": "pits-05-es-fuel-tank-size",
+            "type": "estimate-slider",
+            "conceptIds": [
+              "fuel-cell"
+            ],
+            "payload": {
+              "prompt": "How many gallons fit in a NASCAR fuel cell?",
+              "unit": "gallons",
+              "min": 5,
+              "max": 35,
+              "step": 1,
+              "correctValue": 20,
+              "tolerance": {
+                "full": 2,
+                "partial": 4
+              },
+              "explanation": {
+                "correct": "Close. A Cup car fuel cell holds about 20 gallons in 2026.",
+                "incorrect": "A NASCAR Cup fuel cell holds approximately 20 gallons. That tank size means pit strategy revolves around fuel mileage and caution timing."
+              }
+            }
+          },
+          {
+            "id": "pits-05-mc-fuel-window-def",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "fuel-window"
+            ],
+            "payload": {
+              "prompt": "What is a fuel window?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The range of laps a full tank can last before pitting for fuel."
+                },
+                {
+                  "id": "b",
+                  "text": "A window in the pit box where the fueler stands."
+                },
+                {
+                  "id": "c",
+                  "text": "How much fuel the driver can save by lifting off the throttle."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Exactly. A fuel window is the lap range a tank lasts. On a 1.5-mile track it might be 85-95 laps; on a 0.5-mile track, 60-70 laps. Teams pit when the window closes.",
+                "incorrect": "The fuel window is the number of laps a full tank will last at race pace. Track length, fuel mileage and speed all affect it. Knowing the window is key to pit strategy."
+              }
+            }
+          },
+          {
+            "id": "pits-05-fg-fuel-and-track",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "fuel-window"
+            ],
+            "payload": {
+              "prompt": "A shorter track means a {{comparison}} fuel window.",
+              "template": "A shorter track means a {{comparison}} fuel window.",
+              "gaps": [
+                {
+                  "id": "comparison",
+                  "options": [
+                    "shorter",
+                    "longer",
+                    "unchanging"
+                  ],
+                  "correct": "shorter"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. Shorter tracks burn more fuel per lap because drivers are throttle-on more of the time in tight corners. Fuel window shrinks.",
+                "incorrect": "A short track (Bristol, Martinsville) has cars accelerating hard in tight spaces, burning fuel faster per lap. A superspeedway (Daytona, Talladega) has long straights where fuel mileage is better, so the fuel window is longer."
+              }
+            }
+          },
+          {
+            "id": "pits-05-ds-fuel-strategy",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "fuel-window"
+            ],
+            "payload": {
+              "prompt": "Fuel window closes in 5 laps. Pit or stretch it?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Current position",
+                    "value": "Second place"
+                  },
+                  {
+                    "label": "Fuel remaining",
+                    "value": "3 laps worth in tank"
+                  },
+                  {
+                    "label": "Fuel window",
+                    "value": "Closes lap 70"
+                  },
+                  {
+                    "label": "Race ending",
+                    "value": "Lap 200"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "pit",
+                  "label": "Pit now; refuel.",
+                  "verdict": "best",
+                  "consequence": "Fresh fuel means you will complete the race without a second pit stop. You stay competitive.",
+                  "considerations": [
+                    "Running out is a disaster.",
+                    "Pit stops are planned.",
+                    "Stretching fuel is a gamble."
+                  ]
+                },
+                {
+                  "id": "stretch",
+                  "label": "Stretch fuel and pit later.",
+                  "verdict": "acceptable",
+                  "consequence": "Delaying the stop keeps you ahead during this stint. But you must pit again soon and lose position.",
+                  "considerations": [
+                    "You gain time now.",
+                    "But two stops cost more than one.",
+                    "Fuel mileage racing is risky."
+                  ]
+                },
+                {
+                  "id": "run",
+                  "label": "Run to the end without pitting.",
+                  "verdict": "poor",
+                  "consequence": "The car will run out of fuel and stall on track. That is a DNF.",
+                  "considerations": [
+                    "The tank holds about 20 gallons.",
+                    "200 laps will need 9-10 gallons.",
+                    "Running dry ends the race."
+                  ]
+                }
+              ],
+              "expertNote": "Fuel windows are predictable and planned. Pitting within the window is almost always right; stretching fuel is a risky gamble for position."
+            }
+          },
+          {
+            "id": "pits-05-st-fuel-strategy",
+            "type": "say-this",
+            "conceptIds": [
+              "fuel-window"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "crew chief",
+                "text": "We are outside the fuel window."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "The car does not have enough fuel to make the next pit cycle safely."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "There is a fuel leak in the car."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "The fueler is standing outside the pit box."
+                }
+              ],
+              "translation": "The tank is running too low; we must pit soon or we will run out.",
+              "followUps": [
+                {
+                  "line": "'Outside the fuel window' means the fuel run is over; pit now or fuel-save aggressively.",
+                  "why": "Crews use fuel windows to plan pit stops. Missing the window is risky."
+                },
+                {
+                  "line": "A fuel-mileage race ends with one car stretching fuel to the end.",
+                  "why": "When fuel becomes the deciding factor, teams try to 'win on mileage,' which fans debate as fair or boring."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "pits-06",
+        "title": "Pit or stay out",
+        "objective": "Make the caution call.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "stay-out",
+          "pit-cycle",
+          "track-position",
+          "two-tire-stop"
+        ],
+        "activities": [
+          {
+            "id": "pits-06-unity-caution-call",
+            "type": "unity-sim",
+            "conceptIds": [
+              "stay-out",
+              "pit-cycle",
+              "track-position"
+            ],
+            "payload": {
+              "simulationId": "nascar.strategy.caution-call.v1",
+              "simulationVersion": "1.0.0",
+              "difficulty": 2,
+              "configuration": {
+                "prompt": "A caution is out. Pit for tires or stay out for position? See how the field reshuffles.",
+                "setup": "The field is racing green. A caution flag drops and the pit window opens. You decide: pit for fresh tires (lose track position but gain grip on the restart) or stay out (keep position but run old rubber). Watch how both strategies play out on the restart and whether you gain or lose spots."
+              }
+            }
+          },
+          {
+            "id": "pits-06-ds-caution-call-2",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "stay-out",
+              "track-position"
+            ],
+            "payload": {
+              "prompt": "Caution at lap 170 of 200. Stay out to lead?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Current position",
+                    "value": "First place, 1.5 seconds ahead"
+                  },
+                  {
+                    "label": "Tire condition",
+                    "value": "20 laps old; still decent"
+                  },
+                  {
+                    "label": "Fuel",
+                    "value": "Half a tank; can run to end"
+                  },
+                  {
+                    "label": "Field behind",
+                    "value": "Everyone will pit for new tires"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "stayout",
+                  "label": "Stay out; lead on old tires.",
+                  "verdict": "best",
+                  "consequence": "You inherit the lead on the restart. Field falls back to pit, then must drive up to you. Your lead is safe and position is priceless.",
+                  "considerations": [
+                    "20-lap tires are still good.",
+                    "You will lead on the restart.",
+                    "Others lose 3-5 spots pitting."
+                  ]
+                },
+                {
+                  "id": "pit",
+                  "label": "Pit with everyone else.",
+                  "verdict": "poor",
+                  "consequence": "You lose the lead during the stop. Rivals get fresh tires and the restart is a free-for-all.",
+                  "considerations": [
+                    "You give up track position.",
+                    "20-lap tires will run to the end.",
+                    "Pitting here costs the lead for no gain."
+                  ]
+                }
+              ],
+              "expertNote": "Leading late in a race and choosing to stay out is the opposite of early-race. Track position is gold at the end; fresh tires are a secondary concern."
+            }
+          },
+          {
+            "id": "pits-06-mc-pit-cycle-timing",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "pit-cycle"
+            ],
+            "payload": {
+              "prompt": "What does 'pit cycle' mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The rhythm of when teams choose to pit under green flag conditions as fuel and tires run out."
+                },
+                {
+                  "id": "b",
+                  "text": "How many times a driver must pit during a race."
+                },
+                {
+                  "id": "c",
+                  "text": "The time it takes to complete one pit stop."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Exactly. A pit cycle is the window of laps when teams pit in sequence under green. Understanding pit cycles is key to passing and strategy.",
+                "incorrect": "The pit cycle is the rhythm of green-flag pit stops. Teams pit roughly every 80-100 laps depending on fuel and tire wear, creating a cycle. Knowing the cycle lets you position yourself for or against the caution."
+              }
+            }
+          },
+          {
+            "id": "pits-06-bc-gamble-on-fuel",
+            "type": "binary-call",
+            "conceptIds": [
+              "stay-out"
+            ],
+            "payload": {
+              "prompt": "Is stretching fuel late in a race a good gamble?",
+              "scene": {
+                "kind": "none",
+                "alt": "Pit road view with some cars exiting and others staying out."
+              },
+              "choices": [
+                {
+                  "id": "no",
+                  "label": "No, usually fails and you run out."
+                },
+                {
+                  "id": "yes",
+                  "label": "Yes, if cautions fall right."
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Right. A fuel gamble pays off only if cautions land perfectly. It is risky, but teams do it for a chance to win on mileage.",
+                "incorrect": "Stretching fuel late is a calculated risk. It only works if cautions fall the right way or the driver runs exceptionally clean. Most fuel gambits fail and the car runs dry."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "pits-07",
+        "title": "Undercut, overcut, gamble",
+        "objective": "Explain undercut, overcut and gamble.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "undercut",
+          "overcut",
+          "gamble-strategy"
+        ],
+        "activities": [
+          {
+            "id": "pits-07-tm-strategy-terms",
+            "type": "term-match",
+            "conceptIds": [
+              "undercut",
+              "overcut"
+            ],
+            "payload": {
+              "prompt": "Match the strategy to what it is.",
+              "pairs": [
+                {
+                  "id": "uc",
+                  "term": "Undercut",
+                  "definition": "Pit earlier than rivals so fresh tires gain time before they stop; trade track position for speed."
+                },
+                {
+                  "id": "oc",
+                  "term": "Overcut",
+                  "definition": "Stay out while rivals pit, hoping clear track and old tires will let you hold position or gain time."
+                },
+                {
+                  "id": "gs",
+                  "term": "Gamble strategy",
+                  "definition": "Off-cycle pit stops or fuel stretches that only work if cautions or laps fall the right way; high risk, high reward."
+                }
+              ],
+              "distractorDefinitions": [
+                "Speeding on pit road.",
+                "Changing the driver during the race."
+              ],
+              "explanation": {
+                "summary": "Undercut is speed; overcut is track position; gamble is betting on chaos. Teams use all three depending on where they are in the race."
+              }
+            }
+          },
+          {
+            "id": "pits-07-mc-undercut-when",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "undercut"
+            ],
+            "payload": {
+              "prompt": "When does an undercut work best?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "When the leader is leading by so much that pitting early still gains track position."
+                },
+                {
+                  "id": "b",
+                  "text": "When fresh tires gain enough time to offset the pit stop loss, beating rivals to the next green flag."
+                },
+                {
+                  "id": "c",
+                  "text": "When the car is trailing and has nothing to lose."
+                }
+              ],
+              "correctOptionIds": [
+                "b"
+              ],
+              "explanation": {
+                "correct": "Right. An undercut wins when fresh rubber is so much faster than old tires that the time gained on track beats the position lost during the stop.",
+                "incorrect": "The undercut is a speed play: pit early, get fresh tires, and rely on being faster than rivals who are still on old rubber. It works when tire falloff is severe and the track allows passing."
+              }
+            }
+          },
+          {
+            "id": "pits-07-ds-strategy-choice",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "undercut",
+              "overcut",
+              "gamble-strategy"
+            ],
+            "payload": {
+              "prompt": "Second place; rival is pitting. Go early or stay out?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Current position",
+                    "value": "Second place, 2 seconds behind"
+                  },
+                  {
+                    "label": "Tire age",
+                    "value": "45 laps (wearing hard)"
+                  },
+                  {
+                    "label": "Leader pitting",
+                    "value": "This lap"
+                  },
+                  {
+                    "label": "Laps remaining",
+                    "value": "60"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "early",
+                  "label": "Pit now for an undercut.",
+                  "verdict": "best",
+                  "consequence": "Fresh tires let you hunt down the leader after his stop. You are on better rubber and can close the gap.",
+                  "considerations": [
+                    "45-lap tires are fading.",
+                    "Fresh rubber will be much faster.",
+                    "You can gain on him while he sits."
+                  ]
+                },
+                {
+                  "id": "stayout",
+                  "label": "Stay out for overcut.",
+                  "verdict": "acceptable",
+                  "consequence": "Holding position while he pits, you may inherit the lead. But old tires will fade and he will drive back by you.",
+                  "considerations": [
+                    "You gain the lead temporarily.",
+                    "But old tires lose grip.",
+                    "He will pass when his fresh rubber works."
+                  ]
+                },
+                {
+                  "id": "wait",
+                  "label": "Wait and pit later.",
+                  "verdict": "poor",
+                  "consequence": "You lose the undercut advantage and he gains on you with fresh tires. Waiting costs the best strategy.",
+                  "considerations": [
+                    "The undercut is a window.",
+                    "Delaying loses the opportunity.",
+                    "He will have fresher tires than you."
+                  ]
+                }
+              ],
+              "expertNote": "Trailing the leader with worn tires, an early undercut is almost always the right call. Fresh rubber beats old tires every time."
+            }
+          },
+          {
+            "id": "pits-07-fg-gamble-call",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "gamble-strategy"
+            ],
+            "payload": {
+              "prompt": "A strategy gamble only pays off if {{condition}}.",
+              "template": "A strategy gamble only pays off if {{condition}}.",
+              "gaps": [
+                {
+                  "id": "condition",
+                  "options": [
+                    "cautions or laps fall the right way",
+                    "your pit crew is the fastest",
+                    "the other driver makes a mistake"
+                  ],
+                  "correct": "cautions or laps fall the right way"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. Gamble strategies (fuel stretches, unusual pit calls) rely on chaos—a caution at the right time or laps running to your benefit.",
+                "incorrect": "A gamble is an off-strategy bet that only works if timing breaks right. Fuel saving, staying out late, or a two-tire stop when everyone pits four—these only win if cautions or fuel windows align with your plan."
+              }
+            }
+          },
+          {
+            "id": "pits-07-st-undercut-talk",
+            "type": "say-this",
+            "conceptIds": [
+              "undercut"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "crew chief",
+                "text": "We tried the undercut."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "We pitted early hoping fresh tires would gain time before the leader stopped."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "We slid under the pace car during a caution."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "We cut the front splitter off the car."
+                }
+              ],
+              "translation": "We executed an early pit stop to try to gain track position via fresh tires.",
+              "followUps": [
+                {
+                  "line": "An undercut works when fresh tires are so much faster that early pitting still gains spots.",
+                  "why": "Teams use it when tire wear is severe and they are trailing a rival."
+                },
+                {
+                  "line": "The opposite, staying out while rivals pit, is the 'overcut.'",
+                  "why": "Strategy language captures the race-within-the-race of pit timing."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "pits-08",
+        "title": "Stage strategy",
+        "objective": "Decide whether to chase stage points or track position.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "stage-strategy",
+          "stage-points"
+        ],
+        "activities": [
+          {
+            "id": "pits-08-mc-stage-points-value",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "stage-points"
+            ],
+            "payload": {
+              "prompt": "How many points does the stage winner get?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "10 points for first, 9 for second, down to 1 for tenth."
+                },
+                {
+                  "id": "b",
+                  "text": "A bonus lap that carries over to the next stage."
+                },
+                {
+                  "id": "c",
+                  "text": "An automatic spot in the top 10 of the final standings."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Exactly. Stage points: 10 for the win, 9 for second, 8 for third, down to 1 for tenth. Top ten in points after the season make the Chase.",
+                "incorrect": "The stage winner scores 10 points, second gets 9, third gets 8, and so on down to 1 point for tenth place. These add up over 36 races; the top 16 points finishers make the 10-race Chase."
+              }
+            }
+          },
+          {
+            "id": "pits-08-ds-stage-vs-track-position",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "stage-strategy",
+              "stage-points"
+            ],
+            "payload": {
+              "prompt": "Five laps to stage end. Chase stage points or stay ahead?",
+              "situation": {
+                "facts": [
+                  {
+                    "label": "Current position",
+                    "value": "Eighth place"
+                  },
+                  {
+                    "label": "Stage points so far",
+                    "value": "Already scored in stage 1; this is stage 2"
+                  },
+                  {
+                    "label": "Laps to stage end",
+                    "value": "5 laps"
+                  },
+                  {
+                    "label": "Car ahead",
+                    "value": "Seventh, .3 seconds ahead"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "chase",
+                  "label": "Pit now and chase seventh for a stage point.",
+                  "verdict": "acceptable",
+                  "consequence": "Fresh tires might let you catch and pass seventh. One stage point is valuable over the season.",
+                  "considerations": [
+                    "Stage points add up.",
+                    "Eighth place gives no points this stage.",
+                    "But it costs track position now."
+                  ]
+                },
+                {
+                  "id": "stay",
+                  "label": "Stay out and hold eighth.",
+                  "verdict": "best",
+                  "consequence": "Pitting costs you position; eighth gives you no stage points anyway. Hold the spot and pit with the cycle.",
+                  "considerations": [
+                    "Eighth is out of the points.",
+                    "Pitting gains you 0 points.",
+                    "Holding position is smarter."
+                  ]
+                },
+                {
+                  "id": "risk",
+                  "label": "Pit for a long-shot pass at the leader.",
+                  "verdict": "poor",
+                  "consequence": "Five laps is not enough to catch the leader even on fresh tires. You lose position for nothing.",
+                  "considerations": [
+                    "The leader is too far ahead.",
+                    "Five laps is too few.",
+                    "You waste your pit stop."
+                  ]
+                }
+              ],
+              "expertNote": "Early and mid-race, track position usually beats a single stage point. But if you are barely out of points (like 10th place), chasing ninth or tenth is worth it."
+            }
+          },
+          {
+            "id": "pits-08-bc-stage-break-pit",
+            "type": "binary-call",
+            "conceptIds": [
+              "stage-strategy"
+            ],
+            "payload": {
+              "prompt": "Should most of the field pit at the stage break?",
+              "scene": {
+                "kind": "none",
+                "alt": "Pit road view showing multiple cars entering the stall at the stage break."
+              },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, everyone pits for tires and fuel."
+                },
+                {
+                  "id": "no",
+                  "label": "No, stage breaks do not mean pit."
+                }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Right. A stage break is a planned caution that opens a pit cycle. Most cars pit for tires and fuel at this reset.",
+                "incorrect": "A stage break (a caution at the end of stage one and stage two) opens the pit cycle and resets the field. Nearly the entire field pits for tires and fuel together, which is why strategy decisions here are so big."
+              }
+            }
+          },
+          {
+            "id": "pits-08-st-stage-strategy",
+            "type": "say-this",
+            "conceptIds": [
+              "stage-strategy"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "driver",
+                "text": "We gave up stage points to stay ahead."
+              },
+              "options": [
+                {
+                  "id": "a",
+                  "isCorrect": true,
+                  "text": "We chose track position over chasing the stage points (top 10 finish for the stage)."
+                },
+                {
+                  "id": "b",
+                  "isCorrect": false,
+                  "text": "We ran out of fuel during the stage."
+                },
+                {
+                  "id": "c",
+                  "isCorrect": false,
+                  "text": "The other cars were driving too fast."
+                }
+              ],
+              "translation": "We prioritized our running order over trying to score stage points in the top 10.",
+              "followUps": [
+                {
+                  "line": "Stage strategy is a constant trade: chase ten points or keep track position?",
+                  "why": "Early in the race, position matters more. Late in stages, chasing points becomes important if you are close."
+                },
+                {
+                  "line": "Only the top ten get stage points, so if you are 11th, chasing is worth it.",
+                  "why": "Teams calculate risk vs reward on every stage break."
+                }
+              ]
+            }
+          },
+          {
+            "id": "pits-08-fg-stage-points",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "stage-points"
+            ],
+            "payload": {
+              "prompt": "Only the top {{count}} finishers in each stage score points.",
+              "template": "Only the top {{count}} finishers in each stage score points.",
+              "gaps": [
+                {
+                  "id": "count",
+                  "options": [
+                    "five",
+                    "ten",
+                    "fifteen"
+                  ],
+                  "correct": "ten"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. Stage points go to the top ten: 10, 9, 8, 7, 6, 5, 4, 3, 2, 1.",
+                "incorrect": "The top ten finishers in each stage are awarded points. First gets 10, second gets 9, down to tenth with 1 point. Eleventh and below get zero stage points for that stage."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

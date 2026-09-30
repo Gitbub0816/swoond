@@ -1,0 +1,987 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "formula-1",
+  "unit": {
+    "id": "strategy-desk",
+    "title": "The strategy desk",
+    "summary": "Undercuts, safety-car calls, offsets and reading the race as a strategist.",
+    "layer": "intermediate",
+    "order": 7,
+    "prerequisiteUnitIds": [
+      "tyres-and-pit-stops",
+      "flags-and-officials"
+    ],
+    "lessons": [
+      {
+        "id": "sd-01-stints-and-windows",
+        "title": "Stints and pit windows",
+        "objective": "Build a two-stint plan and find its pit window.",
+        "estimatedMinutes": 8,
+        "conceptIds": [
+          "stint",
+          "pit-window",
+          "one-stop-strategy",
+          "tyre-degradation"
+        ],
+        "activities": [
+          {
+            "id": "sd-01-mul-stint-definition",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "stint"
+            ],
+            "payload": {
+              "prompt": "What is a stint in F1?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "A stretch of the race on one set of tyres from stop to stop.",
+                  "explanation": "Right. A stint ends when you pit for fresh tyres."
+                },
+                {
+                  "id": "b",
+                  "text": "One lap of the circuit."
+                  "explanation": "No, a stint is multiple laps. It runs from one pit stop to the next."
+                },
+                {
+                  "id": "c",
+                  "text": "A penalty where a driver is slowed for a violation.",
+                  "explanation": "That is not a stint. A stint is a period on one set of tyres."
+                },
+                {
+                  "id": "d",
+                  "text": "The time it takes a pit crew to change all four tyres.",
+                  "explanation": "That is a pit stop, not a stint. A stint is the racing between stops."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. A stint is a stretch of the race on one tyre set, from one pit stop to the next.",
+                "incorrect": "A stint is a racing period on a single set of tyres. Most races have two or three stints.",
+                "sayThisLine": "A stint is one set of tyres, from stop to stop."
+              }
+            }
+          },
+          {
+            "id": "sd-01-mul-pit-window",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "pit-window"
+            ],
+            "payload": {
+              "prompt": "What is a pit window?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The range of laps where a pit stop makes sense based on tyre life and track position.",
+                  "explanation": "Right. A pit window opens when tyres are worn and close when rivals pit."
+                },
+                {
+                  "id": "b",
+                  "text": "The time it takes to drive through the pit lane.",
+                  "explanation": "That is pit time loss, not a pit window. A window is a range of laps."
+                },
+                {
+                  "id": "c",
+                  "text": "A rule that says you must pit at a certain point in the race.",
+                  "explanation": "There is no such rule. Pit windows are strategy-based, not mandatory."
+                },
+                {
+                  "id": "d",
+                  "text": "The number of pit boxes available to a team.",
+                  "explanation": "That is pit box availability. A pit window is a strategic timing window."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. A pit window is the strategic range of laps where stopping gains time or holds position.",
+                "incorrect": "A pit window is the range of laps where a pit stop is optimal, based on tyre wear and rival strategies.",
+                "sayThisLine": "A pit window is a strategic range of laps for pitting."
+              }
+            }
+          },
+          {
+            "id": "sd-01-sim-pit-window-v1-d2",
+            "type": "unity-sim",
+            "conceptIds": [
+              "stint",
+              "pit-window",
+              "one-stop-strategy"
+            ],
+            "payload": {
+              "simulationId": "f1.strategy.pit-window.v1",
+              "simulationVersion": "1.0.0",
+              "difficulty": 2
+            }
+          }
+        ]
+      },
+      {
+        "id": "sd-02-undercut-deep",
+        "title": "The undercut in detail",
+        "objective": "Predict when an undercut works and when it fails.",
+        "estimatedMinutes": 8,
+        "conceptIds": [
+          "undercut",
+          "overcut",
+          "pit-loss",
+          "track-position"
+        ],
+        "activities": [
+          {
+            "id": "sd-02-bin-undercut-timing",
+            "type": "binary-call",
+            "conceptIds": [
+              "undercut"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Strategist",
+                "text": "He is 1.5 seconds ahead, we pit now to get fresh tyres. His tyres are old; the undercut works if we emerge ahead."
+              },
+              "question": "Is this the right call?",
+              "options": [
+                {
+                  "id": "yes",
+                  "text": "Yes, fresh tyres should be fast enough to jump him.",
+                  "explanation": "Maybe. An undercut only works if the lap time gain from fresh tyres exceeds pit loss and track position.",
+                  "isCorrect": false
+                },
+                {
+                  "id": "no",
+                  "text": "No, 1.5 seconds is not enough unless he is much slower on old tyres.",
+                  "explanation": "Right. Pit loss is about 20 seconds; you need a big time gain to undercut.",
+                  "isCorrect": true
+                }
+              ]
+            }
+          },
+          {
+            "id": "sd-02-bin-pit-loss-reality",
+            "type": "binary-call",
+            "conceptIds": [
+              "pit-loss"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Commentator",
+                "text": "He loses about 25 seconds going through the pit lane and getting up to speed. That is the pit loss."
+              },
+              "question": "Is that accurate?",
+              "options": [
+                {
+                  "id": "yes",
+                  "text": "Yes, pit loss is roughly 20 to 25 seconds at most circuits.",
+                  "explanation": "Right. This is the cost of a stop: speed limit, stop time, and getting back up to pace.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "no",
+                  "text": "No, modern stops are much faster, under 10 seconds.",
+                  "explanation": "The stop itself is 2 seconds, but pit lane speed limits and getting back to racing pace add up to 20-25 seconds total."
+                }
+              ]
+            }
+          },
+          {
+            "id": "sd-02-bin-overcut-patience",
+            "type": "binary-call",
+            "conceptIds": [
+              "overcut",
+              "track-position"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "Race engineer",
+                "text": "Stay out; we use the overcut. You are on old tyres but in clear air; he will pit and be stuck in traffic."
+              },
+              "question": "Does this make sense?",
+              "options": [
+                {
+                  "id": "yes",
+                  "text": "Yes",
+                  "explanation": "Right. The overcut bets that clear air and tyre life beat a rival's fresh tyres in dirty air.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "no",
+                  "text": "No",
+                  "explanation": "The overcut can work. Track position and clean air sometimes beat fresh tyres."
+                }
+              ]
+            }
+          },
+          {
+            "id": "sd-02-sim-pit-window-v1-d3",
+            "type": "unity-sim",
+            "conceptIds": [
+              "undercut",
+              "overcut",
+              "pit-loss"
+            ],
+            "payload": {
+              "simulationId": "f1.strategy.pit-window.v1",
+              "simulationVersion": "1.0.0",
+              "difficulty": 3
+            }
+          }
+        ]
+      },
+      {
+        "id": "sd-03-tyre-management",
+        "title": "Managing tyres and lifting off",
+        "objective": "Explain lift and coast and tyre saving as a strategy.",
+        "estimatedMinutes": 8,
+        "conceptIds": [
+          "tyre-management",
+          "lift-and-coast",
+          "tyre-degradation"
+        ],
+        "activities": [
+          {
+            "id": "sd-03-est-tyre-life-laps",
+            "type": "estimate-slider",
+            "conceptIds": [
+              "tyre-degradation"
+            ],
+            "payload": {
+              "prompt": "On a hard tyre at a high-speed circuit, roughly how many laps of full-speed racing until grip starts to collapse?",
+              "unit": "laps",
+              "min": 10,
+              "max": 50,
+              "step": 1,
+              "correctValue": 35,
+              "tolerance": {
+                "full": 5,
+                "partial": 10
+              },
+              "explanation": {
+                "correct": "Right. Hard tyres can last around 35 laps at pace before hitting the cliff.",
+                "incorrect": "Hard-compound tyres typically last 30-40 laps at racing pace before grip drops sharply.",
+                "sayThisLine": "Hard tyres last roughly 35 laps; softs, around 20."
+              }
+            }
+          },
+          {
+            "id": "sd-03-est-lift-coast-gain",
+            "type": "estimate-slider",
+            "conceptIds": [
+              "lift-and-coast"
+            ],
+            "payload": {
+              "prompt": "Lift and coast saves how many tenths per lap on average?",
+              "unit": "tenths",
+              "min": 0.1,
+              "max": 1.0,
+              "step": 0.1,
+              "correctValue": 0.3,
+              "tolerance": {
+                "full": 0.1,
+                "partial": 0.2
+              },
+              "explanation": {
+                "correct": "Right. Lift and coast costs about 0.3 tenths per lap but saves significant tyre or energy.",
+                "incorrect": "Lift and coast typically costs 0.2 to 0.4 tenths per lap but extends tyre life or battery charge.",
+                "sayThisLine": "Lift and coast costs about 0.3 tenths but saves more later."
+              }
+            }
+          },
+          {
+            "id": "sd-03-dec-save-or-push",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "tyre-management"
+            ],
+            "payload": {
+              "setup": "You are leading by two seconds with 10 laps to go. Your tyres are graining; they will not last at full pace. Your teammate is closing at 0.2 seconds per lap. Do you save the tyres or push to build a bigger gap?",
+              "question": "What is the right call?",
+              "options": [
+                {
+                  "id": "save",
+                  "text": "Save and manage",
+                  "explanation": "Right. If the tyre hits a cliff and collapses, two seconds disappears in one lap.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "push",
+                  "text": "Push hard now to build a bigger gap",
+                  "explanation": "Graining tyres often hit a sudden cliff. Better to extend their life and hold the gap."
+                }
+              ],
+              "translation": "Tyre management is about predicting the cliff and pacing to survive to the end."
+            }
+          },
+          {
+            "id": "sd-03-dec-when-to-lift",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "lift-and-coast",
+              "tyre-management"
+            ],
+            "payload": {
+              "setup": "You have a 1.2 second lead with 8 laps to go. Your rear tyres are blistering; they could fail. The rival is 1.5 seconds behind.",
+              "question": "Do you lift and coast now or keep pushing?",
+              "options": [
+                {
+                  "id": "lift",
+                  "text": "Lift and coast to let the tyres cool; losing 0.3 is worth avoiding a puncture.",
+                  "explanation": "Right. A rear tyre failure could cost you the race. Save it now.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "push",
+                  "text": "Keep pushing to build a bigger buffer; the tyres might survive.",
+                  "explanation": "Blistering tyres are on borrowed time. Lift and coast is the smart move."
+                }
+              ],
+              "translation": "When a tyre is in danger, lift and coast to extend its life. A guaranteed finish beats a risky collapse."
+            }
+          },
+          {
+            "id": "sd-03-mul-tyre-saving-definition",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "tyre-management"
+            ],
+            "payload": {
+              "prompt": "What does tyre saving mean as a strategy?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Driving smoothly and using lift-and-coast to extend tyre life, sometimes at the cost of lap time.",
+                  "explanation": "Right. Tyre saving trades immediate pace for tyre longevity."
+                },
+                {
+                  "id": "b",
+                  "text": "Staying in the pit box and not racing at all.",
+                  "explanation": "That is not tyre saving. Tyre saving is about how you drive to extend life."
+                },
+                {
+                  "id": "c",
+                  "text": "Using only soft compounds so tyres last longer.",
+                  "explanation": "Softs degrade faster, not slower. Saving is about smooth driving, not tyre choice."
+                },
+                {
+                  "id": "d",
+                  "text": "Pitting twice to use fresh tyres both times.",
+                  "explanation": "Extra stops cost pit loss. Tyre saving means fewer stops."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Tyre saving is smooth driving to extend life. It costs lap time but lets you race longer.",
+                "incorrect": "Tyre saving is a strategy of smooth, efficient driving to make tyres last longer in the race.",
+                "sayThisLine": "Tyre saving is smooth driving to extend life."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "sd-04-safety-car-stops",
+        "title": "Safety car: the free stop",
+        "objective": "Explain why a stop under the safety car is cheap.",
+        "estimatedMinutes": 8,
+        "conceptIds": [
+          "safety-car-stop",
+          "safety-car",
+          "pit-loss",
+          "double-stack"
+        ],
+        "activities": [
+          {
+            "id": "sd-04-mul-why-free-stop",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "safety-car-stop",
+              "pit-loss"
+            ],
+            "payload": {
+              "prompt": "Why is a pit stop under the safety car considered a 'free stop'?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The field is bunched and slowed, so the pit car loses less time to rivals while stopped.",
+                  "explanation": "Right. Everyone is on a parade lap at low speed, so stopping does not cost as much gap time."
+                },
+                {
+                  "id": "b",
+                  "text": "The FIA pays for the pit crew's work.",
+                  "explanation": "No, the pit stop is not free in money. It is free in time relative to racing pace."
+                },
+                {
+                  "id": "c",
+                  "text": "You do not lose any time; the stop is instant.",
+                  "explanation": "The stop still takes time, but pit loss is smaller because everyone is slowed by the safety car."
+                },
+                {
+                  "id": "d",
+                  "text": "Only one team can pit under a safety car.",
+                  "explanation": "Multiple teams can pit. The advantage is the reduced speed makes pit loss less costly."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. A safety-car stop is cheap because the whole field crawls at low speed; your stop time loss is small.",
+                "incorrect": "A safety-car stop feels free because pit loss is minimal: the field is bunched and moving slowly.",
+                "sayThisLine": "Safety-car stops are cheap because the whole field is bunched and slow."
+              }
+            }
+          },
+          {
+            "id": "sd-04-mul-gap-advantage",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "safety-car-stop",
+              "track-position"
+            ],
+            "payload": {
+              "prompt": "When the safety car is out and you pit, who gains the most advantage?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "A driver who is trailing by several seconds, who can pit and rejoin without losing more ground.",
+                  "explanation": "Right. A trailing driver can close gaps under the safety car by pitting for free and then following the field."
+                },
+                {
+                  "id": "b",
+                  "text": "The leader, who pits first and loses nothing.",
+                  "explanation": "The leader loses position if the field catches up under the safety car."
+                },
+                {
+                  "id": "c",
+                  "text": "No one gains; all stops are equal under a safety car.",
+                  "explanation": "Not true. Trailing drivers gain relative position by pitting under the safety car."
+                },
+                {
+                  "id": "d",
+                  "text": "The team with the fastest pit crew.",
+                  "explanation": "All stops take roughly the same time. The advantage is for trailing drivers, not crew speed."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. A trailing driver benefits most: pit under the safety car, then join the field without losing further ground.",
+                "incorrect": "A safety-car stop is most valuable for trailing drivers, who can pit and keep pace with the field.",
+                "sayThisLine": "Trailing drivers gain most from a safety-car stop."
+              }
+            }
+          },
+          {
+            "id": "sd-04-sim-safety-car-call-v1-d1",
+            "type": "unity-sim",
+            "conceptIds": [
+              "safety-car-stop",
+              "safety-car",
+              "double-stack"
+            ],
+            "payload": {
+              "simulationId": "f1.strategy.safety-car-call.v1",
+              "simulationVersion": "1.0.0",
+              "difficulty": 1
+            }
+          }
+        ]
+      },
+      {
+        "id": "sd-05-safety-car-calls",
+        "title": "Safety car: pit or stay out?",
+        "objective": "Make the call in messy situations and defend it.",
+        "estimatedMinutes": 8,
+        "conceptIds": [
+          "safety-car-stop",
+          "virtual-safety-car",
+          "double-stack",
+          "track-position"
+        ],
+        "activities": [
+          {
+            "id": "sd-05-dec-pit-or-stay-vsc",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "virtual-safety-car"
+            ],
+            "payload": {
+              "setup": "A virtual safety car is deployed. You are third, 0.8 seconds behind the leader. Your tyres have 5 laps of life. Do you pit under the VSC for new tyres or stay out and try to hold position?",
+              "question": "What is the call?",
+              "options": [
+                {
+                  "id": "pit",
+                  "text": "Pit now for fresh tyres; VSC lowers pit loss and you might gain position.",
+                  "explanation": "Under a VSC, everyone slows by the same delta, so pit loss is meaningful. Fresh tyres could help.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "stay",
+                  "text": "Stay out; pitting loses you positions and the VSC is short anyway."
+                  "explanation": "VSC removes pit-loss advantage, so pitting could gain you position if you emerge ahead."
+                }
+              ],
+              "translation": "Under a VSC, pit loss is reduced but not zero. Pitting can be the right call for fresh tyres."
+            }
+          },
+          {
+            "id": "sd-05-dec-leader-call",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "safety-car-stop",
+              "track-position"
+            ],
+            "payload": {
+              "setup": "You lead by 1.5 seconds. A safety car is deployed and the field bunches. Your strategist says pit now to cover the field and get fresh tyres. Do you pit or stay out?",
+              "question": "What do you do?",
+              "options": [
+                {
+                  "id": "stay",
+                  "text": "Stay out and keep the lead",
+                  "explanation": "Under a safety car, staying out keeps position. Pitting risks losing the lead.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "pit",
+                  "text": "Pit for fresh tyres for the restart.",
+                  "explanation": "If you pit, the field catches up. Staying out is safer for the leader."
+                }
+              ],
+              "translation": "As the leader under a safety car, usually stay out and keep position."
+            }
+          },
+          {
+            "id": "sd-05-sim-safety-car-call-v1-d3",
+            "type": "unity-sim",
+            "conceptIds": [
+              "safety-car-stop",
+              "double-stack",
+              "track-position"
+            ],
+            "payload": {
+              "simulationId": "f1.strategy.safety-car-call.v1",
+              "simulationVersion": "1.0.0",
+              "difficulty": 3
+            }
+          }
+        ]
+      },
+      {
+        "id": "sd-06-offset-strategies",
+        "title": "Offset strategies",
+        "objective": "Explain why teams start on different tyres.",
+        "estimatedMinutes": 7,
+        "conceptIds": [
+          "offset-strategy",
+          "pit-window",
+          "hard-medium-soft"
+        ],
+        "activities": [
+          {
+            "id": "sd-06-dec-grid-tyre-choice",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "offset-strategy",
+              "hard-medium-soft"
+            ],
+            "payload": {
+              "setup": "Qualifying is close. P1 starts on softs (the fastest on the grid). P2 is you. Do you also start on softs to match, or start on mediums for longer life?",
+              "question": "Which tyre do you choose for race start?",
+              "options": [
+                {
+                  "id": "mediums",
+                  "text": "Start on mediums for longer life",
+                  "explanation": "Right. This is an offset: you sacrifice qualifying position for a later pit stop.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "softs",
+                  "text": "Start on softs to match P1.",
+                  "explanation": "Both on softs means both pit at similar times. An offset lets you gap the rival."
+                }
+              ],
+              "translation": "Offset strategies use different starting compounds to open different pit windows."
+            }
+          },
+          {
+            "id": "sd-06-mul-offset-purpose",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "offset-strategy",
+              "pit-window"
+            ],
+            "payload": {
+              "prompt": "What is the main benefit of an offset strategy?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Different starting tyres create different pit windows, so one team may undercut or overcut the other.",
+                  "explanation": "Right. Offset opens two separate windows instead of copying your rival."
+                },
+                {
+                  "id": "b",
+                  "text": "Starting on a soft tyre means you will never pit.",
+                  "explanation": "No, softs degrade fast and force an early stop."
+                },
+                {
+                  "id": "c",
+                  "text": "Offset strategies are only used by backmarker teams.",
+                  "explanation": "No, any team can use an offset to avoid a crowded pit window."
+                },
+                {
+                  "id": "d",
+                  "text": "It guarantees that you will lead the race at some point.",
+                  "explanation": "An offset creates strategy variety, but does not guarantee a lead."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. An offset strategy forces rivals to pit at different times, opening opportunities to undercut or gain position.",
+                "incorrect": "An offset strategy is starting on a different tyre compound to create a separate pit window.",
+                "sayThisLine": "Offset strategies avoid matching your rival's pit window."
+              }
+            }
+          },
+          {
+            "id": "sd-06-dec-traffic-vs-life",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "offset-strategy",
+              "pit-window"
+            ],
+            "payload": {
+              "setup": "The optimal window for your tyres is laps 25-28. But if you pit in that window, you will rejoin in traffic behind two cars. If you pit at lap 20 (offset), you rejoin alone in clean air.",
+              "question": "Do you pit early for clean air or wait for optimal tyre wear?",
+              "options": [
+                {
+                  "id": "early",
+                  "text": "Pit early at lap 20 for clear air; better pace in clean air beats staying out longer.",
+                  "explanation": "Right. Clear air often beats the tyre advantage of waiting. Offset for clarity.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "late",
+                  "text": "Wait until lap 25 for fresh tyres at peak pace, even in traffic."
+                  "explanation": "Traffic and dirty air slow you down; clear air is often more valuable."
+                }
+              ],
+              "translation": "Clean air is sometimes worth more than waiting for peak tyre window."
+            }
+          },
+          {
+            "id": "sd-06-mul-offset-example",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "offset-strategy",
+              "hard-medium-soft"
+            ],
+            "payload": {
+              "prompt": "In an offset strategy, what is a common tyre-choice scenario?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "One car starts on softs, another on mediums, so they pit at different laps and open separate strategies.",
+                  "explanation": "Right. This is a classic offset: softs pit earlier, mediums pit later."
+                },
+                {
+                  "id": "b",
+                  "text": "Both cars start on the same tyre to be fair.",
+                  "explanation": "That is the opposite of an offset. An offset means different tyres."
+                },
+                {
+                  "id": "c",
+                  "text": "Starting on hards to guarantee you do not pit.",
+                  "explanation": "Even hards require a stop in most races. Offset is about pit-window separation."
+                },
+                {
+                  "id": "d",
+                  "text": "Starting on wets even when the track is dry.",
+                  "explanation": "That would be a tactical error, not an offset strategy."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. A typical offset: soft-tyre car pits around lap 15-18, medium-tyre car around lap 22-25.",
+                "incorrect": "A common offset: one car on softs for early pit, one on mediums for a later pit window.",
+                "sayThisLine": "Soft-vs-medium offset opens two pit windows."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "sd-07-weather-strategy",
+        "title": "Weather and the crossover",
+        "objective": "Decide when to switch tyres as a track dries.",
+        "estimatedMinutes": 8,
+        "conceptIds": [
+          "crossover-point",
+          "intermediate-tyre",
+          "full-wet-tyre"
+        ],
+        "activities": [
+          {
+            "id": "sd-07-dec-switch-timing",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "crossover-point",
+              "intermediate-tyre"
+            ],
+            "payload": {
+              "setup": "The track is drying. Wets are slower now by 0.5 seconds per lap. Inters are available. If you switch, you pit and lose 20 seconds. Do you pit for inters now or wait?",
+              "question": "When do you switch?",
+              "options": [
+                {
+                  "id": "wait",
+                  "text": "Wait. You need to be 20 seconds faster per lap for a pit to gain, which inters might not be yet.",
+                  "explanation": "Right. The crossover point is where the new tyre is faster than pit loss over a lap.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "now",
+                  "text": "Pit now to get ahead of others who are about to switch."
+                  "explanation": "If the crossover is not there, pitting costs you time relative to staying out."
+                }
+              ],
+              "translation": "The crossover point is where pit loss is offset by the tyre advantage."
+            }
+          },
+          {
+            "id": "sd-07-est-crossover-gap",
+            "type": "estimate-slider",
+            "conceptIds": [
+              "crossover-point"
+            ],
+            "payload": {
+              "prompt": "Roughly how many tenths faster must the new tyre be per lap to justify a pit stop?",
+              "unit": "tenths",
+              "min": 5,
+              "max": 25,
+              "step": 1,
+              "correctValue": 20,
+              "tolerance": {
+                "full": 3,
+                "partial": 5
+              },
+              "explanation": {
+                "correct": "Right. A crossover happens when the new tyre is about 2 tenths (20 hundredths) faster per lap.",
+                "incorrect": "The crossover point is roughly 2 tenths per lap. Pit loss is about 20 seconds; the new tyre must gain that over 100 laps.",
+                "sayThisLine": "Crossover needs about 2 tenths per lap advantage."
+              }
+            }
+          },
+          {
+            "id": "sd-07-dec-rain-heaviness",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "full-wet-tyre",
+              "intermediate-tyre"
+            ],
+            "payload": {
+              "setup": "It is raining hard; there is standing water on corners. You are on inters. Radio says wets are available. Do you pit for wets or stay on inters?",
+              "question": "What is the right choice?",
+              "options": [
+                {
+                  "id": "wets",
+                  "text": "Pit for wets. Standing water means you need full wet capability.",
+                  "explanation": "Right. Full wets handle heavy rain and standing water. Inters will aquaplane.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "inters",
+                  "text": "Stay on inters; wets are not faster and pitting costs time."
+                  "explanation": "In standing water, wets are faster and safer. Staying on inters is risky."
+                }
+              ],
+              "translation": "Full wets are for heavy rain and standing water. Inters are for damp tracks."
+            }
+          },
+          {
+            "id": "sd-07-mul-tyre-switching-general",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "crossover-point"
+            ],
+            "payload": {
+              "prompt": "What is the crossover point in tyre strategy?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "The lap when the time gain from a new tyre exceeds the cost of pitting, making a stop worthwhile.",
+                  "explanation": "Right. The crossover is a calculated point in time."
+                },
+                {
+                  "id": "b",
+                  "text": "A place on the track where the surface changes from wet to dry.",
+                  "explanation": "That is a track feature, not a crossover point. Crossover is a strategic timing."
+                },
+                {
+                  "id": "c",
+                  "text": "A rule that says drivers must switch tyres at a specific lap.",
+                  "explanation": "There is no such rule. Crossover is a calculation, not a mandate."
+                },
+                {
+                  "id": "d",
+                  "text": "A penalty where tyres are cross-threaded and must be replaced.",
+                  "explanation": "That is not a crossover point. Crossover is strategic timing."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. The crossover point is when the new tyre's lap-time advantage equals the pit stop's time cost.",
+                "incorrect": "The crossover point is the moment when switching to a new tyre saves time overall versus staying out.",
+                "sayThisLine": "Crossover is when the new tyre's gain exceeds pit loss."
+              }
+            }
+          },
+          {
+            "id": "sd-07-mul-rain-tyre-use",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "intermediate-tyre",
+              "full-wet-tyre"
+            ],
+            "payload": {
+              "prompt": "When do you use intermediate tyres instead of full wets?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "When the track is damp but with no standing water, and rain is light or stopping.",
+                  "explanation": "Right. Inters are the bridge tyre: wetter than dry, drier than full wets."
+                },
+                {
+                  "id": "b",
+                  "text": "Only in qualifying, not in races."
+                  "explanation": "Inters are used in races during light-rain phases and track-drying periods."
+                },
+                {
+                  "id": "c",
+                  "text": "Never; full wets are always faster in any rain.",
+                  "explanation": "No, full wets are slower on a drying or lightly wet track. Inters are faster then."
+                },
+                {
+                  "id": "d",
+                  "text": "When tyre manufacturers run out of full wets.",
+                  "explanation": "Tyre availability is not the reason. Inters are chosen by track conditions."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Inters are for damp tracks and light rain. Full wets are for heavy rain and standing water.",
+                "incorrect": "Intermediate tyres are used for damp tracks and light-to-moderate rain without standing water.",
+                "sayThisLine": "Inters for damp, wets for standing water."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "sd-08-qualifying-and-race-plans",
+        "title": "From qualifying to race plan",
+        "objective": "Explain how track evolution and grid slot shape the plan.",
+        "estimatedMinutes": 8,
+        "conceptIds": [
+          "track-evolution",
+          "starting-grid",
+          "offset-strategy"
+        ],
+        "activities": [
+          {
+            "id": "sd-08-dec-quali-advantage",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "starting-grid",
+              "track-evolution"
+            ],
+            "payload": {
+              "setup": "You qualified on pole at 1:23.5. The race is tomorrow on a cooler day. The forecast suggests the track will be 0.3-0.5 seconds slower. Does this change your race strategy, or do you assume the same pit window as you planned?",
+              "question": "How do you adjust?",
+              "options": [
+                {
+                  "id": "adjust",
+                  "text": "Adjust your plan. Slower track means tyres degrade differently and pit windows shift.",
+                  "explanation": "Right. Track evolution and temperature change tyre wear profiles.",
+                  "isCorrect": true
+                },
+                {
+                  "id": "same",
+                  "text": "Stick to the original plan. Pole position gives you an advantage no matter the track."
+                  "explanation": "Pole helps, but tyre degradation changes with track conditions. The strategy must adapt."
+                }
+              ],
+              "translation": "Track conditions change how tyres wear, so race strategy adapts from qualifying."
+            }
+          },
+          {
+            "id": "sd-08-mul-track-evolution-impact",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "track-evolution"
+            ],
+            "payload": {
+              "prompt": "How does track evolution affect pit-window timing?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "A slow track evolves less; tyres wear slower, so pit windows open later than on a fast track.",
+                  "explanation": "Right. More rubber on the track = faster laps and faster degradation. Less rubber = slower laps and slower wear."
+                },
+                {
+                  "id": "b",
+                  "text": "Track evolution has no effect on pit windows.",
+                  "explanation": "Evolution affects grip and lap time, which directly changes how fast tyres wear."
+                },
+                {
+                  "id": "c",
+                  "text": "A hot track evolves more, so pit windows open earlier.",
+                  "explanation": "Heat does affect tyre wear, but track evolution (rubber laying down) is the main factor."
+                },
+                {
+                  "id": "d",
+                  "text": "Evolution only matters in qualifying, not during the race.",
+                  "explanation": "Evolution matters throughout the weekend and race day."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. A slow track means less grip, slower laps and slower tyre degradation. Pit windows shift accordingly.",
+                "incorrect": "Track evolution affects how fast the track gets during the race, which changes tyre wear rates and pit-window timing.",
+                "sayThisLine": "Slow track = later pit window. Fast track = earlier pit window."
+              }
+            }
+          },
+          {
+            "id": "sd-08-sim-pit-window-v1-d4",
+            "type": "unity-sim",
+            "conceptIds": [
+              "track-evolution",
+              "offset-strategy",
+              "pit-window"
+            ],
+            "payload": {
+              "simulationId": "f1.strategy.pit-window.v1",
+              "simulationVersion": "1.0.0",
+              "difficulty": 4
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

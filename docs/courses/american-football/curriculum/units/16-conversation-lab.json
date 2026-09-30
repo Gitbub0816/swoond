@@ -8,7 +8,6 @@
     "order": 16,
     "prerequisiteUnitIds": ["the-basics"],
     "personalizationSlots": ["team", "player"],
-    "concepts": [],
     "lessons": [
       {
         "id": "first-text-01",
@@ -169,9 +168,11 @@
             "type": "fill-the-gap",
             "conceptIds": ["touchdown", "interception", "follow-up-question"],
             "payload": {
-              "template": "After she describes a big play, you can ask: 'Did the ball get to the {{gap1}} or was it an {{gap2}}?'",
+              "prompt": "Complete a question you could ask after a big play.",
+              "template": "Did the ball get to the {{first-person}} or was it an {{play-type}}?",
               "gaps": [
                 {
+                  "id": "first-person",
                   "options": [
                     "end zone",
                     "receiver",
@@ -180,6 +181,7 @@
                   "correct": "receiver"
                 },
                 {
+                  "id": "play-type",
                   "options": [
                     "touchdown",
                     "interception",
@@ -187,7 +189,11 @@
                   ],
                   "correct": "interception"
                 }
-              ]
+              ],
+              "explanation": {
+                "correct": "Asking 'was it a completion or an interception' is a great way to follow up after a big play. It shows you understood something happened but want her to explain.",
+                "incorrect": "When she describes a play, asking clarifying questions shows you are listening and want to learn more about what she saw."
+              }
             },
             "xp": 10
           },
@@ -939,7 +945,7 @@
               "options": [
                 {
                   "id": "best-engage",
-                  "label": "You're both right. We won big AND there are things to clean up. What worried you most?",
+                  "label": "You're right. Win big AND fix what's broken. What worried you?",
                   "verdict": "best",
                   "consequence": "You honor both her joy and her skepticism. You go deeper into what specifically concerns her.",
                   "considerations": [
@@ -1185,7 +1191,7 @@
               "options": [
                 {
                   "id": "best-engage",
-                  "label": "That could work depending on the players. Who is the RB and who is the other receiver?",
+                  "label": "That could work. Who are the RB and other receiver?",
                   "verdict": "best",
                   "consequence": "You take her strategy seriously and ask for details. Even if you don't play, you are helping her think it through.",
                   "considerations": [
@@ -1371,6 +1377,40 @@
                 }
               ],
               "noFakeExpertNote": "If you missed the play, say 'Can you rewind that?' or 'I missed it, tell me what you saw.' Learning together is better than pretending."
+            },
+            "xp": 10
+          },
+          {
+            "id": "watch-party-07-fg-moment",
+            "type": "fill-the-gap",
+            "conceptIds": ["listen-first", "follow-up-question"],
+            "payload": {
+              "prompt": "Complete a follow-up question after she explains a play.",
+              "template": "So the {{play-element}} created an opening because {{reason}}?",
+              "gaps": [
+                {
+                  "id": "play-element",
+                  "options": [
+                    "fake",
+                    "blitz",
+                    "defense"
+                  ],
+                  "correct": "fake"
+                },
+                {
+                  "id": "reason",
+                  "options": [
+                    "the offense got confused",
+                    "a defender bit too hard",
+                    "the clock ran out"
+                  ],
+                  "correct": "a defender bit too hard"
+                }
+              ],
+              "explanation": {
+                "correct": "Asking her to explain *why* a fake worked shows you are following the cause-and-effect chain. That is how you learn strategy.",
+                "incorrect": "After she points out a play, asking 'why did that work?' or 'why did they fall for it?' shows you are thinking critically with her."
+              }
             },
             "xp": 10
           }

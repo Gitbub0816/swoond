@@ -34,71 +34,98 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "Mainly on straights and exits to gain top speed or help traction.",
-                  "explanation": "Right. Deployment helps most on straights (speed) and corner exits (traction). Braking and turning don't need it."
+                  "text": "Mainly on straights and exits to gain top speed or traction.",
+                  "explanation": "Right. Deployment helps on straights (speed) and exits (traction)."
                 },
                 {
                   "id": "b",
-                  "text": "Under braking to help slow the car down faster.",
-                  "explanation": "No. Braking harvests energy; deployment makes the car faster, not slower."
+                  "text": "Under braking to slow the car.",
+                  "explanation": "No. Braking harvests energy; deployment makes the car faster."
                 },
                 {
                   "id": "c",
                   "text": "Through the entire lap equally.",
-                  "explanation": "No, energy is finite. Teams pick the spots where deployment gains the most time."
+                  "explanation": "No, energy is finite. Teams pick spots where it gains the most."
                 },
                 {
                   "id": "d",
-                  "text": "Only when overtaking another car.",
-                  "explanation": "Overtake Mode is for when within one second, but deployment also helps on solo laps."
+                  "text": "Only when overtaking.",
+                  "explanation": "Overtake Mode is within one second, but deployment helps solo laps."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. Drivers deploy energy where it gains the most time: straights for speed, exits for traction.",
-                "incorrect": "Deployment is used on straights (speed) and exits (traction). Braking is for harvesting, not deploying.",
+                "correct": "Right. Deploy where it gains time: straights for speed, exits for traction.",
+                "incorrect": "Deployment is on straights (speed) and exits (traction). Braking harvests, not deploys.",
                 "sayThisLine": "The battery helps on straights and exits."
               }
             }
           },
           {
-            "id": "ce-01-mul-energy-budget",
-            "type": "multiple-choice",
+            "id": "ce-01-bin-deploy-limit",
+            "type": "binary-call",
             "conceptIds": [
               "energy-store"
             ],
             "payload": {
-              "prompt": "What limits how much electrical power a 2026 driver can use in one lap?",
-              "options": [
+              "prompt": "Does the FIA set a per-lap electrical power deployment limit?",
+              "scene": {
+                "kind": "none",
+                "alt": "A 2026 F1 car deploying power on a straight."
+              },
+              "choices": [
                 {
-                  "id": "a",
-                  "text": "The battery size and the per-lap deployment limits set by the FIA.",
-                  "explanation": "Right. Each team has a fixed energy budget per lap they cannot exceed, even if the battery is full."
+                  "id": "yes",
+                  "label": "Yes"
                 },
                 {
-                  "id": "b",
-                  "text": "How much they harvested in that same lap.",
-                  "explanation": "Related, but the limit is FIA-set. You can deploy more than you harvest if the battery has reserve."
-                },
-                {
-                  "id": "c",
-                  "text": "The driver's physical fitness.",
-                  "explanation": "That affects braking force, not electrical deployment."
-                },
-                {
-                  "id": "d",
-                  "text": "Nothing; drivers can deploy unlimited power.",
-                  "explanation": "No, there are strict per-lap limits to keep racing fair."
+                  "id": "no",
+                  "label": "No"
                 }
               ],
-              "correctOptionIds": [
-                "a"
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Right. The FIA sets per-lap limits to keep racing fair.",
+                "incorrect": "Yes. Teams have an FIA-set budget; they must manage it."
+              }
+            }
+          },
+          {
+            "id": "ce-01-ter-energy-roles",
+            "type": "term-match",
+            "conceptIds": [
+              "recharge",
+              "boost-button",
+              "mgu-k"
+            ],
+            "payload": {
+              "prompt": "Match energy concepts to their roles.",
+              "pairs": [
+                {
+                  "id": "recharge",
+                  "term": "Recharge",
+                  "definition": "Filling battery via braking and engine power."
+                },
+                {
+                  "id": "deploy",
+                  "term": "Deployment",
+                  "definition": "Using battery power on straights and exits."
+                },
+                {
+                  "id": "mgu-k",
+                  "term": "MGU-K",
+                  "definition": "Motor-generator that harvests braking energy."
+                }
+              ],
+              "distractorDefinitions": [
+                "Limiting how fast the car goes.",
+                "A penalty for using too much power."
               ],
               "explanation": {
-                "correct": "Right. The FIA sets a per-lap deployment limit. Every team gets the same budget; strategy is how they spend it.",
-                "incorrect": "The FIA sets strict per-lap electrical deployment limits so teams cannot just dump the whole battery in one lap."
+                "summary": "Harvest (braking), store (battery), deploy (speed). MGU-K is the harvest tool.",
+                "sayThisLine": "Harvest under braking, deploy on straights."
               }
             }
           },
@@ -121,7 +148,7 @@
       {
         "id": "ce-02-clipping",
         "title": "Clipping and super-clipping",
-        "objective": "Explain why a car slows at the end of a straight and what teams do about it.",
+        "objective": "Explain why a car slows at the end of a straight.",
         "estimatedMinutes": 8,
         "conceptIds": [
           "super-clipping",
@@ -136,74 +163,90 @@
               "super-clipping"
             ],
             "payload": {
-              "prompt": "What happens when a 2026 car clips (runs out of battery)?",
+              "prompt": "What happens when a 2026 car clips?",
               "options": [
                 {
                   "id": "a",
-                  "text": "The car stops getting electrical power, slows visibly, and is forced to harvest instead of deploy.",
-                  "explanation": "Right. Clipping is the car running out of energy. It then prioritises harvesting to refill."
+                  "text": "The battery is empty; power stops and the car forces a harvest.",
+                  "explanation": "Right. Clipping = no electrical help and slowing to recharge."
                 },
                 {
                   "id": "b",
-                  "text": "The engine automatically shuts off.",
-                  "explanation": "No, the combustion engine stays on. Only the electrical assist stops."
+                  "text": "The engine shuts off.",
+                  "explanation": "No, only the electrical assist stops."
                 },
                 {
                   "id": "c",
-                  "text": "The car crashes if it clips.",
-                  "explanation": "No, clipping just means the battery is empty. The car is slower but safe."
+                  "text": "The car crashes.",
+                  "explanation": "No, clipping just means the battery is empty. Safe, but slower."
                 },
                 {
                   "id": "d",
-                  "text": "A penalty is given for over-deploying.",
-                  "explanation": "Clipping is not a penalty. It is a strategy consequence: you ran out early."
+                  "text": "A penalty is given.",
+                  "explanation": "Clipping is not penalised; it is a strategy consequence."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. Clipping is when the battery empties. The car loses electrical help and even loses speed as it forces a harvest.",
-                "incorrect": "Clipping happens when the battery runs out. The car stops accelerating and must harvest energy to refill."
+                "correct": "Right. Clipping = battery empty. Car loses power and must harvest.",
+                "incorrect": "Clipping happens when the battery runs out. The car stops accelerating."
               }
             }
           },
           {
-            "id": "ce-02-mul-why-clip-bad",
-            "type": "multiple-choice",
+            "id": "ce-02-bin-clip-on-straight-bad",
+            "type": "binary-call",
             "conceptIds": [
               "super-clipping"
             ],
             "payload": {
-              "prompt": "Why is clipping on a long straight bad for a driver's lap time?",
-              "options": [
+              "prompt": "Is clipping on a straight bad for lap time?",
+              "scene": {
+                "kind": "none",
+                "alt": "A 2026 F1 car clipping on a straight."
+              },
+              "choices": [
                 {
-                  "id": "a",
-                  "text": "The car stops accelerating and even slows while harvesting, costing crucial top speed on the straight.",
-                  "explanation": "Right. A straight is where you need top speed; clipping there is costly. Better to clip on a braking zone."
+                  "id": "yes",
+                  "label": "Yes, costly"
                 },
                 {
-                  "id": "b",
-                  "text": "It requires the driver to brake early.",
-                  "explanation": "Clipping doesn't force braking. The car just stops gaining speed."
-                },
-                {
-                  "id": "c",
-                  "text": "It damages the battery.",
-                  "explanation": "Clipping does not damage the battery. It just empties it."
-                },
-                {
-                  "id": "d",
-                  "text": "The tyre loses grip.",
-                  "explanation": "Clipping doesn't affect tyres; it only affects electrical power and speed."
+                  "id": "no",
+                  "label": "No, acceptable"
                 }
               ],
-              "correctOptionIds": [
-                "a"
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "Right. Clipping kills top speed when you need it most.",
+                "incorrect": "Yes. Clipping on straights is bad. Teams aim to clip under braking."
+              }
+            }
+          },
+          {
+            "id": "ce-02-fil-prevent-clipping",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "lift-and-coast"
+            ],
+            "payload": {
+              "prompt": "To avoid clipping at the end of a straight, drivers {{method}} to recharge the battery early.",
+              "template": "To avoid clipping at the end of a straight, drivers {{method}} to recharge the battery early.",
+              "gaps": [
+                {
+                  "id": "method",
+                  "options": [
+                    "lift and coast",
+                    "brake harder",
+                    "turn sharper"
+                  ],
+                  "correct": "lift and coast"
+                }
               ],
               "explanation": {
-                "correct": "Right. Clipping at the end of a straight kills top speed. Teams aim to clip under braking instead.",
-                "incorrect": "Clipping on a straight is bad because the car loses the electrical boost just when it needs maximum speed."
+                "correct": "Right. Lifting off throttle early lets teams recharge before the straight ends.",
+                "incorrect": "Lift and coast (easing off early) recharges the battery to avoid clipping."
               }
             }
           },
@@ -242,7 +285,7 @@
               "corner-mode"
             ],
             "payload": {
-              "prompt": "Should a driver close the wings (Corner Mode) before entering a high-speed corner?",
+              "prompt": "Should a driver close the wings before a high-speed corner?",
               "scene": {
                 "kind": "none",
                 "alt": "A 2026 F1 car approaching a fast corner."
@@ -250,47 +293,84 @@
               "choices": [
                 {
                   "id": "yes",
-                  "label": "Yes, close before the corner"
+                  "label": "Yes, close wings"
                 },
                 {
                   "id": "no",
-                  "label": "No, open wings help turn"
+                  "label": "No, keep open"
                 }
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Right. Close (high downforce) for the corner to grip; open (low drag) only on straights.",
-                "incorrect": "Yes. Open wings reduce downforce and grip. Close them before the corner to help the car turn."
+                "correct": "Right. Close (high downforce) for corners.",
+                "incorrect": "Yes. Open wings reduce grip. Close them for the corner."
               }
             }
           },
           {
-            "id": "ce-03-bin-open-on-straight",
+            "id": "ce-03-bin-straight-mode-zones",
             "type": "binary-call",
             "conceptIds": [
-              "straight-mode",
-              "drag"
+              "straight-mode"
             ],
             "payload": {
-              "prompt": "Can a driver open Straight Mode (wings flat) only in FIA-approved zones?",
+              "prompt": "Can drivers use Straight Mode anywhere on the lap?",
               "scene": {
                 "kind": "none",
-                "alt": "A 2026 F1 car on a circuit showing wing zones."
+                "alt": "A 2026 F1 car with Straight Mode active."
               },
               "choices": [
                 {
-                  "id": "yes",
-                  "label": "Yes, only in approved zones"
+                  "id": "zones",
+                  "label": "Only in approved zones"
                 },
                 {
-                  "id": "no",
-                  "label": "No, anywhere on the lap"
+                  "id": "anywhere",
+                  "label": "Anywhere on lap"
                 }
               ],
-              "correctChoiceId": "yes",
+              "correctChoiceId": "zones",
               "explanation": {
-                "correct": "Right. Straight Mode is zone-restricted per circuit for safety and fairness.",
-                "incorrect": "Yes. Straight Mode is only legal in FIA-designated zones, not the whole lap."
+                "correct": "Right. Straight Mode is zone-restricted per circuit.",
+                "incorrect": "Only approved zones. Not the whole lap for safety."
+              }
+            }
+          },
+          {
+            "id": "ce-03-ter-mode-differences",
+            "type": "term-match",
+            "conceptIds": [
+              "straight-mode",
+              "corner-mode",
+              "drag",
+              "downforce"
+            ],
+            "payload": {
+              "prompt": "Match each wing mode to its purpose.",
+              "pairs": [
+                {
+                  "id": "straight-mode",
+                  "term": "Straight Mode",
+                  "definition": "Low-drag wing setting for speed on straights."
+                },
+                {
+                  "id": "corner-mode",
+                  "term": "Corner Mode",
+                  "definition": "High-downforce wing setting for grip and braking."
+                },
+                {
+                  "id": "trade-off",
+                  "term": "The trade-off",
+                  "definition": "More downforce increases grip but also increases drag."
+                }
+              ],
+              "distractorDefinitions": [
+                "A system that works only on tight circuits.",
+                "A penalty for using wings incorrectly."
+              ],
+              "explanation": {
+                "summary": "Straight Mode = speed, Corner Mode = grip. The driver switches to balance both.",
+                "sayThisLine": "Open on straights, close for corners."
               }
             }
           },
@@ -322,16 +402,15 @@
         ],
         "activities": [
           {
-            "id": "ce-04-dec-qualify-recharge",
+            "id": "ce-04-dec-qualify-flat-out",
             "type": "decision-scenario",
             "conceptIds": [
-              "recharge",
               "qualifying"
             ],
             "payload": {
-              "prompt": "In qualifying, do you lift-and-coast to recharge mid-lap, or push flat-out for one perfect lap?",
+              "prompt": "In Q3, one lap left. Push flat-out and clip, or conserve battery?",
               "situation": {
-                "narrative": "Qualifying Q3, your final lap. You are 0.15 seconds off the provisional pole. Your battery is at 50% and you have one chance.",
+                "narrative": "Final qualifying lap. 0.15 seconds off pole. Battery at 50%.",
                 "facts": [
                   {
                     "label": "Gap to pole",
@@ -350,82 +429,116 @@
               "options": [
                 {
                   "id": "push-flat",
-                  "label": "Push flat-out and likely clip at the end",
+                  "label": "Push flat-out, accept clipping",
                   "verdict": "best",
-                  "consequence": "One perfect lap with maximum deployment now, even if you clip. A 0.15-second gain outweighs clipping.",
+                  "consequence": "One perfect lap. Clipping at the end costs little vs gaining 0.15 seconds.",
                   "considerations": [
                     "Maximum power on every straight",
-                    "You will clip mid-final-corner, costing no time (braking)",
-                    "One shot to beat pole"
+                    "Clipping happens during braking (low cost)",
+                    "One shot at pole"
                   ]
                 },
                 {
-                  "id": "recharge-safer",
-                  "label": "Lift-and-coast to recharge and stay on battery",
+                  "id": "conserve",
+                  "label": "Conserve battery, stay flush",
                   "verdict": "acceptable",
-                  "consequence": "Stay flush the whole lap but lose deployment time, so no pole. Safer but slower.",
+                  "consequence": "Safe but too slow. You lose deployment time, miss pole.",
                   "considerations": [
                     "No clipping risk",
-                    "0.1-second loss from missing deployment at the end",
+                    "0.1-second loss from missing deployment",
                     "Not enough to beat pole anyway"
                   ]
                 }
               ],
-              "expertNote": "Qualifying is one lap. Energy management is secondary to outright pace. Push for pole and accept clipping if it means beating the rival.",
-              "sayThisLine": "In qualifying, one lap trumps energy planning."
+              "expertNote": "Qualifying: one lap trumps energy planning. Push for pole; clipping is a cost you pay.",
+              "sayThisLine": "In qualifying, push and clip if you must."
             }
           },
           {
-            "id": "ce-04-dec-race-vs-quali-battery",
+            "id": "ce-04-dec-race-vs-qualify-battery",
             "type": "decision-scenario",
             "conceptIds": [
-              "super-clipping",
-              "qualifying"
+              "super-clipping"
             ],
             "payload": {
-              "prompt": "How does the 2026 battery role differ between qualifying and race?",
+              "prompt": "How does battery strategy differ in a race versus a one-lap qualifier?",
               "situation": {
-                "narrative": "You need to understand why energy matters differently in a 70-lap race than a one-lap qualifying run.",
+                "narrative": "Qualifying: deploy it all for one perfect lap. Races: 70 laps with pit stops.",
                 "facts": [
                   {
-                    "label": "Qualifying energy rule",
-                    "value": "Deploy it all for one perfect lap"
+                    "label": "Qualifying",
+                    "value": "One lap, maximize power"
                   },
                   {
-                    "label": "Race energy rule",
-                    "value": "Harvest and deploy over 70 laps"
-                  },
-                  {
-                    "label": "The difference",
-                    "value": "Managing finite battery for 1 vs 70 laps"
+                    "label": "Race",
+                    "value": "70 laps, manage per stint"
                   }
                 ]
               },
               "options": [
                 {
-                  "id": "qualify-race-different",
-                  "label": "Qualifying is one-lap pace; races are pit-window and tyre strategy",
+                  "id": "different-strategy",
+                  "label": "Completely different: qual=peak power, race=sustained",
                   "verdict": "best",
-                  "consequence": "Correct. Qualifying: push the battery hard and clip is fine. Races: manage it lap-by-lap and plan pit windows.",
+                  "consequence": "Correct. Qualifying is maximize-now. Races are maximize-over-distance.",
                   "considerations": [
-                    "Energy management in races is like fuel strategy in years past",
-                    "Qualifying: one lap, one battery budget",
-                    "Races: preserve the battery across stints"
+                    "Per-lap limit is the same",
+                    "But strategy intent is totally different",
+                    "Races need pit-window and stint planning"
                   ]
                 },
                 {
-                  "id": "same-strategy",
-                  "label": "The battery role is the same; just use less per lap",
+                  "id": "similar-strategy",
+                  "label": "Similar: just use less battery per lap",
                   "verdict": "acceptable",
-                  "consequence": "Close, but energy is managed differently. Qualifying is one-lap peak power; races are sustained pace.",
+                  "consequence": "Close, but strategy is fundamentally different.",
                   "considerations": [
-                    "True that you use less per lap in races",
-                    "But the strategy is fundamentally different"
+                    "True you use less per lap",
+                    "But the decision-making is different"
                   ]
                 }
               ],
-              "expertNote": "Qualifying battery strategy is maximize-now. Race strategy is maximize-over-distance. The per-lap limit is the same, but the stakes change.",
-              "sayThisLine": "Qualifying: spend it all. Races: save it for when it matters."
+              "expertNote": "Qualifying battery is maximize-now; races require thinking 70 laps ahead.",
+              "sayThisLine": "Qual: spend it all. Races: save for when it matters."
+            }
+          },
+          {
+            "id": "ce-04-mul-qualifying-energy",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "qualifying"
+            ],
+            "payload": {
+              "prompt": "In qualifying, how do you treat the battery?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Deploy it all for one perfect lap and accept clipping.",
+                  "explanation": "Right. Qualifying is one-lap pace; maximize your shot."
+                },
+                {
+                  "id": "b",
+                  "text": "Save it for the race.",
+                  "explanation": "Wrong. Each weekend's battery is separate. Qualifying and race are different events."
+                },
+                {
+                  "id": "c",
+                  "text": "Recharge during qualifying to prepare for the race.",
+                  "explanation": "No, recharge by all means, but maximize qualifying pace first."
+                },
+                {
+                  "id": "d",
+                  "text": "Use only 50% to be safe.",
+                  "explanation": "Too conservative. Qualifying is where you need maximum power."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Qualifying: one lap, maximum power. Strategy comes in the race.",
+                "incorrect": "Qualifying energy strategy is maximize-now. Use what you need for pole."
+              }
             }
           },
           {
@@ -457,41 +570,41 @@
         ],
         "activities": [
           {
-            "id": "ce-05-mul-aduo-what",
+            "id": "ce-05-mul-what-is-aduo",
             "type": "multiple-choice",
             "conceptIds": [
               "aduo"
             ],
             "payload": {
-              "prompt": "What is ADUO in 2026 Formula 1?",
+              "prompt": "What is ADUO?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Extra engine-upgrade chances for manufacturers that fall behind, assessed after certain races.",
-                  "explanation": "Right. ADUO (Additional Development Opportunities) is a safety net: if you are struggling, you get more upgrade slots."
+                  "text": "Extra engine upgrades for manufacturers falling behind.",
+                  "explanation": "Right. ADUO is a safety net: if you are struggling, more upgrade slots."
                 },
                 {
                   "id": "b",
-                  "text": "A penalty for teams that exceed the cost cap.",
-                  "explanation": "No, ADUO is an aid to struggling manufacturers, not a penalty."
+                  "text": "A penalty for exceeding the cost cap.",
+                  "explanation": "No, ADUO is an aid, not a penalty."
                 },
                 {
                   "id": "c",
-                  "text": "A ban on engine upgrades mid-season.",
-                  "explanation": "No, ADUO is the opposite: it allows extra upgrades for underperforming makers."
+                  "text": "A ban on mid-season engine upgrades.",
+                  "explanation": "No, ADUO enables extra upgrades for lagging makers."
                 },
                 {
                   "id": "d",
-                  "text": "A power-unit noise regulation.",
-                  "explanation": "ADUO is about development, not sound regulation."
+                  "text": "A noise regulation rule.",
+                  "explanation": "ADUO is about development, not sound."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. ADUO gives struggling engine makers extra upgrade opportunities after rounds 6, 12 and 18.",
-                "incorrect": "ADUO is a safety valve: if a new engine maker falls behind, they get extra development time. It levels the playing field."
+                "correct": "Right. ADUO gives struggling engine makers extra development chances.",
+                "incorrect": "ADUO is a handicap: if you fall behind, you get extra upgrade opportunities."
               }
             }
           },
@@ -502,35 +615,35 @@
               "pu-allocation"
             ],
             "payload": {
-              "prompt": "What is PU allocation in F1?",
+              "prompt": "What is PU allocation?",
               "options": [
                 {
                   "id": "a",
-                  "text": "A limited number of each power-unit element (engines, turbos, batteries) per season; extra parts incur grid penalties.",
-                  "explanation": "Right. Teams have a quota. Taking a seventh engine, for example, means a grid penalty at the next race."
+                  "text": "Limited power-unit parts per year; extras incur grid penalties.",
+                  "explanation": "Right. Teams have a quota. Extra engines mean grid penalties."
                 },
                 {
                   "id": "b",
-                  "text": "An equal budget for all teams to build engines.",
-                  "explanation": "No, allocation is about the number of components. Budget is the cost cap."
+                  "text": "An equal budget for all teams.",
+                  "explanation": "No, allocation is part count, not budget."
                 },
                 {
                   "id": "c",
-                  "text": "A system that allows one team more power than others.",
-                  "explanation": "No, PU allocation restricts how many you can use, not how powerful they are."
+                  "text": "A system that gives one team more power.",
+                  "explanation": "No, PU allocation restricts quantity, not power output."
                 },
                 {
                   "id": "d",
                   "text": "A renewable resource that resets each race.",
-                  "explanation": "Allocation is per season, not per race. Taking a fresh engine uses up your allocation."
+                  "explanation": "Allocation is per season, not per race."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. PU allocation limits how many of each power-unit component teams can use per season. Going over means grid penalties.",
-                "incorrect": "PU allocation is a per-season quota on power-unit elements. Teams choose when to burn their allocation and accept the grid penalty."
+                "correct": "Right. PU allocation limits components per season. Extra parts mean grid penalties.",
+                "incorrect": "PU allocation is a per-season quota. Taking extra costs you grid places."
               }
             }
           },
@@ -541,70 +654,70 @@
               "compression-ratio"
             ],
             "payload": {
-              "prompt": "What was the 2026 compression-ratio row about?",
+              "prompt": "What was the 2026 compression-ratio dispute?",
               "options": [
                 {
                   "id": "a",
-                  "text": "A dispute over how to measure engine compression when the engine is hot versus cold.",
-                  "explanation": "Right. Some makers complained measuring cold alone was unfair; the FIA clarified to measure both."
+                  "text": "How to measure engine squeeze fairly: cold or hot?",
+                  "explanation": "Right. Some complained cold-only measurement was unfair; FIA clarified both."
                 },
                 {
                   "id": "b",
-                  "text": "A rule that all engines must have the same compression.",
-                  "explanation": "No, compression ratio is not standardised. The row was about how to measure it fairly."
+                  "text": "A rule that all engines must have equal compression.",
+                  "explanation": "No, compression is not standardised. Debate was about fair measurement."
                 },
                 {
                   "id": "c",
-                  "text": "A ban on using high-compression engines.",
-                  "explanation": "No, the dispute was about fair measurement, not banning high compression."
+                  "text": "A ban on high-compression engines.",
+                  "explanation": "No, debate was about measurement, not banning high compression."
                 },
                 {
                   "id": "d",
-                  "text": "A cost associated with upgrading the engine.",
-                  "explanation": "Compression ratio is technical; it does not have a cost-cap impact."
+                  "text": "A cost-cap rule.",
+                  "explanation": "Compression ratio is technical, not a cost issue."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. The 2026 compression-ratio debate was technical: how do you measure compression fairly when engines heat and change?",
-                "incorrect": "The 2026 compression-ratio argument was about measurement standards: should you measure cold or hot? The FIA clarified both."
+                "correct": "Right. 2026 debate: measure compression cold and hot to be fair.",
+                "incorrect": "The compression-ratio debate was about measurement standards, not banning anything."
               }
             }
           },
           {
-            "id": "ce-05-ter-engine-makers-2026",
+            "id": "ce-05-ter-engine-makers",
             "type": "term-match",
             "conceptIds": [
               "engine-supplier",
               "aduo"
             ],
             "payload": {
-              "prompt": "Match each 2026 engine maker to its story.",
+              "prompt": "Match 2026 engine makers to their status.",
               "pairs": [
                 {
-                  "id": "mercedes",
+                  "id": "merc",
                   "term": "Mercedes",
-                  "definition": "Returning incumbent supplier; continues McLaren, Williams, Alpine; also runs its own team."
+                  "definition": "Incumbent supplier; McLaren, Williams, Alpine customer teams."
                 },
                 {
                   "id": "audi",
                   "term": "Audi",
-                  "definition": "New works team and power-unit maker; may qualify for ADUO if early pace lags."
+                  "definition": "New works team; may get ADUO if early pace lags."
                 },
                 {
-                  "id": "honda-new",
+                  "id": "honda",
                   "term": "Honda",
-                  "definition": "New engine supplier to Aston Martin in a works-style partnership; also eligible for ADUO."
+                  "definition": "New supplier to Aston Martin; also ADUO-eligible."
                 }
               ],
               "distractorDefinitions": [
-                "Continues to be the only engine supplier on the grid.",
-                "Banned from upgrading engines until round 6."
+                "Only one engine maker on the grid.",
+                "Banned from any upgrades until round 6."
               ],
               "explanation": {
-                "summary": "Mercedes is the established player; Audi and Honda are new. ADUO helps new makers catch up.",
+                "summary": "Mercedes is established; Audi and Honda are new and ADUO-eligible.",
                 "sayThisLine": "2026 has three engine makers fighting a reset."
               }
             }
@@ -623,7 +736,7 @@
         ],
         "activities": [
           {
-            "id": "ce-06-mul-atr-what",
+            "id": "ce-06-mul-what-is-atr",
             "type": "multiple-choice",
             "conceptIds": [
               "aero-testing-restrictions"
@@ -633,139 +746,134 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "A sliding scale of wind-tunnel and CFD time based on last season's standings: worse teams get more time to develop.",
-                  "explanation": "Right. It is a handicap system: if you finished last, you get more testing to catch up."
+                  "text": "Wind-tunnel time on a sliding scale: worse teams get more.",
+                  "explanation": "Right. Handicap system: slow teams test more to catch up."
                 },
                 {
                   "id": "b",
-                  "text": "A ban on aerodynamic testing during the race.",
-                  "explanation": "No, ATR is about development time in the season, not race restrictions."
+                  "text": "A ban on testing during races.",
+                  "explanation": "No, ATR is season development time allocation."
                 },
                 {
                   "id": "c",
-                  "text": "An equal amount of testing time for all teams.",
-                  "explanation": "Wrong: it is a sliding scale. Fast teams get less, slow teams get more."
+                  "text": "Equal testing time for all teams.",
+                  "explanation": "Wrong; it is a sliding scale, not equal."
                 },
                 {
                   "id": "d",
-                  "text": "A requirement to use only one wind tunnel.",
-                  "explanation": "ATR is about the time limit, not which facilities you use."
+                  "text": "A requirement to use only one tunnel.",
+                  "explanation": "ATR is about time limit, not facility rules."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. Aero testing restrictions are a handicap: finishing last last year means more wind-tunnel time this year.",
-                "incorrect": "ATR is a sliding scale of development time to help slower teams catch up to faster ones."
+                "correct": "Right. ATR is a handicap: finishing last last year = more wind tunnel this year.",
+                "incorrect": "ATR is development time allocation on a sliding scale for competitive balance."
               }
             }
           },
           {
-            "id": "ce-06-mul-flexi-wing",
+            "id": "ce-06-bin-flexi-wings-legal",
+            "type": "binary-call",
+            "conceptIds": [
+              "flexi-wing"
+            ],
+            "payload": {
+              "prompt": "Are flexi-wings (wings that bend during racing) allowed in F1?",
+              "scene": {
+                "kind": "none",
+                "alt": "A flexi-wing bending under aerodynamic load."
+              },
+              "choices": [
+                {
+                  "id": "no",
+                  "label": "No, banned"
+                },
+                {
+                  "id": "yes",
+                  "label": "Yes, within limits"
+                }
+              ],
+              "correctChoiceId": "no",
+              "explanation": {
+                "correct": "Right. Flexi-wings are banned, but teams keep trying the loophole.",
+                "incorrect": "Flexi-wings are banned, but it is a recurring loophole fight."
+              }
+            }
+          },
+          {
+            "id": "ce-06-mul-flexi-wing-what",
             "type": "multiple-choice",
             "conceptIds": [
               "flexi-wing"
             ],
             "payload": {
-              "prompt": "What is a flexi-wing in F1?",
+              "prompt": "What is a flexi-wing loophole?",
               "options": [
                 {
                   "id": "a",
-                  "text": "A wing that bends under load to reduce drag while passing static tests, a recurring loophole teams exploit.",
-                  "explanation": "Right. Teams design wings that flex during racing but look rigid in the garage. The FIA keeps closing the loophole."
+                  "text": "Wings that bend under load to cut drag while passing static tests.",
+                  "explanation": "Right. Carbon-fibre wings flex during racing but look rigid in the garage."
                 },
                 {
                   "id": "b",
-                  "text": "A deliberately adjustable wing that drivers change during a race.",
-                  "explanation": "No, flexi-wings are accidental or hidden bending, not intentional adjustment like active aero."
+                  "text": "A driver-adjustable wing like active aero.",
+                  "explanation": "No, flexi is hidden bending, not intentional adjustment."
                 },
                 {
                   "id": "c",
-                  "text": "A wing banned since 2020.",
-                  "explanation": "Flexi-wings were not banned; teams still try to exploit them. The FIA is always fighting the loophole."
+                  "text": "A wing made of rubber.",
+                  "explanation": "No, flexi-wings are carbon-fibre that bend strategically."
                 },
                 {
                   "id": "d",
-                  "text": "A wing made of rubber that absorbs impacts.",
-                  "explanation": "No, flexi-wings are carbon-fibre wings that bend strategically under aerodynamic load."
+                  "text": "A permanent design banned since 2020.",
+                  "explanation": "Flexi-wings are not banned permanently; the FIA fights ongoing attempts."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. Flexi-wings bend during high-speed running, cutting drag, yet pass static tests in the garage.",
-                "incorrect": "A flexi-wing is a structural loophole: the wing bends in the air to reduce drag but looks fixed when tested stationary."
+                "correct": "Right. Flexi-wing: bend in the air for drag cut, look rigid when tested.",
+                "incorrect": "A flexi-wing is a structural loophole: bends during racing, passes static tests."
               }
             }
           },
           {
-            "id": "ce-06-mul-technical-directive",
-            "type": "multiple-choice",
-            "conceptIds": [
-              "technical-directive"
-            ],
-            "payload": {
-              "prompt": "What is a technical directive (TD) in F1?",
-              "options": [
-                {
-                  "id": "a",
-                  "text": "An FIA clarification on how rules will be policed, used to close loopholes mid-season.",
-                  "explanation": "Right. TDs are not rule changes; they are clarifications of intent, often closing tricks like flexi-wings."
-                },
-                {
-                  "id": "b",
-                  "text": "A penalty handed to teams for rule breaches.",
-                  "explanation": "No, TDs are preventative clarifications, not penalties."
-                },
-                {
-                  "id": "c",
-                  "text": "A new rule that replaces the old rulebook.",
-                  "explanation": "No, TDs are minor clarifications within the existing rules, not rule changes."
-                },
-                {
-                  "id": "d",
-                  "text": "A directive telling teams which engine to use.",
-                  "explanation": "TDs are about technical interpretation, not engine choice."
-                }
-              ],
-              "correctOptionIds": [
-                "a"
-              ],
-              "explanation": {
-                "correct": "Right. A technical directive clarifies how the FIA will police a rule, often to close a loophole quickly.",
-                "incorrect": "Technical directives are FIA clarifications on rules, not rule changes. They close loopholes and prevent teams from gaming the regs."
-              }
-            }
-          },
-          {
-            "id": "ce-06-ter-aero-politics",
+            "id": "ce-06-ter-aero-loopholes",
             "type": "term-match",
             "conceptIds": [
               "flexi-wing",
               "technical-directive"
             ],
             "payload": {
-              "prompt": "Match each aerodynamic issue to how it is handled.",
+              "prompt": "Match aero loopholes to how the FIA fights back.",
               "pairs": [
                 {
-                  "id": "flexi-wing-issue",
+                  "id": "flexi",
                   "term": "Flexi-wing",
-                  "definition": "A recurring loophole where wings bend under load to cut drag. The FIA updates the rules and issues technical directives to prevent it."
+                  "definition": "Wing that bends to cut drag while passing static tests."
                 },
                 {
-                  "id": "td-response",
+                  "id": "td",
                   "term": "Technical directive",
-                  "definition": "An FIA clarification issued quickly mid-season to close a loophole like flexi-wings without rewriting the whole rulebook."
+                  "definition": "FIA clarification issued quickly to close loopholes."
+                },
+                {
+                  "id": "cycle",
+                  "term": "The cycle",
+                  "definition": "Teams find loopholes; FIA closes them mid-season via TDs."
                 }
               ],
               "distractorDefinitions": [
                 "A new wing that is faster than others.",
-                "A penalty for teams caught cheating."
+                "A penalty for using banned components."
               ],
               "explanation": {
-                "summary": "Flexi-wings are the loophole; technical directives are how the FIA fights back quickly.",
+                "summary": "Flexi-wing is the loophole; technical directives close it fast.",
                 "sayThisLine": "TDs close loopholes like flexi-wings mid-season."
               }
             }
@@ -793,31 +901,31 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "A yearly limit (roughly $215 million) on team spending, with big carve-outs for driver salaries and marketing.",
-                  "explanation": "Right. Teams can spend a fixed amount per year; exceeding it brings fines and sporting penalties."
+                  "text": "Yearly spending limit ($215M) with carve-outs for driver salaries.",
+                  "explanation": "Right. Teams have a fixed budget; exceeding it brings penalties."
                 },
                 {
                   "id": "b",
                   "text": "An equal budget for all teams.",
-                  "explanation": "No, the cap is a limit, not an equal grant. Teams fundraise independently."
+                  "explanation": "No, the cap is a limit, not an equal grant."
                 },
                 {
                   "id": "c",
                   "text": "A ban on expensive components.",
-                  "explanation": "No, teams can buy any part. The cap limits total spending."
+                  "explanation": "No, the cap limits total spending, not part cost."
                 },
                 {
                   "id": "d",
-                  "text": "A regulation that started in the 1980s.",
-                  "explanation": "The modern cost cap started in 2021, not in the 1980s."
+                  "text": "A regulation from the 1980s.",
+                  "explanation": "The cost cap started in 2021, not the 1980s."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. The cost cap is roughly $215 million per year per team. Breaches bring points deductions and fines.",
-                "incorrect": "The cost cap is an annual spending ceiling. Exceeding it earns penalties, including points deductions."
+                "correct": "Right. Cost cap is roughly $215M per year. Breaches bring penalties.",
+                "incorrect": "The cost cap is an annual spending ceiling with sporting penalties for breaches."
               }
             }
           },
@@ -828,74 +936,35 @@
               "cost-cap"
             ],
             "payload": {
-              "prompt": "Why does the cost cap matter for racing fairness?",
+              "prompt": "Why does the cost cap matter for grid fairness?",
               "options": [
                 {
                   "id": "a",
-                  "text": "It prevents the richest teams from spending unlimited money and crushing the competition.",
-                  "explanation": "Right. Without a cap, Ferrari or Mercedes could outspend everyone. The cap keeps the grid more even."
+                  "text": "Prevents the richest teams from outspending everyone.",
+                  "explanation": "Right. The cap keeps the grid even against billionaire budgets."
                 },
                 {
                   "id": "b",
-                  "text": "It reduces the quality of cars and makes racing slower.",
-                  "explanation": "Capping spending doesn't slow cars; teams still innovate within the limit."
+                  "text": "Reduces car quality and makes racing slower.",
+                  "explanation": "Capping spending does not slow cars; teams innovate within limits."
                 },
                 {
                   "id": "c",
-                  "text": "It forces teams to buy cheaper parts.",
-                  "explanation": "The cap limits total spending, not part cost. Teams prioritise what matters most."
+                  "text": "Forces teams to buy cheaper parts.",
+                  "explanation": "The cap limits total spending, not part cost."
                 },
                 {
                   "id": "d",
-                  "text": "It has no real impact on the grid.",
-                  "explanation": "The cap has a huge impact: it keeps small teams competitive against billionaire budgets."
+                  "text": "Has no real impact on the grid.",
+                  "explanation": "The cap has huge impact: keeps small teams competitive."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. The cost cap keeps spending in check so a smaller team can compete against a rich one.",
-                "incorrect": "The cost cap prevents unlimited spending from turning F1 into a billionaire-only arms race."
-              }
-            }
-          },
-          {
-            "id": "ce-07-mul-cap-breach-penalty",
-            "type": "multiple-choice",
-            "conceptIds": [
-              "cost-cap"
-            ],
-            "payload": {
-              "prompt": "What happens if a team exceeds the cost cap?",
-              "options": [
-                {
-                  "id": "a",
-                  "text": "Fines and sporting penalties including points deductions or a ban from some races.",
-                  "explanation": "Right. The FIA can fine, deduct points or ban the team for a breach."
-                },
-                {
-                  "id": "b",
-                  "text": "They are forced to refund the excess money.",
-                  "explanation": "No, penalties are fines and sporting sanctions, not refunds."
-                },
-                {
-                  "id": "c",
-                  "text": "Nothing; the cap is voluntary.",
-                  "explanation": "No, the cap is mandatory. Breaches have real consequences."
-                },
-                {
-                  "id": "d",
-                  "text": "The driver is banned from the next race.",
-                  "explanation": "Penalties are team penalties, not driver bans."
-                }
-              ],
-              "correctOptionIds": [
-                "a"
-              ],
-              "explanation": {
-                "correct": "Right. Cost-cap breaches draw big fines and can trigger points deductions or race bans.",
-                "incorrect": "Teams that exceed the cost cap face fines and sporting penalties such as points deductions."
+                "correct": "Right. Cost cap prevents unlimited spending from creating a billionaire-only arms race.",
+                "incorrect": "The cost cap keeps spending in check so smaller teams stay competitive."
               }
             }
           },
@@ -906,7 +975,7 @@
               "cost-cap"
             ],
             "payload": {
-              "prompt": "Guess the F1 cost cap per team per year, in US dollars.",
+              "prompt": "Guess the F1 cost cap per team per year, in millions of dollars.",
               "unit": "$M",
               "min": 100,
               "max": 350,
@@ -917,9 +986,48 @@
                 "partial": 30
               },
               "explanation": {
-                "correct": "Right. The cost cap is roughly $215 million per year per team, with carve-outs.",
-                "incorrect": "The F1 cost cap is approximately $215 million per year per team, slightly up from the 2021 baseline.",
-                "sayThisLine": "The cost cap is about $215 million per team per year."
+                "correct": "Right. Cost cap is roughly $215M per team per year.",
+                "incorrect": "The F1 cost cap is approximately $215 million per year per team.",
+                "sayThisLine": "Cost cap is about $215 million per team per year."
+              }
+            }
+          },
+          {
+            "id": "ce-07-mul-cap-breach",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "cost-cap"
+            ],
+            "payload": {
+              "prompt": "What happens if a team exceeds the cost cap?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Fines and sporting penalties including points deductions.",
+                  "explanation": "Right. FIA fines and can deduct points or ban from races."
+                },
+                {
+                  "id": "b",
+                  "text": "They refund the excess money.",
+                  "explanation": "No, penalties are fines and sporting sanctions."
+                },
+                {
+                  "id": "c",
+                  "text": "Nothing; the cap is voluntary.",
+                  "explanation": "No, the cap is mandatory with real consequences."
+                },
+                {
+                  "id": "d",
+                  "text": "The driver is banned.",
+                  "explanation": "Penalties are team penalties, not driver bans."
+                }
+              ],
+              "correctOptionIds": [
+                "a"
+              ],
+              "explanation": {
+                "correct": "Right. Cost-cap breaches draw fines and sporting penalties.",
+                "incorrect": "Teams that exceed the cost cap face fines and point deductions."
               }
             }
           }
@@ -940,53 +1048,52 @@
             "id": "ce-08-dec-long-runs-friday",
             "type": "decision-scenario",
             "conceptIds": [
-              "long-run",
-              "race-pace-vs-quali-pace"
+              "long-run"
             ],
             "payload": {
               "prompt": "What do Friday long runs tell you about a team's race pace?",
               "situation": {
-                "narrative": "Friday practice: Team A is 0.4 seconds slower in the Friday long run (steady pace for 15 laps) than in qualifying simulations (one-lap peak pace).",
+                "narrative": "Friday: Team A runs 0.4 seconds slower in the long run than in qualifying simulations.",
                 "facts": [
                   {
-                    "label": "Long-run gap",
-                    "value": "0.4 seconds per lap slower"
+                    "label": "Gap to peak pace",
+                    "value": "0.4 seconds per lap"
                   },
                   {
                     "label": "Fuel load",
-                    "value": "Race fuel, not qualifying trim"
+                    "value": "Race fuel"
                   },
                   {
-                    "label": "Implication",
-                    "value": "Race pace < qualifying pace"
+                    "label": "Signal",
+                    "value": "Race pace weaker than qualifying"
                   }
                 ]
               },
               "options": [
                 {
-                  "id": "race-pace-weak",
-                  "label": "Their race pace is weak; expect them to fade from a good qualifying grid",
+                  "id": "weak-race",
+                  "label": "Their race pace is weak; expect them to fade",
                   "verdict": "best",
-                  "consequence": "Correct. Qualifying and race pace are different. Fast on Saturday, struggling on Sunday.",
+                  "consequence": "Correct. 0.4 seconds is big. Expect grid-to-finish drop.",
                   "considerations": [
-                    "0.4 seconds is a big gap",
-                    "Tyres or balance cost them in the long run",
-                    "If they qualify high, they may not defend the position"
+                    "Tyre or balance weakness shows in long runs",
+                    "Fast Saturday, struggling Sunday likely",
+                    "Good signal for tracking their form"
                   ]
                 },
                 {
-                  "id": "pace-same",
-                  "label": "The gap is just fuel load; race pace is fine",
+                  "id": "just-fuel",
+                  "label": "Just fuel load; race pace is fine",
                   "verdict": "acceptable",
-                  "consequence": "Partial. Fuel load is part of it, but 0.4 seconds is still real pace loss.",
+                  "consequence": "Partial. Fuel matters but 0.4 seconds signals real pace loss.",
                   "considerations": [
-                    "Fuel does affect pace",
-                    "But the gap suggests a handling issue that matters for the race"
+                    "Fuel load is part of it",
+                    "But 0.4 seconds usually means a handling issue"
                   ]
                 }
               ],
-              "expertNote": "Friday long runs are the first hint of race pace. A 0.4-second gap between one-lap and race pace is significant.",
-              "sayThisLine": "Long runs show who has race pace, not just qualifying pace."
+              "expertNote": "Friday long runs hint at race pace. A 0.4-second gap is significant.",
+              "sayThisLine": "Long runs show who has race pace."
             }
           },
           {
@@ -996,16 +1103,16 @@
               "sandbagging"
             ],
             "payload": {
-              "prompt": "How can you spot if a team is sandbagging (hiding pace) in practice?",
+              "prompt": "How can you spot sandbagging (hidden pace) in practice?",
               "situation": {
-                "narrative": "Friday practice: Team B runs on high fuel loads all day and posts only 12th-fastest on the timing sheet. Saturday they are on pole.",
+                "narrative": "Friday: Team B is 12th on the timing sheet. Saturday: pole position.",
                 "facts": [
                   {
-                    "label": "Friday pace",
+                    "label": "Friday position",
                     "value": "12th fastest"
                   },
                   {
-                    "label": "Friday setup",
+                    "label": "Friday tactics",
                     "value": "Heavy fuel, defensive setup"
                   },
                   {
@@ -1016,106 +1123,106 @@
               },
               "options": [
                 {
-                  "id": "sandbag-yes",
-                  "label": "They were sandbagging: hiding pace with heavy fuel and setup choices to mislead rivals",
+                  "id": "sandbag",
+                  "label": "Deliberate sandbagging: hiding pace with fuel",
                   "verdict": "best",
-                  "consequence": "Correct. A jump from 12th to pole is not just tyres or fuel; it is a deliberate pace hide.",
+                  "consequence": "Correct. 12th to pole is intentional hiding, not just setup.",
                   "considerations": [
-                    "Heavy fuel hides one-lap pace",
-                    "Defensive setup in practice does not show qualifying speed",
-                    "Saturday qualifying fuel and setup is totally different"
+                    "Heavy fuel and conservative setup hide one-lap pace",
+                    "Qualifying setup is totally different",
+                    "Jump that big signals strategy, not just tyres"
                   ]
                 },
                 {
-                  "id": "just-tires",
-                  "label": "It is just tyres and fuel; no sandbagging",
+                  "id": "just-setup",
+                  "label": "Just tyres and setup differences",
                   "verdict": "acceptable",
-                  "consequence": "Partially right. Tyres and fuel matter, but the gap is big enough to show intentional hiding.",
+                  "consequence": "Partial. Tyres matter but that gap shows intent.",
                   "considerations": [
-                    "Fuel load is part of it",
-                    "But jumping that far suggests strategy, not just fuel"
+                    "Setup does change between Friday and Saturday",
+                    "But jump that big usually means sandbagging"
                   ]
                 }
               ],
-              "expertNote": "Sandbagging is intentional. Teams run heavy, stale tyres or a loose setup on Friday to hide their true pace.",
-              "sayThisLine": "Sandbagging: hiding pace with fuel and strategy on Friday."
+              "expertNote": "Sandbagging is intentional. Teams run heavy or loose Friday to hide pace.",
+              "sayThisLine": "Sandbagging: hide pace with fuel and strategy."
             }
           },
           {
-            "id": "ce-08-mul-quali-vs-race",
+            "id": "ce-08-mul-quali-vs-race-pace",
             "type": "multiple-choice",
             "conceptIds": [
               "race-pace-vs-quali-pace"
             ],
             "payload": {
-              "prompt": "What is the difference between one-lap (qualifying) pace and race pace?",
+              "prompt": "What is the difference between qualifying and race pace?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Qualifying is peak power over one lap; race pace is consistent speed over a stint with tyre management.",
-                  "explanation": "Right. Qualifying = one-lap peak. Race = tyre life and fuel load over 20-30 laps."
+                  "text": "Qualifying is one-lap peak; races are consistent speed with tyre management.",
+                  "explanation": "Right. Different priorities: qual = peak, race = stamina over 20-30 laps."
                 },
                 {
                   "id": "b",
-                  "text": "They are the same; a fast car is fast both ways.",
-                  "explanation": "No, a car can be quick on one lap but struggle over a long run. Different priorities."
+                  "text": "They are the same; fast cars are fast both ways.",
+                  "explanation": "No, cars can excel at one but struggle at the other."
                 },
                 {
                   "id": "c",
-                  "text": "Race pace is always faster because the car is lighter on fuel.",
-                  "explanation": "No, a car on light fuel in qualifying is fastest. Race pace includes fuel weight."
+                  "text": "Race pace is always faster because less fuel.",
+                  "explanation": "No, light fuel in qualifying is fastest. Race includes fuel weight."
                 },
                 {
                   "id": "d",
-                  "text": "Qualifying pace depends only on the driver; race pace depends on the team.",
-                  "explanation": "Both depend on driver and car. The metrics are different, but both involve the whole team."
+                  "text": "Only driver matters for qualifying; team matters for races.",
+                  "explanation": "Both depend on driver and car. Metrics are just different."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. Qualifying is one-lap flat-out. Race pace is stamina: hold your pace while tyres age and fuel load decreases.",
-                "incorrect": "Qualifying pace is peak one-lap speed. Race pace is sustained speed over a stint while managing tyres and fuel."
+                "correct": "Right. Qualifying = one-lap flat-out. Race = stamina with tyre and fuel.",
+                "incorrect": "Qualifying pace is peak one-lap. Race pace is sustained over a stint."
               }
             }
           },
           {
-            "id": "ce-08-mul-who-is-strong",
+            "id": "ce-08-mul-grid-to-finish-drop",
             "type": "multiple-choice",
             "conceptIds": [
               "race-pace-vs-quali-pace"
             ],
             "payload": {
-              "prompt": "A team qualifies 3rd but finishes 6th on Sunday. What does that tell you?",
+              "prompt": "A team qualifies 3rd but finishes 6th. What does that tell you?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Their race pace is weaker than their one-lap pace; they faded after struggling with tyre wear or balance.",
-                  "explanation": "Right. Good qualifying, poor race result, means the car works for one lap but not over 70."
+                  "text": "Race pace is weaker; they faded from tyre wear or balance.",
+                  "explanation": "Right. Grid position vs finish tells the story."
                 },
                 {
                   "id": "b",
-                  "text": "The driver made a mistake or was unlucky.",
-                  "explanation": "Maybe, but a 3-to-6 drop usually points to a pace issue, not just one mistake."
+                  "text": "The driver made a mistake.",
+                  "explanation": "Maybe, but a 3-to-6 drop usually points to pace."
                 },
                 {
                   "id": "c",
-                  "text": "The team used the wrong tyres.",
-                  "explanation": "Tyre choice can affect it, but the gap suggests a fundamental pace issue in race conditions."
+                  "text": "They used wrong tyres.",
+                  "explanation": "Possible, but gap suggests a deeper pace issue."
                 },
                 {
                   "id": "d",
-                  "text": "It means nothing; results vary race to race.",
-                  "explanation": "A big drop from grid to finish is a clear signal about race pace versus qualifying pace."
+                  "text": "Nothing; results vary.",
+                  "explanation": "A big drop is a clear signal about pace balance."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. Grid position (qualifying) vs finishing position (race) tells the story of one-lap vs race pace.",
-                "incorrect": "A drop from 3rd on the grid to 6th at the end signals weak race pace relative to qualifying."
+                "correct": "Right. Grid-to-finish drop is a red flag for race-pace weakness.",
+                "incorrect": "A grid-to-finish drop signals weak race pace versus qualifying."
               }
             }
           }
