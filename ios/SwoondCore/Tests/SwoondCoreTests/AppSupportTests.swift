@@ -173,3 +173,52 @@ struct SeedContentTests {
         #expect(Array(1...10).shuffled(using: &g1) == Array(1...10).shuffled(using: &g2))
     }
 }
+
+@Suite("Settings and talk-track sessions")
+struct SettingsAndTalkTests {
+    @Test func settingsDefaultsAndRoundTrip() {
+        let d = UserDefaults(suiteName: "swoond-test-\(UUID().uuidString)")!
+        let store = UserDefaultsSettingsStore(defaults: d)
+        var s = store.load()
+        #expect(s.appearance == .dark && s.discreetMode && s.dailyReminder && s.reminderHour == 20 && s.reminderTimeLabel == "8:00 PM")
+        s.appearance = .system; s.discreetMode = false; s.reminderHour = 0
+        store.save(s)
+        #expect(store.load() == s && store.load().reminderTimeLabel == "12:00 AM")
+        #expect(InMemorySettingsStore(s).load() == s)
+    }
+
+    @Test func reminderSchedulerMock() async {
+        let m = MockReminderScheduler()
+        await m.scheduleDaily(hour: 20, content: NotificationComposer.dailyReminder(personName: "Maya", discreet: true))
+        #expect(await m.scheduled?.hour == 20)
+        await m.cancelDaily()
+        #expect(await m.scheduled == nil)
+    }
+
+    @Test func startsATalkTrackAndFinishesWithXP() async throws {
+        let repo = try BundledContentRepository(rootDirectory: SeedContentTests.seedRoot)
+        let clock = ManualClock(Fixtures.date(2026, 9, 30, 9))
+        let (engine, _) = Fixtures.engine(clock: clock)
+        let person = Person(id: "maya", displayName: "Maya", relationship: .crush, interests: [PersonInterest(courseId: "hockey", isMainInterest: true)])
+        let session = LearningSession(person: person, interest: person.interests[0], content: repo, engine: engine)
+        // Locked until the unit that unlocks it is complete.
+        await #expect(throws: SessionError.lessonLocked) { _ = try await session.startTalkTrack(trackId: "hockey-night") }
+        var progress = CourseProgress(personId: "maya", courseId: "hockey")
+        for l in ["rink-01", "rink-02"] { progress.lessonResults[l] = .init(completedAt: clock.now(), correctCount: 3, totalCount: 3, xpEarned: 40) }
+        try await engine.save(progress)
+        let p = try await session.startTalkTrack(trackId: "hockey-night")
+        #expect(p.activity.type == .talkTrack && p.total == 1)
+        _ = try await session.submit(.reply("c"))
+        let r = try await session.submit(.reply("a"))
+        #expect(r.step.evaluation?.isCorrect == true && r.update?.xpGained == 50)   // 40 + 10 bonus (smooth 110 -> 100)
+        let summary = try await session.finish()
+        #expect(summary.completionBonus == 0 && summary.xpEarned == 50)
+    }
+
+    @Test func tolerantCommonGroundIgnoresMissingCourses() async throws {
+        let repo = try BundledContentRepository(rootDirectory: SeedContentTests.seedRoot)
+        let (engine, _) = Fixtures.engine(clock: ManualClock(Fixtures.date(2026, 9, 30)))
+        let person = Person(id: "m", displayName: "M", relationship: .friend, interests: [PersonInterest(courseId: "hockey"), PersonInterest(courseId: "not-installed")])
+        #expect(await CommonGround.scoreTolerant(for: person, content: repo, engine: engine) == 0)
+    }
+}

@@ -27,6 +27,18 @@ public enum CommonGround {
 
     public static func percent(_ score: Double) -> Int { Int((score * 100).rounded()) }
 
+    /// Like `score(for:content:engine:locale:)` but a course whose content is not installed counts as 0 instead of throwing.
+    public static func scoreTolerant(for person: Person, content: any ContentRepository, engine: ProgressEngine, locale: String = "en-US") async -> Double {
+        var cov: [CourseID: Double] = [:]
+        let now = await engine.now()
+        for i in person.interests {
+            guard let c = try? await content.curriculum(courseId: i.courseId, locale: locale),
+                  let m = try? await engine.mastery(courseId: i.courseId) else { continue }
+            cov[i.courseId] = coverage(curriculum: c, mastery: m, branchId: i.branchId, now: now)
+        }
+        return score(for: person, coverages: cov)
+    }
+
     /// Convenience that loads curricula and mastery.
     public static func score(for person: Person, content: any ContentRepository, engine: ProgressEngine, locale: String = "en-US") async throws -> Double {
         var cov: [CourseID: Double] = [:]

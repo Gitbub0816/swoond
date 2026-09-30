@@ -172,6 +172,18 @@ public actor LearningSession {
         return try present()
     }
 
+    /// Practice a Talk Track on its own (Talk tab). The track's payload becomes a single `talk-track` activity.
+    public func startTalkTrack(trackId: String) async throws -> ActivityPresentation {
+        let c = try await curriculum()
+        guard let track = c.talkTracks?.first(where: { $0.id == trackId }) else { throw SessionError.lessonNotFound }
+        let progress = try await engine.courseProgress(personId: person.id, courseId: interest.courseId)
+        guard LessonPlanner.isTalkTrackUnlocked(track, in: c, progress: progress) else { throw SessionError.lessonLocked }
+        reset()
+        let activity = Activity(id: "talk-\(track.id)", type: .talkTrack, conceptIds: track.conceptIds, payload: track.payload, reviewEligible: false)
+        queue = [Item(activity: activity, unitId: track.unlockedByUnitId, lessonId: nil, isReview: false)]
+        return try present()
+    }
+
     /// Start a review session from due concepts (default: today's plan).
     public func startReview(_ items: [PlannedReview]? = nil) async throws -> ActivityPresentation {
         let planned: [PlannedReview]

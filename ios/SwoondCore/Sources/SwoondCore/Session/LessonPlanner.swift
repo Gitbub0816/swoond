@@ -32,6 +32,12 @@ public enum LessonPlanner {
         }
     }
 
+    /// A Talk Track is unlocked when its `unlockedByUnitId` unit is complete (or it names none).
+    public static func isTalkTrackUnlocked(_ track: TalkTrack, in c: Curriculum, progress: CourseProgress) -> Bool {
+        guard let uid = track.unlockedByUnitId, let unit = c.unit(uid) else { return true }
+        return progress.isUnitComplete(unit)
+    }
+
     public static func nextLesson(in c: Curriculum, progress: CourseProgress, branchId: BranchID?) -> PlannedLesson? {
         for u in orderedUnits(c, branchId: branchId) where isUnlocked(u, in: c, progress: progress) {
             if let l = u.lessons.first(where: { !progress.isLessonComplete($0.id) }) {
