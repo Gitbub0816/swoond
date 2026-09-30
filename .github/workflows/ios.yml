@@ -6,12 +6,18 @@ on:
       - ios/**
       - .github/workflows/ios.yml
       - tools/ci/**
+      - tools/content/**
+      - tools/validate/**
+      - content/**
       - docs/contracts/**
   pull_request:
     paths:
       - ios/**
       - .github/workflows/ios.yml
       - tools/ci/**
+      - tools/content/**
+      - tools/validate/**
+      - content/**
       - docs/contracts/**
   workflow_dispatch:
 
@@ -51,6 +57,15 @@ jobs:
       - name: SwoondCore tests (macOS)
         working-directory: ios/SwoondCore
         run: swift test
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: tools/validate/package-lock.json
+      - name: Bundled content pack is up to date
+        run: |
+          (cd tools/validate && npm ci)
+          node tools/content/build-pack.mjs --check
       - name: Install XcodeGen and generate project
         run: |
           brew install xcodegen

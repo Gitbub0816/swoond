@@ -20,17 +20,17 @@
             "type": "multiple-choice",
             "conceptIds": ["three-points"],
             "payload": {
-              "prompt": "How many points does a team get for a league win?",
+              "prompt": "A team wins two matches, draws one and loses one. How many points?",
               "options": [
-                {"id": "a", "text": "One point"},
-                {"id": "b", "text": "Two points"},
-                {"id": "c", "text": "Three points"}
+                {"id": "a", "text": "5 points"},
+                {"id": "b", "text": "6 points"},
+                {"id": "c", "text": "7 points"}
               ],
               "correctOptionIds": ["c"],
               "explanation": {
-                "correct": "Right. A win is three points, a draw is one, and a loss is zero. The table is sorted by points first.",
-                "incorrect": "It's three points for a win. That's why you hear fans say a draw feels like a loss when chasing the title.",
-                "sayThisLine": "A draw's like a loss when you're fighting for the title."
+                "correct": "Right. Two wins are 6 points, the draw adds 1, and the loss adds nothing, so 7 in total.",
+                "incorrect": "Three points per win and one per draw: 2 x 3 = 6, plus 1 for the draw, plus 0 for the loss makes 7.",
+                "sayThisLine": "Two wins and a draw, that's seven points from four games."
               }
             }
           },
@@ -39,17 +39,17 @@
             "type": "multiple-choice",
             "conceptIds": ["league-table"],
             "payload": {
-              "prompt": "Two teams have the same points. What breaks the tie first?",
+              "prompt": "Same points: Arsenal's goal difference is +32, City's +38. Who is ahead?",
               "options": [
-                {"id": "a", "text": "Head-to-head record"},
-                {"id": "b", "text": "Goal difference"},
-                {"id": "c", "text": "Alphabetical order"}
+                {"id": "a", "text": "Arsenal, because they are alphabetically first"},
+                {"id": "b", "text": "City, on the better goal difference"},
+                {"id": "c", "text": "Arsenal, because they played more home games"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. Goal difference (goals scored minus goals conceded) is the first tiebreaker in most leagues. Then it's goals scored.",
-                "incorrect": "It's goal difference. That's why fans say 'We're level on points but their goal difference is better.'",
-                "sayThisLine": "We're level on points but their goal difference is better."
+                "correct": "Right. In the Premier League, goal difference (goals scored minus goals conceded) is the first tiebreaker when points are level, then goals scored.",
+                "incorrect": "Level on points, the Premier League looks at goal difference first. City's +38 beats +32, so they sit higher. Goals scored is the next tiebreaker.",
+                "sayThisLine": "We're level on points, but their goal difference is better."
               }
             }
           },
@@ -58,53 +58,77 @@
             "type": "fill-the-gap",
             "conceptIds": ["three-points"],
             "payload": {
-              "prompt": "Complete the league points system.",
-              "template": "A win is {{win}} points, a draw is {{draw}} point, and a loss is {{loss}} points.",
+              "prompt": "Complete how a league season works.",
+              "template": "In a 20-team league where everyone plays everyone home and away, each team plays {{games}} matches, and the champion is the team with the most {{measure}}.",
               "gaps": [
-                {"id": "win", "options": ["one", "two", "three"], "correct": "three"},
-                {"id": "draw", "options": ["zero", "one", "two"], "correct": "one"},
-                {"id": "loss", "options": ["zero", "one", "two"], "correct": "zero"}
+                {
+                  "id": "games",
+                  "options": ["19", "38", "40"],
+                  "correct": "38"
+                },
+                {
+                  "id": "measure",
+                  "options": ["wins", "points", "goals"],
+                  "correct": "points"
+                }
               ],
               "explanation": {
-                "correct": "Right. Three for a win, one for a draw, zero for a loss. The league is decided by total points.",
-                "incorrect": "The system is three, one, zero. That makes wins valuable and draws less so."
+                "correct": "Right. Each team plays the other 19 twice, so 38 matches, and the table is decided by points.",
+                "incorrect": "Nineteen opponents, home and away, gives 38 matches. The league table ranks teams by points, not by wins or goals alone."
               }
             }
           },
           {
             "id": "comps-01-mc-season",
-            "type": "multiple-choice",
+            "type": "binary-call",
             "conceptIds": ["league-table"],
             "payload": {
-              "prompt": "Who wins the league?",
-              "options": [
-                {"id": "a", "text": "The team with the most wins"},
-                {"id": "b", "text": "The team with the most points"},
-                {"id": "c", "text": "The team with the best goal difference"}
+              "prompt": "Team X has more wins, but Team Y has more points. Does Y win the league?",
+              "scene": {
+                "kind": "none",
+                "alt": "Team X won 24 matches and drew 4. Team Y won 22 matches and drew 12."
+              },
+              "choices": [
+                {"id": "yes", "label": "Yes, Y wins"},
+                {"id": "no", "label": "No, X wins"}
               ],
-              "correctOptionIds": ["b"],
+              "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Right. The team with the most points wins, even if they have fewer wins than someone else (because draws count).",
-                "incorrect": "It's the most points. A team could have fewer wins but more draws and still have more points."
-              }
+                "correct": "Yes. The league is decided by points, not wins. Team Y has 78 points and Team X has 76.",
+                "incorrect": "Draws count for a point each, so a team with fewer wins can still top the table. Team Y has 78 points to Team X's 76.",
+                "sayThisLine": "More points beats more wins, every time."
+              },
+              "ruleTag": "Points decide"
             }
           },
           {
             "id": "comps-01-mc-draw",
-            "type": "multiple-choice",
+            "type": "say-this",
             "conceptIds": ["league-table"],
             "payload": {
-              "prompt": "A 1-1 draw feels how to fans chasing the title?",
+              "statement": {"speaker": "Her", "text": "We can't afford draws now, it's basically a loss for us."},
               "options": [
-                {"id": "a", "text": "Like a win"},
-                {"id": "b", "text": "Like a draw"},
-                {"id": "c", "text": "Like a loss"}
+                {
+                  "id": "o1",
+                  "text": "She is chasing something where dropped points really matter",
+                  "isCorrect": true
+                },
+                {
+                  "id": "o2",
+                  "text": "A draw only gives one point when she needs three",
+                  "isCorrect": true
+                },
+                {"id": "o3", "text": "Draws are worth three points", "isCorrect": false},
+                {"id": "o4", "text": "Her team has been relegated", "isCorrect": false}
               ],
-              "correctOptionIds": ["c"],
-              "explanation": {
-                "correct": "Right. One point from a draw hurts when you're trying to win the league; fans would rather take three.",
-                "incorrect": "A draw is technically a point, but when you're hunting the title, it feels like dropping two points."
-              }
+              "translation": "Her team is in a tight title or promotion race, where one point from a draw feels like two dropped points compared with a win.",
+              "followUps": [
+                {"line": "Are you chasing the title?", "why": "Shows you grasp what is at stake."},
+                {
+                  "line": "So it's three points or nothing from here?",
+                  "why": "A light, curious way to show you follow the maths."
+                }
+              ]
             }
           }
         ]
@@ -118,19 +142,35 @@
         "activities": [
           {
             "id": "comps-02-mc-relegation",
-            "type": "multiple-choice",
+            "type": "term-match",
             "conceptIds": ["promotion-relegation"],
             "payload": {
-              "prompt": "What happens to the worst teams in most world leagues?",
-              "options": [
-                {"id": "a", "text": "They stay in the league but lose money"},
-                {"id": "b", "text": "They get relegated to a lower division"},
-                {"id": "c", "text": "They have to buy better players"}
+              "prompt": "Match the ladder term to its meaning.",
+              "pairs": [
+                {
+                  "id": "promo",
+                  "term": "Promotion",
+                  "definition": "A club near the top of the lower division moves up a level"
+                },
+                {
+                  "id": "releg",
+                  "term": "Relegation",
+                  "definition": "A club near the bottom of a division drops down a level"
+                },
+                {
+                  "id": "stayup",
+                  "term": "Staying up",
+                  "definition": "Finishing high enough above the drop zone to remain in the division"
+                },
+                {
+                  "id": "pyramid",
+                  "term": "The pyramid",
+                  "definition": "The levels of leagues linked by promotion and relegation"
+                }
               ],
-              "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. Relegation drops the bottom teams down a division. It's why fans get nervous; there's real danger.",
-                "incorrect": "In most of the world, the worst teams drop down to a lower division. That's called relegation, and it's brutal."
+                "summary": "Promotion and relegation link the leagues into a ladder. Every season some clubs go up, some go down and some survive by a point.",
+                "sayThisLine": "Three up, three down, and it all comes down to the last day."
               }
             }
           },
@@ -154,19 +194,26 @@
           },
           {
             "id": "comps-02-mc-stakes",
-            "type": "multiple-choice",
+            "type": "fill-the-gap",
             "conceptIds": ["promotion-relegation"],
             "payload": {
-              "prompt": "Why does relegation make the league exciting?",
-              "options": [
-                {"id": "a", "text": "Because teams fight hard to avoid it"},
-                {"id": "b", "text": "Because it is always entertaining"},
-                {"id": "c", "text": "Because promoted teams always win"}
+              "prompt": "Complete the Premier League ladder.",
+              "template": "In the Premier League, {{down}} clubs are relegated each season, and {{up}} clubs are promoted from the Championship.",
+              "gaps": [
+                {
+                  "id": "down",
+                  "options": ["two", "three", "four"],
+                  "correct": "three"
+                },
+                {
+                  "id": "up",
+                  "options": ["two", "three", "four"],
+                  "correct": "three"
+                }
               ],
-              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. Relegation means real stakes. The bottom teams play with their lives on the line; it's dramatic.",
-                "incorrect": "Relegation is a threat, so every match matters, especially at the bottom. That's what makes the race brutal."
+                "correct": "Right. The bottom three go down and three come up from the Championship: two automatic places and one playoff winner.",
+                "incorrect": "Three clubs go down and three come up: the top two in the Championship, plus the winner of the promotion playoff."
               }
             }
           },
@@ -175,44 +222,52 @@
             "type": "say-this",
             "conceptIds": ["promotion-relegation"],
             "payload": {
-              "fanLine": "Three go down and it gets brutal at the bottom.",
-              "replies": [
+              "statement": {"speaker": "Her", "text": "Three go down and it gets brutal at the bottom."},
+              "options": [
                 {
-                  "id": "a",
-                  "text": "Right, so the bottom three get relegated? That must put pressure on every team near the bottom.",
-                  "isSmooth": true,
-                  "coachNote": "Shows you understand the stakes."
+                  "id": "o1",
+                  "text": "Three clubs are relegated at the end of the season",
+                  "isCorrect": true
                 },
                 {
-                  "id": "b",
-                  "text": "Oh, they drop leagues?",
-                  "isSmooth": true,
-                  "coachNote": "Honest question shows you are learning."
+                  "id": "o2",
+                  "text": "The bottom of the table is a tense fight to stay up",
+                  "isCorrect": true
                 },
+                {"id": "o3", "text": "Three players are leaving the club", "isCorrect": false},
+                {"id": "o4", "text": "Three managers have been sacked", "isCorrect": false}
+              ],
+              "translation": "In the Premier League the bottom three clubs drop into the Championship, so teams near the bottom are fighting to stay up, and it gets very tense.",
+              "followUps": [
                 {
-                  "id": "c",
-                  "text": "That sounds harsh.",
-                  "isSmooth": false,
-                  "coachNote": "True but doesn't show understanding."
-                }
+                  "line": "How many points do they need to stay up?",
+                  "why": "Turns her comment into a real football question."
+                },
+                {"line": "Who's most in trouble right now?", "why": "Invites her to tell you more."}
               ]
             }
           },
           {
             "id": "comps-02-mc-mls",
-            "type": "multiple-choice",
+            "type": "binary-call",
             "conceptIds": ["promotion-relegation"],
             "payload": {
-              "prompt": "True or false: MLS has relegation like Premier League does.",
-              "options": [
-                {"id": "a", "text": "True, teams drop leagues"},
-                {"id": "b", "text": "False, there's no relegation in MLS"}
+              "prompt": "MLS has promotion and relegation like the Premier League. True or false?",
+              "scene": {
+                "kind": "none",
+                "alt": "A table of MLS clubs at the end of the season with no clubs dropping to a lower division."
+              },
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
               ],
-              "correctOptionIds": ["b"],
+              "correctChoiceId": "false",
               "explanation": {
-                "correct": "Right. MLS is different; there's no relegation, so no matter how bad you are, you stay in the top league.",
-                "incorrect": "MLS has no relegation. It's a single-entity league with a salary cap, so the worst team stays in MLS."
-              }
+                "correct": "False. MLS has no relegation: clubs stay in the league whatever their position, and the season ends with the playoffs and the MLS Cup.",
+                "incorrect": "MLS is a closed league. Bottom clubs stay put, although the Supporters' Shield goes to the team with the most points.",
+                "sayThisLine": "No relegation in MLS, so no drop to fear."
+              },
+              "ruleTag": "MLS structure"
             }
           }
         ]
@@ -231,7 +286,10 @@
             "payload": {
               "prompt": "What is a domestic cup?",
               "options": [
-                {"id": "a", "text": "A knockout tournament inside one country where small clubs face giants"},
+                {
+                  "id": "a",
+                  "text": "A knockout tournament inside one country where small clubs face giants"
+                },
                 {"id": "b", "text": "A league for smaller teams"},
                 {"id": "c", "text": "A trophy for the best defensive team"}
               ],
@@ -262,19 +320,26 @@
           },
           {
             "id": "comps-03-mc-format",
-            "type": "multiple-choice",
+            "type": "fill-the-gap",
             "conceptIds": ["domestic-cup"],
             "payload": {
-              "prompt": "How does a domestic cup bracket usually work?",
-              "options": [
-                {"id": "a", "text": "Round-robin, everyone plays each other"},
-                {"id": "b", "text": "Knockout, lose once and you are out"},
-                {"id": "c", "text": "Best-of-three series"}
+              "prompt": "Complete how a domestic cup works.",
+              "template": "A domestic cup is a {{format}} competition, and clubs from across the {{pyramid}} can take part.",
+              "gaps": [
+                {
+                  "id": "format",
+                  "options": ["knockout", "round-robin", "league"],
+                  "correct": "knockout"
+                },
+                {
+                  "id": "pyramid",
+                  "options": ["whole pyramid", "top flight only", "one city"],
+                  "correct": "whole pyramid"
+                }
               ],
-              "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. Knockout means one loss and you go home. That's where the magic is; one bad day and it's over.",
-                "incorrect": "A cup is knockout. One match, one winner. That's why small clubs dream of beating giants."
+                "correct": "Right. It is a knockout, so one loss ends your run, and many cups welcome clubs from several divisions.",
+                "incorrect": "Cups like the FA Cup are knockout competitions. Lose once and you are out, which is why small clubs from lower divisions can dream of beating giants."
               }
             }
           },
@@ -283,44 +348,60 @@
             "type": "say-this",
             "conceptIds": ["domestic-cup"],
             "payload": {
-              "fanLine": "It's the cup, so anything can happen.",
-              "replies": [
+              "statement": {"speaker": "Him", "text": "It's the cup, so anything can happen."},
+              "options": [
                 {
-                  "id": "a",
-                  "text": "Right, one-off match, so even a small team has a shot?",
-                  "isSmooth": true,
-                  "coachNote": "Shows you understand why upsets happen."
+                  "id": "o1",
+                  "text": "A single knockout match can produce an upset",
+                  "isCorrect": true
                 },
                 {
-                  "id": "b",
-                  "text": "Sounds unpredictable.",
-                  "isSmooth": true,
-                  "coachNote": "True; the cup is unpredictable."
+                  "id": "o2",
+                  "text": "Small clubs sometimes beat giants in cup ties",
+                  "isCorrect": true
+                },
+                {"id": "o3", "text": "Cup games are played over a full season", "isCorrect": false},
+                {"id": "o4", "text": "The referee is picking a winner", "isCorrect": false}
+              ],
+              "translation": "In a knockout cup, one match decides a tie, so a smaller side can beat a much stronger opponent on the day.",
+              "followUps": [
+                {
+                  "line": "Which giant are you hoping falls this round?",
+                  "why": "Friendly and shows you know upsets happen."
                 },
                 {
-                  "id": "c",
-                  "text": "What do you mean?",
-                  "isSmooth": false,
-                  "coachNote": "Ask before commenting."
+                  "line": "Remember when a lower-league team knocked out a top side?",
+                  "why": "Invites a story."
                 }
               ]
             }
           },
           {
             "id": "comps-03-mc-classic",
-            "type": "multiple-choice",
+            "type": "term-match",
             "conceptIds": ["domestic-cup"],
             "payload": {
-              "prompt": "Why do fans talk about 'cup magic' or 'cup runs'?",
-              "options": [
-                {"id": "a", "text": "Because smaller teams sometimes beat giants in knockout football"},
-                {"id": "b", "text": "Because the cup has better players"},
-                {"id": "c", "text": "Because it's played at night"}
+              "prompt": "Match the cup term to its meaning.",
+              "pairs": [
+                {
+                  "id": "upset",
+                  "term": "Upset",
+                  "definition": "A result almost no one expected, such as a lower-league club beating a top side"
+                },
+                {
+                  "id": "giant",
+                  "term": "Giant-killing",
+                  "definition": "A smaller club knocking out a much bigger one"
+                },
+                {
+                  "id": "run",
+                  "term": "Cup run",
+                  "definition": "A team winning round after round and going deep into the competition"
+                }
               ],
-              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. A cup run is when a smaller team keeps winning and makes a deep run. It's the romance of the cup.",
-                "incorrect": "Cup magic is a small team beating a giant. The knockout format means one match changes everything."
+                "summary": "Cups are romantic because one bad day can end a giant's season, and a small club can suddenly have a cup run.",
+                "sayThisLine": "That was some cup run, from round one to the semi-final."
               }
             }
           }
@@ -346,8 +427,9 @@
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. League position is the main path. Finishing in the top spots (usually top four) qualifies you for the Champions League.",
-                "incorrect": "It's mainly league position. If you finish in the top four or so, you get Champions League football next season."
+                "correct": "Right. League position is the main path. Finishing near the top of the table, often top four or five depending on how many places the country earns that year, gets you Champions League football.",
+                "incorrect": "Clubs mostly qualify through league position. The number of Champions League spots each country receives can change from year to year.",
+                "sayThisLine": "We need to finish top four to get Champions League football."
               }
             }
           },
@@ -375,45 +457,59 @@
                 }
               ],
               "explanation": {
-                "correct": "Right. Champions League is the prize. Europa League is the consolation. Conference League is the entry-level European night.",
-                "incorrect": "The pyramid is Champions League (best teams), Europa League (next level), then Conference League (entry level)."
+                "summary": "UEFA runs three tiers: the Champions League at the top, the Europa League next, and the Conference League as the third competition.",
+                "sayThisLine": "Champions League is the big one, Europa League is next."
               }
             }
           },
           {
             "id": "comps-04-mc-pressure",
-            "type": "multiple-choice",
+            "type": "say-this",
             "conceptIds": ["continental-competitions"],
             "payload": {
-              "prompt": "Why do fans say 'We need top four for Champions League'?",
+              "statement": {"speaker": "Him", "text": "We just need to hang on to top four this season."},
               "options": [
-                {"id": "a", "text": "Because finishing top four in the league qualifies you"},
-                {"id": "b", "text": "Because there are only four teams in Europe"},
-                {"id": "c", "text": "Because the rule changes every year"}
+                {
+                  "id": "o1",
+                  "text": "They want to qualify for the Champions League",
+                  "isCorrect": true
+                },
+                {
+                  "id": "o2",
+                  "text": "They are trying to finish in the top places of the league table",
+                  "isCorrect": true
+                },
+                {"id": "o3", "text": "There are only four teams in Europe", "isCorrect": false},
+                {"id": "o4", "text": "They are being relegated", "isCorrect": false}
               ],
-              "correctOptionIds": ["a"],
-              "explanation": {
-                "correct": "Right. Most domestic leagues use top four (or top six or eight depending on the league) to qualify for the Champions League.",
-                "incorrect": "It's a league position thing. Finish high enough and you get European football next season, which means more matches, more prize money, more prestige."
-              }
+              "translation": "His team wants to finish high enough in the league to earn a Champions League place for next season.",
+              "followUps": [
+                {"line": "How many points is the gap now?", "why": "Shows you follow the table."},
+                {"line": "Who else is in that race?", "why": "Encourages him to talk about rivals."}
+              ]
             }
           },
           {
             "id": "comps-04-mc-domestic-cup",
-            "type": "multiple-choice",
+            "type": "binary-call",
             "conceptIds": ["continental-competitions"],
             "payload": {
-              "prompt": "Can a domestic cup winner get into European football even if they finish low in the league?",
-              "options": [
-                {"id": "a", "text": "Yes, some leagues give cup winners a European spot"},
-                {"id": "b", "text": "No, you have to finish high in the league"},
-                {"id": "c", "text": "It depends on the cup"}
+              "prompt": "A club wins the FA Cup but finishes tenth. Can it still play in Europe?",
+              "scene": {
+                "kind": "none",
+                "alt": "A team lifts a domestic cup after a mid-table league finish."
+              },
+              "choices": [
+                {"id": "yes", "label": "Yes, in Europe"},
+                {"id": "no", "label": "No, league only"}
               ],
-              "correctOptionIds": ["a"],
+              "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Right. In many leagues, if you win the domestic cup, you get a Europa League spot even if you finished mid-table.",
-                "incorrect": "Cup winners often get a European spot. It's an extra reward for winning the cup."
-              }
+                "correct": "Yes. The FA Cup winner earns a place in European competition, usually the Europa League, even after a mid-table league finish.",
+                "incorrect": "In England the FA Cup winner gets a European place. If that club already qualified another way, the place passes on under the competition's rules.",
+                "sayThisLine": "Win the cup and you might play in Europe next year."
+              },
+              "ruleTag": "Cup winner in Europe"
             }
           },
           {
@@ -423,14 +519,17 @@
             "payload": {
               "prompt": "When fans say 'We're fighting for Europe', what do they mean?",
               "options": [
-                {"id": "a", "text": "They are trying to finish high enough to qualify for European competitions"},
+                {
+                  "id": "a",
+                  "text": "They are trying to finish high enough to qualify for European competitions"
+                },
                 {"id": "b", "text": "They are playing teams from Europe"},
                 {"id": "c", "text": "They are moving to Europe"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. European football is a big deal: more prestige, more revenue, more matches and a bigger stage.",
-                "incorrect": "Fighting for Europe means trying to qualify for Champions League or Europa League by finishing high in the league."
+                "correct": "Right. Fighting for Europe means trying to finish high enough to qualify for the Champions League, Europa League or Conference League. That brings extra matches, money and prestige.",
+                "incorrect": "When fans say a club is fighting for Europe, they mean it is trying to finish high enough in the league table to earn a European place."
               }
             }
           }
@@ -451,24 +550,24 @@
               "prompt": "Match the transfer term to its meaning.",
               "pairs": [
                 {
-                  "id": "pair-1",
+                  "id": "fee",
                   "term": "Transfer fee",
-                  "definition": "The price a club pays for a player's contract"
+                  "definition": "The price one club pays another to sign a player under contract"
                 },
                 {
-                  "id": "pair-2",
+                  "id": "loan",
                   "term": "Loan",
-                  "definition": "Borrowing a player from another club for one season"
+                  "definition": "A player joins another club for a set period, usually a season"
                 },
                 {
-                  "id": "pair-3",
+                  "id": "free",
                   "term": "Free transfer",
-                  "definition": "A player moving for no fee because his contract has expired"
+                  "definition": "A player moves for no fee because his contract has run out"
                 }
               ],
               "explanation": {
-                "correct": "Right. Fee = money, loan = temporary, free = contract expired. Those are the three ways a player moves.",
-                "incorrect": "A fee is money paid for a contract. A loan is temporary. Free means the contract ended, so no fee."
+                "summary": "A fee is money paid to a club. A loan is temporary. A free transfer happens when the contract has ended, so the old club gets nothing.",
+                "sayThisLine": "He's out of contract in the summer, so it's a free transfer."
               }
             }
           },
@@ -485,8 +584,8 @@
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. The transfer window is a fixed period. Summer is the big one; January is the small one.",
-                "incorrect": "The window opens and closes. Clubs can only register players during those periods."
+                "correct": "Right. The transfer window is a fixed period. Summer is the big one and January is the smaller one. Free agents without a club can often still sign outside it.",
+                "incorrect": "Clubs can generally only register new players in the windows: summer and January. Unattached free agents can often still sign outside them."
               }
             }
           },
@@ -495,45 +594,64 @@
             "type": "decision-scenario",
             "conceptIds": ["loan-and-fee"],
             "payload": {
-              "scenario": "A young player wants more playing time but his club won't give it to him. What do clubs usually do?",
+              "prompt": "A young player wants more games. What should the club do?",
+              "situation": {
+                "narrative": "A 19-year-old has come through the academy, but he is stuck behind two senior players and the manager is not sure he is ready.",
+                "facts": [
+                  {"label": "Age", "value": "19"},
+                  {"label": "Minutes this season", "value": "Almost none"},
+                  {"label": "Contract", "value": "Three years left"},
+                  {"label": "Manager's view", "value": "Talented, needs matches"}
+                ]
+              },
               "options": [
                 {
-                  "id": "a",
-                  "text": "Loan him to a smaller club to get experience",
-                  "isCorrect": true,
-                  "explanation": "Right. Loans let young players develop elsewhere and come back better."
+                  "id": "loan",
+                  "label": "Loan him to a club where he will start",
+                  "verdict": "best",
+                  "consequence": "He plays regularly, grows, and comes back stronger. The club keeps the contract.",
+                  "considerations": ["Regular football helps young players develop", "The club keeps his contract"]
                 },
                 {
-                  "id": "b",
-                  "text": "Sell him immediately",
-                  "isCorrect": false,
-                  "explanation": "They could, but a loan is smarter; if he develops well, they get him back."
+                  "id": "sell",
+                  "label": "Sell him now for a fee",
+                  "verdict": "acceptable",
+                  "consequence": "It brings money, but the club gives up a player who might become good.",
+                  "considerations": ["A quick fee is useful", "But it removes a home-grown asset"]
                 },
                 {
-                  "id": "c",
-                  "text": "Keep him on the bench",
-                  "isCorrect": false,
-                  "explanation": "That wastes his potential. A loan lets him develop and come back."
+                  "id": "bench",
+                  "label": "Keep him on the bench",
+                  "verdict": "poor",
+                  "consequence": "He barely plays, loses confidence and may leave for free later.",
+                  "considerations": ["Talent wastes without match minutes"]
                 }
-              ]
+              ],
+              "expertNote": "Clubs often use loans as a development step. The trade-off is that a loaned player is away from the manager's day-to-day coaching, so clubs choose the loan club carefully.",
+              "sayThisLine": "Send him out on loan so he can play every week."
             }
           },
           {
             "id": "comps-05-mc-free",
-            "type": "multiple-choice",
+            "type": "binary-call",
             "conceptIds": ["contract-expiry"],
             "payload": {
-              "prompt": "A player's contract expires this summer. What can happen?",
-              "options": [
-                {"id": "a", "text": "He can negotiate with any club and leave for free"},
-                {"id": "b", "text": "His club can force him to stay"},
-                {"id": "c", "text": "He has to pay to leave"}
+              "prompt": "A player's contract has run out and he signs for a new club. Does the new club pay a fee?",
+              "scene": {
+                "kind": "none",
+                "alt": "A footballer signs for a new club after his old contract has expired."
+              },
+              "choices": [
+                {"id": "yes", "label": "Yes, a fee"},
+                {"id": "no", "label": "No, it is free"}
               ],
-              "correctOptionIds": ["a"],
+              "correctChoiceId": "no",
               "explanation": {
-                "correct": "Right. In the last months of a contract, a player can talk to other clubs and leave for free when it ends.",
-                "incorrect": "Contract expiry means freedom. When the contract ends, the player goes free; his old club gets nothing."
-              }
+                "correct": "No. With an expired contract he is a free agent, so the new club does not pay a transfer fee, although it may pay a signing bonus and wages.",
+                "incorrect": "Once a contract ends there is nothing left for another club to buy from the old one, so the move is free.",
+                "sayThisLine": "His contract's up in the summer, so it's a free transfer."
+              },
+              "ruleTag": "Free transfer"
             }
           },
           {
@@ -543,14 +661,17 @@
             "payload": {
               "prompt": "He's on loan with an option to buy. What does that mean?",
               "options": [
-                {"id": "a", "text": "The borrowing club can decide to buy his contract at a set price"},
+                {
+                  "id": "a",
+                  "text": "The borrowing club can decide to buy his contract at a set price"
+                },
                 {"id": "b", "text": "The player can choose to leave anytime"},
                 {"id": "c", "text": "The original club has to sell him"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. An option to buy lets the loaning club decide later whether to make it permanent, at a pre-agreed price.",
-                "incorrect": "Option to buy means the loaning club has a choice. If the player shines, they can trigger it."
+                "correct": "Right. An option to buy lets the borrowing club decide later whether to make the move permanent, at a price agreed in advance.",
+                "incorrect": "An option to buy is a choice for the club that borrowed the player. If he performs well, they can pay the agreed fee and keep him."
               }
             }
           }
@@ -570,7 +691,10 @@
             "payload": {
               "prompt": "What is a club's academy?",
               "options": [
-                {"id": "a", "text": "A youth system that develops young players who might reach the first team"},
+                {
+                  "id": "a",
+                  "text": "A youth system that develops young players who might reach the first team"
+                },
                 {"id": "b", "text": "A school for fans"},
                 {"id": "c", "text": "A training facility for retired players"}
               ],
@@ -583,38 +707,56 @@
           },
           {
             "id": "comps-06-mc-manager",
-            "type": "multiple-choice",
+            "type": "term-match",
             "conceptIds": ["manager-sporting-director"],
             "payload": {
-              "prompt": "What does a manager do?",
-              "options": [
-                {"id": "a", "text": "Picks the team and decides tactics"},
-                {"id": "b", "text": "Buys and sells players"},
-                {"id": "c", "text": "Owns the club"}
+              "prompt": "Match the club job to who does it.",
+              "pairs": [
+                {
+                  "id": "manager",
+                  "term": "Manager",
+                  "definition": "Picks the team and decides how the side plays on match day"
+                },
+                {
+                  "id": "sd",
+                  "term": "Sporting director",
+                  "definition": "Runs recruitment and long-term planning across the squad"
+                },
+                {
+                  "id": "academy",
+                  "term": "Academy",
+                  "definition": "The youth system that develops young players for the first team"
+                },
+                {
+                  "id": "owner",
+                  "term": "Owner",
+                  "definition": "Owns the club and sets the overall budget"
+                }
               ],
-              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. The manager is the head coach; he picks the starting eleven and decides how the team plays.",
-                "incorrect": "The manager is the tactical boss. He picks the team and the formation every match."
+                "summary": "The manager works on the day-to-day football, the sporting director plans the squad, the academy grows young talent and the owner backs it all.",
+                "sayThisLine": "The manager picks the team, and the sporting director builds the squad."
               }
             }
           },
           {
             "id": "comps-06-mc-sd",
-            "type": "multiple-choice",
+            "type": "binary-call",
             "conceptIds": ["manager-sporting-director"],
             "payload": {
-              "prompt": "What does the sporting director do?",
-              "options": [
-                {"id": "a", "text": "Runs recruitment and long-term planning"},
-                {"id": "b", "text": "Picks the team for each match"},
-                {"id": "c", "text": "Owns the stadium"}
+              "prompt": "Who normally picks the starting eleven each week?",
+              "scene": {"kind": "none", "alt": "Team news has just been announced ahead of a match."},
+              "choices": [
+                {"id": "manager", "label": "The manager"},
+                {"id": "sd", "label": "The sporting director"}
               ],
-              "correctOptionIds": ["a"],
+              "correctChoiceId": "manager",
               "explanation": {
-                "correct": "Right. The sporting director (or head of football) buys, sells and plans the squad's future.",
-                "incorrect": "The sporting director is the architect. He runs transfers and squad planning; the manager works with what he builds."
-              }
+                "correct": "The manager picks the team and tactics. The sporting director works on recruitment and the longer-term plan.",
+                "incorrect": "Team selection belongs to the manager or head coach. The sporting director is more about transfers, contracts and building the squad.",
+                "sayThisLine": "The manager picks the team, and that's that."
+              },
+              "ruleTag": "Manager or sporting director"
             }
           },
           {
@@ -622,25 +764,30 @@
             "type": "say-this",
             "conceptIds": ["manager-sporting-director"],
             "payload": {
-              "fanLine": "The manager wanted him but the sporting director wouldn't pay the fee.",
-              "replies": [
+              "statement": {
+                "speaker": "Him",
+                "text": "The manager wanted him but the sporting director wouldn't pay the fee."
+              },
+              "options": [
                 {
-                  "id": "a",
-                  "text": "So they disagreed on the transfer? That happens, I guess.",
-                  "isSmooth": true,
-                  "coachNote": "Shows you understand the power split."
+                  "id": "o1",
+                  "text": "The manager and the sporting director disagreed about a signing",
+                  "isCorrect": true
                 },
                 {
-                  "id": "b",
-                  "text": "What's the difference between those two?",
-                  "isSmooth": true,
-                  "coachNote": "Honest question."
+                  "id": "o2",
+                  "text": "The club felt the fee was too high for its budget",
+                  "isCorrect": true
                 },
+                {"id": "o3", "text": "The player refused to move", "isCorrect": false},
+                {"id": "o4", "text": "The manager owns the club", "isCorrect": false}
+              ],
+              "translation": "The manager wanted to sign a player, but the sporting director, who manages recruitment and the transfer budget, felt the price was too high.",
+              "followUps": [
+                {"line": "Was the fee that high?", "why": "Shows curiosity about the numbers."},
                 {
-                  "id": "c",
-                  "text": "They should have bought him anyway.",
-                  "isSmooth": false,
-                  "coachNote": "Easy to say, but budgets matter."
+                  "line": "Who ends up deciding in the end?",
+                  "why": "Invites him to explain club roles."
                 }
               ]
             }
@@ -650,16 +797,16 @@
             "type": "multiple-choice",
             "conceptIds": ["academy-youth"],
             "payload": {
-              "prompt": "When fans say a player is a 'local lad', what do they often mean?",
+              "prompt": "Fans call a player 'one of our own'. What do they usually mean?",
               "options": [
-                {"id": "a", "text": "He came through the academy and grew up at the club"},
-                {"id": "b", "text": "He was born nearby"},
-                {"id": "c", "text": "He is cheap"}
+                {"id": "a", "text": "He came through the club's academy"},
+                {"id": "b", "text": "He signed on a free transfer"},
+                {"id": "c", "text": "He is the cheapest player in the squad"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. A local product is someone who rose through the academy. Fans love it; it means loyalty.",
-                "incorrect": "He came through the academy' usually means a homegrown player. Fans celebrate those because they are club-made."
+                "correct": "Right. It usually means an academy graduate who grew up at the club. Fans love that connection, and clubs also have homegrown-player rules in their squad lists.",
+                "incorrect": "'One of our own' points to a player who rose through the club's youth system, not to price or how he arrived."
               }
             }
           }
@@ -692,37 +839,58 @@
           },
           {
             "id": "comps-07-mc-derby-emotion",
-            "type": "multiple-choice",
+            "type": "binary-call",
             "conceptIds": ["derby"],
             "payload": {
-              "prompt": "Why do derbies often produce upset results?",
-              "options": [
-                {"id": "a", "text": "Because emotion and pride override form; weaker teams raise their game"},
-                {"id": "b", "text": "Because the pitch is smaller"},
-                {"id": "c", "text": "Because the referee favours local teams"}
+              "prompt": "In a derby, the league table always tells you who wins. True or false?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two local rivals meet, and the team lower in the table is playing at home."
+              },
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
               ],
-              "correctOptionIds": ["a"],
+              "correctChoiceId": "false",
               "explanation": {
-                "correct": "Right. A derby is emotional; the underdog brings everything, and form counts for less.",
-                "incorrect": "Derbies are about pride. A weaker team can play out of their skin against local rivals."
-              }
+                "correct": "False. Derbies are famous for ignoring the form book, because pride and emotion lift the underdog.",
+                "incorrect": "There is no guarantee in a derby. Fans say to throw the form book out because the weaker team often plays out of its skin.",
+                "sayThisLine": "In a derby, throw the form book out."
+              },
+              "ruleTag": "Derby unpredictability"
             }
           },
           {
             "id": "comps-07-mc-supporters",
-            "type": "multiple-choice",
+            "type": "term-match",
             "conceptIds": ["supporters-groups"],
             "payload": {
-              "prompt": "What are supporters' groups?",
-              "options": [
-                {"id": "a", "text": "Chants, banners and fan organisations that create the atmosphere"},
-                {"id": "b", "text": "VIP members who get free tickets"},
-                {"id": "c", "text": "The club's owners"}
+              "prompt": "Match the fan-culture term to its meaning.",
+              "pairs": [
+                {
+                  "id": "ultras",
+                  "term": "Ultras",
+                  "definition": "Highly organised fan groups known for chants and choreography"
+                },
+                {
+                  "id": "tifo",
+                  "term": "Tifo",
+                  "definition": "A large choreographed banner or display shown by supporters"
+                },
+                {
+                  "id": "trust",
+                  "term": "Supporters' trust",
+                  "definition": "A fan-run organisation that gives supporters a voice in how the club is run"
+                },
+                {
+                  "id": "away",
+                  "term": "Away end",
+                  "definition": "The section of the stadium given to the visiting fans"
+                }
               ],
-              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. Ultras and supporters' trusts drive the noise and culture. They are the soul of matchday.",
-                "incorrect": "Supporters' culture includes chants, banners (tifo), and organized fan groups. They create the atmosphere and identity."
+                "summary": "Supporter culture is more than noise. Groups shape the atmosphere, the displays and sometimes the club's decisions.",
+                "sayThisLine": "The tifo before kick-off was incredible."
               }
             }
           },
@@ -739,8 +907,8 @@
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. Spending rules try to keep competition fair. Too much money too fast breaks the league.",
-                "incorrect": "Rules like the Premier League's squad-cost limit and UEFA's squad cost ratio try to prevent unlimited spending from warping competition."
+                "correct": "Right. Rules such as the Premier League's squad-cost limit and UEFA's squad cost ratio try to stop clubs from overspending and to keep the competition fairer.",
+                "incorrect": "Spending rules exist to keep clubs financially sustainable and to limit how far a rich owner can outspend everyone else."
               }
             }
           },
@@ -749,27 +917,82 @@
             "type": "say-this",
             "conceptIds": ["derby"],
             "payload": {
-              "fanLine": "It's a derby, throw the form book out.",
-              "replies": [
+              "statement": {"speaker": "Him", "text": "It's a derby, throw the form book out."},
+              "options": [
+                {"id": "o1", "text": "Form does not matter as much in a derby", "isCorrect": true},
+                {"id": "o2", "text": "The underdog often plays above its level", "isCorrect": true},
+                {"id": "o3", "text": "The league table is not used", "isCorrect": false},
+                {"id": "o4", "text": "The referee will pick the winner", "isCorrect": false}
+              ],
+              "translation": "In derbies, emotion and pride can outweigh recent form, so the weaker team has a real chance.",
+              "followUps": [
                 {
-                  "id": "a",
-                  "text": "So the weaker team has a real shot because emotion matters more than usual?",
-                  "isSmooth": true,
-                  "coachNote": "Shows you understand why derbies are unpredictable."
+                  "line": "Who do you think steps up in a derby?",
+                  "why": "Invites him to share his read."
                 },
                 {
-                  "id": "b",
-                  "text": "What do you mean by the form book?",
-                  "isSmooth": true,
-                  "coachNote": "Honest question is always fine."
-                },
-                {
-                  "id": "c",
-                  "text": "So your team will definitely win?",
-                  "isSmooth": false,
-                  "coachNote": "Don't assume; that's overconfident."
+                  "line": "What's the best derby you've ever watched?",
+                  "why": "Great way to hear a story."
                 }
               ]
+            }
+          },
+          {
+            "id": "comps-07-tt-derby",
+            "type": "talk-track",
+            "conceptIds": ["derby"],
+            "payload": {
+              "title": "Derby day nerves",
+              "setting": "His team plays its local rival tomorrow, and he is nervous.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "Tomorrow's the derby. I can barely eat. We're the underdogs but it's the one that matters.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "Underdogs can be dangerous in derbies, right? Throw the form book out.",
+                      "smoothDelta": 22,
+                      "theirResponse": "Exactly! That's what I keep telling myself.",
+                      "coachNote": "Uses the phrase correctly and shows you follow the idea."
+                    },
+                    {
+                      "id": "b",
+                      "text": "Just three points, right?",
+                      "smoothDelta": -10,
+                      "theirResponse": "Three points? It's so much more than that.",
+                      "coachNote": "Undersells what a derby means to fans."
+                    },
+                    {
+                      "id": "c",
+                      "text": "What's it feel like when your team scores against them?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Nothing beats it. The whole stadium shakes.",
+                      "coachNote": "An open question that invites a story."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "The fans are planning a big tifo before kick-off. It's going to be huge.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "I love that. Is the whole end in on it?",
+                      "smoothDelta": 20,
+                      "theirResponse": "Yes! Ultras have been painting it for weeks.",
+                      "coachNote": "Shows interest in the culture behind the game."
+                    },
+                    {
+                      "id": "b",
+                      "text": "What's a tifo again?",
+                      "smoothDelta": 12,
+                      "theirResponse": "A giant banner display, like a mosaic. You'll see it.",
+                      "coachNote": "Honest curiosity is welcome."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Derby talk is about emotion and history. Curiosity about what it means to fans lands better than telling them it is just another match."
             }
           }
         ]

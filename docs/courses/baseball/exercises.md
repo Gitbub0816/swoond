@@ -1335,4 +1335,4 @@ Every JSON fence in sections 2 and 4 is validated against its schema with the re
 ```
 node <scratch>/check-exercises.mjs docs/courses/baseball/exercises.md
 ```
-Result at authoring time: see NOTES_FOR_ORCHESTRATOR.md.
+Result at authoring time: 43 sample payloads plus 10 talk tracks across all 13 types, 0 invalid.

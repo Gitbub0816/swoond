@@ -5,11 +5,15 @@ on:
     paths:
       - docs/**
       - tools/validate/**
+      - tools/content/**
+      - content/**
       - .github/workflows/content.yml
   pull_request:
     paths:
       - docs/**
       - tools/validate/**
+      - tools/content/**
+      - content/**
       - .github/workflows/content.yml
   workflow_dispatch:
 
@@ -38,3 +42,4 @@ jobs:
       - run: npm test
       # TODO: drop --partial once all courses are fully authored.
       - run: node validate.mjs --partial
+      - run: node ../content/build-pack.mjs --check
