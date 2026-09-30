@@ -801,14 +801,29 @@
             "type": "sequence-order",
             "conceptIds": ["rec-formats"],
             "payload": {
-              "prompt": "Order the main recreational tournament formats by how they work.",
+              "prompt": "Order tournament formats by how they work.",
               "items": [
-                {"id": "format1", "text": "Round robin: everyone plays everyone else once."},
-                {"id": "format2", "text": "Ladder: players are ranked and move up by beating someone above them."},
-                {"id": "format3", "text": "Single elimination: lose once and you're out; winners advance to brackets."},
-                {"id": "format4", "text": "Double elimination: losing once puts you in a losers bracket; you stay until you lose twice."}
+                {
+                  "id": "format1",
+                  "text": "Round robin: everyone plays everyone else once.",
+                  "why": "Fairest format; most complete results."
+                },
+                {
+                  "id": "format2",
+                  "text": "Ladder: players ranked and move up by beating someone above.",
+                  "why": "Ongoing rank-based system."
+                },
+                {
+                  "id": "format3",
+                  "text": "Single elimination: lose once and you're out.",
+                  "why": "Fast bracket elimination."
+                },
+                {
+                  "id": "format4",
+                  "text": "Double elimination: stay until you lose twice.",
+                  "why": "Middle ground between round robin and single elim."
+                }
               ],
-              "correctOrder": ["format1", "format2", "format3", "format4"],
               "explanation": {
                 "correct": "Round robin is the fairest (everyone plays everyone). Ladders are ongoing. Elimination brackets are common for tournaments.",
                 "incorrect": "Formats go from fairest (round robin) to fastest (single elim) to middle ground (ladder and double elim).",
@@ -998,13 +1013,13 @@
             "type": "binary-call",
             "conceptIds": ["injury-prevention"],
             "payload": {
-              "prompt": "Should you play in court shoes even if sneakers are more comfortable?",
+              "prompt": "Should you wear court shoes for pickleball?",
               "scene": {
                 "kind": "none",
                 "alt": "Court footwear choice."
               },
               "choices": [
-                {"id": "yes-shoes", "label": "Yes, court shoes are designed to prevent injuries"},
+                {"id": "yes-shoes", "label": "Yes, they prevent injuries"},
                 {"id": "no-sneakers", "label": "No, sneakers are fine"}
               ],
               "correctChoiceId": "yes-shoes",
@@ -1022,7 +1037,7 @@
             "conceptIds": ["injury-prevention"],
             "payload": {
               "prompt": "Complete the injury-prevention advice.",
-              "template": "To stay healthy, {{prepare}}, {{protect}}, {{listen}}, and {{seek}}.",
+              "template": "To stay healthy, {{prepare}}, {{protect}}, and {{listen}}.",
               "gaps": [
                 {
                   "id": "prepare",
@@ -1036,19 +1051,14 @@
                 },
                 {
                   "id": "listen",
-                  "options": ["stop when pain appears", "push through pain"],
-                  "correct": "stop when pain appears"
-                },
-                {
-                  "id": "seek",
-                  "options": ["see a professional if pain lingers", "wait and hope"],
-                  "correct": "see a professional if pain lingers"
+                  "options": ["stop when pain appears and see a pro if needed", "push through pain"],
+                  "correct": "stop when pain appears and see a pro if needed"
                 }
               ],
               "explanation": {
-                "correct": "Warm-up, shoes, listen to pain, and see a pro if needed. That's smart injury prevention.",
-                "incorrect": "Prevention: prepare your body, protect your feet, listen to signals, and get help when needed.",
-                "sayThisLine": "Warm up, wear court shoes, stop when it hurts, see a pro if needed."
+                "correct": "Warm-up, shoes, and listen to your body. That's smart injury prevention.",
+                "incorrect": "Prevention: prepare your body, protect your feet, and listen to pain signals.",
+                "sayThisLine": "Warm up, wear court shoes, and rest if pain appears."
               }
             }
           },

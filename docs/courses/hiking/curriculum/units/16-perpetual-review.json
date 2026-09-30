@@ -1,0 +1,492 @@
+{
+  "contractVersion": "1.2.0",
+  "courseId": "hiking",
+  "unit": {
+    "id": "perpetual-review",
+    "title": "Perpetual review",
+    "summary": "Short, mixed refreshers that bring back what you learned, so it is still there when she mentions a trail.",
+    "layer": "review",
+    "order": 16,
+    "prerequisiteUnitIds": ["trail-basics"],
+    "personalizationSlots": ["skill-level"],
+    "lessons": [
+      {
+        "id": "rv-01",
+        "title": "Daily bite",
+        "objective": "You can recall core terms after a gap.",
+        "estimatedMinutes": 5,
+        "conceptIds": ["ten-essentials", "leave-no-trace", "junction"],
+        "activities": [
+          {
+            "id": "rv-01-mc-essentials-system",
+            "type": "multiple-choice",
+            "conceptIds": ["ten-essentials"],
+            "payload": {
+              "prompt": "What are the Ten Essentials, really?",
+              "options": [
+                { "id": "a", "text": "Ten systems that cover navigation, weather, injury and getting stuck out late" },
+                { "id": "b", "text": "Ten brand-name items every hiker must buy" },
+                { "id": "c", "text": "A packing list only for summit days" },
+                { "id": "d", "text": "Ten rules the park ranger checks at the trailhead" }
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "The Ten Essentials are systems, not products: navigation, sun protection, insulation, illumination, first-aid supplies, fire, repair kit and tools, nutrition, hydration and emergency shelter. One item can fill a system, and a short day hike still needs all ten covered.",
+                "incorrect": "Nobody checks them at the trailhead, and they are not brand-specific or summit-only. Think of them as ten problems you have planned for, such as getting cold, losing the trail or being out after dark.",
+                "sayThisLine": "\"I think of the Ten Essentials as ten problems I have a plan for.\""
+              }
+            }
+          },
+          {
+            "id": "rv-01-fg-lnt-durable",
+            "type": "fill-the-gap",
+            "conceptIds": ["leave-no-trace"],
+            "payload": {
+              "prompt": "Finish these Leave No Trace lines.",
+              "template": "Travel and camp on {{surface}} surfaces, and {{waste}} to dispose of waste properly, including {{paper}}.",
+              "gaps": [
+                { "id": "surface", "options": ["durable", "fragile"], "correct": "durable" },
+                { "id": "waste", "options": ["pack it out", "bury it anywhere"], "correct": "pack it out" },
+                { "id": "paper", "options": ["toilet paper and wrappers", "only glass bottles"], "correct": "toilet paper and wrappers" }
+              ],
+              "explanation": {
+                "correct": "Durable surfaces such as established trail, rock and gravel take foot traffic without lasting damage. Packing out trash, wrappers and used toilet paper keeps the trail pleasant for the next person. Where a cathole is the local rule, follow it.",
+                "incorrect": "Fragile ground such as meadow and soil crust takes years to recover from a few footsteps. Burying or leaving waste invites animals and spoils the place for others."
+              }
+            }
+          },
+          {
+            "id": "rv-01-tm-junction-terms",
+            "type": "term-match",
+            "conceptIds": ["junction", "trail-register", "leave-no-trace"],
+            "payload": {
+              "prompt": "Match each trailhead term to its meaning.",
+              "pairs": [
+                { "id": "junction", "term": "Junction", "definition": "A point where two or more trails meet and you choose a direction" },
+                { "id": "register", "term": "Trail register", "definition": "A sign-in log at a trailhead, a backup to telling a person who expects you back" },
+                { "id": "durable", "term": "Durable surface", "definition": "Ground that tolerates foot traffic, like established trail or rock" },
+                { "id": "essentials", "term": "Ten Essentials", "definition": "A set of safety systems you plan for before you leave" }
+              ],
+              "distractorDefinitions": ["The fastest line to a summit", "A permit sold at the trailhead kiosk"],
+              "explanation": {
+                "summary": "Junctions are where most wrong turns happen, registers are a backup to a personal trip plan, durable surfaces protect the land, and the Ten Essentials protect you. These four words unlock a lot of trail talk.",
+                "sayThisLine": "\"Which junction did you take, and did you sign the register?\""
+              }
+            }
+          },
+          {
+            "id": "rv-01-bc-junction-check",
+            "type": "binary-call",
+            "conceptIds": ["junction"],
+            "payload": {
+              "prompt": "Unmarked fork, phone at 4 percent. Stop and check the map first?",
+              "scene": {
+                "kind": "none",
+                "alt": "A trail splitting into two paths in a forest with no sign at the fork."
+              },
+              "choices": [
+                { "id": "yes", "label": "Yes, stop and check" },
+                { "id": "no", "label": "No, pick the wider path" }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "A junction is the classic place to go wrong, so stop, look at the map or your notes, and match what you see to the page. The wider path is often just the more worn one, not the right one.",
+                "incorrect": "Picking the wider path is a guess, and a wrong turn costs time and daylight. A low phone is exactly why a paper map or saved notes matter.",
+                "sayThisLine": "\"Let us check the map before we pick a side.\""
+              }
+            }
+          },
+          {
+            "id": "rv-01-st-ten-essentials-talk",
+            "type": "say-this",
+            "conceptIds": ["ten-essentials", "leave-no-trace"],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "I never hike without my essentials, even for a two-hour loop."
+              },
+              "options": [
+                { "id": "c1", "isCorrect": true, "text": "Smart. Weather and daylight can change even on short loops." },
+                { "id": "c2", "isCorrect": true, "text": "What is the one item you would never leave behind?" },
+                { "id": "w1", "isCorrect": false, "text": "Two hours? That is overkill." },
+                { "id": "w2", "isCorrect": false, "text": "Nobody needs that much for a loop." }
+              ],
+              "translation": "She carries the Ten Essentials systems every time, because a twisted ankle or a wrong turn does not check the trail length first.",
+              "followUps": [
+                { "line": "Do you keep a small kit packed and ready to go?", "why": "Shows you understand that readiness is a habit, not a one-off." },
+                { "line": "Did you ever need something from it on a short hike?", "why": "Invites her story without pretending you have one." }
+              ],
+              "noFakeExpertNote": "You do not need to list all ten. Curiosity about her one must-have item shows you listened and is honest about what you know."
+            }
+          }
+        ]
+      },
+      {
+        "id": "rv-02",
+        "title": "Judgment replay",
+        "objective": "You can re-decide a scenario with changed facts.",
+        "estimatedMinutes": 7,
+        "conceptIds": ["turnaround-time", "weather-window"],
+        "activities": [
+          {
+            "id": "rv-02-ds-late-summit",
+            "type": "decision-scenario",
+            "conceptIds": ["turnaround-time"],
+            "payload": {
+              "prompt": "It is turnaround time and the summit looks close. What now?",
+              "situation": {
+                "facts": [
+                  { "label": "Your rule", "value": "Turn around at 1:00 PM wherever you are" },
+                  { "label": "Time now", "value": "1:00 PM, summit maybe 20 minutes away" },
+                  { "label": "Sky", "value": "Clouds building to the west" },
+                  { "label": "Energy", "value": "Group is tired but happy" }
+                ]
+              },
+              "options": [
+                {
+                  "id": "turn",
+                  "verdict": "best",
+                  "label": "Turn around now and plan a return trip",
+                  "consequence": "You keep your margin. The summit will still be there, and you descend ahead of the building clouds with energy to spare.",
+                  "considerations": ["The rule was set when you were fresh and calm", "Descent is often slower than people expect", "Building clouds can mean storms on exposed ground"]
+                },
+                {
+                  "id": "quick",
+                  "verdict": "poor",
+                  "label": "Go for a quick 20 minutes, then descend fast",
+                  "consequence": "Twenty minutes up becomes an hour when you add the summit stop and the trip back. You are now descending late, tired and under darker clouds.",
+                  "considerations": ["Summit fever makes short detours feel small", "The margin you built is what you just spent", "Fast descents on tired legs cause falls"]
+                },
+                {
+                  "id": "split",
+                  "verdict": "acceptable",
+                  "label": "Everyone turns together and picks a nearer viewpoint instead",
+                  "consequence": "Keeping everyone together and choosing a lower goal respects the rule. It is fine as long as the nearer viewpoint does not add time or exposure.",
+                  "considerations": ["Groups move at the pace of the slowest member", "A lower viewpoint must not cost extra time", "Follow official and park guidance on route and closures"]
+                }
+              ],
+              "expertNote": "A turnaround time is a decision made early with a clear head. Sticking to it when the goal is close is the hard part, and it is what experienced hikers admire.",
+              "safetyNote": "Weather can change quickly on high ground. When in doubt, descend, and follow official and park guidance."
+            }
+          },
+          {
+            "id": "rv-02-ds-window-shifts",
+            "type": "decision-scenario",
+            "conceptIds": ["weather-window"],
+            "payload": {
+              "prompt": "The forecast shifted overnight. Replan the hike.",
+              "situation": {
+                "facts": [
+                  { "label": "Planned hike", "value": "Exposed ridge, 6 hours round trip, start at 10 AM" },
+                  { "label": "Old forecast", "value": "Clear all day" },
+                  { "label": "New forecast", "value": "Thunderstorms likely from about 1 PM" },
+                  { "label": "Alternatives", "value": "A sheltered forest loop of 3 hours near the same trailhead" }
+                ]
+              },
+              "options": [
+                {
+                  "id": "swap",
+                  "verdict": "best",
+                  "label": "Switch to the forest loop and keep the ridge for a better day",
+                  "consequence": "You still get a good hike and you are off the trail well before the storms. The ridge waits for a cleaner window.",
+                  "considerations": ["A weather window is the stretch of time conditions are actually good", "A ridge is the worst place to be when storms build", "A smaller plan beats a cancelled day"]
+                },
+                {
+                  "id": "early",
+                  "verdict": "acceptable",
+                  "label": "Start at 5 AM so you finish the ridge before 11 AM",
+                  "consequence": "An early start can fit inside the window, but only if the ridge really takes 6 hours and everyone is comfortable with it. Re-check the forecast at the trailhead.",
+                  "considerations": ["Needs a realistic pace and a hard turnaround time", "Forecast timing can shift", "Only do this if the group is ready for a dark start"]
+                },
+                {
+                  "id": "hope",
+                  "verdict": "poor",
+                  "label": "Keep the 10 AM start and hope the storms miss you",
+                  "consequence": "You would be on the exposed ridge right when the storms arrive. No place outdoors is safe in lightning, and exposed high ground is the most dangerous.",
+                  "considerations": ["Hope is not a plan", "Thunder means you are already within roughly 10 miles", "Forecasts can be early as well as late"]
+                }
+              ],
+              "expertNote": "The same hike can be great or risky depending on the window. Checking the forecast the morning you go, and being willing to swap objectives, is ordinary good judgment.",
+              "safetyNote": "Follow official and park guidance on storm safety. If thunder is audible, head for lower ground and a building or vehicle if you can."
+            }
+          },
+          {
+            "id": "rv-02-bc-lose-the-margin",
+            "type": "binary-call",
+            "conceptIds": ["turnaround-time", "weather-window"],
+            "payload": {
+              "prompt": "Your forecast window closes at 2 PM. Plan the return for 1:55 PM?",
+              "scene": {
+                "kind": "none",
+                "alt": "A hiker looking at a watch on a trail while clouds gather over distant hills."
+              },
+              "choices": [
+                { "id": "tight", "label": "Yes, finish at 1:55 PM" },
+                { "id": "margin", "label": "No, leave a margin" }
+              ],
+              "correctChoiceId": "margin",
+              "explanation": {
+                "correct": "A window is a limit, not a target. Plan to be finished well before it closes, because delays, photo stops and slow patches all eat the buffer.",
+                "incorrect": "Planning to land exactly at the deadline leaves no room for any surprise. A margin of safety is what keeps a good day from turning into a rushed one.",
+                "sayThisLine": "\"We will aim to be done well before the window closes.\""
+              }
+            }
+          },
+          {
+            "id": "rv-02-es-turnaround-clock",
+            "type": "estimate-slider",
+            "conceptIds": ["turnaround-time"],
+            "payload": {
+              "prompt": "You want to be back at the car by 5 PM. Descent takes 2.5 hours. Latest turnaround?",
+              "unit": "o'clock (24-hour)",
+              "min": 10,
+              "max": 18,
+              "step": 0.5,
+              "correctValue": 14.5,
+              "tolerance": { "full": 0.5, "partial": 1 },
+              "explanation": {
+                "correct": "Work backward from when you want to be done: 5 PM minus 2.5 hours is 2:30 PM, or 14.5 on a 24-hour clock. Build in extra slack if the descent is steep or the group is slow.",
+                "incorrect": "Start from the finish time and subtract the descent. 17:00 minus 2.5 hours is 14:30. Turnaround time is set by the trip back, not by how good the summit looks.",
+                "sayThisLine": "\"Our turnaround is two thirty, no matter how close the top feels.\""
+              }
+            }
+          },
+          {
+            "id": "rv-02-mc-why-window",
+            "type": "multiple-choice",
+            "conceptIds": ["weather-window"],
+            "payload": {
+              "prompt": "When should you re-check the forecast for an early-season summit?",
+              "options": [
+                { "id": "a", "text": "The morning you go, and again at the trailhead if you can" },
+                { "id": "b", "text": "Only once, a week before" },
+                { "id": "c", "text": "Never, if the last forecast looked good" },
+                { "id": "d", "text": "Only after you are on the summit" }
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Forecasts are most reliable a day or two out, and conditions can shift. Checking the morning of the hike keeps the window you chose real.",
+                "incorrect": "A week-old forecast is a rough guess, and a summit is too late to learn about it. The decision belongs at home and again at the trailhead."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "rv-03",
+        "title": "Map reading refresher",
+        "objective": "You can re-read contours after a break.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["contour-line", "ridgeline", "saddle"],
+        "activities": [
+          {
+            "id": "rv-03-ht-steepest-face",
+            "type": "hotspot-tap",
+            "conceptIds": ["contour-line"],
+            "payload": {
+              "prompt": "Tap the steepest ground on this map.",
+              "diagram": {
+                "asset": "diagram.contours.cliff-band",
+                "alt": "A topographic map section with widely spaced contours on the left, tightly bunched contours in the center, and moderately spaced contours on the right.",
+                "aspectRatio": 1.5
+              },
+              "hotspots": [
+                { "id": "wide", "label": "Widely spaced lines", "shape": { "kind": "circle", "cx": 0.18, "cy": 0.5, "r": 0.12 } },
+                { "id": "tight", "label": "Tightly bunched lines", "shape": { "kind": "circle", "cx": 0.5, "cy": 0.5, "r": 0.12 } },
+                { "id": "mid", "label": "Moderately spaced lines", "shape": { "kind": "circle", "cx": 0.82, "cy": 0.5, "r": 0.12 } }
+              ],
+              "correctHotspotIds": ["tight"],
+              "explanation": {
+                "correct": "Lines packed close together mean a lot of elevation change in a short distance, so the ground is steep. Bunched lines that merge can mean a cliff, which you go around and never climb.",
+                "incorrect": "Widely spaced lines mean gentle ground, because you cover more distance for each contour step. Steep ground squeezes the lines together."
+              }
+            }
+          },
+          {
+            "id": "rv-03-ht-find-saddle",
+            "type": "hotspot-tap",
+            "conceptIds": ["saddle", "ridgeline"],
+            "payload": {
+              "prompt": "Tap the saddle, the low pass between two high points.",
+              "diagram": {
+                "asset": "diagram.contours.ridges-drainages",
+                "alt": "A topographic map section showing three patterns: contours pointing downhill (a ridge), V shapes pointing uphill (a drainage), and an hourglass shape between two higher areas (a saddle).",
+                "aspectRatio": 1.5
+              },
+              "hotspots": [
+                { "id": "ridge", "label": "Contours pointing downhill", "shape": { "kind": "circle", "cx": 0.2, "cy": 0.3, "r": 0.1 } },
+                { "id": "drainage", "label": "V shapes pointing uphill", "shape": { "kind": "circle", "cx": 0.8, "cy": 0.3, "r": 0.1 } },
+                { "id": "saddle", "label": "Hourglass shape", "shape": { "kind": "circle", "cx": 0.5, "cy": 0.75, "r": 0.1 } }
+              ],
+              "correctHotspotIds": ["saddle"],
+              "explanation": {
+                "correct": "A saddle looks like an hourglass between two higher areas, a low point on the ridge that trails often use as a pass. Ridge contours point downhill, while drainage V shapes point uphill.",
+                "incorrect": "Ridge contours bulge downhill and drainage contours form Vs that point uphill, toward higher ground. The saddle is the hourglass where two high areas nearly meet."
+              }
+            }
+          },
+          {
+            "id": "rv-03-us-mixed-refresher",
+            "type": "unity-sim",
+            "conceptIds": ["contour-line", "ridgeline", "saddle"],
+            "payload": {
+              "simulationId": "hiking.navigation.topo-terrain.v1",
+              "simulationVersion": "1.0.0",
+              "difficulty": 2,
+              "configuration": {
+                "scenarioSetId": "mixed-refresher"
+              }
+            }
+          },
+          {
+            "id": "rv-03-bc-ridge-direction",
+            "type": "binary-call",
+            "conceptIds": ["ridgeline"],
+            "payload": {
+              "prompt": "On a ridge, do contour lines point downhill?",
+              "scene": {
+                "kind": "none",
+                "alt": "A topographic map with contour lines bulging outward along a narrow ridge that falls away to both sides."
+              },
+              "choices": [
+                { "id": "yes", "label": "Yes, they point downhill" },
+                { "id": "no", "label": "No, they point uphill" }
+              ],
+              "correctChoiceId": "yes",
+              "explanation": {
+                "correct": "On a ridge the contours bulge toward lower ground, pointing downhill along the crest. In a drainage the Vs point uphill, upstream.",
+                "incorrect": "Uphill-pointing Vs belong to drainages, where water collects. A ridge is the opposite, with lines bulging down the spur.",
+                "sayThisLine": "\"Ridge lines point down, valley Vs point up.\""
+              }
+            }
+          },
+          {
+            "id": "rv-03-fg-contour-rules",
+            "type": "fill-the-gap",
+            "conceptIds": ["contour-line", "saddle"],
+            "payload": {
+              "prompt": "Complete the contour rules.",
+              "template": "Every point on one contour line has the same {{quantity}}, and a {{pass}} is the low point between two {{peaks}}.",
+              "gaps": [
+                { "id": "quantity", "options": ["elevation", "temperature"], "correct": "elevation" },
+                { "id": "pass", "options": ["saddle", "cairn"], "correct": "saddle" },
+                { "id": "peaks", "options": ["high points", "trailheads"], "correct": "high points" }
+              ],
+              "explanation": {
+                "correct": "A contour line joins points of equal elevation, which is why lines close together mean steep ground. A saddle is the low point between two high points, often where a trail crosses.",
+                "incorrect": "Contours track elevation only, not temperature or trails. A cairn is a rock stack that marks a route, while a saddle is a landform."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "rv-04",
+        "title": "Season change refresher",
+        "objective": "You can adapt gear and plans to the new season.",
+        "estimatedMinutes": 6,
+        "conceptIds": ["layering-system", "lapse-rate", "snowpack"],
+        "activities": [
+          {
+            "id": "rv-04-fg-layer-roles",
+            "type": "fill-the-gap",
+            "conceptIds": ["layering-system"],
+            "payload": {
+              "prompt": "Fill in the layering roles.",
+              "template": "The {{base}} layer wicks sweat, the {{mid}} layer holds warmth, and the {{shell}} blocks wind and rain.",
+              "gaps": [
+                { "id": "base", "options": ["base", "outer"], "correct": "base" },
+                { "id": "mid", "options": ["mid", "base"], "correct": "mid" },
+                { "id": "shell", "options": ["shell", "cotton"], "correct": "shell" }
+              ],
+              "explanation": {
+                "correct": "Layers do separate jobs: the base moves sweat off your skin, the mid traps warmth, and the shell stops wind and rain. You add or remove layers as the season and your effort change.",
+                "incorrect": "Cotton holds moisture against your skin and most of its warmth is lost when wet, so it is a poor choice at any layer. Each layer has a role, and that role is what you check when the season changes."
+              }
+            }
+          },
+          {
+            "id": "rv-04-mc-shoulder-season",
+            "type": "multiple-choice",
+            "conceptIds": ["layering-system"],
+            "payload": {
+              "prompt": "Autumn hike, 55F at the trailhead, windy summit. Best layer plan?",
+              "options": [
+                { "id": "a", "text": "Wicking base, light insulating mid in the pack, windproof shell ready" },
+                { "id": "b", "text": "A single cotton sweatshirt" },
+                { "id": "c", "text": "Shorts and a tank top, since it is 55F" },
+                { "id": "d", "text": "Wear all layers from the start and never remove any" }
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Start a little cool, carry the mid and shell, and add them at breaks or on the exposed summit. You avoid sweating through your layers and still have warmth for wind.",
+                "incorrect": "Trailhead temperature does not predict summit conditions, and cotton is slow to dry. Wearing everything from the start makes you sweat, which chills you later."
+              }
+            }
+          },
+          {
+            "id": "rv-04-es-lapse-drop",
+            "type": "estimate-slider",
+            "conceptIds": ["lapse-rate"],
+            "payload": {
+              "prompt": "It is 70F at the trailhead. You climb 4,000 ft at about 3.5F per 1,000 ft. Summit temperature?",
+              "unit": "degrees F",
+              "min": 30,
+              "max": 75,
+              "step": 1,
+              "correctValue": 56,
+              "tolerance": { "full": 3, "partial": 6 },
+              "explanation": {
+                "correct": "The lapse rate is about 3 to 5F cooler per 1,000 ft of climb, so 4,000 ft at 3.5F is about 14F, leaving roughly 56F. Wind and clouds can make it feel colder.",
+                "incorrect": "Multiply: 4 thousand-foot steps times 3.5F is 14F. Subtract from 70F to get about 56F, then pack for colder with wind.",
+                "sayThisLine": "\"Every thousand feet up, expect it to be several degrees cooler.\""
+              }
+            }
+          },
+          {
+            "id": "rv-04-tm-season-terms",
+            "type": "term-match",
+            "conceptIds": ["lapse-rate", "snowpack", "layering-system"],
+            "payload": {
+              "prompt": "Match each season term to its meaning.",
+              "pairs": [
+                { "id": "lapse", "term": "Lapse rate", "definition": "How much cooler the air gets as you climb, roughly 3 to 5F per 1,000 ft" },
+                { "id": "snowpack", "term": "Snowpack", "definition": "Accumulated snow on the ground, which can linger on high trails into summer" },
+                { "id": "layers", "term": "Layering system", "definition": "Base, mid and shell layers you add or remove to manage warmth and moisture" },
+                { "id": "shell", "term": "Shell", "definition": "The outer layer that blocks wind and rain" }
+              ],
+              "distractorDefinitions": ["The grade of a trail in percent", "The shoe insert that cushions your heel"],
+              "explanation": {
+                "summary": "When the season turns, these four ideas travel together: it gets colder with elevation, snow can stay on high trails, and layers let you adjust. Checking conditions and asking the land manager still comes first.",
+                "sayThisLine": "\"Is there still snow up top, or is it cleared out?\""
+              }
+            }
+          },
+          {
+            "id": "rv-04-st-snow-talk",
+            "type": "say-this",
+            "conceptIds": ["snowpack", "lapse-rate"],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "The trailhead is bare dirt, but the pass is still holding snow from winter."
+              },
+              "options": [
+                { "id": "c1", "isCorrect": true, "text": "So the snowpack is sticking around up high. How is the pass looking?" },
+                { "id": "c2", "isCorrect": true, "text": "Do you need microspikes, or is it still passable without?" },
+                { "id": "w1", "isCorrect": false, "text": "It is dirt down here, so the pass must be fine." },
+                { "id": "w2", "isCorrect": false, "text": "Snow in summer is impossible." }
+              ],
+              "translation": "Snowpack melts from the bottom up. Higher, colder, shadier ground keeps snow long after the trailhead is clear, and that can change a route.",
+              "followUps": [
+                { "line": "Did you check the latest trail report before you went?", "why": "Shows you know conditions change, and that reports are the fresh source." },
+                { "line": "How did you decide whether to turn around?", "why": "Invites her judgment story without pretending you have experience." }
+              ],
+              "noFakeExpertNote": "You do not need to know gear specifics. Asking how the pass is looking and what she would carry is honest and gets her talking."
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
