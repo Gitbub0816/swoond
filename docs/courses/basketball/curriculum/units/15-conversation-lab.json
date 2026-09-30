@@ -80,56 +80,55 @@
             }
           },
           {
-            "id": "con-01-tt-2",
-            "type": "talk-track",
+            "id": "con-01-ds-lost",
+            "type": "decision-scenario",
             "conceptIds": [
               "conv-ask-follow-up"
             ],
             "payload": {
-              "title": "Learning about their team's recent game",
-              "setting": "Their team just played a close loss.",
-              "startingSmooth": 50,
-              "exchanges": [
+              "prompt": "She says, \"We should have won that one.\" What do you ask?",
+              "situation": {
+                "narrative": "Her team just lost a close game and she is still replaying it.",
+                "facts": [
+                  {"label": "Result", "value": "A close loss"},
+                  {"label": "Her mood", "value": "Frustrated, still replaying it"},
+                  {"label": "What you know", "value": "You did not see the whole game"}
+                ]
+              },
+              "options": [
                 {
-                  "theirMessage": "We should have won that game. We had them.",
-                  "replies": [
-                    {
-                      "id": "a",
-                      "text": "That is rough. What happened in the end that turned it around?",
-                      "smoothDelta": 25,
-                      "theirResponse": "We had some bad calls and did not execute down the stretch.",
-                      "coachNote": "You let them vent and asked about the moment that hurt. Good empathy."
-                    },
-                    {
-                      "id": "b",
-                      "text": "Yeah, that team is always lucky. Your squad is way better.",
-                      "smoothDelta": -5,
-                      "theirResponse": "I appreciate it, but luck had nothing to do with it.",
-                      "coachNote": "You tried to comfort them but dismissed their actual experience. Stick to what they know."
-                    }
+                  "id": "last-minutes",
+                  "label": "What happened in the last few minutes?",
+                  "verdict": "best",
+                  "consequence": "She walks you through the moment that hurt, and you learn exactly what she cares about.",
+                  "considerations": [
+                    "Close games usually turn on a few possessions",
+                    "It lets her tell the story",
+                    "You do not need to have seen the game"
                   ]
                 },
                 {
-                  "theirMessage": "The worst part is we had a chance with like 10 seconds left.",
-                  "replies": [
-                    {
-                      "id": "c",
-                      "text": "Ouch. You were so close. Do you remember who had the ball for that last shot?",
-                      "smoothDelta": 20,
-                      "theirResponse": "Yeah, our best player. They got a decent look but it rim out.",
-                      "coachNote": "You asked a specific detail to show you were invested in their story, not generic sympathy."
-                    },
-                    {
-                      "id": "d",
-                      "text": "Your coach needs to draw up better plays. That is on them.",
-                      "smoothDelta": -15,
-                      "theirResponse": "You do not know our coach or our system, so maybe do not judge.",
-                      "coachNote": "You blamed the coach when you don't know the situation. Stay humble."
-                    }
+                  "id": "blame-refs",
+                  "label": "Was it the refs?",
+                  "verdict": "acceptable",
+                  "consequence": "It can be a fair question, but it invites her to blame someone before she has told her side.",
+                  "considerations": [
+                    "Fans often blame officiating",
+                    "It skips the feelings behind the loss"
+                  ]
+                },
+                {
+                  "id": "blame-coach",
+                  "label": "Your coach needs better plays, right?",
+                  "verdict": "poor",
+                  "consequence": "You do not know the coach or the plays. A guess can sound like a judgment about something she loves.",
+                  "considerations": [
+                    "You are giving an opinion you cannot back up",
+                    "It turns her story into your argument"
                   ]
                 }
               ],
-              "closingNote": "Opening is about listening first. Ask small, specific questions to show you care about their experience."
+              "expertNote": "After a close loss, a good first move is a small, specific question that lets her tell the story."
             }
           },
           {
@@ -588,56 +587,55 @@
             }
           },
           {
-            "id": "con-03-st-1",
-            "type": "say-this",
+            "id": "con-03-ds-stress",
+            "type": "decision-scenario",
             "conceptIds": [
               "conv-celebrate-win"
             ],
             "payload": {
-              "statement": {
-                "speaker": "Your crush",
-                "text": "We won! That was the most stressful game ever but we pulled through in the end."
+              "prompt": "She says, \"We won! Most stressful game ever.\" What do you say?",
+              "situation": {
+                "narrative": "Her team just won a nail-biter and she is buzzing.",
+                "facts": [
+                  {"label": "Result", "value": "A win that came down to the end"},
+                  {"label": "Her mood", "value": "Relieved and thrilled"},
+                  {"label": "Your goal", "value": "Enjoy it with her"}
+                ]
               },
-              "question": "How do you celebrate with them?",
               "options": [
                 {
-                  "id": "best",
-                  "text": "Ask about the moment that clinched it or what they felt on that final possession.",
-                  "isCorrect": true
+                  "id": "ask-moment",
+                  "label": "Which moment had you most nervous?",
+                  "verdict": "best",
+                  "consequence": "She relives the big moment, and you get to be part of the celebration.",
+                  "considerations": [
+                    "A specific question shows you care about her experience",
+                    "She decides which moment matters",
+                    "It keeps the joy going"
+                  ]
                 },
                 {
-                  "id": "good",
-                  "text": "Say: 'That took guts. Your team showed up when it mattered.'",
-                  "isCorrect": true
+                  "id": "took-guts",
+                  "label": "That took guts. Your team showed up.",
+                  "verdict": "acceptable",
+                  "consequence": "A warm, encouraging line. It is even better when followed by a question.",
+                  "considerations": [
+                    "It shares her happiness",
+                    "It does not give her a chance to tell the story"
+                  ]
                 },
                 {
-                  "id": "poor-1",
-                  "text": "Talk about how close they were to losing instead.",
-                  "isCorrect": false
-                },
-                {
-                  "id": "poor-2",
-                  "text": "Minimize it by saying the other team played badly.",
-                  "isCorrect": false
-                },
-                {
-                  "id": "poor-3",
-                  "text": "Change the subject to something else.",
-                  "isCorrect": false
+                  "id": "how-close",
+                  "label": "They almost lost that, though.",
+                  "verdict": "poor",
+                  "consequence": "She already knows how close it was. Pointing it out deflates the moment.",
+                  "considerations": [
+                    "It dampens her joy",
+                    "Celebrate first, analyze later"
+                  ]
                 }
               ],
-              "translation": "Celebrate their team's clutch performance. Ask about the moment or decision that won the game.",
-              "followUps": [
-                {
-                  "line": "Yeah, that last three was huge. I was so nervous.",
-                  "why": "Great: they shared the specific moment and emotion because you asked for it."
-                },
-                {
-                  "line": "We deserved it. That was our game.",
-                  "why": "Also good: they are confident now, not worried."
-                }
-              ],
-              "noFakeExpertNote": "Celebrate with specificity. Do not just say 'good job'; ask what made the win special to them."
+              "expertNote": "Celebrate the win with a specific, curious question. Let her pick the moment she wants to relive."
             }
           },
           {
