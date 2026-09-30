@@ -121,3 +121,32 @@ The author was rewriting this file while reviewed (schema was fixed at 09:12). R
 15. Avoid absolutes ("all", "always", "never") unless official guidance is absolute. Avoid invented statistics.
 16. Each hotspot has a distinct position; multiple correct answers must be marked; no placeholder text.
 17. Run `node validate.mjs --course hiking --partial`. Keep any one activity type at or below 40% of a unit (over 50% is a lint error).
+
+## Units 07-16 (final pass)
+
+Scope: `curriculum/units/07` to `16`, every activity, checked against NPS, NOLS/WFR, WMS, NWS, avalanche.org and Leave No Trace, and cross-read against units 01 to 06 for consistency (hydration and heat, altitude, lightning, STOP/stay-put, flash floods, contour direction, HeatRisk levels). No dangerous answer keys were found; the units were already conservative. Fixes are small accuracy and consistency changes.
+
+| Unit | Activity | Problem | Fix |
+|---|---|---|---|
+| 07 | jd-02-bc-headlamp | Prompt said the turn time was "in ten minutes" but asked "Turn now?", muddying the rule. | Prompt now states the turn time has arrived. |
+| 08 | np-06-st-park-fan | Called the rock-stack request a park "rule" under Leave No Trace. | Now "Leave No Trace guidance". Fee facts (annual pass $80, nonresident $100 surcharge at 11 parks, $250 pass) already carry "as of 2026-09-30" and "check the official page". |
+| 09 | dc-05-tt-desert-chat | "Orange means a lot of people will feel it" and "moderate to high" overstated NWS orange. | Orange is moderate risk, worse without cooling and water. |
+| 10 | ah-01-es-cooler-up-high | Answer key 60 F did not match the explanation (10 to 15 F drop from 70 F is 55 to 60 F). | Key 58 F; say-this line updated. |
+| 11 | gn-05-ds-dead-phone | Expert note allowed "paper as backup, or the reverse". Paper map and compass are the backup. | Reworded; both always carried. |
+| 11 | gn-07-ds-slower-friend | Best answer did not say to descend if the clouds kept building. | Best option now adds heading down early. |
+| 13 | tn-04-ds-crust-detour | Prompt mentioned a bike that is not in the scenario. | Prompt matches the scenario. |
+| 13 | tn-08-seq-bear-spray | Spray step was operational; no note that nothing is guaranteed. | Reworded to "follow the can's label", distance and retreat come first. |
+| 14 | lv-02-ds-hot-afternoon | "High" heat risk is not an NWS HeatRisk level (same error fixed in unit 06). | "Major (red)". |
+| 14 | lv-02-tm-heat-risk-levels | Orange wording said "many people". | "Especially for people without effective cooling and hydration". |
+| 16 | rv-01-fg-lnt-durable | Template grammar broke the waste gap. | Template reads correctly. |
+| 16 | rv-02-ds-late-summit | "Nearer viewpoint" could be on the same exposed ridge. | "Lower, sheltered viewpoint on the way down". |
+
+Units 12 and 15: no changes needed.
+
+### Unit 13 lesson tn-08 (Wild neighbors) versus the CDS
+
+The CDS unit table lists seven lessons (tn-01 to tn-07) and safety constraint 6 limits wildlife to "distance, noise and food storage principles only"; constraint 5 limits medical content. tn-08 (6 activities) goes further: bear spray readiness, mountain lion response and snake bite do/don't. Decision: **keep**. All content matches NPS guidance, every scenario has a `safetyNote` deferring to park rules, nothing is scored under time pressure, and the snake note only says what not to do plus "call emergency services". It adds real value because the crowd-facing talk (bear spray, lions) comes up constantly. Follow-up for the orchestrator: update the CDS unit 13 row to eight lessons and word constraint 6 to allow "agency-aligned deterrent and encounter basics".
+
+### Consistency confirmed across units 01 to 16
+
+Altitude: do not ascend with symptoms, descend if worse, confusion or breathlessness at rest is an emergency. Lightning: no safe place outdoors, leave ridges early, 30 minutes after last thunder, spread about 50 ft, thunder roughly 10 miles or closer. Heat: confusion or collapse means call and cool. Flash floods: rain upstream counts, go up not along. Lost or hurt: stay put with a shared plan, whistle in threes, never follow a creek down. Avalanche and snow: awareness only, "take a course". Bears: 100 yards, never run, never feed, bear spray only with practice. Fees and permits: dated and "check the official page".
