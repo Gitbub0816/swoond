@@ -8,6 +8,7 @@
 //   node validate.mjs --courses-dir <dir> --no-examples   validate an alternate courses tree (used by tests)
 //   node validate.mjs --course <id> --partial   incremental authoring: do not error on unitOrder entries without a unit file yet, or on
 //                                     a missing unity-sim (no-sims); every other check still errors
+//   node validate.mjs --strict-content  also run sim-config-invalid, sim-lesson-unknown, gap-token-mismatch, diagram-unknown (errors; default off)
 //   node validate.mjs --lint-max <n>  max lint issues printed per file (default 25; 0 = all)
 //
 // What is validated:
@@ -24,7 +25,8 @@ import { fileURLToPath } from 'node:url';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import { lintCourse } from './lint.mjs';
-import { checkSpecFile } from './specs.mjs';
+import { checkSpecFile, extractConfigSchema } from './specs.mjs';
+import { gapTokenProblems, diagramProblems } from './content-checks.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const CONTRACTS = join(ROOT, 'docs', 'contracts');
@@ -36,6 +38,7 @@ const doLint = !argv.includes('--no-lint');
 const onlyCourse = flagVal('--course');
 const noExamples = argv.includes('--no-examples') || !!onlyCourse;
 const partial = argv.includes('--partial');
+const strictContent = argv.includes('--strict-content');
 const lintMax = flagVal('--lint-max') !== undefined ? Number(flagVal('--lint-max')) : 25;
 
 const readJson = (p) => JSON.parse(readFileSync(p, 'utf8'));
@@ -107,9 +110,26 @@ for (const [p, s] of schemaByPath) {
   }
 }
 
+// Compiled spec configuration validators, cached per simulation entry (null when the spec has no usable schema).
+const simConfigCache = new Map();
+function simConfigValidator(entry) {
+  if (simConfigCache.has(entry.specPath + entry.simulationId)) return simConfigCache.get(entry.specPath + entry.simulationId);
+  let v = null;
+  const p = resolve(ROOT, entry.specPath);
+  if (existsSync(p)) {
+    const { schema } = extractConfigSchema(readFileSync(p, 'utf8'), entry.simulationId);
+    if (schema) {
+      try { const { $id, ...rest } = schema; v = newSpecAjv().compile(rest); } catch { v = null; }
+    }
+  }
+  simConfigCache.set(entry.specPath + entry.simulationId, v);
+  return v;
+}
+const manifestPathFor = (file, origin) => join(dirname(origin?.root ?? file), '..', 'manifest.json');
+
 // origin (split layout only): { root, unitFiles: file per merged unit index, conceptFiles: file per merged concept index }.
 // Problems are attributed to the originating file; without origin everything belongs to `file`.
-function validateCurriculum(file, data, origin = null, manifestBranchIds = null) {
+function validateCurriculum(file, data, origin = null, manifestBranchIds = null, manifestData = null) {
   const bag = new Map();
   const add = (f, m) => (bag.get(f) ?? bag.set(f, []).get(f)).push(m);
   const unitFile = (i) => origin?.unitFiles[i] ?? file;
@@ -143,14 +163,27 @@ function validateCurriculum(file, data, origin = null, manifestBranchIds = null)
   const checkConcepts = (f, where, ids) => {
     for (const id of ids) if (!conceptIds.has(id)) add(f, `${where}: unknown conceptId ${id}`);
   };
-  const checkPayload = (f, where, type, payload) => {
+  const checkPayload = (f, where, type, payload, slots = []) => {
     if (type === 'unity-sim') {
       if (!payload.simulationId) add(f, `${where}: unity-sim payload needs simulationId`);
+      else if (strictContent && manifestData) checkSimConfig(f, where, payload);
       return;
     }
     const v = exerciseValidators.get(type);
     if (!v) return add(f, `${where}: no schema for activity type ${type}`);
     if (!v(payload)) for (const e of errs(v)) add(f, `${where}: payload ${e}`);
+    else if (strictContent) {
+      if (type === 'fill-the-gap') for (const m of gapTokenProblems(payload, slots)) add(f, `${where}: gap-token-mismatch: ${m}`);
+      for (const m of diagramProblems(type, payload)) add(f, `${where}: diagram-unknown: ${m}`);
+    }
+  };
+  // sim-config-invalid: the activity's simulationId must be in the manifest and its configuration must satisfy the spec's schema.
+  const checkSimConfig = (f, where, payload) => {
+    const entry = (manifestData.unitySimulations ?? []).find((s) => s.simulationId === payload.simulationId);
+    if (!entry) return add(f, `${where}: sim-config-invalid: simulationId ${payload.simulationId} is not in the manifest unitySimulations[]`);
+    const cv = simConfigValidator(entry);
+    if (!cv) return; // spec missing / schema uncompilable: already reported by checkSimSpecs
+    if (!cv(payload.configuration ?? {})) for (const e of errs(cv)) add(f, `${where}: sim-config-invalid: ${payload.simulationId} configuration ${e}`);
   };
   // Contract 1.2 branch rules: branches[] ids unique (and known to the manifest when there is one); layer "branch" needs a unit
   // branchId; activity branchId must be a known branch and must not contradict the unit's branchId.
@@ -189,11 +222,18 @@ function validateCurriculum(file, data, origin = null, manifestBranchIds = null)
           if (u.branchId && u.branchId !== a.branchId) add(f, `activity ${a.id}: branchId ${a.branchId} contradicts unit ${u.id} branchId ${u.branchId} (never visible)`);
         }
         checkConcepts(f, `activity ${a.id}`, a.conceptIds);
-        checkPayload(f, `activity ${a.id}`, a.type, a.payload);
+        checkPayload(f, `activity ${a.id}`, a.type, a.payload, u.personalizationSlots ?? []);
       }
     }
   });
   const rootFile = origin?.root ?? file;
+  // sim-lesson-unknown: manifest unitySimulations[].lessonIds must be lessons of this curriculum (skipped while units are pending under --partial).
+  if (strictContent && manifestData && !(origin?.pendingUnitIds?.size)) {
+    const lessonIds = new Set(data.units.flatMap((u) => u.lessons.map((l) => l.id)));
+    for (const s of manifestData.unitySimulations ?? []) for (const id of s.lessonIds ?? []) {
+      if (!lessonIds.has(id)) add(manifestPathFor(file, origin), `sim-lesson-unknown: ${s.simulationId} lessonIds references unknown lesson ${id}`);
+    }
+  }
   const [maj, min] = String(data.contractVersion).split('.').map(Number);
   if (uses12.length && !(maj > 1 || (maj === 1 && min >= 2))) {
     add(rootFile, `contract-version-too-low: contractVersion ${data.contractVersion} but 1.2 features are used (${uses12.slice(0, 3).join('; ')}${uses12.length > 3 ? `; +${uses12.length - 3} more` : ''}); declare 1.2.0`);
@@ -333,13 +373,13 @@ for (const dir of existsSync(COURSES) ? readdirSync(COURSES) : []) {
     const sp = loadSplitCurriculum(cdir, rootPath);
     let good = sp.bad.size === 0;
     for (const [f, msgs] of sp.bad) fail(f, msgs);
-    if (good) good = validateCurriculum(rootPath, sp.merged, sp.origin, manifestBranchIds);
+    if (good) good = validateCurriculum(rootPath, sp.merged, sp.origin, manifestBranchIds, manifestData);
     if (good) for (const f of sp.files) ok(f, '(split)');
     curricula.push(...sp.lintFiles);
   } else {
     for (const f of walk(curDir).filter((x) => x.endsWith('.json'))) {
       const data = readJson(f);
-      if (validateCurriculum(f, data, null, manifestBranchIds)) ok(f);
+      if (validateCurriculum(f, data, null, manifestBranchIds, manifestData)) ok(f);
       // Lint even when schema checks failed, as long as the file has the basic shape.
       if (Array.isArray(data?.units)) curricula.push({ path: f, data });
     }

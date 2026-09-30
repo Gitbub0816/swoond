@@ -508,3 +508,60 @@ test('manifest 1.3: origin, skin-type, concern and member validate, unknown ones
     assert.match(r.stdout + r.stderr, /personalizationDimensions/);
   } finally { rmSync(tmp, { recursive: true }); }
 });
+
+// ---- --strict-content rules (sim-config-invalid, sim-lesson-unknown, gap-token-mismatch, diagram-unknown) ----
+const acts = (j) => j.unit.lessons.flatMap((l) => l.activities);
+const strict = (tmp, ...x) => run('--courses-dir', tmp, '--no-examples', '--course', 'american-football', '--strict-content', ...x);
+
+test('strict-content: off by default; fixture passes with it on', () => {
+  const { tmp, cur } = splitCopy();
+  try {
+    edit(join(cur, 'units', '02-defense-basics.json'), (j) => { acts(j).find((a) => a.type === 'unity-sim').payload.configuration = { bogus: true, scenarioCount: 'x' }; });
+    assert.equal(run('--courses-dir', tmp, '--no-examples', '--course', 'american-football').status, 0);
+    assert.equal(strict(tmp).status, 1);
+  } finally { rmSync(tmp, { recursive: true }); }
+});
+
+test('sim-config-invalid: configuration violating the spec schema, and a simulationId not in the manifest', () => {
+  const { tmp, cur } = splitCopy();
+  try {
+    assert.equal(strict(tmp).status, 0, strict(tmp).stderr);
+    const f = join(cur, 'units', '02-defense-basics.json');
+    edit(f, (j) => { acts(j).find((a) => a.type === 'unity-sim').payload.configuration = { scenarioCount: 'many' }; });
+    let r = strict(tmp);
+    assert.equal(r.status, 1);
+    assert.match(r.stderr, /sim-config-invalid: football\.coverage\.read\.v1 configuration/);
+    edit(f, (j) => { const p = acts(j).find((a) => a.type === 'unity-sim').payload; p.configuration = { scenarioCount: 3 }; p.simulationId = 'football.other.thing.v1'; });
+    r = strict(tmp);
+    assert.match(r.stderr, /sim-config-invalid: simulationId football\.other\.thing\.v1 is not in the manifest/);
+  } finally { rmSync(tmp, { recursive: true }); }
+});
+
+test('sim-lesson-unknown: manifest lessonIds must be curriculum lessons; skipped while --partial has pending units', () => {
+  const { tmp, cur } = splitCopy();
+  try {
+    edit(join(tmp, 'american-football', 'manifest.json'), (j) => { j.unitySimulations[0].lessonIds = ['coverage-04', 'no-such-lesson']; });
+    const r = strict(tmp);
+    assert.equal(r.status, 1);
+    assert.match(r.stderr, /sim-lesson-unknown: football\.coverage\.read\.v1 lessonIds references unknown lesson no-such-lesson/);
+    edit(join(cur, 'course.json'), (j) => { j.unitOrder.push('later-unit'); });
+    assert.equal(strict(tmp, '--partial').status, 0);
+  } finally { rmSync(tmp, { recursive: true }); }
+});
+
+test('gap-token-mismatch: gap without token, token without gap; personalization tokens are not gap tokens', () => {
+  const { tmp, cur } = splitCopy();
+  try {
+    const f = join(cur, 'units', '01-the-basics.json');
+    const gapAct = (j) => acts(j).find((a) => a.type === 'fill-the-gap').payload;
+    let id;
+    edit(f, (j) => { const p = gapAct(j); id = p.gaps[0].id; p.template = `${p.template} {{team|the home team}}`; });
+    assert.equal(strict(tmp).status, 0, strict(tmp).stderr);
+    edit(f, (j) => { const p = gapAct(j); p.template = p.template.replaceAll(`{{${id}}}`, 'blank'); });
+    let r = strict(tmp);
+    assert.match(r.stderr, new RegExp(`gap-token-mismatch: gap "${id}" has no`));
+    edit(f, (j) => { const p = gapAct(j); p.template = `${p.template} {{{{${id}}}}} {{stray}}`; });
+    r = strict(tmp);
+    assert.match(r.stderr, /gap-token-mismatch: template token \{\{stray\}\}/);
+  } finally { rmSync(tmp, { recursive: true }); }
+});

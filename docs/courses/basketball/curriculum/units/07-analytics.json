@@ -94,10 +94,10 @@
             "payload": {
               "prompt": "Match each metric to what it measures.",
               "pairs": [
-                {"id": "pace", "term": "Pace", "definition": "The number of possessions a team completes per game, indicating how fast the team plays."},
-                {"id": "ortg", "term": "Offensive rating", "definition": "Points scored per 100 possessions by the team, measuring offensive efficiency independent of game speed."},
-                {"id": "drtg", "term": "Defensive rating", "definition": "Points allowed per 100 possessions, measuring how well the defense limits the opponent's scoring."},
-                {"id": "nrtg", "term": "Net rating", "definition": "Offensive rating minus defensive rating, showing the per-possession point advantage or disadvantage."}
+                {"id": "pace", "term": "Pace", "definition": "How many possessions a team has per game, or per 48 minutes. It shows how fast a team plays."},
+                {"id": "ortg", "term": "Offensive rating", "definition": "Points scored per 100 possessions, which measures efficiency regardless of pace."},
+                {"id": "drtg", "term": "Defensive rating", "definition": "Points allowed per 100 possessions. Lower is better."},
+                {"id": "nrtg", "term": "Net rating", "definition": "Offensive rating minus defensive rating, the margin per 100 possessions."}
               ],
               "distractorDefinitions": [
                 "The total number of points scored in a season.",
@@ -110,19 +110,18 @@
           },
           {
             "id": "ana-01-mc-3",
-            "type": "multiple-choice",
+            "type": "fill-the-gap",
             "conceptIds": ["defensive-rating"],
             "payload": {
-              "prompt": "What does a defensive rating tell you?",
-              "options": [
-                {"id": "correct", "text": "Points allowed per 100 possessions by the defense, measuring how efficiently the team limits opponent scoring."},
-                {"id": "dist-1", "text": "The total points allowed in a season by the team."},
-                {"id": "dist-2", "text": "How many defensive possessions a team creates per game."}
+              "prompt": "Complete the definition of defensive rating.",
+              "template": "Defensive rating counts points {{what}} per 100 possessions, so a {{which}} number is better.",
+              "gaps": [
+                {"id": "what", "options": ["allowed", "scored", "assisted"], "correct": "allowed"},
+                {"id": "which", "options": ["lower", "higher", "rounder"], "correct": "lower"}
               ],
-              "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. Defensive rating (DRtg) is points per 100 possessions allowed. A great defense is 105 or below; 110+ is poor.",
-                "incorrect": "Not quite. Defensive rating is points per 100 possessions allowed. It shows how well the defense controls scoring."
+                "correct": "Defensive rating is the points a team allows per 100 possessions, so fewer is better. Recent league averages are in the mid-110s, and the best defenses are well below that.",
+                "incorrect": "A defense wants to allow as few points as possible, so the number counts points allowed and lower is better. The best defenses in recent seasons sit well under the league average of about 114."
               }
             }
           }
@@ -140,16 +139,16 @@
             "type": "estimate-slider",
             "conceptIds": ["effective-fg-percentage"],
             "payload": {
-              "prompt": "A player shoots 50% from the field overall (45% twos, 35% threes on equal attempts). What is their eFG%?",
+              "prompt": "Half his shots are twos at 45%, half are threes at 35%. eFG%?",
               "unit": "percent",
-              "min": 45,
-              "max": 55,
+              "min": 35,
+              "max": 60,
               "step": 1,
               "correctValue": 49,
-              "tolerance": {"full": 2, "partial": 3},
+              "tolerance": {"full": 2, "partial": 4},
               "explanation": {
-                "correct": "Right. eFG% accounts for three-pointers being worth 50% more. The formula is (FG + 0.5*3P) / FGA. This player's eFG is around 49%.",
-                "incorrect": "Not quite. eFG% gives three-pointers extra credit. The formula is (FG + 0.5*3P) / FGA. This player's eFG is higher than raw FG% because of the threes."
+                "correct": "Out of 100 shots he makes 22.5 twos and 17.5 threes, so his plain FG% is 40%. eFG% adds half a bucket for each three: (40 + 0.5 x 17.5) / 100, about 49%.",
+                "incorrect": "eFG% is FG% with extra credit for threes: (makes + 0.5 x threes made) / shots. Here 40 makes and 17.5 threes in 100 shots gives about 49%, well above his plain 40%."
               }
             }
           },
@@ -158,16 +157,16 @@
             "type": "estimate-slider",
             "conceptIds": ["true-shooting"],
             "payload": {
-              "prompt": "A player shoots 48% from the field, 35% from three, and 80% from the free-throw line. About what is their TS%?",
+              "prompt": "He scores 25 points on 18 shots and 6 free throws. TS%?",
               "unit": "percent",
-              "min": 50,
-              "max": 65,
+              "min": 45,
+              "max": 75,
               "step": 1,
-              "correctValue": 58,
-              "tolerance": {"full": 3, "partial": 5},
+              "correctValue": 61,
+              "tolerance": {"full": 2, "partial": 4},
               "explanation": {
-                "correct": "Around there. TS% (True Shooting) is (Points) / (2 × (FGA + 0.44×FTA)). It accounts for all three scoring methods. This player's TS is about 57-59%.",
-                "incorrect": "Not quite. TS% includes field goals, three-pointers, and free throws in one metric. The formula weights free-throw attempts by 0.44 to account for defensive fouls."
+                "correct": "True shooting is points divided by 2 x (shots + 0.44 x free-throw attempts). Here that is 25 / (2 x 20.64), about 61%, a very good night. The 0.44 adjusts for free throws that come in pairs or trips.",
+                "incorrect": "TS% = points / (2 x (FGA + 0.44 x FTA)). With 18 shots and 6 free throws the denominator is about 41.3, so 25 points is roughly 61%. That is well above the league's typical 57 to 58%."
               }
             }
           },
@@ -178,32 +177,32 @@
             "payload": {
               "prompt": "Why do teams track eFG% instead of just FG%?",
               "options": [
-                {"id": "correct", "text": "Because three-pointers are worth 50% more than two-pointers, so eFG% gives credit for threes and reflects true scoring efficiency."},
-                {"id": "dist-1", "text": "Because it counts free throws."},
-                {"id": "dist-2", "text": "Because it is easier to calculate."}
+                {"id": "correct", "text": "A three is worth 50% more than a two, and eFG% counts that."},
+                {"id": "dist-1", "text": "It includes free throws in the calculation."},
+                {"id": "dist-2", "text": "It is simpler to calculate."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Exactly. Regular FG% treats a two and a three the same, which undervalues three-point shooting. eFG% fixes that: (FG + 0.5*3P) / FGA.",
-                "incorrect": "Not quite. eFG% weights three-pointers by 1.5× because they are worth 50% more points. It shows shooting efficiency more accurately than FG%."
+                "correct": "Plain FG% treats a made two and a made three the same. eFG% fixes that by giving each made three 1.5 times the credit, so it reflects the points a shooter actually produces.",
+                "incorrect": "Free throws belong to TS%, not eFG%, and eFG% is no simpler than FG%. Its point is that a made three is worth more than a made two, and FG% ignores that."
               }
             }
           },
           {
             "id": "ana-02-mc-2",
-            "type": "multiple-choice",
-            "conceptIds": ["true-shooting"],
+            "type": "binary-call",
+            "conceptIds": ["true-shooting", "effective-fg-percentage"],
             "payload": {
-              "prompt": "What does TS% (True Shooting) measure that eFG% does not?",
-              "options": [
-                {"id": "correct", "text": "Free-throw efficiency, combining field goals, three-pointers and free throws into a single scoring efficiency metric."},
-                {"id": "dist-1", "text": "How often the player shoots threes."},
-                {"id": "dist-2", "text": "The number of assists per game."}
+              "prompt": "A player earns lots of free throws. Which stat rewards that?",
+              "scene": {"kind": "none", "alt": "A player drives to the rim, absorbs contact and goes to the free-throw line several times in a game."},
+              "choices": [
+                {"id": "efg", "label": "eFG%"},
+                {"id": "ts", "label": "TS%"}
               ],
-              "correctOptionIds": ["correct"],
+              "correctChoiceId": "ts",
               "explanation": {
-                "correct": "Right. TS% is total points divided by (2 × (FGA + 0.44×FTA)). It includes free throws, which eFG% ignores. TS% is more complete.",
-                "incorrect": "Not quite. TS% adds free-throw efficiency to the eFG% picture. Formula: Points / (2 × (FGA + 0.44×FTA)). A 60% TS is elite."
+                "correct": "True shooting folds free throws into the efficiency math: points divided by 2 x (shots + 0.44 x free-throw attempts). eFG% only looks at field-goal attempts, so it ignores a player who lives at the line.",
+                "incorrect": "eFG% looks only at field goals, with extra credit for threes. TS% adds free throws to the picture, which is why players who draw a lot of fouls look better in it."
               }
             }
           },
@@ -212,18 +211,18 @@
             "type": "fill-the-gap",
             "conceptIds": ["expected-points"],
             "payload": {
-              "prompt": "Why is a corner three often more efficient?",
-              "template": "A corner three is more efficient than a mid-range shot because of {{ep}}.",
+              "prompt": "What measures a shot's value?",
+              "template": "A shot's value is its {{ep}}, the average points it produces per attempt.",
               "gaps": [
                 {
                   "id": "ep",
-                  "options": ["expected points", "shooting percentages", "pace"],
+                  "options": ["expected points", "usage rate", "pace"],
                   "correct": "expected points"
                 }
               ],
               "explanation": {
-                "correct": "Right. Expected points (xP) is average points per shot. A 35% three is 1.05 xP; a 48% two is 0.96 xP.",
-                "incorrect": "Not quite. Expected points is what a shot yields on average. A 35% three outvalues a 48% two."
+                "correct": "Expected points is the make rate times the shot's value. A 35% three is worth 1.05 per shot and a 45% two only 0.90, which is why a long two is hard to justify.",
+                "incorrect": "Usage rate is about possessions and pace is about speed. Expected points multiplies the make rate by the shot's value: a 35% three gives 1.05, and a 45% two gives 0.90."
               }
             }
           }
@@ -243,14 +242,14 @@
             "payload": {
               "prompt": "What is usage rate?",
               "options": [
-                {"id": "correct", "text": "The percentage of team possessions a player uses with a shot, pass attempt resulting in an assist, or turnover."},
+                {"id": "correct", "text": "The share of team possessions a player ends with a shot, free-throw trip or turnover."},
                 {"id": "dist-1", "text": "How many minutes a player is on the court."},
                 {"id": "dist-2", "text": "The player's shooting percentage."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. Usage rate (USG%) shows what percentage of team possessions involve that player. Stars have 25-35% USG; role players 10-20%.",
-                "incorrect": "Not quite. Usage rate is the percentage of team possessions a player uses (FGA + FTA + TOV). High scorers have high USG rates."
+                "correct": "Usage rate is how often a player finishes his team's possessions while on the floor. With five players, 20% is the average, and high-volume stars often run 28% or more.",
+                "incorrect": "Usage is about possessions, not minutes or accuracy. A player who ends a possession with a shot, a trip to the line or a turnover has used it."
               }
             }
           },
@@ -261,33 +260,31 @@
             "payload": {
               "prompt": "PER (Player Efficiency Rating) measures what?",
               "options": [
-                {"id": "correct", "text": "A player's per-minute efficiency relative to their team's efficiency, accounting for scoring, rebounds, assists, turnovers and fouls."},
+                {"id": "correct", "text": "One per-minute number that rolls up a player's box-score stats, where 15 is average."},
                 {"id": "dist-1", "text": "Only the player's point total per game."},
-                {"id": "dist-2", "text": "How many possessions the player initiates."}
+                {"id": "dist-2", "text": "How many possessions the player starts."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Exactly. PER is a composite efficiency rating: (league-average PER is ~15). A PER of 20 is All-Star level; 25+ is MVP level.",
-                "incorrect": "Not quite. PER combines points, rebounds, assists, steals, blocks, turnovers and fouls into one per-minute rating. 15 is average."
+                "correct": "PER combines points, rebounds, assists, steals, blocks, turnovers and fouls into a single per-minute score, scaled so the league average is 15. It is popular but leans on volume scoring and undervalues defense.",
+                "incorrect": "PER is not just points or possessions. It folds many box-score stats into one per-minute number, with 15 as average, and it misses a lot about defense."
               }
             }
           },
           {
             "id": "ana-03-mc-3",
-            "type": "multiple-choice",
+            "type": "fill-the-gap",
             "conceptIds": ["win-shares"],
             "payload": {
-              "prompt": "What do Win Shares estimate?",
-              "options": [
-                {"id": "correct", "text": "The number of team wins a player contributed to through their offensive and defensive play."},
-                {"id": "dist-1", "text": "The player's salary relative to other players."},
-                {"id": "dist-2", "text": "How many games a player starts."}
+              "prompt": "Complete the definition of Win Shares.",
+              "template": "Win Shares turn a player's stats into an estimate of team {{what}}, counting both offense and {{also}}.",
+              "gaps": [
+                {"id": "what", "options": ["wins", "salary", "minutes"], "correct": "wins"},
+                {"id": "also", "options": ["defense", "travel", "bench time"], "correct": "defense"}
               ],
-              "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. Win Shares convert a player's stats into estimated wins added to the team. A star might contribute 6-8 wins; a role player 1-2.",
-                "incorrect": "Not quite. Win Shares estimate how many wins a player's performance added to the team. They combine offensive and defensive contributions."
-              }
+                "correct": "Win Shares divide a team's wins among its players according to what they did on both ends. A strong season for a star can be worth 10 or more, and a solid rotation player adds a few.",
+                "incorrect": "Win Shares are about wins, not money or playing time. They estimate how many of a team's wins belong to each player and count offense and defense."
             }
           },
           {
@@ -301,23 +298,23 @@
               },
               "question": "What does she mean?",
               "options": [
-                {"id": "correct", "text": "He is handling the ball and taking shots on too many possessions for his talent level, hurting team efficiency.", "isCorrect": true},
+                {"id": "correct", "text": "He is ending too many of the team's possessions for a role player.", "isCorrect": true},
                 {"id": "dist-1", "text": "He plays too many minutes per game.", "isCorrect": false},
                 {"id": "dist-2", "text": "He is fouling too much.", "isCorrect": false},
-                {"id": "dist-3", "text": "He shoots free throws too often.", "isCorrect": false}
+                {"id": "dist-3", "text": "He is taking too few shots.", "isCorrect": false}
               ],
-              "translation": "She is saying the role player is using too high a percentage of team possessions (high USG%), which suggests he is over-playing his role instead of moving the ball.",
+              "translation": "She thinks he is taking or losing the ball on more possessions than a role player should. The shots he takes would be better spent on the team's stars.",
               "followUps": [
                 {
-                  "line": "Yeah, he's chucking too much.",
-                  "why": "You recognize that high usage by a role player means too many shots and not enough ball movement."
+                  "line": "Is he actually efficient with them, though?",
+                  "why": "High usage is fine when a player is efficient, so it is a fair, informed question."
                 },
                 {
-                  "line": "The star should have more usage.",
-                  "why": "A good follow-up noting that stars should use a higher percentage of possessions."
+                  "line": "So the shots should go to the stars?",
+                  "why": "You are checking your read in plain words and letting her confirm it."
                 }
               ],
-              "noFakeExpertNote": "High usage rate means handling the ball a lot; role players should have low USG%, stars 25-35%."
+              "noFakeExpertNote": "Usage is how often a player ends a possession. About 20% is average; stars run higher. You can just ask whether he is efficient with it."
             }
           },
           {
@@ -327,27 +324,27 @@
             "payload": {
               "statement": {
                 "speaker": "Your crush",
-                "text": "His PER is elite but he is not clicking in games."
+                "text": "His PER looks great, but I don't see it helping us win."
               },
               "question": "What is she noting?",
               "options": [
-                {"id": "correct", "text": "His efficiency rating is very high (20+), but his intangible playoff impact or clutch performances do not match his regular-season stats.", "isCorrect": true},
+                {"id": "correct", "text": "The stat says he is productive, but his play is not turning into wins.", "isCorrect": true},
                 {"id": "dist-1", "text": "His shooting form is bad.", "isCorrect": false},
                 {"id": "dist-2", "text": "He fouls too much.", "isCorrect": false},
-                {"id": "dist-3", "text": "He is tired from playing too long.", "isCorrect": false}
+                {"id": "dist-3", "text": "He needs to play more minutes.", "isCorrect": false}
               ],
-              "translation": "She is saying stats (PER) do not tell the whole story; despite high efficiency numbers, the player is not performing in close games or high-leverage moments.",
+              "translation": "PER is a box-score efficiency number. She is saying the stat line is strong, but when she watches him, the team does not seem to benefit, so the number may be missing something.",
               "followUps": [
                 {
-                  "line": "Yeah, he's not playing winning basketball.",
-                  "why": "You recognize that stats and winning are not always aligned."
+                  "line": "What do you think the number is missing?",
+                  "why": "It invites her to explain, and PER is known for missing defense and fit."
                 },
                 {
-                  "line": "Maybe it is a sample-size thing.",
-                  "why": "A good follow-up considering whether a small game sample is skewing the perception."
+                  "line": "Maybe it is a small sample?",
+                  "why": "It is a fair, humble check that lets her agree or disagree."
                 }
               ],
-              "noFakeExpertNote": "High PER does not always mean a player is performing in clutch moments or close games."
+              "noFakeExpertNote": "PER is one stat, and it leans toward scoring volume. You can say 'what do you think the number is missing?' and keep the conversation going."
             }
           }
         ]
@@ -366,16 +363,16 @@
             "payload": {
               "prompt": "Match each advanced metric to what it means.",
               "pairs": [
-                {"id": "bpm", "term": "Box Plus-Minus", "definition": "Estimated points per 100 possessions a player adds via box-score stats."},
-                {"id": "vorp", "term": "VORP", "definition": "Estimated wins a player's performance added vs. a replacement-level player."},
-                {"id": "onoff", "term": "On-Off Differential", "definition": "The per-100-possession point swing when a player is on vs. off the court."}
+                {"id": "bpm", "term": "Box Plus-Minus", "definition": "An estimate from box-score stats of points per 100 possessions a player adds over an average player."},
+                {"id": "vorp", "term": "VORP", "definition": "BPM turned into total value over a replacement-level player across a season."},
+                {"id": "onoff", "term": "On-Off Differential", "definition": "How the team's margin per 100 possessions changes when a player is on the floor versus off."}
               ],
               "distractorDefinitions": [
                 "How many points a player scores per game.",
                 "The percentage of possessions a player handles the ball."
               ],
               "explanation": {
-                "summary": "BPM is per-100-possession impact from box-score stats; VORP converts it to estimated wins; On-Off is the direct per-100 differential."
+                "summary": "BPM estimates impact from the box score, VORP stretches it over a season against a replacement player, and on-off simply compares the team with and without him."
               }
             }
           },
