@@ -71,6 +71,7 @@ struct BinaryCallView: View {
 
     private func choiceButton(_ choice: BinaryCallPayload.Choice) -> some View {
         let state = rowState(choice.id)
+        let tone: AnswerTone = state == .correct ? .right : (state == .wrong ? .wrong : .neutral)
         return Button {
             answer(choice.id)
         } label: {
@@ -81,15 +82,21 @@ struct BinaryCallView: View {
             }
             .frame(maxWidth: .infinity, minHeight: 64)
             .padding(.horizontal, SWSpace.s8)
-            .background(RoundedRectangle(cornerRadius: SWRadius.card, style: .continuous)
-                .fill(state == .correct ? Color.sw.rewardTint : (state == .wrong ? Color.sw.accentTint : Color.sw.surface)))
-            .overlay(RoundedRectangle(cornerRadius: SWRadius.card, style: .continuous)
-                .strokeBorder(state == .correct ? Color.sw.reward : (state == .wrong ? Color.sw.accent : Color.sw.strokeStrong), lineWidth: state == .idle || state == .dimmed ? 1 : 1.5))
+            .background(RoundedRectangle(cornerRadius: SWRadius.card, style: .continuous).fill(tone.fill))
+            .overlay(RoundedRectangle(cornerRadius: SWRadius.card, style: .continuous).strokeBorder(tone.border, lineWidth: tone.lineWidth))
             .opacity(state == .dimmed ? 0.55 : 1)
         }
         .buttonStyle(.plain)
         .disabled(evaluation != nil)
-        .accessibilityLabel(choice.label + (state == .correct ? ", correct answer" : state == .wrong ? ", your answer, incorrect" : ""))
+        .accessibilityLabel(choice.label + suffix(for: state))
+    }
+
+    private func suffix(for state: OptionRow.RowState) -> String {
+        switch state {
+        case .correct: return ", correct answer"
+        case .wrong: return ", your answer, incorrect"
+        default: return ""
+        }
     }
 
     private func rowState(_ id: String) -> OptionRow.RowState {

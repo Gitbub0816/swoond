@@ -81,6 +81,8 @@ struct FillTheGapView: View {
         let correct = gaps.first { $0.id == id }?.correct
         let isActive = activeGap == id && evaluation == nil
         let result: Bool? = evaluation == nil ? nil : (answer == correct)
+        let tone: AnswerTone = result == true ? .right : (result == false ? .wrong : (isActive || answer != nil ? .selected : .neutral))
+        let showTint = result != nil || isActive
         return HStack(spacing: 0) {
             Button {
                 guard evaluation == nil else { return }
@@ -95,9 +97,9 @@ struct FillTheGapView: View {
                 }
                 .padding(.horizontal, SWSpace.s12).padding(.vertical, SWSpace.s4)
                 .frame(minWidth: 72, minHeight: SWSize.minTarget - 8)
-                .background(RoundedRectangle(cornerRadius: 12, style: .continuous).fill(result == true ? Color.sw.rewardTint : (isActive || result == false ? Color.sw.accentTint : .clear)))
+                .background(RoundedRectangle(cornerRadius: 12, style: .continuous).fill(showTint ? tone.fill : Color.clear))
                 .overlay(RoundedRectangle(cornerRadius: 12, style: .continuous)
-                    .strokeBorder(result == true ? Color.sw.reward : (isActive || answer != nil ? Color.sw.accent : Color.sw.strokeStrong), style: StrokeStyle(lineWidth: 1.5, dash: answer == nil ? [4, 3] : [])))
+                    .strokeBorder(tone.border, style: StrokeStyle(lineWidth: 1.5, dash: answer == nil ? [4, 3] : [])))
             }
             .buttonStyle(.plain)
             if !suffix.isEmpty { Text(suffix).font(SWText.displayS(26)).foregroundStyle(Color.sw.ink) }

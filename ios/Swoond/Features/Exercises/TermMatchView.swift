@@ -77,6 +77,15 @@ struct TermMatchView: View {
         return definition == wrongDefinition ? .wrong : .idle
     }
 
+    private func tone(_ state: CellState) -> AnswerTone {
+        switch state {
+        case .selected: return .selected
+        case .wrong: return .wrong
+        case .matched: return .right
+        default: return .neutral
+        }
+    }
+
     private func cell(_ text: String, style: CellStyle, state: CellState, action: @escaping () -> Void) -> some View {
         Button {
             Haptics.shared.selection()
@@ -94,11 +103,8 @@ struct TermMatchView: View {
             .padding(.horizontal, SWSpace.s12)
             .padding(.vertical, SWSpace.s10)
             .frame(maxWidth: .infinity, minHeight: 56)
-            .background(RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .fill(state == .selected || state == .wrong ? Color.sw.accentTint : (state == .matched ? Color.sw.rewardTint : Color.sw.surface)))
-            .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .strokeBorder(state == .selected || state == .wrong ? Color.sw.accent : (state == .matched ? Color.sw.reward : Color.sw.strokeStrong),
-                              lineWidth: state == .idle ? 1 : 1.5))
+            .background(RoundedRectangle(cornerRadius: 16, style: .continuous).fill(tone(state).fill))
+            .overlay(RoundedRectangle(cornerRadius: 16, style: .continuous).strokeBorder(tone(state).border, lineWidth: tone(state).lineWidth))
         }
         .buttonStyle(.plain)
         .disabled(state == .matched || evaluation != nil)

@@ -81,7 +81,31 @@ Format: `D-NNN - title`, status (Accepted / Superseded), context, decision, cons
 - **Decision:** Curriculum contract 1.1 adds an optional split layout so deep courses (D-007) can be authored one unit per file. `docs/courses/<id>/curriculum/course.json` holds courseId, curriculumVersion, contractVersion `1.1.0`, `concepts[]`, `talkTracks[]`, `reviewPolicy` and `unitOrder[]`; each `curriculum/units/<NN>-<unit-id>.json` holds `{contractVersion, courseId, unit, concepts?}`. The single-file v1.0 layout stays valid. `unitOrder` must match exactly the set of unit files; unit-local `concepts[]` merge into the course concept list and a duplicate concept id across files is an error.
 - **Consequences:** The validator detects the layout per course, merges, and runs the same schema, reference checks and content lint on the merged curriculum, reporting problems against the originating file. `BundledContentRepository` loads both layouts. New schemas `curriculum-root.schema.json` and `curriculum-unit.schema.json` sit beside the v1 schema (no new `v2/` folder: nothing was removed or tightened). Content must be authored, not generated: any `*.sh` / `*.py` / `*.js` under `docs/courses/*/curriculum/` is a lint error.
 
+## 2026-09-30 - Wave 1 consolidation (contract minors)
+
+### D-014 - Course manifest contract 1.1 (additive): more `dynamicData.kind` values
+- **Status:** Accepted
+- **Context:** Wave 1 course agents mapped injury reports to `alerts`/`rosters`, trades/signings/transfers to `rosters`, and FIA/rulebook/steward documents to `events` (football, basketball, soccer, F1 manifests).
+- **Decision:** `dynamicData[].kind` gains `injuries`, `transactions` and `regulations`. Existing values unchanged; 1.0 manifests stay valid (`contractVersion` pattern already `1.x.y`). Example bumped to 1.1.0. Wave 1 manifests may be re-mapped to the new kinds when their curricula are authored (not required).
+- **Consequences:** `SwoondCore` decodes `kind` as a string, so no Core change; adapters may key on the new kinds.
+
+### D-015 - Curriculum contract 1.2 (additive): branches, per-lesson live hooks, branch facts
+- **Status:** Accepted
+- **Context:** Wave 1 needed branch-only units without misusing `enthusiast` (football College, basketball WNBA/college, soccer six league units, F1 team paths, hockey PWHL); branch-specific rules inside shared lessons (NBA vs college shot clock); per-lesson live hooks (basketball `live.standings.playin`); and a home for branch-specific data (F1 team facts).
+- **Decision:** (1) layer enum gains `branch` (a `branch` unit must set unit-level `branchId`). (2) Activities gain optional `branchId`: shown only for that branch, never contradicting the unit's `branchId`, and must be a manifest branch. (3) Lessons gain optional `live` (same shape as unit `live`, allowed on any layer). (4) Curriculum root (single file and split `course.json`) gains optional `branches[]`: `{id, displayName?, facts, lastVerified?, sources?}`, ids unique and matching manifest branches. Files using them declare `contractVersion` 1.2.0. Schemas stay in `curriculum/v1/`; nothing removed or tightened.
+- **Consequences:** `SwoondCore`: `Layer.branch`, `Activity.branchId`, `Lesson.live` + `Lesson.activities(forBranch:)`, `BranchFacts`, `Curriculum.branches`/`branchFacts(_:)`; split loader carries root `branches`. Consumers that switch exhaustively over `Layer` (SwoondApp) must handle `.branch`. Validator enforces the branch rules above. Example `examples/basketball-branches-1.2.json`.
+
+### D-016 - Validator: sim spec checks, `thin-lesson`, `--partial`
+- **Status:** Accepted
+- **Decision:** `tools/validate` (a) requires every manifest `unitySimulations[].specPath` to exist and the spec's configuration JSON Schema (json fence under `## 10. Configuration schema`, or titled `<simulationId> configuration`) to compile as draft 2020-12 with ajv (closes the bridge README open question for schema extraction; validating curriculum `configuration` objects against those schemas is a follow-up); (b) adds lint rule `thin-lesson` (error: lesson with fewer than 4 activities, `unity-sim` counts); (c) adds `--course <id> --partial` for incremental per-unit authoring (no error for `unitOrder` entries without unit files yet, or prerequisites pointing at them, and no `no-sims`; everything else still errors).
+
+### D-017 - Wave 1 course conventions (proposed; confirm via OPEN_QUESTIONS)
+- **Status:** Proposed
+- **Proposals from the Wave 1 agents:** F1 branches are team paths, not leagues; F1 uses no team logos, liveries, driver likeness, photos or FOM audio, and skips `listening-id`; basketball branches are `nba` (default), `wnba`, `college` (men's and women's share one branch); safety-critical courses (hiking, camping, climbing) require a qualified safety review before release and generated live-layer scenarios pass a safety linter; data-driven sims backed by an optimiser ship a checked-in golden generator; Jolpica-F1 (CC BY-NC-SA) and OpenF1 (non-commercial) are not used in production without commercial permission. Tracked as items in `docs/product/OPEN_QUESTIONS.md`; accepting them moves this entry to Accepted.
+
 ## Open questions (product owner)
+
+The consolidated, deduplicated list (including Wave 1) lives in `docs/product/OPEN_QUESTIONS.md`. Q-1 to Q-4 below are kept for history and appear there as P-01 to P-04.
 
 | # | Question | Needed by |
 |---|---|---|

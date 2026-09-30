@@ -61,17 +61,18 @@ struct SayThisView: View {
         } else {
             let picked = selected.contains(option.id)
             let right = option.isCorrect
+            let tone: AnswerTone = right ? .right : (picked ? .wrong : .neutral)
             HStack(spacing: SWSpace.s6) {
                 if right { Image(systemName: "checkmark").imageScale(.small).accessibilityHidden(true) }
                 else if picked { Image(systemName: "xmark").imageScale(.small).accessibilityHidden(true) }
                 Text(option.text)
             }
             .font(SWFont.ui(13, weight: .medium, relativeTo: .footnote))
-            .foregroundStyle(right ? Color.sw.reward : (picked ? Color.sw.accentSoft : Color.sw.ink4))
+            .foregroundStyle(tone == .right ? Color.sw.reward : (tone == .wrong ? Color.sw.accentSoft : Color.sw.ink4))
             .padding(.horizontal, SWSpace.s16)
             .frame(minHeight: SWSize.chip)
-            .background(Capsule().fill(right ? Color.sw.rewardTint : (picked ? Color.sw.accentTint : .clear)))
-            .overlay(Capsule().strokeBorder(right ? Color.sw.reward : (picked ? Color.sw.accent : Color.sw.strokeStrong), lineWidth: 1))
+            .background(Capsule().fill(right || picked ? tone.fill : Color.clear))
+            .overlay(Capsule().strokeBorder(tone.border, lineWidth: 1))
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(option.text + (right ? ", correct" : picked ? ", not this one" : ""))
         }

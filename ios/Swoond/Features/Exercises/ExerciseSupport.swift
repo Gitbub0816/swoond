@@ -102,6 +102,29 @@ extension ExerciseScaffold where After == EmptyView {
     }
 }
 
+/// Fill/border colors for an answer surface. Right = gold, wrong or selected = rose, otherwise neutral.
+enum AnswerTone {
+    case neutral, selected, right, wrong
+
+    var fill: Color {
+        switch self {
+        case .neutral: return Color.sw.surface
+        case .selected, .wrong: return Color.sw.accentTint
+        case .right: return Color.sw.rewardTint
+        }
+    }
+
+    var border: Color {
+        switch self {
+        case .neutral: return Color.sw.strokeStrong
+        case .selected, .wrong: return Color.sw.accent
+        case .right: return Color.sw.reward
+        }
+    }
+
+    var lineWidth: CGFloat { self == .neutral ? 1 : 1.5 }
+}
+
 /// One answer row (multiple-choice, visual-id, listening-id, decision-scenario). Correct = gold border + check,
 /// wrong = rose border + cross: the icon and the panel title carry the meaning, not color alone.
 struct OptionRow: View {
