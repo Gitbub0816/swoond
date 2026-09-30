@@ -28,8 +28,8 @@
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. The NBA has 30 teams: 15 in the Eastern Conference and 15 in the Western Conference.",
-                "incorrect": "Not quite. The NBA has 30 teams divided into two conferences of 15 teams each."
+                "correct": "The league has 30 teams, split into an Eastern and a Western Conference of 15 each. The two conferences only meet in the NBA Finals.",
+                "incorrect": "The NBA has 30 teams, not 24 or 32. They sit in two conferences, East and West, with 15 teams in each."
               }
             }
           },
@@ -38,16 +38,16 @@
             "type": "binary-call",
             "conceptIds": ["conference-division"],
             "payload": {
-              "prompt": "Conferences and divisions are the same thing. True?",
-              "scene": {"kind": "none", "alt": "NBA conferences and divisions structure."},
+              "prompt": "Are conferences and divisions the same thing?",
+              "scene": {"kind": "none", "alt": "A diagram of the NBA: two conferences, each split into three divisions of five teams."},
               "choices": [
-                {"id": "yes", "label": "Yes, same thing."},
-                {"id": "no", "label": "No, divisions are within conferences."}
+                {"id": "yes", "label": "Yes, same thing"},
+                {"id": "no", "label": "No, divisions sit inside conferences"}
               ],
               "correctChoiceId": "no",
               "explanation": {
-                "correct": "Right. A conference has multiple divisions inside it. Each conference has three divisions with five teams each.",
-                "incorrect": "Not quite. Divisions are sub-groups within a conference. Each of the two conferences has three divisions of five teams."
+                "correct": "A conference contains three divisions of five teams each. Divisions matter for scheduling, since teams play division rivals four times a year, but seeding follows the whole conference.",
+                "incorrect": "Divisions are sub-groups inside a conference: three divisions of five teams in each. Conferences are the bigger groups, and seeding follows the conference standings."
               }
             }
           },
@@ -58,14 +58,14 @@
             "payload": {
               "prompt": "How many regular-season games does each NBA team play?",
               "options": [
-                {"id": "correct", "text": "82 games, nearly all against other conference teams or division rivals."},
-                {"id": "dist-1", "text": "72 games and then playoffs start."},
+                {"id": "correct", "text": "82 games, including every other team at least twice."},
+                {"id": "dist-1", "text": "72 games and then the playoffs start."},
                 {"id": "dist-2", "text": "100 games in a calendar year."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Exactly. Each team plays 82 games from October through April, then playoffs begin.",
-                "incorrect": "Not quite. Each NBA team plays 82 regular-season games, a schedule designed to give every team balance and many matchups against rivals."
+                "correct": "An NBA team plays 82 games from October through April: four against each division rival, three or four against the rest of its conference, and two against every team in the other conference.",
+                "incorrect": "The regular season is 82 games, not 72 or 100. Half are at home and half are on the road, and every team appears on the schedule at least twice."
               }
             }
           },
@@ -75,7 +75,7 @@
             "conceptIds": ["nba-structure"],
             "payload": {
               "prompt": "Fill in the NBA's conference structure.",
-              "template": "The NBA has two {{conf}}: the {{east}} and {{west}}, each with {{teams}} teams.",
+              "template": "The NBA has two {{conf}}, the {{east}} and the {{west}}, with {{teams}} teams in each.",
               "gaps": [
                 {
                   "id": "conf",
@@ -84,18 +84,23 @@
                 },
                 {
                   "id": "east",
-                  "options": ["Eastern Conference", "Atlantic Division", "Boston Celtics"],
-                  "correct": "Eastern Conference"
+                  "options": ["East", "Atlantic", "Central"],
+                  "correct": "East"
                 },
                 {
                   "id": "west",
-                  "options": ["Western Conference", "Pacific Division", "Los Angeles Lakers"],
-                  "correct": "Western Conference"
+                  "options": ["West", "Pacific", "Southwest"],
+                  "correct": "West"
+                },
+                {
+                  "id": "teams",
+                  "options": ["15", "12", "16"],
+                  "correct": "15"
                 }
               ],
               "explanation": {
-                "correct": "Perfect. The NBA has two conferences: East and West, with 15 teams each.",
-                "incorrect": "Not quite. The NBA has two conferences (East and West) of 15 teams each."
+                "correct": "The league is split into the East and West conferences with 15 teams each. Atlantic, Central and Pacific are divisions inside those conferences.",
+                "incorrect": "The two big groups are the East and the West, with 15 teams in each. Atlantic, Central, Pacific and Southwest are divisions, which sit inside the conferences."
               }
             }
           },
@@ -112,8 +117,8 @@
               "correctValue": 6,
               "tolerance": {"full": 0.5, "partial": 1},
               "explanation": {
-                "correct": "Right. The season runs roughly six months, October through April, then playoffs take over.",
-                "incorrect": "Not quite. The NBA regular season lasts about six months, from October through mid-April."
+                "correct": "The regular season runs about six months, from late October to mid-April. The Play-In and then the playoffs follow, and the Finals end in June.",
+                "incorrect": "The NBA regular season lasts about six months, from late October to mid-April. It feels long because 82 games fit in a little over a hundred and fifty days."
               }
             }
           }
@@ -133,14 +138,14 @@
             "payload": {
               "prompt": "What determines playoff seeding?",
               "options": [
-                {"id": "correct", "text": "Win-loss record; the best team in each conference is the 1-seed, and seeding continues by record."},
+                {"id": "correct", "text": "Win-loss record inside each conference, with tiebreakers for ties."},
                 {"id": "dist-1", "text": "How many All-Stars a team has."},
-                {"id": "dist-2", "text": "Alphabetical order of city names."}
+                {"id": "dist-2", "text": "Whether a team won its division."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. Seeding is purely based on win-loss record. Best record in the conference gets the 1-seed; second-best gets 2-seed, and so on.",
-                "incorrect": "Not quite. Seeds are determined strictly by win-loss record within each conference."
+                "correct": "Each conference is ranked by record: the best record is the 1-seed, the next best the 2-seed, and so on. Winning a division used to guarantee a top-four seed, but today record alone decides.",
+                "incorrect": "Seeds follow the standings inside each conference, not All-Star counts or division titles. A team with a division title and a worse record than a rival is seeded below that rival."
               }
             }
           },
@@ -149,18 +154,18 @@
             "type": "term-match",
             "conceptIds": ["seeding", "tiebreaker"],
             "payload": {
-              "prompt": "Match each seed position to its playoff importance.",
+              "prompt": "Match each seeding term to what it means.",
               "pairs": [
-                {"id": "one", "term": "1-seed", "definition": "The best record in the conference, hosts all series games in round one and beyond if won."},
-                {"id": "two", "term": "2-8 seeds", "definition": "Remaining playoff teams seeded by record, home-court advantage goes to the higher seed."},
-                {"id": "tie", "term": "Tiebreaker", "definition": "Head-to-head record or division record breaks ties when two teams have identical records."}
+                {"id": "one", "term": "1-seed", "definition": "The best record in the conference. It plays the lowest-seeded qualifier in round one."},
+                {"id": "two", "term": "Home-court advantage", "definition": "In a best-of-seven, the higher seed hosts games 1, 2, 5 and 7."},
+                {"id": "tie", "term": "Tiebreaker", "definition": "A set of rules, starting with head-to-head record, that separates teams with the same record."}
               ],
               "distractorDefinitions": [
-                "Teams that did not make the playoffs.",
-                "The worst team in the league."
+                "A team that did not make the playoffs.",
+                "The worst record in the league."
               ],
               "explanation": {
-                "summary": "Seeding is all about record; tiebreakers decide teams with equal records. Higher seeds have home-court advantage."
+                "summary": "Record sets the seed, the tiebreaker splits ties, and a better seed earns home-court advantage, which means more games in its own arena."
               }
             }
           },
