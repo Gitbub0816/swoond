@@ -328,7 +328,7 @@
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. College men play in halves (two 20-minute periods), which gives a different rhythm than the NBA's quarters. Women's college is moving to quarters.",
+                "correct": "Right. College men play in halves (two 20-minute periods), which gives a different rhythm than the NBA's quarters. College women already play four 10-minute quarters.",
                 "incorrect": "Not quite. College men still use halves, not quarters. The rhythm is different from the NBA and WNBA."
               }
             }
@@ -357,7 +357,7 @@
             "conceptIds": ["shot-clock"],
             "payload": {
               "prompt": "Explain the shot clock rule.",
-              "template": "A team has {{time-limit}} seconds to get a shot off before losing the ball. In the NBA, the clock resets to {{reset-time}} after an offensive rebound.",
+              "template": "An NBA team has {{time-limit}} to get a shot off before losing the ball. After an offensive rebound, the clock resets to {{reset-time}}.",
               "gaps": [
                 {
                   "id": "time-limit",
@@ -371,8 +371,8 @@
                 }
               ],
               "explanation": {
-                "correct": "Perfect. The NBA shot clock forces action: 24 seconds for a fresh possession, 14 after an offensive rebound. This keeps the game pace fast.",
-                "incorrect": "Not quite. The NBA shot clock is 24 seconds on a new possession, 14 after an offensive rebound. College is 30 with no reduction."
+                "correct": "Perfect. The NBA shot clock forces action: 24 seconds for a fresh possession, 14 after an offensive rebound. That keeps the pace up.",
+                "incorrect": "The NBA shot clock is 24 seconds on a fresh possession and 14 after an offensive rebound. College uses a longer, 30-second clock."
               }
             }
           }
@@ -444,16 +444,16 @@
             "type": "binary-call",
             "conceptIds": ["possession"],
             "payload": {
-              "prompt": "A player shoots and misses. The other team tips the rebound away. Is it still a possession change?",
-              "scene": {"kind": "none", "alt": "A rebound scenario where one team shoots and another team gets the rebound."},
+              "prompt": "A shot misses and the defense grabs the rebound. Did possession change?",
+              "scene": {"kind": "none", "alt": "A missed shot bounces off the rim and a defender secures the ball."},
               "choices": [
-                {"id": "yes", "label": "Yes, possession changed on the rebound."},
-                {"id": "no", "label": "No, possession does not change here."}
+                {"id": "yes", "label": "Yes, the ball changed teams."},
+                {"id": "no", "label": "No, the shooting team keeps it."}
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Correct. A rebound is a possession change. The team that secures the ball after a missed shot now has possession.",
-                "incorrect": "Not quite. Any change in which team has the ball is a possession change. A rebound (getting the ball after a missed shot) counts."
+                "correct": "A defensive rebound ends the shooting team's possession. The team that secures the ball after a miss now has it and heads the other way.",
+                "incorrect": "Whichever team controls the ball owns the possession. When the defense grabs a miss, the offense's possession is over. Only an offensive rebound keeps it alive."
               }
             }
           },
@@ -465,12 +465,12 @@
               "prompt": "Order the events at the start of a game.",
               "items": [
                 {"id": "jump-ball", "text": "Jump ball at center court; the two centers tap."},
-                {"id": "arrow", "text": "From then on, the alternating arrow decides jump-ball situations."},
-                {"id": "first-poss", "text": "One team gets the first possession from the jump ball."}
+                {"id": "first-poss", "text": "One team gains control and gets the first possession."},
+                {"id": "arrow", "text": "From then on, the alternating-possession arrow settles tie-ups."}
               ],
               "explanation": {
-                "correct": "Perfect. You have the game's opening sequence right. The first possession goes to whoever wins the initial jump ball.",
-                "incorrect": "Not quite. The game starts with a jump ball, then the arrow is used for all other jump-ball situations."
+                "correct": "The opening jump ball decides who starts with the ball. After that there are no more jumps: the arrow points to the team that gets the next tie-up, then flips.",
+                "incorrect": "Start with the jump ball, then whoever controls the tap has the first possession. The arrow only takes over afterward, to settle later tie-ups without another jump."
               }
             }
           }
@@ -505,15 +505,15 @@
             "type": "sequence-order",
             "conceptIds": ["transition-basics", "possession-flow"],
             "payload": {
-              "prompt": "What happens after a missed shot?",
+              "prompt": "Order what happens after a missed shot.",
               "items": [
-                {"id": "rebound", "text": "A player from either team grabs the rebound.", "why": "Rebounding is the first step after a miss."},
-                {"id": "transition", "text": "The other team quickly breaks the other way.", "why": "Transition is the scramble when possession changes."},
-                {"id": "return", "text": "The defense gets back or the offense scores quick.", "why": "This determines if it is a transition bucket or settled defense."}
+                {"id": "rebound", "text": "The defense grabs the rebound.", "why": "Nothing can happen until someone controls the ball."},
+                {"id": "transition", "text": "The new offense pushes the ball up the floor.", "why": "Speed matters before the other team can set."},
+                {"id": "return", "text": "Either a quick shot goes up or the defense gets set.", "why": "It ends as an easy bucket or a settled half-court possession."}
               ],
               "explanation": {
-                "correct": "Right. After a rebound, transition begins—the scramble to either score quick or get the defense set.",
-                "incorrect": "Not quite. After a miss, someone rebounds, and then transition (the fast break) happens."
+                "correct": "After a miss, the rebound flips the floor: the new offense runs while the new defense scrambles back. Whoever wins that race decides whether it is an easy bucket or a half-court game.",
+                "incorrect": "The order is rebound first, then the push up the floor, then the result. The race between a fast offense and a hurrying defense is what makes transition so dangerous."
               }
             }
           },
@@ -569,7 +569,7 @@
                 {"id": "dist-2", "text": "Someone broke a bone and they scored anyway.", "isCorrect": false},
                 {"id": "dist-3", "text": "They scored from the broken play (no set).", "isCorrect": false}
               ],
-              "translation": "The other team got an easy, quick basket because your team's defense was not set when they got the ball.",
+              "translation": "A fast break: someone scored quickly, before the defense had time to get set.",
               "followUps": [
                 {
                   "line": "Yeah, nobody was ready.",
@@ -638,20 +638,20 @@
             "payload": {
               "prompt": "Tap where the point guard usually starts.",
               "diagram": {
-                "diagramId": "basketball-court",
-                "alt": "A basketball court showing the typical starting positions of the five players."
+                "diagramId": "bball-half-court",
+                "alt": "Half-court diagram showing a typical lineup: one player above the arc at the top, one on each wing, and two near the basket."
               },
               "hotspots": [
-                {"id": "pg-spot", "label": "Point guard", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.7, "r": 0.08}},
-                {"id": "sg-spot", "label": "Shooting guard", "shape": {"kind": "circle", "cx": 0.8, "cy": 0.6, "r": 0.08}},
-                {"id": "sf-spot", "label": "Small forward", "shape": {"kind": "circle", "cx": 0.2, "cy": 0.6, "r": 0.08}},
-                {"id": "pf-spot", "label": "Power forward", "shape": {"kind": "circle", "cx": 0.8, "cy": 0.3, "r": 0.08}},
-                {"id": "c-spot", "label": "Center", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.2, "r": 0.08}}
+                {"id": "pg-spot", "label": "Point guard", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.4, "r": 0.07}},
+                {"id": "sg-spot", "label": "Shooting guard", "shape": {"kind": "circle", "cx": 0.87, "cy": 0.6, "r": 0.07}},
+                {"id": "sf-spot", "label": "Small forward", "shape": {"kind": "circle", "cx": 0.13, "cy": 0.6, "r": 0.07}},
+                {"id": "pf-spot", "label": "Power forward", "shape": {"kind": "circle", "cx": 0.75, "cy": 0.8, "r": 0.07}},
+                {"id": "c-spot", "label": "Center", "shape": {"kind": "circle", "cx": 0.4, "cy": 0.8, "r": 0.07}}
               ],
               "correctHotspotIds": ["pg-spot"],
               "explanation": {
-                "correct": "Right. The point guard starts at the top of the key (around the center, back), since they run the offense.",
-                "incorrect": "Not quite. The point guard runs the offense, so they start at the top of the key, at the back."
+                "correct": "The point guard usually starts above the arc at the top, facing the whole floor, because that is the spot to run the offense from.",
+                "incorrect": "That spot belongs to another position. The point guard runs the offense, so they start at the top, out front with the whole floor in view."
               }
             }
           },
