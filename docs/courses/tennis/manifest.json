@@ -1,0 +1,115 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "tennis",
+  "displayName": "Tennis",
+  "category": "Sports > Racquet sports > Tennis",
+  "family": "Sports",
+  "status": "cds-draft",
+  "wave": 2,
+  "simulationPrefix": "tennis",
+  "branches": [
+    { "id": "rec-play", "displayName": "She plays (recreational)", "description": "Hitting sessions, NTRP levels, club leagues, doubles nights, gear, local courts. Default branch." },
+    { "id": "atp-tour", "displayName": "ATP Tour fan", "description": "Men's tour: Masters 1000 weeks, ATP Finals, rankings and rivalries, favourite player.", "personalizationDimension": "league" },
+    { "id": "wta-tour", "displayName": "WTA Tour fan", "description": "Women's tour: WTA 1000 weeks, WTA Finals, rankings and rivalries, favourite player.", "personalizationDimension": "league" },
+    { "id": "grand-slams", "displayName": "Grand Slam fan", "description": "Follows the four majors: each Slam's identity, the fortnight rhythm, who to know before a Slam.", "personalizationDimension": "league" }
+  ],
+  "curriculumVersion": "0.1.0",
+  "foundationalModules": [
+    { "id": "court-and-game", "title": "The Court and the Game", "summary": "Objective, court map, service boxes and the T, racquet and ball, lines are in, how a point plays out." },
+    { "id": "scoring", "title": "Scoring", "summary": "Love to forty, deuce and advantage, games, sets, matches, tiebreaks, reading a scoreboard, hold and break." },
+    { "id": "serve-and-return", "title": "Serve and Return", "summary": "Legal serves, two chances, service lets, deuce and ad courts, targets and spins, aces, returning." },
+    { "id": "strokes-and-shots", "title": "Strokes and Shots", "summary": "Forehand and backhand, topspin, slice, volley, lob, drop shot, directions, slang." },
+    { "id": "rules-and-officiating", "title": "Rules and Officiating", "summary": "Line calls, lets and hindrance, the chair umpire, clocks, electronic line calling, coaching and conduct." }
+  ],
+  "interactionTypes": [
+    "multiple-choice", "binary-call", "term-match", "sequence-order", "visual-id", "decision-scenario",
+    "talk-track", "timing-tap", "say-this", "fill-the-gap", "estimate-slider", "hotspot-tap", "unity-sim"
+  ],
+  "unitySimulations": [
+    {
+      "simulationId": "tennis.serve.place-and-spin.v1",
+      "specPath": "docs/courses/tennis/sims/tennis.serve.place-and-spin.v1.md",
+      "status": "spec-draft",
+      "lessonIds": ["serve-05"]
+    },
+    {
+      "simulationId": "tennis.rally.arc-and-margin.v1",
+      "specPath": "docs/courses/tennis/sims/tennis.rally.arc-and-margin.v1.md",
+      "status": "spec-draft",
+      "lessonIds": ["pc-02"]
+    },
+    {
+      "simulationId": "tennis.court.open-court-recovery.v1",
+      "specPath": "docs/courses/tennis/sims/tennis.court.open-court-recovery.v1.md",
+      "status": "spec-draft",
+      "lessonIds": ["pc-05"]
+    }
+  ],
+  "nativeExercises": [
+    { "exerciseType": "multiple-choice", "specPath": "docs/courses/tennis/exercises.md", "estimatedCount": 240 },
+    { "exerciseType": "binary-call", "specPath": "docs/courses/tennis/exercises.md", "estimatedCount": 70 },
+    { "exerciseType": "term-match", "specPath": "docs/courses/tennis/exercises.md", "estimatedCount": 35 },
+    { "exerciseType": "sequence-order", "specPath": "docs/courses/tennis/exercises.md", "estimatedCount": 25 },
+    { "exerciseType": "visual-id", "specPath": "docs/courses/tennis/exercises.md", "estimatedCount": 25 },
+    { "exerciseType": "decision-scenario", "specPath": "docs/courses/tennis/exercises.md", "estimatedCount": 55 },
+    { "exerciseType": "talk-track", "specPath": "docs/courses/tennis/exercises.md", "estimatedCount": 20 },
+    { "exerciseType": "timing-tap", "specPath": "docs/courses/tennis/exercises.md", "estimatedCount": 10 },
+    { "exerciseType": "say-this", "specPath": "docs/courses/tennis/exercises.md", "estimatedCount": 80 },
+    { "exerciseType": "fill-the-gap", "specPath": "docs/courses/tennis/exercises.md", "estimatedCount": 45 },
+    { "exerciseType": "estimate-slider", "specPath": "docs/courses/tennis/exercises.md", "estimatedCount": 20 },
+    { "exerciseType": "hotspot-tap", "specPath": "docs/courses/tennis/exercises.md", "estimatedCount": 45 }
+  ],
+  "dynamicData": [
+    { "kind": "schedules", "providerCandidates": ["Official ATP, WTA and Grand Slam calendars (curated)", "ITF calendar (curated)", "Licensed tennis data provider (Sportradar / Stats Perform class, terms unconfirmed)"], "refreshFrequency": "weekly", "notes": "Daily on event weeks. No known free official public API; curated ingest with source links until a licence is chosen." },
+    { "kind": "events", "providerCandidates": ["Official tournament pages (curated)", "Licensed tennis data provider (unconfirmed)"], "refreshFrequency": "weekly", "notes": "Tier (Slam, 1000, 500, 250, Finals, team event) drives context cards; draws daily on event days." },
+    { "kind": "scores", "providerCandidates": ["Licensed tennis data provider (unconfirmed)", "TheSportsDB (only if tennis coverage confirmed)", "Official results pages (link-out)"], "refreshFrequency": "minutes-during-events", "notes": "Match results and finals only; never point-by-point or betting-grade data (spec section 33)." },
+    { "kind": "rankings", "providerCandidates": ["ATP and WTA official rankings pages (curated weekly snapshot)", "Licensed tennis data provider (unconfirmed)"], "refreshFrequency": "weekly", "notes": "Snapshot date always shown; never presented as real-time. Includes year-end Race tables." },
+    { "kind": "standings", "providerCandidates": ["ATP Race and WTA Race pages (curated)"], "refreshFrequency": "weekly", "notes": "September to November finals qualification only." },
+    { "kind": "rosters", "providerCandidates": ["Official draw pages (curated)", "Licensed tennis data provider (unconfirmed)"], "refreshFrequency": "daily", "notes": "Draw brackets, seeds, wild cards and qualifiers during Slams and 1000-level events." },
+    { "kind": "injuries", "providerCandidates": ["Official tournament withdrawal announcements (link-out)"], "refreshFrequency": "daily", "notes": "Event days only; framed as 'why she is out of the draw'; no medical claims." },
+    { "kind": "regulations", "providerCandidates": ["ITF Rules of Tennis and Grand Slam Rulebook (link-out)", "ATP and WTA rulebooks (link-out)", "Slam and tour rule announcements (link-out)"], "refreshFrequency": "on-release", "notes": "Electronic line calling, scoring changes, wearables, clock rules. Paraphrased, never copied." },
+    { "kind": "news", "providerCandidates": ["ATP, WTA and Slam news (link-only)", "Independent tennis media (link-only)"], "refreshFrequency": "daily", "notes": "Identify topics, explain in Swoon'd words, link out. Editorial provider decision is open (DECISIONS Q-3)." },
+    { "kind": "weather", "providerCandidates": ["National Weather Service API (public, US)"], "refreshFrequency": "hourly", "notes": "Optional rec-play card ('can we hit tonight?'), only when a region is set." },
+    { "kind": "closures", "providerCandidates": ["Municipal parks notices (link-out, no uniform source)"], "refreshFrequency": "daily", "notes": "Optional; hidden when no reliable source for the region." }
+  ],
+  "editorial": {
+    "approach": "explain-and-link",
+    "sources": ["ITF (rulebooks and Grand Slam rulebook)", "ATP Tour", "WTA Tour", "Australian Open, Roland-Garros, Wimbledon and US Open official sites", "Independent tennis media (link-only)"],
+    "topicsWeExplain": [
+      "why a tournament tier or ranking movement matters",
+      "why a deciding set ended in a 10-point tiebreak",
+      "why line-calling technology is debated",
+      "why a seed lost early on this surface",
+      "why fans argue about the calendar and prize money"
+    ],
+    "copyrightPolicy": "Publisher article text and rulebook text are never copied; rules and news are explained in Swoon'd's own words with section pointers or links to the original."
+  },
+  "personalizationDimensions": ["skill-level", "player", "league", "equipment", "region"],
+  "conversationScenarios": {
+    "count": 20,
+    "path": "docs/courses/tennis/curriculum/course.json"
+  },
+  "masteryModel": {
+    "type": "concept-mastery-v1",
+    "passThreshold": 0.8,
+    "usefulCompetenceStatement": "She can follow a tennis match or a Grand Slam, understand the score, the serve and why a break matters, ask a couple of good questions about a shot or a surface, and say 'okay, I get why you love this' without faking it."
+  },
+  "licensingConstraints": [
+    { "area": "imagery", "constraint": "Procedural or original illustrations only (license original-swoond); no third-party player or event photos without a written license." },
+    { "area": "audio", "constraint": "No broadcast audio; sim audio is original or synthesised (original-swoond)." },
+    { "area": "logos-trademarks", "constraint": "ATP, WTA, ITF, Grand Slam, Wimbledon, Davis Cup, Laver Cup, tournament and racquet-brand marks are trademarks: text mentions and link-outs only, no logos or tournament artwork." },
+    { "area": "video", "constraint": "No embedded broadcast video; deep-link to official streams." },
+    { "area": "article-text", "constraint": "Never copy publisher or rulebook text; paraphrase with section pointers and link." },
+    { "area": "data-provider-terms", "constraint": "No free official public tennis API assumed; licensed provider or curated public facts with attribution. Jeff Sackmann tennis datasets are CC BY-NC-SA and must not be used in production. UTR needs a partner agreement; OpenStreetMap needs ODbL attribution." },
+    { "area": "player-likeness", "constraint": "Names as facts only; no likeness, endorsement implication or fabricated quotes. Anti-doping and legal storylines explain process only, never verdicts." }
+  ],
+  "safetyConstraints": [
+    "Injury and fitness content stays generic (warm up, stop if it hurts, see a professional); no medical claims.",
+    "Heat and hydration mentions stay generic; never coach playing through heat illness.",
+    "Etiquette and line-call scenarios teach de-escalation; never coach confrontation.",
+    "Never encourage the learner to fake a skill level or expertise with the person they care about."
+  ],
+  "relatedCourses": [
+    { "courseId": "pickleball", "relationship": "adjacent" }
+  ]
+}
