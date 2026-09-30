@@ -48,3 +48,13 @@ Not changed and worth a human look:
 4. Diagram ids (`football-*`, `nfl-*`) and hotspot geometry were not checked against the renderer; hotspots in 01-03 use diagram ids that need the procedural diagram set to exist.
 5. The 40-yard-line hotspot in unit 01 names the left half only; the field has two 40-yard lines.
 6. No award winners, records, dates or live stats are stated in 01-09 except Super Bowl LX (February 8, 2026) per the CDS.
+
+## Root file (course.json)
+
+Reviewed every concept definition, all 10 talk tracks, branches and reviewPolicy. Ids unchanged.
+
+Concepts fixed (38): end-zone (example implied feet decide a touchdown), first-down-marker, turnover, two-point-conversion (3-yard line in college), route-tree, out-route, pre-snap-motion (clue, not proof), hot-route, cover-2 (soft spots are deep middle and seams), false-start, pass-interference, targeting, replay-review (no penalty challenges), kickoff (not "every score"; safety is a free kick), onside-kick (10-yard rule), injured-reserve (four games), trade-deadline (hard-coded weekday removed), bye-week, west-coast-offense, air-raid, two-high-shell, single-high-shell, super-bowl ("each February since 1966" was wrong), nfl-afl-merger (conferences came in 1970), college-clock-rules (old text falsely said only college stops the clock on incompletions), conference-realignment, cfp-format (five auto bids, top four ranked get byes, per live-data), transfer-portal, nil-revenue-sharing, bowl-games, recruiting, injury-report (practice vs game status), rule-change-of-year (2026 claim softened).
+
+Talk tracks fixed (4 of 10): tt-first-text (score math: down four cannot be won by a field goal, now down two; "only caught the end" was a fib, "never punted" nonsense), tt-fourth-down (muddled field-position question), tt-fantasy (cannot bench a player who is out), tt-rookie (fragment coachNote). Grading (25 / 5 / -15) is consistent and none teach faking expertise.
+
+Uncertain, re-verify in August: onside-kick "as of 2026" and CFP bye/auto-bid wording (from CDS and live-data); touchback 35 (2025); overtime both-possession rule (2025); college clock differences (deliberately not claimed beyond the two-minute warning); jersey-number ranges after the 2023 expansion; CFP seeding for bye teams may change by season.

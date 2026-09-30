@@ -386,7 +386,7 @@ Introduce 3 to 6 related terms at the start of a unit (shots, slang, tours, gear
     {
       "id": "bert",
       "term": "Bert",
-      "definition": "A partner runs behind you to hit your ball"
+      "definition": "An Erne-style volley hit from your partner's side of the court"
     }
   ],
   "distractorDefinitions": [
@@ -1931,7 +1931,7 @@ The Playbook shows each term with a definition and an example line in the voice 
 | 20 | Split step | A small hop as the opponent hits, to react quickly. | "Split step as they hit the ball." |
 | 21 | Erne | A jump outside the kitchen to volley at the net. | "I went for an Erne and it worked!" |
 | 22 | ATP | Around-the-post: hitting the ball around the net post. | "That ATP was ridiculous." |
-| 23 | Bert | A partner runs behind you to poach your ball. | "We tried a Bert and it was chaos." |
+| 23 | Bert | An Erne-style volley hit from your partner's side of the court, running around the outside of the kitchen. | "We tried a Bert and ended up in each other's way." |
 | 24 | Poach | Stepping across to hit your partner's ball. | "I poached that one and won the point." |
 | 25 | Stacking | Starting both partners on one side to keep strengths in place. | "We stacked, and it confused them." |
 | 26 | Switching | Partners swap sides during a rally to cover the court. | "We switched and I took the middle." |

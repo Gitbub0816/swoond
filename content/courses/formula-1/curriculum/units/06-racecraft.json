@@ -112,26 +112,26 @@
               "track-position"
             ],
             "payload": {
-              "prompt": "The leader is 0.5 seconds ahead. Stay behind for track position or go for the pass?",
+              "prompt": "Your tyres are cooking in his dirty air and no pass is on. Back off a little, or stay close?",
               "scene": {
                 "kind": "none",
-                "alt": "Racing scenario: leading car with follower 0.5 seconds back."
+                "alt": "Text only: a following car sitting half a second behind a rival, its tyre temperatures climbing."
               },
               "choices": [
                 {
-                  "id": "stay",
-                  "label": "Stay behind"
+                  "id": "back-off",
+                  "label": "Back off a little"
                 },
                 {
-                  "id": "pass",
-                  "label": "Go for pass"
+                  "id": "stay-close",
+                  "label": "Stay glued to him"
                 }
               ],
-              "correctChoiceId": "stay",
+              "correctChoiceId": "back-off",
               "explanation": {
-                "correct": "Right. 0.5 seconds is a full pit loss. Track position is everything because dirty air will burn your tyres if you follow.",
-                "incorrect": "Think about tyre life. In dirty air, your tyres degrade fast. A 0.5-second gap is worth holding position until the pit window.",
-                "sayThisLine": "Track position beats pace in dirty air."
+                "correct": "Right. Following closely costs grip and overheats the tyres. Dropping back a little gives cleaner air and cooler tyres, which can save the stint while you wait for a real chance.",
+                "incorrect": "Staying right behind means constant dirty air, more sliding and hotter tyres. If there is no pass on, giving yourself a gap can help the tyres last and keep the option open for later.",
+                "sayThisLine": "He backed off a bit to save his tyres from the dirty air."
               }
             }
           },
@@ -160,9 +160,9 @@
               ],
               "correctChoiceId": "fast",
               "explanation": {
-                "correct": "Right. Fast corners rely on downforce. No downforce, and you cannot corner fast. Slow corners are less downforce-dependent.",
-                "incorrect": "Dirty air hurts most where downforce matters most. High-speed corners need tons of grip; the follower's loss of downforce is catastrophic there.",
-                "sayThisLine": "Dirty air is deadly in fast corners."
+                "correct": "Right. Downforce does more of the work the faster you go, so losing it in a fast corner costs the most. Slow corners depend more on mechanical grip.",
+                "incorrect": "Dirty air hurts most where downforce matters most. High-speed corners need a lot of aerodynamic grip, so the follower loses the most there.",
+                "sayThisLine": "Dirty air really hurts in the fast corners."
               }
             }
           },
@@ -174,7 +174,7 @@
               "tyre-degradation"
             ],
             "payload": {
-              "prompt": "A follower's tyres are overheating. Is it the track heat or dirty air?",
+              "prompt": "The leader's tyres are fine but the follower's are overheating. Track heat or dirty air?",
               "scene": {
                 "kind": "none",
                 "alt": "Temperature gauge showing high tyre temps for following car."
@@ -191,7 +191,7 @@
               ],
               "correctChoiceId": "dirty",
               "explanation": {
-                "correct": "Right. Both cars are on the same track. The follower overheats from sliding in dirty air, not from the ground.",
+                "correct": "Right. Both cars are on the same track, so the track cannot explain the difference. The follower slides more in dirty air and heats its tyres that way.",
                 "incorrect": "The follower is sliding more because of less downforce in dirty air. That internal heat from sliding is what kills the tyres.",
                 "sayThisLine": "Sliding overheats tyres. Dirty air causes sliding."
               }
@@ -234,7 +234,7 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "The straights, where the leading car is slowing the air, cutting the follower's drag.",
+                  "text": "The straights, where the car ahead pushes the air aside and cuts the follower's drag.",
                   "explanation": "Right. The tow is a drag advantage on straights. In corners, the follower sees dirty air."
                 },
                 {
@@ -257,8 +257,8 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Right. On a straight, the car ahead pushes air back. The follower sits in the wake and cuts drag, gaining top speed.",
-                "incorrect": "The tow is a straight-line effect: low-drag reduced air. In corners, the follower faces dirty air.",
+                "correct": "Right. On a straight, the car ahead punches a hole in the air. The follower sits in that wake, feels less drag and gains top speed.",
+                "incorrect": "The tow is a straight-line effect: less air resistance for the car in the wake. In corners, the same wake is dirty air that costs grip.",
                 "sayThisLine": "The tow is a drag advantage on straights."
               }
             }
@@ -275,32 +275,32 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "Within roughly one car length; too far back and the wake dissipates.",
-                  "explanation": "Right. Close enough to be in the low-drag zone, which is close to the rear wing."
+                  "text": "Close behind, within about a second, and the closer the bigger the effect.",
+                  "explanation": "Right. The wake is strongest right behind the car ahead and fades as the gap grows."
                 },
                 {
                   "id": "b",
-                  "text": "Within five car lengths to feel any effect.",
-                  "explanation": "Too far. The tow needs close proximity. One car length is the real window."
+                  "text": "Only when touching the car ahead's gearbox.",
+                  "explanation": "No contact is needed. A car a little further back still gets a useful tow."
                 },
                 {
                   "id": "c",
                   "text": "Distance does not matter; the tow works from anywhere behind.",
-                  "explanation": "No. The tow is a near-field effect. Three seconds back, there is zero tow."
+                  "explanation": "No. The tow fades quickly with distance. Several seconds back, there is essentially no tow."
                 },
                 {
                   "id": "d",
-                  "text": "About half a second apart.",
-                  "explanation": "Time gap is misleading. Distance matters, and one car length is about right."
+                  "text": "Only when three or more seconds behind.",
+                  "explanation": "That is far too far back. The wake has mostly disappeared by then."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. Close means within roughly one car length. Farther back, the air breaks up and the follower sees dirty air instead.",
-                "incorrect": "The tow is a close-range, high-speed effect. Only when the follower is very close can they cut drag.",
-                "sayThisLine": "Close tow, close follow; that is the rule."
+                "correct": "Right. The tow works best when the follower is close, within about a second, and it grows the closer you get. Further back, the air has mixed and the benefit is gone.",
+                "incorrect": "The tow is strongest right behind the car ahead and fades with distance. Being close, within about a second, is what gives a useful drag reduction.",
+                "sayThisLine": "He is in the tow, so the car ahead is going to struggle."
               }
             }
           },
@@ -369,69 +369,63 @@
               "dive-bomb"
             ],
             "payload": {
-              "prompt": "You are one second behind into a braking zone. Attack left or wait?",
+              "prompt": "You have a great run on the car ahead into a tight right-hander. What is your move?",
               "situation": {
-                "narrative": "The corner ahead is a 90-degree right-hander. You are 1.0 second behind. Braking begins 150 metres out.",
+                "narrative": "You have pulled out of his tow at the end of a long straight and are right behind him. The braking zone for a tight right-hander is coming up.",
                 "facts": [
                   {
-                    "label": "Distance",
-                    "value": "1.0 second back"
+                    "label": "Gap",
+                    "value": "0.3 seconds behind after the tow"
                   },
                   {
-                    "label": "Corner type",
-                    "value": "90-degree right"
+                    "label": "Corner",
+                    "value": "Tight right-hander after a long straight"
                   },
                   {
-                    "label": "Braking distance",
-                    "value": "150 metres"
+                    "label": "Inside line",
+                    "value": "Open on the right"
                   },
                   {
                     "label": "Your tyres",
-                    "value": "Lap 15 of 40"
-                  },
-                  {
-                    "label": "Leader's pace",
-                    "value": "Steady, no mistakes"
+                    "value": "Fresher than his"
                   }
                 ]
               },
               "options": [
                 {
-                  "id": "dive",
-                  "label": "Dive to the inside, brake late, accept the risk",
-                  "verdict": "acceptable",
-                  "consequence": "You might make it stick; you might crash. The gap is large enough that a mistake costs the place, and likely more.",
+                  "id": "late-brake",
+                  "label": "Brake a touch later on the inside and get alongside first",
+                  "verdict": "best",
+                  "consequence": "You use the speed from the tow to get level on the inside before he turns in. Being alongside means he has to leave you room, and you can make the pass stick if you carry enough exit speed.",
                   "considerations": [
-                    "A 1-second gap is a full braking distance on most tracks. A late-braking dive is risky.",
-                    "If you run wide or touch, you both go off. That is not a winning play yet.",
-                    "Late braking costs lock-up. Flat-spot tyres hurt for the rest of the race."
+                    "The tow gives you the speed to get alongside before the braking zone.",
+                    "Being properly alongside at the apex gives you a right to room.",
+                    "Brake late enough to get level, not so late that you lock up."
                   ]
                 },
                 {
-                  "id": "follow",
-                  "label": "Follow through, build speed, attack the next corner",
-                  "verdict": "best",
-                  "consequence": "You stay close, learn his line, and set up a pass where the track suits you. Safer and smarter.",
+                  "id": "dive",
+                  "label": "Stay back, then dive in from well behind at the last moment",
+                  "verdict": "poor",
+                  "consequence": "A lunge from too far back usually ends with a lock-up, a missed apex or contact. You may also be blamed by the stewards for causing the collision.",
                   "considerations": [
-                    "A 1-second gap is too big to close in one corner without hitting him.",
-                    "Follow close, use the tow and dirty air info, find a better corner for your car.",
-                    "Most passes come from building speed and then acting, not panic diving."
+                    "If you are not alongside at the apex, the other driver owes you nothing.",
+                    "Locking up also flat-spots the tyre for the rest of the stint."
                   ]
                 },
                 {
                   "id": "wait",
-                  "label": "Settle into traffic, save tyres, pit first",
-                  "verdict": "poor",
-                  "consequence": "You lose time and track position to a car that is matching your pace or will pit later.",
+                  "label": "Stay behind and wait for a better corner",
+                  "verdict": "acceptable",
+                  "consequence": "You keep your tyres and your race safe, but you waste a good run and may not get another chance this lap.",
                   "considerations": [
-                    "You are 1.0 second behind, not out of it. Backing off gives up the fight.",
-                    "Pitting first into traffic is a gamble. If he undercuts you, it is done.",
-                    "At lap 15, you need to be attacking, not backing off."
+                    "Patience is fine when a pass is not on.",
+                    "Here you have speed, fresher tyres and the inside line, so the chance is a real one."
                   ]
                 }
               ],
-              "expertNote": "A 1-second gap is the braking distance. Closing it in one corner is a gamble. Sit close, learn the line, and attack when the track helps.",
-              "sayThisLine": "One second is a full braking zone. Patience pays off."
+              "expertNote": "A pass is won by getting alongside before the corner, not by lunging from behind. Use the tow to pull level on the brakes, then let the rules give you the room you have earned.",
+              "sayThisLine": "He used the tow, got alongside on the brakes and made it stick."
             }
           },
           {
@@ -442,17 +436,17 @@
               "defending-position"
             ],
             "payload": {
-              "prompt": "You are outside at the apex. Can you stay on the track and hold the line?",
+              "prompt": "A rival squeezes you toward the edge in a fast corner. What do you do?",
               "situation": {
-                "narrative": "Into a fast, sweeping left-hander, your rival went in deep on the inside. You are on the outside and faster. At the apex, your rival suddenly closes the door.",
+                "narrative": "You are alongside on the outside of a fast, sweeping left-hander, with your rival on the inside. At the apex he drifts wide and pushes you toward the edge of the track.",
                 "facts": [
                   {
                     "label": "Your line",
-                    "value": "Wider, faster arc"
+                    "value": "Outside, alongside him"
                   },
                   {
                     "label": "Rival's move",
-                    "value": "Squeezed left into you"
+                    "value": "Drifting wide into your space"
                   },
                   {
                     "label": "Track edge",
@@ -476,8 +470,8 @@
                   "consequence": "You both crash or one of you goes off. Contact at speed in a fast corner is dangerous and likely a DNF.",
                   "considerations": [
                     "High-speed contact is a crash, not a racing incident.",
-                    "The stewards will investigate, and the defensive driver will likely be penalised.",
-                    "It is not worth a DNF and a penalty investigation."
+                    "Even if the stewards penalise him later, you would still be out of the race.",
+                    "It is not worth a DNF."
                   ]
                 },
                 {
@@ -486,7 +480,7 @@
                   "verdict": "best",
                   "consequence": "You avoid a crash, stay in the race, and live to attack again on a safer corner.",
                   "considerations": [
-                    "You lost one position to a desperate defensive move. You are still close.",
+                    "You may lose the place, but you stay close and the stewards can look at his move.",
                     "The next corner or straight gives you a cleaner opportunity.",
                     "Staying in the race beats a DNF every time."
                   ]
@@ -494,17 +488,16 @@
                 {
                   "id": "go-wide",
                   "label": "Run wide, stay ahead, risk the run-off area",
-                  "verdict": "acceptable",
-                  "consequence": "You might stay on track with 4 wheels, or you might lock a tyre and slide into the gravel. It is a gamble.",
+                  "verdict": "poor",
+                  "consequence": "You might stay on the track, or you might lock a tyre and slide off. It is a big gamble at this speed.",
                   "considerations": [
-                    "Gravel and a wall are close. Going wide is high-risk.",
-                    "If your tyre locks, you are in the wall, and that is a DNF.",
-                    "Risky, but if you pull it off, you keep the place and he gets a penalty for the squeeze."
+                    "The edge of the track is close, and leaving it can also cost you a penalty.",
+                    "If a tyre locks at this speed, your race is over."
                   ]
                 }
               ],
-              "expertNote": "Hold your line at high speed means contact. Lift, live to race, and attack on a safer corner or on straight where you have more room.",
-              "sayThisLine": "Lift and tuck; attack next corner."
+              "expertNote": "At high speed, holding your line against a squeeze means contact. Lifting keeps you in the race, and the stewards can judge whether he left you room. You can try again on a safer corner or straight.",
+              "sayThisLine": "He lifted, stayed safe and went again on the next straight."
             }
           },
           {

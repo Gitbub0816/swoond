@@ -36,3 +36,29 @@ Open items for the orchestrator:
 3. Facts to re-verify at release: the USA Pickleball spin-rate test (timing, threshold, grandfathering) and any wording in `gear-04`, `debates-04`, `live-05`; paddle size rule (24 in combined, 17 in length); MLP DreamBreaker to 21 and four-game order; PPA rally-scoring option; the 1965 Bainbridge Island origin; whether PPA events currently run separate men's, women's and mixed brackets.
 4. `course.json` concept definitions to tidy (not edited here): `rec-formats` says round robins are "everyone plays everyone"; `bert` and `erne` are loose; `dupr` and `skill-ratings` are fine but `rule-news-explainer` still cites "the 2026 spin test" as an example.
 5. No new concept ids needed.
+
+## Root file (course.json)
+
+Accuracy review of `curriculum/course.json`: 151 concepts, 10 talk tracks, 4 branches, reviewPolicy. Ids unchanged. Fixed in place by hand.
+
+Concepts: 53 of 151 definitions or example lines corrected (more than a third). Notable errors:
+- `bert`: was a "poach" with an invented etymology; now an Erne-style volley hit from the partner's side of the court, no etymology. Matching Playbook entry (#23) and the `shot-03` term-match definition in `exercises.md` fixed too.
+- `erne`: kitchen-touching rule added; Perry attribution hedged ("usually credited").
+- `spin-rate-test`: hard-coded "effective Oct 1, 2026" removed (same for `rule-news-explainer` example and the `tt-new-paddle` line "starts soon").
+- `centerline`: said it runs "from the net"; it starts at the kitchen line. Example line was wrong.
+- `sandbagging`: "playing at ... below your level" corrected; accusation warning added.
+- `underhand-serve`: equated with volley serve; now covers volley and drop serve. `drop-serve` "without propulsion" clarified.
+- `ball-basics` (not golf-ball sized), `court-dimensions` example (not "half" a tennis court), `court-positioning` example ("two up, two back" contradicted the definition), `drive` (nonsense purpose), `atp` (legal conditions), `skill-ratings` (2.5 to 5.0 range inconsistent), `dupr`, `paddle-materials`, `paddle-core` (Nomex is firmer, not "responsive"), `swing-weight`, `rally-scoring` (win by two), `tournament-divisions`, `singles-strategy` (was a duplicate of `mixed-doubles`), `season-rollover` (unverified ranking reset removed), `convo-admit-what-you-dont-know` (asking her to explain is fine), `upa-merger` (vague date removed), `pickleball-growth` ("fastest-growing" softened), `open-play-rotation`/`paddle-stack` (winner-stays is local, not universal), `prompt-out-call`, `serve-foot-fault`, `volley-serve-rule`.
+- `dink-cross-court` and `dink-patterns` had swapped terms and definitions; terms renamed ("Cross-court dinks", "Dink patterns").
+
+Talk tracks: no grading or voice problems found (good/meh/cringe ordering sensible, none teaches faking). 7 fact fixes: `tt-new-paddle` dated spin test; `tt-watch-final` "whoever pops one up loses the point" overstated; `tt-rating` "too often" sandbagging overclaim; `tt-team-loss` "home game" (MLP events have no home games; same error unit 14 had); `tt-come-play` confirmation now says no volleying from the kitchen; `tt-line-call` closing note.
+
+Branches and reviewPolicy: no changes needed.
+
+Uncertain, verify at release:
+1. Erne Perry attribution for "Erne" (kept, hedged).
+2. `prompt-out-call`: exact 2026 timing wording (rule 2221); left vague on purpose.
+3. `upa-merger`: formation date and exact role of the UPA.
+4. `dreambreaker`: win-by-two and substitution details not stated.
+5. `skill-ratings`: level descriptors vary by club; DUPR scale range described loosely.
+6. `volley-serve-rule` wording tied to the 2026 rulebook.
