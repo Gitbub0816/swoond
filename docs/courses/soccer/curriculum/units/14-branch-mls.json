@@ -1,0 +1,552 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "soccer",
+  "unit": {
+    "id": "branch-mls",
+    "title": "Branch: MLS",
+    "layer": "branch",
+    "branchId": "mls",
+    "order": 13,
+    "lessons": [
+      {
+        "id": "mls-01",
+        "title": "How MLS is built",
+        "objective": "You can explain MLS structure and why there is no relegation.",
+        "estimatedMinutes": 11,
+        "conceptIds": ["mls-structure", "supporters-shield"],
+        "activities": [
+          {
+            "id": "mls-01-mc-structure",
+            "type": "multiple-choice",
+            "conceptIds": ["mls-structure"],
+            "payload": {
+              "prompt": "What makes MLS different from most world leagues?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "It has promotion and relegation"
+                },
+                {
+                  "id": "b",
+                  "text": "It's a single-entity league with a salary cap and no relegation"
+                },
+                {
+                  "id": "c",
+                  "text": "Players own their own teams"
+                }
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Exactly. MLS clubs are single-entity franchises; the league controls roster spending, so there's no relegation risk.",
+                "incorrect": "MLS is structured as a single-entity league where the league itself owns all franchises. This means the league controls salary spending with a cap, and there's no promotion or relegation.",
+                "sayThisLine": "It's single-entity, so the whole league is protected, no one gets dropped down."
+              }
+            }
+          },
+          {
+            "id": "mls-01-tm-mls-terms",
+            "type": "term-match",
+            "conceptIds": ["mls-structure", "supporters-shield"],
+            "payload": {
+              "prompt": "Match the MLS-specific term to its meaning.",
+              "pairs": [
+                {
+                  "id": "se",
+                  "term": "Single-entity",
+                  "definition": "The league owns all franchises and controls salary spending, giving MLS central authority over operations."
+                },
+                {
+                  "id": "shield",
+                  "term": "Supporters' Shield",
+                  "definition": "The trophy for the best team in the regular season; separate from the MLS Cup playoff title."
+                },
+                {
+                  "id": "dp",
+                  "term": "Designated Player",
+                  "definition": "Star players exempt from normal salary cap limits, allowing MLS to attract world-class talent."
+                }
+              ],
+              "explanation": {
+                "summary": "MLS uses single-entity ownership and Designated Players to balance league parity with star power.",
+                "sayThisLine": "The league controls the money, but Designated Players are the exception."
+              }
+            }
+          },
+          {
+            "id": "mls-01-fg-regular-season",
+            "type": "fill-the-gap",
+            "conceptIds": ["supporters-shield"],
+            "payload": {
+              "prompt": "Complete the MLS trophy explanation.",
+              "template": "The {{shield}} goes to the best regular-season team. The {{cup}} is decided in the {{format}}.",
+              "gaps": [
+                {
+                  "id": "shield",
+                  "options": ["MLS Cup", "Supporters' Shield", "Open Cup"],
+                  "correct": "Supporters' Shield"
+                },
+                {
+                  "id": "cup",
+                  "options": ["Shield", "Cup", "Trophy"],
+                  "correct": "Cup"
+                },
+                {
+                  "id": "format",
+                  "options": ["regular season", "playoffs", "double elimination"],
+                  "correct": "playoffs"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. MLS awards the Shield for the best team through 34 matches, then decides the Cup champion in the playoffs.",
+                "incorrect": "The Supporters' Shield rewards the best regular-season record. The MLS Cup is a playoff trophy, often won by a team that didn't finish first."
+              }
+            }
+          },
+          {
+            "id": "mls-01-st-no-relegation",
+            "type": "say-this",
+            "conceptIds": ["mls-structure"],
+            "payload": {
+              "statement": {
+                "speaker": "Alex",
+                "text": "There's no relegation in MLS, so mid-table isn't dangerous."
+              },
+              "question": "What does he mean?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Finishing in the middle of the table is safe",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "Teams can't be dropped to a lower division",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "Mid-table teams are guaranteed playoffs",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Losing matches has no consequences",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "In most leagues, finishing near the bottom means demotion. MLS has no relegation, so even a last-place team stays in MLS next season.",
+              "followUps": [
+                {
+                  "line": "Does that make the league less competitive?",
+                  "why": "Opens a strategic discussion about parity vs stakes."
+                },
+                {
+                  "line": "So teams can't be demoted at all?",
+                  "why": "Confirms the structural difference from other leagues."
+                }
+              ],
+              "noFakeExpertNote": "If you're used to Premier League or La Liga, the lack of relegation is genuinely different; it's fine to ask about it."
+            }
+          },
+          {
+            "id": "mls-01-bc-franchise",
+            "type": "binary-call",
+            "conceptIds": ["mls-structure"],
+            "payload": {
+              "prompt": "MLS teams are independently owned by different owners, like Arsenal and Manchester United. True or false?",
+              "scene": {
+                "kind": "none",
+                "alt": "The MLS logo and team logos shown abstractly, representing the league's centralized ownership model."
+              },
+              "choices": [
+                {
+                  "id": "true",
+                  "label": "True"
+                },
+                {
+                  "id": "false",
+                  "label": "False"
+                }
+              ],
+              "correctChoiceId": "false",
+              "explanation": {
+                "correct": "False. MLS is single-entity; the league owns all franchises, not individual owners. This gives the league control over salary spending.",
+                "incorrect": "MLS operates as a single-entity league, meaning the league owns and controls all franchises, not independent owners. This is very different from traditional soccer leagues."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "mls-02",
+        "title": "The salary cap and Designated Players",
+        "objective": "You can explain how MLS balances stars and the salary cap.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["mls-structure", "financial-rules"],
+        "activities": [
+          {
+            "id": "mls-02-mc-salary-cap",
+            "type": "multiple-choice",
+            "conceptIds": ["financial-rules"],
+            "payload": {
+              "prompt": "Why does MLS have a salary cap?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "To limit player wages everywhere"
+                },
+                {
+                  "id": "b",
+                  "text": "To balance competition and keep teams from overspending"
+                },
+                {
+                  "id": "c",
+                  "text": "Because American law requires it"
+                }
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. The salary cap keeps spending close between teams, so rich clubs can't buy their way to dominance every year.",
+                "incorrect": "MLS's salary cap exists to create league parity by preventing the richest owners from building super-teams that always win.",
+                "sayThisLine": "The cap keeps the league balanced, so any team can compete if they're smart."
+              }
+            }
+          },
+          {
+            "id": "mls-02-ds-designated-players",
+            "type": "decision-scenario",
+            "conceptIds": ["mls-structure"],
+            "payload": {
+              "prompt": "A star forward wants to join MLS but his wage is three times the salary cap. What happens?",
+              "situation": {
+                "narrative": "MLS wants world-class stars but has a strict salary cap to keep the league balanced.",
+                "facts": [
+                  {
+                    "label": "Player wage",
+                    "value": "Three times the salary cap"
+                  },
+                  {
+                    "label": "League priority",
+                    "value": "Attract superstars while maintaining parity"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "best",
+                  "label": "He signs as a Designated Player, outside the cap; the league stays balanced",
+                  "verdict": "best",
+                  "consequence": "MLS gets the star talent and cap rules protect other teams.",
+                  "considerations": "Designated Player slots let clubs sign stars without breaking the cap structure for everyone else."
+                },
+                {
+                  "id": "acceptable",
+                  "label": "He signs but only plays in half the matches to save salary cap space",
+                  "verdict": "acceptable",
+                  "consequence": "The team gets the star but can't use his talent fully.",
+                  "considerations": "Plausible strategy, but the actual rule allows Designated Player exemptions, which is smarter."
+                },
+                {
+                  "id": "poor",
+                  "label": "The league rejects him to keep the salary cap fair to all teams",
+                  "verdict": "poor",
+                  "consequence": "MLS stays pure on cap rules but loses the chance to attract global talent.",
+                  "considerations": "This defeats the purpose of attracting world talent. MLS created Designated Players precisely for this situation."
+                }
+              ],
+              "expertNote": "MLS's Designated Player rule is a clever compromise between cap parity and star attraction."
+            }
+          },
+          {
+            "id": "mls-02-tm-financial",
+            "type": "term-match",
+            "conceptIds": ["financial-rules", "mls-structure"],
+            "payload": {
+              "prompt": "Match the financial concept to its MLS application.",
+              "pairs": [
+                {
+                  "id": "cap",
+                  "term": "Salary cap",
+                  "definition": "A limit on how much each MLS team can spend on player wages, promoting league-wide competition."
+                },
+                {
+                  "id": "dp",
+                  "term": "Designated Player exception",
+                  "definition": "A rule allowing teams to sign star players above the salary cap limit, up to 3-4 exceptions per team."
+                },
+                {
+                  "id": "allocation",
+                  "term": "Allocation money",
+                  "definition": "Extra funds the league gives to certain teams for strategic signings, separate from the salary cap."
+                }
+              ],
+              "explanation": {
+                "summary": "The salary cap creates parity, Designated Players attract stars, and allocation money allows strategic flexibility.",
+                "sayThisLine": "Salary cap, Designated Players and allocation money: MLS's way of balancing parity with star power."
+              }
+            }
+          },
+          {
+            "id": "mls-02-st-big-money",
+            "type": "say-this",
+            "conceptIds": ["financial-rules"],
+            "payload": {
+              "statement": {
+                "speaker": "Jordan",
+                "text": "Messi and Beckham could play here as Designated Players but regular guys hit the cap."
+              },
+              "question": "What is the point?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "MLS favours superstars over depth",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "Stars have salary exceptions while regular players follow the cap",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "All players are treated equally",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "Regular players cannot join MLS",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "The Designated Player rule lets superstars sign with huge salaries outside the cap, while regular squad players count against the salary limit.",
+              "followUps": [
+                {
+                  "line": "Has that strategy worked to attract big names?",
+                  "why": "Tests knowledge of MLS signings (Messi, Beckham, Ibrahimovic)."
+                },
+                {
+                  "line": "Does it create imbalance between rosters?",
+                  "why": "Asks about the trade-off between parity and star power."
+                }
+              ],
+              "noFakeExpertNote": "If you're not sure how it balances, it's fair to ask how the league stays competitive."
+            }
+          },
+          {
+            "id": "mls-02-fg-cap-rule",
+            "type": "fill-the-gap",
+            "conceptIds": ["financial-rules"],
+            "payload": {
+              "prompt": "Complete the MLS financial rule.",
+              "template": "A team can spend up to the {{cap}}, but {{stars}} can earn more as {{exception}}.",
+              "gaps": [
+                {
+                  "id": "cap",
+                  "options": ["league minimum", "salary cap", "player-set amount"],
+                  "correct": "salary cap"
+                },
+                {
+                  "id": "stars",
+                  "options": ["anyone", "international players", "Designated Players"],
+                  "correct": "Designated Players"
+                },
+                {
+                  "id": "exception",
+                  "options": ["loan players", "cap exceptions", "second-team members"],
+                  "correct": "cap exceptions"
+                }
+              ],
+              "explanation": {
+                "correct": "Right. The salary cap applies to all players, but Designated Player slots let star signings exceed it.",
+                "incorrect": "MLS caps salaries overall, but Designated Players (usually 3-4 per team) are exempt from that cap, allowing premium wages."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "mls-03",
+        "title": "The calendar shift and supporters",
+        "objective": "You can explain the 2027 calendar shift and supporter culture.",
+        "estimatedMinutes": 10,
+        "conceptIds": ["mls-calendar-shift", "supporters-groups"],
+        "activities": [
+          {
+            "id": "mls-03-mc-calendar",
+            "type": "multiple-choice",
+            "conceptIds": ["mls-calendar-shift"],
+            "payload": {
+              "prompt": "When does MLS change its calendar from spring-summer to August-May?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "Already done in 2026"
+                },
+                {
+                  "id": "b",
+                  "text": "Starting in 2027-28, after a transition season in early 2027"
+                },
+                {
+                  "id": "c",
+                  "text": "In 2028 after the Olympics"
+                }
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Exactly. MLS runs a short transition season in early 2027, then moves to August-May in 2027-28 to align with the global calendar.",
+                "incorrect": "MLS is shifting to match the European August-to-May calendar. A transition season in early 2027 bridges the change, and 2027-28 becomes the new standard."
+              }
+            }
+          },
+          {
+            "id": "mls-03-st-why-shift",
+            "type": "say-this",
+            "conceptIds": ["mls-calendar-shift"],
+            "payload": {
+              "statement": {
+                "speaker": "Casey",
+                "text": "MLS is moving to the European calendar in 2027, so we match the World Cup cycle."
+              },
+              "question": "What does this change?",
+              "options": [
+                {
+                  "id": "a",
+                  "text": "MLS now plays August to May like Europe",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "The 2026 World Cup will be played during the season",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "National team players have a better international break alignment",
+                  "isCorrect": true
+                },
+                {
+                  "id": "d",
+                  "text": "MLS seasons will be shorter",
+                  "isCorrect": false
+                }
+              ],
+              "translation": "Moving to August-May puts MLS in sync with global football calendars and international competitions, reducing scheduling conflicts with World Cups and Olympics.",
+              "followUps": [
+                {
+                  "line": "Will that make it easier for US players internationally?",
+                  "why": "Shows you understand the strategic benefit."
+                },
+                {
+                  "line": "Does the weather matter for the new schedule?",
+                  "why": "Asks about climate in Canada and the northern US during spring."
+                }
+              ],
+              "noFakeExpertNote": "If the timing seems odd, it's fair to ask why the league didn't shift sooner."
+            }
+          },
+          {
+            "id": "mls-03-ds-supporter-culture",
+            "type": "decision-scenario",
+            "conceptIds": ["supporters-groups"],
+            "payload": {
+              "prompt": "An MLS club wants to build supporter culture like European teams. What's the best approach?",
+              "scenario": "The club has a new stadium and wants to attract passionate fans. They see how European supporters create atmosphere with tifos, chants and supporters' trusts.",
+              "options": [
+                {
+                  "id": "best",
+                  "text": "Invest in supporters' groups, allocate preferred seating, and back their identity",
+                  "grade": "best",
+                  "feedback": "Right. MLS clubs thrive when supporters organize with the club's backing. Tifo groups, chants and identity matter."
+                },
+                {
+                  "id": "acceptable",
+                  "text": "Import European supporters by hiring them as staff",
+                  "grade": "acceptable",
+                  "feedback": "Helpful background, but authentic supporter culture grows locally from passionate fans, not hired help."
+                },
+                {
+                  "id": "poor",
+                  "text": "Ban supporter groups to keep the stadium quiet and family-friendly",
+                  "grade": "poor",
+                  "feedback": "That would kill the very culture the club is trying to build. Supporters are the lifeblood of modern clubs."
+                }
+              ],
+              "explanation": {
+                "correct": "MLS clubs that succeed support their fan base: tifo groups, chants, supporters' trusts and organized seating create lasting atmosphere.",
+                "sayThisLine": "Supporters' groups are what give a club its soul, the chants, the tifos, the whole identity."
+              }
+            }
+          },
+          {
+            "id": "mls-03-tm-culture",
+            "type": "term-match",
+            "conceptIds": ["supporters-groups"],
+            "payload": {
+              "prompt": "Match the supporter culture term to its meaning.",
+              "pairs": [
+                {
+                  "id": "tifo",
+                  "term": "Tifo",
+                  "definition": "A large coordinated display (banner, flag or choreography) by organised supporters, creating atmosphere in the stadium."
+                },
+                {
+                  "id": "ultras",
+                  "term": "Ultras",
+                  "definition": "The most passionate, organised supporters, often leading chants and coordinating tifos and group identity."
+                },
+                {
+                  "id": "trust",
+                  "term": "Supporters' trust",
+                  "definition": "An organisation representing fan interests, sometimes with ownership stakes, advocating for the club's direction."
+                }
+              ],
+              "explanation": {
+                "summary": "Modern supporter culture relies on coordinated displays, passionate groups and organised fan representation.",
+                "sayThisLine": "Tifos, ultras, supporters' trusts: that's the modern fan base."
+              }
+            }
+          },
+          {
+            "id": "mls-03-tk-talk-supporters",
+            "type": "talk-track",
+            "conceptIds": ["supporters-groups", "mls-calendar-shift"],
+            "payload": {
+              "title": "Supporting an MLS club",
+              "setting": "She's excited about her MLS club's growing supporter base.",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "Our tifo group just did an amazing display, the whole corner sang for the whole match.",
+                  "replies": [
+                    {
+                      "id": "a",
+                      "text": "That's what builds a real club culture. Did you plan it together?",
+                      "smoothDelta": 26,
+                      "theirResponse": "Weeks in advance. The ultras organize everything.",
+                      "coachNote": "Shows you know supporters are the foundation."
+                    },
+                    {
+                      "id": "b",
+                      "text": "Nice. That sounds fun.",
+                      "smoothDelta": 6,
+                      "theirResponse": "It is!",
+                      "coachNote": "Flat but warm."
+                    },
+                    {
+                      "id": "c",
+                      "text": "MLS doesn't have real supporter culture.",
+                      "smoothDelta": -18,
+                      "theirResponse": "Are you serious? Watch us play.",
+                      "coachNote": "Dismissing something she loves won't land."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "She is proud of her supporters' group and the atmosphere they create."
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

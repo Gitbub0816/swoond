@@ -72,7 +72,7 @@
             "type": "binary-call",
             "conceptIds": ["nwsl-structure"],
             "payload": {
-              "prompt": "In 2025, Gotham FC won the NWSL Championship from the eighth seed, the lowest seed ever to win a title. This shows the unpredictability of the playoffs. True or false?",
+              "prompt": "Gotham won the 2025 NWSL Championship from the eighth seed, the lowest ever. True or false?",
               "scene": {"kind": "none", "alt": "A playoff match where the underdog team celebrates a surprising victory."},
               "choices": [
                 {"id": "true", "label": "True"},
@@ -158,19 +158,70 @@
             "type": "decision-scenario",
             "conceptIds": ["womens-football-history", "nwsl-structure"],
             "payload": {
-              "prompt": "A girl who loves football is choosing whether to pursue it seriously. What changed to make women's football a viable path now that wasn't true fifty years ago?",
-              "scenario": "She can play at college, sign to an NWSL team, earn a living and play in front of big crowds. None of this was possible in 1971.",
+              "prompt": "A girl loves football and wants to pursue it seriously. What's the best path now?",
+              "situation": {
+                "narrative": "She is talented, has offers to play at college and has heard about the NWSL.",
+                "facts": [
+                  {
+                    "label": "NWSL founded",
+                    "value": "2013"
+                  },
+                  {
+                    "label": "TV deals",
+                    "value": "Growing each year"
+                  },
+                  {
+                    "label": "College scholarships",
+                    "value": "Widely available now"
+                  },
+                  {
+                    "label": "Professional salaries",
+                    "value": "Increasing in recent years",
+                    "emphasis": "none"
+                  },
+                  {
+                    "label": "Fan attendance",
+                    "value": "Record crowds at NWSL matches"
+                  }
+                ]
+              },
               "options": [
-                {"id": "a", "text": "Women were always able to play but chose not to"},
-                {"id": "b", "text": "The FA's ban and later lifting it opened pathways; the NWSL created professional opportunities and investment grew", "isCorrect": true},
-                {"id": "c", "text": "Women's football has always been as popular as men's"},
-                {"id": "d", "text": "Technology made it easier to play", "isCorrect": false}
+                {
+                  "id": "college",
+                  "label": "Focus on college first",
+                  "verdict": "best",
+                  "consequence": "She builds her game, gets an education, and gains visibility for NWSL scouts.",
+                  "considerations": [
+                    "Education is a backup plan",
+                    "College exposure helps scouts find talent",
+                    "Time to mature and develop"
+                  ]
+                },
+                {
+                  "id": "risky-pro",
+                  "label": "Skip college and pursue NWSL immediately",
+                  "verdict": "poor",
+                  "consequence": "High risk; most players come from college, and she has no fallback if injury or form fails.",
+                  "considerations": [
+                    "Very few players skip college",
+                    "No education if things go wrong",
+                    "Scouts prefer college-tested talent"
+                  ]
+                },
+                {
+                  "id": "quit",
+                  "label": "Quit because the NWSL is too new",
+                  "verdict": "acceptable",
+                  "consequence": "Safe, but ignores the real growth and investment in women's football today.",
+                  "considerations": [
+                    "The league is stable now, not speculative",
+                    "Passes up real opportunities",
+                    "Takes a conservative view"
+                  ]
+                }
               ],
-              "explanation": {
-                "correct": "Exactly. The ban suppressed the game; lifting it, then the 1999 World Cup and NWSL gave women paths to play professionally and be seen.",
-                "incorrect": "Women were banned, then rediscovered after 1999, then got a pro league. Now investment and crowds grow every year, creating real careers.",
-                "sayThisLine": "The 1999 World Cup changed the conversation and the NWSL made it real."
-              }
+              "expertNote": "The NWSL and women's football investment are no longer risky bets. College remains the proven pathway to the pro game, where scouts and media find talent.",
+              "sayThisLine": "College got me seen, and the NWSL was ready when I was."
             }
           },
           {

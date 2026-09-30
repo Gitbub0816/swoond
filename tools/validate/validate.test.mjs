@@ -252,17 +252,42 @@ test('1.2: layer "branch" needs a unit branchId; activity branchId must not cont
     edit(u2, (j) => { j.unit.layer = 'branch'; });
     let r = run('--courses-dir', tmp, '--no-examples', '--no-lint');
     assert.equal(r.status, 1);
-    assert.match(r.stderr, /layer "branch" requires a unit branchId/);
+    assert.match(r.stderr, /branch-layer-mismatch/);
     edit(u2, (j) => { j.unit.branchId = 'nfl'; j.unit.lessons[0].activities[0].branchId = 'college-football'; });
     r = run('--courses-dir', tmp, '--no-examples', '--no-lint');
     assert.equal(r.status, 1);
     assert.match(r.stderr, /contradicts unit defense-basics branchId nfl/);
     edit(u2, (j) => { j.unit.lessons[0].activities[0].branchId = 'xfl'; });
     r = run('--courses-dir', tmp, '--no-examples', '--no-lint');
-    assert.match(r.stderr, /unknown branchId xfl/);
+    assert.match(r.stderr, /unknown-branch/);
     edit(u2, (j) => { j.unit.lessons[0].activities[0].branchId = 'nfl'; });
     r = run('--courses-dir', tmp, '--no-examples', '--no-lint');
     assert.equal(r.status, 0, r.stdout + r.stderr);
+  } finally { rmSync(tmp, { recursive: true }); }
+});
+
+test('1.2: unknown-branch: unit with unknown branchId is an error', () => {
+  const { tmp, cur } = splitCopy();
+  try {
+    const u2 = join(cur, 'units', '02-defense-basics.json');
+    edit(join(cur, '..', 'manifest.json'), (j) => { j.branches = [{ id: 'nfl', displayName: 'NFL', personalizationDimension: 'league' }]; });
+    edit(u2, (j) => { j.unit.branchId = 'xfl'; });
+    const r = run('--courses-dir', tmp, '--no-examples', '--no-lint');
+    assert.equal(r.status, 1);
+    assert.match(r.stderr, /unknown-branch.*unknown branchId xfl/);
+  } finally { rmSync(tmp, { recursive: true }); }
+});
+
+test('1.2: branch-layer-mismatch: unit with layer "branch" but no branchId is an error', () => {
+  const { tmp, cur } = splitCopy();
+  try {
+    const u2 = join(cur, 'units', '02-defense-basics.json');
+    edit(join(cur, '..', 'manifest.json'), (j) => { j.branches = [{ id: 'nfl', displayName: 'NFL', personalizationDimension: 'league' }]; });
+    edit(u2, (j) => { j.unit.layer = 'branch'; });
+    const r = run('--courses-dir', tmp, '--no-examples', '--no-lint');
+    assert.equal(r.status, 1);
+    assert.match(r.stderr, /branch-layer-mismatch/);
+    assert.match(r.stderr, /layer "branch" requires a unit branchId/);
   } finally { rmSync(tmp, { recursive: true }); }
 });
 
