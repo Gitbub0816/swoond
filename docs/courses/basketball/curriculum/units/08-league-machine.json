@@ -174,15 +174,16 @@
             "type": "sequence-order",
             "conceptIds": ["standings-reading"],
             "payload": {
-              "prompt": "Order the process of how standings are determined during the season.",
+              "prompt": "Order how a conference's final seeds are set.",
               "items": [
-                {"id": "play", "text": "Teams play games throughout the season.", "why": "This happens continuously from October through April."},
-                {"id": "track", "text": "The league tracks wins and losses in the standings.", "why": "Each win moves a team up, losses impact their position and seed."},
-                {"id": "seed", "text": "Seeds are determined by final record when the season ends.", "why": "Only after all 82 games are played are playoff seeds finalized."}
+                {"id": "play", "text": "Teams are ranked by win-loss record after game 82.", "why": "Record is the main factor."},
+                {"id": "track", "text": "Tiebreakers separate teams with identical records.", "why": "Ties are common, and head-to-head record is checked first."},
+                {"id": "seed", "text": "Seeds 1 to 6 go straight to the playoffs.", "why": "The top six avoid the Play-In."},
+                {"id": "playin", "text": "Seeds 7 to 10 enter the Play-In for the last two spots.", "why": "The Play-In settles what the standings leave open."}
               ],
               "explanation": {
-                "correct": "Exactly. Teams play, their records accumulate, and final seeding comes from the final standings.",
-                "incorrect": "Not quite. Seeds come from win-loss record. Teams play all season, standings are updated, then final seeds are set."
+                "correct": "Record ranks the teams, tiebreakers settle ties, and then the standings split into two groups: the top six go straight in, and seeds 7 to 10 play for the last two spots.",
+                "incorrect": "The order is rank by record, break ties, lock in the top six, and send seeds 7 to 10 to the Play-In. Tiebreakers have to come before the top six are fixed."
               }
             }
           },
@@ -197,23 +198,23 @@
               },
               "question": "What is she saying?",
               "options": [
-                {"id": "correct", "text": "Wins and losses change a team's seed position based on record and the playoff race.", "isCorrect": true},
-                {"id": "dist-1", "text": "The team is jumping between different conference divisions.", "isCorrect": false},
-                {"id": "dist-2", "text": "The team skips the 4th and 5th seeds.", "isCorrect": false},
-                {"id": "dist-3", "text": "Seeds are assigned by the league for television.", "isCorrect": false}
+                {"id": "correct", "text": "If her team keeps winning, it could climb from the 6th seed to the 2nd.", "isCorrect": true},
+                {"id": "dist-1", "text": "Her team is switching to a different division.", "isCorrect": false},
+                {"id": "dist-2", "text": "Her team gets to choose its own seed.", "isCorrect": false},
+                {"id": "dist-3", "text": "The league assigns seeds by television ratings.", "isCorrect": false}
               ],
-              "translation": "She is saying that more wins improve the team's record and could move them up the standings to a better playoff seed.",
+              "translation": "'Win out' means winning every game left. She is saying a winning streak would push her team's record past several others and move it up the standings.",
               "followUps": [
                 {
-                  "line": "But that depends on what other teams do.",
-                  "why": "A good follow-up recognizing that seeding is relative and depends on other teams' records too."
+                  "line": "It also depends on the teams above you, right?",
+                  "why": "Seeding is relative, so what other teams do matters, and it shows you get that."
                 },
                 {
                   "line": "How many games are left?",
-                  "why": "A good follow-up asking about the feasibility of the jump in remaining games."
+                  "why": "It is an easy question that gauges how realistic the climb is."
                 }
               ],
-              "noFakeExpertNote": "Seeds just follow the standings. Win more, move up in the playoff race."
+              "noFakeExpertNote": "Seeds just follow the standings. 'Win out' means winning every remaining game, and a seed can jump quickly near the end."
             }
           }
         ]
@@ -230,32 +231,33 @@
             "type": "sequence-order",
             "conceptIds": ["play-in"],
             "payload": {
-              "prompt": "Order the Play-In Tournament games from start to finish.",
+              "prompt": "Order the Play-In, from the opening games to the last spot.",
               "items": [
-                {"id": "one", "text": "The 7-seed plays the 8-seed; winner gets the 7th playoff seed.", "why": "This is the first game; higher seeds play first."},
-                {"id": "two", "text": "The 9-seed plays the 10-seed; winner gets to play the loser of game one.", "why": "Lower seeds need to win to advance."},
-                {"id": "three", "text": "The winner of 9-10 plays the loser of 7-8; winner becomes the 8th seed.", "why": "This determines the final playoff spot."}
+                {"id": "one", "text": "7 vs 8 and 9 vs 10 are played.", "why": "These opening games come first."},
+                {"id": "two", "text": "The 7 vs 8 winner takes the 7th playoff seed.", "why": "A winner of the top game is safe."},
+                {"id": "three", "text": "The 7 vs 8 loser hosts the 9 vs 10 winner for the 8th seed.", "why": "It is the last game, and the loser is out."}
               ],
               "explanation": {
-                "correct": "Perfect. That is the exact Play-In structure for 2026-27.",
-                "incorrect": "Not quite. The Play-In has three games: 7-8 (winner is 7-seed), 9-10 (winner plays loser of 7-8 for the 8-seed)."
+                "correct": "The opening games sort the four teams: the 7 vs 8 winner is in as the 7-seed, the 9 vs 10 loser is out, and the last game decides the 8-seed. The top two seeds get a second chance.",
+                "incorrect": "The order is the opening games, the 7 vs 8 winner locking in the 7 spot, and then the loser of that game meeting the winner of 9 vs 10 for the 8 spot."
               }
             }
           },
           {
             "id": "lea-03-so-2",
-            "type": "sequence-order",
+            "type": "binary-call",
             "conceptIds": ["seventh-eighth-game", "ninth-tenth-game"],
             "payload": {
-              "prompt": "Order who plays whom in the Play-In based on seeding.",
-              "items": [
-                {"id": "high", "text": "The two highest seeds (7 and 8) play each other first.", "why": "Higher seeds get first dibs and home-court advantage in the play-in."},
-                {"id": "low", "text": "The two lowest seeds (9 and 10) play each other in the second game.", "why": "Lower seeds play after the higher seeds."},
-                {"id": "decider", "text": "The loser of the 7-8 game faces the winner of the 9-10 game.", "why": "This final game decides who takes the 8th playoff spot."}
+              "prompt": "The 9-seed beats the 10-seed in the Play-In. Is it in the playoffs?",
+              "scene": {"kind": "none", "alt": "A Play-In bracket: the 9-seed has just beaten the 10-seed, and the loser of the 7 vs 8 game is waiting for the winner."},
+              "choices": [
+                {"id": "yes", "label": "Yes, it qualifies"},
+                {"id": "no", "label": "No, it must win again"}
               ],
+              "correctChoiceId": "no",
               "explanation": {
-                "correct": "Exactly. Higher seeds are rewarded with playing later and better positioning.",
-                "incorrect": "Not quite. Seeds 7 and 8 play first; 9 and 10 play after. The winner of 9-10 faces the loser of 7-8."
+                "correct": "The 9 vs 10 winner only earns one more game: it has to beat the loser of the 7 vs 8 game to take the 8th seed. The 10-seed is out for good.",
+                "incorrect": "The Play-In is two chances for seeds 7 and 8 and only one for seeds 9 and 10. Beating the 10-seed just keeps the 9-seed alive for a game against the loser of 7 vs 8."
               }
             }
           },
@@ -272,8 +274,8 @@
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. The Play-In is for teams that barely missed the top six. They play for the 7th and 8th playoff seeds.",
-                "incorrect": "Not quite. The Play-In is a tournament for teams seeded 7-10, determining who gets the 7th and 8th playoff spots."
+                "correct": "The Play-In is for the teams that just missed the top six. Seeds 7 to 10 in each conference play a short bracket to decide the 7th and 8th playoff seeds.",
+                "incorrect": "It is not the title tournament or an All-Star event. The Play-In is a short bracket for seeds 7 to 10 that fills the last two playoff spots in each conference."
               }
             }
           },
@@ -284,14 +286,14 @@
             "payload": {
               "prompt": "Why do teams want to be the 6-seed or better?",
               "options": [
-                {"id": "correct", "text": "To skip the Play-In and go straight to the playoffs as a top-six seed."},
-                {"id": "dist-1", "text": "To get a trophy early in the season."},
-                {"id": "dist-2", "text": "Because the 7-seed never wins."}
+                {"id": "correct", "text": "A top-six seed skips the Play-In and cannot miss the playoffs."},
+                {"id": "dist-1", "text": "A top-six seed is awarded a trophy."},
+                {"id": "dist-2", "text": "Seventh seeds are not allowed to win a series."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Exactly. The top six seeds avoid the Play-In and go directly to round one of the playoffs.",
-                "incorrect": "Not quite. The 1-6 seeds skip the Play-In and go straight to the playoffs. Seeds 7-10 must win their way in."
+                "correct": "The top six seeds go straight to round one. Seeds 7 to 10 risk being eliminated in the Play-In, so a few extra wins in the regular season matter a lot.",
+                "incorrect": "There is no trophy for a top-six finish and no rule against a 7-seed winning a series. The real prize is skipping the Play-In and locking up a playoff spot."
               }
             }
           },
