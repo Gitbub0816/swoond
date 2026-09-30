@@ -76,7 +76,7 @@
               },
               "question": "What is she talking about?",
               "options": [
-                {"id": "correct", "text": "All five players are spread around the perimeter with good shooters, forcing defenders out.", "isCorrect": true},
+                {"id": "correct", "text": "Their shooters are spread wide, so defenders cannot crowd the lane.", "isCorrect": true},
                 {"id": "dist-1", "text": "The team is physically spread out on the bench.", "isCorrect": false},
                 {"id": "dist-2", "text": "They are taking only three-pointers.", "isCorrect": false},
                 {"id": "dist-3", "text": "The players are very tall.", "isCorrect": false}
@@ -112,7 +112,7 @@
               "prompt": "Match each cutting action to what it is.",
               "pairs": [
                 {"id": "cut", "term": "Cut", "definition": "Quick movement toward basket to get open for a pass and finish."},
-                {"id": "give-go", "term": "Give-and-go", "definition": "Pass to teammate who cuts to basket for quick return pass and layup."},
+                {"id": "give-go", "term": "Give-and-go", "definition": "Pass to a teammate, cut to the basket, and get the ball back for a layup."},
                 {"id": "backdoor", "term": "Backdoor cut", "definition": "Cut where player breaks behind overplaying defender for an easy layup."}
               ],
               "distractorDefinitions": [
@@ -120,7 +120,7 @@
                 "A screen set away from the ball."
               ],
               "explanation": {
-                "summary": "Core cutting actions: give-and-go is simplest play; backdoor cut beats overplaying defense."
+                "summary": "A cut is any sprint toward the rim. A give-and-go is pass, cut and return pass, and a backdoor cut punishes a defender who is overplaying the pass."
               }
             }
           },
@@ -165,44 +165,39 @@
             "type": "hotspot-tap",
             "conceptIds": ["cut"],
             "payload": {
-              "prompt": "Tap the area where a cutter would receive a pass near the basket.",
+              "prompt": "Tap where a cutter wants to catch the ball.",
               "diagram": {
-                "diagramId": "basketball-court",
-                "alt": "A basketball court showing cutting lanes and areas near the basket."
+                "diagramId": "bball-half-court",
+                "alt": "Half-court diagram with the basket near the bottom edge. A cutter sprints from the wing toward the rim. The elbow, wing and top of the key are marked."
               },
               "hotspots": [
-                {"id": "basket", "label": "Near the basket on the cut", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.15, "r": 0.08}},
-                {"id": "perimeter", "label": "Perimeter", "shape": {"kind": "circle", "cx": 0.8, "cy": 0.5, "r": 0.08}},
-                {"id": "elbow", "label": "Elbow", "shape": {"kind": "circle", "cx": 0.65, "cy": 0.35, "r": 0.08}},
-                {"id": "wing", "label": "Wing", "shape": {"kind": "circle", "cx": 0.2, "cy": 0.5, "r": 0.08}}
+                {"id": "basket", "label": "Near the basket", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.8, "r": 0.1}},
+                {"id": "perimeter", "label": "Corner", "shape": {"kind": "circle", "cx": 0.08, "cy": 0.88, "r": 0.07}},
+                {"id": "elbow", "label": "Elbow", "shape": {"kind": "circle", "cx": 0.66, "cy": 0.596, "r": 0.05}},
+                {"id": "wing", "label": "Wing", "shape": {"kind": "circle", "cx": 0.15, "cy": 0.5, "r": 0.07}}
               ],
               "correctHotspotIds": ["basket"],
               "explanation": {
-                "correct": "Yes! A cutter gets the ball near the basket. The cut is most valuable when it gets you a close, easy scoring opportunity.",
-                "incorrect": "Not quite. A cut is most effective when it gets the player near the basket for an easy finish. Distance from the rim matters."
+                "correct": "A cutter wants the ball close to the rim, where a catch turns straight into a layup or dunk. That is why defenders hate losing track of cutters.",
+                "incorrect": "Those spots are for shooters and passers. A cutter sprints toward the rim to catch the ball close to it, where the shot is easiest."
               }
             }
           },
           {
             "id": "off-02-hst-2",
-            "type": "hotspot-tap",
-            "conceptIds": ["off-ball-movement"],
+            "type": "sequence-order",
+            "conceptIds": ["give-and-go", "off-ball-movement"],
             "payload": {
-              "prompt": "Tap an area where off-ball movement (movement without the ball) is happening.",
-              "diagram": {
-                "diagramId": "basketball-court",
-                "alt": "A basketball court showing offensive movement patterns."
-              },
-              "hotspots": [
-                {"id": "cutter", "label": "Cutter moving to the basket", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.25, "r": 0.08}},
-                {"id": "ballhandler", "label": "Ball handler dribbling", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.65, "r": 0.08}},
-                {"id": "defender", "label": "Defender guarding", "shape": {"kind": "circle", "cx": 0.6, "cy": 0.6, "r": 0.08}},
-                {"id": "spot", "label": "Open spot on the wing", "shape": {"kind": "circle", "cx": 0.15, "cy": 0.4, "r": 0.08}}
+              "prompt": "Order a give-and-go, from pass to finish.",
+              "items": [
+                {"id": "pass", "text": "The ball handler passes to a teammate.", "why": "The give comes first."},
+                {"id": "cut", "text": "The passer cuts hard toward the basket.", "why": "The passer moves, without the ball, into open space."},
+                {"id": "return", "text": "The teammate hits the cutter with a return pass.", "why": "The go only works if the ball comes back."},
+                {"id": "finish", "text": "The cutter finishes at the rim.", "why": "The whole action exists to create this easy shot."}
               ],
-              "correctHotspotIds": ["cutter"],
               "explanation": {
-                "correct": "Right! Off-ball movement is any action taken by a teammate without the ball. This cutter is creating space and a scoring opportunity.",
-                "incorrect": "Not quite. Off-ball movement is when a player moves WITHOUT the ball to create space or get open. A cutter moving to the basket is a perfect example."
+                "correct": "Pass, cut, return pass, finish. The passer moves without the ball, and that movement, not the pass, is what beats the defender.",
+                "incorrect": "The order is pass, then cut, then the return pass and finish. The defender watches the ball for a moment, and the cutter uses that moment to get free."
               }
             }
           },
@@ -220,7 +215,7 @@
                 {"id": "correct", "text": "A player broke behind an overplaying defender for an easy basket.", "isCorrect": true},
                 {"id": "dist-1", "text": "Someone took a three-pointer.", "isCorrect": false},
                 {"id": "dist-2", "text": "A player traveled on the break.", "isCorrect": false},
-                {"id": "dist-3", "text": "The defense was not ready.", "isCorrect": false}
+                {"id": "dist-3", "text": "A player passed the ball behind his back.", "isCorrect": false}
               ],
               "translation": "The offensive player caught the defender cheating and slipped behind them for an open, easy finish near the basket.",
               "followUps": [
@@ -254,7 +249,7 @@
               "pairs": [
                 {"id": "ball", "term": "Ball screen", "definition": "Screen for ball handler to create space for drive or shot."},
                 {"id": "offball", "term": "Off-ball screen", "definition": "Screen for player without ball to free them for catch-and-shoot or cut."},
-                {"id": "assist", "term": "Screen assist", "definition": "Credit for a screen that leads directly to a basket or assist."}
+                {"id": "assist", "term": "Screen assist", "definition": "A stat credited to a screener when the teammate he screened scores right after."}
               ],
               "distractorDefinitions": [
                 "A pass that leads to a score.",
@@ -306,16 +301,16 @@
             "type": "binary-call",
             "conceptIds": ["illegal-screen"],
             "payload": {
-              "prompt": "Screener moves into defender's path after defense starts moving. Legal?",
-              "scene": {"kind": "none", "alt": "A screener initiating contact into a defender's path."},
+              "prompt": "The screener slides sideways into a moving defender's path as contact happens. Legal?",
+              "scene": {"kind": "none", "alt": "A screener takes a step sideways into the path of a moving defender and makes contact."},
               "choices": [
                 {"id": "yes", "label": "Legal screen"},
                 {"id": "no", "label": "Illegal screen"}
               ],
               "correctChoiceId": "no",
               "explanation": {
-                "correct": "Right. A screen is illegal if set into a defender's path after they're moving. Screener must be set first.",
-                "incorrect": "Not quite. Illegal screens are set by moving into the defender's path. Screener must be stationary and not use elbows."
+                "correct": "A screener has to be set, feet still, before the contact. Sliding into a defender's path is an illegal, or moving, screen, and it is an offensive foul.",
+                "incorrect": "A legal screen is set standing still. Moving into the defender's path, or sticking out an elbow or hip, makes it illegal and the offense loses the ball."
               }
             }
           },
@@ -324,34 +319,34 @@
             "type": "binary-call",
             "conceptIds": ["ball-screen"],
             "payload": {
-              "prompt": "The ball handler dribbles toward a teammate who sets a screen. Is a screen being used?",
-              "scene": {"kind": "none", "alt": "A dribbler approaching a teammate to use a screen."},
+              "prompt": "A screener plants his feet. The defender runs into him. Legal?",
+              "scene": {"kind": "none", "alt": "A screener stands still with both feet planted and a defender runs into his side while chasing the ball handler."},
               "choices": [
-                {"id": "yes", "label": "Yes, a ball screen is being set up."},
-                {"id": "no", "label": "No, this is just off-ball movement."}
+                {"id": "yes", "label": "Legal screen"},
+                {"id": "no", "label": "Illegal screen"}
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Right. When the ball handler approaches a teammate for contact to create space, that is a ball screen. The screener is helping the ball handler.",
-                "incorrect": "Not quite. When the ball handler moves toward a teammate to use their body to create separation from their defender, that is a ball screen."
+                "correct": "A screener who is set and stationary is doing the job correctly. A defender who runs into him has been screened, which is the point of a ball screen.",
+                "incorrect": "Screens are legal when the screener stands still, feet set, and lets the defender come to him. Only a moving screener or a stuck-out elbow makes it a foul."
               }
             }
           },
           {
             "id": "off-03-bc-2",
             "type": "binary-call",
-            "conceptIds": ["off-ball-screen"],
+            "conceptIds": ["off-ball-screen", "ball-screen"],
             "payload": {
-              "prompt": "A player sets a screen for a teammate who does not have the ball to get them open. Is this an off-ball screen?",
-              "scene": {"kind": "none", "alt": "A screen set for a player away from the ball."},
+              "prompt": "A screen is set on a ball handler's defender. The defender goes under it. Legal?",
+              "scene": {"kind": "none", "alt": "A ball screen is set at the top of the key and the ball handler's defender chooses to slip under it rather than around the top."},
               "choices": [
-                {"id": "yes", "label": "Yes, an off-ball screen."},
-                {"id": "no", "label": "No, this is only a ball screen."}
+                {"id": "yes", "label": "Legal"},
+                {"id": "no", "label": "Illegal"}
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Correct. Off-ball screens are for players without the ball. They are used to free shooters and cutters for easy scoring opportunities.",
-                "incorrect": "Not quite. If the screen is for a player without the ball, it is an off-ball screen by definition."
+                "correct": "Going over or under a screen is the defender's choice, and both are legal. Teams plan those choices ahead as part of how they defend ball screens.",
+                "incorrect": "A screened defender may fight over the top, go under, or switch. None of those is a violation, and the defense picks the one that fits the situation."
               }
             }
           }
@@ -371,16 +366,16 @@
             "payload": {
               "prompt": "Match each shot type to its description.",
               "pairs": [
-                {"id": "layup", "term": "Layup", "definition": "Close-range shot from near the basket, usually bouncing off the backboard for high efficiency."},
-                {"id": "floater", "term": "Floater", "definition": "Soft, short-range jump shot inside the three-point line used by guards over defenders' hands."},
+                {"id": "layup", "term": "Layup", "definition": "A close-range shot taken on the move, often banked off the backboard."},
+                {"id": "floater", "term": "Floater", "definition": "A soft, high-arcing shot released early, before a rim protector can reach it."},
                 {"id": "pull-up", "term": "Pull-up jumper", "definition": "Jump shot taken mid-dribble where the player pulls up suddenly to create shooting space."}
               ],
               "distractorDefinitions": [
                 "A pass that arcs high.",
-                "A shot with a very high arc."
+                "A shot taken with both feet on the line."
               ],
               "explanation": {
-                "summary": "These three are workhorses of offense: layups for efficiency, floaters for guards, pull-ups for creating space."
+                "summary": "A layup is the close finish, a floater is the soft shot over a big, and a pull-up is the jumper taken right off the dribble."
               }
             }
           },
@@ -396,11 +391,11 @@
                 {"id": "hook", "term": "Hook shot", "definition": "Post-player move where ball extends away from body in an arc. Less common in modern game."}
               ],
               "distractorDefinitions": [
-                "A shot blocked by the rim.",
-                "A turn-around shot."
+                "A jump shot taken right after catching a pass.",
+                "A shot launched from behind the backboard."
               ],
               "explanation": {
-                "summary": "Advanced shots: step-back and fadeaway create space; hooks are post moves seen less in modern ball."
+                "summary": "The step-back and the fadeaway both make space for a jump shot, and the hook is a post move. Shooters keep several of these in their toolbox."
               }
             }
           },
@@ -411,14 +406,14 @@
             "payload": {
               "prompt": "What is a catch-and-shoot player?",
               "options": [
-                {"id": "correct", "text": "A player who receives a pass and shoots immediately without dribbling, usually a specialist in perimeter shooting."},
+                {"id": "correct", "text": "A player who catches a pass and shoots without dribbling first."},
                 {"id": "dist-1", "text": "A player who steals the ball and scores."},
                 {"id": "dist-2", "text": "A player who catches a rebound and dunks."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. Catch-and-shoot players are efficient because they do not waste time dribbling; they just catch and fire. They are usually role players or sharpshooters.",
-                "incorrect": "Not quite. Catch-and-shoot is about shooting immediately after catching a pass. These players are efficient and valuable for spacing an offense."
+                "correct": "A catch-and-shoot shot comes straight off a pass, with no dribble, so the shooter is already set when the defense arrives. Stars take them too, but spacing players live on them.",
+                "incorrect": "It is not about steals or dunks. Catch-and-shoot means the shot comes directly off a pass, which makes it quick and usually open."
               }
             }
           },
@@ -429,14 +424,14 @@
             "payload": {
               "prompt": "What is an alley-oop?",
               "options": [
-                {"id": "correct", "text": "A pass to a teammate who dunks or lays it in in mid-air before landing."},
+                {"id": "correct", "text": "A lob pass that a teammate catches in the air and finishes at the rim."},
                 {"id": "dist-1", "text": "A rebound by the team that just missed."},
                 {"id": "dist-2", "text": "An assist from the point guard."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Exactly. An alley-oop is a lob pass to a teammate who finishes near the rim, usually with a dunk. It is an easy, high-percentage play.",
-                "incorrect": "Not quite. An alley-oop is a lob pass that a teammate finishes by dunking or laying it in. It is a spectacular but high-percentage play."
+                "correct": "The passer throws the ball high near the rim and the teammate jumps, catches it in the air and finishes, usually with a dunk. Timing between the two is everything.",
+                "incorrect": "An alley-oop is not a rebound or a normal assist. It is a lob thrown near the rim for a teammate who finishes it before landing."
               }
             }
           },
@@ -446,11 +441,11 @@
             "conceptIds": ["layup", "catch-and-shoot"],
             "payload": {
               "prompt": "Complete the shot descriptions.",
-              "template": "A {{layup-term}} is a close-range shot near the basket. A {{catch-term}} player receives a pass and shoots immediately without dribbling.",
+              "template": "A {{layup-term}} is a shot taken right at the rim. A {{catch-term}} shooter gets the ball on a pass and shoots without dribbling.",
               "gaps": [
                 {
                   "id": "layup-term",
-                  "options": ["layup", "floater", "three-pointer"],
+                  "options": ["layup", "three-pointer", "free throw"],
                   "correct": "layup"
                 },
                 {
@@ -460,8 +455,8 @@
                 }
               ],
               "explanation": {
-                "correct": "Perfect. Layups are highest-percentage; catch-and-shoot players are efficient role players.",
-                "incorrect": "Not quite. A layup is near-rim and high efficiency. Catch-and-shoot is immediate shooting after catching."
+                "correct": "A layup is the shot at the rim, where percentages are highest, and a catch-and-shoot shooter fires straight off a pass, before the defense can recover.",
+                "incorrect": "A layup happens at the rim, unlike a three-pointer or a free throw. Isolation and post-up are ways of creating a shot, not shots that come off a pass."
               }
             }
           },
@@ -472,7 +467,7 @@
             "payload": {
               "statement": {
                 "speaker": "Your crush",
-                "text": "He can not take a pull-up on the move."
+                "text": "He can't hit a pull-up off the dribble."
               },
               "question": "What is she saying about him?",
               "options": [
@@ -509,7 +504,7 @@
             "type": "estimate-slider",
             "conceptIds": ["shot-quality"],
             "payload": {
-              "prompt": "What percentage of a team's shots should come from three or at the rim (not the midrange)?",
+              "prompt": "About what share of NBA shots are threes or at the rim?",
               "unit": "percent",
               "min": 40,
               "max": 100,
@@ -517,8 +512,8 @@
               "correctValue": 75,
               "tolerance": {"full": 5, "partial": 10},
               "explanation": {
-                "correct": "Exactly right. Modern teams shoot around 75% of their shots from three-pointers or layups because these shots are most efficient. The midrange is dead.",
-                "incorrect": "Not quite. Elite modern teams shoot three-pointers and rim shots almost 75% of the time. The midrange is avoided because it is inefficient."
+                "correct": "In recent seasons roughly three of every four shots are threes or at the rim. Those shots are worth the most per attempt, so teams trade long twos for them.",
+                "incorrect": "It is about three of every four shots in recent NBA seasons. Threes are worth more, and shots at the rim go in often, so the long two has lost out."
               }
             }
           },
@@ -527,16 +522,16 @@
             "type": "estimate-slider",
             "conceptIds": ["three-point-revolution"],
             "payload": {
-              "prompt": "How many three-pointers per game does an NBA team attempt now?",
+              "prompt": "How many threes does a typical NBA team attempt per game?",
               "unit": "shots",
               "min": 15,
-              "max": 40,
+              "max": 50,
               "step": 1,
-              "correctValue": 33,
+              "correctValue": 37,
               "tolerance": {"full": 2, "partial": 5},
               "explanation": {
-                "correct": "Spot on. Modern NBA teams attempt around 33 three-pointers per game, triple what they attempted 20 years ago. This is the three-point revolution.",
-                "incorrect": "Not quite. NBA teams now attempt around 33 three-pointers per game on average, a huge increase from earlier eras."
+                "correct": "In recent seasons NBA teams have launched somewhere around 37 threes a game, well over double the number from twenty years ago. That is the three-point revolution.",
+                "incorrect": "Recent NBA teams average in the high thirties per game, more than double what teams shot two decades ago. The exact number creeps up almost every year."
               }
             }
           },
@@ -545,16 +540,16 @@
             "type": "estimate-slider",
             "conceptIds": ["free-throw-rate"],
             "payload": {
-              "prompt": "Which type of shot (rim, three, or midrange) most often leads to free throws?",
-              "unit": "percent",
-              "min": 0,
-              "max": 100,
-              "step": 1,
-              "correctValue": 75,
-              "tolerance": {"full": 10, "partial": 15},
+              "prompt": "A player shoots 36% on threes. Points per shot?",
+              "unit": "points",
+              "min": 0.5,
+              "max": 1.5,
+              "step": 0.01,
+              "correctValue": 1.08,
+              "tolerance": {"full": 0.04, "partial": 0.12},
               "explanation": {
-                "correct": "Right. Driving to the rim (around 75% of cases when a foul occurs) leads to free throws more often than perimeter shots. This is why attacking the rim is valuable.",
-                "incorrect": "Not quite. Shots at the rim lead to fouls and free throws far more often than three-pointers or midrange attempts, which is another reason to attack inside."
+                "correct": "Each miss counts zero and each make counts three, so 0.36 times 3 is about 1.08 points per shot. A 45% shooter on twos earns only 0.90, which is why 36% from three beats it.",
+                "incorrect": "Multiply the make rate by the shot's value: 0.36 times 3 is about 1.08 points per attempt. A two-point shooter needs about 54% to match that, and that is what drives shot selection."
               }
             }
           },
@@ -563,21 +558,21 @@
             "type": "hotspot-tap",
             "conceptIds": ["midrange-shot"],
             "payload": {
-              "prompt": "Tap the area where midrange shots are (between the paint and the three-point line).",
+              "prompt": "Tap the midrange: inside the arc, outside the lane.",
               "diagram": {
-                "diagramId": "basketball-court",
-                "alt": "A basketball court showing different shooting zones."
+                "diagramId": "bball-half-court",
+                "alt": "Half-court diagram with the three-point arc curving high above the free-throw line and the painted lane below it."
               },
               "hotspots": [
-                {"id": "midrange", "label": "Mid-range zone", "shape": {"kind": "rect", "x": 0.35, "y": 0.5, "w": 0.3, "h": 0.25}},
-                {"id": "three", "label": "Three-point line", "shape": {"kind": "rect", "x": 0, "y": 0, "w": 1, "h": 0.15}},
-                {"id": "paint", "label": "Paint", "shape": {"kind": "rect", "x": 0.35, "y": 0.15, "w": 0.3, "h": 0.35}},
-                {"id": "baseline", "label": "Baseline", "shape": {"kind": "rect", "x": 0, "y": 0, "w": 1, "h": 0.05}}
+                {"id": "midrange", "label": "Mid-range area", "shape": {"kind": "rect", "x": 0.3, "y": 0.42, "w": 0.4, "h": 0.14}},
+                {"id": "three", "label": "Above the arc", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.3, "r": 0.06}},
+                {"id": "paint", "label": "Paint", "shape": {"kind": "rect", "x": 0.34, "y": 0.64, "w": 0.32, "h": 0.3}},
+                {"id": "baseline", "label": "Baseline", "shape": {"kind": "rect", "x": 0, "y": 0.96, "w": 1, "h": 0.04}}
               ],
               "correctHotspotIds": ["midrange"],
               "explanation": {
-                "correct": "Yes! The midrange is the zone between the paint and the three-point line, roughly 10-22 feet. This is the zone modern teams avoid because the efficiency is lowest.",
-                "incorrect": "Not quite. The midrange is the area between the paint and the three-point arc. It is inefficient in the modern game."
+                "correct": "The midrange is the ground between the lane and the arc, the long two. It is worth only two points from nearly three-point distance, which is why teams now shoot fewer of them.",
+                "incorrect": "That is another part of the floor. The midrange is the area inside the three-point arc but outside the paint, where a shot is worth two from a long way out."
               }
             }
           },
@@ -588,19 +583,19 @@
             "payload": {
               "prompt": "Tap the corner three-point area (shortest three-pointer).",
               "diagram": {
-                "diagramId": "basketball-court",
-                "alt": "A basketball court showing corner three-point zones."
+                "diagramId": "bball-half-court",
+                "alt": "Half-court diagram. The three-point arc runs straight down each sideline near the baseline, forming the corners, and curves out higher toward the top of the key."
               },
               "hotspots": [
-                {"id": "corner", "label": "Corner three", "shape": {"kind": "circle", "cx": 0.05, "cy": 0.05, "r": 0.1}},
-                {"id": "wing", "label": "Wing three", "shape": {"kind": "circle", "cx": 0.15, "cy": 0.5, "r": 0.08}},
-                {"id": "top", "label": "Top of the key", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.05, "r": 0.08}},
-                {"id": "midrange", "label": "Mid-range", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.4, "r": 0.08}}
+                {"id": "corner", "label": "Corner three", "shape": {"kind": "circle", "cx": 0.07, "cy": 0.88, "r": 0.07}},
+                {"id": "wing", "label": "Wing three", "shape": {"kind": "circle", "cx": 0.15, "cy": 0.52, "r": 0.06}},
+                {"id": "top", "label": "Top-of-the-key three", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.36, "r": 0.05}},
+                {"id": "midrange", "label": "Mid-range", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.5, "r": 0.05}}
               ],
               "correctHotspotIds": ["corner"],
               "explanation": {
-                "correct": "Exactly! Corner threes are the shortest three-pointers (22 ft instead of 23'9\") and the most efficient. Teams hunt corner threes.",
-                "incorrect": "Not quite. The corner three is the shortest three-point distance at 22 feet in the NBA, making it the most efficient and highly coveted shot."
+                "correct": "The corner three is the shortest three in the NBA, 22 feet against 23 feet 9 inches at the top. A shorter shot is easier, so teams work hard to get them.",
+                "incorrect": "The shortest three-point shot is from the corner, 22 feet from the basket in the NBA. The wing and the top of the key are farther out, and the midrange is inside the arc."
               }
             }
           },
@@ -611,14 +606,14 @@
             "payload": {
               "prompt": "What changed basketball when teams started taking more three-pointers?",
               "options": [
-                {"id": "correct", "text": "Defenses had to spread out to guard perimeter shooters, opening driving lanes and changing how offense is structured."},
+                {"id": "correct", "text": "Defenses had to spread out to guard shooters, which opened the lane."},
                 {"id": "dist-1", "text": "Games became slower."},
                 {"id": "dist-2", "text": "Only tall players can play now."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. The three-point revolution forced defenses to guard shooters at distance, which opened the lane for drives and cutters. It transformed how offense is played.",
-                "incorrect": "Not quite. More three-pointers means defenses have to space out and guard the perimeter, opening up the interior for drives and cuts. This is the core of modern offense."
+                "correct": "When teams took more threes, defenders had to guard farther from the rim. That opened the lane for drives and cuts, which is the heart of modern offense.",
+                "incorrect": "More threes did not slow the game or shut out short players. It stretched defenses toward the arc and opened up the paint for drives and cutters."
               }
             }
           }
@@ -638,9 +633,9 @@
             "payload": {
               "prompt": "Match each pass type to what it does.",
               "pairs": [
-                {"id": "assist", "term": "Assist", "definition": "Pass to teammate who directly scores. Official scorer credits this if it leads to basket."},
-                {"id": "hockey", "term": "Hockey assist", "definition": "Pass to teammate who passes to scorer. Also called assist-on-assist; not official but fans notice."},
-                {"id": "pocket", "term": "Pocket pass", "definition": "Short, quick bounce pass to rolling or cutting teammate. Precise, common in pick-and-roll."}
+                {"id": "assist", "term": "Assist", "definition": "A pass that leads directly to a basket, credited by the official scorer."},
+                {"id": "hockey", "term": "Hockey assist", "definition": "The pass before the assist. Not an official stat, but fans and analysts notice it."},
+                {"id": "pocket", "term": "Pocket pass", "definition": "A short, tight pass, often a bounce, to a rolling teammate. Common in the pick-and-roll."}
               ],
               "distractorDefinitions": [
                 "A pass deflected by defender.",
@@ -721,18 +716,18 @@
                 {"id": "dist-2", "text": "He is playing defense.", "isCorrect": false},
                 {"id": "dist-3", "text": "He is tired.", "isCorrect": false}
               ],
-              "translation": "He is being a great playmaker: passing the ball to open teammates who score, while protecting the ball and avoiding turnovers. This is elite play.",
+              "translation": "He set up teammates for seven baskets and gave the ball away only twice. That is a strong playmaking night.",
               "followUps": [
                 {
-                  "line": "Yeah, his vision is incredible.",
-                  "why": "You are recognizing his ability to see and make passes others miss."
+                  "line": "Seven to two is a great ratio.",
+                  "why": "You are reading the two numbers together, which is exactly how fans judge a playmaker."
                 },
                 {
                   "line": "Who did he get most of his assists to?",
                   "why": "A real follow-up that shows you are paying attention to who is benefiting."
                 }
               ],
-              "noFakeExpertNote": "Good assist-to-turnover ratio means smart, unselfish play."
+              "noFakeExpertNote": "You can just say 'seven and two, that's a good night.' Numbers read aloud are enough."
             }
           },
           {
@@ -823,8 +818,8 @@
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Right. When a guard has a size advantage (speed, range) and the big man does not, it is a mismatch the offense exploits by attacking or shooting.",
-                "incorrect": "Not quite. If a big man cannot guard a guard's three-point shooting or speed, it is a mismatch that the offense should attack."
+                "correct": "A big defender chasing a quick shooter is a mismatch for the offense: the guard can shoot over the space he gives or drive past him. Offenses look for exactly this.",
+                "incorrect": "When a slower big has to cover a quick outside shooter, the defense has a weakness. Offenses call for that matchup on purpose, then attack it."
               }
             }
           },
@@ -841,8 +836,8 @@
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. When doubled, one of your other teammates is open. Passing is faster and better than dribbling out.",
-                "incorrect": "Not quite. A double-team forces passing because teammates become open. Shooting or dribbling into traffic is inefficient."
+                "correct": "Two defenders on one star means one teammate is left with a free look, four against three. A quick pass beats forcing a shot or dribbling into more traffic.",
+                "incorrect": "A double-team leaves someone open elsewhere. Forcing a shot through two defenders, or dribbling into the crowd, gives that advantage away."
               }
             }
           },
@@ -853,14 +848,14 @@
             "payload": {
               "prompt": "You spot the opponent's center is too slow for your forward. What do you do?",
               "options": [
-                {"id": "correct", "text": "Hunt the mismatch by targeting your forward against the center every possession."},
+                {"id": "correct", "text": "Keep getting your forward the ball against that center until the defense adjusts."},
                 {"id": "dist-1", "text": "Avoid passing to the forward to keep the mismatch hidden."},
                 {"id": "dist-2", "text": "Pass to your worst player instead."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Exactly. Hunting mismatches is core to modern basketball. Target advantages relentlessly until defense adjusts.",
-                "incorrect": "Not quite. Mismatches are gold in basketball. Attack them every possession to exploit the size or speed advantage."
+                "correct": "Hunting a mismatch means steering the ball to the advantage, again and again, until the defense changes matchups or sends help, which opens up someone else.",
+                "incorrect": "Hiding an advantage, or passing away from it, wastes it. A speed or size edge is something the offense should use until the defense reacts."
               }
             }
           },

@@ -113,7 +113,7 @@
               },
               "question": "What should you say?",
               "options": [
-                {"id": "a", "text": "You're receiving, so you get the serve (side-out) but no points yet. You score when you serve.", "isCorrect": true},
+                {"id": "a", "text": "Receivers don't score. You win the serve (a side-out), and points come on your serve.", "isCorrect": true},
                 {"id": "b", "text": "Serving team scored instead.", "isCorrect": false},
                 {"id": "c", "text": "That's just the rule; nobody knows why.", "isCorrect": false},
                 {"id": "d", "text": "It's not fair.", "isCorrect": false}
@@ -137,20 +137,20 @@
             "type": "binary-call",
             "conceptIds": ["only-server-scores"],
             "payload": {
-              "prompt": "Receiving team wins the rally 5-6. Score is now what?",
+              "prompt": "It's 6-5 to the servers. The receivers win the rally. Score?",
               "scene": {
                 "kind": "none",
-                "alt": "Score scenario: serving 5-6, receiving wins the rally."
+                "alt": "Score scenario: the serving team leads 6-5 and the receiving team wins the rally."
               },
               "choices": [
-                {"id": "five-five", "label": "5-5 (no score change)"},
-                {"id": "five-seven", "label": "5-7"}
+                {"id": "same", "label": "Still 6-5, the serve changes hands"},
+                {"id": "six-six", "label": "6-6, the receivers score"}
               ],
-              "correctChoiceId": "five-five",
+              "correctChoiceId": "same",
               "explanation": {
-                "correct": "Correct. Receiving won, so they get the serve (side-out), but the score stays 5-6 in side-out. No points are awarded.",
-                "incorrect": "Side-out scoring doesn't award points to the receiving team. They get the serve, but the score stays the same.",
-                "sayThisLine": "Side-out, they gain the serve at 5-6."
+                "correct": "Receivers never score in side-out scoring. They win the serve, so the points stay 6-5 and the new serving team calls it as 5-6.",
+                "incorrect": "Only the serving team can score. The receivers' reward for winning the rally is the serve, not a point.",
+                "sayThisLine": "They win the serve, but the score stays 6-5."
               },
               "ruleTag": "Side-out scoring"
             }
@@ -199,14 +199,14 @@
                 {"id": "c", "text": "Three different things, too confusing.", "isCorrect": false},
                 {"id": "d", "text": "6 to 5 in the first game.", "isCorrect": false}
               ],
-              "translation": "The three-number call tells you who's ahead and which server is up. It's the official way to call score in doubles.",
+              "translation": "Sam heard the score call in side-out doubles: the serving team's score, the receiving team's score, then which server is up.",
               "followUps": [
                 {
                   "line": "The first number is the server's score, second is the receiver's, third is server one or two.",
                   "why": "Breaks it down into memorable parts."
                 },
                 {
-                  "line": "6-5-1 means server is ahead 6 to 5, and it's the first server's turn.",
+                  "line": "I think 6-5-1 means the servers lead 6 to 5 and the first server is up.",
                   "why": "Practical example interpretation."
                 }
               ],
@@ -241,7 +241,7 @@
                 "Number of sets"
               ],
               "explanation": {
-                "summary": "The three-number call in doubles is always: serving team score, receiving team score, server number. This format is standard everywhere.",
+                "summary": "In side-out doubles the call is serving team score, receiving team score, server number. The serving team's number always comes first.",
                 "sayThisLine": "Server score, receiver score, server one or two."
               }
             }
@@ -271,7 +271,7 @@
                 }
               ],
               "explanation": {
-                "correct": "The three-number call is universal in doubles: server, receiver, then server one or two.",
+                "correct": "In side-out doubles the call runs server's team, receiver's team, then server one or two.",
                 "incorrect": "Always remember the order: serving team first, receiving second, server number third (1 or 2).",
                 "sayThisLine": "Three numbers: server, receiver, and which server's turn."
               }
@@ -316,7 +316,7 @@
                   ]
                 }
               ],
-              "expertNote": "The three-number call is always consistent: serving team, receiving team, server number. Learn the order and you'll call it right every time."
+              "expertNote": "Serving team first, receiving team second, server number last. The server calls it out loud before every serve, so you get plenty of practice."
             }
           }
         ]
@@ -332,38 +332,38 @@
             "type": "sequence-order",
             "conceptIds": ["server-number", "side-out"],
             "payload": {
-              "prompt": "Put the serve sequence in order (how it moves through both servers).",
+              "prompt": "Put one serving turn in order, from server one to side-out.",
               "items": [
                 {
                   "id": "server-one-serves",
-                  "text": "Server one serves and wins the rally",
-                  "why": "The first partner gets the serve at the start."
+                  "text": "Server one wins a rally: the team scores and server one serves again",
+                  "why": "Winning a rally scores a point and keeps the serve."
                 },
                 {
                   "id": "server-one-loses",
-                  "text": "Server one serves and loses the rally",
-                  "why": "First server is out; the serve moves to server two."
+                  "text": "Server one loses a rally: server two takes over",
+                  "why": "The first server is out, so the serve moves to the partner."
                 },
                 {
                   "id": "server-two-serves",
-                  "text": "Server two now serves and wins the rally",
-                  "why": "The second partner gets a chance to serve."
+                  "text": "Server two wins a rally: the team scores and server two serves again",
+                  "why": "The second partner also keeps serving while they keep winning."
                 },
                 {
                   "id": "server-two-loses",
-                  "text": "Server two serves and loses the rally",
-                  "why": "Both servers are out; it's a side-out."
+                  "text": "Server two loses a rally: both partners have had their turn",
+                  "why": "Losing as server two ends the team's time serving."
                 },
                 {
                   "id": "side-out",
-                  "text": "The other team now serves (side-out)",
-                  "why": "The serve goes to the other team because both partners lost."
+                  "text": "The other team takes the serve (a side-out)",
+                  "why": "The serve passes to the other team once both partners have lost a rally."
                 }
               ],
               "explanation": {
-                "correct": "Server one goes first, then server two, then side-out. Once both servers lose, the entire serve moves to the receiving team.",
-                "incorrect": "Each partner gets a turn to serve (unless they win). After both lose, the whole serve goes to the other team.",
-                "sayThisLine": "Server one, then server two, then side-out to the other team."
+                "correct": "Server one serves until they lose a rally, then server two does, then it is a side-out and the other team takes the serve.",
+                "incorrect": "Each partner keeps serving as long as they keep winning. A lost rally moves the serve to the partner, and a second lost rally sends it to the other team.",
+                "sayThisLine": "Server one, then server two, then the serve goes to the other team."
               }
             }
           },
@@ -372,10 +372,10 @@
             "type": "binary-call",
             "conceptIds": ["side-out"],
             "payload": {
-              "prompt": "Server one loses a rally. The serve moves to...?",
+              "prompt": "Mid-game, server one loses a rally. The serve moves to...?",
               "scene": {
                 "kind": "none",
-                "alt": "Serve scenario: server one just lost the rally."
+                "alt": "Serve scenario in the middle of a game: server one just lost the rally."
               },
               "choices": [
                 {"id": "server-two", "label": "Server two (same team)"},
@@ -384,7 +384,7 @@
               "correctChoiceId": "server-two",
               "explanation": {
                 "correct": "Server one is out, so the serve goes to server two on the same team. Only after server two loses does it go to the other team (side-out).",
-                "incorrect": "Each team gets two servers (both partners). Server one losing means server two gets a turn; side-out happens only after both lose.",
+                "incorrect": "Apart from the very start of a game, each team has two servers (both partners). Server one losing means server two gets a turn; side-out happens only after both lose.",
                 "sayThisLine": "Server one out, server two gets the serve."
               },
               "ruleTag": "Serve rotation"
@@ -439,7 +439,7 @@
               ],
               "explanation": {
                 "correct": "Both partners on the serving team get a turn. After both lose a rally, side-out sends the serve to the other team.",
-                "incorrect": "Each serving team has two servers. Only after both serve and lose does the other team get the serve.",
+                "incorrect": "A serving team has two servers after the opening turn. Only after both have lost a rally does the other team get the serve.",
                 "sayThisLine": "Server one, server two, then side-out."
               }
             }
@@ -451,11 +451,11 @@
             "payload": {
               "prompt": "Server one wins the rally. Where does the serve go next?",
               "situation": {
-                "narrative": "Server one just won a rally. The score is now 7-2 (server's team is winning).",
+                "narrative": "Server one just won a rally. The call is now 7-2-1, so the serving team leads.",
                 "facts": [
-                  {"label": "Server one", "value": "Just won"},
-                  {"label": "Score", "value": "7-2 serving team ahead"},
-                  {"label": "Outcome", "value": "They can run up their score"}
+                  {"label": "Server one", "value": "Just won the rally"},
+                  {"label": "Score", "value": "7-2-1, serving team ahead"},
+                  {"label": "Question", "value": "Who serves the next rally?"}
                 ]
               },
               "options": [
@@ -463,7 +463,7 @@
                   "id": "server-one-again",
                   "label": "Server one keeps serving",
                   "verdict": "best",
-                  "consequence": "Correct. When you win, you serve again. Server one can keep serving until they lose.",
+                  "consequence": "Right. When the server wins a rally the team scores and the same server serves again, from the other side. Server one keeps going until they lose a rally.",
                   "considerations": [
                     "Winning the rally = you keep the serve",
                     "Server one plays until they lose",
@@ -498,18 +498,18 @@
             "type": "multiple-choice",
             "conceptIds": ["first-server-exception"],
             "payload": {
-              "prompt": "At the start of a match, why does the first serving team start at 0-0-2?",
+              "prompt": "Why does the first serving team start a game at 0-0-2?",
               "options": [
-                {"id": "a", "text": "Because server two is better"},
-                {"id": "b", "text": "To give the receiving team a fair chance; serving is an advantage"},
+                {"id": "a", "text": "Because server two is the better player"},
+                {"id": "b", "text": "So serving first is not a double advantage"},
                 {"id": "c", "text": "It's random"},
                 {"id": "d", "text": "To speed up the game"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "The first server only gets one turn (0-0-2 means server two is marked, but server one serves alone at the start). This evens out the advantage of serving first.",
-                "incorrect": "Serving is a scoring advantage in side-out scoring, so the first serving team starts with only one server as a handicap. It's fair, not random.",
-                "sayThisLine": "0-0-2 means the first team serves once, then it's the other team's turn."
+                "correct": "Only the serving team can score, so serving first is an edge. Starting at 0-0-2 means the first server counts as server two, so their team has no second server: their first lost rally is an immediate side-out.",
+                "incorrect": "The 2 is not about skill, chance or speed. It cuts the first serving team down to one turn, which evens out the advantage of serving first.",
+                "sayThisLine": "The first team gets one turn at the start, so serving first isn't too big an edge."
               }
             }
           },
@@ -518,40 +518,40 @@
             "type": "decision-scenario",
             "conceptIds": ["first-server-exception"],
             "payload": {
-              "prompt": "The match just started at 0-0-2. Server one wins the rally. What's next?",
+              "prompt": "The game starts at 0-0-2 and the server wins the rally. What next?",
               "situation": {
-                "narrative": "Score is 0-0-2, the first team just won. They're on the board and in control.",
+                "narrative": "The game has just started at 0-0-2. The first serving team wins the rally.",
                 "facts": [
-                  {"label": "Starting team", "value": "Serving (0-0-2)"},
-                  {"label": "Rally result", "value": "Server one won"},
-                  {"label": "New score", "value": "1-0 (now leading)"},
-                  {"label": "Fair advantage", "value": "First server gets one shot, then other team serves"}
+                  {"label": "Start of game", "value": "0-0-2, the only server on their team"},
+                  {"label": "Rally result", "value": "The server's team won it"},
+                  {"label": "New call", "value": "1-0-2, the serving team leads"}
                 ]
               },
               "options": [
                 {
-                  "id": "server-one-again",
-                  "label": "Server one serves again",
+                  "id": "server-again",
+                  "label": "The same server serves again, from the other side",
                   "verdict": "best",
-                  "consequence": "Correct. Winning the rally means the serve stays. Server one keeps serving until they lose.",
+                  "consequence": "Right. Winning a rally scores a point and keeps the serve. The starting server keeps going until they lose a rally.",
                   "considerations": [
                     "Winning keeps you serving",
-                    "0-0-2 is just the starting mark",
-                    "Losing ends server one's turn, side-out happens next"
+                    "0-0-2 only limits the team to one turn",
+                    "The turn ends on their first lost rally"
                   ]
                 },
                 {
                   "id": "other-team",
-                  "label": "Other team gets the serve immediately",
+                  "label": "The other team gets the serve right away",
                   "verdict": "poor",
-                  "consequence": "Incorrect. 0-0-2 is just the starting score. Server one can keep serving if winning.",
+                  "consequence": "Not yet. The serve only changes hands when the serving team loses a rally. At 0-0-2 that comes straight after the first loss, not after a win.",
                   "considerations": [
-                    "0-0-2 means server one serves alone at the start",
-                    "But they still follow normal serve rules (win = keep, lose = other team)"
+                    "The starting server has no partner turn",
+                    "But winning a rally does not end their turn",
+                    "Side-out happens when they lose a rally"
                   ]
                 }
               ],
-              "expertNote": "0-0-2 is only the starting format. After the first serve, the game plays normally: winners keep serving, losers move to the next server or side-out."
+              "expertNote": "0-0-2 only affects the opening turn: the first server has no partner behind them. As long as they keep winning rallies, they keep serving."
             }
           },
           {
@@ -560,18 +560,23 @@
             "conceptIds": ["first-server-exception"],
             "payload": {
               "prompt": "Complete the 0-0-2 rule.",
-              "template": "At the start of a match, the score is 0-0-2, meaning only {{server}} on the first serving team gets to serve initially.",
+              "template": "A game starts 0-0-{{num}}, so the first serving team gets only {{turns}} turn before a side-out.",
               "gaps": [
                 {
-                  "id": "server",
-                  "options": ["server one", "server two"],
-                  "correct": "server one"
+                  "id": "num",
+                  "options": ["1", "2"],
+                  "correct": "2"
+                },
+                {
+                  "id": "turns",
+                  "options": ["one", "two"],
+                  "correct": "one"
                 }
               ],
               "explanation": {
-                "correct": "0-0-2 is the starting score: serving team is 0, receiving is 0, and the mark '2' means server two is waiting (server one goes first and alone).",
-                "incorrect": "At the start, only server one serves. The '2' marks server two as next in line. This balances the serving advantage.",
-                "sayThisLine": "0-0-2 is the start: server one only, then everyone else follows normal rules."
+                "correct": "The call is 0-0-2: no points yet, and the starting server counts as server two. With no second server behind them, the team's first lost rally sends the serve to the other team.",
+                "incorrect": "The starting server counts as server two, not server one. That leaves no partner turn, so the serve changes hands after the first lost rally.",
+                "sayThisLine": "We start at 0-0-2, so our first lost rally is a side-out."
               }
             }
           },
@@ -591,18 +596,18 @@
                 {"id": "c", "text": "It's a penalty for being first.", "isCorrect": false},
                 {"id": "d", "text": "So the other team can catch up faster.", "isCorrect": false}
               ],
-              "translation": "In side-out scoring, only the server scores. So the first serving team has a big advantage. The 0-0-2 rule handicaps them by giving them only one server at the start, evening things out.",
+              "translation": "Only the serving team can score, so serving first is a real edge. Starting at 0-0-2 gives that team just one turn, which evens things out.",
               "followUps": [
                 {
-                  "line": "Serving is huge in side-out scoring. Getting only one server at the start is a trade-off for that advantage.",
-                  "why": "Explains the strategic balance."
+                  "line": "I think it's because only the serving team scores, so serving first would be too big an edge.",
+                  "why": "Gives the reason in your own words and is honest about how sure you are."
                 },
                 {
-                  "line": "After server one is out, the other team serves. It keeps the match fair.",
+                  "line": "After that first turn, the other team gets the serve. That keeps the start fair.",
                   "why": "Simple and clear."
                 }
               ],
-              "noFakeExpertNote": "The 0-0-2 rule is not a penalty; it's a fairness adjustment for the server's scoring advantage."
+              "noFakeExpertNote": "The 0-0-2 rule is a fairness adjustment, not a penalty. If Sam wants more detail, asking who taught them the rule is a fine follow-up."
             }
           },
           {
@@ -610,20 +615,20 @@
             "type": "binary-call",
             "conceptIds": ["first-server-exception"],
             "payload": {
-              "prompt": "Match just started. Score is 0-0-2. Server one loses the first rally. What now?",
+              "prompt": "Game start, 0-0-2. The server loses the first rally. What now?",
               "scene": {
                 "kind": "none",
-                "alt": "Starting scenario: first team has 0-0-2, server one just lost."
+                "alt": "Start of a game: the first serving team is at 0-0-2 and their server just lost the rally."
               },
               "choices": [
-                {"id": "server-two", "label": "Server two gets the serve"},
-                {"id": "other-team", "label": "Other team serves (side-out)"}
+                {"id": "partner", "label": "The server's partner serves next"},
+                {"id": "other-team", "label": "The other team serves (side-out)"}
               ],
               "correctChoiceId": "other-team",
               "explanation": {
-                "correct": "At 0-0-2, there is no server two. The first team only gets server one. When server one loses, it goes straight to side-out (the other team).",
-                "incorrect": "0-0-2 means no server two at the start. Server one serves and loses, so it's a side-out immediately.",
-                "sayThisLine": "Side-out, the other team serves."
+                "correct": "The starting server counts as server two, so there is no partner turn left. One lost rally at 0-0-2 is an immediate side-out.",
+                "incorrect": "The partner does not get a turn at the start of a game. Because the call is 0-0-2, the serve goes to the other team after the first lost rally.",
+                "sayThisLine": "At 0-0-2, one lost rally and the other team serves."
               },
               "ruleTag": "0-0-2 first-server exception"
             }
@@ -645,24 +650,24 @@
               "diagram": {
                 "diagramId": "pickleball-court-top",
                 "aspectRatio": 0.72,
-                "alt": "Top-down pickleball court showing left and right service sides."
+                "alt": "Top-down pickleball court. You are the server, standing behind the near baseline and facing the net, with a left and a right service side."
               },
               "hotspots": [
                 {
                   "id": "left-side",
-                  "label": "Left service box",
-                  "shape": {"kind": "rect", "x": 0.03, "y": 0.81, "w": 0.47, "h": 0.19}
+                  "label": "Left box, as the server sees it",
+                  "shape": {"kind": "rect", "x": 0.03, "y": 0.66, "w": 0.47, "h": 0.3}
                 },
                 {
                   "id": "right-side",
-                  "label": "Right service box",
-                  "shape": {"kind": "rect", "x": 0.5, "y": 0.81, "w": 0.47, "h": 0.19}
+                  "label": "Right box, as the server sees it",
+                  "shape": {"kind": "rect", "x": 0.5, "y": 0.66, "w": 0.47, "h": 0.3}
                 }
               ],
               "correctHotspotIds": ["left-side"],
               "explanation": {
-                "correct": "Server's score is 5 (odd), so server one stands on the left side. Odd = left.",
-                "incorrect": "When the server's score is odd (5), the server stands on the left. When even (4, 6, etc.), the server stands on the right.",
+                "correct": "The serving team has 5, which is odd, so server one serves from the left side. Odd means left.",
+                "incorrect": "When the serving team's score is odd (like 5), the server stands on the left. When it is even (0, 2, 4, 6), the server stands on the right.",
                 "sayThisLine": "Odd score means left side, even means right."
               }
             }
@@ -683,8 +688,8 @@
               ],
               "correctChoiceId": "right",
               "explanation": {
-                "correct": "Server's score is 6 (even), so server two serves from the right side. Even = right.",
-                "incorrect": "The serving team's score is 6 (even), which means right side. Left is for odd scores.",
+                "correct": "The serving team has 6, which is even, so the server stands on the right. Even means right, whether it is server one or server two.",
+                "incorrect": "The side comes from the serving team's score, not the server number. Six is even, so right. Left is for odd scores.",
                 "sayThisLine": "Even score means right side; odd means left."
               }
             }
@@ -705,8 +710,8 @@
               ],
               "correctChoiceId": "left",
               "explanation": {
-                "correct": "Score is 3 (odd), so server one stands on the left side. Odd scores = left side; even scores = right side.",
-                "incorrect": "For serving position, use the server's team score: 3 is odd, which means left side.",
+                "correct": "The serving team has 3, which is odd, so the server stands on the left. Odd means left; even means right.",
+                "incorrect": "For serving position, use the serving team's score, the first number. Three is odd, which means the left side.",
                 "sayThisLine": "Odd score means left side; even means right."
               }
             }
@@ -744,9 +749,9 @@
             "payload": {
               "prompt": "Score is 2-1-1. Where does server one serve from?",
               "situation": {
-                "narrative": "The serving team has 2 points. Server one is up. Where on the baseline does server one stand?",
+                "narrative": "The serving team has 2 points and server one is up. Which side of the baseline does the server stand on?",
                 "facts": [
-                  {"label": "Serving team score", "value": "2 points"},
+                  {"label": "Serving team score", "value": "2 points, which is even"},
                   {"label": "Server", "value": "Server one"},
                   {"label": "Rule", "value": "Even right, odd left"}
                 ]
@@ -754,20 +759,20 @@
               "options": [
                 {
                   "id": "right-side",
-                  "label": "Right side (server's right)",
+                  "label": "Right side (the server's right)",
                   "verdict": "best",
-                  "consequence": "Correct. Score is 2 (even), so server one stands on the right side and serves from the right service box.",
+                  "consequence": "Right. Two is even, so the server stands on the right and serves into the diagonal box from there.",
                   "considerations": [
                     "2 points is even",
-                    "Even score = right side",
-                    "Server stands behind the right baseline"
+                    "Even score means the right side",
+                    "The server stands behind the right half of the baseline"
                   ]
                 },
                 {
                   "id": "left-side",
-                  "label": "Left side (server's left)",
+                  "label": "Left side (the server's left)",
                   "verdict": "poor",
-                  "consequence": "Incorrect. 2 is even, not odd. Even = right side.",
+                  "consequence": "Not quite. Two is even, not odd, so the server starts on the right.",
                   "considerations": [
                     "Left side is for odd scores (1, 3, 5, etc.)",
                     "2 is even, so right side",
@@ -775,7 +780,7 @@
                   ]
                 }
               ],
-              "expertNote": "The even-odd rule is automatic once you practice it. It ensures both servers start each game from the same side and keeps rotation consistent."
+              "expertNote": "The even-odd rule feels automatic after a few games. It keeps everyone standing where the score says they should, so there is always a way to check."
             }
           }
         ]
@@ -791,20 +796,20 @@
             "type": "estimate-slider",
             "conceptIds": ["game-to-11-win-by-2"],
             "payload": {
-              "prompt": "Estimate the winning score if a game goes to 11-10.",
+              "prompt": "Tied 10-10. What's the lowest score the winner can finish on?",
               "unit": "points",
-              "min": 11,
-              "max": 15,
+              "min": 10,
+              "max": 16,
               "step": 1,
-              "correctValue": 13,
+              "correctValue": 12,
               "tolerance": {
-                "full": 1,
-                "partial": 2
+                "full": 0,
+                "partial": 1
               },
               "explanation": {
-                "correct": "If it's 11-10, the leader must win by 2. They need 13 to win (11+2). It's 13-11 final.",
-                "incorrect": "Win by 2 means a 2-point margin. From 11-10, you need 13-11 to finish.",
-                "sayThisLine": "Eleven to start, but you must win by two."
+                "correct": "From 10-10, 11-10 is not enough because a game has to be won by two. The earliest finish is 12-10.",
+                "incorrect": "You need 11 points and a two-point lead. From a tie at 10, the quickest way is 12-10.",
+                "sayThisLine": "You need 11, and you have to win by two."
               }
             }
           },
@@ -822,9 +827,9 @@
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "11 is the target, win by 2. So 11-9 ends it, but 11-10 requires 13-11.",
-                "incorrect": "Pickleball games are to 11 (not 21 like some other sports), and you must win by a 2-point margin.",
-                "sayThisLine": "Games to 11, win by two minimum points."
+                "correct": "A standard game is to 11, win by two. So 11-9 ends it, but at 11-10 play goes on until someone leads by two.",
+                "incorrect": "The usual target in side-out play is 11, not 15 or 21, and a game must be won by two. Some events and formats use other targets.",
+                "sayThisLine": "Games go to 11, and you win by two."
               }
             }
           },
@@ -833,7 +838,7 @@
             "type": "multiple-choice",
             "conceptIds": ["match-format"],
             "payload": {
-              "prompt": "What is a standard pickleball match format?",
+              "prompt": "What's the common match format in tournament pickleball?",
               "options": [
                 {"id": "a", "text": "Best of three games"},
                 {"id": "b", "text": "Best of five games"},
@@ -842,9 +847,9 @@
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "A match is best of three: first team to win two games wins the match.",
-                "incorrect": "Pickleball matches are typically best of three games. Win two games and you win the match.",
-                "sayThisLine": "Matches are best of three games."
+                "correct": "Best of three is the common format: the first team to win two games wins the match. Some events play a single game, so check the format.",
+                "incorrect": "Tournament matches are usually best of three games, not sets. Rec play is often just one game at a time.",
+                "sayThisLine": "Matches are usually best of three games."
               }
             }
           },
@@ -873,9 +878,9 @@
                 }
               ],
               "explanation": {
-                "correct": "Games to 11, win by 2. Matches are best of three (first to 2 games wins the match).",
-                "incorrect": "Standard pickleball: game to 11 (win by 2), match is best of three games.",
-                "sayThisLine": "Eleven, win by two; match is best of three games."
+                "correct": "Side-out games go to 11, win by 2. A match is usually best of three, so the first team to win two games takes it.",
+                "incorrect": "The usual setup is a game to 11, won by two, with matches best of three. Events can differ, so check the format.",
+                "sayThisLine": "Eleven, win by two; matches are usually best of three."
               }
             }
           },
@@ -884,41 +889,40 @@
             "type": "decision-scenario",
             "conceptIds": ["game-to-11-win-by-2", "match-format"],
             "payload": {
-              "prompt": "It's a match. Your team won game one 11-8. Game two is at 10-9 in your favor. What's at stake?",
+              "prompt": "Up a game, and 10-9 in game two. What's at stake?",
               "situation": {
-                "narrative": "Match is best of three. You're up 1-0 in games. Game two is close.",
+                "narrative": "It's a best-of-three match and your team won game one 11-8. Game two is close, and you are serving at 10-9.",
                 "facts": [
-                  {"label": "Match score (games)", "value": "1-0 in your favor"},
-                  {"label": "Current game", "value": "10-9, you're ahead"},
-                  {"label": "To win match", "value": "First to 2 games"},
-                  {"label": "Stakes", "value": "One more game win ends the match"}
+                  {"label": "Games", "value": "You lead 1-0"},
+                  {"label": "Game two", "value": "10-9, your team ahead"},
+                  {"label": "To win the match", "value": "First team to win two games"}
                 ]
               },
               "options": [
                 {
                   "id": "match-point",
-                  "label": "If you win this game, you win the match",
+                  "label": "Win the next rally and you win the game and the match",
                   "verdict": "best",
-                  "consequence": "Correct. You're 1-0 in games; winning this game makes it 2-0 and ends the match.",
+                  "consequence": "Right. At 10-9 one more point makes it 11-9, which wins game two. With game one already yours, that wins the match.",
                   "considerations": [
-                    "Matches are best of three games",
-                    "First to 2 games wins",
-                    "This is match point (game-point)"
+                    "11-9 is a two-point lead, so the game ends",
+                    "Two game wins take the match",
+                    "You are serving, so you can score"
                   ]
                 },
                 {
                   "id": "tie-game",
-                  "label": "If you win, it goes 1-1 and requires a tiebreak",
+                  "label": "Win the next rally and it goes to a third game",
                   "verdict": "poor",
-                  "consequence": "Incorrect. You're already 1-0 up. One more win and it's 2-0, match over.",
+                  "consequence": "Not quite. You already won game one, so winning game two makes it 2-0 and the match is over.",
                   "considerations": [
-                    "You already won game one",
-                    "Best of three means first to 2 wins the match",
-                    "This is your match point"
+                    "You already have one game win",
+                    "A third game only happens at 1-1",
+                    "One more rally win ends it here"
                   ]
                 }
               ],
-              "expertNote": "In a best-of-three match, being up 1-0 with a lead in game two is critical: one win ends it, one loss ties it 1-1 and forces a third game."
+              "expertNote": "At 10-9, losing the next rally hands the serve to the other team, who can tie it at 10-10. That is why these points feel so big."
             }
           }
         ]
@@ -943,9 +947,9 @@
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Rally scoring means every rally = one point. Whoever wins the rally scores, regardless of who's serving.",
-                "incorrect": "This is opposite to side-out scoring. Rally scoring gives a point to the rally winner, always.",
-                "sayThisLine": "Rally scoring: every rally, somebody scores."
+                "correct": "In rally scoring every rally is worth a point, and the rally winner gets it whether or not they were serving.",
+                "incorrect": "Only the server scoring is side-out scoring, the traditional way. Rally scoring gives the point to the rally winner every time.",
+                "sayThisLine": "In rally scoring, every rally gives somebody a point."
               }
             }
           },
@@ -973,11 +977,11 @@
                 }
               ],
               "distractorDefinitions": [
-                "Deuce scoring",
-                "Sudden death"
+                "A bonus point for winning a long rally",
+                "Points only count on the second serve of a turn"
               ],
               "explanation": {
-                "summary": "Side-out is traditional; rally scoring is newer and optional. Both are legal, but used in different contexts.",
+                "summary": "Side-out is the traditional way. Rally scoring is an allowed option in the current rulebook, though some events still require side-out.",
                 "sayThisLine": "Side-out: server only. Rally: everybody scores on every rally."
               }
             }
@@ -998,18 +1002,18 @@
                 {"id": "c", "text": "That sounds confusing.", "isCorrect": false},
                 {"id": "d", "text": "I don't know what that means.", "isCorrect": false}
               ],
-              "translation": "Rally scoring is a newer option where every rally scores a point for the winner. It changes strategy compared to side-out.",
+              "translation": "Sam played with rally scoring, where every rally gives the winner a point. It changes how the game feels compared with side-out.",
               "followUps": [
                 {
-                  "line": "The pro tours use rally scoring sometimes. Did it change how you played?",
-                  "why": "Shows you know the context and invites her reflection."
+                  "line": "I've heard some pro events use rally scoring at times. Did it change how you played?",
+                  "why": "Shows some context and invites Sam's take, without pretending to know more."
                 },
                 {
-                  "line": "Every rally counts instead of just serves. Does that speed things up?",
-                  "why": "A thoughtful question about the effect."
+                  "line": "Every rally counts instead of just the server's. Did that speed things up?",
+                  "why": "A curious question about the effect."
                 }
               ],
-              "noFakeExpertNote": "Rally scoring is debated in the community. Some love it, some prefer side-out. Listen to her thoughts without picking a side."
+              "noFakeExpertNote": "Rally scoring is debated, and plenty of players love it while others prefer side-out. Listen to Sam's take instead of picking a side."
             }
           },
           {
@@ -1018,28 +1022,23 @@
             "conceptIds": ["rally-scoring"],
             "payload": {
               "prompt": "Complete the rally scoring rule.",
-              "template": "In rally scoring, {{who}} wins the rally {{when}} scores a point, and games are usually to {{points}}.",
+              "template": "In rally scoring, the team that wins the rally {{result}}. In side-out scoring, only the {{who}} can score.",
               "gaps": [
                 {
+                  "id": "result",
+                  "options": ["scores a point", "only wins the serve"],
+                  "correct": "scores a point"
+                },
+                {
                   "id": "who",
-                  "options": ["whoever", "the server"],
-                  "correct": "whoever"
-                },
-                {
-                  "id": "when",
-                  "options": ["whenever they", "only if they"],
-                  "correct": "whenever they"
-                },
-                {
-                  "id": "points",
-                  "options": ["11", "15 or 21"],
-                  "correct": "15 or 21"
+                  "options": ["serving team", "receiving team"],
+                  "correct": "serving team"
                 }
               ],
               "explanation": {
-                "correct": "Rally scoring: every rally scores. Games may be to 11, 15, or 21 depending on the format.",
-                "incorrect": "Rally scoring is always: rally winner scores. The target score may vary by format.",
-                "sayThisLine": "Rally scoring, every rally counts."
+                "correct": "Rally scoring gives the point to whoever wins the rally. Side-out scoring only lets the serving team score.",
+                "incorrect": "The difference is who can score. Rally scoring: the rally winner, every time. Side-out: only the serving team. Target scores depend on the event, so check the format.",
+                "sayThisLine": "In rally scoring, every rally counts."
               }
             }
           },
@@ -1063,7 +1062,7 @@
                   "id": "yes-score",
                   "label": "Yes, you score a point",
                   "verdict": "best",
-                  "consequence": "Correct. In rally scoring, the rally winner scores, no matter who's serving. You won, so you score.",
+                  "consequence": "Right. In rally scoring the rally winner scores, no matter who is serving. You won the rally, so you score.",
                   "considerations": [
                     "Rally scoring = every rally counts",
                     "You don't have to serve to score",
@@ -1082,7 +1081,7 @@
                   ]
                 }
               ],
-              "expertNote": "Rally scoring flattens the scoring advantage of serving and is used in some pro events and recreational formats. It's a game-changer strategically."
+              "expertNote": "Rally scoring takes away the serving edge, because every rally counts. It is an option in the current rulebook and some events use it."
             }
           }
         ]
@@ -1098,41 +1097,40 @@
             "type": "decision-scenario",
             "conceptIds": ["score-call-three-numbers", "server-number"],
             "payload": {
-              "prompt": "There's a score dispute: one team says 7-5-1, the other says 5-7-1. How do you resolve it?",
+              "prompt": "Both teams remember a different score. How do you settle it?",
               "situation": {
-                "narrative": "Two partners disagree on the score. One team thinks they're ahead 7-5, the other says 5-7.",
+                "narrative": "Mid-game, the two teams disagree. One says the last call was 7-5-1, the other swears it was 6-5-1.",
                 "facts": [
-                  {"label": "Claimed score 1", "value": "7-5-1"},
-                  {"label": "Claimed score 2", "value": "5-7-1"},
-                  {"label": "Difference", "value": "Which team is ahead?"},
-                  {"label": "Solution", "value": "Honest recollection or start over?"}
+                  {"label": "One team says", "value": "7-5-1"},
+                  {"label": "The other says", "value": "6-5-1"},
+                  {"label": "The real issue", "value": "Nobody wrote it down"}
                 ]
               },
               "options": [
                 {
                   "id": "honest-recount",
-                  "label": "Recount the rally points calmly; when in doubt, go to the lower score",
+                  "label": "Pause, talk it through calmly, and agree on the last point everyone remembers",
                   "verdict": "best",
-                  "consequence": "Smart. Recount if you can, or default to the lower score (benefit of the doubt = ball is in). This keeps the game fair and friendly.",
+                  "consequence": "Good. Retracing the last few rallies together usually settles it, and you can carry on from there. It keeps the game friendly.",
                   "considerations": [
-                    "Honest recount is best",
-                    "Benefit of doubt favors the other team on disputes",
-                    "Peace is as important as accuracy"
+                    "Talk through the last few rallies together",
+                    "Agree on the last point everyone remembers",
+                    "A friendly game matters more than the exact point"
                   ]
                 },
                 {
                   "id": "demand-proof",
-                  "label": "Demand the other team prove their score; if not, call them liars",
+                  "label": "Make them prove it, and accuse them of cheating if they can't",
                   "verdict": "poor",
-                  "consequence": "Escalation. Accusations end games and friendships. Disputes are normal in recreational play. Resolve calmly.",
+                  "consequence": "That escalates it. Memories slip for everyone, and an accusation can end a game and a friendship.",
                   "considerations": [
-                    "Conflict turns people away from the game",
-                    "Honest dispute resolution protects the community",
-                    "Benefit of the doubt is standard etiquette"
+                    "Most disputes are honest memory slips",
+                    "Accusations turn a mix-up into a fight",
+                    "Calm talk solves it faster"
                   ]
                 }
               ],
-              "expertNote": "Recreational pickleball depends on honesty and grace under ambiguity. Defaulting to the lower score on disputes is built into the honor code."
+              "expertNote": "Disputes usually come from honest memory slips. The best fix is prevention: the server calls the score out loud before every serve, so everyone hears it."
             }
           },
           {
@@ -1140,20 +1138,20 @@
             "type": "binary-call",
             "conceptIds": ["score-call-three-numbers"],
             "payload": {
-              "prompt": "It's match point. Team A leads 10-8. Server A1 wins the rally. What's the new score?",
+              "prompt": "Score is 8-5-1. Server one wins the rally. What's the new call?",
               "scene": {
                 "kind": "none",
-                "alt": "Match-point scenario: 10-8, server one won the rally."
+                "alt": "Score scenario: the serving team leads 8-5 with server one serving, and server one wins the rally."
               },
               "choices": [
-                {"id": "eleven-eight", "label": "11-8-1"},
-                {"id": "eleven-eight-two", "label": "11-8-2"}
+                {"id": "nine-five-one", "label": "9-5-1"},
+                {"id": "nine-five-two", "label": "9-5-2"}
               ],
-              "correctChoiceId": "eleven-eight-one",
+              "correctChoiceId": "nine-five-one",
               "explanation": {
-                "correct": "Server A1 won, so the score goes to 11-8 and the server number stays 1 (server one stays serving when they win).",
-                "incorrect": "When server one wins, server one keeps serving. The server number doesn't change.",
-                "sayThisLine": "Winners keep serving, same server number."
+                "correct": "The serving team scores, so 8 becomes 9. Server one keeps serving after a win, so the server number stays 1.",
+                "incorrect": "The server number only changes when the server loses a rally. After a win, the same server keeps serving, so it stays 1.",
+                "sayThisLine": "A win adds a point, and the same server keeps serving."
               }
             }
           },
@@ -1168,23 +1166,23 @@
               },
               "question": "What should you say?",
               "options": [
-                {"id": "a", "text": "Let me think... serving team is at 6, receiving at 4, and it's server two. So 6-4-2.", "isCorrect": true},
+                {"id": "a", "text": "Easy to lose track! The server calls it before each serve: their score, ours, then 1 or 2.", "isCorrect": true},
                 {"id": "b", "text": "I don't remember either, let's just restart.", "isCorrect": false},
                 {"id": "c", "text": "You're at 4 points.", "isCorrect": false},
-                {"id": "d", "text": "Serving team is winning.", "isCorrect": false}
+                {"id": "d", "text": "Whoever is winning is serving.", "isCorrect": false}
               ],
-              "translation": "If you're keeping score, the three-number call is your responsibility: serving team, receiving team, server number. It keeps everyone on the same page.",
+              "translation": "Losing track is normal. The server is supposed to call the score out loud before every serve, so Sam can just listen for the next call.",
               "followUps": [
                 {
-                  "line": "6-4-2: serving team has 6, receiving has 4, and server two is up. Write it down next time.",
-                  "why": "Specific and helpful, plus a tip for the future."
+                  "line": "Totally happens. Let's listen for the next call: server's score, receiver's score, then 1 or 2.",
+                  "why": "Reassures Sam and points to the real fix."
                 },
                 {
-                  "line": "Whoever is keeping score, just call it out loud each rally. Keeps everyone aligned.",
-                  "why": "Proactive suggestion for the group."
+                  "line": "If we all say it out loud each time, nobody has to remember it.",
+                  "why": "A friendly suggestion for the group."
                 }
               ],
-              "noFakeExpertNote": "Being the score-keeper is important. It's not hard once you practice the three-number call."
+              "noFakeExpertNote": "You do not need to know the exact score to help. Pointing Sam to the next call keeps things easy, and it is fine to say you lost track too."
             }
           },
           {
@@ -1201,24 +1199,24 @@
                   "replies": [
                     {
                       "id": "good",
-                      "text": "Serving team is at 5, receiving is at 3, and we're in the first server. So 5-3-1. You got it?",
+                      "text": "The serving team's score is always said first. Who's serving right now?",
                       "smoothDelta": 25,
-                      "theirResponse": "Yes! 5-3-1. Got it.",
-                      "coachNote": "You used the three-number call to clarify and made it stick."
+                      "theirResponse": "We are. So it's 5-3. Got it, thanks.",
+                      "coachNote": "You used the rule to help Sam work it out instead of guessing."
                     },
                     {
                       "id": "meh",
                       "text": "I think 5-3, but I'm not sure who's up.",
                       "smoothDelta": 5,
                       "theirResponse": "Okay, so we have to remember that too.",
-                      "coachNote": "You got part of it. Always call all three numbers."
+                      "coachNote": "Honest, but the serving team's number always comes first, so who is serving settles it."
                     },
                     {
                       "id": "cringe",
                       "text": "Honestly, does it matter? Let's just keep playing.",
                       "smoothDelta": -12,
                       "theirResponse": "Um, it does. I want to know where we are.",
-                      "coachNote": "Score matters. Take a breath and call it right."
+                      "coachNote": "Knowing the score matters to Sam. Take a breath and help work it out."
                     }
                   ]
                 },
@@ -1227,29 +1225,29 @@
                   "replies": [
                     {
                       "id": "good",
-                      "text": "Depends if you win or lose. Win the rally, you keep serving as server one. Lose, server two takes over.",
+                      "text": "I think it depends. Win the rally and you keep serving as server one. Lose it and your partner becomes server two.",
                       "smoothDelta": 28,
-                      "theirResponse": "Oh! So the server number changes only if I lose.",
-                      "coachNote": "You explained the rotation clearly."
+                      "theirResponse": "Oh! So the server number only changes if I lose.",
+                      "coachNote": "You shared what you know and were honest about how sure you are."
                     },
                     {
                       "id": "meh",
                       "text": "It goes to server two next.",
                       "smoothDelta": -5,
                       "theirResponse": "Even if I win?",
-                      "coachNote": "You missed the 'win = keep serving' rule."
+                      "coachNote": "Winning keeps the serve with you, so the number stays the same."
                     },
                     {
                       "id": "cringe",
-                      "text": "I don't know. We never learned that.",
+                      "text": "It always changes after one serve. Everyone knows that.",
                       "smoothDelta": -8,
-                      "theirResponse": "It's pretty important...",
-                      "coachNote": "You do know it. Don't dismiss what you learned."
+                      "theirResponse": "Hm, I don't think that's right...",
+                      "coachNote": "Confident but wrong. Saying 'I think winners keep serving, let's check' works better."
                     }
                   ]
                 }
               ],
-              "closingNote": "Keeping score is a shared responsibility. Use the three-number call every rally, and settle disputes with benefit of the doubt."
+              "closingNote": "Keeping score is a shared job. The server calls it out loud before every serve, and a friendly chat settles most disputes."
             }
           }
         ]

@@ -49,20 +49,20 @@
             "type": "estimate-slider",
             "conceptIds": ["points-system"],
             "payload": {
-              "prompt": "A team wins 35 games and loses 10. Estimate their points.",
+              "prompt": "A team is 30 wins, 10 losses, 5 overtime losses. How many points?",
               "unit": "points",
               "min": 0,
               "max": 100,
               "step": 1,
-              "correctValue": 70,
+              "correctValue": 65,
               "tolerance": {
                 "full": 2,
-                "partial": 4
+                "partial": 5
               },
               "explanation": {
-                "correct": "Perfect. Thirty-five wins times two points equals seventy points.",
-                "incorrect": "Each win is two points. Thirty-five times two is seventy. Regulation losses count as zero.",
-                "sayThisLine": "Wins times two: that's your baseline points."
+                "correct": "Nice. Thirty wins at two points is 60, the five overtime losses add one each for 65, and the ten regulation losses add nothing.",
+                "incorrect": "Wins are worth two points and overtime losses one, so 30 x 2 + 5 = 65. The ten regulation losses count as zero.",
+                "sayThisLine": "Wins times two, plus the overtime losses."
               }
             }
           },
@@ -72,27 +72,22 @@
             "conceptIds": ["points-system"],
             "payload": {
               "prompt": "Describe the loser point in the NHL standings.",
-              "template": "If a team loses in {{when}}, they get {{count}} point. It does not happen in {{where}}.",
+              "template": "A team that loses in {{when}} still gets {{count}} in the standings.",
               "gaps": [
                 {
                   "id": "when",
-                  "options": ["regulation", "overtime", "the shootout", "double overtime"],
-                  "correct": "overtime"
+                  "options": ["regulation", "overtime or a shootout", "the first period"],
+                  "correct": "overtime or a shootout"
                 },
                 {
                   "id": "count",
-                  "options": ["zero", "one", "two", "half a"],
-                  "correct": "one"
-                },
-                {
-                  "id": "where",
-                  "options": ["the playoffs", "preseason", "the regular season", "international play"],
-                  "correct": "the playoffs"
+                  "options": ["no points", "one point", "two points"],
+                  "correct": "one point"
                 }
               ],
               "explanation": {
-                "correct": "Exactly. The loser point is an NHL quirk that does not exist in playoffs or the PWHL.",
-                "incorrect": "The NHL gives one point for an overtime or shootout loss. The PWHL and playoffs do not use this rule."
+                "correct": "Exactly. That's the loser point: one point for losing in overtime or a shootout, none for losing in regulation. Fans argue about whether it's fair, and the PWHL has its own version in its 3-2-1-0 system.",
+                "incorrect": "The NHL gives one point for an overtime or shootout loss and none for a regulation loss. Playoff games don't have standings points, so the loser point is a regular-season idea."
               }
             }
           },
@@ -101,7 +96,7 @@
             "type": "binary-call",
             "conceptIds": ["points-system"],
             "payload": {
-              "prompt": "Two teams are tied on points. The team with more regulation wins gets the playoff spot. True or false?",
+              "prompt": "Teams tied on points (same games played) are split first by regulation wins. True or false?",
               "scene": {
                 "kind": "none",
                 "alt": "Two teams with identical records competing for a playoff position."
@@ -118,8 +113,8 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. Regulation wins (RW) is the first tiebreaker when teams have the same points.",
-                "incorrect": "When points are tied, you check regulation wins. That is the primary tiebreaker in the NHL standings.",
+                "correct": "True. With equal points and games played, the NHL looks at regulation wins (RW) first, which rewards teams that win without needing overtime.",
+                "incorrect": "When points are tied, the NHL's first tiebreaker is regulation wins, so a win in 60 minutes counts for more than one in overtime or a shootout.",
                 "sayThisLine": "Tied on points? Check regulation wins first."
               }
             }
@@ -186,8 +181,8 @@
                 }
               ],
               "explanation": {
-                "correct": "Right. Fewer skaters mean more space, and more space creates fast-paced, one-on-one situations.",
-                "incorrect": "Three-on-three is chaotic because there is so much ice for each player. Breakaways are common."
+                "correct": "Right. Fewer skaters mean more space, and more space creates odd-man rushes and one-on-one chances.",
+                "incorrect": "With only three skaters a side, there is a lot of open ice for each player. That creates odd-man rushes and breakaway-style chances."
               }
             }
           },
@@ -229,7 +224,7 @@
                 {
                   "id": "speed",
                   "term": "Speed advantage",
-                  "definition": "A fast player or team thrives in 3-on-3 because there is so much open ice."
+                  "definition": "A fast skater thrives in 3-on-3 because there is so much open ice to use."
                 },
                 {
                   "id": "skill",
@@ -239,11 +234,11 @@
                 {
                   "id": "fatigue",
                   "term": "Fatigue disadvantage",
-                  "definition": "After 60 minutes of regular play, tired legs can hurt in the breakaway-heavy overtime."
+                  "definition": "After 60 minutes of hockey, tired legs are a problem in an overtime with so much skating."
                 }
               ],
               "explanation": {
-                "summary": "Three-on-three rewards speed and skill while punishing poor conditioning. It is a different game.",
+                "summary": "Three-on-three rewards speed and skill, and tired legs hurt. It feels like a different game from five-on-five.",
                 "sayThisLine": "Three-on-three is all about speed and space."
               }
             }
@@ -266,28 +261,28 @@
               "items": [
                 {
                   "id": "setup",
-                  "text": "Each team selects three skaters for the shootout.",
-                  "why": "Coaches choose their best shooters before the first round."
+                  "text": "Overtime ends scoreless and each coach picks his shooters.",
+                  "why": "A shootout only happens when the five minutes of overtime end tied."
                 },
                 {
                   "id": "round-one",
-                  "text": "Teams alternate one-on-one shots at the goalie.",
-                  "why": "The first round is best-of-three: three shots per team, alternating."
+                  "text": "Teams alternate shooters, each going one-on-one against the goalie.",
+                  "why": "Each attempt is a solo chance, like a penalty shot."
                 },
                 {
-                  "id": "leading",
-                  "text": "If one team is winning after three rounds, they win the game.",
-                  "why": "If one team has more goals after round one, the game is over."
+                  "id": "three-each",
+                  "text": "Each team takes three shots, unless one team is out of reach sooner.",
+                  "why": "After three shots each, the team with more goals wins the game."
                 },
                 {
                   "id": "sudden-death",
-                  "text": "If tied after one round, sudden-death shooters go until one team scores and the other does not.",
-                  "why": "Sudden death: each team shoots one, and first team to win a round wins the game."
+                  "text": "If it is still tied, sudden death: one shot each until one team scores and the other misses.",
+                  "why": "The first team to outscore the other in a round wins."
                 }
               ],
               "explanation": {
-                "correct": "Perfect. That is the shootout sequence: three rounds, then sudden death if needed.",
-                "incorrect": "The shootout is three rounds of alternating shots, then sudden death. It is best-of-three initially."
+                "correct": "That's the order. Shooters alternate, three each, and if it's still tied it goes to sudden death one round at a time.",
+                "incorrect": "It runs like this: overtime ends tied, shooters alternate one-on-one, each team gets three shots, and sudden death decides anything still level."
               }
             }
           },
@@ -332,39 +327,35 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "Luck in a one-on-one game is different from five-on-five play",
+                  "text": "A shootout is a separate skills contest from five-on-five play",
                   "isCorrect": true,
-                  "explanation": "Correct. The shootout is a different contest: it does not reflect regular play."
+                  "explanation": "Correct. The shootout is solo shots against the goalie, so it can undo a game they controlled."
                 },
                 {
                   "id": "b",
                   "text": "The other team's goalie was better overall",
                   "isCorrect": false,
-                  "explanation": "The fan is saying their team dominated but lost a shootout. That is a format issue, not a goalie issue."
+                  "explanation": "The fan says her team had more shots, so this isn't about goalie quality. It's about the format."
                 },
                 {
                   "id": "c",
                   "text": "The referees favored the other team",
                   "isCorrect": false,
-                  "explanation": "A shootout loss is about execution, not officiating."
+                  "explanation": "A shootout is decided by shooters and goalies, not officiating."
                 }
               ],
-              "translation": "The shootout is a skills contest, not a reflection of who controlled the game. You can dominate 5-on-5 and lose 1-on-1.",
+              "translation": "A shootout is solo shots against the goalie, so it doesn't reflect who controlled the game. You can dominate five-on-five and still lose it one-on-one.",
               "followUps": [
                 {
-                  "line": "The shootout decides games but does not measure who played better. It is a gimmick by design.",
-                  "why": "Shows you understand the shootout's role as a tiebreaker, not a true test."
+                  "line": "Did you at least get the extra standings point?",
+                  "why": "Shows you know a shootout loss still earns the loser point."
                 },
                 {
-                  "line": "Some fans and experts think the shootout is unfair because it rewards something different than hockey.",
-                  "why": "Acknowledges the debate about shootout legitimacy."
-                },
-                {
-                  "line": "Playoff hockey does not use shootouts, so only regular-season games are decided this way.",
-                  "why": "Clarifies where shootouts matter."
+                  "line": "Do you like the shootout, or would you rather play more overtime?",
+                  "why": "Invites her opinion; fans genuinely disagree about it."
                 }
               ],
-              "noFakeExpertNote": "If you think shootouts are unfair or a gimmick, that's a valid opinion that many fans share."
+              "noFakeExpertNote": "Shootouts split fans. Asking what she thinks is better than pretending to have a hot take."
             }
           },
           {
@@ -372,10 +363,10 @@
             "type": "binary-call",
             "conceptIds": ["shootout"],
             "payload": {
-              "prompt": "A great sniper who excels at shootouts is a better all-around player than a grinder. True or false?",
+              "prompt": "A shootout goal counts toward a player's season goal total. True or false?",
               "scene": {
                 "kind": "none",
-                "alt": "A skilled scorer preparing for a shootout attempt."
+                "alt": "A skater scores on a shootout attempt while the goalie lunges."
               },
               "choices": [
                 {
@@ -389,8 +380,8 @@
               ],
               "correctChoiceId": "false",
               "explanation": {
-                "correct": "False. Shootout skills are one narrow thing. A grinder's defensive work, effort, and team play matter across 60 minutes.",
-                "incorrect": "The shootout is a one-on-one contest. Being good at it does not make you better at hockey overall. Different skills."
+                "correct": "False. Shootout goals and saves are tracked separately. The winning team gets one extra goal on the scoreboard, but the shooter's personal goal count doesn't change.",
+                "incorrect": "Shootout goals don't go into a player's season total. They're tracked in shootout stats, and the game simply counts as a one-goal win for the victors."
               }
             }
           }
@@ -413,21 +404,21 @@
                 {
                   "id": "division-winner",
                   "term": "Division winner",
-                  "definition": "The team with the most points in their division; automatically gets a playoff spot and hosts round one."
+                  "definition": "The team with the most points in its division; it gets a playoff spot and a top seed."
                 },
                 {
                   "id": "wild-card",
                   "term": "Wild card",
-                  "definition": "A non-division winner with enough points to make the playoffs; plays a division winner in round one."
+                  "definition": "One of the two best teams left in a conference after the top three per division; it plays a division winner."
                 },
                 {
                   "id": "miss",
                   "term": "Miss the playoffs",
-                  "definition": "A team that is not in the top three of their division and not a wild card; does not qualify."
+                  "definition": "A team outside the top three in its division that also misses both wild cards."
                 }
               ],
               "explanation": {
-                "summary": "Sixteen teams make the NHL playoffs: three division winners plus two wild cards per conference.",
+                "summary": "Sixteen teams make the NHL playoffs: the top three in each of the four divisions, plus two wild cards in each conference.",
                 "sayThisLine": "Top three in your division or grab a wild card spot."
               }
             }
@@ -437,65 +428,64 @@
             "type": "decision-scenario",
             "conceptIds": ["wild-card"],
             "payload": {
-              "prompt": "You are just outside the playoff line with two games left. What do you prioritize?",
+              "prompt": "Two games left, one point out of the last wild card. What's the plan?",
               "situation": {
-                "narrative": "Your team is three points behind the second wild card spot and has no realistic shot at a division title. You have two games remaining.",
+                "narrative": "Your team trails the final wild card spot by a point with two games to play. The team holding the spot has three left.",
                 "facts": [
                   {
-                    "label": "Current position",
-                    "value": "Fifth in division, three points out of wild card"
+                    "label": "Position",
+                    "value": "One point out of the last wild card"
                   },
                   {
                     "label": "Games left",
-                    "value": "Two (both against playoff contenders)"
+                    "value": "Two, both at home"
                   },
                   {
                     "label": "Injury status",
-                    "value": "Star defenseman day-to-day"
+                    "value": "Top defenseman is day-to-day, not cleared yet"
                   },
                   {
-                    "label": "Playoff odds",
-                    "value": "About 15% with two wins"
+                    "label": "Tiebreaker",
+                    "value": "Regulation wins matter if you finish level",
+                    "emphasis": "warning"
                   }
                 ]
               },
               "options": [
                 {
-                  "id": "go-for-it",
-                  "label": "Play all-out to try to make the playoffs",
-                  "verdict": "acceptable",
-                  "consequence": "You give yourself a chance, but if you lose games, fans feel the season was wasted. A playoff miss after pushing hard is painful.",
+                  "id": "play-to-win",
+                  "label": "Go for wins, and play the defenseman only if the medical staff clears him",
+                  "verdict": "best",
+                  "consequence": "You give yourself the best shot at the playoffs without risking a player's health. Winning in regulation helps if the race ends in a tie.",
                   "considerations": [
-                    "Playing hard at the end of the season keeps the culture strong",
-                    "Selling out for a 15% chance is risky",
-                    "Injuries can get worse if you push injured players"
+                    "Two wins may be enough, so each game matters.",
+                    "A regulation win is worth the same two points but counts more if you finish level.",
+                    "A player returns only when the medical staff says he's ready."
                   ]
                 },
                 {
                   "id": "rest-stars",
-                  "label": "Rest key players and prepare for next season",
-                  "verdict": "acceptable",
-                  "consequence": "You officially miss the playoffs but save star players from injury and get draft capital. Next season starts fresh.",
+                  "label": "Rest the stars now and save them for next season",
+                  "verdict": "poor",
+                  "consequence": "You give up a real chance to get in. Fans and teammates notice when a team stops competing with a spot still possible.",
                   "considerations": [
-                    "Resting players reduces injury risk",
-                    "Missing the playoffs is a coaching decision that fans debate harshly",
-                    "Preserving cap space and youth development is smart long-term"
+                    "The race is still open, so giving up early is hard to defend.",
+                    "Resting makes sense only once a team is eliminated."
                   ]
                 },
                 {
-                  "id": "sell-rentals",
-                  "label": "Trade rentals and accept a rebuild",
-                  "verdict": "best",
-                  "consequence": "You get assets for next year, send a clear message about the rebuild, and gain cap flexibility. It stings now but builds for the future.",
+                  "id": "rush-back",
+                  "label": "Play the defenseman even though he isn't cleared",
+                  "verdict": "poor",
+                  "consequence": "You might gain a bit of skill on the ice but risk a worse injury that could cost him a playoff run and more.",
                   "considerations": [
-                    "Trading stars late in the season can demoralize the locker room",
-                    "Rentals are valuable at the deadline and can net solid prospects",
-                    "The fanbase accepts a rebuild if it is clearly stated"
+                    "Health comes first; teams follow the medical staff's clearance.",
+                    "A rushed return can hurt him and the team for longer."
                   ]
                 }
               ],
-              "expertNote": "At 15% odds with two games left, you are likely out. Smart teams at this point look to trade rentals, manage injuries, and build for next season. Pushing hard in games is fine, but converting roster assets to draft picks is the priority for a contender next year.",
-              "sayThisLine": "If the math says no, trade for the future."
+              "expertNote": "When a playoff spot is still possible, teams play to win with whoever is healthy, and the medical staff decides who is ready. Resting stars is for teams that are already in or already out.",
+              "sayThisLine": "They're still in it, so they have to win in regulation."
             }
           },
           {
@@ -504,11 +494,11 @@
             "conceptIds": ["wild-card", "playoff-format"],
             "payload": {
               "prompt": "Describe how the NHL playoff bracket is built.",
-              "template": "The {{champ}} of each division make the playoffs, plus {{wc}} wild cards per conference, for {{total}} teams total.",
+              "template": "The {{champ}} in each division make the playoffs, plus {{wc}} wild cards per conference, for {{total}} teams total.",
               "gaps": [
                 {
                   "id": "champ",
-                  "options": ["bottom team", "top team", "winner", "top three teams"],
+                  "options": ["top team", "top three teams", "top five teams"],
                   "correct": "top three teams"
                 },
                 {
@@ -523,8 +513,8 @@
                 }
               ],
               "explanation": {
-                "correct": "Exactly. Sixteen teams: three division winners and two wild cards per conference.",
-                "incorrect": "The NHL playoffs have sixteen teams: three division winners per division and two wild cards per conference."
+                "correct": "Exactly. Four divisions with three teams each is twelve, and two wild cards in each conference add four, for sixteen.",
+                "incorrect": "The top three teams in each of four divisions make twelve, and each conference adds two wild cards, so sixteen teams in all."
               }
             }
           },
@@ -547,33 +537,29 @@
                 },
                 {
                   "id": "b",
-                  "text": "The team has a special card that lets them play anyone",
+                  "text": "The team got a bye in round one",
                   "isCorrect": false,
-                  "explanation": "Wild card is a playoff position, not a special card. It means you qualified without winning your division."
+                  "explanation": "There are no byes in the NHL playoffs. A wild card plays a division winner in round one."
                 },
                 {
                   "id": "c",
                   "text": "The team will play another wild card team first",
                   "isCorrect": false,
-                  "explanation": "Wild cards play division winners in round one, not other wild cards."
+                  "explanation": "Each wild card is paired with a division winner in round one, not with the other wild card."
                 }
               ],
-              "translation": "The team made the playoffs as a wild card (not a division winner), so in round one they face a division winner from their conference.",
+              "translation": "The team made the playoffs as a wild card, finishing outside the top three in its division, so in round one it faces a division winner from its own conference.",
               "followUps": [
                 {
-                  "line": "Wild cards are seeded against division winners, not against each other, so the matchups are predictable.",
-                  "why": "Shows you understand the playoff bracket structure."
+                  "line": "Who did you draw in round one?",
+                  "why": "It invites her to share the matchup, which is the fun part."
                 },
                 {
-                  "line": "Being a wild card can mean you face the most dominant team in your conference in round one.",
-                  "why": "Acknowledges that wild cards can get tough matchups."
-                },
-                {
-                  "line": "A wild card that finishes second in points might face a weaker division winner, or vice versa.",
-                  "why": "Shows you understand that wild card placement does not guarantee an easy path."
+                  "line": "Did you clinch the wild card on the last night?",
+                  "why": "A light question that shows you understand how close the playoff line can be."
                 }
               ],
-              "noFakeExpertNote": "Wild card seeding can be confusing at first. Look at the bracket to see who plays whom."
+              "noFakeExpertNote": "Wild card seeding confuses plenty of fans. Asking who plays whom beats guessing."
             }
           }
         ]
@@ -599,13 +585,13 @@
                 },
                 {
                   "id": "round-two",
-                  "text": "Round two: conference semifinals; eight teams play four series; four advance.",
-                  "why": "After round one, the eight winners move to the semifinals."
+                  "text": "Round two: the eight winners play four series; four advance.",
+                  "why": "After round one, the eight winners pair off again, within their division."
                 },
                 {
                   "id": "round-three",
                   "text": "Round three: conference finals; four teams play two series; two advance.",
-                  "why": "The conference finals narrow the field to two teams per conference."
+                  "why": "The conference finals leave one team per conference."
                 },
                 {
                   "id": "finals",
@@ -614,8 +600,8 @@
                 }
               ],
               "explanation": {
-                "correct": "Perfect. Four rounds of best-of-seven: 16 → 8 → 4 → 2 → 1 champion.",
-                "incorrect": "The playoffs have four rounds. Each round is a best-of-seven series; winners advance until one team wins the Cup."
+                "correct": "That's it. Four rounds, each a best-of-seven: 16, then 8, then 4, then 2, then one champion.",
+                "incorrect": "There are four rounds, each a best-of-seven. The field goes 16, 8, 4, 2 and finally one champion."
               }
             }
           },
@@ -652,67 +638,64 @@
             "type": "decision-scenario",
             "conceptIds": ["series-lingo"],
             "payload": {
-              "prompt": "Your team is down 3-1 in a playoff series with Game 7 tomorrow. How do you approach it?",
+              "prompt": "Your team is down 3-1 in a series. How do you approach Game 5?",
               "situation": {
-                "narrative": "Your team is losing the series 3 games to 1. Game 5 was a close loss at home. One more loss and the season ends.",
+                "narrative": "Your team trails the series 3 games to 1. Game 5 is at home tonight, and one more loss ends the season.",
                 "facts": [
                   {
                     "label": "Series score",
-                    "value": "Down 3-1, must win remaining games",
+                    "value": "Down 3-1, Game 5 at home",
                     "emphasis": "warning"
                   },
                   {
-                    "label": "Historical comeback",
-                    "value": "Only 5 teams have come back from 3-1 in NHL history",
-                    "emphasis": "warning"
+                    "label": "Comebacks from 3-1",
+                    "value": "Rare, but it has happened many times"
                   },
                   {
-                    "label": "Team confidence",
-                    "value": "Shaken but not broken after Game 5 loss"
+                    "label": "Team mood",
+                    "value": "Shaken but not broken"
                   },
                   {
-                    "label": "Game 6",
-                    "value": "Must win or no Game 7"
+                    "label": "Next step",
+                    "value": "Win Game 5, then Game 6, then Game 7"
                   }
                 ]
               },
               "options": [
                 {
                   "id": "all-out",
-                  "label": "Play ultra-aggressive, go for broke",
+                  "label": "Throw caution away and attack all night",
                   "verdict": "acceptable",
-                  "consequence": "You might get an upset, but aggressive play often leads to mistakes and more goals against. Historical odds are against you.",
+                  "consequence": "You might steal a goal, but a wide-open game invites counterattacks, and one mistake can end the series.",
                   "considerations": [
-                    "Desperation play can work in one game but is risky over a series",
-                    "Your opponent can counterattack if you overcommit offense",
-                    "Fans will respect the effort even if you lose"
+                    "Desperation can work in one game but leaves you exposed.",
+                    "An overcommitted team gives up odd-man rushes."
                   ]
                 },
                 {
                   "id": "steady",
-                  "label": "Play your system and hope for bounces",
+                  "label": "Play your system and focus on winning just this game",
                   "verdict": "best",
-                  "consequence": "Staying composed gives you the best shot at a Game 7, even if the odds are long. Discipline and focus beat panic.",
+                  "consequence": "Staying composed keeps you in the game. A win shifts belief, and then you can think about Game 6.",
                   "considerations": [
-                    "Solid defense and discipline let you stay in games you should lose",
-                    "A win in Game 6 shifts momentum and belief for Game 7",
-                    "Playing your game is how underdogs steal series"
+                    "A series comeback is built one game at a time.",
+                    "Discipline and solid defense keep you in games you could lose.",
+                    "You can't win four games at once."
                   ]
                 },
                 {
                   "id": "accept",
-                  "label": "Play to avoid embarrassment and gain draft position",
+                  "label": "Write off the series and save energy",
                   "verdict": "poor",
-                  "consequence": "Giving up demoralizes the team and fans. Even down 3-1, you play to win every game and make the opponent earn it.",
+                  "consequence": "Giving in hurts the team and fans. Even down 3-1, you play to win every game and make the other team earn it.",
                   "considerations": [
-                    "Playing out the string poorly damages team culture",
-                    "Draft position is not worth the locker-room damage",
-                    "Pride and respect for the sport matter"
+                    "A team that quits has no chance of a comeback at all.",
+                    "Playoff hockey rewards resilience."
                   ]
                 }
               ],
-              "expertNote": "Down 3-1, you are probably done, but you play Games 6 and 7 to win them. Bounces happen. If you lose, you lost playing hockey, not by quitting.",
-              "sayThisLine": "Down 3-1 is almost over, but you play to win until it is not."
+              "expertNote": "Teams trailing 3-1 don't think about the whole series. They take the next game, then the next one. Fans say 'one game at a time' because that's how comebacks actually happen.",
+              "sayThisLine": "They're down 3-1, but they only need to win tonight."
             }
           },
           {
@@ -737,9 +720,9 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. Home ice means you host four games (2-2-1 format in a best-of-seven), so you play more at home.",
-                "incorrect": "Home ice means you host more games. In a 2-2-1 series, the home team plays four at home and three away.",
-                "sayThisLine": "Home ice is a real advantage: more games in your rink, your fans, your comfort."
+                "correct": "True. The higher seed hosts four of the seven games (Games 1, 2, 5 and 7), so it gets more time in its own rink and the last change in a Game 7.",
+                "incorrect": "Home ice means hosting more games. In a best-of-seven the higher seed plays Games 1, 2, 5 and 7 at home, four of the seven.",
+                "sayThisLine": "They have home ice, so Game 7 would be in their building."
               }
             }
           }
@@ -765,15 +748,15 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "Engraving: every winning player's name is added to the Cup permanently",
+                  "text": "Engraving: the winning team's names are added to the Cup permanently",
                   "isCorrect": true,
-                  "explanation": "Correct. The Stanley Cup is unique because it is engraved with every champion's name forever."
+                  "explanation": "Correct. The Stanley Cup is engraved with the names of each champion, year after year."
                 },
                 {
                   "id": "b",
                   "text": "Each team gets a copy of the Cup to take home",
                   "isCorrect": false,
-                  "explanation": "There is one Stanley Cup in the vault, a replica for display, and a Presentation Cup. Names go on the real one."
+                  "explanation": "There is one Cup that gets passed along each year; winners don't each take a copy home. Each one gets to spend a day with it."
                 },
                 {
                   "id": "c",
@@ -782,22 +765,18 @@
                   "explanation": "The Cup is not sold or licensed. Engraving a name is a historic honor."
                 }
               ],
-              "translation": "The Stanley Cup is engraved with the name of every player, coach, and staff member who wins it. That permanence is what makes it iconic.",
+              "translation": "The Stanley Cup is engraved with the names of the players, coaches and staff who win it. That permanence is part of what makes it iconic.",
               "followUps": [
                 {
-                  "line": "Players sometimes get the Cup for a day after winning to celebrate with family and friends. That is called 'having the Cup'.",
-                  "why": "Shows you understand the celebration tradition around winning."
+                  "line": "Do players still get a day with the Cup in the summer?",
+                  "why": "Shows you know about one of the best traditions around it."
                 },
                 {
-                  "line": "The Stanley Cup has been awarded since 1893, so the engravings go back over a century.",
-                  "why": "Acknowledges the history and weight of the trophy."
-                },
-                {
-                  "line": "The Cup is sometimes damaged or has wild parties, but that is part of its legend.",
-                  "why": "Shows respect for the tradition and the stories around it."
+                  "line": "Have you ever seen the Cup in person?",
+                  "why": "A friendly question that lets her tell a story."
                 }
               ],
-              "noFakeExpertNote": "If you do not know the Cup's traditions yet, asking about them is smarter than guessing a story."
+              "noFakeExpertNote": "If you don't know the Cup's traditions yet, asking about them beats guessing a story."
             }
           },
           {
@@ -842,18 +821,18 @@
                 },
                 {
                   "id": "round-one",
-                  "text": "Win round one against a division winner or another wild card.",
+                  "text": "Win round one (wild cards face division winners).",
                   "why": "Four wins in a best-of-seven series advances you to the next round."
                 },
                 {
                   "id": "semis",
-                  "text": "Win the conference semifinals against the other conference's survivors.",
-                  "why": "The second round narrows the field to four teams."
+                  "text": "Win round two against another team from your conference.",
+                  "why": "The second round narrows the field to four teams, still within each conference."
                 },
                 {
                   "id": "finals",
                   "text": "Win the conference final to reach the Stanley Cup Final.",
-                  "why": "Two teams are left: one per conference."
+                  "why": "The conference finals leave one team from each conference."
                 },
                 {
                   "id": "cup",
@@ -862,8 +841,8 @@
                 }
               ],
               "explanation": {
-                "correct": "Perfect. Sixteen teams, four rounds, one Stanley Cup champion. The playoff path is clear.",
-                "incorrect": "The path to the Cup: make the playoffs, win four series (16 teams → 8 → 4 → 2 → 1), and claim it."
+                "correct": "That's the path. Make the playoffs, then win four best-of-seven series and the Cup is yours.",
+                "incorrect": "The path to the Cup is: make the playoffs, then win four best-of-seven rounds. Only the conference finals and the Final cross conferences at the end."
               }
             }
           },
@@ -877,12 +856,12 @@
                 {
                   "id": "engraving",
                   "term": "Engraving",
-                  "definition": "Every player, coach and staff member who wins the Cup has their name added permanently to the trophy."
+                  "definition": "The names of the winning team's players, coaches and staff are added to the trophy for good."
                 },
                 {
                   "id": "day",
                   "term": "Having the Cup",
-                  "definition": "Winners get to take the Stanley Cup home for a day to celebrate with family, friends and their community."
+                  "definition": "Each member of the winning team spends a day with the Cup over the summer to celebrate with family and friends."
                 },
                 {
                   "id": "ceremony",
@@ -891,8 +870,8 @@
                 }
               ],
               "explanation": {
-                "summary": "The Stanley Cup has traditions that make winning it special and unforgettable. It is more than a trophy; it is a symbol.",
-                "sayThisLine": "The Cup's traditions are what make it the greatest trophy in sport."
+                "summary": "The Stanley Cup has traditions, from engraved names to a day with the Cup, that make winning it feel bigger than a trophy. Fans love the stories behind it.",
+                "sayThisLine": "The Cup traditions are half the reason people love this sport."
               }
             }
           }

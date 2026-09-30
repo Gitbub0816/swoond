@@ -24,12 +24,12 @@
               "items": [
                 {"id": "naismith", "text": "Naismith invents basketball in Springfield", "why": "Basketball started in 1891."},
                 {"id": "baa", "text": "BAA founded as pro basketball league", "why": "Professional league started in 1946."},
-                {"id": "merger", "text": "NBA merges with NBL", "why": "Merger happened in 1949."},
-                {"id": "shotclock", "text": "24-second shot clock introduced", "why": "Shot clock added in 1954."}
+                {"id": "merger", "text": "BAA and NBL merge to form the NBA", "why": "The merger happened in 1949."},
+                {"id": "shotclock", "text": "24-second shot clock introduced", "why": "The clock arrived in 1954."}
               ],
               "explanation": {
-                "correct": "Perfect. Basketball grew from a YMCA exercise to the pro game over 60+ years.",
-                "incorrect": "Not quite. Basketball started 1891, pro league 1946, merger 1949, shot clock 1954."
+                "correct": "Perfect. Basketball grew from a YMCA winter exercise in 1891 to a pro league in 1946, the NBA in 1949 and the shot clock in 1954.",
+                "incorrect": "Not quite. The order is Naismith in 1891, the BAA in 1946, the BAA and NBL merger that made the NBA in 1949, then the 24-second clock in 1954."
               }
             }
           },
@@ -46,7 +46,7 @@
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. Naismith wanted indoor winter exercise. He nailed it.",
+                "correct": "Right. In 1891 Naismith needed something his students could play indoors between football and baseball seasons, and peach baskets did the job.",
                 "incorrect": "Not quite. Basketball started as a practical winter sport, not as pro entertainment."
               }
             }
@@ -70,20 +70,20 @@
             }
           },
           {
-            "id": "era-01-mc-3",
-            "type": "multiple-choice",
+            "id": "era-01-ftg-1",
+            "type": "fill-the-gap",
             "conceptIds": ["shot-clock-invention"],
             "payload": {
-              "prompt": "What problem did the 24-second shot clock solve?",
-              "options": [
-                {"id": "correct", "text": "Games were slowing down; teams stalled to protect leads."},
-                {"id": "dist-1", "text": "Players were scoring too many points."},
-                {"id": "dist-2", "text": "Refs needed time to make calls."}
+              "prompt": "Fill in the shot clock story.",
+              "template": "The NBA added a {{seconds}}-second shot clock in {{year}}, because teams with a lead used to {{problem}} the ball.",
+              "gaps": [
+                {"id": "seconds", "options": ["14", "24", "30"], "correct": "24"},
+                {"id": "year", "options": ["1946", "1954", "1979"], "correct": "1954"},
+                {"id": "problem", "options": ["stall with", "throw away", "sell"], "correct": "stall with"}
               ],
-              "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. Before 1954, teams could hold the ball forever. Shot clock saved the game.",
-                "incorrect": "Not quite. Early pro basketball had no time limit on possessions, so games died."
+                "correct": "Right. Before the clock, a team ahead could just hold the ball. Games turned into slow, low-scoring stalls, and the 24-second clock brought the scoring and the fans back.",
+                "incorrect": "Not quite. The NBA introduced a 24-second clock for the 1954-55 season because teams with a lead were stalling, which made games slow and dull."
               }
             }
           },
@@ -98,7 +98,7 @@
               },
               "question": "What is she noting?",
               "options": [
-                {"id": "correct", "text": "Modern basketball is only about 130 years old, newer than many sports.", "isCorrect": true},
+                {"id": "correct", "text": "Basketball is just over 130 years old, younger than baseball or football.", "isCorrect": true},
                 {"id": "dist-1", "text": "Basketball players are younger than football players.", "isCorrect": false},
                 {"id": "dist-2", "text": "The game changes every season.", "isCorrect": false},
                 {"id": "dist-3", "text": "Most players retire young.", "isCorrect": false}
@@ -114,7 +114,7 @@
                   "why": "Fair observation that Naismith's invention became an American institution."
                 }
               ],
-              "noFakeExpertNote": "Basketball is genuinely young: 1891 is only 135 years ago. Baseball and football started earlier."
+              "noFakeExpertNote": "Basketball is genuinely young: Naismith invented it in 1891. Baseball and football started earlier."
             }
           }
         ]
@@ -127,20 +127,20 @@
         "conceptIds": ["celtics-dynasty", "big-man-era"],
         "activities": [
           {
-            "id": "era-02-mc-1",
-            "type": "multiple-choice",
+            "id": "era-02-es-1",
+            "type": "estimate-slider",
             "conceptIds": ["celtics-dynasty"],
             "payload": {
-              "prompt": "What made the Celtics dynasty so rare?",
-              "options": [
-                {"id": "correct", "text": "11 titles in 13 years with Bill Russell; no team has matched that dominance."},
-                {"id": "dist-1", "text": "They won in the 1960s when basketball was new."},
-                {"id": "dist-2", "text": "Russell was the first professional player."}
-              ],
-              "correctOptionIds": ["correct"],
+              "prompt": "How many championships did Bill Russell win as a player?",
+              "unit": "titles",
+              "min": 0,
+              "max": 20,
+              "step": 1,
+              "correctValue": 11,
+              "tolerance": {"full": 0, "partial": 2},
               "explanation": {
-                "correct": "Right. Celtics' 11 in 13 is unmatched. Russell's defense and team play set a standard.",
-                "incorrect": "Not quite. The Celtics won 11 titles from 1957-1969, a record nobody else comes close to."
+                "correct": "Yes, eleven titles in thirteen seasons with the Celtics (1957-1969). Russell's defense and team play anchored the run.",
+                "incorrect": "Bill Russell won 11 championships in 13 seasons with the Celtics (1957-1969), the most of any player ever. Defense and teamwork were the engine."
               }
             }
           },
@@ -169,16 +169,16 @@
             "payload": {
               "prompt": "Match 1960s basketball concepts.",
               "pairs": [
-                {"id": "celts", "term": "Celtics dynasty", "definition": "11 titles in 13 years (1957-1969) led by Bill Russell; defensive principles and team play."},
-                {"id": "wilt", "term": "Big-man era", "definition": "1960s dominated by centers Wilt and Russell; post-centric basketball and individual dominance."},
-                {"id": "team", "term": "Team defense", "definition": "Russell's innovation: help and rotation, not just individual shot-blocking."}
+                {"id": "celts", "term": "Celtics dynasty", "definition": "Eleven titles in thirteen seasons (1957-1969) led by Bill Russell."},
+                {"id": "wilt", "term": "Big-man era", "definition": "The 1960s, when centers like Wilt Chamberlain and Bill Russell dominated the game."},
+                {"id": "team", "term": "Team defense", "definition": "Russell's specialty: blocking and altering shots while teammates rotated behind him."}
               ],
               "distractorDefinitions": [
                 "A fast-paced offense with multiple ball handlers.",
                 "A style where all players shoot from distance."
               ],
               "explanation": {
-                "summary": "Celtics won through team defense. Russell pioneered help-side rotations. Wilt represented individual dominance."
+                "summary": "The Celtics won through team defense, with Russell as its anchor. Wilt Chamberlain was the other giant of the era, famous for his scoring."
               }
             }
           },
@@ -189,16 +189,16 @@
             "payload": {
               "statement": {
                 "speaker": "Your crush",
-                "text": "Russell has more rings than anyone. Nobody else even comes close."
+                "text": "Russell has more rings than any player in history. It is not even a fair fight."
               },
               "question": "What is the context?",
               "options": [
-                {"id": "correct", "text": "Bill Russell won 11 NBA championships, mostly with the Celtics, a record unmatched.", "isCorrect": true},
+                {"id": "correct", "text": "Bill Russell won 11 championships with the Celtics, more than any player ever.", "isCorrect": true},
                 {"id": "dist-1", "text": "Russell wore more jewelry than other players.", "isCorrect": false},
                 {"id": "dist-2", "text": "Russell invented the ring in basketball.", "isCorrect": false},
                 {"id": "dist-3", "text": "Russell's rings are more valuable than others'.", "isCorrect": false}
               ],
-              "translation": "She's pointing out that Russell's 11 titles stand alone. No modern player has won half that many.",
+              "translation": "She's pointing out that Russell's 11 titles are the record, and nobody in the modern game is anywhere near it.",
               "followUps": [
                 {
                   "line": "That is crazy when you think about it.",
@@ -206,10 +206,10 @@
                 },
                 {
                   "line": "Different era though, fewer teams.",
-                  "why": "Valid observation: fewer teams in the 1960s made championships easier to win."
+                  "why": "A fair point: the league had only eight to fourteen teams then, which is part of why fans debate how to compare eras."
                 }
               ],
-              "noFakeExpertNote": "Russell's 11 titles is fact. Fewer teams existed then, but the dominance over 13 years is still historic."
+              "noFakeExpertNote": "Russell's 11 titles in 13 seasons is the record. Fewer teams existed then, but a run like that is still historic."
             }
           },
           {
@@ -264,7 +264,7 @@
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. Magic's Lakers vs Bird's Celtics was must-watch TV. It saved the NBA.",
+                "correct": "Right. Magic's Lakers against Bird's Celtics became must-watch TV, and it helped lift the league out of a slump.",
                 "incorrect": "Not quite. The Magic-Bird rivalry in the 1980s revived fan interest when the NBA was in trouble."
               }
             }
@@ -387,20 +387,19 @@
         "conceptIds": ["jordan-bulls", "dream-team", "global-game"],
         "activities": [
           {
-            "id": "era-04-mc-1",
-            "type": "multiple-choice",
+            "id": "era-04-ftg-1",
+            "type": "fill-the-gap",
             "conceptIds": ["jordan-bulls"],
             "payload": {
-              "prompt": "How many titles did Jordan win?",
-              "options": [
-                {"id": "correct", "text": "Six championships in eight years (1991-1998), three-peat twice."},
-                {"id": "dist-1", "text": "10 titles; he never lost."},
-                {"id": "dist-2", "text": "One title, then he retired."}
+              "prompt": "Fill in Jordan's Bulls run.",
+              "template": "Jordan's Bulls won {{titles}} championships in two three-peats: 1991 to 1993 and {{years}}.",
+              "gaps": [
+                {"id": "titles", "options": ["four", "six", "eight"], "correct": "six"},
+                {"id": "years", "options": ["1994 to 1996", "1996 to 1998", "1998 to 2000"], "correct": "1996 to 1998"}
               ],
-              "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. Jordan's six titles in eight years is the modern standard for greatness.",
-                "incorrect": "Not quite. Jordan won six: 1991-1993 and 1996-1998, two three-peats."
+                "correct": "Right. Six titles in two three-peats, with a break in between while Jordan tried baseball and then returned in 1995.",
+                "incorrect": "Not quite. The Bulls won six titles: 1991 to 1993, then 1996 to 1998, after Jordan's break from basketball."
               }
             }
           },
@@ -411,14 +410,14 @@
             "payload": {
               "prompt": "What was special about the 1992 Dream Team?",
               "options": [
-                {"id": "correct", "text": "NBA all-stars (Jordan, Magic, Bird, etc.) dominated the Olympics as amateurs, changing global game."},
+                {"id": "correct", "text": "NBA stars like Jordan, Magic and Bird played in the Olympics for the first time and won easily."},
                 {"id": "dist-1", "text": "It was a team of high school players."},
                 {"id": "dist-2", "text": "It lost a game in the Olympics."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Exactly. Dream Team was the first Olympic team with NBA stars. They won by huge margins.",
-                "incorrect": "Not quite. Dream Team featured NBA pros and dominated 1992 Olympics, promoting the game worldwide."
+                "correct": "Exactly. Until then the US sent college players. In 1992 NBA pros were allowed for the first time, and the Dream Team won gold by huge margins.",
+                "incorrect": "Not quite. The 1992 Dream Team was the first US Olympic team with NBA stars, and it won gold by huge margins."
               }
             }
           },
@@ -429,14 +428,14 @@
             "payload": {
               "prompt": "How did the Dream Team change basketball?",
               "options": [
-                {"id": "correct", "text": "Exposed the world to NBA talent; international players later joined the league."},
+                {"id": "correct", "text": "It made the NBA a worldwide brand, and more international players followed."},
                 {"id": "dist-1", "text": "It invented three-pointers."},
                 {"id": "dist-2", "text": "It changed the rules of basketball."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. Dream Team inspired global interest. International basketball grew after 1992.",
-                "incorrect": "Not quite. Dream Team showed the world NBA-level basketball, inspiring international talent to pursue the league."
+                "correct": "Right. The Dream Team sparked huge interest abroad, and over the next decades more international players reached the NBA.",
+                "incorrect": "Not quite. The Dream Team did not change the rules or invent the three. It showed NBA-level basketball to the world and inspired a generation of international players."
               }
             }
           },
@@ -447,27 +446,27 @@
             "payload": {
               "statement": {
                 "speaker": "Your crush",
-                "text": "Six titles in eight years, and he never came back like everyone else did."
+                "text": "Six Finals, six rings. Jordan never lost a Finals series."
               },
               "question": "What is she noting?",
               "options": [
-                {"id": "correct", "text": "Jordan retired while still at his peak, keeping his legacy clean.", "isCorrect": true},
-                {"id": "dist-1", "text": "Jordan never returned to the NBA.", "isCorrect": false},
-                {"id": "dist-2", "text": "Jordan played eight seasons total.", "isCorrect": false},
-                {"id": "dist-3", "text": "Jordan never played basketball again.", "isCorrect": false}
+                {"id": "correct", "text": "Jordan's Bulls won every NBA Finals they reached, six out of six.", "isCorrect": true},
+                {"id": "dist-1", "text": "Jordan lost his first Finals and won the rest.", "isCorrect": false},
+                {"id": "dist-2", "text": "Jordan won six Finals on six different teams.", "isCorrect": false},
+                {"id": "dist-3", "text": "Jordan only played in the Finals once.", "isCorrect": false}
               ],
-              "translation": "She means Jordan quit while still dominant (after 1993 and again after 1998), unlike many stars who decline.",
+              "translation": "She means the Bulls reached the Finals six times with Jordan and won all six, which is why fans call his record perfect.",
               "followUps": [
                 {
-                  "line": "Yeah, he went out on top.",
-                  "why": "Exactly: Jordan ended on his terms, in his prime."
+                  "line": "Wasn't there a gap in the middle for baseball?",
+                  "why": "A fair, curious question: Jordan left in 1993, tried baseball and returned in 1995."
                 },
                 {
-                  "line": "But he did come back briefly.",
-                  "why": "Fair correction: Jordan had minor returns but not a full rebuild like others."
+                  "line": "Six for six is wild.",
+                  "why": "A warm, honest reaction that shows you get why the record stands out."
                 }
               ],
-              "noFakeExpertNote": "Jordan won his last title in 1998, then retired (mostly) at 35, while still elite."
+              "noFakeExpertNote": "Jordan was also Finals MVP all six times. Ask her which Finals she remembers best."
             }
           },
           {
@@ -493,8 +492,8 @@
                   "why": "True: Dream Team influenced international basketball development."
                 },
                 {
-                  "line": "Still got dominated in some countries.",
-                  "why": "Fair: some international programs were competitive even then."
+                  "line": "Other countries caught up fast, though.",
+                  "why": "Fair: within a couple of decades international teams were competing with the US."
                 }
               ],
               "noFakeExpertNote": "Dream Team (1992) is widely credited with globalizing basketball and inspiring international talent pipelines."
@@ -514,10 +513,10 @@
                   "replies": [
                     {
                       "id": "a",
-                      "text": "True, but Jordan never declined the way LeBron did. He quit on top.",
+                      "text": "Fair, twenty years is wild. Jordan's run was six titles in eight years, though.",
                       "smoothDelta": 25,
-                      "theirResponse": "Fair. Jordan ended in '98 while still a monster.",
-                      "coachNote": "You acknowledged their point while adding context about Jordan's exit."
+                      "theirResponse": "True. Jordan was a monster when he was on.",
+                      "coachNote": "You acknowledged their point and added context without arguing."
                     },
                     {
                       "id": "b",
@@ -561,20 +560,21 @@
         "conceptIds": ["2000s-dynasties", "lebron-era", "iso-ball-era"],
         "activities": [
           {
-            "id": "era-05-mc-1",
-            "type": "multiple-choice",
+            "id": "era-05-so-1",
+            "type": "sequence-order",
             "conceptIds": ["2000s-dynasties"],
             "payload": {
-              "prompt": "Who dominated the 2000s?",
-              "options": [
-                {"id": "correct", "text": "Lakers three-peat (2000-2002) with Shaq and Kobe, then Spurs with Duncan."},
-                {"id": "dist-1", "text": "Celtics won every year."},
-                {"id": "dist-2", "text": "Only one team ever won in the 2000s."}
+              "prompt": "Put these dynasties in order, earliest first.",
+              "items": [
+                {"id": "russell", "text": "Russell's Celtics (1957 to 1969)", "why": "The first great dynasty, built on defense."},
+                {"id": "magic-bird", "text": "Magic's Lakers and Bird's Celtics (1980s)", "why": "Their rivalry lifted the league in the 1980s."},
+                {"id": "jordan", "text": "Jordan's Bulls (1991 to 1998)", "why": "Six titles in the 1990s."},
+                {"id": "shaq-kobe", "text": "Shaq and Kobe's Lakers (2000 to 2002)", "why": "A three-peat to open the 2000s."},
+                {"id": "warriors", "text": "Curry's Warriors (Finals 2015 to 2019)", "why": "Five straight Finals in the 2010s."}
               ],
-              "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. Lakers dominated early 2000s, then Spurs took over later in the decade.",
-                "incorrect": "Not quite. Lakers and Spurs were the dynasties: Lakers 2000-2002, Spurs 2003 onward."
+                "correct": "Nice. Russell's Celtics, the Magic and Bird 1980s, Jordan's Bulls, Shaq and Kobe's Lakers, then Curry's Warriors. Each era set up the next.",
+                "incorrect": "Not quite. The order is Russell's Celtics (late 1950s and 60s), Magic and Bird (1980s), Jordan's Bulls (1990s), Shaq and Kobe (2000 to 2002), Curry's Warriors (2015 to 2019)."
               }
             }
           },
@@ -585,14 +585,14 @@
             "payload": {
               "prompt": "When did LeBron change the game?",
               "options": [
-                {"id": "correct", "text": "2003 onward; he redefined positionless basketball and modern athleticism."},
+                {"id": "correct", "text": "He arrived in 2003 as a big, fast forward who could handle, pass and score anywhere."},
                 {"id": "dist-1", "text": "LeBron never changed anything."},
                 {"id": "dist-2", "text": "LeBron started in 1991."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Exactly. LeBron (drafted 2003) brought size, speed and versatility to every position.",
-                "incorrect": "Not quite. LeBron's arrival (2003) marked the shift to positionless basketball."
+                "correct": "Exactly. LeBron was drafted in 2003 and showed that one player with size, speed and vision could do what used to take several positions.",
+                "incorrect": "Not quite. LeBron was drafted in 2003, and his size, speed and passing helped push the league toward positionless basketball."
               }
             }
           },
@@ -603,16 +603,16 @@
             "payload": {
               "prompt": "Match 2000s basketball concepts.",
               "pairs": [
-                {"id": "dynasty", "term": "2000s dynasties", "definition": "Lakers three-peat (2000-2002) with Shaq and Kobe, then Spurs with Duncan throughout the decade."},
-                {"id": "lebron", "term": "LeBron era", "definition": "2003 onward; redefined positionless basketball and modern athleticism; big men had to guard perimeter."},
-                {"id": "iso", "term": "Iso-ball era", "definition": "Mid-2000s featured isolation plays and post-ups; individual talent over ball movement."}
+                {"id": "dynasty", "term": "2000s dynasties", "definition": "The Shaq-and-Kobe Lakers three-peat (2000 to 2002), and Duncan's Spurs titles in 2003, 2005 and 2007."},
+                {"id": "lebron", "term": "LeBron era", "definition": "Starts with LeBron's 2003 arrival: a big, fast forward who can handle, pass and score anywhere."},
+                {"id": "iso", "term": "Iso-ball era", "definition": "Offense built on one-on-one isolations and post-ups instead of ball movement."}
               ],
               "distractorDefinitions": [
                 "A passing-heavy system like the Warriors.",
                 "A defensive scheme that only works in playoffs."
               ],
               "explanation": {
-                "summary": "Lakers and Spurs dominated early 2000s. LeBron (2003) started the shift to positionless. Iso-ball emphasized individual creation."
+                "summary": "The Lakers and Spurs won seven of the ten titles from 2000 to 2009. LeBron arrived in 2003 and helped push the game toward positionless play. Iso-ball means trusting one scorer to create."
               }
             }
           },
@@ -653,27 +653,27 @@
             "payload": {
               "statement": {
                 "speaker": "Your crush",
-                "text": "LeBron made big men have to guard the perimeter."
+                "text": "LeBron basically proved positions do not matter."
               },
               "question": "What does she mean?",
               "options": [
-                {"id": "correct", "text": "LeBron's arrival brought positionless basketball, forcing centers to develop guard skills.", "isCorrect": true},
-                {"id": "dist-1", "text": "LeBron put a fence around the court.", "isCorrect": false},
-                {"id": "dist-2", "text": "The three-point line moved to the perimeter.", "isCorrect": false},
-                {"id": "dist-3", "text": "LeBron played defense only.", "isCorrect": false}
+                {"id": "correct", "text": "A big forward who can handle, pass and score makes fixed positions matter less.", "isCorrect": true},
+                {"id": "dist-1", "text": "LeBron played every position on the same night.", "isCorrect": false},
+                {"id": "dist-2", "text": "The league removed positions from the rulebook.", "isCorrect": false},
+                {"id": "dist-3", "text": "LeBron never played defense.", "isCorrect": false}
               ],
-              "translation": "She means LeBron's versatility forced the league to develop more skilled big men.",
+              "translation": "She means LeBron's size and all-around skill showed a team could play one player at many jobs, which pushed the game toward positionless basketball.",
               "followUps": [
                 {
-                  "line": "Modern bigs have to shoot threes now.",
-                  "why": "Exactly: LeBron (and the game) made shooting a requirement for centers."
+                  "line": "Is that why teams want forwards who can pass?",
+                  "why": "A curious question that connects his style to what teams look for now."
                 },
                 {
-                  "line": "That changed the whole draft.",
-                  "why": "True: player development and scouting shifted to value perimeter skills in big men."
+                  "line": "Guess that is why everyone says positionless now.",
+                  "why": "Shows you can link the slang to where it came from."
                 }
               ],
-              "noFakeExpertNote": "LeBron's positionless style at 6'9\" with guard skills changed how the league values big-man skill sets."
+              "noFakeExpertNote": "LeBron is 6 feet 9 inches and handles and passes like a guard. That mix is why fans use him to explain positionless basketball."
             }
           }
         ]
@@ -690,16 +690,16 @@
             "type": "multiple-choice",
             "conceptIds": ["warriors-dynasty"],
             "payload": {
-              "prompt": "When did the Warriors dynasty start?",
+              "prompt": "What was the Curry-era Warriors dynasty?",
               "options": [
-                {"id": "correct", "text": "2014-2019 with Curry, Durant and Thompson winning three titles."},
-                {"id": "dist-1", "text": "1990s when they were a bad team."},
-                {"id": "dist-2", "text": "2030s in the future."}
+                {"id": "correct", "text": "Five straight Finals from 2015 to 2019, with titles in 2015, 2017 and 2018."},
+                {"id": "dist-1", "text": "A title in every year of the 1990s."},
+                {"id": "dist-2", "text": "A single title in 1975 and nothing since."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. Warriors 2014-2019 was one of the great runs, revolutionizing the game.",
-                "incorrect": "Not quite. Warriors dynasty was 2014-2019, winning three titles."
+                "correct": "Right. Curry, Thompson and Green won in 2015, Durant joined in 2016 and they won again in 2017 and 2018. They added another title in 2022.",
+                "incorrect": "Not quite. The Warriors reached five straight Finals from 2015 to 2019 and won in 2015, 2017 and 2018, then again in 2022."
               }
             }
           },
@@ -716,26 +716,27 @@
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Exactly. Warriors played four guards and a stretch big, not traditional centers.",
-                "incorrect": "Not quite. Small-ball means spacing the floor with shooters; Warriors pioneered this."
+                "correct": "Exactly. The Warriors' famous lineup played Draymond Green, a 6-foot-6 forward, at center with four shooters around him.",
+                "incorrect": "Not quite. Small-ball means replacing a traditional big with another shooter or wing to spread the floor, like the Warriors did with Draymond Green at center."
               }
             }
           },
           {
-            "id": "era-06-mc-3",
-            "type": "multiple-choice",
+            "id": "era-06-bc-1",
+            "type": "binary-call",
             "conceptIds": ["three-point-revolution-history"],
             "payload": {
-              "prompt": "Was the three-point revolution sudden?",
-              "options": [
-                {"id": "correct", "text": "No, it took decades; Warriors fully realized it in the 2010s."},
-                {"id": "dist-1", "text": "Yes, it happened overnight in 2014."},
-                {"id": "dist-2", "text": "Three-pointers were never popular."}
+              "prompt": "The NBA had a three-point line before Curry arrived. Right?",
+              "scene": {"kind": "none", "alt": "A timeline showing the NBA three-point line adopted in 1979-80 and Curry's Warriors winning in 2015."},
+              "choices": [
+                {"id": "yes", "label": "Yes, since 1979-80"},
+                {"id": "no", "label": "No, Curry's era added it"}
               ],
-              "correctOptionIds": ["correct"],
+              "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Right. Three-point emphasis grew gradually since the 1980s; Warriors made it dominant.",
-                "incorrect": "Not quite. Three-pointer emphasis grew over decades; Warriors completed the revolution."
+                "correct": "Right. The NBA adopted the three-point line in 1979-80. The revolution was a slow change in how teams used it, and Curry's Warriors pushed it to the extreme.",
+                "incorrect": "The NBA adopted the three-point line in 1979-80, decades before Curry. What changed in the 2010s was how much teams used it, and Curry's Warriors showed how far that could go.",
+                "sayThisLine": "\"The line has been there since 1979. Curry just made teams use it.\""
               }
             }
           },
@@ -755,7 +756,7 @@
                 {"id": "dist-2", "text": "Curry moved the three-point line.", "isCorrect": false},
                 {"id": "dist-3", "text": "Curry only shoots threes.", "isCorrect": false}
               ],
-              "translation": "She means Curry's range was so deep that defenses had to guard him 30+ feet out.",
+              "translation": "She means Curry could shoot from so far beyond the arc that defenders had to pick him up far from the basket.",
               "followUps": [
                 {
                   "line": "That opened up cuts and drives for everyone else.",
@@ -766,7 +767,7 @@
                   "why": "True: other teams drafted shooters to compete."
                 }
               ],
-              "noFakeExpertNote": "Curry's range (beyond the arc) forced adjustments in every defense; his threat space expanded the floor."
+              "noFakeExpertNote": "Curry's range forced defenses to stretch out, and that opened the floor for cuts and drives."
             }
           },
           {
@@ -804,19 +805,19 @@
             "type": "estimate-slider",
             "conceptIds": ["three-point-revolution-history"],
             "payload": {
-              "prompt": "What % of NBA field goals are threes today?",
+              "prompt": "What share of NBA shots are threes these days?",
               "unit": "%",
               "min": 0,
-              "max": 50,
+              "max": 60,
               "step": 1,
-              "correctValue": 35,
+              "correctValue": 40,
               "tolerance": {
-                "full": 3,
-                "partial": 7
+                "full": 4,
+                "partial": 8
               },
               "explanation": {
-                "correct": "About 35% of shots are threes now; it was 15% in 1990.",
-                "incorrect": "The shift from ~15% in 1990 to ~35% today shows how much the game changed."
+                "correct": "Right. Around four in ten NBA shots are threes in recent seasons, up from under one in ten around 1990.",
+                "incorrect": "Recent NBA seasons have seen roughly 40% of shots taken from three, up from under 10% around 1990. That jump is what people mean by the three-point revolution."
               }
             }
           }
@@ -848,20 +849,19 @@
             }
           },
           {
-            "id": "era-07-mc-2",
-            "type": "multiple-choice",
+            "id": "era-07-ftg-1",
+            "type": "fill-the-gap",
             "conceptIds": ["one-and-done"],
             "payload": {
-              "prompt": "What is one-and-done in college basketball?",
-              "options": [
-                {"id": "correct", "text": "Top prospects stay only one year before declaring for the NBA draft."},
-                {"id": "dist-1", "text": "A player who fouls out in one game."},
-                {"id": "dist-2", "text": "A player who only scores one basket per game."}
+              "prompt": "Fill in the college-to-NBA shortcut.",
+              "template": "Top recruits often play {{years}} college season before the draft. Fans call that player {{term}}.",
+              "gaps": [
+                {"id": "years", "options": ["one", "three", "five"], "correct": "one"},
+                {"id": "term", "options": ["one-and-done", "two-way", "sign-and-trade"], "correct": "one-and-done"}
               ],
-              "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Exactly. One-and-done means lottery prospects skip multiple college years.",
-                "incorrect": "Not quite. One-and-done refers to top recruits staying one year of college."
+                "correct": "Right. The NBA's age rule keeps players out of the draft straight from high school, so many top recruits spend one college season and then leave.",
+                "incorrect": "Not quite. A one-and-done player spends a single college season before the NBA draft. Two-way and sign-and-trade are NBA contract terms."
               }
             }
           },
@@ -1008,16 +1008,16 @@
             "type": "multiple-choice",
             "conceptIds": ["current-era-stars"],
             "payload": {
-              "prompt": "Who are the dominant stars of 2026?",
+              "prompt": "Who topped the 2025-26 MVP vote?",
               "options": [
-                {"id": "correct", "text": "Shai Gilgeous-Alexander, Victor Wembanyama, Luka Doncic and others; the game is positionless now."},
-                {"id": "dist-1", "text": "LeBron James is still the only star."},
-                {"id": "dist-2", "text": "No one has been drafted yet."}
+                {"id": "correct", "text": "Shai Gilgeous-Alexander, with Jokic second and Wembanyama third."},
+                {"id": "dist-1", "text": "LeBron James, in his first season."},
+                {"id": "dist-2", "text": "Michael Jordan, in a comeback season."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Right. Today's league has multiple dynamic stars; no one player dominates like past eras.",
-                "incorrect": "Not quite. 2026 has Shai, Wembanyama, Doncic and others defining positionless basketball."
+                "correct": "Right. Shai won his second straight MVP in 2025-26, with Nikola Jokic and Victor Wembanyama behind him. This lesson is a snapshot and is refreshed each offseason.",
+                "incorrect": "Not quite. Shai Gilgeous-Alexander won the 2025-26 MVP, with Jokic second and Wembanyama third. This snapshot gets refreshed each offseason."
               }
             }
           },
@@ -1026,16 +1026,16 @@
             "type": "multiple-choice",
             "conceptIds": ["generational-shift"],
             "payload": {
-              "prompt": "How has the game changed generationally?",
+              "prompt": "What is most different about today's game?",
               "options": [
-                {"id": "correct", "text": "New players are taller, faster, more skilled at all positions; spacing is expected."},
-                {"id": "dist-1", "text": "Modern players are worse than the past."},
+                {"id": "correct", "text": "Teams expect shooting and passing at every position, and they space the floor."},
+                {"id": "dist-1", "text": "Teams play with six players on the floor."},
                 {"id": "dist-2", "text": "Nothing has changed since the 1990s."}
               ],
               "correctOptionIds": ["correct"],
               "explanation": {
-                "correct": "Exactly. Each generation brings more athleticism, skill development and versatility.",
-                "incorrect": "Not quite. Modern players are more skilled and versatile than previous eras."
+                "correct": "Exactly. Spacing, threes and versatile players at every position are the big changes. Whether that makes the game better is what fans argue about.",
+                "incorrect": "Not quite. The biggest changes are the league-wide emphasis on threes, spacing and players who can shoot and pass at every position."
               }
             }
           },
@@ -1050,23 +1050,23 @@
               },
               "question": "What is she saying?",
               "options": [
-                {"id": "correct", "text": "Shai Gilgeous-Alexander is the top star, but parity means other elite players are close.", "isCorrect": true},
+                {"id": "correct", "text": "Shai is her pick for the best, but she thinks several others are close behind.", "isCorrect": true},
                 {"id": "dist-1", "text": "There is only one good player.", "isCorrect": false},
                 {"id": "dist-2", "text": "Shai plays for multiple teams.", "isCorrect": false},
                 {"id": "dist-3", "text": "The league has no elite players.", "isCorrect": false}
               ],
-              "translation": "She means Shai is the consensus #1 as of 2026, but Wembanyama, Doncic and others are elite too.",
+              "translation": "She means Shai won the latest MVP and is her pick for the best, but Jokic, Wembanyama, Doncic and others are elite too.",
               "followUps": [
                 {
                   "line": "That is different from past eras with one GOAT.",
-                  "why": "Good observation: 2026 has more parity than Jordan or LeBron eras."
+                  "why": "A fair observation: a crowd of top stars feels different from one towering figure."
                 },
                 {
                   "line": "Does that make the league better?",
                   "why": "Valid question: different preferences on whether parity or superstars are better."
                 }
               ],
-              "noFakeExpertNote": "As of 2026-09-30, SGA is the consensus best player (MVP race), but Wembanyama, Doncic, and others are elite."
+              "noFakeExpertNote": "Shai won the 2025-26 MVP, with Jokic second and Wembanyama third. Ask who she would put next."
             }
           },
           {
@@ -1080,23 +1080,23 @@
               },
               "question": "What is she describing?",
               "options": [
-                {"id": "correct", "text": "Modern tall players are more versatile, athletic and skilled than previous eras.", "isCorrect": true},
+                {"id": "correct", "text": "She thinks today's big men are more skilled and better trained than the old ones.", "isCorrect": true},
                 {"id": "dist-1", "text": "Basketball courts are now bigger.", "isCorrect": false},
                 {"id": "dist-2", "text": "The hoop is lower now.", "isCorrect": false},
-                {"id": "dist-3", "text": "Modern players are taller.", "isCorrect": false}
+                {"id": "dist-3", "text": "Centers from the 1980s never played in the NBA.", "isCorrect": false}
               ],
-              "translation": "She's comparing generational improvements: modern players (at every size) are better trained and more versatile.",
+              "translation": "She is arguing that today's big men shoot, pass and move better, and train smarter, than the centers of the 1980s. It is a fun opinion, not a fact.",
               "followUps": [
                 {
                   "line": "Training, strength and conditioning are better.",
-                  "why": "True: modern sports science changed athlete development."
+                  "why": "A real point: sports science has changed how athletes are developed."
                 },
                 {
                   "line": "But different rules and spacing.",
                   "why": "Fair: era-specific factors make direct comparison hard."
                 }
               ],
-              "noFakeExpertNote": "Modern players benefit from better training, nutrition, strength coaching, and sports science than past eras."
+              "noFakeExpertNote": "Better training and sports science are real, but comparing eras is opinion. Ask her which old center she would want to see face a modern big."
             }
           },
           {
@@ -1132,7 +1132,7 @@
                   "replies": [
                     {
                       "id": "c",
-                      "text": "Fair point. Jordan's run was historically great. But Shai plays in a different league; parity is tighter now.",
+                      "text": "Fair point. Jordan's run was historically great. But it is a different landscape now, with talent spread across more teams.",
                       "smoothDelta": 20,
                       "theirResponse": "You are right. Winning is harder now because talent is more spread out.",
                       "coachNote": "You validated their point while adding context about modern parity."

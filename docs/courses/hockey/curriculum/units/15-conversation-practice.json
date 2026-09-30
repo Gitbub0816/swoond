@@ -7,6 +7,7 @@
     "layer": "conversation",
     "order": 15,
     "prerequisiteUnitIds": ["game-on-ice"],
+    "personalizationSlots": ["team"],
     "lessons": [
       {
         "id": "talk-first-question",
@@ -20,64 +21,28 @@
             "type": "talk-track",
             "conceptIds": ["conversation-starters"],
             "payload": {
-              "title": "Your first hockey question",
-              "setting": "Starting a conversation with someone new to hockey.",
+              "title": "Opening night chat",
+              "setting": "The new season starts tonight and she is texting you before puck drop.",
               "startingSmooth": 50,
               "exchanges": [
                 {
-                  "theirMessage": "I have no idea about hockey. Where do I even start?",
+                  "theirMessage": "Puck drops tonight and {{team}} opens the season. I've been counting down for weeks.",
                   "replies": [
-                    {
-                      "id": "a",
-                      "text": "What got you interested in learning about it?",
-                      "smoothDelta": 25,
-                      "theirResponse": "My boyfriend loves it and I want to understand.",
-                      "coachNote": "Shows you care about her motivation."
-                    },
-                    {
-                      "id": "b",
-                      "text": "It's really complicated, sorry.",
-                      "smoothDelta": 3,
-                      "theirResponse": "Great...",
-                      "coachNote": "Discouraging from the start."
-                    },
-                    {
-                      "id": "c",
-                      "text": "Do you have a favorite team yet?",
-                      "smoothDelta": 10,
-                      "theirResponse": "I'm not sure. His is the Bruins.",
-                      "coachNote": "Good question but assume she picks her own team."
-                    }
+                    {"id": "a", "text": "Who are you most excited to watch? I'm still learning who's who.", "smoothDelta": 25, "theirResponse": "Our new defenseman, honestly. I'll point him out.", "coachNote": "Curious and honest about what you do not know yet."},
+                    {"id": "b", "text": "Cool. Who are they playing?", "smoothDelta": 5, "theirResponse": "Our division rival. It's always a good one.", "coachNote": "Friendly and harmless, but it stays on the surface."},
+                    {"id": "c", "text": "Isn't hockey just guys skating around?", "smoothDelta": -15, "theirResponse": "Wow. Okay. Stick around and you'll see.", "coachNote": "A joke at the sport's expense can land as a joke at her."}
                   ]
                 },
                 {
-                  "theirMessage": "I just want to follow along when we watch games together.",
+                  "theirMessage": "You should watch the opener with me. I'll explain whatever you want.",
                   "replies": [
-                    {
-                      "id": "a",
-                      "text": "That's perfect. We can start with the basics: three 20-minute periods.",
-                      "smoothDelta": 25,
-                      "theirResponse": "Oh, that's way shorter than I thought!",
-                      "coachNote": "Meet her where she is with the basics."
-                    },
-                    {
-                      "id": "b",
-                      "text": "Start by watching a lot of games.",
-                      "smoothDelta": 5,
-                      "theirResponse": "That's a lot of homework.",
-                      "coachNote": "Too vague; no structure."
-                    },
-                    {
-                      "id": "c",
-                      "text": "There's so much to learn, you'll need years.",
-                      "smoothDelta": -15,
-                      "theirResponse": "Okay, maybe never mind.",
-                      "coachNote": "Don't overwhelm; everyone starts somewhere."
-                    }
+                    {"id": "a", "text": "I'd love that. I'll bring snacks and a lot of questions.", "smoothDelta": 25, "theirResponse": "Perfect. Questions are the best part.", "coachNote": "You said yes and promised curiosity, not expertise."},
+                    {"id": "b", "text": "Maybe, I'll see how my night goes.", "smoothDelta": 3, "theirResponse": "No pressure. The offer stands.", "coachNote": "Polite, but it leaves her hanging."},
+                    {"id": "c", "text": "I already know hockey. I'll explain it to you.", "smoothDelta": -15, "theirResponse": "Um, okay. I've watched for twenty years.", "coachNote": "Claiming knowledge you do not have costs you trust fast."}
                   ]
                 }
               ],
-              "closingNote": "Start with genuine curiosity about why she's interested, then build from the basics."
+              "closingNote": "Be curious, be honest about what you do not know and say yes to her invitation."
             }
           },
           {
@@ -85,39 +50,19 @@
             "type": "say-this",
             "conceptIds": ["conversation-starters"],
             "payload": {
-              "statement": {
-                "speaker": "Her",
-                "text": "I don't know anything about hockey. Is it too late to start?"
-              },
+              "statement": {"speaker": "Her", "text": "I don't know anything about hockey. Is it too late to start?"},
               "question": "What would you say?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "Not at all. A lot of people learned as adults. I can help you.",
-                  "isCorrect": true
-                },
-                {
-                  "id": "b",
-                  "text": "Hockey is pretty hard. You might not get it.",
-                  "isCorrect": false
-                },
-                {
-                  "id": "c",
-                  "text": "You could watch some games and figure it out on your own.",
-                  "isCorrect": false
-                }
+                {"id": "a", "text": "Not at all. Plenty of people start as adults. Want to learn it together?", "isCorrect": true, "explanation": "Right. It is warm, true and it does not pretend you are an expert. Learning together is a great place to start."},
+                {"id": "b", "text": "Hockey is pretty hard. You might not get it.", "isCorrect": false, "explanation": "It is discouraging and not true. Most people pick up the basics in a few games."},
+                {"id": "c", "text": "You could just watch and figure it out on your own.", "isCorrect": false, "explanation": "It is not unkind, but it leaves her alone with it. An offer to learn together works better."}
               ],
-              "translation": "Reassure her and offer support. Learning hockey as an adult is totally normal.",
+              "translation": "She is nervous about starting. Reassure her and offer to learn alongside her.",
               "followUps": [
-                {
-                  "line": "What part interests you most?",
-                  "why": "Personalizes the learning to her interests."
-                },
-                {
-                  "line": "Want me to explain the basics?",
-                  "why": "Offers a clear entry point."
-                }
-              ]
+                {"line": "What part interests you most?", "why": "Personalizes where to start."},
+                {"line": "Want to watch a game and I'll ask questions too?", "why": "Offers a low-pressure, shared way in."}
+              ],
+              "noFakeExpertNote": "You do not have to be the expert. 'Let's learn it together' is honest and inviting."
             }
           },
           {
@@ -125,26 +70,17 @@
             "type": "multiple-choice",
             "conceptIds": ["conversation-starters"],
             "payload": {
-              "prompt": "When starting a conversation about hockey with a beginner, what is the best first step?",
+              "prompt": "A beginner says she wants to learn hockey. Best first step?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "Ask why she is interested in learning about hockey."
-                },
-                {
-                  "id": "b",
-                  "text": "Immediately explain all the rules."
-                },
-                {
-                  "id": "c",
-                  "text": "Test her on hockey knowledge."
-                }
+                {"id": "a", "text": "Ask why she is interested."},
+                {"id": "b", "text": "Explain every rule right away."},
+                {"id": "c", "text": "Quiz her to see what she knows."}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. Understanding her motivation helps you teach in a way that matters to her.",
-                "incorrect": "Start with curiosity about why she cares. That motivation shapes how you explain things.",
-                "sayThisLine": "Ask her why she wants to learn. That's where the real conversation starts."
+                "correct": "Right. Her reason shapes what to teach first. A crush, a family tradition and a love of the speed all point to different starting places.",
+                "incorrect": "Start with curiosity about why she cares. An avalanche of rules or a quiz makes it feel like homework.",
+                "sayThisLine": "What got you interested in hockey?"
               }
             }
           },
@@ -153,26 +89,14 @@
             "type": "binary-call",
             "conceptIds": ["conversation-starters"],
             "payload": {
-              "prompt": "Saying 'hockey is complicated' to a beginner is a good way to encourage her. True or false?",
-              "scene": {
-                "kind": "none",
-                "alt": "Starting conversations about hockey."
-              },
-              "choices": [
-                {
-                  "id": "true",
-                  "label": "True"
-                },
-                {
-                  "id": "false",
-                  "label": "False"
-                }
-              ],
+              "prompt": "Telling a beginner 'hockey is complicated' encourages her.",
+              "scene": {"kind": "none", "alt": "Starting conversations about hockey."},
+              "choices": [{"id": "true", "label": "True"}, {"id": "false", "label": "False"}],
               "correctChoiceId": "false",
               "explanation": {
-                "correct": "False. Telling someone something is complicated before they start discourages them.",
-                "incorrect": "Avoid negativity when someone is interested in learning. Build confidence, not doubt.",
-                "sayThisLine": "Lead with enthusiasm, not warnings. If she is curious, support that."
+                "correct": "False. Warning someone off before they start discourages them. Lead with enthusiasm and start small.",
+                "incorrect": "It backfires. Build her confidence with one simple thing, like the three periods, instead of a warning.",
+                "sayThisLine": "Lead with enthusiasm. One small thing at a time."
               }
             }
           },
@@ -181,26 +105,14 @@
             "type": "term-match",
             "conceptIds": ["conversation-starters"],
             "payload": {
-              "prompt": "Match the conversation starter to what makes it work.",
+              "prompt": "Match each conversation starter to why it works.",
               "pairs": [
-                {
-                  "id": "why",
-                  "term": "Ask why she's interested",
-                  "definition": "Shows you care about her motivation and helps tailor your explanation."
-                },
-                {
-                  "id": "basics",
-                  "term": "Start with the basics",
-                  "definition": "Gives her a simple foundation instead of overwhelming complexity."
-                },
-                {
-                  "id": "curiosity",
-                  "term": "Learn together as peers",
-                  "definition": "Builds confidence. You don't need to be an expert to talk about hockey."
-                }
+                {"id": "why", "term": "Ask why she's interested", "definition": "Shows you care about her reason and tells you where to start."},
+                {"id": "basics", "term": "Start with the basics", "definition": "Gives her a simple foundation instead of a pile of rules."},
+                {"id": "curiosity", "term": "Learn together", "definition": "Builds trust. You do not need to be an expert to enjoy hockey."}
               ],
               "explanation": {
-                "summary": "Starting a hockey conversation is about showing interest in her, not proving expertise.",
+                "summary": "A good opening is about her, not about proving you know hockey.",
                 "sayThisLine": "The best first question is about her. Everything else flows from there."
               }
             }
@@ -219,64 +131,28 @@
             "type": "talk-track",
             "conceptIds": ["follow-up-questions"],
             "payload": {
-              "title": "After a win",
-              "setting": "She texts excitement right after a victory.",
+              "title": "A rookie's first goal",
+              "setting": "She texts you right after {{team}} wins on a young player's first NHL goal.",
               "startingSmooth": 50,
               "exchanges": [
                 {
-                  "theirMessage": "We WON! Five to three!",
+                  "theirMessage": "Our rookie scored his first NHL goal and it was the game winner! I'm screaming.",
                   "replies": [
-                    {
-                      "id": "a",
-                      "text": "Five to three! Who scored the go-ahead goal?",
-                      "smoothDelta": 25,
-                      "theirResponse": "Our top line got two each. Absolutely dominant.",
-                      "coachNote": "Asking about the key goals keeps it going."
-                    },
-                    {
-                      "id": "b",
-                      "text": "Awesome! So happy for you!",
-                      "smoothDelta": 8,
-                      "theirResponse": "Thank you!",
-                      "coachNote": "Warm but doesn't add to the conversation."
-                    },
-                    {
-                      "id": "c",
-                      "text": "Cool, I guess that means they're good now.",
-                      "smoothDelta": -8,
-                      "theirResponse": "One win doesn't define a season, but it felt good.",
-                      "coachNote": "Downplay her excitement and she'll pull back."
-                    }
+                    {"id": "a", "text": "What a moment for him. Did the team grab the puck for him?", "smoothDelta": 25, "theirResponse": "They did! His parents were in the stands. I teared up.", "coachNote": "You know the first-goal puck tradition, and you asked about the human side."},
+                    {"id": "b", "text": "Nice! Good for him.", "smoothDelta": 8, "theirResponse": "Thanks! It was great.", "coachNote": "Warm, but it does not open the story."},
+                    {"id": "c", "text": "Only one goal? That's not much.", "smoothDelta": -12, "theirResponse": "It was the winner, though.", "coachNote": "A deflating take on her big moment."}
                   ]
                 },
                 {
-                  "theirMessage": "The goalie was unreal tonight too.",
+                  "theirMessage": "And we just moved into a playoff spot.",
                   "replies": [
-                    {
-                      "id": "a",
-                      "text": "How many shots did he face? Sounds like he was tested.",
-                      "smoothDelta": 25,
-                      "theirResponse": "Thirty-four. Stops on everything.",
-                      "coachNote": "Asking about shot volume shows you know what matters."
-                    },
-                    {
-                      "id": "b",
-                      "text": "That's great.",
-                      "smoothDelta": 5,
-                      "theirResponse": "It is!",
-                      "coachNote": "Flat agreement."
-                    },
-                    {
-                      "id": "c",
-                      "text": "Well, the defense helped him a lot I bet.",
-                      "smoothDelta": -5,
-                      "theirResponse": "They did, but he made the hard ones.",
-                      "coachNote": "Don't dismiss the goalie; credit both."
-                    }
+                    {"id": "a", "text": "A playoff spot! Is it a wild card or a division spot?", "smoothDelta": 25, "theirResponse": "Wild card. It's tight, but I'll take it.", "coachNote": "A specific question that shows you know how spots work."},
+                    {"id": "b", "text": "Cool, playoffs are fun.", "smoothDelta": 5, "theirResponse": "They really are!", "coachNote": "Friendly but generic."},
+                    {"id": "c", "text": "It's only one win. It doesn't mean anything.", "smoothDelta": -10, "theirResponse": "Let me be happy for a minute.", "coachNote": "Save the realism for later. Match her joy first."}
                   ]
                 }
               ],
-              "closingNote": "Celebrate with her and ask about the key moments and the players who made them."
+              "closingNote": "Celebrate the moment, then ask the question only someone paying attention would ask."
             }
           },
           {
@@ -284,39 +160,19 @@
             "type": "say-this",
             "conceptIds": ["follow-up-questions"],
             "payload": {
-              "statement": {
-                "speaker": "Her",
-                "text": "We beat our biggest rival! I'm so pumped!"
-              },
+              "statement": {"speaker": "Her", "text": "We beat our biggest rival! I'm so pumped!"},
               "question": "What's a good follow-up question?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "How did it feel to beat them? What was the key to winning?",
-                  "isCorrect": true
-                },
-                {
-                  "id": "b",
-                  "text": "Great win, but you'll probably lose to them next time.",
-                  "isCorrect": false
-                },
-                {
-                  "id": "c",
-                  "text": "Does this guarantee you make the playoffs?",
-                  "isCorrect": false
-                }
+                {"id": "a", "text": "How did it feel to beat them? What was the key to winning?", "isCorrect": true, "explanation": "Right. It matches her excitement and asks about the game itself, which is what she wants to relive."},
+                {"id": "b", "text": "Great win, but you'll probably lose to them next time.", "isCorrect": false, "explanation": "It punctures her moment with a prediction nobody asked for."},
+                {"id": "c", "text": "Does this guarantee you make the playoffs?", "isCorrect": false, "explanation": "It moves straight to math and skips the celebration she is living in."}
               ],
-              "translation": "A good follow-up honors her excitement and asks about the game itself, not the season implications.",
+              "translation": "A good follow-up honors her excitement and asks about the game, not the season math.",
               "followUps": [
-                {
-                  "line": "Was it close the whole game or did you dominate?",
-                  "why": "Explores the actual flow of the game."
-                },
-                {
-                  "line": "Do they play you again this season?",
-                  "why": "Shows interest in the rivalry arc."
-                }
-              ]
+                {"line": "Was it close the whole way or did you pull away?", "why": "Explores the flow of the game."},
+                {"line": "Do you play them again soon?", "why": "Shows interest in the rivalry story."}
+              ],
+              "noFakeExpertNote": "You do not need to know the game details. Asking her to tell you is better than guessing."
             }
           },
           {
@@ -324,26 +180,17 @@
             "type": "multiple-choice",
             "conceptIds": ["goal-scoring"],
             "payload": {
-              "prompt": "After a win, what is the most useful question you can ask about the scoring?",
+              "prompt": "After her team wins, which question shows you care about the game?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "Who scored the most goals?"
-                },
-                {
-                  "id": "b",
-                  "text": "Who scored the go-ahead or game-winning goal?"
-                },
-                {
-                  "id": "c",
-                  "text": "Did they score more than last game?"
-                }
+                {"id": "a", "text": "Who scored the game-winner, and how?"},
+                {"id": "b", "text": "Did they score more than last game?"},
+                {"id": "c", "text": "Was the score on the TV right?"}
               ],
-              "correctOptionIds": ["b"],
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. The go-ahead and game-winner are the moments that matter most in a win.",
-                "incorrect": "The turning points in a game—the go-ahead goal, the game-winner—are what she'll remember and want to talk about.",
-                "sayThisLine": "Ask about the key goals: the go-ahead, the game-winner. Those are the stories."
+                "correct": "Right. Asking about the game-winner and how it happened invites the story she wants to tell.",
+                "incorrect": "Skip the bookkeeping. The go-ahead goal and how it happened is the story fans want to tell.",
+                "sayThisLine": "Who got the winner? Tell me about it."
               }
             }
           },
@@ -352,26 +199,14 @@
             "type": "binary-call",
             "conceptIds": ["follow-up-questions"],
             "payload": {
-              "prompt": "After a win, downplaying the victory is a good strategy. True or false?",
-              "scene": {
-                "kind": "none",
-                "alt": "Reacting to wins."
-              },
-              "choices": [
-                {
-                  "id": "true",
-                  "label": "True"
-                },
-                {
-                  "id": "false",
-                  "label": "False"
-                }
-              ],
+              "prompt": "After her team wins, downplaying the victory is a smart move.",
+              "scene": {"kind": "none", "alt": "Reacting to wins."},
+              "choices": [{"id": "true", "label": "True"}, {"id": "false", "label": "False"}],
               "correctChoiceId": "false",
               "explanation": {
-                "correct": "False. Celebrate with her. Downplaying closes the conversation.",
-                "incorrect": "When she is excited about a win, match her energy. Don't minimize it.",
-                "sayThisLine": "She won! Celebrate that moment with her before looking ahead."
+                "correct": "False. Celebrate with her. Downplaying a win she loves makes her pull back.",
+                "incorrect": "Match her energy. You can get into the standings math tomorrow.",
+                "sayThisLine": "That's huge! Tell me everything."
               }
             }
           }
@@ -389,64 +224,28 @@
             "type": "talk-track",
             "conceptIds": ["follow-up-questions"],
             "payload": {
-              "title": "After a loss",
-              "setting": "She texts in disappointment after a tough loss.",
+              "title": "A lead that got away",
+              "setting": "She texts you after {{team}} blew a two-goal lead in the third period.",
               "startingSmooth": 50,
               "exchanges": [
                 {
-                  "theirMessage": "We lost 3-2. I can't believe it.",
+                  "theirMessage": "We were up two going into the third and lost in regulation. I'm sick.",
                   "replies": [
-                    {
-                      "id": "a",
-                      "text": "That's a tough one, especially one-goal. What was the turning point?",
-                      "smoothDelta": 25,
-                      "theirResponse": "Third period they just outplayed us.",
-                      "coachNote": "Empathy first, then a real question."
-                    },
-                    {
-                      "id": "b",
-                      "text": "Better luck next time.",
-                      "smoothDelta": 5,
-                      "theirResponse": "I hope so.",
-                      "coachNote": "Kind but stops the conversation."
-                    },
-                    {
-                      "id": "c",
-                      "text": "At least you tried. Some teams don't even show up.",
-                      "smoothDelta": -10,
-                      "theirResponse": "That's not helpful right now.",
-                      "coachNote": "Minimize her disappointment and she'll close off."
-                    }
+                    {"id": "a", "text": "Brutal. A two-goal lead feels safe until it isn't. What changed in the third?", "smoothDelta": 25, "theirResponse": "They started pressing and we stopped skating.", "coachNote": "Empathy first, then a question about the game."},
+                    {"id": "b", "text": "That's hockey.", "smoothDelta": 3, "theirResponse": "I know. It still hurts.", "coachNote": "True, but it shuts the door on the feeling."},
+                    {"id": "c", "text": "You should have known a two-goal lead isn't safe.", "smoothDelta": -15, "theirResponse": "Thanks for the hindsight.", "coachNote": "Never pile on when she is hurting."}
                   ]
                 },
                 {
-                  "theirMessage": "I just don't understand how we let them back in.",
+                  "theirMessage": "I think I'm done watching for a few days.",
                   "replies": [
-                    {
-                      "id": "a",
-                      "text": "Sometimes teams find their rhythm in one period. Did they get a lucky goal or outwork you?",
-                      "smoothDelta": 25,
-                      "theirResponse": "Both, honestly. We lost focus.",
-                      "coachNote": "Curiosity without blame."
-                    },
-                    {
-                      "id": "b",
-                      "text": "It's okay, you'll get them next time.",
-                      "smoothDelta": 5,
-                      "theirResponse": "Sure.",
-                      "coachNote": "Optimistic but she's not there yet."
-                    },
-                    {
-                      "id": "c",
-                      "text": "Your team isn't that good then.",
-                      "smoothDelta": -20,
-                      "theirResponse": "Wow. Thanks.",
-                      "coachNote": "Never dump on her team when she's hurting."
-                    }
+                    {"id": "a", "text": "Take a night off. I'll check in tomorrow and we can talk about the next one.", "smoothDelta": 25, "theirResponse": "That sounds nice. Thanks for getting it.", "coachNote": "You gave her space and a warm plan."},
+                    {"id": "b", "text": "Come on, don't be dramatic.", "smoothDelta": -15, "theirResponse": "It's not dramatic. It's my team.", "coachNote": "Dismissing her feelings is the fastest way to lose the thread."},
+                    {"id": "c", "text": "Okay.", "smoothDelta": 3, "theirResponse": "Yeah.", "coachNote": "Polite but flat."}
                   ]
                 }
               ],
-              "closingNote": "After a loss, empathy matters more than fixes. Ask what happened, not why she should feel better."
+              "closingNote": "After a loss, empathy first and curiosity second. Let her decide how much to talk."
             }
           },
           {
@@ -454,26 +253,17 @@
             "type": "multiple-choice",
             "conceptIds": ["honest-curiosity"],
             "payload": {
-              "prompt": "When someone is upset about a loss, what should you do first?",
+              "prompt": "She is upset about a loss. What should you do first?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "Remind them of wins earlier in the season."
-                },
-                {
-                  "id": "b",
-                  "text": "Show empathy and listen to what she is feeling."
-                },
-                {
-                  "id": "c",
-                  "text": "Try to cheer her up with jokes."
-                }
+                {"id": "a", "text": "Remind her of the team's earlier wins."},
+                {"id": "b", "text": "Show empathy and listen to what she is feeling."},
+                {"id": "c", "text": "Try to cheer her up with jokes."}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. Empathy first. Then she'll be ready to talk about the game itself.",
-                "incorrect": "Validation comes before analysis. Let her feel the disappointment, then ask genuine questions.",
-                "sayThisLine": "She's hurt about the loss. Sit with that before you try to make it better."
+                "correct": "Right. Empathy first. Once she feels heard she will be ready to talk about the game itself.",
+                "incorrect": "Comfort comes before analysis or jokes. Let her feel it, then ask a real question.",
+                "sayThisLine": "That's a tough one. I'm sorry."
               }
             }
           },
@@ -482,39 +272,19 @@
             "type": "say-this",
             "conceptIds": ["follow-up-questions"],
             "payload": {
-              "statement": {
-                "speaker": "Her",
-                "text": "I've never been so mad at a team. They played awful in the third."
-              },
+              "statement": {"speaker": "Her", "text": "I've never been so mad at a team. They played awful in the third."},
               "question": "What's a good response?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "They looked like they ran out of gas. Did they play back-to-back nights?",
-                  "isCorrect": true
-                },
-                {
-                  "id": "b",
-                  "text": "Yeah, they're just not good.",
-                  "isCorrect": false
-                },
-                {
-                  "id": "c",
-                  "text": "At least you're not the fan of a worse team.",
-                  "isCorrect": false
-                }
+                {"id": "a", "text": "They looked out of gas. Was it a back-to-back?", "isCorrect": true, "explanation": "Right. A back-to-back means two games in two nights, a common reason for a tired third period. You showed empathy and asked a real question."},
+                {"id": "b", "text": "Yeah, they're just not good.", "isCorrect": false, "explanation": "It dumps on her team while she is already hurting."},
+                {"id": "c", "text": "At least you're not a fan of a worse team.", "isCorrect": false, "explanation": "It minimizes her disappointment instead of sharing it."}
               ],
-              "translation": "Ask about context (schedule, injuries, situation) that might explain the collapse. Show you're thinking about why it happened.",
+              "translation": "She is venting about a collapse. Ask about context, like schedule or injuries, instead of judging.",
               "followUps": [
-                {
-                  "line": "Were they tired from the previous game?",
-                  "why": "Explores fatigue as a factor."
-                },
-                {
-                  "line": "Do they usually struggle in the third?",
-                  "why": "Shows you notice patterns."
-                }
-              ]
+                {"line": "Were they missing anyone?", "why": "Explores injuries as a factor."},
+                {"line": "Do they usually fade in the third?", "why": "Shows you notice patterns."}
+              ],
+              "noFakeExpertNote": "If you do not know the cause, ask. Guessing out loud can sound like a know-it-all."
             }
           },
           {
@@ -522,27 +292,15 @@
             "type": "term-match",
             "conceptIds": ["honest-curiosity"],
             "payload": {
-              "prompt": "Match the response to a loss with what makes it work or fail.",
+              "prompt": "Match each loss response to how it lands.",
               "pairs": [
-                {
-                  "id": "empathy",
-                  "term": "That's a tough loss.",
-                  "definition": "Validates her feelings without trying to fix them immediately."
-                },
-                {
-                  "id": "curiosity",
-                  "term": "What happened in the third period?",
-                  "definition": "Asks a real question that keeps the conversation going."
-                },
-                {
-                  "id": "compare",
-                  "term": "At least other teams lose worse.",
-                  "definition": "Backfires. It minimizes her disappointment instead of honoring it."
-                }
+                {"id": "empathy", "term": "That's a tough loss.", "definition": "Validates her feelings without trying to fix them."},
+                {"id": "curiosity", "term": "What happened in the third?", "definition": "A real question that keeps her talking."},
+                {"id": "compare", "term": "Other teams lose worse.", "definition": "Backfires because it minimizes her disappointment."}
               ],
               "explanation": {
                 "summary": "After a loss, lead with empathy. Questions come after she feels heard.",
-                "sayThisLine": "Empathy first, curiosity second. That's the order."
+                "sayThisLine": "Empathy first, curiosity second."
               }
             }
           }
@@ -560,64 +318,28 @@
             "type": "talk-track",
             "conceptIds": ["minor-penalty"],
             "payload": {
-              "title": "When the ref ruins the night",
-              "setting": "She vents about a call she thinks was wrong.",
+              "title": "Four minutes of kill",
+              "setting": "She texts during the second period after a call against {{team}}.",
               "startingSmooth": 50,
               "exchanges": [
                 {
-                  "theirMessage": "That penalty call was GARBAGE. He barely touched him!",
+                  "theirMessage": "They gave our guy a double minor for high-sticking. Four minutes! It was an accident.",
                   "replies": [
-                    {
-                      "id": "a",
-                      "text": "What was the call? Did it change the game?",
-                      "smoothDelta": 25,
-                      "theirResponse": "Tripping in the third. They scored on the power play.",
-                      "coachNote": "Ask for details; show you're tracking with her."
-                    },
-                    {
-                      "id": "b",
-                      "text": "Refs are always bad.",
-                      "smoothDelta": 8,
-                      "theirResponse": "Right?",
-                      "coachNote": "Agreeing feels good but isn't curious."
-                    },
-                    {
-                      "id": "c",
-                      "text": "Refs do their best, the job is hard.",
-                      "smoothDelta": -12,
-                      "theirResponse": "Not hard enough tonight.",
-                      "coachNote": "Defend refs when she's angry and she'll think you don't get it."
-                    }
+                    {"id": "a", "text": "Four minutes usually means someone got cut. Was there blood?", "smoothDelta": 25, "theirResponse": "Yes, a cut on the cheek. Still, it wasn't on purpose.", "coachNote": "You know a double minor often comes from an injury, and you asked instead of guessing."},
+                    {"id": "b", "text": "Ugh, that's a lot.", "smoothDelta": 8, "theirResponse": "It is. Four minutes down a man.", "coachNote": "Sympathetic, but it does not show what you know."},
+                    {"id": "c", "text": "Refs ruin every game.", "smoothDelta": -10, "theirResponse": "Not every game. Just this call.", "coachNote": "Blaming every ref sounds lazy."}
                   ]
                 },
                 {
-                  "theirMessage": "Now we're down a goal with ten minutes left.",
+                  "theirMessage": "We killed all four minutes though!",
                   "replies": [
-                    {
-                      "id": "a",
-                      "text": "Ten minutes is plenty. Your team has comebacks in them?",
-                      "smoothDelta": 25,
-                      "theirResponse": "Usually, but that call killed the momentum.",
-                      "coachNote": "Acknowledge the anger but point forward."
-                    },
-                    {
-                      "id": "b",
-                      "text": "That's rough.",
-                      "smoothDelta": 5,
-                      "theirResponse": "It really is.",
-                      "coachNote": "Sympathetic but passive."
-                    },
-                    {
-                      "id": "c",
-                      "text": "Just forget about the call and play better.",
-                      "smoothDelta": -15,
-                      "theirResponse": "That's not how emotions work.",
-                      "coachNote": "Platitudes don't help; validation does."
-                    }
+                    {"id": "a", "text": "Four minutes with no goal against is huge. Who was the best penalty killer?", "smoothDelta": 25, "theirResponse": "Our goalie, then the top defense pair. It swung the game.", "coachNote": "You spotted the turning point and asked for a name."},
+                    {"id": "b", "text": "Good for you.", "smoothDelta": 5, "theirResponse": "Thanks!", "coachNote": "Kind, but flat."},
+                    {"id": "c", "text": "So was it even a real penalty then?", "smoothDelta": -8, "theirResponse": "It was. We just survived it.", "coachNote": "Questioning the call right after her comeback misses her point."}
                   ]
                 }
               ],
-              "closingNote": "A bad call stings. Validate her first, then ask what happens next in the game."
+              "closingNote": "Validate the frustration first. Then a rule-aware question shows you are paying attention."
             }
           },
           {
@@ -625,39 +347,19 @@
             "type": "say-this",
             "conceptIds": ["goalie-interference"],
             "payload": {
-              "statement": {
-                "speaker": "Her",
-                "text": "Our goal got waved off for goalie interference! That was BS!"
-              },
+              "statement": {"speaker": "Her", "text": "Our goal got waved off for goalie interference. That was a joke!"},
               "question": "How would you respond?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "Goalie interference is the most argued call in hockey. What did you see happen?",
-                  "isCorrect": true
-                },
-                {
-                  "id": "b",
-                  "text": "Yeah, the ref made a bad call.",
-                  "isCorrect": false
-                },
-                {
-                  "id": "c",
-                  "text": "Don't worry, refs get most calls right.",
-                  "isCorrect": false
-                }
+                {"id": "a", "text": "Goalie interference is one of the most argued calls. What did you see happen?", "isCorrect": true, "explanation": "Right. The rule is judged by the officials, so fans and referees disagree a lot. Asking what she saw is respectful and curious."},
+                {"id": "b", "text": "Yeah, the ref made a bad call.", "isCorrect": false, "explanation": "You are taking a side without knowing what happened."},
+                {"id": "c", "text": "Don't worry, refs get most calls right.", "isCorrect": false, "explanation": "It dismisses her frustration when she just wants to vent."}
               ],
-              "translation": "Acknowledge that goalie interference is legitimately controversial. Ask what she saw; her view matters.",
+              "translation": "She is angry about a disallowed goal. Goalie interference calls are a common source of arguments.",
               "followUps": [
-                {
-                  "line": "Did they challenge it?",
-                  "why": "Explores the review process."
-                },
-                {
-                  "line": "Was he in the crease or just nearby?",
-                  "why": "Shows you understand the rule."
-                }
-              ]
+                {"line": "Did they challenge it?", "why": "Explores the review process."},
+                {"line": "Was he in the crease, or just nearby?", "why": "Shows you know the rule has a geography to it."}
+              ],
+              "noFakeExpertNote": "If you did not see the play, say so. Asking what happened beats pretending to know."
             }
           },
           {
@@ -665,26 +367,14 @@
             "type": "binary-call",
             "conceptIds": ["minor-penalty"],
             "payload": {
-              "prompt": "When she is angry about a penalty call, defending the referee is a good idea. True or false?",
-              "scene": {
-                "kind": "none",
-                "alt": "Bad calls and frustration."
-              },
-              "choices": [
-                {
-                  "id": "true",
-                  "label": "True"
-                },
-                {
-                  "id": "false",
-                  "label": "False"
-                }
-              ],
+              "prompt": "When she is angry about a penalty call, defending the referee is wise.",
+              "scene": {"kind": "none", "alt": "Bad calls and frustration."},
+              "choices": [{"id": "true", "label": "True"}, {"id": "false", "label": "False"}],
               "correctChoiceId": "false",
               "explanation": {
-                "correct": "False. She is upset. Defending the ref makes her think you are not on her side.",
-                "incorrect": "In the moment of frustration, validate her anger first. Defending refs comes later, if at all.",
-                "sayThisLine": "When she is mad about a call, side with her emotion first. The ref debate can wait."
+                "correct": "False. Right now she needs you on her side. Defending the ref makes her feel unheard.",
+                "incorrect": "Validate her frustration first. There is time for the ref debate later, if ever.",
+                "sayThisLine": "That sounds so frustrating. What did you see?"
               }
             }
           },
@@ -693,26 +383,17 @@
             "type": "multiple-choice",
             "conceptIds": ["goalie-interference"],
             "payload": {
-              "prompt": "What makes goalie interference the most argued call in hockey?",
+              "prompt": "Why is goalie interference argued about so often?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "Everyone agrees on what it is and refs never make mistakes."
-                },
-                {
-                  "id": "b",
-                  "text": "There is a gray area between contact and interference; fans see it differently than refs."
-                },
-                {
-                  "id": "c",
-                  "text": "It never affects the outcome of games."
-                }
+                {"id": "a", "text": "Everyone agrees on what it is, and officials never err."},
+                {"id": "b", "text": "There is a gray area between incidental contact and impairing the goalie."},
+                {"id": "c", "text": "It never affects the outcome of a game."}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. The rule has subjective parts, so good-faith disagreements happen all the time.",
-                "incorrect": "Goalie interference is controversial because the crease rule has gray areas. Fans and officials disagree reasonably.",
-                "sayThisLine": "Even refs and analysts argue about goalie interference. It's the most debated rule for a reason."
+                "correct": "Right. Judging whether an attacker impaired the goalie is subjective, so good-faith disagreements happen constantly.",
+                "incorrect": "It is argued because the judgment is subjective. Fans and officials can look at the same contact and disagree.",
+                "sayThisLine": "Where does contact end and interference begin? Fans argue about it all the time."
               }
             }
           }
@@ -730,64 +411,28 @@
             "type": "talk-track",
             "conceptIds": ["save-pct"],
             "payload": {
-              "title": "The goalie stole it",
-              "setting": "She's raving about a goalie's performance.",
+              "title": "The backup's big night",
+              "setting": "She texts after {{team}}'s backup goalie gets an unexpected start.",
               "startingSmooth": 50,
               "exchanges": [
                 {
-                  "theirMessage": "Our goalie was absolutely standing on his head tonight. Incredible.",
+                  "theirMessage": "Our backup goalie started tonight and he stopped a penalty shot. Nobody expected that.",
                   "replies": [
-                    {
-                      "id": "a",
-                      "text": "How many shots did he face? And what was his save percentage looking like?",
-                      "smoothDelta": 25,
-                      "theirResponse": "Forty-two shots, probably .950 or better.",
-                      "coachNote": "You know the numbers behind a great game."
-                    },
-                    {
-                      "id": "b",
-                      "text": "That's awesome!",
-                      "smoothDelta": 8,
-                      "theirResponse": "He deserves all the credit.",
-                      "coachNote": "Warm, but generic."
-                    },
-                    {
-                      "id": "c",
-                      "text": "So the defense was bad then.",
-                      "smoothDelta": -12,
-                      "theirResponse": "Actually they were solid. He just made impossible saves.",
-                      "coachNote": "Don't assume bad defense; the goalie can just be great."
-                    }
+                    {"id": "a", "text": "A penalty shot save! That's one-on-one with no help. How was he the rest of the night?", "smoothDelta": 25, "theirResponse": "Twenty-eight saves on twenty-nine shots. The starter was resting.", "coachNote": "You know a penalty shot is a one-on-one, and you asked a follow-up."},
+                    {"id": "b", "text": "Backups usually aren't that good.", "smoothDelta": -10, "theirResponse": "Well, he was tonight.", "coachNote": "Dismissive of a goalie she just cheered for."},
+                    {"id": "c", "text": "Lucky save.", "smoothDelta": -5, "theirResponse": "It wasn't luck. He read the shooter.", "coachNote": "Calling it luck undercuts her excitement."}
                   ]
                 },
                 {
-                  "theirMessage": "If we'd lost after that performance, I would have cried.",
+                  "theirMessage": "The coach might ride him in the next game too.",
                   "replies": [
-                    {
-                      "id": "a",
-                      "text": "Did you win? Please tell me you got him the goal support he deserved.",
-                      "smoothDelta": 25,
-                      "theirResponse": "We did, 3-1. He earned it.",
-                      "coachNote": "You understand goal support matters for a goalie."
-                    },
-                    {
-                      "id": "b",
-                      "text": "That would be sad.",
-                      "smoothDelta": 5,
-                      "theirResponse": "It would.",
-                      "coachNote": "Agrees but no real engagement."
-                    },
-                    {
-                      "id": "c",
-                      "text": "But if he played that well why did you almost lose?",
-                      "smoothDelta": -10,
-                      "theirResponse": "Sometimes one great performance isn't enough.",
-                      "coachNote": "Don't question the connection between great goaltending and results."
-                    }
+                    {"id": "a", "text": "If he's hot, does the coach stick with him, or does the starter come back?", "smoothDelta": 25, "theirResponse": "That's the big question. The starter's been good too.", "coachNote": "You named a real coaching dilemma."},
+                    {"id": "b", "text": "Whatever the coach wants.", "smoothDelta": 3, "theirResponse": "Fair enough.", "coachNote": "Shrugging gives her nothing to talk about."},
+                    {"id": "c", "text": "Never switch goalies. It's bad luck.", "smoothDelta": -8, "theirResponse": "That's not how it works.", "coachNote": "Bluffing a rule you do not know can sound like faking."}
                   ]
                 }
               ],
-              "closingNote": "A goalie who stands on his head deserves goal support. Recognize both the saves and the outcome."
+              "closingNote": "Ask what the goalie faced and what comes next. Specific questions beat big claims."
             }
           },
           {
@@ -795,39 +440,19 @@
             "type": "say-this",
             "conceptIds": ["goaltender"],
             "payload": {
-              "statement": {
-                "speaker": "Her",
-                "text": "The goalie was the only reason we stayed in the game."
-              },
+              "statement": {"speaker": "Her", "text": "The goalie was the only reason we stayed in the game."},
               "question": "What would you say?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "That's when great goaltending shows up. Did the rest of the team finally help him out?",
-                  "isCorrect": true
-                },
-                {
-                  "id": "b",
-                  "text": "So the team was bad?",
-                  "isCorrect": false
-                },
-                {
-                  "id": "c",
-                  "text": "Good thing you won then.",
-                  "isCorrect": false
-                }
+                {"id": "a", "text": "That's when great goaltending shows up. Did the team finally help him out?", "isCorrect": true, "explanation": "Right. You credit the goalie and ask whether the skaters backed him up with goals."},
+                {"id": "b", "text": "So the team was terrible?", "isCorrect": false, "explanation": "It turns her praise into criticism of her team."},
+                {"id": "c", "text": "Goalies only matter for shutouts.", "isCorrect": false, "explanation": "Goalies matter on every save, and a game can hinge on one."}
               ],
-              "translation": "Celebrate the goalie and then ask if the team found ways to support him. Show you know goals matter.",
+              "translation": "She is saying the goalie saved the day. Celebrate that and ask about the rest of the team.",
               "followUps": [
-                {
-                  "line": "How many shots did they have to defend against?",
-                  "why": "Quantifies the pressure."
-                },
-                {
-                  "line": "Did the team score late to give him goal support?",
-                  "why": "Explores whether the team stepped up."
-                }
-              ]
+                {"line": "How many shots did he face?", "why": "Puts a number on the pressure."},
+                {"line": "Did someone score late to get him the win?", "why": "Explores whether the team came through."}
+              ],
+              "noFakeExpertNote": "You do not need stats memorized. A shot count question is enough to sound engaged."
             }
           },
           {
@@ -837,24 +462,15 @@
             "payload": {
               "prompt": "What does a .950 save percentage mean?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "The goalie stopped 95 percent of the shots he faced."
-                },
-                {
-                  "id": "b",
-                  "text": "The goalie played 95 percent of the game."
-                },
-                {
-                  "id": "c",
-                  "text": "The goalie made 95 saves."
-                }
+                {"id": "a", "text": "The goalie stopped 95 percent of the shots he faced."},
+                {"id": "b", "text": "The goalie played 95 percent of the game."},
+                {"id": "c", "text": "The goalie made 95 saves."}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. A .950 save percentage means he stopped 95 out of every 100 shots. That's excellent.",
-                "incorrect": "Save percentage is saves divided by shots. .950 means 95 out of 100 shots were stopped.",
-                "sayThisLine": "A .950 save percentage is elite. That's stopping almost everything."
+                "correct": "Right. Save percentage is saves divided by shots, so .950 means he stopped 95 of every 100. For a single game that is excellent.",
+                "incorrect": "Save percentage is saves divided by shots faced. .950 means 95 out of every 100 shots were stopped.",
+                "sayThisLine": "A .950 night is elite. He stopped almost everything."
               }
             }
           },
@@ -863,26 +479,14 @@
             "type": "binary-call",
             "conceptIds": ["goaltender"],
             "payload": {
-              "prompt": "A goalie who faces 40+ shots and wins the game is mostly responsible for the win. True or false?",
-              "scene": {
-                "kind": "none",
-                "alt": "Goalie performances and team credit."
-              },
-              "choices": [
-                {
-                  "id": "true",
-                  "label": "True"
-                },
-                {
-                  "id": "false",
-                  "label": "False"
-                }
-              ],
-              "correctChoiceId": "true",
+              "prompt": "A goalie who faces 40 shots must have played brilliantly.",
+              "scene": {"kind": "none", "alt": "Goalie performances and shot counts."},
+              "choices": [{"id": "true", "label": "True"}, {"id": "false", "label": "False"}],
+              "correctChoiceId": "false",
               "explanation": {
-                "correct": "True. 40+ shots means his team was under heavy pressure. The goalie's saves kept them in it.",
-                "incorrect": "When a goalie faces 40+ shots and his team wins, the goalie's performance is the difference.",
-                "sayThisLine": "Forty shots against and a win? The goalie was the star of that game."
+                "correct": "False. Forty shots only tells you how busy he was. What matters is how many he stopped, which is his save percentage.",
+                "incorrect": "Shots faced shows workload, not quality. A goalie can face 40 shots and play poorly or great depending on how many went in.",
+                "sayThisLine": "Forty shots is a lot. How many did he stop?"
               }
             }
           }
@@ -900,64 +504,28 @@
             "type": "talk-track",
             "conceptIds": ["playoff-format"],
             "payload": {
-              "title": "Playoff nerves",
-              "setting": "She's anxious before a playoff series starts.",
+              "title": "Down three games to one",
+              "setting": "She texts while {{team}} is trailing in a playoff series.",
               "startingSmooth": 50,
               "exchanges": [
                 {
-                  "theirMessage": "The playoffs start tomorrow and I'm so nervous. We're up against the defending champs.",
+                  "theirMessage": "We're down 3-1 in the series. I can't even breathe.",
                   "replies": [
-                    {
-                      "id": "a",
-                      "text": "Defending champs are tough but they're beatable. How do your teams matchup?",
-                      "smoothDelta": 25,
-                      "theirResponse": "Honestly? Their top line is scary. We need our defense to match up.",
-                      "coachNote": "Shows you understand matchups in the playoffs."
-                    },
-                    {
-                      "id": "b",
-                      "text": "Don't worry, you'll be fine.",
-                      "smoothDelta": 5,
-                      "theirResponse": "I hope so.",
-                      "coachNote": "Optimistic but dismisses her anxiety."
-                    },
-                    {
-                      "id": "c",
-                      "text": "The defending champs never win it again anyway.",
-                      "smoothDelta": -10,
-                      "theirResponse": "So you're saying we should lose to them?",
-                      "coachNote": "That logic doesn't help her confidence."
-                    }
+                    {"id": "a", "text": "That's rough, but teams have come back from 3-1. What does yours need to change?", "smoothDelta": 25, "theirResponse": "Score first and protect the net. If we get the lead we can do this.", "coachNote": "Honest hope, and a real question."},
+                    {"id": "b", "text": "Sorry. It's probably over.", "smoothDelta": -15, "theirResponse": "Wow, thanks for the pep talk.", "coachNote": "Honest doesn't have to mean hopeless."},
+                    {"id": "c", "text": "Sorry.", "smoothDelta": 5, "theirResponse": "Thanks.", "coachNote": "Kind, but it gives her nothing to grab."}
                   ]
                 },
                 {
-                  "theirMessage": "It's a best-of-seven so one loss doesn't end it, but still.",
+                  "theirMessage": "At least Game 5 is at home.",
                   "replies": [
-                    {
-                      "id": "a",
-                      "text": "True. Best-of-seven means you need four wins. If you win game one at home that helps a lot.",
-                      "smoothDelta": 25,
-                      "theirResponse": "That's true. First game is huge.",
-                      "coachNote": "You understand the format strategy."
-                    },
-                    {
-                      "id": "b",
-                      "text": "That's good.",
-                      "smoothDelta": 5,
-                      "theirResponse": "Yeah.",
-                      "coachNote": "Flat."
-                    },
-                    {
-                      "id": "c",
-                      "text": "So basically it's just like the regular season then.",
-                      "smoothDelta": -12,
-                      "theirResponse": "No, it's totally different. It matters so much more.",
-                      "coachNote": "Playoffs are qualitatively different; don't minimize them."
-                    }
+                    {"id": "a", "text": "Home ice for Game 5. Does your building give the team a boost?", "smoothDelta": 25, "theirResponse": "Oh, it's deafening. Visiting teams can barely hear each other.", "coachNote": "You linked the game to the crowd."},
+                    {"id": "b", "text": "Home ice doesn't matter much.", "smoothDelta": -10, "theirResponse": "It matters to me.", "coachNote": "Even if true, it lands cold right now."},
+                    {"id": "c", "text": "Okay.", "smoothDelta": 3, "theirResponse": "Yeah.", "coachNote": "Flat."}
                   ]
                 }
               ],
-              "closingNote": "Playoff intensity is real. Validate her nerves and focus on the series structure and matchups."
+              "closingNote": "Acknowledge the stress, stay honest and ask one good question about what comes next."
             }
           },
           {
@@ -967,24 +535,15 @@
             "payload": {
               "prompt": "What does 'best-of-seven' mean in the playoffs?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "The first team to win four games wins the series."
-                },
-                {
-                  "id": "b",
-                  "text": "Both teams play seven games no matter what."
-                },
-                {
-                  "id": "c",
-                  "text": "The team with the best regular season record wins."
-                }
+                {"id": "a", "text": "The first team to win four games wins the series."},
+                {"id": "b", "text": "Both teams play seven games no matter what."},
+                {"id": "c", "text": "The team with the best regular-season record wins."}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. First to four wins takes the series. It can end in 4, 5, 6 or 7 games.",
-                "incorrect": "Best-of-seven means the first team to win four games wins the series. The series ends when someone gets four wins.",
-                "sayThisLine": "Best-of-seven: first to four wins. It can be over in four games or go the distance."
+                "correct": "Right. First to four wins takes the series, and it can end in four, five, six or seven games.",
+                "incorrect": "Best-of-seven means the first team to four wins takes the series. The series stops the moment someone gets there.",
+                "sayThisLine": "Best-of-seven means first to four wins."
               }
             }
           },
@@ -993,39 +552,19 @@
             "type": "say-this",
             "conceptIds": ["playoff-format"],
             "payload": {
-              "statement": {
-                "speaker": "Her",
-                "text": "We lost game one. Is the series over?"
-              },
+              "statement": {"speaker": "Her", "text": "We lost Game 1. Is the series over?"},
               "question": "What would you say?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "No, it's a best-of-seven. You have time. One loss does not end it.",
-                  "isCorrect": true
-                },
-                {
-                  "id": "b",
-                  "text": "Yeah, pretty much. Nobody comes back from 1-0.",
-                  "isCorrect": false
-                },
-                {
-                  "id": "c",
-                  "text": "You could still win in seven.",
-                  "isCorrect": false
-                }
+                {"id": "a", "text": "No. It's a best-of-seven. One loss doesn't end it.", "isCorrect": true, "explanation": "Right. A team needs four wins, so one loss leaves plenty of series. It is a calm, accurate reassurance."},
+                {"id": "b", "text": "Yeah, nobody comes back from 0-1.", "isCorrect": false, "explanation": "Teams win series after losing Game 1 all the time."},
+                {"id": "c", "text": "Yes, you need to win the next four in a row.", "isCorrect": false, "explanation": "That is not how it works. A team needs four total wins, not four in a row."}
               ],
-              "translation": "Reassure her that one loss in a best-of-seven is not decisive. Perspective and hope matter.",
+              "translation": "One loss in a best-of-seven is not decisive. She is nervous and needs a calm, accurate answer.",
               "followUps": [
-                {
-                  "line": "How did you lose? Was it close?",
-                  "why": "Explores whether the team was competitive."
-                },
-                {
-                  "line": "What does your team need to do differently in game two?",
-                  "why": "Focuses on adjustment, not panic."
-                }
-              ]
+                {"line": "Was it close?", "why": "Explores whether the team was competitive."},
+                {"line": "What does your team need to change for Game 2?", "why": "Focuses on adjustments instead of panic."}
+              ],
+              "noFakeExpertNote": "You only need the format: first to four. Everything else is her territory."
             }
           },
           {
@@ -1033,27 +572,15 @@
             "type": "term-match",
             "conceptIds": ["series-lingo"],
             "payload": {
-              "prompt": "Match the playoff term to its meaning.",
+              "prompt": "Match each playoff term to its meaning.",
               "pairs": [
-                {
-                  "id": "homeice",
-                  "term": "Home ice advantage",
-                  "definition": "The team with the better record hosts more games and plays the final game at home if needed."
-                },
-                {
-                  "id": "winnerleaves",
-                  "term": "Game seven",
-                  "definition": "Winner-take-all, a deciding game when a series is tied 3-3."
-                },
-                {
-                  "id": "upset",
-                  "term": "Upset",
-                  "definition": "When the lower seed or worse team beats the favorite."
-                }
+                {"id": "homeice", "term": "Home ice advantage", "definition": "The team with the better record hosts Games 1, 2, 5 and 7."},
+                {"id": "winnerleaves", "term": "Game seven", "definition": "The winner-take-all game when a series is tied 3-3."},
+                {"id": "upset", "term": "Upset", "definition": "A lower seed or underdog beating the favorite."}
               ],
               "explanation": {
-                "summary": "Playoff hockey has strategic terms that shape how series play out.",
-                "sayThisLine": "Home ice matters in the playoffs. Playing the last game at home is huge."
+                "summary": "These three terms show up constantly in playoff talk and explain why series feel so tense.",
+                "sayThisLine": "Home ice matters. The deciding game at home is huge."
               }
             }
           }
@@ -1071,64 +598,28 @@
             "type": "talk-track",
             "conceptIds": ["game-companion"],
             "payload": {
-              "title": "Watching a game together",
-              "setting": "You're both watching a live game.",
+              "title": "Intermission chat",
+              "setting": "You are watching a game together and the first period just ended.",
               "startingSmooth": 50,
               "exchanges": [
                 {
-                  "theirMessage": "Okay, so we're down a goal and they're pulling the goalie. What does that mean?",
+                  "theirMessage": "We outshot them 18 to 7 and it's still 1-1. What's going on?",
                   "replies": [
-                    {
-                      "id": "a",
-                      "text": "They're trading the goalie for an extra skater to try to score. If they score, great. If the other team gets it in the empty net, it's a goal.",
-                      "smoothDelta": 25,
-                      "theirResponse": "So it's a gamble. I get it!",
-                      "coachNote": "You explained it clearly without condescension."
-                    },
-                    {
-                      "id": "b",
-                      "text": "It means they want more offense.",
-                      "smoothDelta": 8,
-                      "theirResponse": "Okay, but who plays goalie then?",
-                      "coachNote": "You left out the main consequence."
-                    },
-                    {
-                      "id": "c",
-                      "text": "You don't know? It's so simple.",
-                      "smoothDelta": -15,
-                      "theirResponse": "I'm learning, thanks.",
-                      "coachNote": "Never make her feel bad for asking."
-                    }
+                    {"id": "a", "text": "Eighteen to seven is a lot. Are those good shots, or mostly from far out?", "smoothDelta": 25, "theirResponse": "Mostly from the outside. Their goalie has an easy night.", "coachNote": "You asked about shot quality, which is the heart of it."},
+                    {"id": "b", "text": "So we're winning?", "smoothDelta": 5, "theirResponse": "Not quite. It's tied.", "coachNote": "An honest question, but it skips past what she said."},
+                    {"id": "c", "text": "Shots don't matter. Only goals.", "smoothDelta": -8, "theirResponse": "They kind of do, but I see what you mean.", "coachNote": "A sweeping claim when you are still learning."}
                   ]
                 },
                 {
-                  "theirMessage": "Wait, they just scored with an empty net against them!",
+                  "theirMessage": "What do you think we should do in the second period?",
                   "replies": [
-                    {
-                      "id": "a",
-                      "text": "That's the risk! They scored into the empty net. That usually ends it.",
-                      "smoothDelta": 25,
-                      "theirResponse": "So the pulled goalie thing backfired.",
-                      "coachNote": "You connect the strategy to the result."
-                    },
-                    {
-                      "id": "b",
-                      "text": "Yeah, they scored.",
-                      "smoothDelta": 5,
-                      "theirResponse": "I can see that!",
-                      "coachNote": "She's asking for analysis, not recaps."
-                    },
-                    {
-                      "id": "c",
-                      "text": "That's why I would never pull the goalie.",
-                      "smoothDelta": -8,
-                      "theirResponse": "But sometimes it works, right?",
-                      "coachNote": "Context matters; acknowledge both outcomes exist."
-                    }
+                    {"id": "a", "text": "Honestly I'm still learning, but maybe get more shots to the middle of the ice? What do you think?", "smoothDelta": 25, "theirResponse": "Yes! Get to the slot and screen the goalie.", "coachNote": "Honest, curious and you handed the question back to her."},
+                    {"id": "b", "text": "Play harder!", "smoothDelta": 3, "theirResponse": "Ha, always good advice.", "coachNote": "Safe, but it adds nothing."},
+                    {"id": "c", "text": "Change the lines and fire the coach.", "smoothDelta": -15, "theirResponse": "Whoa, okay, coach.", "coachNote": "Loud confidence you have not earned is a fake-expert move."}
                   ]
                 }
               ],
-              "closingNote": "She's asking live questions to understand. Explain the logic and connect it to what's happening."
+              "closingNote": "It is fine to say 'I'm still learning'. Asking her opinion is better than bluffing your own."
             }
           },
           {
@@ -1136,39 +627,19 @@
             "type": "say-this",
             "conceptIds": ["honest-curiosity"],
             "payload": {
-              "statement": {
-                "speaker": "Her",
-                "text": "Why did they just blow the whistle? Nothing happened."
-              },
+              "statement": {"speaker": "Her", "text": "Why did they just blow the whistle? Nothing happened."},
               "question": "How would you respond?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "Something did happen—the ref saw something or a rule was broken. What did you see just before the whistle?",
-                  "isCorrect": true
-                },
-                {
-                  "id": "b",
-                  "text": "I don't know, refs are weird.",
-                  "isCorrect": false
-                },
-                {
-                  "id": "c",
-                  "text": "You'll learn what it means over time.",
-                  "isCorrect": false
-                }
+                {"id": "a", "text": "Not sure yet. Let's see what the replay shows. Could be offside, icing or a penalty.", "isCorrect": true, "explanation": "Right. You are honest about not knowing and name real possibilities. Hockey has several common reasons for a whistle."},
+                {"id": "b", "text": "It was definitely a penalty.", "isCorrect": false, "explanation": "That is a guess stated as fact. If it turns out to be icing, you have just bluffed."},
+                {"id": "c", "text": "You'll learn what it means over time.", "isCorrect": false, "explanation": "It is condescending and does not answer her question."}
               ],
-              "translation": "Invite her to notice details by asking what she saw. Teach by curiosity, not explanation.",
+              "translation": "She spotted a whistle and does not know why. Admit you are not sure and investigate together.",
               "followUps": [
-                {
-                  "line": "Did the puck go over the glass?",
-                  "why": "Narrows down the cause together."
-                },
-                {
-                  "line": "Did someone trip or hold?",
-                  "why": "Explores common stoppage reasons."
-                }
-              ]
+                {"line": "Did the puck go over the glass?", "why": "Narrows down the cause together."},
+                {"line": "Did someone trip or hold?", "why": "Explores common stoppage reasons."}
+              ],
+              "noFakeExpertNote": "'Not sure yet, let's find out' is a great answer. Fans respect it more than a bluff."
             }
           },
           {
@@ -1176,26 +647,14 @@
             "type": "binary-call",
             "conceptIds": ["game-companion"],
             "payload": {
-              "prompt": "When watching a game together, you should explain everything before she asks. True or false?",
-              "scene": {
-                "kind": "none",
-                "alt": "Watching live hockey together."
-              },
-              "choices": [
-                {
-                  "id": "true",
-                  "label": "True"
-                },
-                {
-                  "id": "false",
-                  "label": "False"
-                }
-              ],
+              "prompt": "When watching together, you should explain everything before she asks.",
+              "scene": {"kind": "none", "alt": "Watching live hockey together."},
+              "choices": [{"id": "true", "label": "True"}, {"id": "false", "label": "False"}],
               "correctChoiceId": "false",
               "explanation": {
-                "correct": "False. Let her ask. That way she learns what she wants to know, not what you think she should know.",
-                "incorrect": "When watching together, respond to her questions. She'll learn faster and enjoy it more if she drives the curiosity.",
-                "sayThisLine": "Don't narrate everything. Wait for her questions. She'll learn more that way."
+                "correct": "False. Let her ask. She learns what she wants to know, and you avoid talking over the game.",
+                "incorrect": "Answer her questions and let her lead. She will enjoy it more than a running lecture.",
+                "sayThisLine": "Ask me anything. I'll give you the short version."
               }
             }
           },
@@ -1204,26 +663,17 @@
             "type": "multiple-choice",
             "conceptIds": ["game-companion"],
             "payload": {
-              "prompt": "When she asks what a rule means during a game, what is the best approach?",
+              "prompt": "She asks what a rule means mid-play. Best approach?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "Explain the rule in detail, including all exceptions."
-                },
-                {
-                  "id": "b",
-                  "text": "Give a short explanation and keep watching the game."
-                },
-                {
-                  "id": "c",
-                  "text": "Tell her you'll explain later when the game is over."
-                }
+                {"id": "a", "text": "Explain it in detail, with every exception."},
+                {"id": "b", "text": "Give a short answer and keep watching."},
+                {"id": "c", "text": "Say you'll explain it after the game."}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. Keep it brief so she understands the play, then get back to the action.",
-                "incorrect": "A quick explanation keeps the flow. Save the deep dive for halftime or after.",
-                "sayThisLine": "Answer her question quick, then focus on the game. Depth can come later."
+                "correct": "Right. A short answer helps her follow the play, and you can go deeper at the next intermission.",
+                "incorrect": "A long lecture makes you miss the game together. Answer briefly and save the detail for intermission.",
+                "sayThisLine": "Short version: they can't do that. More at the break."
               }
             }
           }
@@ -1241,64 +691,28 @@
             "type": "talk-track",
             "conceptIds": ["conversation-starters"],
             "payload": {
-              "title": "Ask about her hockey story",
-              "setting": "A chance to ask her something deeper about her hockey fandom.",
+              "title": "The girl who played defense",
+              "setting": "She mentions in passing that she used to play hockey herself.",
               "startingSmooth": 50,
               "exchanges": [
                 {
-                  "theirMessage": "I've been watching since I was seven when my dad took me to a game.",
+                  "theirMessage": "I played hockey as a kid, all the way through high school, before I stopped.",
                   "replies": [
-                    {
-                      "id": "a",
-                      "text": "What was that first game like? Do you remember who played?",
-                      "smoothDelta": 25,
-                      "theirResponse": "It was magical. I remember the sound of the crowd and the smell of the popcorn.",
-                      "coachNote": "Shows you care about her memory, not just facts."
-                    },
-                    {
-                      "id": "b",
-                      "text": "That's cool. So your whole family watches?",
-                      "smoothDelta": 8,
-                      "theirResponse": "Just us. My mom never got into it.",
-                      "coachNote": "Good question but not what she was sharing."
-                    },
-                    {
-                      "id": "c",
-                      "text": "That's a lot of years then, you must know everything.",
-                      "smoothDelta": -8,
-                      "theirResponse": "I know a lot, but there's always more to learn.",
-                      "coachNote": "Don't assume; every fan still discovers new things."
-                    }
+                    {"id": "a", "text": "You played?! What position? Do you miss it?", "smoothDelta": 25, "theirResponse": "Defense! I loved blocking shots. I don't miss the 5 a.m. practices, though.", "coachNote": "Two warm questions about her, not the sport."},
+                    {"id": "b", "text": "That's neat.", "smoothDelta": 5, "theirResponse": "Yeah, it was fun.", "coachNote": "Friendly, but it does not open the story."},
+                    {"id": "c", "text": "Really? I never pictured you as a hockey player.", "smoothDelta": -12, "theirResponse": "Well, I was. Women's hockey has been around a long time.", "coachNote": "Assuming who plays hockey can land as dismissive. Ask, do not assume."}
                   ]
                 },
                 {
-                  "theirMessage": "We've been to the home team's arena dozens of times since.",
+                  "theirMessage": "I still keep my old skates in the closet.",
                   "replies": [
-                    {
-                      "id": "a",
-                      "text": "What's your favorite memory from those games? Did you see a famous player or a big moment?",
-                      "smoothDelta": 25,
-                      "theirResponse": "We were there when they won the Cup in 2019. I cried.",
-                      "coachNote": "You're honoring what this really means to her."
-                    },
-                    {
-                      "id": "b",
-                      "text": "That's great bonding time.",
-                      "smoothDelta": 5,
-                      "theirResponse": "It was.",
-                      "coachNote": "Nice, but surface-level."
-                    },
-                    {
-                      "id": "c",
-                      "text": "So you're basically an expert then.",
-                      "smoothDelta": -10,
-                      "theirResponse": "I know the team well, but hockey in general is deep.",
-                      "coachNote": "Expertise about one team doesn't mean everything."
-                    }
+                    {"id": "a", "text": "Would you ever lace them up again? I'd love to try, though I'd be terrible.", "smoothDelta": 25, "theirResponse": "Ha! I'll teach you. Bring a helmet.", "coachNote": "A playful, honest offer that invites you into her world."},
+                    {"id": "b", "text": "Skates are cool.", "smoothDelta": 3, "theirResponse": "They are.", "coachNote": "Says nothing new."},
+                    {"id": "c", "text": "You should sell them.", "smoothDelta": -10, "theirResponse": "They're not for sale. They're memories.", "coachNote": "Practical advice misses the feeling in her voice."}
                   ]
                 }
               ],
-              "closingNote": "Her story is personal. Ask about the moments, the people, the feelings. That's where the real connection is."
+              "closingNote": "Her story is personal. Ask about the moments, the position and the feelings."
             }
           },
           {
@@ -1306,39 +720,19 @@
             "type": "say-this",
             "conceptIds": ["follow-up-questions"],
             "payload": {
-              "statement": {
-                "speaker": "Her",
-                "text": "My favorite player got traded and I'm still not over it."
-              },
+              "statement": {"speaker": "Her", "text": "My favorite player got traded and I'm still not over it."},
               "question": "How would you follow up?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "How long were they your favorite? What made them special to you?",
-                  "isCorrect": true
-                },
-                {
-                  "id": "b",
-                  "text": "There are plenty of other players on the team.",
-                  "isCorrect": false
-                },
-                {
-                  "id": "c",
-                  "text": "At least they went to a good team.",
-                  "isCorrect": false
-                }
+                {"id": "a", "text": "How long had he been your favorite? What made him special to you?", "isCorrect": true, "explanation": "Right. You honor the loss and invite her to tell you why he mattered."},
+                {"id": "b", "text": "There are plenty of other players on the team.", "isCorrect": false, "explanation": "It brushes aside something she genuinely feels."},
+                {"id": "c", "text": "At least he went to a good team.", "isCorrect": false, "explanation": "It is a silver lining she did not ask for."}
               ],
               "translation": "Honor the loss. Ask about the connection, not why she should move on.",
               "followUps": [
-                {
-                  "line": "Did you get to see them play a lot?",
-                  "why": "Explores how much she followed them."
-                },
-                {
-                  "line": "Do you follow them at their new team now?",
-                  "why": "Shows you understand the relationship extends beyond one team."
-                }
-              ]
+                {"line": "Did you get to see him play a lot?", "why": "Explores how much she followed him."},
+                {"line": "Do you still follow him at the new team?", "why": "Shows the fan bond can outlast a trade."}
+              ],
+              "noFakeExpertNote": "You do not need to know the trade details. Asking about him is what matters."
             }
           },
           {
@@ -1346,26 +740,17 @@
             "type": "multiple-choice",
             "conceptIds": ["conversation-starters"],
             "payload": {
-              "prompt": "What is the best question to ask someone about their hockey fandom?",
+              "prompt": "Which question best opens her hockey story?",
               "options": [
-                {
-                  "id": "a",
-                  "text": "How much do you know about hockey?"
-                },
-                {
-                  "id": "b",
-                  "text": "What's your favorite hockey memory?"
-                },
-                {
-                  "id": "c",
-                  "text": "Do you follow the standings?"
-                }
+                {"id": "a", "text": "How much do you know about hockey?"},
+                {"id": "b", "text": "What's your favorite hockey memory?"},
+                {"id": "c", "text": "Do you follow the standings?"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. A memory question opens the door to her personal story, not just facts.",
-                "incorrect": "Ask about memories, not knowledge. That leads to real conversation about what hockey means to her.",
-                "sayThisLine": "Ask about memories and feelings. That's where the real hockey love lives."
+                "correct": "Right. A memory question invites a story, and stories are where her love of the sport lives.",
+                "incorrect": "Questions about what she knows or the standings feel like a test. A memory feels like an invitation.",
+                "sayThisLine": "What's your favorite hockey memory?"
               }
             }
           },
@@ -1374,27 +759,15 @@
             "type": "term-match",
             "conceptIds": ["conversation-starters"],
             "payload": {
-              "prompt": "Match the question type to what it reveals.",
+              "prompt": "Match each question type to what it reveals.",
               "pairs": [
-                {
-                  "id": "memory",
-                  "term": "Favorite hockey memory",
-                  "definition": "Opens up her personal story and the emotions tied to hockey."
-                },
-                {
-                  "id": "facts",
-                  "term": "Team's goal count",
-                  "definition": "Gets facts but misses why hockey matters to her."
-                },
-                {
-                  "id": "belonging",
-                  "term": "Who taught you hockey",
-                  "definition": "Explores the relationships and people tied to her fandom."
-                }
+                {"id": "memory", "term": "Favorite hockey memory", "definition": "Opens up her personal story and the feelings tied to it."},
+                {"id": "facts", "term": "How many goals this year?", "definition": "Gets a number but not why hockey matters to her."},
+                {"id": "belonging", "term": "Who taught you hockey?", "definition": "Explores the people behind her fandom."}
               ],
               "explanation": {
-                "summary": "The best questions connect to her personal story, not just hockey facts.",
-                "sayThisLine": "Ask about the people, the moments, the feelings. That's what makes her a fan."
+                "summary": "The best questions connect to her story, not just hockey facts.",
+                "sayThisLine": "Ask about the people, the moments and the feelings."
               }
             }
           }

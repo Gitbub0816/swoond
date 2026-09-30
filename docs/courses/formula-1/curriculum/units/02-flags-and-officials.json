@@ -83,7 +83,7 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "Stop immediately: the session is suspended and cars return to pits."
+                  "text": "The session is suspended and every car returns to the pits."
                 },
                 {
                   "id": "b",
@@ -104,7 +104,7 @@
                 "Used after big crashes or unsafe conditions."
               ],
               "explanation": {
-                "correct": "Right. A red flag stops the entire session. All drivers must slow down, return to the pits and the race will restart.",
+                "correct": "Right. A red flag stops the entire session. All drivers must slow down and return to the pit lane, and the race normally restarts later.",
                 "incorrect": "Red is the harshest flag: it stops the session completely, not just a sector. Yellow is caution; red is stop.",
                 "sayThisLine": "Red flag, the whole session stopped."
               }
@@ -148,7 +148,7 @@
               ],
               "explanation": {
                 "correct": "Right. A blue flag tells a lapped driver to yield to the car behind. Ignoring it can earn a penalty.",
-                "incorrect": "Blue flags are for lapped traffic only: the faster car is about to lap you, so let it through.",
+                "incorrect": "A blue flag is about traffic: a faster car is about to lap you, so you must let it through. It is not a penalty or a hazard warning.",
                 "sayThisLine": "He ignored the blue flags and got a penalty."
               }
             }
@@ -221,7 +221,7 @@
                 {
                   "id": "red",
                   "term": "Red flag",
-                  "definition": "Stops the entire session; all cars must return to the pits and the race will restart."
+                  "definition": "Stops the entire session; all cars return to the pits and the race normally restarts."
                 },
                 {
                   "id": "blue",
@@ -313,8 +313,8 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Right. A black-and-white flag is a warning for unsportsmanlike driving. If it continues, the black flag comes next and the driver is out.",
-                "incorrect": "The black-and-white flag warns a driver to stop unsportsmanlike behaviour. If it continues, the black flag comes next and the driver is disqualified.",
+                "correct": "Right. A black-and-white flag is a warning for unsportsmanlike driving. Ignore it and a black flag can follow, which means disqualification.",
+                "incorrect": "The black-and-white flag is a warning about unsportsmanlike behaviour. Only the solid black flag, shown with a car number, means the driver is disqualified.",
                 "sayThisLine": "That got a black-and-white flag, a warning to clean it up."
               }
             }
@@ -416,43 +416,34 @@
           },
           {
             "id": "fc-02-mul-lead-sc",
-            "type": "multiple-choice",
+            "type": "binary-call",
             "conceptIds": [
               "safety-car",
               "gap-and-interval"
             ],
             "payload": {
-              "prompt": "A driver is leading by eight seconds when the safety car comes out. What happens next?",
-              "options": [
+              "prompt": "A driver leads by eight seconds when the safety car appears. Does that lead survive?",
+              "scene": {
+                "kind": "none",
+                "alt": "Text only: a race leader with a comfortable gap over the chasing pack as the safety car is deployed."
+              },
+              "choices": [
                 {
-                  "id": "a",
-                  "text": "The safety car closes the gap and the field bunches behind the leader.",
-                  "explanation": "Right. The safety car brings everyone to the same speed, so the eight-second gap closes to just car lengths."
+                  "id": "gone",
+                  "label": "No, the pack catches up"
                 },
                 {
-                  "id": "b",
-                  "text": "The leader maintains the eight-second gap because they are ahead of the safety car.",
-                  "explanation": "No. The safety car is the pace car; the leader follows behind it at the slow speed, so the gap closes."
-                },
-                {
-                  "id": "c",
-                  "text": "The gap increases because the leader can drive faster than the safety car.",
-                  "explanation": "The safety car sets a fixed pace and the leader cannot break away. Everyone follows at the same speed."
-                },
-                {
-                  "id": "d",
-                  "text": "The race ends immediately and the leader wins.",
-                  "explanation": "The safety car does not end the race; it pauses the action and the race restarts."
+                  "id": "kept",
+                  "label": "Yes, he keeps the eight seconds"
                 }
               ],
-              "correctOptionIds": [
-                "a"
-              ],
+              "correctChoiceId": "gone",
               "explanation": {
-                "correct": "Right. When the safety car comes out, the leading driver is caught and the field bunches behind the pace car. The lead is lost until the restart.",
-                "incorrect": "The safety car leads all drivers at a slow pace, so gaps close. A ten-second lead becomes a few car lengths.",
-                "sayThisLine": "The safety car bunched the field right up."
-              }
+                "correct": "Everyone must queue up behind the safety car at its slow pace, so the chasing cars close right up on the leader. An eight-second gap shrinks to a few car lengths and is gone for good.",
+                "incorrect": "The leader cannot drive away from the safety car, and the cars behind keep closing until they bunch up. The lead is erased, which is why a safety car can ruin a leader's afternoon.",
+                "sayThisLine": "The safety car wiped out his eight-second lead."
+              },
+              "ruleTag": "Safety car bunching"
             }
           },
           {
@@ -465,7 +456,7 @@
               "prompt": "Can drivers pass each other behind the safety car?",
               "scene": {
                 "kind": "none",
-                "alt": "Two cars following the safety car at reduced pace; the second car is beside the first but both are behind the pace car."
+                "alt": "Two race cars following the safety car in single file at reduced pace, the second tucked close behind the first."
               },
               "choices": [
                 {
@@ -494,10 +485,10 @@
               "race-director"
             ],
             "payload": {
-              "prompt": "A car is on fire at the barrier. Does the race director use the safety car?",
+              "prompt": "A crash has wrecked the barrier and the repair will take a while. Which call?",
               "scene": {
                 "kind": "none",
-                "alt": "A car burning at the side of the track with marshals and medical crews responding."
+                "alt": "Text only: a wrecked car, scattered wreckage and a damaged barrier that needs a long repair before racing can continue."
               },
               "choices": [
                 {
@@ -511,8 +502,8 @@
               ],
               "correctChoiceId": "red",
               "explanation": {
-                "correct": "Right. A fire and marshals on track means the session must be stopped completely. A red flag brings all cars back to the pits.",
-                "incorrect": "A fire is too dangerous for the safety car pace. This requires a red flag to stop the entire session and bring all cars to the pits."
+                "correct": "Right. A long barrier repair, or a big clean-up, cannot be done safely while cars keep circulating, even slowly. So the race director red-flags the race and brings everyone into the pit lane.",
+                "incorrect": "A safety car suits quick clean-ups. When the barrier is damaged or the track needs lengthy work, the race director stops the session with a red flag instead of leaving the field circulating."
               },
               "ruleTag": "Safety escalation"
             }
@@ -584,8 +575,8 @@
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Right. Debris far from the line does not require a physical safety car. A VSC is safer and lets the race continue with gaps intact.",
-                "incorrect": "Debris off the line can be handled with VSC: just slow everything down, then resume. Only crash and debris on the line need a full safety car."
+                "correct": "Right. Debris far from the line does not need a physical safety car. A VSC slows the field enough for a quick clean-up and keeps the gaps intact.",
+                "incorrect": "Debris off the racing line can be handled under a VSC: slow everything down, clear it, then resume. Wreckage on the line or marshals on the track call for a full safety car."
               },
               "ruleTag": "VSC usage"
             }
@@ -614,8 +605,8 @@
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Right. Marshals out on track need the full safety car so all drivers slow and bunch safely. A VSC does not bring drivers close enough to avoid hitting marshals.",
-                "incorrect": "When marshals or medical staff are on the track, a full safety car is needed to slow the field properly and protect them."
+                "correct": "Right. With marshals working on the track itself, the field is held behind the safety car at a controlled pace. A VSC only slows cars to a set delta, so they would still be strung out around people on foot.",
+                "incorrect": "When marshals or medical staff are on the track, the race director uses the full safety car so the whole field is slowed, queued and controlled around them."
               },
               "ruleTag": "Safety-car triggers"
             }
@@ -628,20 +619,20 @@
               "safety-car"
             ],
             "payload": {
-              "prompt": "What safety action for a mid-track collision?",
+              "prompt": "Which neutralisation for this collision?",
               "situation": {
                 "facts": [
                   {
                     "label": "Incident",
-                    "value": "Two cars have collided mid-track; both off-line."
+                    "value": "Two cars collided; one is stuck mid-track."
                   },
                   {
                     "label": "Marshals",
-                    "value": "No marshals on track; drivers can reach the pits."
+                    "value": "Marshals must cross the track to reach it."
                   },
                   {
                     "label": "Debris",
-                    "value": "Small debris clears in minutes, not on racing line."
+                    "value": "Wreckage is spread across the racing line."
                   }
                 ]
               },
@@ -649,25 +640,26 @@
                 {
                   "id": "vsc",
                   "label": "Virtual Safety Car",
-                  "verdict": "acceptable",
-                  "consequence": "The field slows by a set delta but gaps stay the same. The cars clear the track and debris is cleaned, then the race resumes.",
+                  "verdict": "poor",
+                  "consequence": "Every car slows by a set margin, but they still circulate spread out past a wrecked car and marshals working on the racing line.",
                   "considerations": [
-                    "Both drivers are safe and no marshals are at risk.",
-                    "Gaps are preserved, which is fair to drivers with a lead."
+                    "Gaps are preserved, which is fair, but fairness is not the priority here.",
+                    "Marshals and wreckage on the track call for a more controlled pace."
                   ]
                 },
                 {
                   "id": "sc",
                   "label": "Full Safety Car",
                   "verdict": "best",
-                  "consequence": "The field bunches and the race resets. Drivers pit if needed, then a restart happens.",
+                  "consequence": "The field lines up behind the pace car at a controlled speed, so marshals can reach the car and clear the wreckage. The gaps close, and the race restarts once the track is clear.",
                   "considerations": [
-                    "Safer option with two damaged cars and debris cleanup needed."
+                    "People and wreckage on the racing line need the field held in a controlled queue.",
+                    "The cost is fairness: a leader's gap is wiped out."
                   ]
                 }
               ],
-              "expertNote": "Race directors prefer full safety car for on-track collisions with debris; VSC for off-line minor incidents where no one is at risk.",
-              "sayThisLine": "Full safety car for the debris on the track."
+              "expertNote": "Race directors use the virtual safety car when marshals work off the racing line and a quick clean-up is enough. A car stuck on track, or marshals crossing it, calls for the full safety car.",
+              "sayThisLine": "Full safety car, there are marshals on the track."
             }
           },
           {
@@ -742,23 +734,23 @@
                 },
                 {
                   "id": "2",
-                  "text": "Cars are parked in parc ferme and major set-up changes are not allowed.",
-                  "why": "Parc ferme locks down the cars for fairness and safety."
+                  "text": "Cars are held in the pit lane and set-up changes are not allowed.",
+                  "why": "Parc ferme rules keep the cars as they were, so nobody gets a free re-tune during the stoppage."
                 },
                 {
                   "id": "3",
-                  "text": "Drivers may change tyres and make repairs, as allowed by the rules.",
-                  "why": "Tyres and repairs are permitted; big aerodynamic changes are not."
+                  "text": "Teams may change tyres and repair damage, as the rules allow.",
+                  "why": "Tyre changes and repairs are permitted, but re-engineering the set-up is not."
                 },
                 {
                   "id": "4",
-                  "text": "The drivers line up on the grid in their current positions and the race restarts.",
-                  "why": "A standing restart is a fresh lights-out start from the grid."
+                  "text": "The cars form up on the grid in running order and the race restarts.",
+                  "why": "A standing restart is a fresh lights-out start, with the order the cars were running in."
                 }
               ],
               "explanation": {
-                "correct": "Right. Red flag: all stop, enter parc ferme, minimal changes allowed, restart on grid.",
-                "incorrect": "Red flag stops the race, brings cars back, limits set-up changes, and restarts from the grid with lights-out."
+                "correct": "Right. Red flag: everyone returns to the pit lane, set-up is frozen, teams may change tyres and repair damage, then the cars line up for a standing restart.",
+                "incorrect": "Red flag stops the race and brings cars back, set-up is frozen, tyres and repairs are allowed, and then the race restarts from the grid with a lights-out start."
               }
             }
           },
@@ -804,83 +796,70 @@
           },
           {
             "id": "fc-04-mul-parc-ferme",
-            "type": "multiple-choice",
+            "type": "fill-the-gap",
             "conceptIds": [
               "parc-ferme"
             ],
             "payload": {
-              "prompt": "What is parc ferme and what happens after a red flag?",
-              "options": [
+              "prompt": "Complete the sentence about parc ferme during a red flag.",
+              "template": "Under parc ferme rules, teams may change {{allowed}} and repair damage, but they may not change the car's {{banned}}.",
+              "gaps": [
                 {
-                  "id": "a",
-                  "text": "A secure area where cars are parked and major set-up changes are not allowed.",
-                  "explanation": "Right. Parc ferme means cars are locked down. Teams can change tyres and make repairs, but not big aerodynamic or suspension changes."
+                  "id": "allowed",
+                  "options": [
+                    "tyres",
+                    "set-up",
+                    "power unit"
+                  ],
+                  "correct": "tyres"
                 },
                 {
-                  "id": "b",
-                  "text": "A penalty zone where drivers wait if they broke a rule.",
-                  "explanation": "Parc ferme is not a penalty area. It is a technical lock-down area for car security."
-                },
-                {
-                  "id": "c",
-                  "text": "A free pit area where teams can make any changes they want.",
-                  "explanation": "No. Parc ferme is the opposite: it restricts what teams can change. It is a seal on the car."
-                },
-                {
-                  "id": "d",
-                  "text": "A zone where damaged cars are destroyed after crashing.",
-                  "explanation": "Parc ferme is for car security and technical regulation, not destruction."
+                  "id": "banned",
+                  "options": [
+                    "race number",
+                    "set-up",
+                    "sponsor stickers"
+                  ],
+                  "correct": "set-up"
                 }
               ],
-              "correctOptionIds": [
-                "a"
-              ],
               "explanation": {
-                "correct": "Right. Parc ferme is a rules lock-down: cars are parked and teams cannot make major changes. Tyres yes, engine settings yes, wing angle no.",
-                "incorrect": "Parc ferme means 'closed park': the car is locked down to a basic spec. Teams cannot change wings, springs or set-up, only tyres and repairs.",
+                "correct": "Parc ferme means 'closed park'. During a red flag teams can fit fresh tyres and repair damage, but the car's set-up stays locked so nobody can re-tune it for the restart.",
+                "incorrect": "Parc ferme is a rules lock on the car, not a place where cars are punished. Tyres and repairs are allowed; re-tuning the set-up is not.",
                 "sayThisLine": "Once parc ferme is on, no more big changes."
               }
             }
           },
           {
             "id": "fc-04-mul-restart",
-            "type": "multiple-choice",
+            "type": "binary-call",
             "conceptIds": [
               "standing-restart",
               "red-flag"
             ],
             "payload": {
-              "prompt": "How does the race restart after a red flag?",
-              "options": [
+              "prompt": "After a red flag, does the race usually restart with a standing start?",
+              "scene": {
+                "kind": "none",
+                "alt": "Text only: the cars sit in the pit lane during a red flag stoppage while the track is being repaired."
+              },
+              "choices": [
                 {
-                  "id": "a",
-                  "text": "Drivers line up on the grid in their running order and the lights go out.",
-                  "explanation": "Right. A standing restart is like a race start: cars are on the grid in their positions and the lights go out."
+                  "id": "standing",
+                  "label": "Yes, from the grid, lights out"
                 },
                 {
-                  "id": "b",
-                  "text": "Drivers immediately resume racing from the pits at half-speed.",
-                  "explanation": "No. A standing restart is a full stop on the grid with a fresh lights-out start."
-                },
-                {
-                  "id": "c",
-                  "text": "The safety car leads the field back onto track and then leaves.",
-                  "explanation": "After a red flag, a standing restart is clean: drivers go from the grid with lights-out, no safety car lead."
-                },
-                {
-                  "id": "d",
-                  "text": "The race is declared over and the highest-placed driver at the time of the red flag wins.",
-                  "explanation": "A red flag does not end the race. It pauses and restarts it. The race continues after the restart."
+                  "id": "rolling",
+                  "label": "No, cars roll away from the pits"
                 }
               ],
-              "correctOptionIds": [
-                "a"
-              ],
+              "correctChoiceId": "standing",
               "explanation": {
-                "correct": "Right. A standing restart is a full restart: cars line up on the grid, lights go out, and they race off again.",
-                "incorrect": "After a red flag, the race restarts from the grid with a fresh lights-out start. It is a complete reset.",
+                "correct": "Right. The cars line up on the grid in the order they were running and a fresh set of lights starts them off again. That is a standing restart, and it is why red flags reshuffle the gaps.",
+                "incorrect": "The usual restart is a standing start: the cars form up on the grid in running order and the lights go out, just like the start of a race.",
                 "sayThisLine": "After the red flag they had a standing restart."
-              }
+              },
+              "ruleTag": "Red-flag restart"
             }
           }
         ]
@@ -917,7 +896,7 @@
                 {
                   "id": "grid",
                   "term": "Grid penalty",
-                  "definition": "Positions dropped on the starting grid at the next race for technical breaches."
+                  "definition": "Places dropped on the starting grid, often for using extra power unit parts."
                 },
                 {
                   "id": "points",
@@ -972,7 +951,7 @@
                 "Ignoring a blue flag during the race."
               ],
               "explanation": {
-                "summary": "On-track infractions (unsafe release, contact) earn time penalties; technical breaches (extra parts) earn grid penalties.",
+                "summary": "Driving and pit-lane infractions (unsafe release, contact) usually earn time penalties; using extra power unit parts earns a grid penalty.",
                 "sayThisLine": "That was an unsafe release from the pits."
               }
             }
@@ -1052,7 +1031,7 @@
               ],
               "explanation": {
                 "correct": "Right. Penalty points accumulate on a driver's super licence. Twelve points within 12 months trigger an automatic one-race ban.",
-                "incorrect": "Twelve penalty points in 12 months = one-race ban. It is the harshest driver penalty short of a permanent suspension.",
+                "incorrect": "Twelve penalty points within 12 months means a one-race ban. Points stay on the driver's licence and drop off after a year, so a driver can see the ban coming.",
                 "sayThisLine": "He is on eight penalty points now."
               }
             }

@@ -49,9 +49,9 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Right. A rush is a fast break with numbers advantage or equal numbers moving toward the net.",
-                "incorrect": "A rush is a high-speed attack from the neutral zone. It creates scoring chances because defenders are back.",
-                "sayThisLine": "Rush starts in the neutral zone and ends at the net or defense."
+                "correct": "Right. A rush is a fast attack up the ice, often with extra attackers or at least equal numbers, before the defense can set up.",
+                "incorrect": "A rush is a high-speed attack through the neutral zone. It creates chances because the defense is still scrambling to get set.",
+                "sayThisLine": "That rush caught them before they could set up."
               }
             }
           },
@@ -62,11 +62,11 @@
               "rush"
             ],
             "payload": {
-              "prompt": "Tap where a rush begins.",
+              "prompt": "Tap the zone where a rush gathers speed.",
               "diagram": {
-                "diagramId": "hockey-rink-standard",
-                "alt": "Hockey rink from above: defensive zone at bottom, center line in middle, offensive zone at top.",
-                "aspectRatio": 1.4
+                "diagramId": "hockey-rink-full",
+                "alt": "A full rink with your goal on the left: the defensive zone, the neutral zone between the blue lines, and the offensive zone on the right.",
+                "aspectRatio": 2.35
               },
               "hotspots": [
                 {
@@ -74,10 +74,10 @@
                   "label": "Neutral zone",
                   "shape": {
                     "kind": "rect",
-                    "x": 0.3,
-                    "y": 0.45,
-                    "w": 0.4,
-                    "h": 0.1
+                    "x": 0.375,
+                    "y": 0,
+                    "w": 0.25,
+                    "h": 1
                   }
                 },
                 {
@@ -85,10 +85,10 @@
                   "label": "Offensive zone",
                   "shape": {
                     "kind": "rect",
-                    "x": 0.2,
-                    "y": 0.75,
-                    "w": 0.6,
-                    "h": 0.2
+                    "x": 0.625,
+                    "y": 0,
+                    "w": 0.375,
+                    "h": 1
                   }
                 },
                 {
@@ -96,10 +96,10 @@
                   "label": "Defensive zone",
                   "shape": {
                     "kind": "rect",
-                    "x": 0.2,
+                    "x": 0,
                     "y": 0,
-                    "w": 0.6,
-                    "h": 0.2
+                    "w": 0.375,
+                    "h": 1
                   }
                 }
               ],
@@ -107,9 +107,9 @@
                 "neutral"
               ],
               "explanation": {
-                "correct": "Right. A rush starts in the neutral zone when players gain the puck and push up ice.",
-                "incorrect": "A rush begins when a team gains possession and pushes toward the opponent's goal. The neutral zone is where the rush starts.",
-                "sayThisLine": "Rushes start in the neutral zone, end at the net."
+                "correct": "Right. The neutral zone between the blue lines is where a team picks up speed as it crosses from defense to attack.",
+                "incorrect": "A rush gathers speed in the open ice between the blue lines, the neutral zone. The defensive zone is where it starts and the offensive zone is where it ends.",
+                "sayThisLine": "They flew through the neutral zone."
               }
             }
           },
@@ -125,7 +125,7 @@
                 {
                   "id": "a",
                   "text": "Two attacking players versus one defenseman: a numerical advantage that is dangerous because the defender cannot stop both.",
-                  "explanation": "Correct. A 2-on-1 is the most common odd-man rush and creates a high-scoring chance."
+                  "explanation": "Correct. A 2-on-1 is one of the most dangerous chances in hockey because the lone defender can't cover both attackers."
                 },
                 {
                   "id": "b",
@@ -142,7 +142,7 @@
               "explanation": {
                 "correct": "Right. A 2-on-1 gives the attackers the advantage: one can shoot, one can pass, and the lone defender cannot be in two places.",
                 "incorrect": "A 2-on-1 is attackers outnumbering the defense. It is called an odd-man rush because the attackers have the numbers.",
-                "sayThisLine": "2-on-1 is two attackers against one defenseman: a scoring chance."
+                "sayThisLine": "That 2-on-1 left the defender with no good option."
               }
             }
           },
@@ -153,7 +153,7 @@
               "rush"
             ],
             "payload": {
-              "prompt": "A 3-on-2 rush is less dangerous than a 2-on-1. True or false?",
+              "prompt": "A 3-on-2 is an odd-man rush. True or false?",
               "scene": {
                 "kind": "none",
                 "alt": "Three attackers moving up ice against two defensemen."
@@ -168,11 +168,11 @@
                   "label": "False"
                 }
               ],
-              "correctChoiceId": "false",
+              "correctChoiceId": "true",
               "explanation": {
-                "correct": "False. A 3-on-2 is even more dangerous than a 2-on-1 because the defensemen are more spread out and cannot help each other.",
-                "incorrect": "A 3-on-2 is a high-danger rush. More attackers mean more options and less defense, so it is very dangerous.",
-                "sayThisLine": "3-on-2 and 2-on-1 both create elite scoring chances."
+                "correct": "True. Any rush where the attackers outnumber the defenders is an odd-man rush: 2-on-1, 3-on-1 or 3-on-2. The extra attacker gives the puck carrier a passing option.",
+                "incorrect": "It is an odd-man rush. Whenever attackers outnumber defenders, it counts, and the extra attacker gives the puck carrier an extra option.",
+                "sayThisLine": "That's a 3-on-2, so it's an odd-man rush."
               }
             }
           },
@@ -183,33 +183,31 @@
               "gap-control"
             ],
             "payload": {
-              "prompt": "Complete the description of defensive rush technique.",
-              "template": "A defenseman with {{control}} stops the rush early by closing the {{distance}} before the attacker can shoot or create a pass.",
+              "prompt": "Complete the description of gap control.",
+              "template": "With a tight gap, a defenseman stays {{close}} to the puck carrier and takes away his {{what}}.",
               "gaps": [
                 {
-                  "id": "control",
+                  "id": "close",
                   "options": [
-                    "loose gap",
-                    "tight gap",
-                    "wide gap",
-                    "no gap"
+                    "close",
+                    "far",
+                    "behind"
                   ],
-                  "correct": "tight gap"
+                  "correct": "close"
                 },
                 {
-                  "id": "distance",
+                  "id": "what",
                   "options": [
-                    "blue line",
-                    "crease",
-                    "distance",
-                    "slot"
+                    "time and space",
+                    "skates",
+                    "teammates"
                   ],
-                  "correct": "distance"
+                  "correct": "time and space"
                 }
               ],
               "explanation": {
-                "correct": "Exactly. Tight gap control cuts down the attacker's time and options. The defender takes away space early.",
-                "incorrect": "Tight gap means the defenseman stays close to the puck carrier. A loose gap gives too much space and allows a shot."
+                "correct": "Exactly. Staying tight to the carrier leaves him little time or room to shoot or pass, but a defender who gets beaten leaves a lot of open ice behind him.",
+                "incorrect": "Tight gap means the defenseman stays close to the puck carrier. A loose gap gives the carrier space and time to shoot or pass."
               }
             }
           }
@@ -248,12 +246,12 @@
                 {
                   "id": "forechecker",
                   "term": "1-2-2 forecheck",
-                  "definition": "One forward deep in the opponent's zone, two covering the middle, two defensemen behind them."
+                  "definition": "One forward pressures the puck, two forwards hold the lanes, and two defensemen hold the blue line."
                 }
               ],
               "explanation": {
-                "summary": "Forecheck is offense turning into defense. Backcheck is forwards getting back. Both stop scoring chances.",
-                "sayThisLine": "Good forechecks force mistakes. Good backchecks stop breakaways."
+                "summary": "The forecheck is pressure in the other team's end; the backcheck is skating back to defend. Fans name the formations by the numbers of players at each level, like 1-2-2.",
+                "sayThisLine": "Their forecheck is causing all kinds of turnovers."
               }
             }
           },
@@ -310,25 +308,25 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "Attack the puck carrier immediately and force them to pass or shoot quickly under pressure.",
-                  "explanation": "Correct. The deep forechecker is aggressive and creates the first line of pressure."
+                  "text": "Pressure the puck carrier quickly to force a rushed pass or a turnover.",
+                  "explanation": "Correct. The first forechecker applies the pressure that the others build on."
                 },
                 {
                   "id": "b",
-                  "text": "Stand in the blue line and wait for the puck."
+                  "text": "Hold the blue line and wait for the puck."
                 },
                 {
                   "id": "c",
-                  "text": "Skate to the offensive zone and score a goal."
+                  "text": "Stay back in the neutral zone to guard against a long pass."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. The deep forechecker is the most aggressive and forces the first mistake or bad decision.",
-                "incorrect": "Forechecking requires aggression. The deep forechecker hunts the puck and the player with it.",
-                "sayThisLine": "Deep forechecker: first line of attack, forces the first pass."
+                "correct": "Right. In a 1-2-2, the first forechecker chases the puck carrier and forces a quick decision, while the other four hold their lanes.",
+                "incorrect": "The first forechecker's job is to pressure the puck. Waiting at the blue line or hanging back is what the defensemen and the other forwards do.",
+                "sayThisLine": "F1 is forcing them into a bad pass."
               }
             }
           },
@@ -343,29 +341,29 @@
               "items": [
                 {
                   "id": "gain",
-                  "text": "The attacking team gains the puck or opponent has it in their zone.",
-                  "why": "Forechecking starts when you attack in the opponent's zone."
+                  "text": "The other team's defenseman retrieves the puck in his own zone.",
+                  "why": "The forecheck starts when the opponent is in its own end and looking to break out."
                 },
                 {
                   "id": "pressure",
-                  "text": "The deep forechecker attacks the puck carrier immediately.",
-                  "why": "First pressure forces the opponent to react under duress."
+                  "text": "The first forechecker closes on the puck carrier quickly.",
+                  "why": "Early pressure forces the carrier to decide fast."
                 },
                 {
                   "id": "second",
-                  "text": "The second and third forecheckers cover the passing lanes.",
-                  "why": "Cut off pass options; force a worse decision."
+                  "text": "The other forwards cut off the nearest passing lanes.",
+                  "why": "With the lanes covered, the carrier has fewer safe passes."
                 },
                 {
                   "id": "force",
-                  "text": "The opponent forces a turnover or a weak breakout pass.",
-                  "why": "Good forecheck leads to a turnover or an easy reentry."
+                  "text": "The opponent turns the puck over or throws up a weak pass.",
+                  "why": "That's the payoff: the forecheck wins the puck high in the zone."
                 }
               ],
               "explanation": {
-                "correct": "Perfect. That is how a forecheck builds pressure and forces mistakes.",
-                "incorrect": "Forecheck starts with aggressive pressure, moves to cutting lanes, and ends in a turnover.",
-                "sayThisLine": "Forecheck: pressure first, cut lanes second, force mistakes third."
+                "correct": "That's the order. One forward closes quickly, teammates cut off the lanes, and the carrier is left with no safe pass.",
+                "incorrect": "It flows like this: the opponent retrieves the puck, pressure arrives, lanes get covered, and then a turnover or weak pass follows.",
+                "sayThisLine": "Pressure first, then cut the lanes."
               }
             }
           },
@@ -393,9 +391,9 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. An aggressive forecheck prevents the opponent from regrouping and forces hurried decisions. It is both physical and mental pressure.",
-                "incorrect": "A good forecheck is exhausting because defenders cannot rest and must deal with constant pressure.",
-                "sayThisLine": "Forecheck = tired opponent = forced mistakes."
+                "correct": "True. Constant pressure means the defensemen keep chasing the puck and taking hits instead of settling, which wears them down and causes mistakes.",
+                "incorrect": "A good forecheck is tiring for the defense, because they're under pressure with little time to settle the puck.",
+                "sayThisLine": "Their forecheck is wearing our defense down."
               }
             }
           }
@@ -422,7 +420,11 @@
               "simulationId": "hockey.tactics.forecheck-read.v1",
               "simulationVersion": "1.0.0",
               "difficulty": 2,
-              "configuration": {}
+              "configuration": {
+                "scenarioSetId": "forecheck-starter",
+                "rounds": 3,
+                "forecheck": "1-2-2"
+              }
             }
           },
           {
@@ -442,24 +444,24 @@
                 },
                 {
                   "id": "move",
-                  "text": "He makes a quick decision: wall pass or short pass to a nearby teammate.",
-                  "why": "Speed of decision beats pressure."
+                  "text": "He picks an open outlet: up the wall or a short pass to a nearby teammate.",
+                  "why": "A quick decision beats the pressure that's closing in."
                 },
                 {
                   "id": "execute",
-                  "text": "A quick, accurate pass beats the forechecker to a moving player.",
-                  "why": "Execution under pressure is key."
+                  "text": "He makes a quick, accurate pass before the forechecker arrives.",
+                  "why": "The puck moves faster than the forechecker can skate."
                 },
                 {
                   "id": "flow",
-                  "text": "The receiving player carries the puck out with a clean breakout.",
-                  "why": "Possession exits the zone and builds the offense."
+                  "text": "The receiver carries the puck out of the zone.",
+                  "why": "Once the puck is out, the forecheck has failed and the attack can start."
                 }
               ],
               "explanation": {
-                "correct": "Perfect. That is how a breakout beats forecheck pressure.",
-                "incorrect": "A breakout under pressure needs fast reads and quick, short passes to teammates.",
-                "sayThisLine": "Under pressure, move it fast: read, decide, pass, exit."
+                "correct": "That's the order: read the pressure, pick an outlet, make a quick pass, and the receiver takes it out.",
+                "incorrect": "Under pressure, a defenseman reads the forecheck first, picks an outlet, passes quickly, and then the receiver exits the zone.",
+                "sayThisLine": "Read it, pass it, and get out of the zone."
               }
             }
           },
@@ -475,7 +477,7 @@
                 {
                   "id": "wall",
                   "term": "Wall pass breakout",
-                  "definition": "Pass to a teammate along the boards who sends it back; simple and quick."
+                  "definition": "A defenseman passes up the boards to a winger, who carries it out; simple and common."
                 },
                 {
                   "id": "reverse",
@@ -485,12 +487,12 @@
                 {
                   "id": "stretch",
                   "term": "Stretch pass",
-                  "definition": "A long pass from the defensive zone to a forward past the blue line."
+                  "definition": "A long pass from your own zone to a forward near or past the far blue line; fast but risky."
                 }
               ],
               "explanation": {
-                "summary": "Breakouts have different risks and rewards. Short passes are safe; long passes are risky but fast.",
-                "sayThisLine": "Safe breakout = short pass. Fast breakout = stretch pass."
+                "summary": "Breakouts trade safety for speed. Short passes up the wall are safer; a stretch pass can spring a rush but can also be intercepted.",
+                "sayThisLine": "That stretch pass sprang him for a breakaway."
               }
             }
           },
@@ -501,29 +503,29 @@
               "forecheck"
             ],
             "payload": {
-              "prompt": "What should a defenseman avoid under forecheck pressure?",
+              "prompt": "What helps a defenseman beat a forecheck?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Holding the puck too long and letting the forechecker get closer.",
-                  "explanation": "Correct. Possession under pressure is risky; move it quickly."
+                  "text": "A quick, simple pass before the forechecker arrives.",
+                  "explanation": "Correct. Moving the puck early beats the pressure."
                 },
                 {
                   "id": "b",
-                  "text": "Passing to a teammate at all."
+                  "text": "Holding the puck until someone is wide open."
                 },
                 {
                   "id": "c",
-                  "text": "Shooting the puck down the ice."
+                  "text": "Waiting for the referee to stop play."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. The longer you hold it, the more pressure builds. Quick decisions and fast hands beat forechecks.",
-                "incorrect": "Under forecheck pressure, speed is everything. Get the puck moving before pressure gets too close.",
-                "sayThisLine": "Pressure = move fast. Hold it = bad decision likely."
+                "correct": "Right. The longer a defenseman holds it, the closer the forechecker gets. A quick, simple pass beats the pressure.",
+                "incorrect": "Holding the puck gives the forechecker time to arrive. The answer is to move it quickly to a teammate who is ready.",
+                "sayThisLine": "He moved it before the pressure got there."
               }
             }
           },
@@ -535,42 +537,39 @@
             ],
             "payload": {
               "prompt": "Complete the description of a smart breakout.",
-              "template": "A smart breakout gets the puck {{direction}} by using {{method}} and avoids {{risk}}.",
+              "template": "A smart breakout gets the puck {{direction}} with {{method}} and avoids {{risk}}.",
               "gaps": [
                 {
                   "id": "direction",
                   "options": [
-                    "behind the net",
                     "out of the zone",
-                    "to the goalie",
-                    "to the center"
+                    "behind the net",
+                    "onto the boards"
                   ],
                   "correct": "out of the zone"
                 },
                 {
                   "id": "method",
                   "options": [
-                    "shooting hard",
-                    "a wall pass or quick pass",
-                    "no pass",
-                    "waiting"
+                    "a quick pass or the wall",
+                    "a long hold",
+                    "a slow turn"
                   ],
-                  "correct": "a wall pass or quick pass"
+                  "correct": "a quick pass or the wall"
                 },
                 {
                   "id": "risk",
                   "options": [
-                    "shooting",
-                    "the puck going in",
                     "an interception",
-                    "a goal"
+                    "a line change",
+                    "a faceoff"
                   ],
                   "correct": "an interception"
                 }
               ],
               "explanation": {
-                "correct": "Exactly. A good breakout moves the puck up and out quickly, minimizing the chance of a turnover.",
-                "incorrect": "Breakouts need speed and smart passing. Get out of your zone before pressure builds."
+                "correct": "Exactly. A good breakout moves the puck up and out quickly and avoids giving it away where a turnover becomes a chance against.",
+                "incorrect": "A breakout has to get the puck out of the zone, using quick passes, without an interception that hands the other team a chance in front of your net."
               }
             }
           },
@@ -581,10 +580,10 @@
               "breakout"
             ],
             "payload": {
-              "prompt": "When a forecheck forces a turnover in your defensive zone, your forwards should backcheck immediately. True or false?",
+              "prompt": "After your team loses the puck up ice, your forwards should backcheck. True or false?",
               "scene": {
                 "kind": "none",
-                "alt": "Forwards backchecking quickly after a turnover in the defensive zone."
+                "alt": "Forwards skating hard back toward their own end after losing the puck in the neutral zone."
               },
               "choices": [
                 {
@@ -598,9 +597,9 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. A turnover means the other team has the puck. Fast backchecking stops them from scoring off the turnover.",
-                "incorrect": "A quick backcheck after a turnover prevents the opponent from scoring. Fast transitions are won by quick feet.",
-                "sayThisLine": "Backcheck fast after a turnover; stop the breakaway."
+                "correct": "True. Once the other team has the puck, forwards race back to catch up with the rush and help the defense. That's exactly what a backcheck is.",
+                "incorrect": "A backcheck is what forwards do after a turnover: skate back quickly to help the defense before the other team's rush reaches the net.",
+                "sayThisLine": "He backchecked hard and saved a goal."
               }
             }
           }
@@ -645,7 +644,7 @@
               "explanation": {
                 "correct": "Right. The trap stops the rush by packing defenders into the neutral zone. Teams hate playing against it.",
                 "incorrect": "The neutral-zone trap is defensive. It fills the neutral zone with players to stop the other team from gaining speed.",
-                "sayThisLine": "Trap = fill the middle, force a turnover, slow the game."
+                "sayThisLine": "They're sitting back in the trap and clogging the middle."
               }
             }
           },
@@ -675,7 +674,7 @@
               "explanation": {
                 "correct": "True. The trap slows the game and takes away space, which frustrates fast-paced teams.",
                 "incorrect": "The trap is designed to slow play and neutralize speed. It is most effective against high-tempo offenses.",
-                "sayThisLine": "Trap kills speed; speed kills the trap."
+                "sayThisLine": "The trap took away all their speed."
               }
             }
           },
@@ -706,9 +705,9 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Right. Carry-ins are aggressive and create better offensive chances. Dump-ins are conservative but safer.",
-                "incorrect": "Zone entry is about puck control. Carrying it in is better for offense; dumping is safer but gives up possession.",
-                "sayThisLine": "Carry-in = control, better chances. Dump-in = safe, risky to recover."
+                "correct": "Right. A carry-in keeps control of the puck and usually creates better chances, but a turnover at the line is costly. A dump-in is safer but gives up possession.",
+                "incorrect": "It's about puck control at the blue line. Carrying the puck in keeps possession; dumping it in sends it deep and makes you win it back.",
+                "sayThisLine": "They carried it in with control."
               }
             }
           },
@@ -720,31 +719,31 @@
               "neutral-zone-trap"
             ],
             "payload": {
-              "prompt": "What is the best way to break through a neutral-zone trap?",
+              "prompt": "Which is a common answer to a neutral-zone trap?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Skate fast and try to break through the middle.",
-                  "explanation": "That is what the trap is designed to stop. Speed in the trap usually fails."
+                  "text": "Skate the puck straight into the packed middle.",
+                  "explanation": "That's exactly where the trap is waiting, so it usually ends in a turnover."
                 },
                 {
                   "id": "b",
-                  "text": "Dump the puck deep and chase it, then cycle or regroup.",
-                  "explanation": "Correct. Dump-and-chase avoids the trap and gives you possession in their zone."
+                  "text": "Chip the puck in behind them and chase it.",
+                  "explanation": "Correct. Getting the puck deep avoids the packed middle and lets you win it back in their end."
                 },
                 {
                   "id": "c",
-                  "text": "Pass the puck back and wait for the trap to relax.",
-                  "explanation": "The trap will stay until you commit. Better to use dump-and-chase."
+                  "text": "Stand still at your own blue line until they leave.",
+                  "explanation": "The trap is happy to wait, so standing still gets you nowhere."
                 }
               ],
               "correctOptionIds": [
                 "b"
               ],
               "explanation": {
-                "correct": "Right. Dump-and-chase bypasses the trap's strength and lets you control the puck deep in their zone.",
-                "incorrect": "The trap kills speed. Dump-and-chase is the classic counter because it takes possession into the zone safely.",
-                "sayThisLine": "Against the trap: dump and chase, never try to skate through it."
+                "correct": "Right. A dump-in or chip avoids the packed middle. Teams also use quick passes to the wings or a stretch pass, but the point is to avoid forcing it into traffic.",
+                "incorrect": "The trap wants you to carry the puck into the clogged middle. Chipping it past them, or using quick passes wide, takes that away.",
+                "sayThisLine": "Against the trap, chip it in and chase instead of forcing the middle."
               }
             }
           },
@@ -756,42 +755,36 @@
             ],
             "payload": {
               "prompt": "Complete the description of a neutral-zone trap.",
-              "template": "The trap {{description}} by {{method}} and {{result}}.",
+              "template": "The trap {{effect}} the game by {{method}}, which {{result}}.",
               "gaps": [
                 {
-                  "id": "description",
+                  "id": "effect",
                   "options": [
-                    "speeds up the game",
-                    "slows down the game",
-                    "creates more scoring",
-                    "none of these"
+                    "slows down",
+                    "speeds up"
                   ],
-                  "correct": "slows down the game"
+                  "correct": "slows down"
                 },
                 {
                   "id": "method",
                   "options": [
-                    "packing the neutral zone with players",
-                    "spreading out",
-                    "pushing up ice",
-                    "staying back"
+                    "packing the neutral zone",
+                    "spreading out wide"
                   ],
-                  "correct": "packing the neutral zone with players"
+                  "correct": "packing the neutral zone"
                 },
                 {
                   "id": "result",
                   "options": [
-                    "forcing turnovers",
-                    "creating space",
-                    "helping the offense",
-                    "scoring goals"
+                    "forces turnovers",
+                    "opens up ice"
                   ],
-                  "correct": "forcing turnovers"
+                  "correct": "forces turnovers"
                 }
               ],
               "explanation": {
-                "correct": "Exactly. The trap is a defensive strategy that reduces pace and forces bad plays.",
-                "incorrect": "Trap strategy: fill the middle, stop the rush, force turnovers in the neutral zone."
+                "correct": "Exactly. The trap packs the neutral zone, slows the pace and forces turnovers, which is also why some fans find it dull.",
+                "incorrect": "The trap packs the neutral zone. That slows the game and forces turnovers instead of opening up ice."
               }
             }
           }
@@ -820,22 +813,22 @@
                 {
                   "id": "cycle",
                   "term": "Cycle",
-                  "definition": "Pass the puck around the boards in the offensive zone to tire the defense and set up a scoring chance."
+                  "definition": "Attackers rotate the puck along the boards in the offensive zone to pull the defense out of position."
                 },
                 {
                   "id": "dump",
                   "term": "Dump-and-chase",
-                  "definition": "Shoot the puck into the opponent's zone and chase it for possession, then regroup."
+                  "definition": "Shoot or chip the puck deep into the other team's zone and race to win it back."
                 },
                 {
                   "id": "carry",
                   "term": "Carry-in",
-                  "definition": "Skate the puck over the blue line into the opponent's zone with possession, looking for an immediate scoring chance."
+                  "definition": "Skate the puck over the blue line into the other team's zone with control, looking for a chance right away."
                 }
               ],
               "explanation": {
-                "summary": "Each entry strategy has a purpose. Cycles tire the defense. Dump-and-chase is safe. Carry-ins are aggressive.",
-                "sayThisLine": "Cycle for chances, dump for possession, carry for speed."
+                "summary": "A cycle keeps the puck low in the zone, a dump-and-chase gets it there safely, and a carry-in brings it over with control. Each has a purpose.",
+                "sayThisLine": "They kept cycling until the defense broke down."
               }
             }
           },
@@ -846,7 +839,7 @@
               "cycle"
             ],
             "payload": {
-              "prompt": "A cycle can last for a full minute or more without a shot. True or false?",
+              "prompt": "A cycle keeps the puck low along the boards in the offensive zone. True or false?",
               "scene": {
                 "kind": "none",
                 "alt": "Three forwards passing along the boards in the offensive zone, wearing down the defense."
@@ -863,9 +856,9 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. A cycle is a patient, physical game that tires defenders and waits for a breakdown.",
-                "incorrect": "Long cycles are common; teams use them to control play and wait for an opening.",
-                "sayThisLine": "Cycle = possession, patience, and wearing down the defense."
+                "correct": "True. In a cycle, forwards pass and rotate along the boards and in the corners, keeping possession and waiting for the defense to lose its shape.",
+                "incorrect": "That is what a cycle is: keeping the puck low along the boards and in the corners, rotating positions until the defense breaks down.",
+                "sayThisLine": "Their cycle has been relentless all shift."
               }
             }
           },
@@ -881,7 +874,7 @@
                 {
                   "id": "a",
                   "text": "The defending team gets to the puck first and starts a breakout.",
-                  "explanation": "Correct. If the defending team wins the race, they have an odd-man rush opportunity."
+                  "explanation": "Correct. If the defenders win the race to the puck, you've handed the puck away and they start a breakout."
                 },
                 {
                   "id": "b",
@@ -896,9 +889,9 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Right. A dump-and-chase is a numbers game. You have to win the race to get the puck back.",
-                "incorrect": "Dump-and-chase gives possession control to whoever reaches the puck first. Speed matters.",
-                "sayThisLine": "Dump-and-chase is a race: first to the puck wins."
+                "correct": "Right. A dump-and-chase gives up the puck to win it back, so the chasers have to win the race and the battle along the boards.",
+                "incorrect": "The risk is losing the race. A dump-and-chase gives up possession, and if the defenders reach the puck first they start a breakout.",
+                "sayThisLine": "They dumped it in and won the race to the puck."
               }
             }
           },
@@ -913,29 +906,29 @@
               "items": [
                 {
                   "id": "enter",
-                  "text": "The team enters the offensive zone with possession.",
-                  "why": "Cycling happens when you control the puck in the attacking zone."
+                  "text": "The team enters the offensive zone with control of the puck.",
+                  "why": "A cycle needs possession low in the zone."
                 },
                 {
                   "id": "pass",
-                  "text": "Players pass along the boards or in circles, moving the puck constantly.",
-                  "why": "Constant motion tires the defense and creates space."
+                  "text": "Forwards pass and rotate along the boards and in the corners.",
+                  "why": "Constant motion makes the defenders chase and move."
                 },
                 {
                   "id": "tire",
-                  "text": "The defense gets fatigued and loses structure.",
-                  "why": "Chasing the puck for a minute or more is exhausting."
+                  "text": "The defenders chase the puck and start to lose their shape.",
+                  "why": "Chasing pulls them out of position and tires them out."
                 },
                 {
                   "id": "score",
-                  "text": "A breakdown in defense creates a scoring chance.",
-                  "why": "Tired, disorganized defense allows a shot or pass to the slot."
+                  "text": "A gap opens and a pass finds the slot for a shot.",
+                  "why": "The breakdown creates the open lane the cycle was waiting for."
                 }
               ],
               "explanation": {
-                "correct": "Perfect. That is how cycles work: possession, motion, fatigue, breakdown, goal.",
-                "incorrect": "A cycle is patient offense that wears down defense until a chance appears.",
-                "sayThisLine": "Cycle long enough and defense gets tired."
+                "correct": "That's the flow: control, rotate, pull the defense apart, and strike when a gap opens.",
+                "incorrect": "A cycle goes: get in with control, rotate the puck, stretch the defense, then hit the slot when a lane opens.",
+                "sayThisLine": "Cycle long enough and the defense breaks down."
               }
             }
           },
@@ -947,42 +940,30 @@
             ],
             "payload": {
               "prompt": "Complete the description of dump-and-chase strategy.",
-              "template": "A dump-and-chase puts the puck {{location}} and the attacking team {{action}}, {{result}}.",
+              "template": "A dump-and-chase sends the puck {{where}}, and the attackers {{what}} to win it back.",
               "gaps": [
                 {
-                  "id": "location",
+                  "id": "where",
                   "options": [
-                    "at the goalie",
-                    "deep in the zone",
-                    "at center ice",
-                    "at the blue line"
+                    "deep into the offensive zone",
+                    "back to the goalie",
+                    "over to the bench"
                   ],
-                  "correct": "deep in the zone"
+                  "correct": "deep into the offensive zone"
                 },
                 {
-                  "id": "action",
+                  "id": "what",
                   "options": [
-                    "waits for the puck",
-                    "chases it down ice",
-                    "shoots again",
-                    "passes back"
+                    "chase it",
+                    "wait at the blue line",
+                    "change lines"
                   ],
-                  "correct": "chases it down ice"
-                },
-                {
-                  "id": "result",
-                  "options": [
-                    "fighting for possession",
-                    "scoring immediately",
-                    "nothing happens",
-                    "the goalie saves it"
-                  ],
-                  "correct": "fighting for possession"
+                  "correct": "chase it"
                 }
               ],
               "explanation": {
-                "correct": "Right. Dump-and-chase is a race for possession deep in the zone.",
-                "incorrect": "Dump-and-chase means shooting deep and chasing it quickly to create a numbers advantage if you get there first."
+                "correct": "Right. The puck goes in deep and the forwards chase it, hoping to win it along the boards before the defense does.",
+                "incorrect": "A dump-and-chase puts the puck deep in the other end and sends the forwards after it. It trades possession for position and a chance to win it back."
               }
             }
           }
@@ -1008,9 +989,9 @@
             "payload": {
               "prompt": "Tap the slot, the high-danger scoring area.",
               "diagram": {
-                "diagramId": "hockey-rink-standard",
-                "alt": "Hockey rink from above, focusing on the offensive zone with the goal area.",
-                "aspectRatio": 1.4
+                "diagramId": "hockey-rink-offensive-zone",
+                "alt": "Overhead diagram of the offensive zone with the blue line at the top, the net at the bottom and the faceoff circles on either side.",
+                "aspectRatio": 1.1
               },
               "hotspots": [
                 {
@@ -1018,10 +999,10 @@
                   "label": "The slot",
                   "shape": {
                     "kind": "rect",
-                    "x": 0.35,
-                    "y": 0.78,
-                    "w": 0.3,
-                    "h": 0.15
+                    "x": 0.32,
+                    "y": 0.62,
+                    "w": 0.36,
+                    "h": 0.18
                   }
                 },
                 {
@@ -1030,19 +1011,18 @@
                   "shape": {
                     "kind": "circle",
                     "cx": 0.5,
-                    "cy": 0.8,
-                    "r": 0.05
+                    "cy": 0.12,
+                    "r": 0.08
                   }
                 },
                 {
-                  "id": "perimeter",
-                  "label": "Perimeter",
+                  "id": "corner",
+                  "label": "Corner",
                   "shape": {
-                    "kind": "rect",
-                    "x": 0.15,
-                    "y": 0.7,
-                    "w": 0.7,
-                    "h": 0.15
+                    "kind": "circle",
+                    "cx": 0.08,
+                    "cy": 0.92,
+                    "r": 0.07
                   }
                 }
               ],
@@ -1050,9 +1030,9 @@
                 "slot"
               ],
               "explanation": {
-                "correct": "Right. The slot is where most goals come from. Goals from the slot go in far more often than from the perimeter.",
-                "incorrect": "The slot is the area between the faceoff circles in front of the net. That is the danger zone for scoring.",
-                "sayThisLine": "Slot = high-danger area. Goals come from the slot."
+                "correct": "Right. The slot is the area in front of the net between the faceoff circles. Shots from there go in far more often than shots from the point or the corners.",
+                "incorrect": "The slot is the middle area in front of the net, between the circles. It's called high-danger because shots from there are the most likely to score.",
+                "sayThisLine": "He got it to the slot, and that's a high-danger chance."
               }
             }
           },
@@ -1083,9 +1063,9 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Right. A screen is a smart offensive move that takes away the goalie's view.",
-                "incorrect": "A screen means an offensive player stands in the goalie's sight line, making saves harder.",
-                "sayThisLine": "Screen = block the goalie's view. A screen helps even weak shots go in."
+                "correct": "Right. A screen takes away the goalie's view of the puck, so even a long shot from the point becomes hard to stop.",
+                "incorrect": "A screen means an attacker stands in the goalie's line of sight (without pushing him), so the goalie can't see the shot.",
+                "sayThisLine": "He's screening the goalie on the power play."
               }
             }
           },
@@ -1113,8 +1093,8 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. A tip changes the puck's direction and speed, and the goalie cannot react fast enough.",
-                "incorrect": "A tip is a redirect; the player touches the shot to change its path. Tips create goals.",
+                "correct": "True. A tip changes the puck's direction mid-flight, which can leave the goalie no time to adjust.",
+                "incorrect": "A tip is a redirect: a player in front touches a shot to change its path, which is hard on the goalie.",
                 "sayThisLine": "Tip = touch it, redirect it, score it."
               }
             }
@@ -1135,7 +1115,7 @@
                 },
                 {
                   "id": "b",
-                  "text": "A shot that only counts once per game."
+                  "text": "A shot that a goalie can only save once."
                 },
                 {
                   "id": "c",
@@ -1146,9 +1126,9 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Right. One-timers are quick; the goalie sees the pass and the shot arrives before they can set.",
-                "incorrect": "A one-timer is a direct shot from a pass. It is a power-play weapon.",
-                "sayThisLine": "One-timer = fast release. Goalie has no time."
+                "correct": "Right. A one-timer is shot straight off a pass. The goalie has to shift across while the shot is already coming, so they are hard to stop.",
+                "incorrect": "A one-timer is a shot taken directly off a pass, without first stopping the puck. It's a favorite power-play weapon.",
+                "sayThisLine": "He hammered that one-timer from the circle."
               }
             }
           },
@@ -1161,42 +1141,39 @@
             ],
             "payload": {
               "prompt": "Complete the description of a high-danger scoring play.",
-              "template": "A goal is most likely when a shot comes from the {{area}}, helped by {{tactic}}, and {{result}}.",
+              "template": "Shots from the {{area}}, helped by {{tactic}}, are the ones most likely to {{result}}.",
               "gaps": [
                 {
                   "id": "area",
                   "options": [
-                    "the point",
-                    "the perimeter",
-                    "the slot",
-                    "behind the goal"
+                    "point",
+                    "slot",
+                    "corner"
                   ],
-                  "correct": "the slot"
+                  "correct": "slot"
                 },
                 {
                   "id": "tactic",
                   "options": [
-                    "a speed skate",
                     "a screen or a tip",
-                    "fighting",
-                    "passing back"
+                    "a line change",
+                    "an icing call"
                   ],
                   "correct": "a screen or a tip"
                 },
                 {
                   "id": "result",
                   "options": [
-                    "the goalie stops it",
-                    "the puck goes in",
-                    "the puck is deflected",
-                    "nothing happens"
+                    "go in",
+                    "hit the glass",
+                    "be offside"
                   ],
-                  "correct": "the puck goes in"
+                  "correct": "go in"
                 }
               ],
               "explanation": {
-                "correct": "Exactly. Slot shots with help (screens or tips) are the highest-percentage goals.",
-                "incorrect": "Scoring comes from the slot. Help from screens and tips increases the chance even more."
+                "correct": "Exactly. Shots from the slot with a screen or a tip are among the highest-percentage chances in hockey.",
+                "incorrect": "The most dangerous shots come from the slot, and a screen or a tip makes them harder still for the goalie."
               }
             }
           }
@@ -1222,7 +1199,7 @@
               "prompt": "Which formation is this power play using?",
               "image": {
                 "asset": "hockey/pp-formation-131.svg",
-                "alt": "Five forwards arranged: one at the point (top), three across the middle (umbrella shape), one at the net (low slot).",
+                "alt": "Five attackers: one at the point (top), three across the middle (a player on each flank and one in the slot), and one at the net front.",
                 "license": "original-swoond"
               },
               "options": [
@@ -1233,25 +1210,25 @@
                 },
                 {
                   "id": "umbrella",
-                  "text": "Umbrella (three across the top)",
-                  "explanation": "The umbrella has three players at the top; this has one at the point and three in the middle."
+                  "text": "Umbrella (three up top, two low)",
+                  "explanation": "The umbrella has three players up top and two low; this has just one at the point and three in the middle."
                 },
                 {
                   "id": "overload",
                   "text": "Overload (numbers on one side)",
-                  "explanation": "An overload puts more players on one side of the ice. This formation is balanced."
+                  "explanation": "An overload puts more players on one side of the ice. This formation is balanced across the ice."
                 }
               ],
               "correctOptionId": "131",
               "explanation": {
-                "correct": "Right. The 1-3-1 puts a defenseman at the point and spreads the forwards to create shooting lanes.",
-                "incorrect": "The 1-3-1 has one at the top, three in the middle, and one low. It opens up the middle for one-timers.",
-                "sayThisLine": "1-3-1 opens lanes. Umbrella spreads the top. Overload stacks one side."
+                "correct": "Right. The 1-3-1 is one at the point, three across the middle and one at the net front. The flank players and the middle player give the passer plenty of options.",
+                "incorrect": "Count the levels: one high, three across the middle, one low. That's a 1-3-1.",
+                "sayThisLine": "They're running a 1-3-1 with the bumper in the slot."
               },
               "cues": [
                 "Count the players at each level",
-                "1-3-1 has one high, three middle, one low",
-                "Umbrella has three across the top"
+                "1-3-1 has one high, three in the middle, one low",
+                "Umbrella has three up top and two low"
               ]
             }
           },
@@ -1267,12 +1244,12 @@
                 {
                   "id": "131",
                   "term": "1-3-1",
-                  "definition": "One defenseman at the point, three forwards across the middle, one at the net. Creates one-timer opportunities."
+                  "definition": "One player at the point, three across the middle, one at the net front. Creates one-timer chances."
                 },
                 {
                   "id": "umbrella",
                   "term": "Umbrella",
-                  "definition": "Three forwards across the top of the zone, one at the net, one defenseman. Spreads the penalty kill."
+                  "definition": "Three players up top, two low near the net. Stretches the penalty kill with point shots and movement."
                 },
                 {
                   "id": "overload",
@@ -1281,8 +1258,8 @@
                 }
               ],
               "explanation": {
-                "summary": "Each formation has a different strength. Teams switch to find what works against a defense.",
-                "sayThisLine": "1-3-1 for tips, umbrella for space, overload for a weak side."
+                "summary": "Each formation has a different strength, and teams switch to find what works against a particular kill. Names can vary a little by coach.",
+                "sayThisLine": "They like the 1-3-1 on the power play."
               }
             }
           },
@@ -1298,25 +1275,25 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "The three forwards in the middle create passing lanes where one can shoot without stopping the puck.",
-                  "explanation": "Correct. The 1-3-1 is built around one-timer chances from the middle."
+                  "text": "The passes across the middle let a shooter on the flank shoot without stopping the puck.",
+                  "explanation": "Correct. Quick cross-ice passes to the flank shooters set up one-timers."
                 },
                 {
                   "id": "b",
-                  "text": "The defenseman at the point always scores."
+                  "text": "The player at the point always scores."
                 },
                 {
                   "id": "c",
-                  "text": "It takes more time than other formations."
+                  "text": "It needs fewer players than other formations."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. The 1-3-1 creates the most one-timer opportunities because of the middle spacing.",
-                "incorrect": "The 1-3-1 is a one-timer machine. The three-forward middle enables quick, hard shots.",
-                "sayThisLine": "The 1-3-1 formation creates one-timer chances."
+                "correct": "Right. The 1-3-1 gets the puck moving side to side through a player in the middle, so the flank shooter can fire before the goalie sets.",
+                "incorrect": "The 1-3-1 spreads the penalty kill and moves the puck side to side, which opens a one-timer for a flank shooter. It uses the same five attackers as any other formation.",
+                "sayThisLine": "The 1-3-1 is all about getting the one-timer."
               }
             }
           },
@@ -1327,10 +1304,10 @@
               "pp-formations"
             ],
             "payload": {
-              "prompt": "The umbrella formation is more aggressive than the 1-3-1. True or false?",
+              "prompt": "In a 1-3-1, one player stands at the point and one at the net front. True or false?",
               "scene": {
                 "kind": "none",
-                "alt": "Five players spread across the offensive zone in an umbrella shape."
+                "alt": "Five attackers set up with one at the top, three across the middle and one at the net."
               },
               "choices": [
                 {
@@ -1342,11 +1319,11 @@
                   "label": "False"
                 }
               ],
-              "correctChoiceId": "false",
+              "correctChoiceId": "true",
               "explanation": {
-                "correct": "False. The umbrella is more about spreading the defense and creating space. The 1-3-1 is more aggressive for tips and one-timers.",
-                "incorrect": "The 1-3-1 is the more aggressive, scoring-focused formation. Umbrella is more spread-out.",
-                "sayThisLine": "1-3-1 = aggressive tips. Umbrella = space and cycling."
+                "correct": "True. The numbers in the name, 1-3-1, count the players by level: one at the point, three across the middle and one at the net front.",
+                "incorrect": "That's what the name means. A 1-3-1 is one at the point, three across the middle and one at the net front.",
+                "sayThisLine": "It's a 1-3-1, so one is screening the goalie."
               }
             }
           },
@@ -1358,42 +1335,30 @@
             ],
             "payload": {
               "prompt": "Complete the description of power play formations.",
-              "template": "A power play formation {{goal}} by {{method}} and creates {{result}}.",
+              "template": "A power play uses the {{name}}, with one player at the point and one at the net front, to {{goal}} the penalty kill.",
               "gaps": [
+                {
+                  "id": "name",
+                  "options": [
+                    "1-3-1",
+                    "box",
+                    "diamond"
+                  ],
+                  "correct": "1-3-1"
+                },
                 {
                   "id": "goal",
                   "options": [
-                    "confuses the offense",
-                    "spreads the penalty kill",
-                    "makes them worse",
-                    "wastes time"
+                    "stretch",
+                    "follow",
+                    "replace"
                   ],
-                  "correct": "spreads the penalty kill"
-                },
-                {
-                  "id": "method",
-                  "options": [
-                    "moving slowly",
-                    "placing players strategically",
-                    "shooting randomly",
-                    "passing back"
-                  ],
-                  "correct": "placing players strategically"
-                },
-                {
-                  "id": "result",
-                  "options": [
-                    "turnovers",
-                    "scoring chances",
-                    "delays",
-                    "penalties"
-                  ],
-                  "correct": "scoring chances"
+                  "correct": "stretch"
                 }
               ],
               "explanation": {
-                "correct": "Exactly. Power play formations overload or stretch the defense to create scoring opportunities.",
-                "incorrect": "Formations spread the kill and create space or shot lanes. Each formation targets different weaknesses."
+                "correct": "Exactly. The 1-3-1 is a power-play setup that stretches the kill. The box and diamond are what penalty killers use.",
+                "incorrect": "That shape is the 1-3-1, a power-play formation that stretches the defense. The box and the diamond are penalty-kill formations."
               }
             }
           }
@@ -1420,7 +1385,14 @@
               "simulationId": "hockey.special-teams.power-play-spacing.v1",
               "simulationVersion": "1.0.0",
               "difficulty": 2,
-              "configuration": {}
+              "configuration": {
+                "scenarioSetId": "pp-starter",
+                "rounds": 3,
+                "ppFormation": "1-3-1",
+                "pkFormation": "box",
+                "manpower": "5v4",
+                "showLanes": true
+              }
             }
           },
           {

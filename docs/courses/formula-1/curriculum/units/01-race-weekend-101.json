@@ -22,7 +22,7 @@
         "activities": [
           {
             "id": "rw-01-what-is-f1-mul-01",
-            "type": "multiple-choice",
+            "type": "estimate-slider",
             "conceptIds": [
               "grand-prix",
               "constructor",
@@ -30,36 +30,20 @@
               "constructors-championship"
             ],
             "payload": {
-              "prompt": "How many races are in a typical F1 season?",
-              "options": [
-                {
-                  "id": "a",
-                  "text": "Around 23",
-                  "explanation": "The calendar varies, but typically runs March to December with about 23 Grands Prix."
-                },
-                {
-                  "id": "b",
-                  "text": "Always 16",
-                  "explanation": "The season length has varied over time; it was 16 in the 1990s but is now typically 23 or more."
-                },
-                {
-                  "id": "c",
-                  "text": "12 to 14",
-                  "explanation": "Too few; the modern calendar is much fuller than that."
-                },
-                {
-                  "id": "d",
-                  "text": "Over 30",
-                  "explanation": "The calendar has never gone that high; it is around 23 in recent years."
-                }
-              ],
-              "correctOptionIds": [
-                "a"
-              ],
+              "prompt": "Roughly how many races make up a modern F1 season?",
+              "unit": "races",
+              "min": 10,
+              "max": 30,
+              "step": 1,
+              "correctValue": 23,
+              "tolerance": {
+                "full": 1,
+                "partial": 3
+              },
               "explanation": {
-                "correct": "The 2026 season has 24 Grands Prix, making it a long sprint from March to December.",
-                "incorrect": "The modern F1 season runs about 23 to 24 races. Each is called a Grand Prix.",
-                "sayThisLine": "The season is a long grind, race every weekend for months."
+                "correct": "About 23 Grands Prix, spread from March to December. The exact calendar shifts from year to year, so think 'a couple of dozen'.",
+                "incorrect": "A modern season has about 23 Grands Prix, one at each venue from March to December. It was 16 to 17 in the 1990s, so the sport has grown a lot.",
+                "sayThisLine": "It is a long season, about twenty-three races."
               }
             }
           },
@@ -83,7 +67,7 @@
                 {
                   "id": "b",
                   "text": "Only the engine supplier",
-                  "explanation": "The engine supplier is part of the team, but the constructor is the whole team."
+                  "explanation": "An engine supplier builds power units, often for other teams. A constructor is the team that builds the car and scores constructors' points."
                 },
                 {
                   "id": "c",
@@ -92,8 +76,8 @@
                 },
                 {
                   "id": "d",
-                  "text": "Any team that enters the sport",
-                  "explanation": "Not all teams are constructors; some buy chassis from others."
+                  "text": "The company that supplies the tyres",
+                  "explanation": "Tyres come from one official supplier, Pirelli. That is a different job from building the car."
                 }
               ],
               "correctOptionIds": [
@@ -108,7 +92,7 @@
           },
           {
             "id": "rw-01-what-is-f1-mul-03",
-            "type": "multiple-choice",
+            "type": "binary-call",
             "conceptIds": [
               "grand-prix",
               "constructor",
@@ -116,37 +100,28 @@
               "constructors-championship"
             ],
             "payload": {
-              "prompt": "What is the main difference between the drivers' and constructors' championships?",
-              "options": [
+              "prompt": "Can the drivers' champion drive for a team that misses the constructors' title?",
+              "scene": {
+                "kind": "none",
+                "alt": "Text only: one driver wins the individual title while his team finishes behind a rival in the team standings."
+              },
+              "choices": [
                 {
-                  "id": "a",
-                  "text": "Drivers' is individual; constructors' is both team drivers' points combined",
-                  "explanation": "The drivers' title goes to the top driver; the constructors' title is the sum of both drivers' points for a team."
+                  "id": "yes",
+                  "label": "Yes, they are separate titles"
                 },
                 {
-                  "id": "b",
-                  "text": "Drivers' is more important",
-                  "explanation": "Both are prestigious and worth big prize money, but they are separate."
-                },
-                {
-                  "id": "c",
-                  "text": "Only one team can win the drivers' championship",
-                  "explanation": "That is true for both titles; only the top driver and top team win each one."
-                },
-                {
-                  "id": "d",
-                  "text": "The constructors' championship has fewer races",
-                  "explanation": "Both championships are decided over the same 24 races; the scoring is just added differently."
+                  "id": "no",
+                  "label": "No, the same team wins both"
                 }
               ],
-              "correctOptionIds": [
-                "a"
-              ],
+              "correctChoiceId": "yes",
               "explanation": {
-                "correct": "The drivers' championship crowns the top individual driver; the constructors' title combines both drivers' points for the team total.",
-                "incorrect": "Two titles: drivers' (individual) and constructors' (team total of both drivers' points).",
-                "sayThisLine": "The team is pushing hard for the constructors' championship."
-              }
+                "correct": "The two titles are counted separately. The drivers' title is one person's points; the constructors' title adds both of a team's drivers, so a star with a weaker teammate can win one and not the other.",
+                "incorrect": "They are two separate tables. One driver's total decides the drivers' title; both drivers' points added together decide the constructors' title, so different winners are possible.",
+                "sayThisLine": "He won the drivers' title, but the team lost the constructors' fight."
+              },
+              "ruleTag": "Two championships"
             }
           },
           {
@@ -213,13 +188,13 @@
                   "id": "b",
                   "text": "The driver does not matter",
                   "isCorrect": false,
-                  "explanation": "The driver matters a lot; it is both the car and the driver."
+                  "explanation": "She is not dismissing drivers. Her point is that the car is a big part of the result; the driver still matters."
                 },
                 {
                   "id": "c",
-                  "text": "Constructors are more important than drivers",
-                  "isCorrect": true,
-                  "explanation": "She is arguing the car counts for a lot in championship success."
+                  "text": "The constructors' title is worth more than the drivers' one",
+                  "isCorrect": false,
+                  "explanation": "She is talking about how much the car matters to results, not about which trophy is bigger."
                 }
               ],
               "translation": "She thinks the quality of the car is the main variable in the championship fight.",
@@ -283,7 +258,7 @@
                 "Uses Audi power units"
               ],
               "explanation": {
-                "summary": "Ferrari, Mercedes and Red Bull have works engines. Audi and Honda are new power units in 2026.",
+                "summary": "Ferrari, Mercedes and Red Bull (with Ford) all build their own power units. Audi is brand new to the grid as an engine maker, and Honda is back, partnered with Aston Martin.",
                 "sayThisLine": "Mercedes supplies engines to three teams."
               }
             }
@@ -363,8 +338,8 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Ferrari is a works team. Mercedes, Audi, Red Bull-Ford and Honda are the works power units in 2026.",
-                "incorrect": "In 2026 the works teams are Ferrari, Mercedes, Audi, Red Bull and Honda (with Aston Martin as a partner). Everyone else buys engines.",
+                "correct": "Ferrari is a works team: it builds its own power unit and its own car. Mercedes, Audi, Red Bull-Ford and Honda (with Aston Martin) are the other works power units in 2026.",
+                "incorrect": "In 2026 the works-style teams are Ferrari, Mercedes, Audi, Red Bull (with Ford) and Aston Martin (with Honda). Williams, McLaren, Alpine, Haas, Racing Bulls and Cadillac use someone else's power unit.",
                 "sayThisLine": "Ferrari is a works team with its own engines."
               }
             }
@@ -384,7 +359,7 @@
                 {
                   "id": "a",
                   "text": "10",
-                  "explanation": "There were 10 from 2015 to 2024; 2026 added Cadillac."
+                  "explanation": "That was the count for years up to 2025. Cadillac's arrival made it one more."
                 },
                 {
                   "id": "b",
@@ -394,7 +369,7 @@
                 {
                   "id": "c",
                   "text": "9",
-                  "explanation": "Too few; the grid has been expanding, not shrinking."
+                  "explanation": "Too few; the grid has just grown, not shrunk."
                 },
                 {
                   "id": "d",
@@ -713,7 +688,7 @@
         "activities": [
           {
             "id": "rw-04-qualifying-q1-q3-mul-01",
-            "type": "multiple-choice",
+            "type": "binary-call",
             "conceptIds": [
               "qualifying",
               "pole-position",
@@ -721,37 +696,28 @@
               "track-evolution"
             ],
             "payload": {
-              "prompt": "What does Q1 in qualifying determine?",
-              "options": [
+              "prompt": "He ends Q1 in 16th place. Does he go through to Q2?",
+              "scene": {
+                "kind": "none",
+                "alt": "Text only: a 20-car field, and one driver has just been bumped down to 16th on the Q1 timing screen."
+              },
+              "choices": [
                 {
-                  "id": "a",
-                  "text": "The slowest teams are eliminated; the top 15 go to Q2",
-                  "explanation": "Q1 knocks out the slowest five cars, so the top 15 advance to the next round."
+                  "id": "out",
+                  "label": "No, he is knocked out"
                 },
                 {
-                  "id": "b",
-                  "text": "It sets the grid for the race",
-                  "explanation": "Only Q3 pole position and the Q2 results shape the final grid."
-                },
-                {
-                  "id": "c",
-                  "text": "The top team gets a point",
-                  "explanation": "Qualifying does not award points; only the race does."
-                },
-                {
-                  "id": "d",
-                  "text": "Everyone runs one lap",
-                  "explanation": "Qualifying has multiple laps per session; teams try many attempts."
+                  "id": "through",
+                  "label": "Yes, he still goes through"
                 }
               ],
-              "correctOptionIds": [
-                "a"
-              ],
+              "correctChoiceId": "out",
               "explanation": {
-                "correct": "Q1 eliminates the five slowest cars. The top 15 advance to Q2.",
-                "incorrect": "Qualifying is a knockout. Q1 → top 15 advance. Q2 → top 10 advance. Q3 → top 10 race for pole.",
-                "sayThisLine": "Q1 knocked out the slowest five, so he made Q2."
-              }
+                "correct": "Q1 cuts the slowest five cars, so 16th to 20th are out and keep those grid spots. The fastest 15 go on to Q2, where five more drop out.",
+                "incorrect": "Only the fastest 15 survive Q1. Anyone from 16th down is eliminated and starts the race in that slot.",
+                "sayThisLine": "Q1 knocked out the slowest five, so he will start 16th."
+              },
+              "ruleTag": "Qualifying knockout"
             }
           },
           {
@@ -819,13 +785,13 @@
                 },
                 {
                   "id": "safe",
-                  "label": "Stay out and keep the position"
+                  "label": "Sit in the garage and hope"
                 }
               ],
               "correctChoiceId": "risk",
               "explanation": {
-                "correct": "In Q3, everyone pushes for pole. A fresh tyre set usually gives a tenth or two; the risk of a lock-up or mistake is worth it.",
-                "incorrect": "Pole is worth the risk of a second run. Tyres degrade over a lap, so fresh rubber is almost always faster.",
+                "correct": "Only a driver's best lap counts, so a second run cannot cost him the time he already has. It can only improve it, and rivals may well go quicker, so sitting still is the riskier move.",
+                "incorrect": "His first lap stays on the board even if a second run goes wrong, so running again is close to free. Waiting lets rivals with a fresh run leapfrog him.",
                 "sayThisLine": "He went out again and nailed pole."
               },
               "ruleTag": "Qualifying strategy"
@@ -841,26 +807,26 @@
               "track-evolution"
             ],
             "payload": {
-              "prompt": "It is late in Q3. Track evolution is making it faster. Should he push harder now or wait?",
+              "prompt": "As cars lay rubber, the track grows grippier. When are the fastest laps usually set?",
               "scene": {
                 "kind": "none",
-                "alt": "Text only: the track is getting faster as drivers lay rubber; he is in second but time is running out."
+                "alt": "Text only: a qualifying session in which the circuit surface is getting quicker with every lap driven on it."
               },
               "choices": [
                 {
-                  "id": "push",
-                  "label": "Push now to beat the clock"
+                  "id": "late",
+                  "label": "Late in the session"
                 },
                 {
-                  "id": "wait",
-                  "label": "Wait and push on his last lap"
+                  "id": "early",
+                  "label": "Early in the session"
                 }
               ],
-              "correctChoiceId": "push",
+              "correctChoiceId": "late",
               "explanation": {
-                "correct": "Track evolution means laps are getting faster, but his last lap might have traffic or yellow flags. Pushing now secures a better time.",
-                "incorrect": "Track evolution is happening; waiting risks running out of time or hitting traffic on the final lap.",
-                "sayThisLine": "He pushed early and that was the right call because of track evolution."
+                "correct": "Track evolution means grip builds as rubber goes down, so the last runs are usually the quickest. That is why teams save their best tyres for the end of a session.",
+                "incorrect": "The surface improves as more cars drive on it, so times tumble late in a session. Early laps are slower, which is why the final runs matter most.",
+                "sayThisLine": "The track is evolving, so everyone will go quicker at the end."
               },
               "ruleTag": "Track evolution in qualifying"
             }
@@ -989,8 +955,8 @@
               "correctValue": 305,
               "unit": "kilometres",
               "explanation": {
-                "correct": "A Grand Prix is roughly 305 km (Monaco is shorter at about 260 km). It is also capped at two hours of running time.",
-                "incorrect": "A Formula 1 race is approximately 305 km at most circuits, though Monaco and Singapore are shorter.",
+                "correct": "A Grand Prix is roughly 305 km (Monaco is shorter at about 260 km). It is also capped at two hours of racing time.",
+                "incorrect": "A Grand Prix is run over the smallest whole number of laps that adds up to more than 305 km, so most are about 305 to 310 km. Monaco is the exception at about 260 km.",
                 "sayThisLine": "The race is about 305 kilometres."
               },
               "step": 5,
@@ -1045,7 +1011,7 @@
           },
           {
             "id": "rw-05-lights-out-to-chequered-mul-04",
-            "type": "multiple-choice",
+            "type": "fill-the-gap",
             "conceptIds": [
               "formation-lap",
               "race-start",
@@ -1053,42 +1019,29 @@
               "chequered-flag"
             ],
             "payload": {
-              "prompt": "How long is a Grand Prix from start to finish?",
-              "options": [
+              "prompt": "Complete the sentence about how a race ends.",
+              "template": "The race ends after the set number of laps, or once {{limit}} of racing time have passed, whichever comes first.",
+              "gaps": [
                 {
-                  "id": "a",
-                  "text": "About two hours (capped)",
-                  "explanation": "The race is roughly 305 km, but also capped at two hours of running time."
-                },
-                {
-                  "id": "b",
-                  "text": "Exactly two hours always",
-                  "explanation": "It is capped at two hours; most are shorter depending on weather and safety cars."
-                },
-                {
-                  "id": "c",
-                  "text": "One and a half hours",
-                  "explanation": "Too short; even at high speeds, 305 km takes longer than 90 minutes."
-                },
-                {
-                  "id": "d",
-                  "text": "Three hours or more",
-                  "explanation": "It is capped at two hours, so it never goes that long."
+                  "id": "limit",
+                  "options": [
+                    "one hour",
+                    "two hours",
+                    "four hours"
+                  ],
+                  "correct": "two hours"
                 }
               ],
-              "correctOptionIds": [
-                "a"
-              ],
               "explanation": {
-                "correct": "A Grand Prix is roughly 305 km or two hours of running time, whichever comes first.",
-                "incorrect": "The race distance is approximately 305 km, and it is also capped at two hours of running time.",
-                "sayThisLine": "The race ran to the two-hour limit because of the safety car."
+                "correct": "Two hours of racing time is the cap. Most races finish their laps well inside it; slow running behind a safety car is what can push a race up against the limit.",
+                "incorrect": "The time cap is two hours. Most races finish all their laps in about an hour and a half, but safety cars eat clock without adding laps.",
+                "sayThisLine": "They ran out of time before they ran out of laps."
               }
             }
           },
           {
             "id": "rw-05-lights-out-to-chequered-mul-05",
-            "type": "multiple-choice",
+            "type": "binary-call",
             "conceptIds": [
               "formation-lap",
               "race-start",
@@ -1096,37 +1049,28 @@
               "chequered-flag"
             ],
             "payload": {
-              "prompt": "On a clean, accident-free race day, when do the most overtakes usually happen?",
-              "options": [
+              "prompt": "At lights out, 20 cars rush one corner. Is contact more likely there than mid-race?",
+              "scene": {
+                "kind": "none",
+                "alt": "Text only: a full grid accelerating side by side towards the first corner of a race."
+              },
+              "choices": [
                 {
-                  "id": "a",
-                  "text": "Turn one of lap one; it is the wildest",
-                  "explanation": "The first lap is the most chaotic with the most position changes."
+                  "id": "yes",
+                  "label": "Yes, turn one is the risky bit"
                 },
                 {
-                  "id": "b",
-                  "text": "In the pit window when cars stop for tyres",
-                  "explanation": "Pit stops can change positions, but they are strategic, not chaotic overtakes."
-                },
-                {
-                  "id": "c",
-                  "text": "At the very end when drivers are desperate",
-                  "explanation": "Late-race moves happen, but turn one is usually crazier."
-                },
-                {
-                  "id": "d",
-                  "text": "Overtakes are rare in modern F1",
-                  "explanation": "Overtaking is hard due to dirty air, but it happens, especially on lap one."
+                  "id": "no",
+                  "label": "No, it is the same all race"
                 }
               ],
-              "correctOptionIds": [
-                "a"
-              ],
+              "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Turn one on lap one is chaos; drivers jostle for position in the first few corners.",
-                "incorrect": "The first lap is the most frantic because everyone is fresh and aggressive. Most position changes happen then.",
-                "sayThisLine": "The start is always madness; he lost three places in turn one."
-              }
+                "correct": "At the start the whole field is bunched, cars are side by side, and everyone is fighting for the same piece of road. That is why first-lap incidents are common and why fans watch turn one.",
+                "incorrect": "Turn one is riskier than most of the race: the cars are packed together and tyres are still coming up to temperature. Later the field spreads out and there is more room.",
+                "sayThisLine": "Turn one is always a lottery, so I am watching that bit closely."
+              },
+              "ruleTag": "Race start"
             }
           }
         ]
@@ -1218,7 +1162,7 @@
           },
           {
             "id": "rw-06-points-and-titles-mul-03",
-            "type": "multiple-choice",
+            "type": "binary-call",
             "conceptIds": [
               "points-system",
               "podium",
@@ -1227,37 +1171,28 @@
               "fastest-lap"
             ],
             "payload": {
-              "prompt": "How are the drivers' and constructors' championships different?",
-              "options": [
+              "prompt": "One driver wins (25 points) and his teammate is tenth (1 point). What does the team score?",
+              "scene": {
+                "kind": "none",
+                "alt": "Text only: a team's two cars finish first and tenth in the same race."
+              },
+              "choices": [
                 {
-                  "id": "a",
-                  "text": "Drivers' is one person's points; constructors' adds both drivers' points",
-                  "explanation": "The drivers' title goes to the top individual; the constructors' title is the team's combined score."
+                  "id": "twenty-six",
+                  "label": "26 points for the team"
                 },
                 {
-                  "id": "b",
-                  "text": "Drivers' has more races",
-                  "explanation": "Both championships span the same 24-race season."
-                },
-                {
-                  "id": "c",
-                  "text": "Constructors' drivers are on different teams",
-                  "explanation": "No; a team's two drivers score together for the constructors' title."
-                },
-                {
-                  "id": "d",
-                  "text": "The drivers' champion always has the best car",
-                  "explanation": "Not always; a great driver in an OK car can win the drivers' title."
+                  "id": "twenty-five",
+                  "label": "25, only the best car counts"
                 }
               ],
-              "correctOptionIds": [
-                "a"
-              ],
+              "correctChoiceId": "twenty-six",
               "explanation": {
-                "correct": "Drivers' championship: the top individual driver. Constructors' championship: a team's combined points from both drivers.",
-                "incorrect": "Two championships in parallel: drivers' (individual) and constructors' (team total).",
-                "sayThisLine": "The team is pushing hard for the constructors' championship."
-              }
+                "correct": "Both cars score for the constructors' table, so 25 plus 1 makes 26. That is why a strong second driver matters so much to the team title.",
+                "incorrect": "The constructors' title adds up both drivers' points, so the tenth-place car still counts. The team scores 26, not just the winner's 25.",
+                "sayThisLine": "Both cars score for the team, so the second driver matters too."
+              },
+              "ruleTag": "Constructors' points"
             }
           },
           {
@@ -1271,7 +1206,7 @@
               "fastest-lap"
             ],
             "payload": {
-              "prompt": "What changed with the fastest-lap point after 2025?",
+              "prompt": "What happened to the fastest-lap bonus point from 2025?",
               "options": [
                 {
                   "id": "a",
@@ -1347,7 +1282,7 @@
                 }
               ],
               "explanation": {
-                "correct": "Win: 25. Second: 18. Third: 15. 2nd through 10th: 12, 10, 8, 6, 4, 2, 1. Fastest lap is bragging rights.",
+                "correct": "Win: 25. Second: 18. Third: 15. Fourth to tenth: 12, 10, 8, 6, 4, 2, 1. Fastest lap is bragging rights only.",
                 "incorrect": "The points scale is 25-18-15-12-10-8-6-4-2-1 for positions 1-10. Fastest lap scores zero points since 2025.",
                 "sayThisLine": "A win is 25 points, so a DNF really hurts."
               }
@@ -1475,7 +1410,7 @@
               ],
               "correctChoiceId": "eight",
               "explanation": {
-                "correct": "The sprint awards 8-3-2-1 to the top four finishers (or 8-7-6-5-4-3-2-1 to the top eight depending on format). A win is 8, not 25 like the Grand Prix.",
+                "correct": "A sprint awards 8-7-6-5-4-3-2-1 to the top eight finishers. A win is worth 8, not the 25 of a Grand Prix.",
                 "incorrect": "The sprint is worth less than a Grand Prix. Winning scores 8 points, not the full 25.",
                 "sayThisLine": "The sprint is worth eight to the winner."
               },
@@ -1517,43 +1452,27 @@
           },
           {
             "id": "rw-07-sprint-weekends-mul-04",
-            "type": "multiple-choice",
+            "type": "estimate-slider",
             "conceptIds": [
               "sprint",
               "points-system",
               "qualifying"
             ],
             "payload": {
-              "prompt": "How long is a sprint race compared to a Grand Prix?",
-              "options": [
-                {
-                  "id": "a",
-                  "text": "About one-third the distance (roughly 100 km)",
-                  "explanation": "A sprint is a short race of about 100 km; a GP is about 305 km."
-                },
-                {
-                  "id": "b",
-                  "text": "Same distance as the Grand Prix",
-                  "explanation": "The sprint is much shorter to fit into a busy Saturday."
-                },
-                {
-                  "id": "c",
-                  "text": "About half the distance",
-                  "explanation": "The sprint is shorter than half; it is roughly one-third."
-                },
-                {
-                  "id": "d",
-                  "text": "No laps; it is based on time only",
-                  "explanation": "The sprint is a race with a set distance, not a time trial."
-                }
-              ],
-              "correctOptionIds": [
-                "a"
-              ],
+              "prompt": "About how long is a sprint race?",
+              "unit": "kilometres",
+              "min": 50,
+              "max": 310,
+              "step": 10,
+              "correctValue": 100,
+              "tolerance": {
+                "full": 10,
+                "partial": 40
+              },
               "explanation": {
-                "correct": "A sprint is about 100 km on a Saturday; a Grand Prix is about 305 km on Sunday.",
-                "incorrect": "Sprint races are short, roughly one-third the distance of a Grand Prix.",
-                "sayThisLine": "The sprint is on Saturday, about a hundred kilometres."
+                "correct": "A sprint is about 100 km, roughly a third of a Grand Prix's 305 km. It is short enough to fit on a Saturday and is flat out from the start.",
+                "incorrect": "A sprint is only about 100 km, roughly a third of the Sunday race. There is no mandatory pit stop, so it is a short, sharp dash.",
+                "sayThisLine": "The sprint is about a hundred kilometres, a third of the Sunday race."
               }
             }
           },
@@ -1566,36 +1485,36 @@
               "qualifying"
             ],
             "payload": {
-              "prompt": "What is the benefit of a sprint weekend for a team?",
+              "prompt": "What gets squeezed for teams on a sprint weekend?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Extra running and data before Sunday's race",
-                  "explanation": "The sprint gives teams Saturday race conditions to learn set-up and tyre behaviour."
+                  "text": "Practice: only one session before the serious running starts",
+                  "explanation": "Sprint weekends have a single practice session, so teams must find a good set-up quickly."
                 },
                 {
                   "id": "b",
-                  "text": "A guaranteed point for finishing",
-                  "explanation": "Not all finishers score; only the top finishers get points."
+                  "text": "Qualifying: there is none on a sprint weekend",
+                  "explanation": "There is still qualifying for the Grand Prix, plus a separate sprint qualifying session."
                 },
                 {
                   "id": "c",
-                  "text": "The chance to skip the main Grand Prix",
-                  "explanation": "The sprint is extra; Sunday's race always happens."
+                  "text": "The Grand Prix itself: it is cut to 100 km",
+                  "explanation": "The Sunday Grand Prix keeps its full distance of about 305 km. The sprint is the extra short race."
                 },
                 {
                   "id": "d",
-                  "text": "No benefit; it is just added work",
-                  "explanation": "The sprint provides valuable data and a chance to score extra points."
+                  "text": "Championship points: none are given for the sprint",
+                  "explanation": "The sprint does score points, 8 down to 1 for the top eight."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "The sprint gives teams a race on Saturday to test set-ups and tyres before Sunday, plus a chance to score points.",
-                "incorrect": "Sprint weekends let teams learn on a real race; it is not just busywork.",
-                "sayThisLine": "The sprint lets them test the car in race conditions."
+                "correct": "With one practice session before sprint qualifying begins, teams have much less time to learn the car and the tyres. It rewards teams that get the set-up right early.",
+                "incorrect": "The squeeze is on practice: a sprint weekend has just one session. Qualifying, the sprint points and the full Sunday Grand Prix are all still there.",
+                "sayThisLine": "It is a sprint weekend, so they only get one practice session."
               }
             }
           }
@@ -1639,19 +1558,19 @@
                   "id": "b",
                   "text": "He took a new engine part, so the stewards dropped him three spots",
                   "isCorrect": true,
-                  "explanation": "Grid penalties for technical reasons are common; a new part means grid places lost."
+                  "explanation": "Grid penalties for using more power unit parts than the season allows are common, and they cost places on the grid. The team chose the swap, so a fan can say it is 'not his fault'."
                 },
                 {
                   "id": "c",
                   "text": "He crashed in qualifying and lost pole",
-                  "isCorrect": true,
-                  "explanation": "Penalties can be for qualifying infractions too."
+                  "isCorrect": false,
+                  "explanation": "A crash does not cost grid places by itself. Losing places on the grid is a penalty, handed out before the race."
                 },
                 {
                   "id": "d",
-                  "text": "He is complaining about unfair treatment",
-                  "isCorrect": true,
-                  "explanation": "She said 'not even his fault', which implies she thinks it is unjust."
+                  "text": "He was disqualified from qualifying",
+                  "isCorrect": false,
+                  "explanation": "Losing three places is a grid penalty, not a disqualification. He still races, from further back."
                 }
               ],
               "translation": "He got a grid penalty that dropped him places on the starting order, and she thinks he did not deserve it.",
@@ -1704,20 +1623,20 @@
                 },
                 {
                   "id": "d",
-                  "text": "He's not allowed to start the race if he doesn't qualify",
-                  "isCorrect": true,
-                  "explanation": "Drivers who don't post a time in qualifying are usually not allowed to start the race."
+                  "text": "He was told he is banned from the next race",
+                  "isCorrect": false,
+                  "explanation": "Nothing here suggests a ban. She means his qualifying went wrong, and it puts his Sunday start in doubt."
                 }
               ],
-              "translation": "He crashed or had a mechanical failure during qualifying and never posted a time, so he was not permitted to start Sunday's race.",
+              "translation": "He crashed or had a mechanical failure during qualifying and never set a lap time, so his place on Sunday's grid is in doubt. Strictly, 'DNF' is a race word, so fans are being casual.",
               "followUps": [
                 {
                   "line": "Is it a crash, or did the car break?",
                   "why": "Shows you are curious about the reason."
                 },
                 {
-                  "line": "Can he start the race anyway with a penalty, or is he out?",
-                  "why": "Tests if you know the rules about no-qualifying drivers."
+                  "line": "Will the stewards let him start from the back anyway?",
+                  "why": "Shows you know a missed time is not always the end of the weekend."
                 }
               ],
               "noFakeExpertNote": "A DNF in qualifying is rare and harsh. Ask what went wrong rather than guessing."

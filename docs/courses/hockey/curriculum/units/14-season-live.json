@@ -20,23 +20,23 @@
         "objective": "Explain what is being discussed in hockey right now.",
         "estimatedMinutes": 9,
         "conceptIds": ["this-week"],
+        "live": {"dataKind": "news", "adapterKey": "hockey.live.headlines", "refreshHint": "hourly"},
         "activities": [
           {
             "id": "live-this-week-01-mc-stories",
-            "type": "multiple-choice",
+            "type": "term-match",
             "conceptIds": ["this-week"],
             "payload": {
-              "prompt": "When fans talk about hockey 'this week', what are they most likely discussing?",
-              "options": [
-                {"id": "a", "text": "Streaks, injuries to key players, trades or big trades rumors."},
-                {"id": "b", "text": "The history of the sport and past championships."},
-                {"id": "c", "text": "How to improve your skating technique."}
+              "prompt": "Match each weekly-storyline term to its meaning.",
+              "pairs": [
+                {"id": "hot-streak", "term": "Hot streak", "definition": "A player or team winning or scoring far above normal for a stretch."},
+                {"id": "slump", "term": "Slump", "definition": "A stretch where a good player or team stops scoring or winning."},
+                {"id": "day-to-day", "term": "Day-to-day", "definition": "An injury expected to keep a player out only briefly."},
+                {"id": "game-in-hand", "term": "Game in hand", "definition": "Having played one fewer game than a rival in the standings."}
               ],
-              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. Current events like streaks, injuries, trades and controversies are what fans talk about this week.",
-                "incorrect": "This week is always about what is happening right now: who is hot, who is hurt, what deal just went down.",
-                "sayThisLine": "So what is the big story in hockey this week?"
+                "summary": "These four phrases turn up in almost every weekly hockey chat. Hot and cold streaks, injuries and games in hand are the storylines behind most of the headlines.",
+                "sayThisLine": "So what's the big story in hockey this week?"
               }
             }
           },
@@ -47,14 +47,11 @@
             "payload": {
               "prompt": "A player with 6 goals in the last five games is in a slump.",
               "scene": {"kind": "none", "alt": "A player has scored 6 goals recently."},
-              "choices": [
-                {"id": "true", "label": "True"},
-                {"id": "false", "label": "False"}
-              ],
+              "choices": [{"id": "true", "label": "True"}, {"id": "false", "label": "False"}],
               "correctChoiceId": "false",
               "explanation": {
-                "correct": "False. Six goals in five games is a hot streak, not a slump. That is exciting news and a story for the week.",
-                "incorrect": "That pace is a hot streak. A slump is when a scorer goes cold."
+                "correct": "False. Six goals in five games is a hot streak. A slump is when a scorer goes cold, and fans notice both.",
+                "incorrect": "That pace is a hot streak, which is a storyline of its own. A slump is the opposite: a scorer who has gone quiet."
               }
             }
           },
@@ -63,22 +60,19 @@
             "type": "say-this",
             "conceptIds": ["this-week"],
             "payload": {
-              "statement": {
-                "speaker": "Riley",
-                "text": "Our top line is on fire right now. Three games, 12 points between them."
-              },
+              "statement": {"speaker": "Riley", "text": "Our top line is on fire right now. Twelve points between them in three games."},
               "question": "What is she telling you?",
               "options": [
-                {"id": "a", "text": "Her team's best players have been scoring a lot recently.", "isCorrect": true, "explanation": "Correct. 'On fire' means playing great, and 12 points in three games is hot scoring."},
-                {"id": "b", "text": "The team is literally in danger.", "isCorrect": false, "explanation": "This is hockey talk, not a literal fire. She means the players are scoring well."},
-                {"id": "c", "text": "The top line usually scores this much.", "isCorrect": false, "explanation": "'On fire' means playing exceptionally well, better than usual."}
+                {"id": "a", "text": "Her team's best players have been scoring a lot lately.", "isCorrect": true, "explanation": "Right. 'On fire' means playing great, and that many points in three games is a hot stretch."},
+                {"id": "b", "text": "The arena is literally on fire.", "isCorrect": false, "explanation": "It is hockey talk, not an emergency. She means the players are scoring."},
+                {"id": "c", "text": "The top line always scores this much.", "isCorrect": false, "explanation": "'On fire' means better than usual. That is exactly why she mentioned it."}
               ],
               "translation": "Her team's best line has been scoring at a great pace this week.",
               "followUps": [
-                {"line": "Are they ahead in the playoff race?", "why": "Connects hot play to what it means for the season."},
-                {"line": "Who is leading the team in scoring?", "why": "Asks her to name the player, showing you are following the storylines."}
+                {"line": "Is it helping them in the playoff race?", "why": "Connects a hot stretch to what it means for the season."},
+                {"line": "Who has been the best of the three?", "why": "Invites her to name names, which is what fans love to do."}
               ],
-              "noFakeExpertNote": "Streaks, hot scoring and slumps are the weekly topics fans care about."
+              "noFakeExpertNote": "Streaks and slumps are weekly talking points. Ask her what she has noticed."
             }
           },
           {
@@ -86,23 +80,15 @@
             "type": "fill-the-gap",
             "conceptIds": ["this-week"],
             "payload": {
-              "prompt": "Complete the fan conversation about injuries.",
-              "template": "Our star is out for {{time}}. {{impact}}.",
+              "prompt": "Complete the fan line about injuries.",
+              "template": "'Day-to-day' means a player is expected to miss {{short}}, while LTIR is for players out {{long}}.",
               "gaps": [
-                {
-                  "id": "time",
-                  "options": ["the season", "two to three weeks", "one game"],
-                  "correct": "two to three weeks"
-                },
-                {
-                  "id": "impact",
-                  "options": ["This changes nothing", "This is big for the playoff race", "This is disappointing but expected"],
-                  "correct": "This is big for the playoff race"
-                }
+                {"id": "short", "options": ["only a short time", "the whole season", "a whole month"], "correct": "only a short time"},
+                {"id": "long", "options": ["for a long stretch", "for one game", "for a single period"], "correct": "for a long stretch"}
               ],
               "explanation": {
-                "correct": "Right. A key player out mid-season is a top-of-the-week story; it changes the team's odds.",
-                "incorrect": "An injury to a star is a major talking point; it affects playoff hopes and depth."
+                "correct": "Right. Day-to-day is a short, uncertain absence. LTIR, the long-term injured reserve, is how teams handle a player who will be out a long time.",
+                "incorrect": "Day-to-day means a short absence, and LTIR is for long ones. When fans ask about an injury, the first question is usually how long."
               }
             }
           }
@@ -114,23 +100,22 @@
         "objective": "Interpret the live standings table and what {{team}}'s position means.",
         "estimatedMinutes": 8,
         "conceptIds": ["playoff-race", "points-system"],
+        "live": {"dataKind": "standings", "adapterKey": "hockey.live.standings", "refreshHint": "daily; hourly on game days late in the season"},
         "activities": [
           {
             "id": "live-standings-01-mc-points",
-            "type": "multiple-choice",
+            "type": "fill-the-gap",
             "conceptIds": ["points-system"],
             "payload": {
-              "prompt": "In the NHL, a team wins 3-2 in regulation. How many standing points do they get?",
-              "options": [
-                {"id": "a", "text": "1 point (for the score)."},
-                {"id": "b", "text": "2 points (for the win)."},
-                {"id": "c", "text": "3 points (for the score)."}
+              "prompt": "Complete the NHL points line.",
+              "template": "An NHL team earns {{win}} points for any win and {{otl}} point for an overtime or shootout loss.",
+              "gaps": [
+                {"id": "win", "options": ["2", "3", "1"], "correct": "2"},
+                {"id": "otl", "options": ["1", "0", "2"], "correct": "1"}
               ],
-              "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Correct. A regulation win is 2 points. A win in overtime or a shootout is 2 points for the winner, 1 for the loser.",
-                "incorrect": "The NHL points system: 2 for a win (regulation or overtime/shootout), 0 for a loss, 1 for an overtime/shootout loss (the loser point).",
-                "sayThisLine": "In the standings, look at wins and points, not just the score."
+                "correct": "Right. Every NHL win is worth two points, even in overtime or a shootout, and a loss after regulation still earns one. A regulation loss earns nothing.",
+                "incorrect": "An NHL win is worth two points. A loss in overtime or a shootout earns one, and a loss inside 60 minutes earns none."
               }
             }
           },
@@ -139,19 +124,16 @@
             "type": "estimate-slider",
             "conceptIds": ["playoff-race"],
             "payload": {
-              "prompt": "{{team}} is 3 points out of a wild-card spot. How many games would it take to make up that gap if they won every game?",
-              "unit": "games",
-              "min": 1,
-              "max": 10,
+              "prompt": "A team has 70 points with 10 games left. Most points it can reach?",
+              "unit": "points",
+              "min": 70,
+              "max": 110,
               "step": 1,
-              "correctValue": 2,
-              "tolerance": {
-                "full": 0,
-                "partial": 1
-              },
+              "correctValue": 90,
+              "tolerance": {"full": 0, "partial": 2},
               "explanation": {
-                "correct": "Exactly 2 games. Two wins = 4 points, which beats a 3-point gap. Math: 2 wins x 2 points = 4 points.",
-                "incorrect": "Each win is worth 2 points. To gain 3 points, you need at least 2 wins (4 points): 4 - 3 = 1 point clear."
+                "correct": "Exactly 90. Ten wins at two points each adds 20 to the 70 they already have. Fans use this kind of math to see if a team can still catch the playoff line.",
+                "incorrect": "The ceiling is every remaining game won: 10 games times 2 points is 20, and 70 plus 20 is 90."
               }
             }
           },
@@ -160,16 +142,16 @@
             "type": "multiple-choice",
             "conceptIds": ["points-system"],
             "payload": {
-              "prompt": "Two teams are tied on points in the standings. What is the first tiebreaker in the NHL?",
+              "prompt": "Two NHL teams are tied on points. What is the first tiebreaker?",
               "options": [
-                {"id": "a", "text": "Regulation wins (RW)."},
+                {"id": "a", "text": "Regulation wins."},
                 {"id": "b", "text": "Head-to-head record."},
                 {"id": "c", "text": "Alphabetical order."}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Yes. Regulation wins is the first tiebreaker. RW ignores overtime losses, so it rewards winning in 60 minutes.",
-                "incorrect": "The first tiebreaker is regulation wins (RW), then regulation and overtime wins (ROW). Head-to-head is down the list."
+                "correct": "Yes. Regulation wins come first, which rewards winning inside 60 minutes. After that come regulation plus overtime wins and other measures.",
+                "incorrect": "The first tiebreaker is regulation wins, then regulation plus overtime wins (ROW). Head-to-head is further down the list."
               }
             }
           },
@@ -178,22 +160,19 @@
             "type": "say-this",
             "conceptIds": ["playoff-race"],
             "payload": {
-              "statement": {
-                "speaker": "Sarah",
-                "text": "We are 5 points out with a game in hand. We can still make the wild card."
-              },
+              "statement": {"speaker": "Sarah", "text": "We're five points out with a game in hand. We can still make the wild card."},
               "question": "What is she saying?",
               "options": [
-                {"id": "a", "text": "Her team is 5 points behind a wild-card spot but has played fewer games.", "isCorrect": true, "explanation": "Correct. 'Game in hand' means one fewer game played, so they can close the gap."},
-                {"id": "b", "text": "Her team has 5 extra games left.", "isCorrect": false, "explanation": "'Game in hand' means one fewer game played, not five extra games."},
-                {"id": "c", "text": "The wild card is decided by one game.", "isCorrect": false, "explanation": "A game in hand is an advantage in the standings, not a decision rule."}
+                {"id": "a", "text": "Her team is five points behind a wild-card spot but has played one fewer game.", "isCorrect": true, "explanation": "Right. 'Game in hand' means one fewer game played, so she has an extra chance to pick up points."},
+                {"id": "b", "text": "Her team has five extra games left.", "isCorrect": false, "explanation": "'Game in hand' means one fewer game played, not five extra games."},
+                {"id": "c", "text": "The wild card is decided by one game.", "isCorrect": false, "explanation": "A game in hand is a standings advantage, not a deciding game."}
               ],
-              "translation": "They are 5 points behind the last playoff spot but have fewer games played, so catching up is possible.",
+              "translation": "They are five points behind the last playoff spot, but they have played one fewer game, so there is still a path.",
               "followUps": [
                 {"line": "How many games does your team have left?", "why": "Moves to the concrete math of how much time they have."},
-                {"line": "Who is the team holding that wild-card spot?", "why": "Shows you are tracking the race."}
+                {"line": "Who is holding that wild-card spot right now?", "why": "Shows you are tracking the race."}
               ],
-              "noFakeExpertNote": "A game in hand is a real advantage; it is a talking point in tight races."
+              "noFakeExpertNote": "A game in hand is real but is not a guarantee. It only helps if they win it."
             }
           }
         ]
@@ -201,26 +180,27 @@
       {
         "id": "live-playoff-race",
         "title": "The playoff race",
-        "objective": "Explain who is in, out and on the bubble in the {{league}} playoff push.",
+        "objective": "Explain who is in, out and on the bubble in the NHL playoff push.",
         "estimatedMinutes": 9,
         "conceptIds": ["playoff-race", "wild-card"],
+        "live": {"dataKind": "standings", "adapterKey": "hockey.live.standings", "refreshHint": "daily; hourly on game days late in the season"},
         "activities": [
           {
             "id": "live-playoff-race-01-mc-wild-card",
             "type": "multiple-choice",
             "conceptIds": ["wild-card"],
             "payload": {
-              "prompt": "In the NHL, how many wild-card teams from each conference make the playoffs?",
+              "prompt": "How many wild-card teams per conference make the NHL playoffs?",
               "options": [
-                {"id": "a", "text": "1 wild card per conference."},
-                {"id": "b", "text": "2 wild cards per conference."},
-                {"id": "c", "text": "3 wild cards per conference."}
+                {"id": "a", "text": "One."},
+                {"id": "b", "text": "Two."},
+                {"id": "c", "text": "Three."}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. Two wild cards from each conference. The three division winners qualify automatically, plus two wild cards from the remaining teams.",
-                "incorrect": "The format is three division winners and two wild cards per conference, for eight teams total per conference (16 in the playoffs).",
-                "sayThisLine": "The wild card is the last playoff spot; it goes to the next-best team outside the divisions."
+                "correct": "Right. The top three teams in each division qualify, plus two wild cards per conference, for eight teams per conference and sixteen overall.",
+                "incorrect": "It is two. Three per division plus two wild cards per conference gives eight per conference, sixteen in the playoffs.",
+                "sayThisLine": "The wild card is the last playoff spot, going to the next-best record in the conference."
               }
             }
           },
@@ -229,40 +209,22 @@
             "type": "decision-scenario",
             "conceptIds": ["playoff-race"],
             "payload": {
-              "prompt": "Your team is 2 points out with 20 games left. What happens next is up to them.",
+              "prompt": "Your team is two points out with 20 games left. What now?",
               "situation": {
-                "narrative": "{{team}} is on the playoff bubble with plenty of season left.",
+                "narrative": "The team is on the playoff bubble with plenty of season left.",
                 "facts": [
                   {"label": "Points out", "value": "2 points"},
                   {"label": "Games remaining", "value": "20"},
-                  {"label": "Trend", "value": "Winning 3 of last 5"},
+                  {"label": "Trend", "value": "Winning 3 of the last 5"},
                   {"label": "Injuries", "value": "Top center out two more weeks"}
                 ]
               },
               "options": [
-                {
-                  "id": "panic",
-                  "label": "They need to panic and make a trade now.",
-                  "verdict": "poor",
-                  "consequence": "Overreacting this early often backfires. The team has time to make up ground.",
-                  "considerations": ["Still 20 games left", "Recent trend is positive"]
-                },
-                {
-                  "id": "wait",
-                  "label": "Give it another 10 games; then reassess.",
-                  "verdict": "best",
-                  "consequence": "You learn more about whether the team can close the gap without a trade.",
-                  "considerations": ["Still time to trade at the deadline", "The injury should heal by then"]
-                },
-                {
-                  "id": "sell",
-                  "label": "Sell the veterans and plan for next year.",
-                  "verdict": "poor",
-                  "consequence": "The team is still in it; sellers give up too early and waste what they have.",
-                  "considerations": ["Only 2 points out", "Plenty of season left"]
-                }
+                {"id": "panic", "label": "Panic and trade for a rental right now.", "verdict": "poor", "consequence": "Overreacting this early usually backfires. The team still has time to make up ground.", "considerations": ["Still 20 games left.", "The recent trend is positive."]},
+                {"id": "wait", "label": "Give it ten more games, then reassess.", "verdict": "best", "consequence": "You learn whether the team can close the gap on its own, and the center is healthy again by then.", "considerations": ["The deadline gives you time to add later.", "The injury should heal by then."]},
+                {"id": "sell", "label": "Sell the veterans and plan for next year.", "verdict": "poor", "consequence": "Selling while two points out gives up a real chance for not much in return.", "considerations": ["Only two points out.", "Plenty of season left."]}
               ],
-              "expertNote": "Teams on the bubble make their biggest moves near the trade deadline, not mid-season panic buys."
+              "expertNote": "Bubble teams often wait to see how the race develops before making a big move, and the deadline is the natural checkpoint."
             }
           },
           {
@@ -270,22 +232,19 @@
             "type": "say-this",
             "conceptIds": ["wild-card"],
             "payload": {
-              "statement": {
-                "speaker": "Alex",
-                "text": "We're on the bubble. One bad week and we could fall out."
-              },
-              "question": "What does he mean?",
+              "statement": {"speaker": "Alex", "text": "We're on the bubble. One bad week and we could fall out."},
+              "question": "What does she mean?",
               "options": [
-                {"id": "a", "text": "The team is close to the last playoff spot and a losing streak could end their chances.", "isCorrect": true, "explanation": "Correct. 'On the bubble' means skating right at the playoff line, vulnerable to a slide."},
-                {"id": "b", "text": "The team is guaranteed to miss the playoffs.", "isCorrect": false, "explanation": "'On the bubble' means they are still in the race, just tightly."},
-                {"id": "c", "text": "The team has actually made the playoffs already.", "isCorrect": false, "explanation": "On the bubble is the opposite; they are not yet safe."}
+                {"id": "a", "text": "Her team is close to the last playoff spot and a losing streak could end its chances.", "isCorrect": true, "explanation": "Right. 'On the bubble' means right at the playoff line, in the race but vulnerable to a slide."},
+                {"id": "b", "text": "Her team is already eliminated.", "isCorrect": false, "explanation": "The bubble is the opposite of eliminated. They are still in it, just barely."},
+                {"id": "c", "text": "Her team has clinched a playoff spot.", "isCorrect": false, "explanation": "If they had clinched, they would be safe. The bubble means they are not safe yet."}
               ],
-              "translation": "The team is sitting right at the playoff line. They are in, but a slide could knock them out.",
+              "translation": "Her team is sitting right at the playoff line. They are in the race, but a slide could knock them out.",
               "followUps": [
-                {"line": "How many points do they have in their last 10?", "why": "Asks for the trend, which affects their chances."},
-                {"line": "Who's team ahead of them in the race?", "why": "Shows you are tracking the pack."}
+                {"line": "How have they done in their last ten games?", "why": "Asks for the trend, which affects their chances."},
+                {"line": "Who else is fighting for that last spot?", "why": "Shows you are tracking the pack."}
               ],
-              "noFakeExpertNote": "The bubble is tense; teams fight hard to stay in the race."
+              "noFakeExpertNote": "The bubble is stressful. Let her vent before you analyze it."
             }
           },
           {
@@ -293,27 +252,15 @@
             "type": "term-match",
             "conceptIds": ["playoff-race", "wild-card"],
             "payload": {
-              "prompt": "Match the playoff race term to its meaning.",
+              "prompt": "Match each playoff-race term to its meaning.",
               "pairs": [
-                {
-                  "id": "bubble",
-                  "term": "On the bubble",
-                  "definition": "A team is skating right at the playoff line, in the race but vulnerable to dropping out."
-                },
-                {
-                  "id": "wild-card",
-                  "term": "Wild card",
-                  "definition": "One of two playoff spots per conference that go to non-division-winners."
-                },
-                {
-                  "id": "out",
-                  "term": "Out of it",
-                  "definition": "A team is too far behind to realistically make the playoffs."
-                }
+                {"id": "bubble", "term": "On the bubble", "definition": "Right at the playoff line, in the race but vulnerable to dropping out."},
+                {"id": "wild-card", "term": "Wild card", "definition": "One of two playoff spots per conference for non-division-winners."},
+                {"id": "out", "term": "Out of it", "definition": "Too far behind to realistically make the playoffs."}
               ],
               "explanation": {
-                "summary": "The playoff race has clear language: bubble, wild card and out.",
-                "sayThisLine": "Ask her where her team sits in the race and use these terms."
+                "summary": "The playoff race has its own language: bubble, wild card and out. Use them and you will sound like you follow the race.",
+                "sayThisLine": "Where does your team sit in the race right now?"
               }
             }
           }
@@ -325,22 +272,24 @@
         "objective": "Follow {{team}}'s game in progress and understand what matters.",
         "estimatedMinutes": 8,
         "conceptIds": ["game-companion", "power-play"],
+        "live": {"dataKind": "scores", "adapterKey": "hockey.live.scores", "refreshHint": "minutes-during-events"},
         "activities": [
           {
             "id": "live-game-companion-01-mc-score",
             "type": "multiple-choice",
             "conceptIds": ["game-companion"],
             "payload": {
-              "prompt": "You're watching and it's 2-2 late in the third. Your team has more shots. What matters now?",
+              "prompt": "It is tied late in the third and your team takes a penalty. What matters most?",
               "options": [
-                {"id": "a", "text": "Time on the clock and the flow of play in the final minutes."},
-                {"id": "b", "text": "How many shots each team has taken."},
-                {"id": "c", "text": "The total cost of the teams' rosters."}
+                {"id": "a", "text": "Killing the penalty without giving up the go-ahead goal."},
+                {"id": "b", "text": "Pulling the goalie for an extra attacker."},
+                {"id": "c", "text": "Waiting for the period to end so nothing counts."},
+                {"id": "d", "text": "Nothing. A tie game means penalties do not matter."}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Yes. In tight late games, every minute and shift matters. Watch for momentum and who controls the puck in the final stretch.",
-                "incorrect": "Late in a tie game, you watch the clock, the period, and who has the puck. Shot totals tell a story over 60 minutes, but the moment matters most now."
+                "correct": "Yes. A late tied game can be decided by one power-play goal, so the penalty kill is the whole story until it ends.",
+                "incorrect": "Penalties always matter, and late in a tie they can decide the game. Pulling the goalie is for a team that is trailing."
               }
             }
           },
@@ -349,16 +298,16 @@
             "type": "multiple-choice",
             "conceptIds": ["power-play"],
             "payload": {
-              "prompt": "Your team is down 1-0 with three minutes left. They get a power play. What happens first?",
+              "prompt": "Your team gets a power play. What should you watch first?",
               "options": [
-                {"id": "a", "text": "The goalie comes out for an extra skater."},
-                {"id": "b", "text": "The team sets up the five-on-four with a formation."},
-                {"id": "c", "text": "The puck drops for a faceoff."}
+                {"id": "a", "text": "Whether they get into the offensive zone cleanly."},
+                {"id": "b", "text": "Whether the goalie's glove hand looks tired."},
+                {"id": "c", "text": "How many hits are thrown."}
               ],
-              "correctOptionIds": ["c"],
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. The faceoff starts the power play. Then the team sets up into a formation (1-3-1, umbrella, overload) to work the puck.",
-                "incorrect": "A power play starts with a faceoff, then the team shapes up into a formation to create scoring chances."
+                "correct": "Yes. A power play starts with the zone entry. If they cannot carry the puck in cleanly they never get to set up, and that is a common reason power plays struggle.",
+                "incorrect": "Watch the zone entry first. A power play that cannot get in cleanly never gets to run its setup."
               }
             }
           },
@@ -367,22 +316,19 @@
             "type": "say-this",
             "conceptIds": ["game-companion"],
             "payload": {
-              "statement": {
-                "speaker": "Fan",
-                "text": "They scored, but we still have all the momentum."
-              },
+              "statement": {"speaker": "Fan", "text": "They scored, but we still have all the momentum."},
               "question": "What is she saying?",
               "options": [
-                {"id": "a", "text": "Her team is outplaying the other team even though they are behind in the score.", "isCorrect": true, "explanation": "Correct. Momentum is about flow and control, not the scoreboard. She thinks her team will score next."},
-                {"id": "b", "text": "The other team's goal was meaningless.", "isCorrect": false, "explanation": "A goal counts; she just means her team is playing better."},
-                {"id": "c", "text": "Momentum can be measured mathematically.", "isCorrect": false, "explanation": "Momentum is feel and flow, not a statistic."}
+                {"id": "a", "text": "Her team is outplaying the other team even though it is behind.", "isCorrect": true, "explanation": "Right. Momentum is about who is controlling play, not the scoreboard. She expects her team to score next."},
+                {"id": "b", "text": "The other team's goal will not count.", "isCorrect": false, "explanation": "A goal counts. She only means her team is playing better."},
+                {"id": "c", "text": "Her team is about to be awarded a goal.", "isCorrect": false, "explanation": "Nobody is awarding anything. She is describing who has the feel of the game."}
               ],
-              "translation": "Her team is playing well and creating chances; one goal down does not mean they will lose.",
+              "translation": "Her team is playing well and creating chances. One goal down does not mean they will lose.",
               "followUps": [
-                {"line": "How much time is left?", "why": "Time left determines how much momentum matters."},
-                {"line": "Are they getting good scoring chances?", "why": "Helps measure whether the momentum is real."}
+                {"line": "How much time is left?", "why": "Time left decides how much momentum can matter."},
+                {"line": "Are they getting good chances or just shots?", "why": "Helps tell whether the momentum is real."}
               ],
-              "noFakeExpertNote": "Momentum is real in games; it is about who is controlling play and who looks tired."
+              "noFakeExpertNote": "Momentum is a feeling fans trust. Ask what she is seeing."
             }
           },
           {
@@ -392,14 +338,11 @@
             "payload": {
               "prompt": "It is 4-3 with 90 seconds left and {{team}} is down. They pull the goalie for an extra skater.",
               "scene": {"kind": "none", "alt": "The goalie is off the ice and an extra attacker replaces him."},
-              "choices": [
-                {"id": "true", "label": "This is the right move."},
-                {"id": "false", "label": "This is too risky."}
-              ],
+              "choices": [{"id": "true", "label": "Reasonable move"}, {"id": "false", "label": "Too risky"}],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "Right. With under two minutes left and down one, pulling the goalie is a reasonable gamble for the tie or the go-ahead.",
-                "incorrect": "Late in a tie game down one, pulling the goalie is a standard move. It is an aggressive bet on scoring versus giving up an empty netter."
+                "correct": "Right. Down one with 90 seconds left, pulling the goalie is a normal gamble for the tie. An empty-net goal against costs little, since they are losing anyway.",
+                "incorrect": "Down one late, pulling the goalie is standard. The risk is an empty-netter, but a one-goal loss and a two-goal loss count the same in the standings."
               }
             }
           }
@@ -411,13 +354,14 @@
         "objective": "Explain what happens each month and where the season is now.",
         "estimatedMinutes": 9,
         "conceptIds": ["season-calendar", "draft"],
+        "live": {"dataKind": "events", "adapterKey": "hockey.live.events", "refreshHint": "weekly; daily around key dates"},
         "activities": [
           {
             "id": "live-season-calendar-01-mc-season",
             "type": "multiple-choice",
             "conceptIds": ["season-calendar"],
             "payload": {
-              "prompt": "When does the NHL regular season start each year?",
+              "prompt": "When does the NHL regular season usually start?",
               "options": [
                 {"id": "a", "text": "Early September."},
                 {"id": "b", "text": "Late September or early October."},
@@ -425,8 +369,8 @@
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. The NHL preseason starts in September; the regular season kicks off in late September or early October.",
-                "incorrect": "Preseason is September; the regular season starts late September or early October and runs through April."
+                "correct": "Right. Preseason games come first, then the regular season opens in late September or early October and runs into April.",
+                "incorrect": "The regular season opens in late September or early October. Preseason games come before it and do not count in the standings."
               }
             }
           },
@@ -435,18 +379,19 @@
             "type": "sequence-order",
             "conceptIds": ["season-calendar"],
             "payload": {
-              "prompt": "Put these hockey events in order as they happen during a season.",
+              "prompt": "Put the hockey year in order, starting with opening night.",
               "items": [
-                {"id": "preseason", "text": "Preseason games"},
-                {"id": "regular-season", "text": "Regular season (82 or 84 games)"},
-                {"id": "trade-deadline", "text": "Trade deadline (early March)"},
-                {"id": "playoffs", "text": "Stanley Cup Playoffs (mid-April to June)"},
-                {"id": "draft", "text": "NHL Draft (late June)"}
+                {"id": "opener", "text": "Opening night of the regular season", "why": "The season starts in late September or early October."},
+                {"id": "deadline", "text": "The trade deadline", "why": "Usually in the winter, with the regular season still running."},
+                {"id": "reg-end", "text": "The regular season ends", "why": "Runs into April, then the standings are set."},
+                {"id": "playoffs", "text": "The Stanley Cup Playoffs", "why": "From spring into June."},
+                {"id": "draft", "text": "The NHL Draft", "why": "Held after the Final, usually in late June."},
+                {"id": "free-agency", "text": "Free agency opens", "why": "July 1, the day the big signings happen."}
               ],
               "explanation": {
-                "correct": "Right. Preseason, then regular season with the deadline mid-season, then playoffs and the draft.",
-                "incorrect": "The order is preseason, regular season (with the deadline in March), playoffs, and draft.",
-                "sayThisLine": "The trade deadline is always a big moment; it is when teams show whether they are buying or selling."
+                "correct": "Right. Opening night, the deadline, the end of the regular season, the playoffs, the draft and then free agency. Exact dates move a little each year.",
+                "incorrect": "The order is opening night, deadline, regular season ends, playoffs, draft, then free agency on July 1.",
+                "sayThisLine": "The deadline is when teams show whether they are buying or selling."
               }
             }
           },
@@ -455,16 +400,16 @@
             "type": "multiple-choice",
             "conceptIds": ["season-calendar"],
             "payload": {
-              "prompt": "Why is the trade deadline important?",
+              "prompt": "Why is the trade deadline such a big day?",
               "options": [
-                {"id": "a", "text": "It is when teams decide whether to buy a renter or sell for picks."},
+                {"id": "a", "text": "It is the last day teams can make trades, so contenders add rentals and sellers trade veterans for picks."},
                 {"id": "b", "text": "It marks the end of the regular season."},
-                {"id": "c", "text": "It is when the draft lottery happens."}
+                {"id": "c", "text": "It is when the draft lottery is held."}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Exactly. Contenders buy, sellers trade away veterans for draft picks. The deadline is the biggest trading day.",
-                "incorrect": "The deadline is a strategic moment: teams race to add depth (rentals) or start rebuilding (selling veterans for picks)."
+                "correct": "Yes. After the deadline, rosters are set for the stretch run. Contenders buy help for the playoffs and sellers trade veterans for picks and prospects.",
+                "incorrect": "The deadline is the last chance to make trades for the season. It does not end the regular season or hold the lottery."
               }
             }
           },
@@ -473,23 +418,15 @@
             "type": "fill-the-gap",
             "conceptIds": ["draft"],
             "payload": {
-              "prompt": "Complete the statement about the NHL Draft.",
-              "template": "The NHL Draft happens {{when}} and {{result}}.",
+              "prompt": "Complete the line about the NHL Draft.",
+              "template": "The NHL Draft happens {{when}} and teams {{result}}.",
               "gaps": [
-                {
-                  "id": "when",
-                  "options": ["in the playoffs", "late June", "in September"],
-                  "correct": "late June"
-                },
-                {
-                  "id": "result",
-                  "options": ["re-signs stars", "selects young prospects", "trades for rentals"],
-                  "correct": "selects young prospects"
-                }
+                {"id": "when", "options": ["during the playoffs", "in late June", "in September"], "correct": "in late June"},
+                {"id": "result", "options": ["re-sign their stars", "select young prospects", "trade for rentals"], "correct": "select young prospects"}
               ],
               "explanation": {
-                "correct": "Right. The draft is where teams pick 18-year-old prospects after the Cup Final.",
-                "incorrect": "Teams hold the draft after the season to add young talent to their system."
+                "correct": "Right. The draft is usually held in late June, after the Cup Final, and teams pick young prospects to build their future.",
+                "incorrect": "The draft comes after the season, in late June, and is where teams choose young prospects."
               }
             }
           }
@@ -501,28 +438,26 @@
         "objective": "Explain why a trade at the deadline matters and the {{team}} strategy.",
         "estimatedMinutes": 9,
         "conceptIds": ["free-agency", "cap-hit"],
+        "live": {"dataKind": "events", "adapterKey": "hockey.live.events", "refreshHint": "weekly; daily around key dates"},
         "activities": [
           {
             "id": "live-deadline-01-st-rental",
             "type": "say-this",
             "conceptIds": ["free-agency"],
             "payload": {
-              "statement": {
-                "speaker": "Coach",
-                "text": "We got a rental: a winger on an expiring deal who leaves in July."
-              },
+              "statement": {"speaker": "Coach", "text": "We got a rental: a winger on an expiring deal who leaves in July."},
               "question": "What is he saying?",
               "options": [
-                {"id": "a", "text": "A player with a contract that ends this summer, bought for a short playoff run.", "isCorrect": true, "explanation": "Correct. A rental is a temporary help: the team gets a boost now, but the player is a free agent soon."},
+                {"id": "a", "text": "A player whose contract ends this summer, brought in for a playoff run.", "isCorrect": true, "explanation": "Right. A rental is short-term help. The team gets a boost now, and the player becomes a free agent in the summer."},
                 {"id": "b", "text": "The team is renting an arena.", "isCorrect": false, "explanation": "In trade talk, a rental is a player on an expiring contract."},
-                {"id": "c", "text": "The player will stay forever.", "isCorrect": false, "explanation": "A rental leaves in the summer; the deal is short-term help."}
+                {"id": "c", "text": "The player will stay for a decade.", "isCorrect": false, "explanation": "A rental leaves in the summer unless he re-signs."}
               ],
-              "translation": "A rental is a player on a deal ending this year. The team pays picks for a playoff boost; he moves on in the summer.",
+              "translation": "A rental is a player on a deal that ends this year. The buying team pays in picks or prospects for a playoff boost.",
               "followUps": [
-                {"line": "What does the team give up for a rental?", "why": "Moves to the cost of the trade."},
-                {"line": "Why not sign him long-term?", "why": "Explores why rentals are temporary."}
+                {"line": "What did they give up for him?", "why": "Moves to the cost of the trade."},
+                {"line": "Would they try to re-sign him?", "why": "Explores why rentals are temporary."}
               ],
-              "noFakeExpertNote": "Rentals are a deadline staple; every contender uses them to add depth before the playoffs."
+              "noFakeExpertNote": "Rentals are a deadline staple. If you are lost, ask what they paid."
             }
           },
           {
@@ -530,40 +465,22 @@
             "type": "decision-scenario",
             "conceptIds": ["cap-hit"],
             "payload": {
-              "prompt": "Trade deadline: your favorite team is 5 points out with 15 games left.",
+              "prompt": "Deadline day: your team is far from a playoff spot. What now?",
               "situation": {
-                "narrative": "The team is just inside the playoff race and must choose.",
+                "narrative": "Your team is well outside the playoff picture with about 20 games left. Two key players have contracts that expire in July.",
                 "facts": [
-                  {"label": "Points out", "value": "5 points behind the wild card"},
-                  {"label": "Games left", "value": "15"},
-                  {"label": "Cap space", "value": "$3.5 million available"},
-                  {"label": "Stars", "value": "Two key players on expiring deals"}
+                  {"label": "Standings", "value": "10 points behind the last playoff spot"},
+                  {"label": "Games left", "value": "About 20"},
+                  {"label": "Expiring deals", "value": "Two key players"},
+                  {"label": "Contenders", "value": "Several want to buy"}
                 ]
               },
               "options": [
-                {
-                  "id": "buy",
-                  "label": "Buy a rental to make one last push.",
-                  "verdict": "best",
-                  "consequence": "You use the cap space to add depth and gamble on the team finding form.",
-                  "considerations": ["Cap space fits", "Still time to climb back"]
-                },
-                {
-                  "id": "stand",
-                  "label": "Hold still and see if the team can catch up on its own.",
-                  "verdict": "acceptable",
-                  "consequence": "You conserve assets but risk falling further back.",
-                  "considerations": ["No risk to future", "May regret not adding"]
-                },
-                {
-                  "id": "sell",
-                  "label": "Trade the veterans for picks and plan for next year.",
-                  "verdict": "poor",
-                  "consequence": "You tear down too early when the team is still in it.",
-                  "considerations": ["Still 5 points out, not 15", "Too early to rebuild"]
-                }
+                {"id": "sell", "label": "Trade the expiring players for picks and prospects.", "verdict": "best", "consequence": "You get real assets for players who would leave in July anyway.", "considerations": ["Contenders pay more at the deadline.", "You start building for next season."]},
+                {"id": "stand", "label": "Keep everyone and hope for a run.", "verdict": "acceptable", "consequence": "It protects the current roster, but you risk losing both players for nothing.", "considerations": ["A ten-point gap is hard to close.", "Expiring players walk for free."]},
+                {"id": "buy", "label": "Trade picks for a rental to push for the playoffs.", "verdict": "poor", "consequence": "You spend future assets on a long shot.", "considerations": ["Ten points back with 20 games left is a big hill.", "Picks are hard to replace."]}
               ],
-              "expertNote": "Contenders buy depth late in the season; sellers rebuild only when truly out of it."
+              "expertNote": "Teams far out of the race usually sell players on expiring deals, because those players are leaving anyway."
             }
           },
           {
@@ -571,16 +488,16 @@
             "type": "multiple-choice",
             "conceptIds": ["cap-hit"],
             "payload": {
-              "prompt": "A player has a cap hit of $6 million but earns $8 million in salary. Why do teams care about the cap hit?",
+              "prompt": "A player has a $6 million cap hit but earns $8 million. Why do teams care about the cap hit?",
               "options": [
-                {"id": "a", "text": "The cap hit is what counts against the salary cap limit."},
-                {"id": "b", "text": "The cap hit is the player's actual paycheck."},
-                {"id": "c", "text": "The cap hit is what the team wants to pay."}
+                {"id": "a", "text": "It is what counts against the salary cap."},
+                {"id": "b", "text": "It is the player's actual paycheck."},
+                {"id": "c", "text": "It is what the team wishes it could pay."}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. The salary cap counts the cap hit, not the actual salary. That difference can be a tool for trades and contracts.",
-                "incorrect": "Cap hit is the average annual value used by the league's salary cap accounting. A player's salary might be different in different years."
+                "correct": "Right. A cap hit is a contract's average annual value, which is what counts against the team's cap. It can differ from actual pay in any one year, and trades move that number between teams.",
+                "incorrect": "The cap hit is the number the league's cap counts, which is not the same as what the player is paid that season."
               }
             }
           },
@@ -589,16 +506,13 @@
             "type": "binary-call",
             "conceptIds": ["free-agency"],
             "payload": {
-              "prompt": "A rental is always the better choice than a long-term player for the deadline.",
+              "prompt": "A rental is always the better deadline move than a long-term player.",
               "scene": {"kind": "none", "alt": "Two players: one on a rental deal, one under contract long-term."},
-              "choices": [
-                {"id": "true", "label": "True"},
-                {"id": "false", "label": "False"}
-              ],
+              "choices": [{"id": "true", "label": "True"}, {"id": "false", "label": "False"}],
               "correctChoiceId": "false",
               "explanation": {
-                "correct": "False. It depends on the team's situation. A contender wants a rental for a playoff run. A team rebuilding wants to keep young players.",
-                "incorrect": "Rentals are good for contenders in a playoff push. They are not always the right fit for every team's strategy."
+                "correct": "False. It depends on the team. A contender chasing a title may love a rental, while a team building for the future would rather add a player who will stay.",
+                "incorrect": "Rentals help contenders this season. Teams thinking long-term often prefer a player who will still be there next year."
               }
             }
           }
@@ -610,28 +524,26 @@
         "objective": "Explain playoff intensity and what a series win means for {{team}}.",
         "estimatedMinutes": 8,
         "conceptIds": ["playoff-format", "series-lingo"],
+        "live": {"dataKind": "schedules", "adapterKey": "hockey.live.schedule", "refreshHint": "daily; minutes during games"},
         "activities": [
           {
             "id": "live-playoffs-01-st-game-seven",
             "type": "say-this",
             "conceptIds": ["series-lingo"],
             "payload": {
-              "statement": {
-                "speaker": "Fan",
-                "text": "It's Game 7 tomorrow. Winner take all."
-              },
+              "statement": {"speaker": "Fan", "text": "It's Game 7 tomorrow. Winner take all."},
               "question": "What is she saying?",
               "options": [
-                {"id": "a", "text": "The final game of a best-of-seven series decides who moves on.", "isCorrect": true, "explanation": "Correct. Game 7 is the decider; whoever wins advances."},
-                {"id": "b", "text": "They are playing seven games no matter what.", "isCorrect": false, "explanation": "If a team wins 4 games first, the series ends early. Game 7 only happens if it goes to 3-3."},
-                {"id": "c", "text": "This is a regular-season game.", "isCorrect": false, "explanation": "Game 7 is playoff only; it is the most intense matchup."}
+                {"id": "a", "text": "The last game of a best-of-seven decides who moves on.", "isCorrect": true, "explanation": "Right. Game 7 is the decider. Whoever wins advances and the loser is out."},
+                {"id": "b", "text": "Every series goes exactly seven games.", "isCorrect": false, "explanation": "A series ends as soon as one team gets four wins. Game 7 only happens if it is 3-3."},
+                {"id": "c", "text": "It is a regular-season game.", "isCorrect": false, "explanation": "Game 7 only exists in the playoffs."}
               ],
-              "translation": "It is the final, deciding game. The winner advances; the loser is eliminated.",
+              "translation": "It is the final, deciding game. The winner advances and the loser goes home.",
               "followUps": [
-                {"line": "Who has home ice advantage?", "why": "Home ice is a big playoff edge."},
-                {"line": "How are they up in the series?", "why": "Builds on the stakes."}
+                {"line": "Who has home ice?", "why": "Home ice is a big edge in a Game 7."},
+                {"line": "How did they get to 3-3?", "why": "Invites the story of the series."}
               ],
-              "noFakeExpertNote": "Game 7 is playoff folklore; every fan remembers them."
+              "noFakeExpertNote": "Game 7 is playoff folklore. Let her tell you her story."
             }
           },
           {
@@ -639,34 +551,31 @@
             "type": "multiple-choice",
             "conceptIds": ["playoff-format"],
             "payload": {
-              "prompt": "In a best-of-seven playoff series, how many wins does a team need to advance?",
+              "prompt": "In a best-of-seven series, how many wins does a team need to advance?",
               "options": [
-                {"id": "a", "text": "Three wins."},
-                {"id": "b", "text": "Four wins."},
-                {"id": "c", "text": "Five wins."}
+                {"id": "a", "text": "Three."},
+                {"id": "b", "text": "Four."},
+                {"id": "c", "text": "Five."}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. Four wins in a best-of-seven. First to four wins advances; the series ends as soon as one team reaches four.",
-                "incorrect": "First to four. If one team wins 4 before 7 games are played, the series is over."
+                "correct": "Right. First to four wins advances, and the series ends the moment one team gets there.",
+                "incorrect": "It is four. The first team to win four games takes the series, even if that happens before game seven."
               }
             }
           },
           {
             "id": "live-playoffs-03-mc-home-ice",
-            "type": "multiple-choice",
+            "type": "binary-call",
             "conceptIds": ["series-lingo"],
             "payload": {
-              "prompt": "Why do teams value home ice advantage in the playoffs?",
-              "options": [
-                {"id": "a", "text": "The home crowd provides energy and the team plays one more home game if the series goes seven."},
-                {"id": "b", "text": "The home team's goalie is always better."},
-                {"id": "c", "text": "The home team gets to choose the goal horn."}
-              ],
-              "correctOptionIds": ["a"],
+              "prompt": "In a best-of-seven, the team with home ice hosts Game 7.",
+              "scene": {"kind": "none", "alt": "A series schedule showing home games for each team."},
+              "choices": [{"id": "true", "label": "True"}, {"id": "false", "label": "False"}],
+              "correctChoiceId": "true",
               "explanation": {
-                "correct": "Yes. Home ice means more home games, crowd energy and the last game is at home if needed. It is a real edge in playoffs.",
-                "incorrect": "Home ice is valuable: you host more games and the final game at home (if it reaches Game 7) is a huge advantage."
+                "correct": "True. The team with home ice hosts Games 1, 2, 5 and 7, which is why fans fight so hard for it. It is a real advantage if the series goes the distance.",
+                "incorrect": "Home ice means hosting Games 1, 2, 5 and 7, so the team with it gets the deciding game in its own building."
               }
             }
           },
@@ -675,23 +584,15 @@
             "type": "fill-the-gap",
             "conceptIds": ["playoff-format"],
             "payload": {
-              "prompt": "Complete the playoff facts.",
-              "template": "In a best-of-seven, {{team}} leads {{score}}. The next game {{number}}.",
+              "prompt": "Complete the playoff series facts.",
+              "template": "A team that leads a best-of-seven 3-1 needs {{wins}} more win to clinch, and a series tied 3-3 goes to {{game}}.",
               "gaps": [
-                {
-                  "id": "score",
-                  "options": ["1-0", "3-1", "4-3"],
-                  "correct": "3-1"
-                },
-                {
-                  "id": "number",
-                  "options": ["clinches the series", "is Game 5", "sends it to Game 7"],
-                  "correct": "clinches the series"
-                }
+                {"id": "wins", "options": ["one", "two", "three"], "correct": "one"},
+                {"id": "game", "options": ["Game 7", "Game 8", "a shootout"], "correct": "Game 7"}
               ],
               "explanation": {
-                "correct": "Right. Up 3-1 is one win away from clinching. That is a strong position.",
-                "incorrect": "A 3-1 series lead is one win away from elimination of the other team."
+                "correct": "Right. Four wins clinch a series, so a 3-1 lead is one win away, and 3-3 sends it to a deciding Game 7.",
+                "incorrect": "A series is won with four wins. At 3-1 a team needs one more, and at 3-3 the seventh game decides it."
               }
             }
           }

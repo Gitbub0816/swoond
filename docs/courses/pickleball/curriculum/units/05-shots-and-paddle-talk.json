@@ -34,7 +34,7 @@
                 {
                   "id": "drive-pair",
                   "term": "Drive",
-                  "definition": "A flat, hard shot meant to take pace off an opponent's setup or end a rally."
+                  "definition": "A hard, flat, fast shot meant to put pressure on the opponent or end the rally."
                 }
               ],
               "distractorDefinitions": [
@@ -72,10 +72,10 @@
             "type": "binary-call",
             "conceptIds": ["drop-shot"],
             "payload": {
-              "prompt": "You're at the baseline and lob a soft arc over the net into the opponent's kitchen. Is this a drop shot?",
+              "prompt": "From the baseline you float a soft arc that lands in their kitchen. A drop?",
               "scene": {
                 "kind": "none",
-                "alt": "Baseline scenario: soft arcing shot into the kitchen."
+                "alt": "Baseline scenario: a soft, arcing shot from the back of the court that lands in the opponents' kitchen."
               },
               "choices": [
                 {"id": "yes-drop", "label": "Yes, that's a drop shot"},
@@ -83,8 +83,8 @@
               ],
               "correctChoiceId": "yes-drop",
               "explanation": {
-                "correct": "Correct. A drop shot is that soft arc from the baseline or mid-court that lands low in the kitchen.",
-                "incorrect": "A drop shot is exactly that soft, arcing shot from the back that lands gently in the kitchen.",
+                "correct": "Yes. A drop is a soft arc from the back of the court that lands low in the opponents' kitchen, which gives your team time to move forward.",
+                "incorrect": "That is what a drop is: a soft, arcing shot from the back that lands gently in the kitchen. A dink is the same idea hit from up near the kitchen.",
                 "sayThisLine": "Drop shot: soft arc from back, lands in the kitchen."
               },
               "ruleTag": "Shot vocabulary"
@@ -95,41 +95,40 @@
             "type": "decision-scenario",
             "conceptIds": ["drive"],
             "payload": {
-              "prompt": "The dink sits up above net height. What do you hit?",
+              "prompt": "A dink pops up above net height. What do you hit?",
               "situation": {
-                "narrative": "The dink floats up just above the net height, giving you an opening.",
+                "narrative": "During a dink rally, your opponent's dink floats up a little higher than the net, right in front of you.",
                 "facts": [
-                  {"label": "Ball height", "value": "Above net height"},
-                  {"label": "Distance to net", "value": "You're at the kitchen line"},
-                  {"label": "Opportunity", "value": "Attack this weak dink"},
-                  {"label": "Goal", "value": "End the rally"}
+                  {"label": "Ball height", "value": "Above net height, sitting up"},
+                  {"label": "Your spot", "value": "At the kitchen line"},
+                  {"label": "Your options", "value": "Attack it, or keep dinking"}
                 ]
               },
               "options": [
                 {
                   "id": "drive-attack",
-                  "label": "A drive: hit it flat and hard to end the point",
+                  "label": "A drive: hit it flat and hard",
                   "verdict": "best",
-                  "consequence": "Correct. When a ball sits up above net height, a drive (or speed-up) is the aggressive choice.",
+                  "consequence": "Good read. A ball that sits up above the net can be hit down, so a firm, flat shot is the natural way to take the point.",
                   "considerations": [
-                    "The ball is attackable (above net)",
-                    "Driving ends rallies",
-                    "This is when you take pace off their soft game"
+                    "The ball is attackable above net height",
+                    "You can hit down on it",
+                    "Aim away from the opponents if you can"
                   ]
                 },
                 {
                   "id": "another-dink",
                   "label": "Another dink back into the kitchen",
-                  "verdict": "poor",
-                  "consequence": "Missed opportunity. That elevated ball is prime for a drive.",
+                  "verdict": "acceptable",
+                  "consequence": "Safe, but you pass up the chance. A high dink is exactly the ball players wait for.",
                   "considerations": [
-                    "Dinking is for low balls",
-                    "This ball is high enough to attack",
-                    "Know when to switch from soft to fast"
+                    "Keeps the rally alive",
+                    "Gives the opponent a fresh chance",
+                    "Better saved for balls below net height"
                   ]
                 }
               ],
-              "expertNote": "The core skill is recognizing when a ball is high enough to attack. That's when you drive."
+              "expertNote": "Spotting a ball you can hit down on is the heart of the dink game. Below the net you dink; above it you can attack."
             }
           },
           {
@@ -143,23 +142,23 @@
               },
               "question": "What should you say?",
               "options": [
-                {"id": "a", "text": "That's the strategy. Dinking is how you win through patience, not power.", "isCorrect": true},
-                {"id": "b", "text": "Yeah, you should hit it harder.", "isCorrect": false},
-                {"id": "c", "text": "Pickleball is just boring then.", "isCorrect": false},
-                {"id": "d", "text": "I don't understand the dink thing.", "isCorrect": false}
+                {"id": "a", "text": "Dink wars can go on forever! Who finally blinked?", "isCorrect": true},
+                {"id": "b", "text": "Just hit it harder, then.", "isCorrect": false},
+                {"id": "c", "text": "Pickleball is just boring, then.", "isCorrect": false},
+                {"id": "d", "text": "Dinking is the whole point. You were doing it wrong.", "isCorrect": false}
               ],
-              "translation": "A dink rally is not a stalling tactic; it's the foundation of strategic pickleball. Patience and control win.",
+              "translation": "Sam is describing a dink war: a long rally of soft shots at the kitchen where nobody wants to be the first to pop the ball up.",
               "followUps": [
                 {
-                  "line": "Dinking is how pros win. A dink rally is a chess match, not a boring waste.",
-                  "why": "Reframes dinking as strategy, not tedium."
+                  "line": "Ha, a dink war! Who finally popped one up?",
+                  "why": "Shows you know the term and asks a curious question."
                 },
                 {
-                  "line": "Whoever makes a dink sit up first loses. That's the skill.",
-                  "why": "Practical explanation of the dink game."
+                  "line": "I'm still learning, but I think that's the point: the first person to pop one up usually loses it.",
+                  "why": "Offers your understanding honestly, without claiming expertise."
                 }
               ],
-              "noFakeExpertNote": "Dinking looks slow to beginners, but it is the core of pickleball strategy."
+              "noFakeExpertNote": "Sam said it was boring. You do not need to defend dinking. Curiosity about how it ended is a warmer reply than a lecture."
             }
           }
         ]
@@ -175,7 +174,7 @@
             "type": "term-match",
             "conceptIds": ["volley-shot", "block", "overhead-smash"],
             "payload": {
-              "prompt": "Match each overhead shot to its meaning.",
+              "prompt": "Match each shot to its meaning.",
               "pairs": [
                 {
                   "id": "volley-term",
@@ -194,8 +193,8 @@
                 }
               ],
               "distractorDefinitions": [
-                "A serve",
-                "A ground stroke"
+                "A shot you hit only after letting the ball bounce",
+                "A serve struck overhand"
               ],
               "explanation": {
                 "summary": "Volleys are any unbounced hit at the net; blocks soften fast balls; overheads finish lobs.",
@@ -208,29 +207,24 @@
             "type": "fill-the-gap",
             "conceptIds": ["volley-shot", "block"],
             "payload": {
-              "prompt": "Complete the volley description.",
-              "template": "A {{shot-type}} is hit {{when-hit}} it bounces, usually at the {{where}}.",
+              "prompt": "Complete the description of a block.",
+              "template": "A block is a short {{shot-type}} that {{action}} the pace of a hard ball.",
               "gaps": [
                 {
                   "id": "shot-type",
-                  "options": ["volley", "drive"],
+                  "options": ["volley", "lob"],
                   "correct": "volley"
                 },
                 {
-                  "id": "when-hit",
-                  "options": ["before", "after"],
-                  "correct": "before"
-                },
-                {
-                  "id": "where",
-                  "options": ["net", "baseline"],
-                  "correct": "net"
+                  "id": "action",
+                  "options": ["absorbs", "adds to"],
+                  "correct": "absorbs"
                 }
               ],
               "explanation": {
-                "correct": "Volleys are unbounced hits at the net. Blocks soften aggressive balls and return them low.",
-                "incorrect": "A volley is before the bounce, at the net. A block is a soft volley that absorbs pace.",
-                "sayThisLine": "Volley before the bounce, block is soft, overhead is aggressive."
+                "correct": "A block is a short, compact volley that soaks up the pace of a hard ball and sends it back low and soft.",
+                "incorrect": "A block is not a lob and does not add power. You hold the paddle firm and let the ball's own speed do the work.",
+                "sayThisLine": "A block is a short volley that soaks up the pace."
               }
             }
           },
@@ -239,10 +233,10 @@
             "type": "binary-call",
             "conceptIds": ["overhead-smash"],
             "payload": {
-              "prompt": "High lob, you swing hard from overhead. Is this an overhead smash?",
+              "prompt": "A high lob comes at you and you hit it hard from above your head. A smash?",
               "scene": {
                 "kind": "none",
-                "alt": "Scenario: high lob, hitting from overhead position."
+                "alt": "Scenario: a high lob drops toward you and you swing down through it from above your head."
               },
               "choices": [
                 {"id": "yes-smash", "label": "Yes, that's an overhead smash"},
@@ -300,26 +294,26 @@
                 {
                   "id": "atp-term",
                   "term": "ATP (around the post)",
-                  "definition": "A shot that goes around the net post rather than over the net, legal when done correctly."
+                  "definition": "A shot that goes around the outside of the net post instead of over the net, then lands in the court."
                 },
                 {
                   "id": "erne-term",
                   "term": "Erne",
-                  "definition": "A jump or stride outside the kitchen to volley near the net post, named after player Erne Perry."
+                  "definition": "A volley hit from outside the kitchen after a leap around its corner near the post. Named after player Erne Perry."
                 },
                 {
                   "id": "bert-term",
                   "term": "Bert",
-                  "definition": "A partner runs behind you to hit your ball (a poach), combining the names Bert and partner."
+                  "definition": "An Erne-style shot from the far side: you run behind your partner to volley from their side of the court."
                 }
               ],
               "distractorDefinitions": [
-                "A drop shot",
-                "A serve variation"
+                "A soft arc from the back that lands in the kitchen",
+                "A serve struck from above the waist"
               ],
               "explanation": {
-                "summary": "These shots are flashy and fun: lobs over heads, ATPs around the post, Ernes outside, Berts with partners.",
-                "sayThisLine": "Lob over heads, ATP around the post, Erne outside the kitchen, Bert from your partner."
+                "summary": "These are the flashy ones: a lob over their heads, an ATP around the post, an Erne outside the kitchen, and a Bert, which is an Erne-style shot from your partner's side.",
+                "sayThisLine": "Lob over heads, ATP around the post, Erne outside the kitchen, and Bert is an Erne from your partner's side."
               }
             }
           },
@@ -350,9 +344,9 @@
               ],
               "correctOptionId": "erne",
               "explanation": {
-                "correct": "An Erne is a volley outside the kitchen, usually near the net post. It's a flash play.",
-                "incorrect": "The shot here is an Erne: outside the kitchen to volley near the post.",
-                "sayThisLine": "Erne: leap outside the kitchen to volley."
+                "correct": "An Erne is a volley hit from outside the kitchen, near the net post, often after a leap around the kitchen corner. The player never touches the kitchen, so it is legal.",
+                "incorrect": "A block is a soft, compact volley and a drop is a soft arc from the back. The one with the leap to the post is the Erne.",
+                "sayThisLine": "An Erne is a leap around the kitchen to volley at the post."
               }
             }
           },
@@ -370,9 +364,9 @@
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "A lob gets players away from the net position they were controlling, buying time or ending the rally.",
-                "incorrect": "A lob over the head of net-control players forces them to react and retreat.",
-                "sayThisLine": "Lob high when they're at the net to pull them back."
+                "correct": "A lob over players at the net forces them to turn and run back, which can win the point or break up their control of the net.",
+                "incorrect": "A lob is not automatically a winner and it is not worth extra points. Its job is to send net players backwards, and a short lob just invites a smash.",
+                "sayThisLine": "A lob over their heads can send them back from the net."
               }
             }
           },
@@ -381,41 +375,40 @@
             "type": "decision-scenario",
             "conceptIds": ["atp"],
             "payload": {
-              "prompt": "Your opponent is at the net post angle. Can you hit the ball around the post instead of over the net?",
+              "prompt": "A wide ball pulls you off court. Can you go around the net post?",
               "situation": {
-                "narrative": "Ball is near the net post on the sideline. You're thinking of an unorthodox angle.",
+                "narrative": "You are dragged wide beside the net post. Hitting the ball back around the outside of the post, instead of over the net, is tempting.",
                 "facts": [
-                  {"label": "Ball location", "value": "Near the net post"},
-                  {"label": "Opponent position", "value": "At the net"},
-                  {"label": "Proposed shot", "value": "Around the post"},
-                  {"label": "Legality", "value": "Is ATP a legal shot?"}
+                  {"label": "Where you are", "value": "Wide of the court, beside the net post"},
+                  {"label": "The idea", "value": "Hit it around the post, not over the net"},
+                  {"label": "The question", "value": "Is that an allowed shot?"}
                 ]
               },
               "options": [
                 {
                   "id": "atp-legal",
-                  "label": "Yes, ATP (around the post) is legal",
+                  "label": "Yes, an ATP is allowed if the ball lands in the court",
                   "verdict": "best",
-                  "consequence": "Correct. An ATP is a legal shot when the ball goes around the net post. Flashy and fun.",
+                  "consequence": "Correct. The ball does not have to go over the net, as long as it passes outside the post and lands in bounds. It is hard to pull off, which is why it is a crowd-pleaser.",
                   "considerations": [
-                    "The ball must go around the post, not under",
-                    "ATP is legal but difficult",
-                    "It's a crowd-pleaser"
+                    "Passing outside the post is allowed",
+                    "It still has to land in the opponents' court",
+                    "It is tricky, so it is rare"
                   ]
                 },
                 {
                   "id": "atp-illegal",
-                  "label": "No, you must hit over the net",
+                  "label": "No, every shot has to go over the net",
                   "verdict": "poor",
-                  "consequence": "Incorrect. Going around the post is legal in pickleball.",
+                  "consequence": "Not quite. Going around the post is allowed in pickleball, provided the ball lands in the court.",
                   "considerations": [
-                    "ATP is not a fault",
-                    "It's a legitimate shot",
-                    "More advanced players use it tactically"
+                    "An ATP is not a fault",
+                    "What matters is where the ball lands",
+                    "It needs a wide, awkward ball to set it up"
                   ]
                 }
               ],
-              "expertNote": "ATP stands for 'around the post' and is a flashy but legal shot when done right."
+              "expertNote": "ATP means around the post. It is allowed, and it is rare because you need a wide ball and a steady touch to land it."
             }
           }
         ]
@@ -448,26 +441,34 @@
           },
           {
             "id": "shot-04-li-1",
-            "type": "listening-id",
+            "type": "term-match",
             "conceptIds": ["topspin-backspin"],
             "payload": {
-              "prompt": "Listen: dink with spin. What type of spin?",
-              "audio": {
-                "asset": "shot-04-dink-topspin.mp3",
-                "durationMs": 3000,
-                "license": "original-swoond",
-                "description": "Sound of a dink shot with topspin, showing a crisp, controlled paddle strike"
-              },
-              "options": [
-                {"id": "topspin", "text": "Topspin: forward rotation"},
-                {"id": "backspin", "text": "Backspin (slice): backward rotation"},
-                {"id": "flat", "text": "Flat (no spin)"}
+              "prompt": "Match each spin to how the ball behaves.",
+              "pairs": [
+                {
+                  "id": "topspin-pair",
+                  "term": "Topspin",
+                  "definition": "Forward spin that pulls the ball down, so it dips and kicks forward off the bounce"
+                },
+                {
+                  "id": "backspin-pair",
+                  "term": "Backspin (slice)",
+                  "definition": "Backward spin that holds the ball up, so it floats and bounces low"
+                },
+                {
+                  "id": "flat-pair",
+                  "term": "Flat",
+                  "definition": "Little or no spin, so the ball just follows its natural arc"
+                }
               ],
-              "correctOptionId": "topspin",
+              "distractorDefinitions": [
+                "Spin that makes the ball stop dead in the air",
+                "A spin only allowed on serves"
+              ],
               "explanation": {
-                "correct": "A dink with topspin has a slightly sharper, controlled sound as the ball brushes forward.",
-                "incorrect": "Topspin dinks sound crisper than flat dinks; backspin sounds softer or slower.",
-                "sayThisLine": "Spin changes the sound and the ball's behavior."
+                "summary": "Topspin dips, backspin floats, and flat has no spin to speak of. You cannot reliably hear spin from the stands, so watch the ball's flight and bounce instead.",
+                "sayThisLine": "Topspin dips, backspin floats, flat is just flat."
               }
             }
           },
@@ -507,20 +508,20 @@
             "type": "binary-call",
             "conceptIds": ["topspin-backspin"],
             "payload": {
-              "prompt": "A dink with heavy topspin sits up slightly higher than a flat dink. Does topspin make a ball sit up or dip down?",
+              "prompt": "Does topspin make a ball dip down, or float up?",
               "scene": {
                 "kind": "none",
-                "alt": "Dink scenario with topspin."
+                "alt": "Shot scenario: a ball hit with topspin crosses the net and drops."
               },
               "choices": [
-                {"id": "topspin-dip", "label": "Topspin makes the ball dip down"},
-                {"id": "topspin-up", "label": "Topspin makes the ball sit up"}
+                {"id": "topspin-dip", "label": "It dips down"},
+                {"id": "topspin-up", "label": "It floats up"}
               ],
               "correctChoiceId": "topspin-dip",
               "explanation": {
-                "correct": "Topspin makes the ball dip down due to forward rotation. Control and depth come from it.",
-                "incorrect": "Topspin causes forward rotation, making the ball dip, not sit up.",
-                "sayThisLine": "Topspin dips the ball due to forward rotation."
+                "correct": "Topspin spins the ball forward, which pulls it down so it drops sooner than a flat ball. That lets players hit harder and still land it in.",
+                "incorrect": "Floating is what backspin does. Topspin's forward rotation pulls the ball down, so it dips.",
+                "sayThisLine": "Topspin pulls the ball down, so it dips."
               },
               "ruleTag": "Spin and shot behavior"
             }
@@ -561,33 +562,33 @@
             "type": "sequence-order",
             "conceptIds": ["ready-position"],
             "payload": {
-              "prompt": "Put the ready position steps in order.",
+              "prompt": "Put one exchange in order, from your shot to your next move.",
               "items": [
                 {
-                  "id": "stance-feet",
-                  "text": "Feet shoulder-width apart, weight forward",
-                  "why": "Balance and quick movement start here."
+                  "id": "hit",
+                  "text": "You hit your shot",
+                  "why": "Every exchange starts with your own contact."
                 },
                 {
-                  "id": "knees-bent",
-                  "text": "Knees bent, ready to push off",
-                  "why": "Bent knees let you react faster."
+                  "id": "recover",
+                  "text": "You recover to the ready position, paddle up",
+                  "why": "Knees bent and paddle in front get you set for the next ball."
                 },
                 {
-                  "id": "paddle-up",
-                  "text": "Paddle up in front of your body",
-                  "why": "Keeps the paddle ready for any shot."
+                  "id": "split",
+                  "text": "You split step as your opponent hits",
+                  "why": "The small hop is timed to their contact so you can push off."
                 },
                 {
-                  "id": "eyes-on-ball",
-                  "text": "Eyes on the opponent and the incoming ball",
-                  "why": "Awareness is everything."
+                  "id": "move",
+                  "text": "You push off toward the ball",
+                  "why": "You see where the ball is going, then move to it."
                 }
               ],
               "explanation": {
-                "correct": "Ready position is feet set, knees bent, paddle up, and eyes ready. It's a loaded spring.",
-                "incorrect": "Ready position puts you in a neutral stance, ready to react to any direction.",
-                "sayThisLine": "Ready: feet wide, knees bent, paddle up, watching."
+                "correct": "Hit, recover to ready, split step as they hit, then push off toward the ball. It repeats on every shot.",
+                "incorrect": "The ready position comes after your own shot and before their contact. The split step follows it, and the move comes last.",
+                "sayThisLine": "Hit, get ready, split step, go."
               }
             }
           },
@@ -627,8 +628,8 @@
               ],
               "correctChoiceId": "during-hit",
               "explanation": {
-                "correct": "A split step is a small hop as they swing, pushing you forward to react.",
-                "incorrect": "Split step timing is as they hit, not after. It's your loading spring.",
+                "correct": "A split step is a small hop timed to their contact, so you land ready to push off in any direction.",
+                "incorrect": "Hopping after they hit is too late, because the ball is already on its way. The hop goes at their contact, like a loaded spring.",
                 "sayThisLine": "Split step as they hit the ball."
               },
               "ruleTag": "Court movement and stance"
@@ -721,23 +722,23 @@
               },
               "question": "What should you say?",
               "options": [
-                {"id": "a", "text": "That's awesome! So dinks are quiet and drives are loud and sharp, right?", "isCorrect": true},
+                {"id": "a", "text": "That's so cool! So dinks are quiet and drives are loud and sharp?", "isCorrect": true},
                 {"id": "b", "text": "That doesn't make sense, all paddle sounds are the same.", "isCorrect": false},
                 {"id": "c", "text": "I can't hear the difference.", "isCorrect": false},
                 {"id": "d", "text": "That's not a real skill.", "isCorrect": false}
               ],
-              "translation": "Shot sounds are distinctive and decodable. Soft shots sound quiet, hard shots sound loud and sharp.",
+              "translation": "Sam can now hear the difference: soft shots sound quiet, hard shots sound loud and sharp.",
               "followUps": [
                 {
-                  "line": "Yes! A quiet pop is a dink, a sharp crack is a drive or smash. You're reading the court.",
-                  "why": "Affirms her skill and names the pattern."
+                  "line": "So a quiet pop is a dink and a sharp crack is a drive or smash? I want to learn to hear that.",
+                  "why": "Shows you are curious and learning, not claiming to already hear it."
                 },
                 {
-                  "line": "The ball and paddle tell the story. Over time you'll recognize everything by sound.",
-                  "why": "Encourages her to keep developing this skill."
+                  "line": "Teach me? Next time we watch a game, tell me what you hear.",
+                  "why": "Turns Sam's new skill into something you can share."
                 }
               ],
-              "noFakeExpertNote": "Even beginners can learn to recognize shots by sound with practice."
+              "noFakeExpertNote": "You do not have to hear it yet. Asking Sam to teach you is warmer than pretending."
             }
           }
         ]
@@ -759,23 +760,23 @@
               },
               "question": "What should you say?",
               "options": [
-                {"id": "a", "text": "That's rough, a shutout at 11-0 is brutal. What went wrong?", "isCorrect": true},
-                {"id": "b", "text": "What does 'pickled' mean?", "isCorrect": false},
+                {"id": "a", "text": "Ouch, 11-0 is rough. Tough matchup, or just an off night?", "isCorrect": true},
+                {"id": "b", "text": "Pickled? So you won, nice!", "isCorrect": false},
                 {"id": "c", "text": "That doesn't sound that bad.", "isCorrect": false},
                 {"id": "d", "text": "You should have tried harder.", "isCorrect": false}
               ],
-              "translation": "Pickled = shutout (11-0 loss). It's frustrating because you scored zero points.",
+              "translation": "Getting pickled means losing a game without scoring a point, like 11-0. It stings, so Sam wants sympathy more than advice.",
               "followUps": [
                 {
-                  "line": "Eleven to zero is a shutout. That's getting pickled. Brutal.",
-                  "why": "Shows you decoded the term and empathize."
+                  "line": "Ouch. Pickled is the worst. Was it a tough matchup, or just an off night?",
+                  "why": "Shows you know the term and asks a curious, kind question."
                 },
                 {
-                  "line": "If they got you 11-0, something was off that game. Next one?",
-                  "why": "Acknowledges the loss and looks forward."
+                  "line": "That sounds frustrating. Want to tell me about it?",
+                  "why": "Gives Sam room to vent."
                 }
               ],
-              "noFakeExpertNote": "Pickled is just slang for a shutout. It sounds funny but it's a frustrating experience."
+              "noFakeExpertNote": "Being pickled is painful and a little funny. Start with sympathy, and let Sam decide whether to laugh about it."
             }
           },
           {
@@ -795,11 +796,6 @@
                   "id": "style",
                   "options": ["hits everything hard", "plays soft and patient"],
                   "correct": "hits everything hard"
-                },
-                {
-                  "id": "impact",
-                  "options": ["aggressively", "with patience"],
-                  "correct": "aggressively"
                 }
               ],
               "explanation": {
@@ -815,7 +811,7 @@
             "conceptIds": ["pickled", "player-slang", "dink", "drive"],
             "payload": {
               "title": "After the game: shot talk",
-              "setting": "You and Sam are talking after a match where she played different opponents.",
+              "setting": "You and Sam are talking after a league night where Sam played two very different opponents.",
               "startingSmooth": 50,
               "exchanges": [
                 {
@@ -825,22 +821,22 @@
                       "id": "good",
                       "text": "A banger is someone who hits everything hard, right? Did the hard shots backfire?",
                       "smoothDelta": 25,
-                      "theirResponse": "Yeah, I couldn't stay in the dink rally with him. He just kept driving.",
-                      "coachNote": "You named the term and asked how the playstyle affected the game."
+                      "theirResponse": "Yeah, I couldn't settle into a dink rally with him. He just kept driving.",
+                      "coachNote": "You checked the term and asked how the style affected the game."
                     },
                     {
                       "id": "meh",
                       "text": "What's a banger?",
-                      "smoothDelta": 6,
+                      "smoothDelta": 12,
                       "theirResponse": "Someone who hits everything hard. Power player.",
-                      "coachNote": "Honest question; next time guess from context."
+                      "coachNote": "A perfectly good question, and asking beats pretending. A guess from context would have been a bonus."
                     },
                     {
                       "id": "cringe",
                       "text": "Bangers are annoying, you should have smashed him back.",
                       "smoothDelta": -12,
                       "theirResponse": "He was faster than me. Dismissing his style doesn't help.",
-                      "coachNote": "Don't dunk on a playstyle. Analyze instead."
+                      "coachNote": "Do not dunk on a playstyle. Curiosity beats advice."
                     }
                   ]
                 },

@@ -41,7 +41,7 @@
                 {
                   "id": "race-engineer",
                   "term": "Race engineer",
-                  "definition": "The driver's main voice on radio: sets up the car and calls strategy decisions."
+                  "definition": "The driver's main voice on radio: coaches the driver and relays set-up and strategy."
                 },
                 {
                   "id": "pit-wall",
@@ -100,43 +100,35 @@
             }
           },
           {
-            "id": "pd-01-mul-engineer-call",
-            "type": "multiple-choice",
+            "id": "pd-01-bin-radio-voice",
+            "type": "binary-call",
             "conceptIds": [
-              "race-engineer"
+              "race-engineer",
+              "team-radio"
             ],
             "payload": {
-              "prompt": "Why is the race engineer the driver's main voice on the radio?",
-              "options": [
+              "prompt": "Who is the driver's everyday voice on the radio?",
+              "scene": {
+                "kind": "none",
+                "alt": "Text only: two candidates for the person who talks to the driver during a race."
+              },
+              "choices": [
                 {
-                  "id": "a",
-                  "text": "They know the car set-up, read data, and coach the driver through decisions.",
-                  "explanation": "Right. The engineer is the driver's single trusted source of information."
+                  "id": "engineer",
+                  "label": "Race engineer"
                 },
                 {
-                  "id": "b",
-                  "text": "They sit with the pit wall and make all strategy calls alone.",
-                  "explanation": "The engineer relays strategy from the pit wall; they do not make calls alone."
-                },
-                {
-                  "id": "c",
-                  "text": "They are the driver's teammate and help with set-up.",
-                  "explanation": "The engineer is not a driver. They are the technical coach and radio voice."
-                },
-                {
-                  "id": "d",
-                  "text": "They report to the team principal between pit stops.",
-                  "explanation": "The engineer talks to the driver, not just the principal."
+                  "id": "principal",
+                  "label": "Team principal"
                 }
               ],
-              "correctOptionIds": [
-                "a"
-              ],
+              "correctChoiceId": "engineer",
               "explanation": {
-                "correct": "Right. The race engineer knows the car inside out, watches the data and is the one trusted voice coaching the driver.",
-                "incorrect": "The race engineer is the driver's primary coach and information source, relaying set-up changes, strategy and race situation.",
-                "sayThisLine": "The engineer is the driver's coach and the pit wall's messenger."
-              }
+                "correct": "The race engineer knows the car, reads the data and passes on set-up and strategy. Drivers trust one familiar voice, so that is who you hear.",
+                "incorrect": "The principal runs the whole team and rarely speaks on the radio. The driver's everyday voice is the race engineer, who relays what the pit wall decides.",
+                "sayThisLine": "The engineer is the driver's coach on the radio."
+              },
+              "ruleTag": "Team roles"
             }
           },
           {
@@ -173,7 +165,7 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Right. The pit wall watches the race, reads data and tire wear, and calls the shots: pit, stay out, how to manage the gap.",
+                "correct": "Right. The pit wall watches the race, reads data and tyre wear, and calls the shots: pit, stay out, how to manage the gap.",
                 "incorrect": "The pit wall is the race control centre for one team: data, strategy and live decision-making.",
                 "sayThisLine": "The pit wall reads the race and calls strategy in real time."
               }
@@ -237,41 +229,41 @@
             "payload": {
               "statement": {
                 "speaker": "Your friend",
-                "text": "Box box, this lap, tyres and fuel."
+                "text": "The radio just said box box. Are they in trouble?"
               },
-              "question": "What is the engineer telling the driver?",
+              "question": "What does box box mean?",
               "options": [
                 {
                   "id": "good",
-                  "text": "Come into the pits this lap for a tyre stop and refuelling.",
+                  "text": "It is the pit call: come into the pits this lap, usually for new tyres.",
                   "isCorrect": true,
-                  "explanation": "Exactly. Box box is the pit call. But F1 has no refuelling since 2010; stops are tyres only."
+                  "explanation": "Exactly. Box box is a routine instruction to pit, most often planned and most often for tyres."
                 },
                 {
                   "id": "neutral",
-                  "text": "The driver should stay in the pits longer than usual.",
+                  "text": "The driver should stay out a little longer than planned.",
                   "isCorrect": false,
-                  "explanation": "Box box is the call to pit, not an instruction to stay longer."
+                  "explanation": "That is the opposite. Stay out is the call for not pitting yet."
                 },
                 {
                   "id": "cringe",
-                  "text": "There is a problem with the brakes and the driver should box.",
+                  "text": "The car has a serious problem and must stop for good.",
                   "isCorrect": false,
-                  "explanation": "A pit call says why (fuel, tyres). If there is damage, the engineer will say so."
+                  "explanation": "Damage or a fault gets its own message. Box box on its own is a normal pit call."
                 }
               ],
-              "translation": "Box box means the driver should pit this lap for a tyre stop. F1 has no refuelling since 2010.",
+              "translation": "Box box means the driver should come into the pit lane this lap. It is usually a planned tyre stop, not a crisis.",
               "followUps": [
                 {
-                  "line": "Why would they say 'tyres and fuel'?",
-                  "why": "Habit from the old days when stops included refuelling. Fans still hear it from radio archives."
+                  "line": "Is it always for new tyres?",
+                  "why": "Mostly, because refuelling has been banned since 2010. A stop can also be for a repair, like a broken wing."
                 },
                 {
-                  "line": "So every pit stop is only for tyres?",
-                  "why": "Yes. The two-compound rule forces at least one stop, and it is always for tyres."
+                  "line": "Do they say it twice on purpose?",
+                  "why": "Yes. Repeating it makes it clear on a noisy radio, so the driver cannot miss it."
                 }
               ],
-              "noFakeExpertNote": "Box box is not an emergency. It is a normal pit call. Real emergencies use different language."
+              "noFakeExpertNote": "Box box is not an emergency. If you are unsure why they boxed, ask what tyre they went on to."
             }
           },
           {
@@ -283,41 +275,41 @@
             "payload": {
               "statement": {
                 "speaker": "Your friend",
-                "text": "He is lifting and coasting, trying to save fuel."
+                "text": "He is lifting and coasting, trying to save fuel and energy."
               },
               "question": "What does lifting and coasting mean?",
               "options": [
                 {
                   "id": "good",
-                  "text": "The driver lifts off the throttle early and coasts before braking, to save fuel or tyres.",
+                  "text": "The driver comes off the throttle early before braking to save fuel, energy or brakes.",
                   "isCorrect": true,
-                  "explanation": "Right. It costs lap time but saves fuel, battery or rubber."
+                  "explanation": "Right. It costs a little lap time now in exchange for saving something for later."
                 },
                 {
                   "id": "neutral",
-                  "text": "The driver is taking it easy this lap.",
+                  "text": "The driver is taking it easy because the race is boring.",
                   "isCorrect": false,
-                  "explanation": "It is a strategy move, not laziness. It costs time on that lap."
+                  "explanation": "It is never about boredom. It is a deliberate instruction from the pit wall."
                 },
                 {
                   "id": "cringe",
-                  "text": "The car is out of fuel and rolling downhill.",
+                  "text": "The car has run out of fuel and is rolling to a stop.",
                   "isCorrect": false,
-                  "explanation": "Lifting and coasting is planned, not an emergency."
+                  "explanation": "Lifting and coasting is planned and the car keeps racing. Running dry is a different, much worse radio call."
                 }
               ],
-              "translation": "Lifting and coasting means the driver throttles off early before braking, trading lap time now for fuel, tyre or energy savings later.",
+              "translation": "Lifting and coasting means getting off the throttle earlier than normal before a braking zone, trading a little lap time for fuel, battery or brake savings.",
               "followUps": [
                 {
-                  "line": "Does the pit wall tell him when to lift and coast?",
-                  "why": "Yes, the engineer calls it based on fuel or energy math and track position."
+                  "line": "Who tells him when to do it?",
+                  "why": "Usually the engineer, based on the team's fuel or energy numbers and what the cars behind are doing."
                 },
                 {
-                  "line": "Why save fuel if he can go flat out?",
-                  "why": "Because the race is long. If you run out near the end, you lose more time than lifting now."
+                  "line": "Why not just go flat out?",
+                  "why": "The race is long. Saving a little each lap can be the difference between finishing strong and being slow at the end."
                 }
               ],
-              "noFakeExpertNote": "Lifting and coasting is not weakness. It is a tactical choice by the strategist."
+              "noFakeExpertNote": "It is a tactical choice, not weakness. If you do not know why he is doing it, ask what he is saving."
             }
           },
           {
@@ -367,43 +359,39 @@
             }
           },
           {
-            "id": "pd-02-mul-radio-pit-call",
-            "type": "multiple-choice",
+            "id": "pd-02-fil-pit-call",
+            "type": "fill-the-gap",
             "conceptIds": [
-              "team-radio",
-              "box-box"
+              "box-box",
+              "team-radio"
             ],
             "payload": {
-              "prompt": "What does the engineer say on the radio to tell the driver to pit?",
-              "options": [
+              "prompt": "Complete the two pit calls.",
+              "template": "{{pit}} tells the driver to come in, and {{stay}} tells them to keep going.",
+              "gaps": [
                 {
-                  "id": "a",
-                  "text": "Box box, this lap.",
-                  "explanation": "Right. Box box is the call to pit; the driver comes in next time around."
+                  "id": "pit",
+                  "options": [
+                    "Box box",
+                    "Stay out",
+                    "Push now"
+                  ],
+                  "correct": "Box box"
                 },
                 {
-                  "id": "b",
-                  "text": "Stay out.",
-                  "explanation": "Stay out means do not pit yet; keep going."
-                },
-                {
-                  "id": "c",
-                  "text": "Go faster.",
-                  "explanation": "That is not a pit call; it is a pace call."
-                },
-                {
-                  "id": "d",
-                  "text": "Box box, not this lap.",
-                  "explanation": "That would be confusing and not used. Box box means this lap."
+                  "id": "stay",
+                  "options": [
+                    "Stay out",
+                    "Box box",
+                    "Push now"
+                  ],
+                  "correct": "Stay out"
                 }
               ],
-              "correctOptionIds": [
-                "a"
-              ],
               "explanation": {
-                "correct": "Right. Box box this lap is the pit command. The driver pits on the next lap they are told.",
-                "incorrect": "Box box is the pit call that tells the driver to come into the pits this lap.",
-                "sayThisLine": "Box box means pit this lap."
+                "correct": "Box box is the call to pit this lap. Stay out means the plan is to keep running, often to wait for a better window.",
+                "incorrect": "Box box means pit this lap. Stay out means do not pit yet. Push now is about pace, not about pitting.",
+                "sayThisLine": "They said stay out, so the stop is coming later."
               }
             }
           }
@@ -426,36 +414,36 @@
               "teammate-battle"
             ],
             "payload": {
-              "prompt": "Why is your teammate the fairest comparison of a driver's speed?",
+              "prompt": "Why is the teammate the fairest comparison of a driver?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Because both have the same car; it is the only direct test of driver skill with equal gear.",
-                  "explanation": "Right. Different rivals have different cars and engines. Same teammate, same car."
+                  "text": "Both drivers share the same car, engine and team, so the gap between them mostly shows the drivers.",
+                  "explanation": "Right. Rivals in other teams have different cars, so only the teammate is a close like-for-like test."
                 },
                 {
                   "id": "b",
-                  "text": "Because the teammate is always slower and easier to beat.",
-                  "explanation": "Not always. Some drivers are beaten by their teammates; that is a hard truth."
+                  "text": "The teammate is always slower, so he is easy to beat.",
+                  "explanation": "No. Plenty of drivers get beaten by their teammate, which is exactly why the comparison matters."
                 },
                 {
                   "id": "c",
-                  "text": "Because rivals get more support from their team.",
-                  "explanation": "A good team backs both drivers equally; favouritism happens but it is not supposed to."
+                  "text": "Teams give each driver a different car so they can be compared.",
+                  "explanation": "The opposite is true. The point is that the car is the same, so one variable is removed."
                 },
                 {
                   "id": "d",
-                  "text": "Because the leader of the championship gets the best car.",
-                  "explanation": "F1 rules say both cars are identical. In practice, it is mostly true."
+                  "text": "The championship leader always gets the faster car.",
+                  "explanation": "Teams can favour a driver, but the car is meant to be the same. That is what makes the comparison fair."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. The teammate has the same car, tyres, engine, pit crew and resources. It is the purest driver comparison.",
-                "incorrect": "The teammate benchmark is the fairest because both drivers have identical cars and equipment.",
-                "sayThisLine": "Your teammate drives the same car. If you lose to him, you know why."
+                "correct": "Same car, same tyres, same engine, same pit crew. Almost everything is equal, so the teammate gap is the cleanest read on the driver.",
+                "incorrect": "The teammate drives the same car with the same resources, so the gap between them says far more than a comparison with another team's driver.",
+                "sayThisLine": "Same car, so the teammate is the real benchmark."
               }
             }
           },
@@ -466,36 +454,36 @@
               "team-orders"
             ],
             "payload": {
-              "prompt": "When would a team use team orders?",
+              "prompt": "When does a team typically use team orders?",
               "options": [
                 {
                   "id": "a",
-                  "text": "When winning the constructors' title is more important than two drivers fighting, or to help one driver's championship.",
-                  "explanation": "Right. The team prioritises constructors' points or one driver's title fight."
+                  "text": "When one driver is fighting for the title, or the team needs the points more than it needs a fair fight.",
+                  "explanation": "Right. Orders protect a bigger goal: the championship, or the team's total points."
                 },
                 {
                   "id": "b",
-                  "text": "Every lap, because the team boss says so.",
-                  "explanation": "No. Teams let drivers race most of the time. Orders are rare and strategic."
+                  "text": "On every lap, because the boss wants full control.",
+                  "explanation": "No. Teams let their drivers race most of the time. Orders are rare and usually for a reason."
                 },
                 {
                   "id": "c",
-                  "text": "To swap positions at the start so the car ahead has fresher tyres.",
-                  "explanation": "That is race strategy, not team orders. Orders are told by radio during the race."
+                  "text": "Only at the start of a race, when the lights go out.",
+                  "explanation": "Orders can come at any point. They are usually most visible late in a race, when the points are at stake."
                 },
                 {
                   "id": "d",
-                  "text": "Never, because F1 rules forbid it completely.",
-                  "explanation": "F1 allows orders for team benefit. It is tactical but sometimes controversial."
+                  "text": "Never, because the rules ban them completely.",
+                  "explanation": "The ban was lifted in 2011. Orders are allowed, but teams often get criticised for using them."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. Team orders are used in late-race moments when the constructors' title or one driver's championship is at stake.",
-                "incorrect": "Team orders are a tactical tool: the team makes one driver yield to help the other or the team's points total.",
-                "sayThisLine": "Team orders mean one driver helps the other for the team's benefit."
+                "correct": "Team orders ask one driver to help the other, to protect a title chance or the team's points. They are rare because they are unpopular.",
+                "incorrect": "Team orders are allowed, used sparingly and usually when something bigger than one race is at stake.",
+                "sayThisLine": "They used orders because the title fight needed it."
               }
             }
           },
@@ -506,36 +494,36 @@
               "team-orders"
             ],
             "payload": {
-              "prompt": "Why are team orders controversial with fans?",
+              "prompt": "Why do team orders split fans?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Because fans want to see drivers race freely; orders feel artificial and spoil the drama.",
-                  "explanation": "Right. Fans argue that orders take away racing and turn a sport into a team business."
+                  "text": "Some fans want drivers to race freely; others accept orders as part of a team sport.",
+                  "explanation": "Right. It is a real difference of opinion, not a rules question."
                 },
                 {
                   "id": "b",
-                  "text": "Because orders are illegal in F1.",
-                  "explanation": "Orders are not illegal. They are allowed for team strategy."
+                  "text": "Team orders are against the sporting rules.",
+                  "explanation": "They are not. Orders are allowed, which is why fans argue about taste rather than legality."
                 },
                 {
                   "id": "c",
-                  "text": "Because they always cost the team points.",
-                  "explanation": "Orders are used to gain points, not lose them."
+                  "text": "Orders always cost the team points.",
+                  "explanation": "Usually the point of an order is to protect or gain points."
                 },
                 {
                   "id": "d",
-                  "text": "Because the driver who yields always quits F1.",
-                  "explanation": "Drivers move on; it is frustrating but not career-ending."
+                  "text": "A driver who obeys an order loses his seat.",
+                  "explanation": "Drivers who obey keep their seats. Some are even rewarded later."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. Many fans dislike orders because racing is the sport; a manufactured swap feels like the business side has won.",
-                "incorrect": "Orders are controversial because fans value driver-versus-driver racing over team strategy.",
-                "sayThisLine": "Fans want racing, not team business. Orders spoil the show."
+                "correct": "There is no correct side. Purists want a fair fight; others see F1 as a team sport where the constructors' title matters too.",
+                "incorrect": "Orders are legal, so the argument is about taste: racing freely versus playing as a team.",
+                "sayThisLine": "Fair fight or team game? Depends who you ask."
               }
             }
           },
@@ -543,68 +531,70 @@
             "id": "pd-03-dec-orders-call",
             "type": "decision-scenario",
             "conceptIds": [
-              "team-orders"
+              "team-orders",
+              "teammate-battle"
             ],
             "payload": {
-              "prompt": "Should the team order one driver to yield?",
+              "prompt": "Your quicker driver is stuck behind his teammate. Do you swap them?",
               "situation": {
-                "narrative": "Late in the championship: your driver is second in points, 8 points behind. On lap 30 of 58, he is trailing his teammate by 2 seconds in the race, both in the points. A pit stop could swap them.",
+                "narrative": "Lap 30 of 58. Driver A leads his teammate, Driver B, by 1.5 seconds. Driver B says he is quicker and wants to pass. Both are in the points.",
                 "facts": [
                   {
-                    "label": "Driver A (leader)",
-                    "value": "Your top driver, 8 points ahead in the championship"
+                    "label": "Driver A",
+                    "value": "Ahead, but losing 0.3 s a lap"
                   },
                   {
-                    "label": "Driver B (trailing)",
-                    "value": "On pace, could catch with the right pit call"
+                    "label": "Driver B",
+                    "value": "Behind, same tyres, closing"
                   },
                   {
-                    "label": "Constructors' title",
-                    "value": "Tight; need both drivers ahead of rivals"
+                    "label": "Nearest rival",
+                    "value": "A rival car is 8 seconds behind"
                   },
                   {
-                    "label": "Pit window",
-                    "value": "Opens in 3 laps; order now would guarantee a swap"
+                    "label": "Risk",
+                    "value": "They could collide if they fight",
+                    "emphasis": "warning"
                   }
                 ]
               },
               "options": [
                 {
-                  "id": "order",
-                  "label": "Tell Driver B to yield to Driver A in the pit stop.",
-                  "verdict": "acceptable",
-                  "consequence": "Driver A gets clear track and can build a gap. Constructors' points are locked in and the championship leader is protected.",
+                  "id": "swap",
+                  "label": "Swap now: let the quicker driver go.",
+                  "verdict": "best",
+                  "consequence": "Driver B uses his pace to pull clear, and the team loses no time fighting. Driver A is unhappy for a lap or two.",
                   "considerations": [
-                    "The order is fair: you are not making Driver B go slower, just a pit swap.",
-                    "Driver B might be frustrated, but team strategy is part of F1.",
-                    "If you do not order and Driver B passes Driver A, you lose the head-to-head in points."
+                    "The gap to the rival is big enough to protect both cars.",
+                    "If he is faster anyway, holding him up only wastes time.",
+                    "Promise Driver A the position back if things change."
                   ]
                 },
                 {
                   "id": "let-race",
-                  "label": "Let both drivers race freely; the faster one will win the pit window.",
-                  "verdict": "best",
-                  "consequence": "The drivers race and the pit wall calls the best strategy. If Driver B is faster, he earns his position. You see real pace.",
+                  "label": "Let them race, but tell them to keep it clean.",
+                  "verdict": "acceptable",
+                  "consequence": "They fight. It is entertaining, but each lap of fighting costs both drivers tyre life and risks contact.",
                   "considerations": [
-                    "This is what fans want: true racing, not team choreography.",
-                    "If Driver B is quicker over the stint, he deserves to pass.",
-                    "Risk: if Driver B passes and the rival team capitalizes, you lose constructors' points."
+                    "Fans love it and it is fair.",
+                    "One mistake could cost the team both cars' points.",
+                    "The rival is 8 seconds back, so there is a little room to race."
                   ]
                 },
                 {
-                  "id": "mid-order",
-                  "label": "Tell Driver B to pit one lap earlier, splitting the strategies.",
-                  "verdict": "acceptable",
-                  "consequence": "You avoid a direct order but split the pit stops. Driver B gets out ahead on fresh tyres, but the undercut might fail.",
+                  "id": "hold",
+                  "label": "Order Driver B to stay behind, no matter what.",
+                  "verdict": "poor",
+                  "consequence": "The team loses pace over the stint and Driver B is furious. Driver A's tyres fall away anyway.",
                   "considerations": [
-                    "Avoids a direct order but it is still team strategy.",
-                    "Offset strategies are common; fans accept this as racing.",
-                    "The undercut depends on lap time; Driver B's pace will decide."
+                    "The slower car is holding up the quicker one.",
+                    "It only makes sense if Driver A has priority for a reason the team has explained.",
+                    "Driver B may feel the team is protecting the wrong driver."
                   ]
                 }
               ],
-              "expertNote": "Elite teams manage this by letting the faster driver lead, then pitting strategically. Direct orders are a last resort when the title is on the line. Top teams minimize orders because they create tension.",
-              "sayThisLine": "Good teams let drivers race and use pit strategy to manage the outcome."
+              "expertNote": "A good team sets its rules for this before the race: who has priority, and when they swap back. Orders land better when the reason is clear and the rule is fair.",
+              "sayThisLine": "They swapped because he was faster, and they could afford it."
             }
           },
           {
@@ -785,42 +775,48 @@
             }
           },
           {
-            "id": "pd-04-mul-reserve-driver",
-            "type": "multiple-choice",
+            "id": "pd-04-seq-road-to-f1",
+            "type": "sequence-order",
             "conceptIds": [
-              "reserve-driver"
+              "feeder-series",
+              "super-licence",
+              "reserve-driver",
+              "junior-programme"
             ],
             "payload": {
-              "prompt": "What does a reserve driver do?",
-              "options": [
+              "prompt": "Put a typical road to an F1 race seat in order.",
+              "items": [
                 {
-                  "id": "a",
-                  "text": "Stands by to race if a main driver is sick or injured. Stays sharp with simulations and practice.",
-                  "explanation": "Right. The reserve is the backup and often a junior-programme driver."
+                  "id": "karts",
+                  "text": "Karting and junior single-seaters",
+                  "why": "Almost everyone starts in karts, then moves into single-seater categories as a teenager."
                 },
                 {
-                  "id": "b",
-                  "text": "Drives the second car in every race.",
-                  "explanation": "No. A reserve only drives if the main driver cannot. The second seat is a race driver."
+                  "id": "feeder",
+                  "text": "Feeder series: F3, then F2",
+                  "why": "These are the ladder to F1, where results and experience are built."
                 },
                 {
-                  "id": "c",
-                  "text": "Manages the team's spare cars and pit equipment.",
-                  "explanation": "That is a team role, not a driver role. The reserve is a racing licence."
+                  "id": "licence",
+                  "text": "Enough super licence points",
+                  "why": "Good finishes in approved series earn the points the FIA requires before a driver can race in F1."
                 },
                 {
-                  "id": "d",
-                  "text": "Replaces the team principal if the boss quits.",
-                  "explanation": "A reserve is a racing driver, not a business manager."
+                  "id": "reserve",
+                  "text": "Reserve or test driver for a team",
+                  "why": "Many drivers wait here, stay sharp and learn a team's systems while hoping for a seat."
+                },
+                {
+                  "id": "seat",
+                  "text": "A race seat",
+                  "why": "A seat opens through a retirement, a move or a promotion, and the prepared driver takes it."
                 }
               ],
-              "correctOptionIds": [
-                "a"
-              ],
+              "partialCredit": true,
               "explanation": {
-                "correct": "Right. The reserve driver is the team's backup racing licence, called up if a race driver cannot compete.",
-                "incorrect": "A reserve driver is a backup: they train, simulate and race only if needed.",
-                "sayThisLine": "The reserve races when the main driver cannot."
+                "correct": "Karts, then F3 and F2, then the super licence points, often a reserve role, then a race seat. Not every driver takes every step, but this is the usual shape.",
+                "incorrect": "The usual shape is junior racing, the F3 and F2 ladder, the super licence points, frequently a reserve role, and then a race seat.",
+                "sayThisLine": "He is on the ladder: F2 now, reserve next, then a seat."
               }
             }
           },
@@ -890,35 +886,35 @@
               "options": [
                 {
                   "id": "good",
-                  "text": "Mid-season driver-market speculation: who will drive for which team next year. Lots of gossip and rumours.",
+                  "text": "The driver market: rumours and deals about who will drive for which team next year.",
                   "isCorrect": true,
-                  "explanation": "Right. Silly season is the time when the paddock buzzes with seat moves."
+                  "explanation": "Right. Silly season is when seat moves are guessed at, leaked and finally announced."
                 },
                 {
                   "id": "neutral",
-                  "text": "A time when drivers make mistakes and crash.",
+                  "text": "A run of races where drivers keep making mistakes.",
                   "isCorrect": false,
-                  "explanation": "Not mistakes; speculation and rumours about contracts."
+                  "explanation": "Not mistakes on track. It is speculation about contracts and seats."
                 },
                 {
                   "id": "cringe",
-                  "text": "It is just gossip, not real news.",
+                  "text": "A charity event held between races.",
                   "isCorrect": false,
-                  "explanation": "It starts as gossip but often leads to real announcements. It is the paddock's main sport."
+                  "explanation": "Silly season is just the rumour period about driver contracts."
                 }
               ],
-              "translation": "Silly season is mid-season speculation and rumours about which drivers will move to which teams for next year.",
+              "translation": "Silly season is the stretch when the driver market heats up: who is staying, who is moving and who is out of a seat for next year.",
               "followUps": [
                 {
                   "line": "Why is it called silly season?",
-                  "why": "Because the paddock turns into a rumour mill. Things are announced, denied, then revealed as half-truths."
+                  "why": "Because the rumours fly so fast that half of them turn out to be wrong."
                 },
                 {
-                  "line": "Does silly season affect the race?",
-                  "why": "Sometimes. A driver rumoured to be leaving plays harder. Uncertainty can help or hurt performance."
+                  "line": "Does it affect the racing?",
+                  "why": "It can. A driver with an uncertain future is under pressure, and a driver who has just signed may be more relaxed."
                 }
               ],
-              "noFakeExpertNote": "Silly season is real speculation, not just fun. Contract news moves drivers, teams and the championship."
+              "noFakeExpertNote": "Silly season stories are often guesses. Asking who is reporting it is a good question."
             }
           },
           {
@@ -938,13 +934,13 @@
                   "id": "good",
                   "text": "Ferrari's famously passionate fans, especially in Italy. They create incredible atmosphere.",
                   "isCorrect": true,
-                  "explanation": "Right. The tifosi are legendary for their noise, colour and passion."
+                  "explanation": "Right. The tifosi are famous for their noise, colour and loyalty."
                 },
                 {
                   "id": "neutral",
                   "text": "All F1 fans around the world.",
                   "isCorrect": false,
-                  "explanation": "Tifosi is specifically Ferrari's fanbase, not all fans."
+                  "explanation": "Tifosi specifically means Ferrari's supporters, not every F1 fan."
                 },
                 {
                   "id": "cringe",
@@ -953,15 +949,15 @@
                   "explanation": "Tifosi are fans, not police. The word is Italian for supporters."
                 }
               ],
-              "translation": "The tifosi are Ferrari's passionate fanbase, especially strong in Italy. They create an electric atmosphere at Monza.",
+              "translation": "The tifosi are Ferrari's devoted fanbase, strongest in Italy. At Monza they pack the grandstands in red and traditionally pour onto the track after the race.",
               "followUps": [
                 {
-                  "line": "Why do the tifosi flood the track?",
-                  "why": "It is a tradition of celebration and loyalty. The FIA tries to stop it for safety, but it keeps happening."
+                  "line": "Why do they flood the track?",
+                  "why": "It is a long Monza tradition: once the cars are safely back, fans gather beneath the podium to celebrate."
                 },
                 {
                   "line": "Is Ferrari the only team with passionate fans?",
-                  "why": "No, but Ferrari fans are the most organized and famous for showing up in huge numbers."
+                  "why": "No, but the tifosi are the best known and their colour and noise make Monza unmistakable."
                 }
               ],
               "noFakeExpertNote": "Tifosi are fans, and fandom is part of the sport. Learn the culture, do not judge it."
@@ -1014,83 +1010,75 @@
             }
           },
           {
-            "id": "pd-05-mul-paddock-culture",
-            "type": "multiple-choice",
+            "id": "pd-05-bin-paddock",
+            "type": "binary-call",
             "conceptIds": [
               "paddock"
             ],
             "payload": {
-              "prompt": "What is the paddock?",
-              "options": [
+              "prompt": "In F1, the paddock is where...?",
+              "scene": {
+                "kind": "none",
+                "alt": "Text only: two meanings of the word paddock."
+              },
+              "choices": [
                 {
-                  "id": "a",
-                  "text": "The hospitality and team area behind the pits where drivers, engineers and team staff live during a race weekend.",
-                  "explanation": "Right. The paddock is the backstage world of F1: where deals happen, teams strategize, and drama unfolds."
+                  "id": "teams",
+                  "label": "Teams and staff work behind the pits"
                 },
                 {
-                  "id": "b",
-                  "text": "The area where fans stand to watch the race.",
-                  "explanation": "Fans are in the grandstands and general admission. The paddock is team territory only."
-                },
-                {
-                  "id": "c",
-                  "text": "The pit lane where cars are repaired.",
-                  "explanation": "The pit lane is separate. The paddock is the hospitality and motorhome area."
-                },
-                {
-                  "id": "d",
-                  "text": "The track where the race happens.",
-                  "explanation": "The track is the circuit. The paddock is the team area behind the pits."
+                  "id": "fans",
+                  "label": "Fans watch from the grandstand"
                 }
               ],
-              "correctOptionIds": [
-                "a"
-              ],
+              "correctChoiceId": "teams",
               "explanation": {
-                "correct": "Right. The paddock is the team sector: motorhomes, hospitality, engineers' offices and media zones behind the pits.",
-                "incorrect": "The paddock is the F1 social world: team bases, press centres and where the sport's people live during a race weekend.",
-                "sayThisLine": "The paddock is backstage: where teams live and deal-making happens."
-              }
+                "correct": "The paddock is the backstage area: team motorhomes, hospitality, media and offices. Deals get done and rumours start here.",
+                "incorrect": "Fans are in the grandstands. The paddock is the team and media area behind the pits, which is why people say the word when they mean the inside world of F1.",
+                "sayThisLine": "That is the talk in the paddock."
+              },
+              "ruleTag": "Paddock"
             }
           },
           {
             "id": "pd-05-mul-fandom",
             "type": "multiple-choice",
             "conceptIds": [
-              "driver-market",
-              "paddock"
+              "paddock",
+              "tifosi",
+              "drive-to-survive"
             ],
             "payload": {
-              "prompt": "What drives F1 fandom now?",
+              "prompt": "Why do so many fans follow one driver or team?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Driver loyalty, paddock drama, rivalries and the culture of teams and fans. Personality and story matter as much as speed.",
-                  "explanation": "Right. F1 is as much about people as it is about racing now."
+                  "text": "Stories and loyalty: rivalries, personalities and a team's history matter as much as who is fastest.",
+                  "explanation": "Right. Most fans pick a side for a personal reason, and the season becomes their story."
                 },
                 {
                   "id": "b",
-                  "text": "Betting and predictions on race outcomes.",
-                  "explanation": "Betting exists, but F1 marketing does not push it. The sport is about fandom, not wagering."
+                  "text": "Only the team with the most titles is ever followed.",
+                  "explanation": "Plenty of fans back small or struggling teams. Loyalty is about the story, not the trophy count."
                 },
                 {
                   "id": "c",
-                  "text": "The fastest driver always winning every race.",
-                  "explanation": "That is not how F1 works. Strategy, pit cycles, luck and reliability change the race."
+                  "text": "Fans are assigned a team by where they live.",
+                  "explanation": "Geography can help, like Italy and Ferrari, but people choose by driver, history or family."
                 },
                 {
                   "id": "d",
-                  "text": "Sponsorship logos and team budgets.",
-                  "explanation": "Sponsors matter to teams, but fans care about drivers, rivals and the story of the season."
+                  "text": "Fans follow whoever won the last race.",
+                  "explanation": "Some do, but most stay loyal through bad seasons. That loyalty is the point."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. F1 fandom is personal: you pick a driver or team and follow their journey, rivalry and drama.",
-                "incorrect": "F1 fandom is built on stories: driver loyalty, team rivalries, paddock drama and the culture of the sport.",
-                "sayThisLine": "F1 is not just racing. It is fandom, loyalty and the culture of the paddock."
+                "correct": "Fandom in F1 is personal. People pick a driver or team and follow their ups and downs, which is why asking who they support is such a good opener.",
+                "incorrect": "Most fans support a driver or team for a personal reason: a family habit, a favourite driver, a first race, a show. It is about the story, not just speed.",
+                "sayThisLine": "Who do you support, and how did that start?"
               }
             }
           }

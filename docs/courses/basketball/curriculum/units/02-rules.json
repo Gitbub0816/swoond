@@ -415,16 +415,16 @@
             "type": "sequence-order",
             "conceptIds": ["shooting-foul", "and-one"],
             "payload": {
-              "prompt": "Order the events when a player is fouled while shooting and makes the basket.",
+              "prompt": "Order an and-one, from contact to the free throw.",
               "items": [
-                {"id": "foul", "text": "Referee calls shooting foul", "why": "The foul happens during the shot attempt."},
-                {"id": "basket", "text": "Basket counts", "why": "The shot goes in before or after the foul call."},
-                {"id": "line", "text": "Player goes to the free-throw line", "why": "The and-one free throw is awarded."},
-                {"id": "shoot", "text": "Player shoots the free throw", "why": "One bonus attempt is given."}
+                {"id": "foul", "text": "A defender hits the shooter during the shot.", "why": "The contact happens as the shot goes up."},
+                {"id": "basket", "text": "The shot goes in.", "why": "A good shot is not cancelled by the foul."},
+                {"id": "line", "text": "The ref counts the basket and awards one free throw.", "why": "The whistle and the signal come with the made shot."},
+                {"id": "shoot", "text": "The shooter takes the free throw.", "why": "The bonus attempt is the last step."}
               ],
               "explanation": {
-                "correct": "Foul called, basket counts, then one free throw is shot. That's an and-one.",
-                "incorrect": "When fouled while shooting successfully: foul, basket counts, player shoots one bonus free throw."
+                "correct": "Contact, a good shot, then the ref counts the basket and sends the shooter to the line for one more. That extra point is what makes it an and-one.",
+                "incorrect": "An and-one runs in this order: contact on the shooter, the shot goes in, the ref counts it and awards one free throw, and then the free throw is shot."
               }
             }
           },
@@ -451,18 +451,18 @@
             "type": "say-this",
             "conceptIds": ["and-one", "shooting-foul"],
             "payload": {
-              "statement": {"speaker": "Jordan", "text": "He's in the bonus, so we get two free throws on the next foul."},
+              "statement": {"speaker": "Jordan", "text": "We're in the bonus, so any foul sends us to the line."},
               "question": "What does he mean?",
               "options": [
-                {"id": "a", "text": "The other team has committed enough fouls that all future fouls result in free throws", "isCorrect": true},
+                {"id": "a", "text": "The other team has used up its fouls, so each new foul means free throws", "isCorrect": true},
                 {"id": "b", "text": "A player just made a three-pointer and gets extra points", "isCorrect": false},
                 {"id": "c", "text": "The team has earned a reward for playing defense", "isCorrect": false},
                 {"id": "d", "text": "Subsequent fouls will be non-shooting fouls", "isCorrect": false}
               ],
-              "translation": "The other team has committed enough fouls in the quarter (five in the NBA) that your team is now in the team-foul bonus. Every additional foul will send your team to the free-throw line for two shots.",
+              "translation": "The other team has piled up team fouls this quarter (four in the NBA), so their next foul, and every one after, sends his team to the line for two shots.",
               "followUps": [
-                {"line": "How many fouls until the bonus kicks in?", "why": "Tests knowledge of the foul limit."},
-                {"line": "Do you reset the count each quarter?", "why": "Checks understanding that it resets."}
+                {"line": "How many fouls have they got?", "why": "It shows you know the bonus is a team count, and it is an easy question to answer."},
+                {"line": "Does that count reset every quarter?", "why": "It checks your picture of how the bonus works, and it does reset each quarter."}
               ],
               "noFakeExpertNote": "Asking 'how many team fouls did they have?' is always safe."
             }
@@ -483,14 +483,14 @@
             "payload": {
               "prompt": "Match the foul type to its definition.",
               "pairs": [
-                {"id": "tech", "term": "Technical foul", "definition": "Non-contact foul for unsporting conduct, arguing, delay of game, or other violations. Awards one free throw."},
-                {"id": "flag1", "term": "Flagrant-1 foul", "definition": "Excessive or unnecessary contact that endangers an opponent. Results in two free throws and a possession."},
-                {"id": "flag2", "term": "Flagrant-2 foul", "definition": "Extreme excessive force or dangerous play, resulting in ejection plus two free throws and possession."},
-                {"id": "intent", "term": "Intentional foul", "definition": "A deliberate foul (not based on judgment) to stop play or prevent an easy basket."}
+                {"id": "tech", "term": "Technical foul", "definition": "A conduct foul for arguing, taunting or delay, not ordinary contact. The other team shoots one free throw."},
+                {"id": "flag1", "term": "Flagrant-1 foul", "definition": "Unnecessary contact, more than a normal foul. Two free throws and the ball for the fouled team."},
+                {"id": "flag2", "term": "Flagrant-2 foul", "definition": "Unnecessary and excessive contact. The fouler is ejected; two free throws and the ball for the other team."},
+                {"id": "intent", "term": "Intentional foul", "definition": "A deliberate foul to stop the clock or the play, not an attempt to play the ball. It can cost extra free throws."}
               ],
               "explanation": {
-                "summary": "Fouls outside normal contact (technical), excessively hard contact (flagrant), and deliberate stops (intentional) all have distinct penalties.",
-                "sayThisLine": "Tech, flagrant, intentional—all different."
+                "summary": "A technical is about conduct, a flagrant is contact that goes too far, and an intentional foul is a deliberate stop. Each has its own penalty.",
+                "sayThisLine": "\"That was a flagrant. It was more than a normal foul.\""
               }
             }
           },
@@ -507,8 +507,8 @@
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Technical foul. Arguing or complaining to the ref earns a tech.",
-                "incorrect": "A coach or player arguing with the referee or being disrespectful receives a technical foul."
+                "correct": "A technical foul is for conduct, and a coach who shouts at the ref can get one. The other team shoots a free throw, and a second technical means ejection.",
+                "incorrect": "Delay of game is about stalling, and unsportsmanlike conduct on a player is not what the coach did. A coach who argues or shows up an official is given a technical foul."
               }
             }
           },
@@ -517,16 +517,16 @@
             "type": "multiple-choice",
             "conceptIds": ["team-fouls-bonus"],
             "payload": {
-              "prompt": "The opposing team has committed five fouls in the quarter in the NBA. What happens on the next foul?",
+              "prompt": "The other team has four fouls this NBA quarter. It commits another. What happens?",
               "options": [
-                {"id": "a", "text": "Regular play continues, no free throws"},
+                {"id": "a", "text": "Play continues with a throw-in and no free throws"},
                 {"id": "b", "text": "Your team shoots two free throws"},
                 {"id": "c", "text": "Your team shoots one free throw and keeps the ball"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Your team is in the bonus and shoots two free throws on every subsequent foul (even non-shooting fouls).",
-                "incorrect": "Once a team reaches five fouls in a quarter (NBA), the other team is in the bonus and shoots two free throws for all future fouls."
+                "correct": "After four team fouls in a quarter, the fifth and every later foul sends the other team to the line for two shots, even when nobody was shooting.",
+                "incorrect": "In the NBA, four team fouls in a quarter put a team in the penalty. Its next foul gives the opponent two free throws whether or not the player was shooting."
               }
             }
           },
@@ -543,8 +543,8 @@
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Flagrant-2 results in ejection (throw-out), two free throws, and possession. Excessive force is not tolerated.",
-                "incorrect": "A flagrant-2 foul is extreme. The player is ejected, the opponent shoots two free throws, and gets the ball back."
+                "correct": "A flagrant-2 is the top tier: the defender is thrown out, the fouled player shoots two free throws, and their team keeps the ball afterward.",
+                "incorrect": "A flagrant-2 is more than a technical or a standard foul. The fouler is ejected, the fouled team shoots two free throws and then gets the ball back."
               }
             }
           },
@@ -554,14 +554,14 @@
             "conceptIds": ["team-fouls-bonus"],
             "payload": {
               "prompt": "Complete the NBA bonus foul rule.",
-              "template": "When a team commits {{count}} fouls in a quarter, the opposing team shoots {{shots}} free throws on all subsequent fouls.",
+              "template": "After a team commits {{count}} fouls in an NBA quarter, every foul after that gives the opponent {{shots}} free throws.",
               "gaps": [
-                {"id": "count", "options": ["three", "five", "seven"], "correct": "five"},
+                {"id": "count", "options": ["two", "four", "seven"], "correct": "four"},
                 {"id": "shots", "options": ["one", "two", "three"], "correct": "two"}
               ],
               "explanation": {
-                "correct": "Right. Five fouls = bonus. Two free throws on every foul thereafter. College: seven for one-and-one, ten for two.",
-                "incorrect": "NBA: five fouls in a quarter triggers the bonus. All subsequent fouls = two free throws."
+                "correct": "Four team fouls in a quarter puts a team in the penalty, so its fifth and later fouls mean two free throws each. The count starts over every quarter.",
+                "incorrect": "The NBA penalty starts after four team fouls in a quarter, and each foul after that means two free throws. College counts differently, by half, and uses seven and ten."
               }
             }
           }
@@ -601,8 +601,8 @@
               ],
               "correctChoiceId": "charge",
               "explanation": {
-                "correct": "Charge. The defender was set first (feet planted, legal position) before the offensive player initiated contact.",
-                "incorrect": "If the defender establishes legal guarding position (feet on floor, hands up or down) before the offensive player commits to driving into them, it's a charge."
+                "correct": "The defender got to the spot first and was set, feet planted in a legal guarding position, before the driver made contact. That makes the contact the driver's fault: a charge.",
+                "incorrect": "When a defender is already set in a legal spot and the offensive player runs into them, the offensive player is responsible. A block is the call when the defender is still moving or late to the spot."
               },
               "ruleTag": "Charge determination"
             }
@@ -612,16 +612,16 @@
             "type": "binary-call",
             "conceptIds": ["restricted-area-arc"],
             "payload": {
-              "prompt": "A help defender is in the restricted arc under the basket. An offensive player drives into them. Can it be a charge?",
-              "scene": {"kind": "none", "alt": "A defender in the restricted arc touching the offensive player driving to the basket."},
+              "prompt": "A help defender stands inside the restricted arc. A driver runs into him. Charge?",
+              "scene": {"kind": "none", "alt": "A help defender stands set inside the small arc under the basket, and a driver from the wing runs into him."},
               "choices": [
                 {"id": "charge", "label": "Charge"},
-                {"id": "block", "label": "Block"}
+                {"id": "no-charge", "label": "Not a charge"}
               ],
-              "correctChoiceId": "block",
+              "correctChoiceId": "no-charge",
               "explanation": {
-                "correct": "Block. A defender in the restricted area cannot draw a charge; it's automatically a blocking foul (unless the defender is the primary defender).",
-                "incorrect": "Secondary defenders in the restricted arc cannot draw a charge. Contact in that area is a blocking foul on the defender."
+                "correct": "A secondary, or help, defender standing in the restricted-area arc cannot draw a charge. The arc keeps rim collisions from being decided by who falls down.",
+                "incorrect": "The restricted-area rule protects drivers from help defenders who slide in under the rim. Contact there is not a charge on the driver, and the defender may even be called for a block."
               },
               "ruleTag": "Restricted area rule"
             }
@@ -631,16 +631,16 @@
             "type": "binary-call",
             "conceptIds": ["verticality"],
             "payload": {
-              "prompt": "A defender has hands straight up (vertical) and does not move. An offensive player runs into the defender's hands. Foul?",
-              "scene": {"kind": "none", "alt": "A defender with arms raised straight up, standing still. An offensive player collides into the vertical hands."},
+              "prompt": "A set defender keeps both hands straight up. A driver runs into his chest. Foul on the defender?",
+              "scene": {"kind": "none", "alt": "A defender stands still with both arms straight up above the shoulders. A driver runs into his chest."},
               "choices": [
-                {"id": "yes", "label": "Block (defensive foul)"},
-                {"id": "no", "label": "No foul (charge or play-on)"}
+                {"id": "yes", "label": "Yes, a block"},
+                {"id": "no", "label": "No, not on the defender"}
               ],
               "correctChoiceId": "no",
               "explanation": {
-                "correct": "No foul. Verticality allows a defender to move arms straight up. If the ball handler runs into vertical hands, the ball handler committed the foul.",
-                "incorrect": "A defender can move arms vertically without fouling. If the ball handler runs into vertical hands, the ball handler committed the foul, not the defender."
+                "correct": "A defender who stays in his own space with hands straight up is playing by the verticality rule. If the driver runs into him, the responsibility is on the driver.",
+                "incorrect": "Verticality lets a defender go straight up without penalty. Reaching out or leaning into the driver would be a foul, but standing tall and still is not."
               },
               "ruleTag": "Verticality rule"
             }
@@ -650,22 +650,22 @@
             "type": "hotspot-tap",
             "conceptIds": ["restricted-area-arc"],
             "payload": {
-              "prompt": "Tap the restricted area (the 4-foot arc where charges cannot be drawn).",
+              "prompt": "Tap the restricted-area arc under the basket.",
               "diagram": {
-                "diagramId": "basketball-court-restricted-area",
-                "aspectRatio": 1.5,
-                "alt": "A basketball court showing the restricted area arc under both baskets."
+                "diagramId": "bball-half-court",
+                "aspectRatio": 1.06,
+                "alt": "Half-court diagram. The rim sits near the bottom edge with a small semicircle around it. The lane rises above it, with the elbow at each top corner of the lane and a wing out to the side."
               },
               "hotspots": [
-                {"id": "arc-a", "label": "Restricted area", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.05, "r": 0.03}},
-                {"id": "arc-b", "label": "Restricted area", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.95, "r": 0.03}},
-                {"id": "elbow", "label": "Elbow", "shape": {"kind": "circle", "cx": 0.35, "cy": 0.25, "r": 0.02}},
-                {"id": "wing", "label": "Wing", "shape": {"kind": "circle", "cx": 0.15, "cy": 0.5, "r": 0.02}}
+                {"id": "arc", "label": "Restricted-area arc", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.888, "r": 0.07}},
+                {"id": "elbow", "label": "Elbow", "shape": {"kind": "circle", "cx": 0.34, "cy": 0.596, "r": 0.05}},
+                {"id": "wing", "label": "Wing", "shape": {"kind": "circle", "cx": 0.12, "cy": 0.5, "r": 0.07}},
+                {"id": "top", "label": "Top of the key", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.4, "r": 0.06}}
               ],
-              "correctHotspotIds": ["arc-a", "arc-b"],
+              "correctHotspotIds": ["arc"],
               "explanation": {
-                "correct": "Right. The restricted area is the 4-foot arc. Help defenders here cannot draw charges.",
-                "incorrect": "The restricted area is the arc under the basket. Secondary defenders in this area commit a blocking foul if contact occurs."
+                "correct": "The restricted area is the small semicircle right under the rim, 4 feet out. A help defender standing in it cannot draw a charge.",
+                "incorrect": "That is another spot on the floor. The restricted area is the small semicircle directly under the basket, where a help defender cannot draw a charge."
               }
             }
           },
@@ -674,20 +674,20 @@
             "type": "say-this",
             "conceptIds": ["charge", "blocking-foul"],
             "payload": {
-              "statement": {"speaker": "Casey", "text": "That was a charge, he wasn't even in position."},
+              "statement": {"speaker": "Casey", "text": "That should have been a charge. He was set before the driver got there."},
               "question": "What is Casey saying?",
               "options": [
-                {"id": "a", "text": "The defender was not set before the offensive player made contact", "isCorrect": false},
-                {"id": "b", "text": "The defender had an illegal position when contact happened", "isCorrect": false},
-                {"id": "c", "text": "The call was a block but should have been a charge", "isCorrect": true},
-                {"id": "d", "text": "The defender moved into the path after the play started", "isCorrect": true}
+                {"id": "a", "text": "The defender was late, so a block was the right call", "isCorrect": false},
+                {"id": "b", "text": "The defender got in place first, so the driver caused the contact", "isCorrect": true},
+                {"id": "c", "text": "The defender fouled the driver while the ball was in the air", "isCorrect": false},
+                {"id": "d", "text": "The driver took too many steps before contact", "isCorrect": false}
               ],
-              "translation": "Casey believes the defensive player was not set or established legal guarding position in time, so contact is a blocking foul on the defender, not a charge on the ball handler. The defender should not have been called for a charge.",
+              "translation": "Casey thinks the defender beat the driver to the spot and was set, so the contact was the driver's responsibility: an offensive foul, not a block on the defender.",
               "followUps": [
-                {"line": "Were they in the restricted area?", "why": "Tests if location changes the call."},
-                {"line": "Did the defender have time to get set?", "why": "Asks about establishing position."}
+                {"line": "Was he outside the restricted area?", "why": "Location can change the call, so it is a smart question to ask."},
+                {"line": "Did his feet get set in time?", "why": "Timing of the defender's position is the heart of a charge call."}
               ],
-              "noFakeExpertNote": "Charge-block is one of the most debated calls in basketball. Saying 'I thought it was a charge' is always okay."
+              "noFakeExpertNote": "Charge versus block is one of the most argued calls in the sport. Saying 'I thought he was set' is a fair, honest take."
             }
           }
         ]
@@ -712,8 +712,8 @@
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Yes, goaltending. Once a shot is on its way down toward the basket or on the rim, it cannot be touched. The basket counts automatically.",
-                "incorrect": "Goaltending occurs when a player touches a shot that is heading down toward the basket or already on the rim."
+                "correct": "Once a shot is on its way down toward the basket, above the rim and with a chance to score, nobody may touch it. The shooting team is awarded the points.",
+                "incorrect": "A shot on its downward path toward the rim is off limits. Touching it is goaltending, and if a defender does it, the basket is counted as good."
               },
               "ruleTag": "Goaltending definition"
             }
@@ -723,18 +723,18 @@
             "type": "binary-call",
             "conceptIds": ["goaltending"],
             "payload": {
-              "prompt": "A ball bouncing up off the rim toward the basket is swatted by a defender. Goaltending?",
-              "scene": {"kind": "none", "alt": "A ball bouncing up from the rim is struck by a defender's hand."},
+              "prompt": "A shot is resting on the rim when a defender flicks it off. Violation?",
+              "scene": {"kind": "none", "alt": "A ball sits on the rim while a defender's hand reaches up and knocks it off."},
               "choices": [
-                {"id": "yes", "label": "Goaltending"},
+                {"id": "yes", "label": "Basket interference"},
                 {"id": "no", "label": "Legal"}
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Yes, goaltending. A ball on the rim bouncing upward is still part of a live shot. Touching it is goaltending.",
-                "incorrect": "Goaltending includes any touch of a ball that is above the rim or on the rim, whether falling or rising."
+                "correct": "Once the ball is on the rim, it is the basket's to settle. Touching it is basket interference, and the shooting team is awarded the points.",
+                "incorrect": "A ball on the rim is still a live shot. Knocking it off is basket interference, which is goaltending's close cousin."
               },
-              "ruleTag": "Upward trajectory"
+              "ruleTag": "Basket interference"
             }
           },
           {
@@ -742,41 +742,36 @@
             "type": "binary-call",
             "conceptIds": ["goaltending"],
             "payload": {
-              "prompt": "A shot bounces off the rim, clears the rim area completely, and is on the way down again. Can a defender touch it now?",
-              "scene": {"kind": "none", "alt": "A rebound falling back down toward the basket after bouncing away from the rim."},
+              "prompt": "A miss bounces far from the rim and drops toward the floor. Can a defender grab it?",
+              "scene": {"kind": "none", "alt": "A missed shot bounces well away from the rim and falls toward the floor, where a defender reaches for it."},
               "choices": [
                 {"id": "yes", "label": "Legal (no goaltending)"},
                 {"id": "no", "label": "Goaltending"}
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Legal. Once the ball clears the rim and basket area, it's a live rebound. Anyone can grab it.",
-                "incorrect": "Goaltending only applies to a live shot attempt. Once a rebound clears the basket area, it is a free ball."
+                "correct": "Legal. Once a miss has bounced clear of the rim with no chance to score, it is a live rebound and anyone can grab it.",
+                "incorrect": "Goaltending only protects a shot that still has a chance to score. A rebound that has left the basket area is a free ball."
               },
               "ruleTag": "When goaltending ends"
             }
           },
           {
             "id": "rul-07-ht-basket",
-            "type": "hotspot-tap",
+            "type": "multiple-choice",
             "conceptIds": ["basket-interference"],
             "payload": {
-              "prompt": "Tap the area where touching the rim or backboard can result in basket interference.",
-              "diagram": {
-                "diagramId": "basketball-basket-close-up",
-                "aspectRatio": 1.2,
-                "alt": "A close-up of the basketball rim, backboard and net, showing the area where interference can occur."
-              },
-              "hotspots": [
-                {"id": "rim", "label": "Rim", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.5, "r": 0.08}},
-                {"id": "backboard", "label": "Backboard", "shape": {"kind": "rect", "x": 0.35, "y": 0.05, "w": 0.3, "h": 0.15}},
-                {"id": "net", "label": "Net", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.6, "r": 0.1}},
-                {"id": "side", "label": "Side of court", "shape": {"kind": "circle", "cx": 0.15, "cy": 0.5, "r": 0.08}}
+              "prompt": "Which of these is basket interference?",
+              "options": [
+                {"id": "a", "text": "Grabbing the rim while a shot is in the air"},
+                {"id": "b", "text": "Jumping to block a shot on its way up"},
+                {"id": "c", "text": "Rebounding a miss that has left the rim area"},
+                {"id": "d", "text": "Contesting a shot with a hand in the shooter's face"}
               ],
-              "correctHotspotIds": ["rim", "backboard", "net"],
+              "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Right. Basket interference involves the rim, backboard, or net while a shot is in the air.",
-                "incorrect": "Basket interference is illegally touching the rim, backboard, or net during a live shot attempt."
+                "correct": "Grabbing or shaking the rim or backboard while a shot is live can change where the ball goes, so it is basket interference. A blocked or rebounded ball is normal play.",
+                "incorrect": "Blocking a shot on its way up, rebounding a clear miss and a hand in the face are all ordinary defense. Basket interference means touching the rim, the net or the backboard so as to affect a live shot."
               }
             }
           },
@@ -785,16 +780,16 @@
             "type": "multiple-choice",
             "conceptIds": ["basket-interference"],
             "payload": {
-              "prompt": "A player reaches through the net and touches the ball as it falls into the basket. What happens?",
+              "prompt": "A defender reaches up through the net and touches the ball. What happens?",
               "options": [
-                {"id": "a", "text": "The basket does not count"},
-                {"id": "b", "text": "The basket counts anyway (basket interference does not negate a made basket)"},
-                {"id": "c", "text": "Two free throws are awarded instead"}
+                {"id": "a", "text": "The basket is waved off"},
+                {"id": "b", "text": "The shooting team is awarded the basket"},
+                {"id": "c", "text": "The defense gets the ball at the baseline"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "The basket counts. Basket interference is a violation, but a made basket still counts. It's a technical situation.",
-                "incorrect": "Unlike goaltending, basket interference does not negate a made basket. The basket counts and it is a violation on the defender."
+                "correct": "Defensive basket interference is a violation, so the shooting team is awarded the points. Reaching up through the net from below is never allowed.",
+                "incorrect": "The defense cannot cancel a shot by touching it from under the net. The violation is on the defender and the shooting team gets the points. Only an offensive player's interference wipes out a basket."
               }
             }
           }
@@ -812,22 +807,22 @@
             "type": "visual-id",
             "conceptIds": ["referee-signals"],
             "payload": {
-              "prompt": "Which referee hand signal indicates a foul?",
+              "prompt": "Which signal stops the clock for a foul?",
               "image": {
                 "asset": "referee-signals-fouls.png",
-                "alt": "Four different referee hand signals: waving arms, pointing, arms in a T, and hands on chest.",
+                "alt": "Illustration of a referee with one closed fist raised overhead, the first signal given when a foul is called.",
                 "license": "original-swoond"
               },
               "options": [
-                {"id": "a", "text": "Pointing directly at the player"},
-                {"id": "b", "text": "Waving both arms horizontally"},
-                {"id": "c", "text": "Making a T with both arms"},
-                {"id": "d", "text": "Hands placed on chest"}
+                {"id": "a", "text": "A closed fist raised overhead"},
+                {"id": "b", "text": "Both arms swept out to the sides"},
+                {"id": "c", "text": "Both palms held flat in front of the chest"},
+                {"id": "d", "text": "One hand waved over the head"}
               ],
               "correctOptionId": "a",
               "explanation": {
-                "correct": "Right. Refs point to indicate a foul and which team gets the ball.",
-                "incorrect": "A referee signals a foul by pointing at the player and indicating which team gets the ball."
+                "correct": "The referee raises a closed fist to stop the clock when a foul is called. After that come the signals for the type of foul and the number of the player.",
+                "incorrect": "A foul starts with a raised closed fist, which stops the clock. The signals that show which foul it was, and who committed it, come afterward."
               }
             }
           },
@@ -839,19 +834,19 @@
               "prompt": "What hand signal do referees use to call a timeout?",
               "image": {
                 "asset": "referee-signals-timeout.png",
-                "alt": "Four referee hand signals: pointing up, making a T with arms, open hand wave, and one arm extended.",
+                "alt": "Illustration of a referee holding one hand flat across the fingertips of the other, forming a T.",
                 "license": "original-swoond"
               },
               "options": [
-                {"id": "a", "text": "Both arms up in a T shape"},
+                {"id": "a", "text": "One hand flat across the other, forming a T"},
                 {"id": "b", "text": "One finger pointing up"},
                 {"id": "c", "text": "Open hand wave across chest"},
                 {"id": "d", "text": "One arm extended to the side"}
               ],
               "correctOptionId": "a",
               "explanation": {
-                "correct": "Right. The T signal (hands up and out) means timeout.",
-                "incorrect": "Refs signal a timeout by making a T with their arms—one arm vertical, one horizontal."
+                "correct": "The T, one hand flat against the fingertips of the other, is the universal sign for a timeout, like the one your coach calls or a player asks for.",
+                "incorrect": "A timeout is signaled by forming a T with the hands: one hand flat across the fingertips of the other. Pointing and waving signals mean other things."
               }
             }
           },
@@ -863,19 +858,19 @@
               "prompt": "How do referees signal a jump ball?",
               "image": {
                 "asset": "referee-signals-jumpball.png",
-                "alt": "Four referee hand signals: pointing up, waving arms in a circle, both hands clasped, and arms extended wide.",
+                "alt": "Illustration of a referee with both thumbs pointing up, fists closed, arms raised in front of the chest.",
                 "license": "original-swoond"
               },
               "options": [
-                {"id": "a", "text": "Both hands moving upward with fingers spread"},
+                {"id": "a", "text": "Both thumbs pointing up"},
                 {"id": "b", "text": "One arm pointing straight up"},
                 {"id": "c", "text": "Arms moving in a circle"},
                 {"id": "d", "text": "Both hands clasped together"}
               ],
               "correctOptionId": "a",
               "explanation": {
-                "correct": "Right. Both hands up with fingers spread indicates a jump ball.",
-                "incorrect": "Refs signal a jump ball by moving both hands up with fingers spread open."
+                "correct": "Two thumbs up signals a jump ball, meaning a tie-up. The possession arrow settles who gets the ball.",
+                "incorrect": "A jump ball, or tie-up, is signaled with both thumbs up. One arm straight up or waving arms mean other things."
               }
             }
           },
@@ -892,8 +887,8 @@
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Yes. In the NBA, a coach gets a second challenge if the first is successful. A third challenge is not allowed.",
-                "incorrect": "NBA rules as of 2025-26: a coach can challenge once, and if successful, earns a second challenge."
+                "correct": "Under the current NBA rule, a coach has one challenge per game, and a successful one earns a second. A coach needs a timeout in hand to challenge, so it is a real cost.",
+                "incorrect": "The NBA lets a coach challenge a call once, and a successful challenge earns a second. The rule has been tweaked before, so check the current version if the details matter."
               }
             }
           },
@@ -905,13 +900,13 @@
               "prompt": "What is the NBA's Last-Two-Minute (L2M) report?",
               "options": [
                 {"id": "a", "text": "A live feed of player statistics in the final minutes"},
-                {"id": "b", "text": "An official document released after games reviewing all calls in the final two minutes"},
+                {"id": "b", "text": "An official report released after close games reviewing the calls and non-calls in the final two minutes"},
                 {"id": "c", "text": "A coach's challenge review system"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "The L2M report reviews all fouls and judgment calls in the final two minutes for transparency and accountability.",
-                "incorrect": "The NBA releases an L2M report after each game showing all fouls, timing, and whether calls were correct or missed."
+                "correct": "The league reviews the calls, and missed calls, from the closing minutes of tight games and publishes its verdicts. Fans use it to settle arguments about the refs.",
+                "incorrect": "The L2M report is not a live feed or a coaching tool. It is the league's after-the-fact review of calls in the last two minutes of close games, published for transparency."
               }
             }
           }
