@@ -1,8 +1,8 @@
-# Astra Roadmap: Wave 1 and Wave 2 build order (58 sims)
+# Astra Roadmap: Wave 1, Wave 2 and Wave 3 build order (59 sims)
 
-Recommended order for building the Swoon Game Kit and the 58 Tier A sims (41 Wave 1 in phases 0-5, 17 Wave 2 in phases 6-8). Inputs: the 58 sim specs (`docs/courses/*/sims/`), the consolidated additions in `GAME_KIT.md` section 5 (GK-1 to GK-20 for Wave 1; GK-21 to GK-26, extensions and modules in section 5.5 for Wave 2), and the course notes. Astra owns the actual plan; this is our recommendation and the reasoning behind it. All 58 specs are still `spec-draft`: each needs review to `spec-approved` before its build starts (see "Gates"). Six Wave 2 courses (cooking, music, pottery, camping, books, fashion) have no sims by design.
+Recommended order for building the Swoon Game Kit and the 59 Tier A sims (41 Wave 1 in phases 0-5, 17 Wave 2 in phases 6-8, 1 Wave 3 in phase 9). Inputs: the 59 sim specs (`docs/courses/*/sims/`), the consolidated additions in `GAME_KIT.md` section 5 (GK-1 to GK-20 for Wave 1; GK-21 to GK-26, extensions and modules in section 5.5 for Wave 2; GK-27 and GK-28 in section 5.6 for Wave 3), and the course notes. Astra owns the actual plan; this is our recommendation and the reasoning behind it. All 59 specs are still `spec-draft`: each needs review to `spec-approved` before its build starts (see "Gates"). Six Wave 2 courses (cooking, music, pottery, camping, books, fashion) have no sims by design.
 
-Sim counts: American Football 5, NASCAR 6, Formula 1 6, Pickleball 5, Hockey 6, Soccer 6, Basketball 6, Hiking 1 = 41 (Wave 1). Baseball 3, Golf 4, Tennis 3, Movies 2, Photography 3, Video Games 1, Cars 1 = 17 (Wave 2). Total 58.
+Sim counts: American Football 5, NASCAR 6, Formula 1 6, Pickleball 5, Hockey 6, Soccer 6, Basketball 6, Hiking 1 = 41 (Wave 1). Baseball 3, Golf 4, Tennis 3, Movies 2, Photography 3, Video Games 1, Cars 1 = 17 (Wave 2). Climbing 1 = 1 (Wave 3). Total 59.
 
 ## Ordering principles
 
@@ -98,6 +98,10 @@ One shared primitive, GK-21 `PhysicalCamera`, unlocks both the film and photogra
 
 `games.controls.aim-assist.v1`: Controls module (`ReticleAim`, `RateStick`, `AimAssist` variants), GK-26 `TrackingObjective`, `drag-relative`, `aim_range`. It needs almost nothing else, so it is scheduled last alongside the isolated hiking sim. Gate: the 20-plus novice playtest against the native `mech-02-alt` with an 8-point concept-check lead; if it fails, drop the sim and rename `mech-02-alt` to `mech-02` (P-21).
 
+## Phase 9 - Wave 3: Climbing (1 sim, last, cut-first candidate)
+
+`climbing.bouldering.problem-read.v1` (Read the Wall): the only Wave 3 sim and the weakest Tier A case in the catalog (camera perspective is real, but a native side-profile hotspot gets most of the learning; native fallback lesson `rw-08`; P-38). It needs two new single-consumer items, GK-27 `WallBuilder` (with `WallPanel`, `Volume`, `HoldShape`, environment key `climbing_wall`) and GK-28 `AngleGauge`, plus the `orbit-wall` camera preset (GK-19 family). Dependencies: Phase 0 core (Simulation, DecisionPoint GK-3 multi-select, objectives GK-12 `choose_target`, `CameraRig` GK-19, Highlight), nothing from the sport modules. Schedule after phase 8 and only if capacity allows; if cut, replace `rw-06`, `rw-07`, `bb-03`, `pr-02` with `hotspot-tap` and `multiple-choice`. Gate: qualified climbing reviewer (S-20) and a route-setter check of the "where the crux usually is" heuristic.
+
 ## Summary table
 
 | Phase | Sims | New kit items introduced | Cumulative sims |
@@ -112,6 +116,7 @@ One shared primitive, GK-21 `PhysicalCamera`, unlocks both the film and photogra
 | 7 | 5 | GK-21, GK-22, GK-23, Film module | 56 |
 | 8 | 1 | Controls module, GK-26 | 57 |
 | 2b (or after 8) | 1 | `corner_topdown`, `GripMeter` (cars drive-layout, inside the NASCAR cluster if its playtest gate is done) | 58 |
+| 9 | 1 | GK-27 `WallBuilder`, GK-28 `AngleGauge`, `orbit-wall` (climbing; cut-first) | 59 |
 
 ## Gates checklist (before each sim starts)
 

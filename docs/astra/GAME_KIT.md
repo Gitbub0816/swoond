@@ -333,3 +333,32 @@ Reuse without new requests: GK-3 chip selector (golf club choice, film and photo
 3. **P3 (single sim each):** GK-22 `DepthOfFieldPass`, GK-23 `SoftLight`, `PitchFlight`, `GripMeter`; GK-20 golf-green extensions ride with the hiking Terrain build.
 
 The build sequence is in `docs/astra/ROADMAP.md` phases 6 to 8.
+
+## 5.6 Requested additions (Wave 3)
+
+Consolidated 2026-09-30 from the "Game Kit additions requested" section of the only Wave 3 sim spec, `climbing.bouldering.problem-read.v1` (Read the Wall; thin Tier A, cut-first candidate, P-38). The other six Wave 3 courses (horror-films, anime, k-pop, wine, coffee, skincare) are zero-Unity by design and request nothing. After deduplication: **2 new generic primitives (GK-27, GK-28), 1 camera preset in an existing family, 1 environment key, 0 sport module** (Astra may promote `WallBuilder` and `HoldShape` to a `Swoond.Climbing` module if a second climbing sim appears; climbing spec open question 2).
+
+### 5.6.1 New generic primitives
+
+| ID | Primitive (merged from) | Req | Reuse | Sims |
+|---|---|---|---|---|
+| GK-27 | **`WallBuilder`** with `WallPanel`, `Volume` and `HoldShape`: procedural, data-driven 3D shape builder (angled panels, corners, features, shaped holds with a facing direction); no climber figure. Environment key `climbing_wall`. | climb.read | Golf green reading, skiing terrain, architecture and sculpture "read a 3D shape" lessons | 1 |
+| GK-28 | **`AngleGauge`** (Highlight variant): live numeric and arc readout of a surface angle against vertical, with a corner sign (inside or outside). | climb.read | Terrain slope lessons (GK-20), ramp and banking lessons | 1 |
+
+### 5.6.2 Extensions and reuse (not new IDs)
+
+| Extends | Wave 3 addition | Req |
+|---|---|---|
+| GK-19 `CameraRig` presets | `orbit-wall` (orbit around a wall with side-profile snap); camera preset family of `orbit`, `oblique-low` | climb.read |
+
+Reuse without new requests: GK-3 (multi-select `DecisionPoint` for choosing start holds) and GK-12 (`choose_target` objective).
+
+### 5.6.3 Registry keys to add (GAME_KIT section 3)
+
+- **Environments:** `climbing_wall`.
+- **Camera presets:** `orbit-wall`.
+- **Highlight variants:** `AngleGauge`.
+
+### 5.6.4 Priority for Astra (Wave 3)
+
+Last. One sim, weakest Tier A case in the catalog (a native side-profile `hotspot-tap` gets most of the learning; native fallback `rw-08`); schedule after everything else or cut (ROADMAP phase 9). GK-27 and GK-28 are single-consumer today, so do not build them ahead of need.
