@@ -19,23 +19,54 @@
           {
             "id": "structure-01-ht-divisions",
             "type": "hotspot-tap",
-            "conceptIds": ["conference-division"],
+            "conceptIds": [
+              "conference-division"
+            ],
             "payload": {
-              "prompt": "Which division do the {{team|Patriots}} belong to?",
+              "prompt": "Which division are the Patriots in?",
               "diagram": {
                 "diagramId": "nfl-conferences-divisions",
                 "alt": "NFL map showing the AFC and NFC with their four divisions each."
               },
               "hotspots": [
-                {"id": "afc-east", "label": "AFC East", "shape": {"kind": "circle", "cx": 0.15, "cy": 0.35, "r": 0.08}},
-                {"id": "afc-north", "label": "AFC North", "shape": {"kind": "circle", "cx": 0.2, "cy": 0.55, "r": 0.08}},
-                {"id": "nfc-east", "label": "NFC East", "shape": {"kind": "circle", "cx": 0.85, "cy": 0.35, "r": 0.08}}
+                {
+                  "id": "afc-east",
+                  "label": "AFC East",
+                  "shape": {
+                    "kind": "circle",
+                    "cx": 0.15,
+                    "cy": 0.35,
+                    "r": 0.08
+                  }
+                },
+                {
+                  "id": "afc-north",
+                  "label": "AFC North",
+                  "shape": {
+                    "kind": "circle",
+                    "cx": 0.2,
+                    "cy": 0.55,
+                    "r": 0.08
+                  }
+                },
+                {
+                  "id": "nfc-east",
+                  "label": "NFC East",
+                  "shape": {
+                    "kind": "circle",
+                    "cx": 0.85,
+                    "cy": 0.35,
+                    "r": 0.08
+                  }
+                }
               ],
-              "correctHotspotIds": ["afc-east"],
+              "correctHotspotIds": [
+                "afc-east"
+              ],
               "explanation": {
-                "correct": "The {{team|Patriots}} are in the AFC East with Baltimore, Buffalo and Miami. They play each other twice and then 11 other AFC and NFC teams once each.",
-                "incorrect": "The AFC East has four teams in the northeast. If they are the {{team|Patriots}}, this is home.",
-                "sayThisLine": "AFC East. We play them twice a year."
+                "correct": "New England is in the AFC East with Buffalo, Miami and the Jets. Teams play each division rival twice a year, and the rest of the schedule comes from other divisions.",
+                "incorrect": "The AFC East is four teams in the northeast: New England, Buffalo, Miami and the Jets. Divisions group rivals who play each other twice a year.",
+                "sayThisLine": "New England is in the AFC East."
               }
             },
             "xp": 10
@@ -123,34 +154,36 @@
           {
             "id": "playoffs-02-sq-playoff-path",
             "type": "sequence-order",
-            "conceptIds": ["playoff-seeding"],
+            "conceptIds": [
+              "playoff-seeding"
+            ],
             "payload": {
               "prompt": "Put the path to the Super Bowl in order.",
               "items": [
                 {
                   "id": "wild-card",
                   "text": "Win the wild-card playoff game",
-                  "why": "Seven teams per conference make it: four division winners plus three wild cards. The wild cards play each other first."
+                  "why": "Seven teams per conference make the playoffs, and the top seed gets a bye. Seeds 2 through 7 play the wild-card round."
                 },
                 {
                   "id": "divisional",
                   "text": "Win your divisional playoff game",
-                  "why": "The division winners rest while wild cards play. In the divisional round, the number-one seed plays the wild-card winner."
+                  "why": "The top seed joins the winners of the wild-card games. Four teams per conference play the divisional round."
                 },
                 {
                   "id": "conference",
                   "text": "Win your conference championship",
-                  "why": "The last four standing from your conference face off in the divisional round. Two winners go to the conference championship."
+                  "why": "Two teams per conference remain after the divisional round, and the winners go to the Super Bowl."
                 },
                 {
                   "id": "superbowl",
                   "text": "Win the Super Bowl",
-                  "why": "The AFC and NFC champions meet for the title. This is the goal for every team on January 1."
+                  "why": "The AFC and NFC champions meet for the title in February."
                 }
               ],
               "explanation": {
-                "correct": "Wild card rounds are first (wild cards vs each other, number one seed waits). Then divisional (number one plays the wild-card winner), then the conference championship, then the Super Bowl.",
-                "incorrect": "The bracket works from 14 teams down to one champion. Wild card is first, divisional is second, conference championship is third, Super Bowl is fourth."
+                "correct": "The wild-card round comes first (seeds 2 to 7, while the top seed rests), then the divisional round, then the conference championship, then the Super Bowl.",
+                "incorrect": "The bracket works from 14 teams down to one champion: wild card first, divisional second, conference championship third, Super Bowl fourth."
               }
             },
             "xp": 10
@@ -158,41 +191,63 @@
           {
             "id": "playoffs-02-mc-bye",
             "type": "multiple-choice",
-            "conceptIds": ["playoff-seeding"],
+            "conceptIds": [
+              "playoff-seeding"
+            ],
             "payload": {
               "prompt": "Why do teams want the number-one seed?",
               "options": [
-                {"id": "a", "text": "It is the only team that gets a first-round bye"},
-                {"id": "b", "text": "The number-one seed always wins"},
-                {"id": "c", "text": "Only the number one seed plays at home"}
+                {
+                  "id": "a",
+                  "text": "It is the only team that gets a first-round bye"
+                },
+                {
+                  "id": "b",
+                  "text": "The number-one seed always wins"
+                },
+                {
+                  "id": "c",
+                  "text": "Only the number one seed plays at home"
+                }
               ],
-              "correctOptionIds": ["a"],
+              "correctOptionIds": [
+                "a"
+              ],
               "explanation": {
-                "correct": "Only the number-one seed gets a first-round bye. That is a full week to rest and prepare while the wild cards burn energy. In the playoffs, rest is gold.",
-                "incorrect": "The number-one seed skips the wild card round and goes straight to the divisional playoffs. While teams 2-7 play each other, the one seed rests."
+                "correct": "Only the number-one seed in each conference gets a first-round bye. That is a full week to rest and prepare while the other six teams play the wild-card round. In the playoffs, rest is gold.",
+                "incorrect": "The number-one seed skips the wild-card round and goes straight to the divisional playoffs. Seeds 2 through 7 play each other that week."
               }
             },
             "xp": 10
           },
           {
             "id": "playoffs-02-ht-seeding",
-            "type": "hotspot-tap",
-            "conceptIds": ["playoff-seeding"],
+            "type": "multiple-choice",
+            "conceptIds": [
+              "playoff-seeding"
+            ],
             "payload": {
               "prompt": "How many wild-card teams make the playoffs from each conference?",
-              "diagram": {
-                "diagramId": "nfl-playoff-bracket",
-                "alt": "NFL playoff bracket showing seven teams per conference: four division winners and three wild cards."
-              },
-              "hotspots": [
-                {"id": "one", "label": "One", "shape": {"kind": "circle", "cx": 0.2, "cy": 0.3, "r": 0.05}},
-                {"id": "three", "label": "Three", "shape": {"kind": "circle", "cx": 0.2, "cy": 0.5, "r": 0.05}},
-                {"id": "five", "label": "Five", "shape": {"kind": "circle", "cx": 0.2, "cy": 0.7, "r": 0.05}}
+              "options": [
+                {
+                  "id": "one",
+                  "text": "One"
+                },
+                {
+                  "id": "three",
+                  "text": "Three"
+                },
+                {
+                  "id": "five",
+                  "text": "Five"
+                }
               ],
-              "correctHotspotIds": ["three"],
+              "correctOptionIds": [
+                "three"
+              ],
               "explanation": {
-                "correct": "Three wild-card teams per conference, plus four division winners, makes seven playoff teams total from each conference.",
-                "incorrect": "Wild cards are the next-best teams who did not win their division. Three get in from each conference (NFC and AFC).",
+                "correct": "Three wild-card teams per conference, plus four division winners, makes seven playoff teams from each conference.",
+                "incorrect": "Wild cards are the best teams that did not win their division. Three get in from each conference, alongside four division winners.",
                 "sayThisLine": "Three wild cards per conference, plus the four division winners."
               }
             },
@@ -255,37 +310,76 @@
           {
             "id": "draft-03-st-draft-timing",
             "type": "say-this",
-            "conceptIds": ["draft"],
+            "conceptIds": [
+              "draft"
+            ],
             "payload": {
-              "statement": {"speaker": "Coach", "text": "The draft is in April, right when spring practice should be going."},
-              "question": "What is he explaining?",
+              "statement": {
+                "speaker": "Analyst",
+                "text": "They own the number-one overall pick. Everyone is calling them about it."
+              },
+              "question": "What does that mean?",
               "options": [
-                {"id": "a", "text": "The timing of the draft interferes with his team's training", "isCorrect": true},
-                {"id": "b", "text": "April is the best month for football", "isCorrect": false},
-                {"id": "c", "text": "Spring practice is not important", "isCorrect": false},
-                {"id": "d", "text": "The draft should be in the fall", "isCorrect": false}
+                {
+                  "id": "a",
+                  "text": "They choose first among all the players in the draft, and other teams want to trade for it",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "They play the first game of the season",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "They had the best record in the league",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "They are guaranteed a star quarterback",
+                  "isCorrect": false
+                }
               ],
-              "translation": "The NFL Draft happens every April, and it falls right in the middle of the spring when college coaches are developing players. It is a scheduling conflict coaches complain about.",
+              "translation": "The number-one overall pick is the first selection of the first round. The draft is in April, and teams often trade picks, so the top pick draws a lot of calls.",
               "followUps": [
-                {"line": "When is the draft in your country or league?", "why": "Tests whether you know the draft is a real event with a real date."}
+                {
+                  "line": "Do they have to use the pick, or can they trade it?",
+                  "why": "Shows you know draft picks are assets that teams can trade."
+                }
               ],
-              "noFakeExpertNote": "The draft is simple: one day a year in April, 32 teams pick college players in order, worst team first."
+              "noFakeExpertNote": "If unsure, say 'Who do they take at number one?' It is a safe, genuine question."
             },
             "xp": 10
           },
           {
             "id": "draft-03-tm-draft-terms",
             "type": "term-match",
-            "conceptIds": ["draft", "depth-chart"],
+            "conceptIds": [
+              "draft",
+              "depth-chart"
+            ],
             "payload": {
               "prompt": "Match the draft term to its meaning.",
               "pairs": [
-                {"id": "round", "term": "Round", "definition": "Each selection phase of the draft; there are seven rounds, so teams pick seven players."},
-                {"id": "pick", "term": "Pick", "definition": "The order in which a team selects. If you have the first pick, you choose before anyone else."},
-                {"id": "depth", "term": "Depth chart", "definition": "After the draft, a ranking of players at each position showing starters and backups."}
+                {
+                  "id": "round",
+                  "term": "Round",
+                  "definition": "One phase of the draft. There are seven rounds, each with one pick per team before trades."
+                },
+                {
+                  "id": "pick",
+                  "term": "Pick",
+                  "definition": "A team's turn to select a player. The worst teams pick first in each round."
+                },
+                {
+                  "id": "depth",
+                  "term": "Depth chart",
+                  "definition": "After the draft, a ranking of players at each position showing starters and backups."
+                }
               ],
               "explanation": {
-                "summary": "Rounds are phases (1-7). Picks are the order within each round. The depth chart shows who is first on the team at each spot."
+                "summary": "Rounds are the phases (1 to 7). A pick is a team's turn to select a player. The depth chart shows who is first on the team at each spot."
               }
             },
             "xp": 10
@@ -293,18 +387,31 @@
           {
             "id": "draft-03-mc-rounds",
             "type": "multiple-choice",
-            "conceptIds": ["draft"],
+            "conceptIds": [
+              "draft"
+            ],
             "payload": {
               "prompt": "How many rounds does the NFL Draft have?",
               "options": [
-                {"id": "a", "text": "Three rounds"},
-                {"id": "b", "text": "Five rounds"},
-                {"id": "c", "text": "Seven rounds"}
+                {
+                  "id": "a",
+                  "text": "Three rounds"
+                },
+                {
+                  "id": "b",
+                  "text": "Five rounds"
+                },
+                {
+                  "id": "c",
+                  "text": "Seven rounds"
+                }
               ],
-              "correctOptionIds": ["c"],
+              "correctOptionIds": [
+                "c"
+              ],
               "explanation": {
-                "correct": "Seven rounds, so each team gets to pick seven players total. The first few rounds are televised live; later rounds go quicker.",
-                "incorrect": "The draft is seven rounds long. Day 1 is rounds 1-3 (the big stars). Day 2 is rounds 4-5. Day 3 is rounds 6-7 (role players)."
+                "correct": "Seven rounds, so each team starts with seven picks, though trades can change that. Early rounds are covered live with more attention; later rounds move faster.",
+                "incorrect": "The draft is seven rounds long. Round 1 is on the first night, rounds 2 and 3 are on the second, and rounds 4 to 7 are on the third."
               }
             },
             "xp": 10
@@ -321,35 +428,68 @@
           {
             "id": "cap-04-ds-cap-decision",
             "type": "decision-scenario",
-            "conceptIds": ["salary-cap"],
+            "conceptIds": [
+              "salary-cap"
+            ],
             "payload": {
-              "prompt": "Your star defensive end is too expensive. Keep or cut?",
+              "prompt": "You are over the cap and your star costs $20M. What now?",
               "situation": {
-                "narrative": "You are $15 million over the salary cap. Your elite pass rusher makes $20 million this year. Free agency starts in three weeks.",
+                "narrative": "You are $15 million over the salary cap and must get under it soon. Your elite pass rusher makes $20 million this year.",
                 "facts": [
-                  {"label": "Cap situation", "value": "$15 million over"},
-                  {"label": "Player cost", "value": "$20 million per year"},
-                  {"label": "Player production", "value": "11 sacks, elite"},
-                  {"label": "Timeline", "value": "Free agency in three weeks"}
+                  {
+                    "label": "Cap situation",
+                    "value": "$15 million over"
+                  },
+                  {
+                    "label": "Player cost",
+                    "value": "$20 million per year"
+                  },
+                  {
+                    "label": "Player production",
+                    "value": "11 sacks, elite"
+                  },
+                  {
+                    "label": "Timeline",
+                    "value": "Free agency in three weeks"
+                  }
                 ]
               },
               "options": [
                 {
-                  "id": "keep",
-                  "label": "Keep him and find other cuts",
-                  "verdict": "poor",
-                  "consequence": "You are still over the cap and have to make more cuts. Those cuts might be younger, cheaper players with potential.",
-                  "considerations": ["You are still way over", "Other cuts may hurt more", "You cannot kick the cap problem down the road"]
+                  "id": "trade",
+                  "label": "Trade him for picks or a cheaper player",
+                  "verdict": "best",
+                  "consequence": "You clear his salary and get something back. Another team gets an elite rusher, and you fix the math.",
+                  "considerations": [
+                    "You get value instead of losing him for nothing",
+                    "It frees up cap space",
+                    "It needs a team with space to take his salary"
+                  ]
                 },
                 {
                   "id": "cut",
-                  "label": "Cut him and free up cap space",
-                  "verdict": "best",
-                  "consequence": "You save $20 million and get under the cap. He hits free agency and probably signs with a playoff team. You lose elite production but fix the math.",
-                  "considerations": ["Elite pass rushers are rare", "But you cannot afford him", "The cap is real; you have to balance talent and money"]
+                  "label": "Cut him",
+                  "verdict": "acceptable",
+                  "consequence": "You clear most of his salary, but get nothing in return and some of his contract may still count against your cap.",
+                  "considerations": [
+                    "The cap math is fixed",
+                    "You lose an elite player for free",
+                    "Part of the contract may still count"
+                  ]
+                },
+                {
+                  "id": "keep",
+                  "label": "Keep him and cut several depth players",
+                  "verdict": "poor",
+                  "consequence": "Cutting depth players saves little, and you weaken the whole roster to keep one salary.",
+                  "considerations": [
+                    "Depth players earn much less",
+                    "You may still be over the cap",
+                    "A thin roster hurts in injuries"
+                  ]
                 }
               ],
-              "expertNote": "The salary cap is not optional. Teams make these painful cuts every year. It is why you see star players traded or cut; the cap forces hard choices."
+              "expertNote": "Teams have several tools, like trades, cuts and restructures, and every one costs something. The cap forces hard choices, and star players do move for that reason."
             },
             "xp": 10
           },
@@ -439,21 +579,45 @@
           {
             "id": "roster-05-st-ir-news",
             "type": "say-this",
-            "conceptIds": ["injured-reserve"],
+            "conceptIds": [
+              "injured-reserve"
+            ],
             "payload": {
-              "statement": {"speaker": "Analyst", "text": "He is on injured reserve for the season. You can write him off."},
+              "statement": {
+                "speaker": "Analyst",
+                "text": "He is on injured reserve for the season. You can write him off."
+              },
               "question": "What does that mean for his team?",
               "options": [
-                {"id": "a", "text": "He will miss a few games but come back", "isCorrect": false},
-                {"id": "b", "text": "He will not play at all this year; his roster spot can be used elsewhere", "isCorrect": true},
-                {"id": "c", "text": "He is playing but hiding an injury", "isCorrect": false},
-                {"id": "d", "text": "He is being punished for poor play", "isCorrect": false}
+                {
+                  "id": "a",
+                  "text": "He will miss a few games but come back",
+                  "isCorrect": false
+                },
+                {
+                  "id": "b",
+                  "text": "He will not play at all this year; his roster spot can be used elsewhere",
+                  "isCorrect": true
+                },
+                {
+                  "id": "c",
+                  "text": "He is playing but hiding an injury",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "He is being punished for poor play",
+                  "isCorrect": false
+                }
               ],
-              "translation": "Injured reserve is the formal list for players too hurt to play. They are gone for the season, and the team can replace them on the active roster with a healthy player.",
+              "translation": "Injured reserve is the formal list for injured players. In the NFL a player on IR must miss at least four games, and 'for the season' means his year is done. The team can fill his roster spot.",
               "followUps": [
-                {"line": "How long is an IR stint usually?", "why": "Tests whether you know IR is for long-term injuries, not a sprain that heals in two weeks."}
+                {
+                  "line": "How long is an IR stint usually?",
+                  "why": "Shows you know IR means at least a month out, not a sprain that heals in a week."
+                }
               ],
-              "noFakeExpertNote": "IR is simple: if a player goes on injured reserve, he is out for weeks or the year. Check the injury report each week to see who is healthy."
+              "noFakeExpertNote": "Keep it simple: IR means out for a good while. Check the injury report each week to see who is healthy."
             },
             "xp": 10
           },
@@ -538,16 +702,30 @@
           {
             "id": "trades-06-ds-trade-timing",
             "type": "decision-scenario",
-            "conceptIds": ["trade-deadline"],
+            "conceptIds": [
+              "trade-deadline"
+            ],
             "payload": {
-              "prompt": "Your team is 3-9 and out of it. Trade your best receiver for picks?",
+              "prompt": "Your team is 1-7. Trade your best receiver for picks?",
               "situation": {
-                "narrative": "It is November 5th, just before the trade deadline on November 12th. You are hopeless for the playoffs. A playoff team offers two draft picks for your star.",
+                "narrative": "It is the week before the trade deadline. Your team is far out of the playoff race. A contender offers two draft picks for your star receiver.",
                 "facts": [
-                  {"label": "Record", "value": "3-9, officially out"},
-                  {"label": "Offer", "value": "Two draft picks"},
-                  {"label": "Player value", "value": "Star receiver, three years left"},
-                  {"label": "Timeline", "value": "Deadline is November 12"}
+                  {
+                    "label": "Record",
+                    "value": "1-7, far behind"
+                  },
+                  {
+                    "label": "Offer",
+                    "value": "Two draft picks"
+                  },
+                  {
+                    "label": "Player value",
+                    "value": "Star receiver, three years left"
+                  },
+                  {
+                    "label": "Timeline",
+                    "value": "Deadline is next week"
+                  }
                 ]
               },
               "options": [
@@ -555,18 +733,26 @@
                   "id": "trade",
                   "label": "Make the deal and get picks",
                   "verdict": "best",
-                  "consequence": "You collect draft picks to rebuild. The receiver helps a playoff team now. You are worse this year but better in years 2-3.",
-                  "considerations": ["You are already out", "Draft picks are the future", "The receiver's last years are wasted on a bad team"]
+                  "consequence": "You collect draft picks to rebuild, and the contender gets a star now. You are a bit worse this year but better equipped later.",
+                  "considerations": [
+                    "The playoff race is almost certainly over",
+                    "Draft picks build the future",
+                    "Stars help contenders more than rebuilding teams"
+                  ]
                 },
                 {
                   "id": "keep",
                   "label": "Keep him and finish the season",
-                  "verdict": "poor",
-                  "consequence": "You play out a lost season with him. Next year he costs money and you still lose. You traded nothing and gained nothing.",
-                  "considerations": ["The year is over", "Prospects need time", "Losing is not loyalty; it is wasting time"]
+                  "verdict": "acceptable",
+                  "consequence": "You keep your best player and a bit more fan joy, but you pass on picks and he keeps aging on a losing team.",
+                  "considerations": [
+                    "He could be a cornerstone if the team rebuilds around him",
+                    "Trading him builds the roster faster",
+                    "It is a real debate, not an obvious call"
+                  ]
                 }
               ],
-              "expertNote": "Trade deadlines separate buyers (trying to win now) from sellers (rebuilding). The best rebuilds happen when a seller admits it and gets picks."
+              "expertNote": "Trade deadlines separate buyers (trying to win now) from sellers (rebuilding). Sellers try to turn veterans into picks, though some rebuilds keep a star to build around."
             },
             "xp": 10
           },
@@ -620,21 +806,45 @@
           {
             "id": "fantasy-07-st-waiver",
             "type": "say-this",
-            "conceptIds": ["fantasy-football"],
+            "conceptIds": [
+              "fantasy-football"
+            ],
             "payload": {
-              "statement": {"speaker": "Friend", "text": "I just used my number-two waiver pickup on a running back off the bench."},
+              "statement": {
+                "speaker": "Friend",
+                "text": "I just used a waiver claim to grab a free-agent running back."
+              },
               "question": "What is she doing?",
               "options": [
-                {"id": "a", "text": "She is replacing her injured starter with a backup from free agency", "isCorrect": true},
-                {"id": "b", "text": "She is ranked second in the league overall", "isCorrect": false},
-                {"id": "c", "text": "She is breaking the rules", "isCorrect": false},
-                {"id": "d", "text": "She is quitting fantasy", "isCorrect": false}
+                {
+                  "id": "a",
+                  "text": "She picked up an unowned player from the free-agent pool",
+                  "isCorrect": true
+                },
+                {
+                  "id": "b",
+                  "text": "She is ranked second in the league overall",
+                  "isCorrect": false
+                },
+                {
+                  "id": "c",
+                  "text": "She is breaking the rules",
+                  "isCorrect": false
+                },
+                {
+                  "id": "d",
+                  "text": "She is quitting fantasy",
+                  "isCorrect": false
+                }
               ],
-              "translation": "In fantasy, waiver priority goes to lower-scoring teams so they can pick up free players. She burned a high priority on a backup, so she must have had an injury or bye-week crisis.",
+              "translation": "In fantasy, waivers are how you claim players nobody owns. Leagues usually give earlier claims to lower-ranked teams or use a budget.",
               "followUps": [
-                {"line": "Did she make a good move?", "why": "Tests whether you know bye weeks and injuries create emergencies in fantasy."}
+                {
+                  "line": "Was he an injury or bye-week replacement?",
+                  "why": "Shows you know that injuries and byes are the usual reasons for a pickup."
+                }
               ],
-              "noFakeExpertNote": "Fantasy is just your draft picks plus free-agent pickups (waivers). When someone gets hurt, you grab his backup on waivers."
+              "noFakeExpertNote": "Waivers are just the league's way of fairly handing out free agents during the season."
             },
             "xp": 10
           },
@@ -677,30 +887,36 @@
           {
             "id": "fantasy-07-ftg-fantasy-planning",
             "type": "fill-the-gap",
-            "conceptIds": ["fantasy-football", "bye-week"],
+            "conceptIds": [
+              "fantasy-football",
+              "bye-week"
+            ],
             "payload": {
               "prompt": "Smart fantasy managers plan ahead.",
-              "template": "Do not draft {{avoid}} during the same week. Check {{check}} before setting your lineup. A {{problem}} ruins a week if you forget.",
+              "template": "Try not to stack too many starters with the same {{avoid}}. Check {{check}} before setting your lineup each week.",
               "gaps": [
                 {
                   "id": "avoid",
-                  "options": ["tall players", "players on the same bye week", "defensive players"],
-                  "correct": "players on the same bye week"
+                  "options": [
+                    "height",
+                    "bye week",
+                    "jersey number"
+                  ],
+                  "correct": "bye week"
                 },
                 {
                   "id": "check",
-                  "options": ["the weather", "the injury report", "the standings"],
+                  "options": [
+                    "the weather forecast",
+                    "the injury report",
+                    "the standings"
+                  ],
                   "correct": "the injury report"
-                },
-                {
-                  "id": "problem",
-                  "options": ["win", "bye week", "draft"],
-                  "correct": "bye week"
                 }
               ],
               "explanation": {
-                "correct": "If three of your starters are on bye the same week, you have no one to start. Check who is injured before Sunday. Bad planning costs wins.",
-                "incorrect": "Do not draft multiple starters with the same bye week, or you lose them all at once. Check injuries before Sunday games, and plan for bye weeks."
+                "correct": "If several starters share a bye week, you will be short-handed that week. Check the injury report before kickoff so you do not start someone who is out.",
+                "incorrect": "Avoid stacking starters with the same bye week, or you lose them all at once. Check injuries before games, and plan for bye weeks."
               }
             },
             "xp": 10
@@ -804,18 +1020,31 @@
           {
             "id": "gameday-08-mc-super-bowl",
             "type": "multiple-choice",
-            "conceptIds": ["super-bowl"],
+            "conceptIds": [
+              "super-bowl"
+            ],
             "payload": {
               "prompt": "When is the Super Bowl played?",
               "options": [
-                {"id": "a", "text": "In December, the week after the regular season ends"},
-                {"id": "b", "text": "In February, after the playoffs"},
-                {"id": "c", "text": "In January, on New Year's Day"}
+                {
+                  "id": "a",
+                  "text": "In December, the week after the regular season ends"
+                },
+                {
+                  "id": "b",
+                  "text": "In February, after the playoffs"
+                },
+                {
+                  "id": "c",
+                  "text": "In January, on New Year's Day"
+                }
               ],
-              "correctOptionIds": ["b"],
+              "correctOptionIds": [
+                "b"
+              ],
               "explanation": {
-                "correct": "The Super Bowl is in February (usually the first Sunday after February 1). The playoffs run in January, so the championship is early in the new year.",
-                "incorrect": "Super Bowl Sunday is a national holiday for football fans, usually the first Sunday in February. It is the climax of the season."
+                "correct": "The Super Bowl is in February, after the playoffs in January. Super Bowl LX was on February 8, 2026.",
+                "incorrect": "Super Bowl Sunday is an unofficial national holiday for football fans, in February. It is the climax of the season."
               }
             },
             "xp": 10
@@ -823,30 +1052,45 @@
           {
             "id": "gameday-08-ftg-game-day",
             "type": "fill-the-gap",
-            "conceptIds": ["primetime-games", "super-bowl"],
+            "conceptIds": [
+              "primetime-games",
+              "super-bowl"
+            ],
             "payload": {
               "prompt": "Game day is built into the culture.",
               "template": "{{primetime}} games are on national television. The {{superbowl}} is the biggest game, played each {{month}}.",
               "gaps": [
                 {
                   "id": "primetime",
-                  "options": ["minor", "prime-time", "practice"],
+                  "options": [
+                    "minor",
+                    "prime-time",
+                    "practice"
+                  ],
                   "correct": "prime-time"
                 },
                 {
                   "id": "superbowl",
-                  "options": ["All-Star Game", "Super Bowl", "playoff game"],
+                  "options": [
+                    "All-Star Game",
+                    "Super Bowl",
+                    "playoff game"
+                  ],
                   "correct": "Super Bowl"
                 },
                 {
                   "id": "month",
-                  "options": ["January", "February", "December"],
+                  "options": [
+                    "January",
+                    "February",
+                    "December"
+                  ],
                   "correct": "February"
                 }
               ],
               "explanation": {
-                "correct": "Thursday, Sunday and Monday night prime-time games get the big audiences. The Super Bowl is the finale, in early February, and it is an unofficial national holiday.",
-                "incorrect": "Thursday Night Football, Sunday Night Football, and Monday Night Football are the prime-time slots with huge viewership. The Super Bowl is the championship, always in February."
+                "correct": "Thursday, Sunday and Monday night prime-time games get the big audiences. The Super Bowl is the finale, played in February, and it is an unofficial national holiday.",
+                "incorrect": "Thursday Night Football, Sunday Night Football and Monday Night Football are the prime-time slots. The Super Bowl is the championship, played in February."
               }
             },
             "xp": 10

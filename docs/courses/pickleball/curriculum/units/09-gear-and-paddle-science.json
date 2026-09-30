@@ -155,15 +155,15 @@
             "payload": {
               "prompt": "What is the main difference between a standard paddle and an elongated paddle?",
               "options": [
-                {"id": "a", "text": "Elongated paddles are longer and narrower; standard paddles are more nearly square."},
-                {"id": "b", "text": "Elongated paddles are heavier."},
+                {"id": "a", "text": "Elongated paddles are longer and narrower; standard paddles are shorter and wider."},
+                {"id": "b", "text": "Elongated paddles are always heavier."},
                 {"id": "c", "text": "Elongated paddles are only for beginners."},
                 {"id": "d", "text": "Standard paddles have a softer core."}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Shape is about the proportions. Elongated adds reach; standard adds control.",
-                "incorrect": "Shape describes proportions: elongated is longer/narrower, standard is more square. Weight is separate.",
+                "correct": "Shape is about the proportions. Elongated adds reach but a slightly smaller sweet spot; standard is wider and more forgiving.",
+                "incorrect": "Shape describes proportions: elongated is longer and narrower, standard is shorter and wider. Weight and core are separate choices.",
                 "sayThisLine": "Elongated = reach. Standard = control."
               }
             }
@@ -171,19 +171,19 @@
           {
             "id": "gear-02-es-1",
             "type": "estimate-slider",
-            "conceptIds": ["swing-weight"],
+            "conceptIds": ["paddle-shape"],
             "payload": {
-              "prompt": "A control player's ideal swing weight: 1-10 scale, where lower is lighter?",
-              "unit": "swing weight rating",
-              "min": 1,
-              "max": 10,
+              "prompt": "Longest a legal paddle's length plus width can be, in inches?",
+              "unit": "inches",
+              "min": 16,
+              "max": 32,
               "step": 1,
-              "correctValue": 3,
-              "tolerance": {"full": 2, "partial": 4},
+              "correctValue": 24,
+              "tolerance": {"full": 0, "partial": 2},
               "explanation": {
-                "correct": "Control players prefer lighter swing weights (1-4 range) for quick adjustments at the net.",
-                "incorrect": "Swing weight measures feel during the swing. Control means lower; power means higher.",
-                "sayThisLine": "Light swing weight for quick hands; heavy for power."
+                "correct": "Length plus width can total 24 inches, and the length can be at most 17. That cap is why elongated paddles have to be narrower.",
+                "incorrect": "The cap is 24 inches for length plus width combined, with a 17-inch maximum length. Stretch one dimension and the other has to shrink.",
+                "sayThisLine": "Elongated paddles are longer, so they have to be narrower to stay legal."
               }
             }
           },
@@ -192,41 +192,41 @@
             "type": "decision-scenario",
             "conceptIds": ["paddle-shape"],
             "payload": {
-              "prompt": "A friend has a weaker baseline game and wants better reach. Should they choose an elongated or standard paddle?",
+              "prompt": "Your friend keeps getting stretched on wide balls. Elongated or standard paddle?",
               "situation": {
-                "narrative": "Your friend is working on their reach and court coverage.",
+                "narrative": "Your friend gets pulled wide and wants a bit more reach.",
                 "facts": [
-                  {"label": "Goal", "value": "Better reach from the baseline"},
+                  {"label": "Goal", "value": "More reach on stretched shots"},
                   {"label": "Paddle option A", "value": "Elongated (longer, narrower)"},
-                  {"label": "Paddle option B", "value": "Standard (more square)"},
-                  {"label": "Trade-off", "value": "Reach vs control"}
+                  {"label": "Paddle option B", "value": "Standard (shorter, wider)"},
+                  {"label": "Trade-off", "value": "Reach vs a bigger sweet spot"}
                 ]
               },
               "options": [
                 {
                   "id": "elongated",
-                  "label": "Elongated—reach is the priority",
+                  "label": "Elongated: reach is the priority",
                   "verdict": "best",
-                  "consequence": "Correct. Elongated paddles give more reach, which helps with the baseline game.",
+                  "consequence": "Good fit. A longer face gets to wide balls sooner, at the cost of a slightly smaller sweet spot.",
                   "considerations": [
                     "Elongated adds reach",
-                    "Reach helps cover the court",
-                    "Control is secondary to coverage"
+                    "Reach helps on wide and defensive shots",
+                    "Expect a slightly smaller sweet spot"
                   ]
                 },
                 {
                   "id": "standard",
-                  "label": "Standard—control is safer",
+                  "label": "Standard: a bigger sweet spot is safer",
                   "verdict": "acceptable",
-                  "consequence": "Standard gives better control, but doesn't solve the reach issue. Depends on priorities.",
+                  "consequence": "Standard is more forgiving, but it does not add reach. Fine if forgiveness matters more to your friend.",
                   "considerations": [
-                    "Standard is easier to control",
+                    "Standard is easier to hit cleanly",
                     "But reach is the stated goal",
-                    "Elongated might help more here"
+                    "Elongated matches that goal better"
                   ]
                 }
               ],
-              "expertNote": "For baseline reach, elongated paddles are the right choice. Control comes after coverage."
+              "expertNote": "Elongated trades a little sweet spot for reach. It is a rule of thumb, so a demo swing beats any chart."
             }
           },
           {
@@ -278,7 +278,7 @@
               ],
               "correctChoiceId": "not-always",
               "explanation": {
-                "correct": "Swing weight is how the paddle *feels* during the swing (balance point), not the total weight.",
+                "correct": "Swing weight is how heavy the paddle feels during the swing (it depends on the balance point), not the number on the scale.",
                 "incorrect": "A light paddle can have high swing weight if the weight is distributed toward the head. Swing weight is about feel, not total pounds.",
                 "sayThisLine": "Swing weight = feel during the swing, not the scale weight."
               },
@@ -298,12 +298,12 @@
             "type": "decision-scenario",
             "conceptIds": ["paddle-fit"],
             "payload": {
-              "prompt": "A player says: 'I like to attack from the baseline and hit hard.' What paddle profile would suit them?",
+              "prompt": "She says: 'I love hitting drives and putting pace on the ball.' Which paddle profile fits?",
               "situation": {
                 "narrative": "You're helping someone choose a paddle based on their playstyle.",
                 "facts": [
                   {"label": "Playstyle", "value": "Aggressive, power-oriented"},
-                  {"label": "Shot preference", "value": "Baseline drives and pace"},
+                  {"label": "Shot preference", "value": "Drives and pace"},
                   {"label": "Power paddle choice", "value": "Heavier, higher swing weight, elongated"},
                   {"label": "Control paddle choice", "value": "Lighter, lower swing weight, standard"}
                 ]
@@ -332,7 +332,7 @@
                   ]
                 }
               ],
-              "expertNote": "Match playstyle to paddle: control players → light, standard; power players → heavier, elongated."
+              "expertNote": "Match playstyle to paddle: control players lean light and standard; power players lean heavier and elongated. These are rules of thumb, and a heavy paddle can tire the arm, so demo before buying."
             }
           },
           {
@@ -340,7 +340,7 @@
             "type": "decision-scenario",
             "conceptIds": ["paddle-fit"],
             "payload": {
-              "prompt": "A player says: 'I live at the net and focus on soft games, blocks and dinking.' What paddle suits them?",
+              "prompt": "She says: 'I live at the kitchen line, dinking and blocking.' Which paddle profile fits?",
               "situation": {
                 "narrative": "A net player is choosing their next paddle.",
                 "facts": [
@@ -441,11 +441,11 @@
                 {"id": "a", "text": "To ensure paddles meet size, materials and performance standards for fair play."},
                 {"id": "b", "text": "To promote certain brands over others."},
                 {"id": "c", "text": "To make the sport more expensive."},
-                {"id": "d", "text": "To keep older players out."}
+                {"id": "d", "text": "To stop paddles from being sold in stores."}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Approval ensures a level playing field. All approved paddles meet the same standards.",
+                "correct": "Approval keeps the field level. Approved paddles have passed the same checks on size, materials and surface.",
                 "incorrect": "The USA Pickleball approved list is about fairness and sport integrity, not brand promotion.",
                 "sayThisLine": "Approved paddles meet standards that keep the game fair."
               }
@@ -456,22 +456,22 @@
             "type": "binary-call",
             "conceptIds": ["surface-roughness-spin"],
             "payload": {
-              "prompt": "A rougher paddle face creates more spin. True?",
+              "prompt": "Being on the approved list means a paddle suits your game. True?",
               "scene": {
                 "kind": "none",
-                "alt": "Paddle surface roughness and spin relationship."
+                "alt": "Paddle approval versus paddle fit."
               },
               "choices": [
-                {"id": "true-rough", "label": "Yes, rough surfaces grip more"},
-                {"id": "false-smooth", "label": "No, smooth faces spin better"}
+                {"id": "true-suits", "label": "Yes, approved means a good fit"},
+                {"id": "false-legal-only", "label": "No, it only means legal"}
               ],
-              "correctChoiceId": "true-rough",
+              "correctChoiceId": "false-legal-only",
               "explanation": {
-                "correct": "Yes. A gritty surface grips the ball more, creating spin. That's why rough paddles are popular.",
-                "incorrect": "Rougher surfaces do create more spin by gripping the ball better during contact.",
-                "sayThisLine": "Rough = more grip = more spin. That's the carbon face advantage."
+                "correct": "Right. Approval says the paddle meets the rules, including surface limits. Whether it suits your swing is a separate question.",
+                "incorrect": "Approval only tells you the paddle is legal for sanctioned play. Fit comes from shape, weight, balance and feel, and that is what you test by demoing.",
+                "sayThisLine": "It's approved, so it's legal. Whether it's right for me, I still have to demo."
               },
-              "ruleTag": "Paddle surface and spin"
+              "ruleTag": "Approval versus fit"
             }
           },
           {
