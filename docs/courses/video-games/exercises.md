@@ -491,3 +491,485 @@ Each sample names a planned lesson id. Payloads are the exact contract shape.
 }
 ```
 
+### 2.7 `talk-track`
+
+Micro-tracks (one exchange) close a unit or a lesson. The nine full launch scenarios with meanings are in section 4.
+
+**Sample 1** (lesson `vocab-01`)
+
+```json
+{
+  "title": "GG",
+  "setting": "After a close match, her friend types gg in chat.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "That was so close. gg to everybody.",
+      "replies": [
+        { "id": "a", "text": "gg! That last minute was tense.", "smoothDelta": 20, "theirResponse": "Right?! I thought we had lost it.", "coachNote": "GG means good game. Matching it is friendly and easy." },
+        { "id": "b", "text": "What does gg stand for again?", "smoothDelta": 5, "theirResponse": "Good game. It is what you say when a match is done.", "coachNote": "Honest, and a good way to learn. Just say it once." },
+        { "id": "c", "text": "Why are you giving up already?", "smoothDelta": -15, "theirResponse": "No, it means good game. We finished!", "coachNote": "gg is politeness, not surrender." }
+      ]
+    }
+  ],
+  "closingNote": "GG means good game: a friendly sign-off after a match, win or lose."
+}
+```
+
+**Sample 2** (lesson `tog-02`)
+
+```json
+{
+  "title": "Ask about her game",
+  "setting": "She has been playing a new game all week.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "I am finally past the third boss. It took me twenty tries.",
+      "replies": [
+        { "id": "a", "text": "Twenty! What finally worked?", "smoothDelta": 25, "theirResponse": "I learned to dodge the second swing. Honestly it clicked.", "coachNote": "You noticed the effort and asked what changed. Great." },
+        { "id": "b", "text": "Why not lower the difficulty?", "smoothDelta": -10, "theirResponse": "That would kind of defeat the point.", "coachNote": "Some games make difficulty part of the fun. Ask first." },
+        { "id": "c", "text": "Nice. Which game was this?", "smoothDelta": 5, "theirResponse": "The one I told you about, but it is fine.", "coachNote": "Fine, but try to remember the title next time." }
+      ]
+    }
+  ],
+  "closingNote": "Struggle-and-win stories are the heart of boss games. Ask what finally worked."
+}
+```
+
+**Sample 3** (lesson `esp-06`)
+
+```json
+{
+  "title": "Her team lost",
+  "setting": "She texts after her favorite esports team gets knocked out.",
+  "startingSmooth": 50,
+  "exchanges": [
+    {
+      "theirMessage": "My team just got knocked out of the bracket. Ugh.",
+      "replies": [
+        { "id": "a", "text": "Oh no. Was it a close series?", "smoothDelta": 25, "theirResponse": "Three games, and the last one was heartbreaking.", "coachNote": "You sympathized and asked a real question." },
+        { "id": "b", "text": "It's just a game, right?", "smoothDelta": -20, "theirResponse": "Not really, it is my team.", "coachNote": "Never shrink what she cares about." },
+        { "id": "c", "text": "Who beat them?", "smoothDelta": 10, "theirResponse": "A team from another region. They earned it.", "coachNote": "Curious and safe. Follow with a feeling next time." }
+      ]
+    }
+  ],
+  "closingNote": "Fans of esports teams feel wins and losses. Treat it like any team she loves."
+}
+```
+
+### 2.8 `timing-tap`
+
+**Sample 1** (lesson `mech-04`)
+
+```json
+{
+  "prompt": "Tap to dodge inside the enemy's swing window.",
+  "theme": { "label": "Dodge roll", "resultUnit": "points" },
+  "rounds": [
+    { "zoneStartPct": 55, "zoneEndPct": 78, "sweepSeconds": 1.8 },
+    { "zoneStartPct": 60, "zoneEndPct": 76, "sweepSeconds": 1.5 },
+    { "zoneStartPct": 65, "zoneEndPct": 77, "sweepSeconds": 1.3 }
+  ],
+  "explanation": {
+    "correct": "Your dodge roll gives brief invincibility, called i-frames. Roll into the swing's danger window and the hit passes through you.",
+    "incorrect": "Too early or too late and the attack lands. The trick is that invincibility only lasts a moment, so timing is everything.",
+    "sayThisLine": "I finally learned the i-frames on that roll."
+  },
+  "accessibilityAlternative": "tap-to-stop-slow"
+}
+```
+
+**Sample 2** (lesson `mech-04`)
+
+```json
+{
+  "prompt": "Tap when the marker enters the parry window.",
+  "theme": { "label": "Parry", "resultUnit": "points" },
+  "rounds": [
+    { "zoneStartPct": 62, "zoneEndPct": 74, "sweepSeconds": 1.6 },
+    { "zoneStartPct": 66, "zoneEndPct": 75, "sweepSeconds": 1.4 },
+    { "zoneStartPct": 70, "zoneEndPct": 78, "sweepSeconds": 1.2 }
+  ],
+  "explanation": {
+    "correct": "A parry is a tiny window just before an attack lands. Hit it and you deflect the blow and often open the enemy up.",
+    "incorrect": "Parry windows are small and unforgiving. Watch the telegraph, the wind-up that tells you the attack is coming, and press just as it lands.",
+    "sayThisLine": "The parry window on that boss is tight."
+  },
+  "accessibilityAlternative": "hold-and-release"
+}
+```
+
+**Sample 3** (lesson `mech-03`)
+
+```json
+{
+  "prompt": "Tap the moment your ability is ready again.",
+  "theme": { "label": "Cooldown", "resultUnit": "points" },
+  "rounds": [
+    { "zoneStartPct": 70, "zoneEndPct": 90, "sweepSeconds": 2.0 },
+    { "zoneStartPct": 74, "zoneEndPct": 90, "sweepSeconds": 1.7 },
+    { "zoneStartPct": 78, "zoneEndPct": 91, "sweepSeconds": 1.5 }
+  ],
+  "explanation": {
+    "correct": "A cooldown is the wait before an ability can be used again. Good players time their next move to the second the ring clears.",
+    "incorrect": "Tapping early wastes the button press; tapping late wastes the ability. Watching cooldowns is half of playing well in many games.",
+    "sayThisLine": "I am saving my ult until the cooldown is back."
+  },
+  "accessibilityAlternative": "tap-to-stop-slow"
+}
+```
+
+### 2.9 `say-this`
+
+**Sample 1** (lesson `vocab-04`)
+
+```json
+{
+  "statement": { "speaker": "Maya", "text": "I have been farming that boss for the drop all week and the RNG hates me." },
+  "question": "What is she talking about?",
+  "options": [
+    { "id": "a", "text": "She keeps beating the same boss hoping for a rare item", "isCorrect": true, "explanation": "Farming is repeating content for rewards." },
+    { "id": "b", "text": "She has been growing crops in a farming game", "isCorrect": false, "explanation": "Farming here means grinding a boss, not planting." },
+    { "id": "c", "text": "The drop is random and has not come yet", "isCorrect": true, "explanation": "RNG is the randomness that decides what drops." },
+    { "id": "d", "text": "Her internet is bad", "isCorrect": false, "explanation": "That would be lag or ping, not RNG." }
+  ],
+  "translation": "She keeps repeating one boss fight to get a rare item, and the random drop chance has not been kind to her.",
+  "followUps": [
+    { "line": "How rare is it supposed to be?", "why": "Shows you get that drops have odds and invites her to explain." },
+    { "line": "Is it worth it once you get it?", "why": "Asks about the payoff, which is what farming is for." }
+  ],
+  "noFakeExpertNote": "You do not need to know the game. Asking how rare the drop is beats pretending you know the loot table."
+}
+```
+
+**Sample 2** (lesson `vocab-07`)
+
+```json
+{
+  "statement": { "speaker": "Jo", "text": "We had a good comp but our support kept feeding and we lost the fight." },
+  "question": "What is she talking about?",
+  "options": [
+    { "id": "a", "text": "Her team's mix of roles was fine", "isCorrect": true, "explanation": "Comp is short for team composition." },
+    { "id": "b", "text": "A teammate in a helper role kept dying", "isCorrect": true, "explanation": "Support is a helper role and feeding means dying repeatedly." },
+    { "id": "c", "text": "The team was giving food to a pet", "isCorrect": false, "explanation": "Feeding means giving the enemy kills." },
+    { "id": "d", "text": "The match was in a cooking game", "isCorrect": false, "explanation": "That is a literal reading; this is team-game slang." }
+  ],
+  "translation": "Her team had a well-balanced group of roles, but the helper-role player kept dying to the enemy and that cost them a key fight.",
+  "followUps": [
+    { "line": "Was it one bad fight or the whole game?", "why": "Shows you understand a fight can swing a match without being the whole story." },
+    { "line": "Who do you usually play?", "why": "Invites her to talk about her own role." }
+  ],
+  "noFakeExpertNote": "Do not blame her teammate for her. Listening beats diagnosing."
+}
+```
+
+**Sample 3** (lesson `deb-02`)
+
+```json
+{
+  "statement": { "speaker": "Kai", "text": "Aim assist on controller is way too strong in this game. Mouse players have no chance." },
+  "question": "What is he talking about?",
+  "options": [
+    { "id": "a", "text": "Controller help that nudges your aim toward targets", "isCorrect": true, "explanation": "That is what aim assist does." },
+    { "id": "b", "text": "A complaint that controller players have an unfair edge", "isCorrect": true, "explanation": "The debate is about strength, not whether it exists." },
+    { "id": "c", "text": "Mouse players cannot aim at all", "isCorrect": false, "explanation": "The point is fairness, not ability." },
+    { "id": "d", "text": "The game is missing a feature", "isCorrect": false, "explanation": "Aim assist is the opposite: too much help." }
+  ],
+  "translation": "He thinks the built-in help that controller players get for aiming is so strong it makes matches unfair for players using a mouse.",
+  "followUps": [
+    { "line": "Is it the same in every game or just this one?", "why": "Shows you know assist strength is tuned per game." },
+    { "line": "Do you play controller or mouse?", "why": "Shows interest in her own setup." }
+  ],
+  "noFakeExpertNote": "You can say you do not have a side yet. Asking why someone thinks it is unfair is respected."
+}
+```
+
+**Sample 4** (lesson `esp-04`)
+
+```json
+{
+  "statement": { "speaker": "Dani", "text": "Worlds starts in two weeks and my team barely qualified out of the regional playoffs." },
+  "question": "What is she talking about?",
+  "options": [
+    { "id": "a", "text": "The biggest international esports event of the year", "isCorrect": true, "explanation": "Worlds is the world championship for a game." },
+    { "id": "b", "text": "Her team scraped into the tournament", "isCorrect": true, "explanation": "Barely qualified means they just made it." },
+    { "id": "c", "text": "A world tour of concerts", "isCorrect": false, "explanation": "Worlds here is an esports tournament." },
+    { "id": "d", "text": "Her team is retiring", "isCorrect": false, "explanation": "They qualified, so they are still playing." }
+  ],
+  "translation": "The world championship for her game is coming up and her favorite team only just earned a spot through the regional playoffs.",
+  "followUps": [
+    { "line": "Do they have a tough group?", "why": "Shows you know the event has a group stage." },
+    { "line": "Where is it this year?", "why": "Easy, honest question that invites her to tell you more." }
+  ],
+  "noFakeExpertNote": "You do not need to know the teams. Asking about the event is enough."
+}
+```
+
+### 2.10 `fill-the-gap`
+
+**Sample 1** (lesson `vocab-06`)
+
+```json
+{
+  "prompt": "Finish her sentence about the connection.",
+  "template": "My {{stat}} was terrible, so every fight had {{effect}}.",
+  "gaps": [
+    { "id": "stat", "options": ["ping", "backlog", "loot", "skin"], "correct": "ping" },
+    { "id": "effect", "options": ["lag", "cooldowns", "checkpoints", "achievements"], "correct": "lag" }
+  ],
+  "explanation": {
+    "correct": "Ping is the delay between your device and the server; high ping causes lag. Both are connection words, not game-design words.",
+    "incorrect": "Ping is how long messages take to reach the server, and lag is how it feels when that delay is high. Backlog, loot and skins are about something else."
+  }
+}
+```
+
+**Sample 2** (lesson `mode-04`)
+
+```json
+{
+  "prompt": "Pick the right business words.",
+  "template": "A {{model}} game costs nothing up front, but may sell {{items}}.",
+  "gaps": [
+    { "id": "model", "options": ["free-to-play", "premium", "early access"], "correct": "free-to-play" },
+    { "id": "items", "options": ["microtransactions", "day-one patches", "save files"], "correct": "microtransactions" }
+  ],
+  "explanation": {
+    "correct": "Free-to-play games make money from optional purchases called microtransactions. Whether those purchases are fair is a big enthusiast debate.",
+    "incorrect": "Free-to-play means no upfront price; the game earns through in-game purchases. Premium games charge once up front."
+  }
+}
+```
+
+**Sample 3** (lesson `vocab-05`)
+
+```json
+{
+  "prompt": "Complete her gaming to-do list line.",
+  "template": "I need to clear my {{pile}} before I start {{mode}}.",
+  "gaps": [
+    { "id": "pile", "options": ["backlog", "lobby", "meta", "hitbox"], "correct": "backlog" },
+    { "id": "mode", "options": ["New Game Plus", "matchmaking", "a patch", "crossplay"], "correct": "New Game Plus" }
+  ],
+  "explanation": {
+    "correct": "A backlog is the pile of games you own and have not played. New Game Plus restarts a finished game with your progress carried over.",
+    "incorrect": "A backlog is your unplayed pile. New Game Plus is a second playthrough with your gear kept. The other words are about multiplayer or balance."
+  }
+}
+```
+
+### 2.11 `listening-id`
+
+All audio is **original synthesized** by Swoon'd; nothing is sampled from a game. Each clip's `description` doubles as the text alternative.
+
+**Sample 1** (lesson `anat-03`)
+
+```json
+{
+  "prompt": "What does this alarm usually mean?",
+  "audio": {
+    "asset": "audio/cues/low-health-alarm.m4a",
+    "durationMs": 3000,
+    "license": "original-swoond",
+    "description": "A fast, repeating two-tone beep that gets sharper as it continues.",
+    "maxPlays": 3
+  },
+  "options": [
+    { "id": "low-health", "text": "Your health is very low" },
+    { "id": "level-up", "text": "You just leveled up" },
+    { "id": "loot", "text": "A rare item dropped" }
+  ],
+  "correctOptionId": "low-health",
+  "explanation": {
+    "correct": "Fast, repeating alarms tell you danger. Games use audio warnings so you can react without looking at the health bar.",
+    "incorrect": "A tense, repeating beep is the classic low-health warning. Level-ups and loot use pleasant, rising sounds."
+  },
+  "listenFor": ["Repeating beep", "Rising urgency", "Warning, not reward"]
+}
+```
+
+**Sample 2** (lesson `anat-07`)
+
+```json
+{
+  "prompt": "Which reward does this chime suggest?",
+  "audio": {
+    "asset": "audio/cues/loot-chime.m4a",
+    "durationMs": 2000,
+    "license": "original-swoond",
+    "description": "A bright, rising three-note chime with a soft sparkle at the end.",
+    "maxPlays": 3
+  },
+  "options": [
+    { "id": "loot", "text": "A rare loot drop" },
+    { "id": "damage", "text": "You took damage" },
+    { "id": "menu", "text": "A menu was opened" }
+  ],
+  "correctOptionId": "loot",
+  "explanation": {
+    "correct": "Rising, sparkling chimes tell your brain you earned something. Games use them for loot and rewards.",
+    "incorrect": "Bright rising chimes are reward sounds. Damage sounds are low and short, and menus use soft clicks."
+  },
+  "listenFor": ["Rising notes", "Bright tone", "Sparkle at the end"]
+}
+```
+
+**Sample 3** (lesson `mech-05`)
+
+```json
+{
+  "prompt": "What is this short tick usually telling you?",
+  "audio": {
+    "asset": "audio/cues/hit-marker-tick.m4a",
+    "durationMs": 1500,
+    "license": "original-swoond",
+    "description": "A short, sharp tick, then a slightly deeper tick.",
+    "maxPlays": 3
+  },
+  "options": [
+    { "id": "hit", "text": "Your shot connected" },
+    { "id": "menu", "text": "The game paused" },
+    { "id": "goal", "text": "A quest was completed" }
+  ],
+  "correctOptionId": "hit",
+  "explanation": {
+    "correct": "A sharp tick is a hit marker: it confirms a shot landed. A deeper tick often means a stronger hit or a kill.",
+    "incorrect": "Short ticks in shooters confirm a hit. A pause or a quest uses a different sound, usually softer or longer."
+  },
+  "listenFor": ["Short and sharp", "Feedback for your action", "A deeper tone can mean a kill"]
+}
+```
+
+### 2.12 `estimate-slider`
+
+**Sample 1** (lesson `esp-05`)
+
+```json
+{
+  "prompt": "How many players are in a standard MOBA match?",
+  "unit": "players",
+  "min": 2,
+  "max": 20,
+  "step": 1,
+  "correctValue": 10,
+  "tolerance": { "full": 1, "partial": 4 },
+  "explanation": {
+    "correct": "Most big MOBAs are five versus five, so ten players. Team fights are chaotic, and roles matter.",
+    "incorrect": "Standard MOBA matches are five players per side, ten in total. Knowing this helps you follow a stream."
+  }
+}
+```
+
+**Sample 2** (lesson `plat-07`)
+
+```json
+{
+  "prompt": "What frame rate feels smooth in most games?",
+  "unit": "fps",
+  "min": 15,
+  "max": 240,
+  "step": 5,
+  "correctValue": 60,
+  "tolerance": { "full": 10, "partial": 30 },
+  "explanation": {
+    "correct": "About 60 frames per second is the common baseline for smooth play. Fast competitive games often aim higher.",
+    "incorrect": "30 fps feels choppy to many players and 60 fps is the usual smooth baseline. Higher rates help in fast games, but the return shrinks."
+  }
+}
+```
+
+**Sample 3** (lesson `mech-06`)
+
+```json
+{
+  "prompt": "About what ping starts to feel laggy in a shooter?",
+  "unit": "ms",
+  "min": 10,
+  "max": 300,
+  "step": 5,
+  "correctValue": 100,
+  "tolerance": { "full": 30, "partial": 70 },
+  "explanation": {
+    "correct": "Around 100 milliseconds of delay you start to feel it, and competitive players want far less. It varies by game.",
+    "incorrect": "Under about 50 ms feels responsive to most players; past about 100 ms you start noticing the delay, and higher numbers get frustrating."
+  }
+}
+```
+
+### 2.13 `hotspot-tap`
+
+**Sample 1** (lesson `anat-03`)
+
+```json
+{
+  "prompt": "Tap the minimap.",
+  "diagram": {
+    "diagramId": "hud-generic-shooter",
+    "aspectRatio": 1.5,
+    "alt": "A generic first-person screen layout with a bar at the bottom left, a number at the bottom right, a small round map in the top corner, a crosshair in the center and a row of small icons at the bottom center."
+  },
+  "hotspots": [
+    { "id": "minimap", "label": "Minimap", "shape": { "kind": "circle", "cx": 0.88, "cy": 0.18, "r": 0.1 } },
+    { "id": "health", "label": "Health bar", "shape": { "kind": "rect", "x": 0.05, "y": 0.82, "w": 0.28, "h": 0.08 } },
+    { "id": "ammo", "label": "Ammo counter", "shape": { "kind": "rect", "x": 0.75, "y": 0.82, "w": 0.2, "h": 0.1 } },
+    { "id": "abilities", "label": "Ability icons", "shape": { "kind": "rect", "x": 0.38, "y": 0.86, "w": 0.24, "h": 0.1 } }
+  ],
+  "correctHotspotIds": ["minimap"],
+  "explanation": {
+    "correct": "The minimap is the small round map in the corner. It shows your surroundings so you know where enemies and goals are.",
+    "incorrect": "The minimap sits in a corner and looks like a tiny map. The bar is health, the number is ammo and the icons are abilities."
+  }
+}
+```
+
+**Sample 2** (lesson `sm-01`)
+
+```json
+{
+  "prompt": "Tap the jungle.",
+  "diagram": {
+    "diagramId": "moba-map-generic",
+    "aspectRatio": 1,
+    "alt": "A simplified square map with three lanes connecting two bases in opposite corners. The areas between the lanes are forested shapes."
+  },
+  "hotspots": [
+    { "id": "top-lane", "label": "Top lane", "shape": { "kind": "rect", "x": 0.05, "y": 0.05, "w": 0.9, "h": 0.1 } },
+    { "id": "mid-lane", "label": "Middle lane", "shape": { "kind": "rect", "x": 0.3, "y": 0.4, "w": 0.4, "h": 0.2 } },
+    { "id": "bot-lane", "label": "Bottom lane", "shape": { "kind": "rect", "x": 0.05, "y": 0.85, "w": 0.9, "h": 0.1 } },
+    { "id": "jungle", "label": "Jungle", "shape": { "kind": "circle", "cx": 0.25, "cy": 0.6, "r": 0.1 } },
+    { "id": "base", "label": "Base", "shape": { "kind": "circle", "cx": 0.9, "cy": 0.1, "r": 0.08 } }
+  ],
+  "correctHotspotIds": ["jungle"],
+  "explanation": {
+    "correct": "The jungle is the area between lanes, full of neutral monsters. A jungler roams there to help other lanes.",
+    "incorrect": "Lanes are the roads between bases. The jungle is the space between them, where neutral monsters live and roaming players farm."
+  }
+}
+```
+
+**Sample 3** (lesson `anat-01`)
+
+```json
+{
+  "prompt": "Tap the right trigger.",
+  "diagram": {
+    "diagramId": "controller-generic-twinstick",
+    "aspectRatio": 1.6,
+    "alt": "A generic game controller seen from above and slightly behind. Two thumbsticks sit low on each side, four buttons on the right and a cross pad on the left. Two shoulder buttons and two triggers sit along the top edge."
+  },
+  "hotspots": [
+    { "id": "left-stick", "label": "Left stick", "shape": { "kind": "circle", "cx": 0.32, "cy": 0.58, "r": 0.09 } },
+    { "id": "right-stick", "label": "Right stick", "shape": { "kind": "circle", "cx": 0.62, "cy": 0.68, "r": 0.09 } },
+    { "id": "right-trigger", "label": "Right trigger", "shape": { "kind": "rect", "x": 0.7, "y": 0.04, "w": 0.16, "h": 0.14 } },
+    { "id": "left-trigger", "label": "Left trigger", "shape": { "kind": "rect", "x": 0.14, "y": 0.04, "w": 0.16, "h": 0.14 } },
+    { "id": "face-buttons", "label": "Face buttons", "shape": { "kind": "circle", "cx": 0.78, "cy": 0.48, "r": 0.1 } }
+  ],
+  "correctHotspotIds": ["right-trigger"],
+  "explanation": {
+    "correct": "Triggers sit on the top edge of the controller under your index fingers. Right trigger often fires a weapon or accelerates a car.",
+    "incorrect": "Triggers are on the top edge, under your index fingers. The sticks are for your thumbs and the face buttons are the four on the right."
+  }
+}
+```
+

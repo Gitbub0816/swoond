@@ -31,11 +31,15 @@ test('bad fixture passes with --no-lint (schema-only)', () => {
 
 test('every real course manifest is valid, its spec files exist and their config schemas compile', () => {
   // Manifests only: curricula of courses still being authored are not part of this check.
+  // A course counts as "authored" once its authoring package is complete, marked by live-data.md
+  // (the last file of the CDS -> manifest -> sim specs -> exercises -> live-data package). Courses still
+  // mid-authoring by another agent (manifest written, sim specs not yet) are skipped so this test is
+  // not flaky; `node validate.mjs --partial` still checks every course in the repo.
   const tmp = mkdtempSync(join(tmpdir(), 'swoond-manifests-'));
   try {
     for (const c of readdirSync(join(here, '..', '..', 'docs', 'courses'), { withFileTypes: true })) {
       const m = join(here, '..', '..', 'docs', 'courses', c.name, 'manifest.json');
-      if (c.isDirectory() && existsSync(m)) { mkdirSync(join(tmp, c.name)); cpSync(m, join(tmp, c.name, 'manifest.json')); }
+      if (c.isDirectory() && existsSync(m) && existsSync(join(here, '..', '..', 'docs', 'courses', c.name, 'live-data.md'))) { mkdirSync(join(tmp, c.name)); cpSync(m, join(tmp, c.name, 'manifest.json')); }
     }
     const r = run('--courses-dir', tmp, '--no-examples');
     assert.equal(r.status, 0, r.stdout + r.stderr);

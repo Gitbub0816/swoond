@@ -167,20 +167,20 @@
             "conceptIds": ["volley-serve-rule"],
             "payload": {
               "prompt": "Complete the volley-serve rule.",
-              "template": "The paddle head must stay {{above_or_below}} the wrist, contact must be {{above_or_below}} the waist, and the arc must be {{direction}}.",
+              "template": "The paddle head must stay {{wrist}} the wrist, contact must be {{waist}} the waist, and the arc must be {{arc}}.",
               "gaps": [
                 {
-                  "id": "above_or_below_1",
+                  "id": "wrist",
                   "options": ["above", "below"],
                   "correct": "below"
                 },
                 {
-                  "id": "above_or_below_2",
+                  "id": "waist",
                   "options": ["above", "below"],
                   "correct": "below"
                 },
                 {
-                  "id": "direction",
+                  "id": "arc",
                   "options": ["downward", "upward"],
                   "correct": "upward"
                 }
@@ -285,29 +285,41 @@
             "type": "decision-scenario",
             "conceptIds": ["drop-serve"],
             "payload": {
-              "title": "Choosing a serve style",
-              "setting": "You're learning to serve and you have to pick a style.",
-              "scenario": "You can throw a volley serve (hit while holding the ball, below waist, upward motion) or a drop serve (drop it, wait for the bounce, then hit). Both land in the same box and count the same way.",
-              "dilemma": "Which should you practice first?",
+              "prompt": "Which serve style is the best starting point?",
+              "situation": {
+                "narrative": "You're learning to serve and you have to pick a style.",
+                "facts": [
+                  {"label": "Volley serve", "value": "Hit below waist while holding. More complex grip."},
+                  {"label": "Drop serve", "value": "Drop and bounce before hit. Simpler to learn."},
+                  {"label": "Outcome", "value": "Both land in the same box and count the same."}
+                ]
+              },
               "options": [
                 {
                   "id": "drop",
-                  "text": "Start with drop serve; it's easier and you can find your groove",
-                  "outcome": "Smart move. Drop serve removes one layer of complexity (the underhand grip) so you can focus on aim and landing. Volley serve comes later.",
-                  "smooth": 30
+                  "label": "Start with drop serve; easier mechanics to master",
+                  "verdict": "best",
+                  "consequence": "Drop serve removes one layer of complexity so you can focus on aim and landing. Volley serve comes later when you're confident.",
+                  "considerations": [
+                    "Fewer moving parts to coordinate",
+                    "Same landing rules as volley serve",
+                    "You can always learn volley later"
+                  ]
                 },
                 {
                   "id": "volley",
-                  "text": "Go straight to volley serve; that's what the pros do",
-                  "outcome": "Ambitious, but drop serve is the easier way in. Pros use volley serves, but beginners find drop serve more reliable.",
-                  "smooth": 5
+                  "label": "Learn volley serve because pros use it",
+                  "verdict": "acceptable",
+                  "consequence": "Ambitious, but drop serve is the easier entry. Pros use volley serves, but beginners find drop serve more reliable.",
+                  "considerations": [
+                    "More grip complexity at the start",
+                    "Worth learning, but not as a first step",
+                    "Can add it later when you want"
+                  ]
                 }
               ],
-              "correctOptionId": "drop",
-              "explanation": {
-                "summary": "Both serves have the same rules for landing, but drop serve has fewer moving parts. Master the aim first, then add the grip.",
-                "sayThisLine": "Drop serve is the shortcut to a reliable serve."
-              }
+              "expertNote": "Drop serve is the shortcut to a reliable serve. Master the aim and landing first, then add the grip.",
+              "sayThisLine": "Drop serve is the shortcut to a reliable serve."
             }
           },
           {
@@ -488,29 +500,41 @@
             "type": "decision-scenario",
             "conceptIds": ["return-deep"],
             "payload": {
-              "title": "Where to aim your return",
-              "setting": "You are returning the serve and you have to pick a target.",
-              "scenario": "The serve lands near the baseline on your side. You can hit it back: either a short return toward their kitchen, or a deep return toward their baseline.",
-              "dilemma": "Which return is smarter?",
+              "prompt": "Where should you aim your return?",
+              "situation": {
+                "narrative": "The serve lands near the baseline on your side. You can hit it back in two directions.",
+                "facts": [
+                  {"label": "Short return", "value": "Toward their kitchen, close to the net"},
+                  {"label": "Deep return", "value": "Toward their baseline, deep in the court"},
+                  {"label": "Your position", "value": "You're at the baseline after receiving the serve"}
+                ]
+              },
               "options": [
                 {
                   "id": "deep",
-                  "text": "Hit it deep, toward their baseline",
-                  "outcome": "Smart. A deep return gives you time to move up and reach the kitchen line. Short returns put you at a disadvantage.",
-                  "smooth": 28
+                  "label": "Hit deep, toward their baseline",
+                  "verdict": "best",
+                  "consequence": "A deep return gives you time to move up and reach the kitchen line. You're not stuck at the baseline.",
+                  "considerations": [
+                    "Buys your team time to advance",
+                    "Puts pressure on the serving team",
+                    "Sets up the third-shot drop"
+                  ]
                 },
                 {
                   "id": "short",
-                  "text": "Hit it short, near their kitchen",
-                  "outcome": "Tempting, but you lose your advantage. Deep returns buy time and position. Short returns let them attack immediately.",
-                  "smooth": -8
+                  "label": "Hit short, near their kitchen",
+                  "verdict": "poor",
+                  "consequence": "Short returns put you at a disadvantage because the serving team can attack right away. You lose position.",
+                  "considerations": [
+                    "Gives them an easy third-shot attack",
+                    "You stay stuck at the baseline",
+                    "Risky strategy for most levels"
+                  ]
                 }
               ],
-              "correctOptionId": "deep",
-              "explanation": {
-                "summary": "A deep return gives your team time to advance to the kitchen line. Short returns give the serving team an easy third-shot attack.",
-                "sayThisLine": "Deep returns are the smart play."
-              }
+              "expertNote": "A deep return is the foundation of good return play. It gives your team time and position.",
+              "sayThisLine": "Deep returns are the smart play."
             }
           },
           {
@@ -676,19 +700,14 @@
                   "correct": "serve"
                 },
                 {
-                  "id": "side1",
-                  "options": ["serving side", "receiving side"],
-                  "correct": "receiving side"
-                },
-                {
                   "id": "shot2",
                   "options": ["serve", "return"],
                   "correct": "return"
                 },
                 {
-                  "id": "side2",
+                  "id": "side",
                   "options": ["serving side", "receiving side"],
-                  "correct": "serving side"
+                  "correct": "each side"
                 }
               ],
               "explanation": {

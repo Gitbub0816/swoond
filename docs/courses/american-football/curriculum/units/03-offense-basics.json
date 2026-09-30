@@ -374,17 +374,40 @@
             "type": "decision-scenario",
             "conceptIds": ["running-back", "offensive-line"],
             "payload": {
-              "prompt": "The play is designed to go outside but the edge is covered. The running back sees a lane up the middle. What should he do?",
-              "scene": {"kind": "none", "alt": "A running back with a blocked gap outside and an open lane between the tackles."},
-              "choices": [
-                {"id": "cutback", "label": "Cut it back inside where it is open", "isCorrect": true},
-                {"id": "bounce", "label": "Bounce it to the outside anyway", "isCorrect": false},
-                {"id": "retreat", "label": "Go backward to avoid the defender", "isCorrect": false}
+              "prompt": "Outside is covered, but a lane opens inside the tackles.",
+              "situation": {
+                "narrative": "The play is designed to go outside but the edge is covered and packed with defenders. You see a lane up the middle.",
+                "facts": [
+                  {"label": "Design", "value": "Outside run"},
+                  {"label": "Edge", "value": "Blocked, defender getting there"},
+                  {"label": "Middle lane", "value": "Open between the tackles"},
+                  {"label": "Choice", "value": "Stick to design or cutback"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "cutback",
+                  "label": "Cut it back inside where it is open",
+                  "verdict": "best",
+                  "consequence": "You find yards and possibly a big play by taking what is there.",
+                  "considerations": ["Blockers have opened a hole inside", "Live runners take the best gap", "You gain positive yards"]
+                },
+                {
+                  "id": "bounce",
+                  "label": "Bounce it to the outside anyway",
+                  "verdict": "poor",
+                  "consequence": "You run into traffic and get tackled for a loss or minimal gain.",
+                  "considerations": ["Forcing a play into a defender loses yards", "The edge is not open", "You ignore your read"]
+                },
+                {
+                  "id": "retreat",
+                  "label": "Go backward to avoid the defender",
+                  "verdict": "poor",
+                  "consequence": "Negative yardage and a stalled drive.",
+                  "considerations": ["Backpedaling kills forward progress", "You surrender the play", "Secondary players are pursuing"]
+                }
               ],
-              "explanation": {
-                "correct": "Cut it back. The blockers have opened a hole inside. Live runners take what is there, not what was planned.",
-                "incorrect": "Good backs do not force a designed play. They read and find the open hole."
-              }
+              "expertNote": "Vision is the mark of a great back. The play call is a guide, not a law. Read your blockers and find the first crease to daylight. Cutback lanes are often better than the designed edge when the defense over-commits."
             },
             "xp": 10
           }
@@ -514,7 +537,9 @@
             "type": "unity-sim",
             "conceptIds": ["route-tree", "post-route", "out-route", "curl-route"],
             "payload": {
-              "simulationId": "football.routes.build.v1"
+              "simulationId": "football.routes.build.v1",
+              "simulationVersion": "1.0.0",
+              "difficulty": 2
             },
             "xp": 20
           },
@@ -561,17 +586,39 @@
             "type": "decision-scenario",
             "conceptIds": ["out-route", "route-tree"],
             "payload": {
-              "prompt": "You are running an out route and the defense is playing tight on the sideline. Should you break your route, or stick with the sideline cut?",
-              "scene": {"kind": "none", "alt": "A receiver about to make an out route cut while a defender closes quickly."},
-              "choices": [
-                {"id": "stick", "label": "Stick to the sideline cut as designed", "isCorrect": false},
-                {"id": "adjust", "label": "Adjust your break angle up the field instead", "isCorrect": true},
-                {"id": "retreat", "label": "Run backward to get away", "isCorrect": false}
+              "prompt": "Your out route is tight. Defense is closing on the sideline.",
+              "situation": {
+                "narrative": "You are running an out route and the defense is playing tight coverage on the sideline.",
+                "facts": [
+                  {"label": "Coverage", "value": "Tight on the sideline"},
+                  {"label": "Your route", "value": "Out route at 8-10 yards"},
+                  {"label": "Option", "value": "Adjust or stick to design"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "adjust",
+                  "label": "Adjust your break angle up the field",
+                  "verdict": "best",
+                  "consequence": "You create separation against tight coverage by reading the defense.",
+                  "considerations": ["Good receivers read coverage on the fly", "Slight route adjustments beat tight man coverage", "Quarterbacks expect some improvisation"]
+                },
+                {
+                  "id": "stick",
+                  "label": "Stick to the sideline cut as designed",
+                  "verdict": "poor",
+                  "consequence": "The defender is ready for your break and can undercut the pass.",
+                  "considerations": ["Predictable routes are defender-friendly", "Live defenders close gaps fast", "You lose separation by staying on plan"]
+                },
+                {
+                  "id": "retreat",
+                  "label": "Run backward to get away",
+                  "verdict": "poor",
+                  "consequence": "You abandon the route and the quarterback has no target.",
+                  "considerations": ["Breaking fundamentals loses the play", "Backward movement kills spacing", "Quarterbacks need receiver discipline"]
+                }
               ],
-              "explanation": {
-                "correct": "Adjust. A receiver who sees coverage can adapt the break slightly to the field to find separation.",
-                "incorrect": "A receiver should read the coverage and adjust the route slightly if needed to get open."
-              }
+              "expertNote": "Great receivers read coverage on the fly and adjust route breaks slightly to find soft spots. Stick to the fundamental break angle, but let your feet and body angle follow the open space, not the tight defender."
             },
             "xp": 10
           }
@@ -713,17 +760,40 @@
             "type": "decision-scenario",
             "conceptIds": ["screen-pass", "blitz"],
             "payload": {
-              "prompt": "The defense is blitzing heavily. You have a screen pass called. What is the advantage?",
-              "scene": {"kind": "none", "alt": "A formation with defenders aggressively rushing and offensive linemen setting up to block outside."},
-              "choices": [
-                {"id": "trap", "label": "The rushing defenders become blockers for you", "isCorrect": true},
-                {"id": "run", "label": "The ball carrier can run deep downfield", "isCorrect": false},
-                {"id": "kick", "label": "You should switch to a field goal attempt", "isCorrect": false}
+              "prompt": "Heavy blitz is coming and you have a screen pass called.",
+              "situation": {
+                "narrative": "The defense is blitzing heavily with extra defenders rushing. You have a screen pass called. What is the advantage?",
+                "facts": [
+                  {"label": "Defense", "value": "Blitzing hard, aggressive", "emphasis": "warning"},
+                  {"label": "Your play", "value": "Screen pass behind the line"},
+                  {"label": "Blocker setup", "value": "Offensive line releasing downfield"},
+                  {"label": "Ball carrier", "value": "Running back in short area"}
+                ]
+              },
+              "options": [
+                {
+                  "id": "trap",
+                  "label": "Rushing defenders become blockers",
+                  "verdict": "best",
+                  "consequence": "The aggressive blitzers are out of position and become your blockers. You gain yards.",
+                  "considerations": ["Blitz commitments leave gaps", "Rushing defenders are away from the ball", "Screens punish aggressive defense"]
+                },
+                {
+                  "id": "run",
+                  "label": "Ball carrier runs deep downfield",
+                  "verdict": "poor",
+                  "consequence": "Screen passes are short throws. You cannot run deep when designed for the flats.",
+                  "considerations": ["Screens are perimeter plays, not deep", "Blitzers are still coming", "Route design does not support depth"]
+                },
+                {
+                  "id": "kick",
+                  "label": "Switch to a field goal attempt",
+                  "verdict": "poor",
+                  "consequence": "You abandon an effective play call against the blitz.",
+                  "considerations": ["Screens are made for blitz situations", "Changing plays loses rhythm", "You want short, quick hitters"]
+                }
               ],
-              "explanation": {
-                "correct": "Yes. When a blitz is coming hard, they are wide open out of position. A screen catches them off-guard.",
-                "incorrect": "The screen is designed to turn the aggressive blitzers into your blockers on the perimeter."
-              }
+              "expertNote": "Screens are the screen pass snare. When a blitz is coming hard, the rushing defenders are out of gaps and perfect for blocking on the perimeter. The aggressive pass rush becomes your advantage."
             },
             "xp": 10
           },

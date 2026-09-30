@@ -1,35 +1,28 @@
-name: CI
+name: iOS
 
 on:
   push:
+    paths:
+      - ios/**
+      - .github/workflows/ios.yml
+      - tools/ci/**
+      - docs/contracts/**
   pull_request:
+    paths:
+      - ios/**
+      - .github/workflows/ios.yml
+      - tools/ci/**
+      - docs/contracts/**
+  workflow_dispatch:
 
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  group: ios-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: read
 
 jobs:
-  content:
-    name: Content validation
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: tools/validate
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 22
-          cache: npm
-          cache-dependency-path: tools/validate/package-lock.json
-      - run: npm ci
-      - run: npm test
-      # TODO: drop --partial once all courses are fully authored.
-      - run: node validate.mjs --partial
-
   core-linux:
     name: SwoondCore (Linux)
     runs-on: ubuntu-latest

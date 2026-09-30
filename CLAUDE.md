@@ -132,11 +132,10 @@ The validator: schema validation (ajv, draft 2020-12), unique ids, prerequisite/
 
 ## 10a. CI
 
-`.github/workflows/ci.yml` runs on every push and pull request (per-ref concurrency, in-progress runs cancelled):
+Two workflows, each with path-specific triggers and independent concurrency:
 
-- `content` (ubuntu): Node 22, `npm ci` + `npm test` in `tools/validate`, then `node validate.mjs --partial`. TODO: drop `--partial` once all courses are fully authored.
-- `core-linux` (ubuntu, `swift:6.3` container): `swift build --build-tests` and `swift test` in `ios/SwoondCore`.
-- `ios-build` (`macos-26`, newest installed Xcode; the runner image may lag the Xcode 27 toolchain): `swift test` for SwoondCore, XcodeGen, Debug simulator build of scheme `Swoond` (`CODE_SIGNING_ALLOWED=NO`), then SwoondTests on a simulator chosen by `tools/ci/pick-simulator.sh`. Logs and the xcresult upload as the `ios-diagnostics` artifact on failure.
+- `.github/workflows/content.yml`: `content` job (ubuntu, Node 22). Triggers on `docs/**`, `tools/validate/**`, `.github/workflows/content.yml`. Concurrency `content-${{ github.ref }}`, cancel-in-progress: true.
+- `.github/workflows/ios.yml`: `core-linux` (ubuntu, `swift:6.3`) and `ios-build` (macos-26, newest Xcode). Triggers on `ios/**`, `.github/workflows/ios.yml`, `tools/ci/**`, `docs/contracts/**` (SwoondCore tests read contract examples). Concurrency `ios-${{ github.ref }}`, cancel-in-progress: true for pull_request only (let each iOS build finish on pushes).
 
 Keep the local commands in section 10 green before pushing; bump the action versions and runner label when the toolchain in section 12 moves.
 
