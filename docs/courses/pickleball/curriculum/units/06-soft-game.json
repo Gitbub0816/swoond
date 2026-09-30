@@ -966,51 +966,36 @@
           },
           {
             "id": "soft-07-ht-1",
-            "type": "hotspot-tap",
+            "type": "sequence-order",
             "conceptIds": ["speed-up"],
             "payload": {
-              "prompt": "Tap the kitchen area where a well-timed speed-up should land.",
-              "diagram": {
-                "diagramId": "pickleball-court-top-down",
-                "alt": "Overhead view of the court with kitchens and court zones marked."
-              },
-              "hotspots": [
+              "prompt": "Put a good speed-up in order, from dink rally to follow-up.",
+              "items": [
                 {
-                  "id": "kitchen-center",
-                  "label": "Center of opponent's kitchen (speed-up target)",
-                  "shape": {
-                    "kind": "circle",
-                    "cx": 0.5,
-                    "cy": 0.95,
-                    "r": 0.06
-                  }
+                  "id": "dink-rally",
+                  "text": "You trade soft dinks at the kitchen line",
+                  "why": "The speed-up grows out of the soft game."
                 },
                 {
-                  "id": "kitchen-angle",
-                  "label": "Angled to the side",
-                  "shape": {
-                    "kind": "circle",
-                    "cx": 0.25,
-                    "cy": 0.9,
-                    "r": 0.06
-                  }
+                  "id": "ball-sits-up",
+                  "text": "Their dink sits up a little above the net",
+                  "why": "You need a ball you can hit down on."
                 },
                 {
-                  "id": "baseline",
-                  "label": "Near the baseline",
-                  "shape": {
-                    "kind": "circle",
-                    "cx": 0.5,
-                    "cy": 1.0,
-                    "r": 0.06
-                  }
+                  "id": "speed-up",
+                  "text": "You hit a firm, flat shot at them",
+                  "why": "The sudden pace leaves them little time to react."
+                },
+                {
+                  "id": "stay-ready",
+                  "text": "You stay balanced with your paddle up",
+                  "why": "They may block it back, so you need to be ready for a fast return."
                 }
               ],
-              "correctHotspotIds": ["kitchen-center"],
               "explanation": {
-                "correct": "A speed-up is most effective when it lands hard and low in the opponent's kitchen, giving them little time to react.",
-                "incorrect": "A speed-up from the back of the court is easier but less effective; the kitchen target is harder but more rewarding.",
-                "sayThisLine": "Speed-up: hard into the kitchen."
+                "correct": "A speed-up grows out of a dink rally: wait for a ball that sits up, hit it firmly, then stay ready for the reply.",
+                "incorrect": "The order is dink rally, ball sits up, speed-up, then stay ready. Speeding up before the ball sits up is how you pop it up yourself.",
+                "sayThisLine": "Dink, wait for a high one, speed up, stay ready."
               }
             }
           },
@@ -1021,16 +1006,16 @@
             "payload": {
               "prompt": "When is the best time to speed up during a soft-game rally?",
               "options": [
-                {"id": "a", "text": "When the opponent is tired or the ball sits up high enough to attack"},
+                {"id": "a", "text": "When the ball sits up or your opponent is caught off balance"},
                 {"id": "b", "text": "Every other shot"},
                 {"id": "c", "text": "After the first dink"},
                 {"id": "d", "text": "Only in the final game of a match"}
               ],
               "correctOptionIds": ["a"],
               "explanation": {
-                "correct": "Speed up when you spot fatigue or an attackable ball. That's when it's most effective and least risky.",
-                "incorrect": "Speed-up is a tactical tool, not random. Use it when you see an opening (fatigue, high ball).",
-                "sayThisLine": "Speed-up: when they're tired or the ball is high."
+                "correct": "A speed-up works best when you have a ball you can hit down on, or an opponent who cannot react in time. Those are the low-risk moments.",
+                "incorrect": "A speed-up is not something to do on a schedule. Speeding up on a low ball with a set opponent just gives away the point.",
+                "sayThisLine": "I speed up when the ball sits up or they're off balance."
               }
             }
           },
@@ -1039,10 +1024,10 @@
             "type": "binary-call",
             "conceptIds": ["speed-up"],
             "payload": {
-              "prompt": "You're in the middle of a soft dink rally, the ball is low, and your opponent looks fresh. Do you speed up?",
+              "prompt": "The ball is low and both opponents are set and ready. Speed up?",
               "scene": {
                 "kind": "none",
-                "alt": "Scenario: low dink, early in rally, opponent ready."
+                "alt": "Scenario: a low dink arrives, and both opponents are balanced at the kitchen line."
               },
               "choices": [
                 {"id": "yes-speed", "label": "Yes, speed up now"},
@@ -1050,9 +1035,9 @@
               ],
               "correctChoiceId": "no-wait",
               "explanation": {
-                "correct": "No, wait. Speed up when the opponent is tired or the ball is high. A premature speed-up is risky.",
-                "incorrect": "Speed-up is tactical. Early in a rally when they're fresh, keep dinking and wait for your moment.",
-                "sayThisLine": "Speed-up when they're tired, not when they're fresh."
+                "correct": "Keep dinking. A low ball can't be hit down on, and set opponents are ready, so a speed-up mostly hits the net or gives them a ball to attack.",
+                "incorrect": "A speed-up needs an opening: a ball that sits up or an opponent who is off balance. Neither is here, so be patient.",
+                "sayThisLine": "No opening yet, so I keep dinking."
               },
               "ruleTag": "Speed-up timing"
             }
@@ -1068,23 +1053,23 @@
               },
               "question": "What should you say?",
               "options": [
-                {"id": "a", "text": "That's the soft game! Dink until you see your opening, then speed up and finish.", "isCorrect": true},
+                {"id": "a", "text": "Ooh, nice! What was the opening you spotted?", "isCorrect": true},
                 {"id": "b", "text": "You should speed up every time.", "isCorrect": false},
                 {"id": "c", "text": "That was lucky.", "isCorrect": false},
                 {"id": "d", "text": "Speed is the only thing that wins.", "isCorrect": false}
               ],
-              "translation": "Timing a speed-up after a dink rally, when the opponent is tired or vulnerable, is smart strategy.",
+              "translation": "Sam waited through a dink rally, then sped up when the moment was right. That is the soft game working as intended.",
               "followUps": [
                 {
-                  "line": "That's the rhythm: dink to set up, then speed up to finish. Perfect timing.",
-                  "why": "Affirms the strategic flow."
+                  "line": "That's great timing! Did the ball sit up, or were they off balance?",
+                  "why": "Shows you know what an opening looks like and asks Sam about it."
                 },
                 {
-                  "line": "Recognizing the right moment to switch from soft to fast is the mark of a good player.",
-                  "why": "Shows it's a skill she's building."
+                  "line": "I'd love to learn how you knew it was the right moment.",
+                  "why": "Honest curiosity that invites Sam to share."
                 }
               ],
-              "noFakeExpertNote": "Speed-up is the punctuation at the end of a dink rally, not the whole sentence."
+              "noFakeExpertNote": "Sam is excited, so match the energy and ask a question. You do not need to explain the tactic back to Sam."
             }
           }
         ]
@@ -1151,7 +1136,7 @@
                   ]
                 },
                 {
-                  "theirMessage": "Yeah, I kept dinking cross-court to tire them out.",
+                  "theirMessage": "Yeah, I kept dinking cross-court to keep them moving.",
                   "replies": [
                     {
                       "id": "good",
@@ -1165,14 +1150,14 @@
                       "text": "That's nice.",
                       "smoothDelta": 2,
                       "theirResponse": "Yeah, it worked.",
-                      "coachNote": "Safe but ask about her decisions next time."
+                      "coachNote": "Safe, but a question about Sam's decisions would keep the conversation going."
                     },
                     {
                       "id": "cringe",
                       "text": "Why didn't you just speed up from the start?",
                       "smoothDelta": -15,
-                      "theirResponse": "Because they weren't tired yet.",
-                      "coachNote": "Speed-up is for the right moment, not the start."
+                      "theirResponse": "Because nothing had sat up yet.",
+                      "coachNote": "A speed-up needs an opening, so it usually does not come at the start."
                     }
                   ]
                 }
@@ -1200,11 +1185,11 @@
                   "id": "break-pattern",
                   "label": "Hit cross-court to the open side, pulling them out of position",
                   "verdict": "best",
-                  "consequence": "Correct. Breaking a pattern forces movement and creates openings for a pop-up or winner.",
+                  "consequence": "Good plan. When the other side expects one spot, sending the ball to the open side makes them move and can produce a pop-up.",
                   "considerations": [
                     "Patterns are predictable",
-                    "Breaking them tires opponents",
-                    "Movement = fatigue"
+                    "Moving an opponent makes them harder to hit cleanly",
+                    "Keep the ball low when you change it"
                   ]
                 },
                 {
@@ -1242,13 +1227,13 @@
                 },
                 {
                   "id": "condition",
-                  "options": ["they pop up or tire", "you feel like it"],
-                  "correct": "they pop up or tire"
+                  "options": ["they pop up or lose balance", "you feel like it"],
+                  "correct": "they pop up or lose balance"
                 }
               ],
               "explanation": {
-                "correct": "Dink war: keep it low, vary placement to force movement, then speed up when they're vulnerable.",
-                "incorrect": "Win the dink war with control, placement variety, and timing your speed-up for when they're tired or pop one up.",
+                "correct": "In a dink war, keep the ball low, vary where it goes to keep them moving, then speed up when a ball sits up or they lose their balance.",
+                "incorrect": "Win the dink war with control, varied placement, and a speed-up timed for when they pop one up or are caught off balance.",
                 "sayThisLine": "Low dinks, varied placement, perfect timing on the speed-up."
               }
             }

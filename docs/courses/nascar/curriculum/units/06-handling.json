@@ -95,7 +95,7 @@
               "loose"
             ],
             "payload": {
-              "prompt": "{{symptom}} means the {{end}} lost grip.",
+              "prompt": "Which end lost grip?",
               "template": "{{symptom}} means the {{end}} lost grip.",
               "gaps": [
                 {
@@ -176,7 +176,7 @@
               "car-balance"
             ],
             "payload": {
-              "prompt": "Does a balanced car beat an unbalanced one, regardless of raw speed?",
+              "prompt": "Can a well-balanced car beat one with more raw speed?",
               "scene": {
                 "kind": "none",
                 "alt": "Two cars on the same track: one car is straight and centered; the other car is pushed wide on the turn."
@@ -184,17 +184,17 @@
               "choices": [
                 {
                   "id": "yes",
-                  "label": "Yes, balance matters that much."
+                  "label": "Yes, balance can beat raw speed"
                 },
                 {
                   "id": "no",
-                  "label": "No, speed is everything."
+                  "label": "No, raw speed always wins"
                 }
               ],
               "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Absolutely. A driver with a balanced car can be smoother, faster on exits and more consistent. Balance is huge.",
-                "incorrect": "Speed matters, but a tight or loose car costs you more than raw horsepower gains you. A balanced car on old tires can beat an unbalanced car on fresh tires because the driver is not fighting."
+                "correct": "Yes. A driver with a balanced car can be smoother, faster on exits and more consistent. Balance is a big part of speed.",
+                "incorrect": "Speed matters, but a tight or loose car costs lap time and confidence. A well-balanced car can beat a faster but ill-handling one, especially over a long run."
               }
             }
           },
@@ -207,7 +207,7 @@
             "payload": {
               "statement": {
                 "speaker": "crew chief",
-                "text": "We got the balance right on that stop and he drove away from him."
+                "text": "We got the balance right on that stop and he drove away from the field."
               },
               "options": [
                 {
@@ -226,15 +226,15 @@
                   "text": "The fuel mixture was finally correct."
                 }
               ],
-              "translation": "The pit stop crew adjusted something (wedge, track bar, or tire pressure) and now the car handles better, so the driver can run faster and more confidently.",
+              "translation": "The crew changed something on the stop, such as tire pressure or a chassis adjustment, and the car now handles better, so the driver can run faster with more confidence.",
               "followUps": [
                 {
-                  "line": "A balanced car is more important than a slightly faster engine.",
-                  "why": "A driver with a drivable car will beat a frustrated driver fighting a loose or tight car."
+                  "line": "What did they change on that stop?",
+                  "why": "It shows you know a stop is a chance to fix the car, not just change tires."
                 },
                 {
-                  "line": "Crew chiefs spend race day chasing balance, not speed.",
-                  "why": "The car's basic speed is set in practice. The race is about adjustments to dial in the balance."
+                  "line": "Was he tight or loose before the stop?",
+                  "why": "It is the natural next question, and it uses the tight and loose words correctly."
                 }
               ]
             }
@@ -246,7 +246,7 @@
               "car-balance"
             ],
             "payload": {
-              "prompt": "Why do crew chiefs prioritize balance over maximum horsepower?",
+              "prompt": "Why does balance matter so much when power is similar?",
               "options": [
                 {
                   "id": "a",
@@ -254,7 +254,7 @@
                 },
                 {
                   "id": "b",
-                  "text": "Horsepower is illegal after the first pit stop."
+                  "text": "Because balance is what makes the engine louder."
                 },
                 {
                   "id": "c",
@@ -265,8 +265,8 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Right. A smooth, predictable car is faster than an unbalanced one with more power. The driver can trust it and push harder.",
-                "incorrect": "A balanced car is faster because the driver loses less time fighting the car and gains time on the straights and exits. Horsepower cannot make up for poor handling."
+                "correct": "Right. Cars have similar power, so a predictable car the driver can trust is often the quicker one.",
+                "incorrect": "Power levels are set by the rules, so handling is where cars differ. A balanced car lets the driver lose less time fighting it, and horsepower cannot make up for poor handling."
               }
             }
           },
@@ -277,7 +277,7 @@
               "car-balance"
             ],
             "payload": {
-              "prompt": "A car that is {{state}} costs the driver {{consequence}}.",
+              "prompt": "What does an unbalanced car cost the driver?",
               "template": "A car that is {{state}} costs the driver {{consequence}}.",
               "gaps": [
                 {
@@ -293,7 +293,7 @@
                   "id": "consequence",
                   "options": [
                     "concentration and lap time",
-                    "his team's respect",
+                    "nothing at all",
                     "the championship"
                   ],
                   "correct": "concentration and lap time"
@@ -345,8 +345,8 @@
               "tight-push"
             ],
             "payload": {
-              "prompt": "If the driver says {{complaint}}, he has a {{issue}} problem.",
-              "template": "If the driver says {{complaint}}, he has a {{issue}} problem.",
+              "prompt": "Diagnose what the driver is telling you.",
+              "template": "If the driver says {{complaint}}, the car has a {{issue}} problem.",
               "gaps": [
                 {
                   "id": "complaint",
@@ -377,68 +377,57 @@
             "id": "hand-03-ds-adjust-choice",
             "type": "decision-scenario",
             "conceptIds": [
+              "tight-push",
               "adjustments",
-              "wedge",
               "tire-pressure"
             ],
             "payload": {
-              "prompt": "The driver says the car is tight on exit. Which adjustment do you make on the next pit stop?",
+              "prompt": "Driver says the car is tight on exit. What do you do at the next stop?",
               "situation": {
+                "narrative": "Twenty laps into a run, the driver reports the front will not turn off the corner.",
                 "facts": [
                   {
                     "label": "Symptom",
-                    "value": "Cannot turn on corner exit, pushes wide"
+                    "value": "Tight on corner exit, pushes wide"
                   },
                   {
                     "label": "Tires",
-                    "value": "Nearly new, 20 laps in"
+                    "value": "About 20 laps old"
                   },
                   {
-                    "label": "Fuel",
-                    "value": "Running the pit cycle strategy"
+                    "label": "Next stop",
+                    "value": "In about 10 laps"
                   },
                   {
-                    "label": "Track",
-                    "value": "1.5-mile intermediate, hot and abrasive"
+                    "label": "Your tools",
+                    "value": "Tire pressure, wedge, track bar"
                   }
                 ]
               },
               "options": [
                 {
-                  "id": "wedge",
-                  "label": "Adjust the wedge (round-in) to free up front grip.",
+                  "id": "small",
+                  "label": "One small change, then ask how it feels",
                   "verdict": "best",
-                  "consequence": "You dial out the tight and the driver has more grip on exit. He can turn harder and exit faster.",
-                  "considerations": [
-                    "Wedge changes load on the front tires.",
-                    "A small wedge adjustment often cures tight cars.",
-                    "The driver can feel the difference immediately."
-                  ]
+                  "consequence": "You learn what the change did. If the car is better you keep it, and if not you know where to look next.",
+                  "considerations": ["One change at a time shows cause and effect.", "The driver feels the result straight away.", "You can always make a second small change."]
                 },
                 {
                   "id": "pressure",
-                  "label": "Lower the front tire pressure.",
+                  "label": "Only touch the tire pressure",
                   "verdict": "acceptable",
-                  "consequence": "Softer tires give a bit more grip, but not as directly as wedge.",
-                  "considerations": [
-                    "Pressure is easier to change than mechanical adjustments.",
-                    "Lower pressure can increase grip but may hurt long-run pace.",
-                    "Wedge is usually the first move for tight cars."
-                  ]
+                  "consequence": "Pressure is easy to change and to undo, but it may not get at the real balance problem.",
+                  "considerations": ["It is a quick lever on grip.", "It can cost tire life.", "It may only treat the symptom."]
                 },
                 {
-                  "id": "fuel",
-                  "label": "Ask him to drive smoother on exit.",
+                  "id": "drive",
+                  "label": "Tell him to drive smoother on exit",
                   "verdict": "poor",
-                  "consequence": "He is already driving as hard as he can. The car is the problem, not his inputs.",
-                  "considerations": [
-                    "A driver complaint is usually a car problem, not a driver problem.",
-                    "Telling a pro to 'just drive smoother' is frustrating and unhelpful.",
-                    "Fix the car, not the driver."
-                  ]
+                  "consequence": "He is already doing everything he can. The car is what needs to change.",
+                  "considerations": ["A driver's complaint is usually about the car.", "Telling a pro to drive smoother rarely helps.", "Fix the car so he can drive the way he wants."]
                 }
               ],
-              "expertNote": "Crew chiefs read driver feedback and make the smallest adjustments that matter. Wedge and ride height are the usual tight-car fixes."
+              "expertNote": "Crew chiefs listen to the driver and make small changes, one at a time. The exact fix depends on the car, the track and the moment, so there is no single recipe."
             }
           },
           {
@@ -468,8 +457,8 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Exactly. A wedge (or round-in) adjusts the suspension load balance. It is one of the fastest ways to cure a tight or loose car.",
-                "incorrect": "Wedge is a mechanical adjustment made in the pits. It is a small turn of a screw that changes how weight transfers to the tires, shifting the balance of the car from tight to loose (or vice versa)."
+                "correct": "Exactly. A wedge (or round-in) shifts load between the corners of the car. It is one of the tools crews use to change balance.",
+                "incorrect": "Wedge is a mechanical adjustment that changes how load is shared between the tires, which moves the balance toward tight or loose. It is a tool, not a recipe, and the right amount depends on the car and track."
               }
             }
           }
@@ -486,24 +475,30 @@
         "activities": [
           {
             "id": "hand-04-es-tire-pressure-psi",
-            "type": "estimate-slider",
+            "type": "binary-call",
             "conceptIds": [
               "tire-pressure"
             ],
             "payload": {
-              "prompt": "What is a typical front tire pressure in Cup racing?",
-              "unit": "psi",
-              "min": 20,
-              "max": 40,
-              "step": 1,
-              "correctValue": 30,
-              "tolerance": {
-                "full": 2,
-                "partial": 3
+              "prompt": "Can a pound or two of tire pressure change how the car handles?",
+              "scene": {
+                "kind": "none",
+                "alt": "A crew member checking a tire pressure gauge at the pit box."
               },
+              "choices": [
+                {
+                  "id": "yes",
+                  "label": "Yes, small changes matter"
+                },
+                {
+                  "id": "no",
+                  "label": "No, only big changes do"
+                }
+              ],
+              "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Close. NASCAR Cup tires typically run 28-32 psi depending on the track. This is much higher than a road car.",
-                "incorrect": "NASCAR tire pressures are precise and track-specific. A one-psi change can shift the balance and handling. Cup cars typically run 28-32 psi on the front; higher at superspeedways, lower at short tracks."
+                "correct": "Yes. A small change in pressure alters the contact patch and how stiff the sidewall is, so crews adjust it in fractions of a psi.",
+                "incorrect": "Tire pressure is one of the most sensitive tools a crew has. Even a pound or two changes the contact patch and sidewall stiffness, which shifts the balance."
               }
             }
           },
@@ -533,8 +528,8 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Right. Higher pressure means a smaller contact patch between tire and track, so less grip. Lower pressure spreads the tire wider and increases grip, but it risks overheating.",
-                "incorrect": "Tire pressure directly changes the contact patch size. Higher pressure = smaller patch = less grip. Lower pressure = larger patch = more grip (until the tire overheats or fails)."
+                "correct": "Right. Generally, higher pressure shrinks the contact patch, so there is less grip. Lower pressure spreads the tire and adds grip, until it runs too hot or rolls over on its sidewall.",
+                "incorrect": "Tire pressure changes the contact patch. Generally, higher pressure means a smaller patch and less grip, and lower pressure means a larger patch and more grip, until the tire overheats."
               }
             }
           },
@@ -546,8 +541,8 @@
               "tight-push"
             ],
             "payload": {
-              "prompt": "If a car is tight, {{action}} the front tire pressure {{effect}}.",
-              "template": "If a car is tight, {{action}} the front tire pressure {{effect}}.",
+              "prompt": "How can front tire pressure help a tight car?",
+              "template": "To help a tight car, crews may {{action}} front tire pressure {{effect}}.",
               "gaps": [
                 {
                   "id": "action",
@@ -569,8 +564,8 @@
                 }
               ],
               "explanation": {
-                "correct": "Right. Lower pressure makes the tire contact patch bigger and the car grips better.",
-                "incorrect": "A tight car (loose front grip) needs more contact patch. Lower tire pressure spreads the tire and increases grip. It is one of the easiest adjustments."
+                "correct": "Right. Lower pressure spreads the tire, so the front can hold better, at the cost of more heat and wear.",
+                "incorrect": "A tight car needs more front grip. Lowering pressure is one tool, because it spreads the tire, but it adds heat and wear, so crews balance it against the run."
               }
             }
           },
@@ -591,7 +586,7 @@
                 {
                   "id": "h",
                   "term": "Higher tire pressure",
-                  "definition": "Smaller contact patch, less grip, but cooler tire and longer life."
+                  "definition": "Smaller contact patch and less grip, but often less tire wear."
                 },
                 {
                   "id": "o",
@@ -604,7 +599,7 @@
                 "The pressure required for pit road entry."
               ],
               "explanation": {
-                "summary": "Tire pressure is one of the simplest and most effective adjustments. Crews change it on every stop based on driver feedback and track conditions."
+                "summary": "Tire pressure is one of the simplest adjustments. Crews can change it on stops based on driver feedback and conditions."
               }
             }
           }
@@ -640,17 +635,17 @@
                 {
                   "id": "t",
                   "term": "Track bar",
-                  "definition": "A rear suspension link that shifts the axle side-to-side; changes how the rear handles."
+                  "definition": "A link that locates the rear side to side; adjusting it changes how the rear grips."
                 },
                 {
                   "id": "s",
                   "term": "Springs and coils",
-                  "definition": "Suspension stiffness; softer = more grip but softer ride; stiffer = less grip but faster response."
+                  "definition": "Suspension stiffness; stiffer springs let the body roll and dive less."
                 },
                 {
                   "id": "r",
                   "term": "Ride height",
-                  "definition": "How high the car sits; lower = more downforce and grip, higher = less drag."
+                  "definition": "How high the body sits; lower usually means a lower center of gravity and more aero grip."
                 }
               ],
               "distractorDefinitions": [
@@ -658,7 +653,7 @@
                 "The pit road speed limiter."
               ],
               "explanation": {
-                "summary": "These suspension adjustments are the tools crew chiefs use to dial in balance. Each has a specific job."
+                "summary": "These are tools crew chiefs use to dial in balance. Each has its own job, and the rules limit what can change during a race."
               }
             }
           },
@@ -666,68 +661,57 @@
             "id": "hand-05-ds-which-adjust",
             "type": "decision-scenario",
             "conceptIds": [
-              "wedge",
+              "adjustments",
               "track-bar",
-              "adjustments"
+              "tire-falloff"
             ],
             "payload": {
-              "prompt": "The driver says the car is loose on corner entry. Lap 50 of 200. Which adjustment?",
+              "prompt": "Loose early in a run, tight at the end. What does that tell you?",
               "situation": {
+                "narrative": "The driver says the car is loose just after a stop and gets tighter as the run goes on.",
                 "facts": [
                   {
-                    "label": "Symptom",
-                    "value": "Rear sliding on turn-in, mid-corner"
+                    "label": "Early in a run",
+                    "value": "Loose, rear slides"
                   },
                   {
-                    "label": "Laps in",
-                    "value": "50 of 200, long race ahead"
+                    "label": "Late in a run",
+                    "value": "Tight, front pushes"
                   },
                   {
-                    "label": "Track",
-                    "value": "1.3-mile short-intermediate, tight turns"
+                    "label": "Race",
+                    "value": "Lap 50 of 200"
                   },
                   {
-                    "label": "Pit crew",
-                    "value": "Fast and ready for adjustments"
+                    "label": "Your tools",
+                    "value": "Pressure, wedge, track bar, springs"
                   }
                 ]
               },
               "options": [
                 {
-                  "id": "track-bar",
-                  "label": "Move the track bar to tighten the rear.",
+                  "id": "whole-run",
+                  "label": "The balance shifts as tires wear, so plan for the whole run",
                   "verdict": "best",
-                  "consequence": "The rear gets more grip and the loose condition on entry goes away. Driver has more confidence.",
-                  "considerations": [
-                    "Track bar directly changes rear grip and entry balance.",
-                    "Simple adjustment, one or two turns.",
-                    "Immediate effect."
-                  ]
+                  "consequence": "You choose a change that helps across the run instead of chasing each symptom, and you ask the driver when it flips.",
+                  "considerations": ["Tires change the balance as they wear.", "A fix for early laps may hurt the late ones.", "The driver's timing notes are the key data."]
                 },
                 {
-                  "id": "wedge",
-                  "label": "Adjust the wedge to tighten the car.",
-                  "verdict": "acceptable",
-                  "consequence": "Wedge helps, but it works globally, not just on corner entry.",
-                  "considerations": [
-                    "Wedge is for overall balance, not entry-specific.",
-                    "Track bar is more precise for corner-entry problems.",
-                    "Can use wedge if track bar does not fully solve it."
-                  ]
-                },
-                {
-                  "id": "speed",
-                  "label": "Tell him to lift before the turn.",
+                  "id": "everything",
+                  "label": "Change springs, bar and wedge at once",
                   "verdict": "poor",
-                  "consequence": "He is already at the limit. Lifting costs laps and time.",
-                  "considerations": [
-                    "Changing driving style is not a fix for a loose car.",
-                    "Fix the car so the driver can drive flat-out.",
-                    "Long race means the fix has to hold up."
-                  ]
+                  "consequence": "You cannot tell which change helped, and you may make both problems worse.",
+                  "considerations": ["Too many changes hide cause and effect.", "Big changes can swing the car the wrong way.", "Small, tracked steps work better."]
+                },
+                {
+                  "id": "driver",
+                  "label": "Tell the driver to adapt",
+                  "verdict": "poor",
+                  "consequence": "He keeps fighting the car and loses time all run.",
+                  "considerations": ["A balance that changes is a car issue.", "Asking the driver to adapt does not fix it.", "The crew chief has tools for this."]
                 }
               ],
-              "expertNote": "Crew chiefs think in layers: track bar for corner-specific issues, wedge for overall balance, pressure for tire-specific problems."
+              "expertNote": "Crew chiefs think about the whole run, not just one moment. Tools like the track bar and wedge change balance, but the tires change it too."
             }
           },
           {
@@ -740,7 +724,7 @@
               "prompt": "Where is the track bar?",
               "image": {
                 "asset": "nascar-rear-suspension-diagram",
-                "alt": "Rear suspension diagram showing coil springs, shock absorbers, and a diagonal link connecting the axle to the frame.",
+                "alt": "Rear suspension diagram showing coil springs, shock absorbers and a long link running across the rear to the frame.",
                 "license": "original-swoond"
               },
               "options": [
@@ -750,7 +734,7 @@
                 },
                 {
                   "id": "b",
-                  "text": "The diagonal link connecting axle to frame"
+                  "text": "The long link across the rear to the frame"
                 },
                 {
                   "id": "c",
@@ -759,12 +743,12 @@
               ],
               "correctOptionId": "b",
               "cues": [
-                "The track bar is a horizontal or diagonal link; it moves side-to-side.",
-                "It shifts the rear axle left or right, changing weight distribution."
+                "The track bar is a long link that locates the rear side to side.",
+                "Adjusting it changes how the rear sits and grips."
               ],
               "explanation": {
-                "correct": "Right. That diagonal link is the track bar. Shortening it or lengthening it changes the axle position and balance.",
-                "incorrect": "The track bar is a link that controls rear axle location. Springs and shocks handle vertical movement. The track bar is what the crew chief adjusts for corner balance."
+                "correct": "Right. That long link is the track bar. Adjusting it changes how the rear is located and how it grips.",
+                "incorrect": "The track bar is a link that locates the rear from side to side. Springs and shocks handle up and down movement. The track bar is one of the things a crew chief can adjust for balance."
               }
             }
           },
@@ -779,23 +763,23 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "The car has more grip but a sloppy, unpredictable ride."
+                  "text": "Let the body roll and dive less, keeping the car flatter."
                 },
                 {
                   "id": "b",
-                  "text": "The car has less grip and feels mushy."
+                  "text": "Make the tires larger."
                 },
                 {
                   "id": "c",
-                  "text": "The engine loses power."
+                  "text": "Give the engine more power."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Soft springs let the suspension compress and the tires follow the track, so grip is good. But the car feels loose and the driver loses precision. Stiffer springs give the car a more responsive feel.",
-                "incorrect": "Soft springs increase tire contact because they allow the car to squat and lean into turns. The tradeoff is a less predictable feel. Stiff springs are snappier but can reduce grip if they are too hard."
+                "correct": "Stiffer springs resist body roll and dive, so the car stays flatter and reacts quickly. Softer springs let it lean more.",
+                "incorrect": "Springs control how much the body moves, not engine power or tire size. Stiffer springs keep the car flatter, and softer springs let it lean more."
               }
             }
           },
@@ -823,8 +807,8 @@
               ],
               "correctChoiceId": "no",
               "explanation": {
-                "correct": "Exactly. Too-stiff springs keep the car from loading the tires, so you lose grip even though the car feels responsive. The sweet spot is in the middle.",
-                "incorrect": "Spring stiffness is a tradeoff: stiffness gives response, softness gives grip. The crew chief finds the balance for each track."
+                "correct": "Exactly. Stiffer is not always better. Go too stiff and the tires can lose contact over bumps, so the sweet spot depends on the track.",
+                "incorrect": "Spring stiffness is a trade-off, not a one-way street. The crew chief finds what works at each track."
               }
             }
           }
@@ -842,24 +826,44 @@
         "activities": [
           {
             "id": "hand-06-es-falloff-rate",
-            "type": "estimate-slider",
+            "type": "sequence-order",
             "conceptIds": [
-              "tire-falloff"
+              "tire-falloff",
+              "long-run-speed"
             ],
             "payload": {
-              "prompt": "How much speed does a 30-lap-old tire lose compared to lap one?",
-              "unit": "mph",
-              "min": 0,
-              "max": 10,
-              "step": 0.5,
-              "correctValue": 2.5,
-              "tolerance": {
-                "full": 0.5,
-                "partial": 1
-              },
+              "prompt": "Put the life of a green-flag run in order.",
+              "items": [
+                {
+                  "id": "fresh",
+                  "text": "Fresh tires go on at a pit stop.",
+                  "why": "Everything starts with new rubber, which has the most grip."
+                },
+                {
+                  "id": "quick",
+                  "text": "Laps are quick while the tires are fresh.",
+                  "why": "Peak grip means the fastest laps come early in the run."
+                },
+                {
+                  "id": "fade",
+                  "text": "Grip fades and lap times creep up.",
+                  "why": "As the rubber wears, the car slows a little more each lap. That is falloff."
+                },
+                {
+                  "id": "decide",
+                  "text": "The crew chief decides it is time to pit.",
+                  "why": "The call balances lap time lost against track position lost in the stop."
+                },
+                {
+                  "id": "new",
+                  "text": "New tires go on and the cycle starts again.",
+                  "why": "Fresh rubber resets grip, and the pattern repeats."
+                }
+              ],
+              "partialCredit": true,
               "explanation": {
-                "correct": "In the range. Falloff varies by track and tire wear rate. At abrasive tracks like Darlington it can be 3-4 mph; at smooth tracks it might be 1-2 mph.",
-                "incorrect": "Tire falloff (the speed loss as tires wear) is track-dependent. Abrasive tracks cause fast falloff. Over 30 laps, typical falloff is 1-4 mph depending on the venue."
+                "correct": "Right. A run is fresh, quick, fading, the decision to pit, then fresh again. Falloff is the fading part.",
+                "incorrect": "A run starts on fresh tires, is quick early, fades as they wear, then the crew pits and the cycle restarts. Falloff is how steeply the speed fades."
               }
             }
           },
@@ -922,15 +926,15 @@
                   "text": "Pit crews make mistakes there."
                 }
               ],
-              "translation": "Darlington is an abrasive track where tires lose grip quickly, so managing when you pit (and on which laps) is a key strategic decision.",
+              "translation": "Darlington is a rough track where tires lose grip quickly, so when a team pits is a big part of the strategy.",
               "followUps": [
                 {
-                  "line": "High-falloff tracks reward good pit strategy over raw speed.",
-                  "why": "Because pit timing and tire freshness matter more when grip drops fast."
+                  "line": "Do drivers have to save their tires early there?",
+                  "why": "At high-falloff tracks drivers manage pace to keep the tires alive, so the question shows you get the idea."
                 },
                 {
-                  "line": "A pit crew can gain track position at a high-falloff track.",
-                  "why": "If your strategy times the pit cycle right and your crew is fast, you can leap cars on pit road."
+                  "line": "Does a quick pit stop matter even more there?",
+                  "why": "A fast stop gives fresh tires sooner, and on a high-falloff track those tires are worth a lot."
                 }
               ]
             }
@@ -942,31 +946,31 @@
               "tire-falloff"
             ],
             "payload": {
-              "prompt": "At a track with high tire falloff, {{decision}} is more valuable than {{alternative}}.",
-              "template": "At a track with high tire falloff, {{decision}} is more valuable than {{alternative}}.",
+              "prompt": "What changes at a high-falloff track?",
+              "template": "At a high-falloff track, lap times {{change}} as a run goes on, so {{matter}} matters more.",
               "gaps": [
                 {
-                  "id": "decision",
+                  "id": "change",
                   "options": [
-                    "pit strategy timing",
-                    "raw engine power",
-                    "qualifying position"
+                    "get slower",
+                    "stay the same",
+                    "get faster"
                   ],
-                  "correct": "pit strategy timing"
+                  "correct": "get slower"
                 },
                 {
-                  "id": "alternative",
+                  "id": "matter",
                   "options": [
-                    "raw engine power",
-                    "tire freshness",
-                    "track position"
+                    "pit timing",
+                    "the paint scheme",
+                    "the sponsor logo"
                   ],
-                  "correct": "raw engine power"
+                  "correct": "pit timing"
                 }
               ],
               "explanation": {
-                "correct": "Exactly. When tires fall off quickly, timing your pit stop matters more than horsepower.",
-                "incorrect": "High-falloff tracks turn the race into a strategy puzzle. Your pit crew and crew chief are as important as your driver's speed because the right call at the right time wins races."
+                "correct": "Exactly. When tires fade quickly, lap times drop over a run and the timing of the stops matters more.",
+                "incorrect": "At a high-falloff track the tires fade quickly, so the lap times drop over a run and pit timing becomes a big part of the race."
               }
             }
           }
@@ -1010,15 +1014,15 @@
                   "text": "The driver gets tired and slows down."
                 }
               ],
-              "translation": "On fresh tires after a pit stop, that car is quick and competitive. But as the tires age over the next 20-30 laps, the grip falls off and it is slower than rivals with fresher rubber.",
+              "translation": "On fresh tires that car is quick and competitive, but as the tires age the grip falls off and it slows down compared with rivals on fresher rubber.",
               "followUps": [
                 {
-                  "line": "A short-run car is not always the best car over a race distance.",
-                  "why": "Tire falloff changes which car is fast. A short-run car with poor long-run speed loses races because tires fade."
+                  "line": "So is he better on short runs than long ones?",
+                  "why": "It uses short run and long run correctly, which is what the reporter is talking about."
                 },
                 {
-                  "line": "Crews look for cars that are quick and stay quick through a pit cycle.",
-                  "why": "A balanced car is fast on new tires and holds that speed longer as the tires wear."
+                  "line": "Could a setup change help him hold speed?",
+                  "why": "It shows you know the crew can work on long-run speed, not just accept it."
                 }
               ]
             }
@@ -1038,18 +1042,18 @@
               },
               "choices": [
                 {
-                  "id": "weakness",
-                  "label": "Weakness; needs better setup."
+                  "id": "same",
+                  "label": "Yes, fast is fast"
                 },
                 {
-                  "id": "normal",
-                  "label": "Normal; pit cycles handle it."
+                  "id": "different",
+                  "label": "No, they can be different cars"
                 }
               ],
-              "correctChoiceId": "normal",
+              "correctChoiceId": "different",
               "explanation": {
-                "correct": "Right. All tires fade. The pit cycle is built around that. What matters is how much fade and whether you pit before the car is completely slow.",
-                "incorrect": "Tire falloff is not a weakness; it is physics. Every car fades as tires age. Pit strategy manages falloff by pitting before the car is too slow, getting fresh rubber, and running fast again."
+                "correct": "Right. One car can be quick on fresh tires but fade, while another starts slower and holds its pace. That is why fans split short-run and long-run speed.",
+                "incorrect": "Short-run speed is how fast a car is on fresh tires. Long-run speed is how well it holds that pace as the tires age. They can be very different."
               }
             }
           },
@@ -1080,8 +1084,8 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Exactly. A car that is set up loose or on edge will suffer more tire falloff because it is already asking the limit of the tires. A balanced, efficient setup fades slower.",
-                "incorrect": "Some cars are naturally better at holding grip as tires age. It is a combination of suspension setup, driver style and how the car is balanced. A setup that is neutral and efficient holds pace longer."
+                "correct": "Exactly. Setup, pressure and track conditions all change how hard a car works its tires, so some cars fade faster than others.",
+                "incorrect": "Some cars hold grip better as tires age. It comes from setup, driver style and balance, not from the rules or the driver tiring out."
               }
             }
           },
@@ -1092,8 +1096,8 @@
               "long-run-speed"
             ],
             "payload": {
-              "prompt": "A car that has {{shape}} pace curve is better than {{alternative}}.",
-              "template": "A car that has {{shape}} pace curve is better than {{alternative}}.",
+              "prompt": "Which pace curve holds speed?",
+              "template": "A car with a {{shape}} pace curve holds its speed, unlike one with a {{alternative}}.",
               "gaps": [
                 {
                   "id": "shape",
@@ -1116,7 +1120,7 @@
               ],
               "explanation": {
                 "correct": "Right. A flat pace curve means the car stays fast over the run. That is better than a car that is quick for five laps then slow.",
-                "incorrect": "A flat pace curve means your car is consistently fast from lap 1 to lap 30. That is the goal. A steep dropoff means you are fast initially but fade hard, which is a setup problem."
+                "incorrect": "A flat pace curve means the car is about as fast on lap 30 as on lap 1, which is the goal. A steep dropoff means it is quick at first and then fades hard, often a balance or tire-wear issue."
               }
             }
           }

@@ -1,5 +1,5 @@
 {
-  "contractVersion": "1.1.0",
+  "contractVersion": "1.2.0",
   "courseId": "basketball",
   "unit": {
     "id": "season-live",
@@ -43,28 +43,27 @@
               "live-weekly-brief"
             ],
             "payload": {
-              "prompt": "This week's {{league}} schedule features multiple playoff-race implications. Why does early seeding matter?",
+              "prompt": "Why do fans watch the seeding race in {{league}} week to week?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Seeds determine playoff matchups; every win shifts seeding race."
+                  "text": "Seeds set playoff matchups and who gets home-court advantage."
                 },
                 {
                   "id": "b",
-                  "text": "Seeds determine home-court advantage in playoffs, which is worth a few points."
+                  "text": "The top seed is automatically crowned champion."
                 },
                 {
                   "id": "c",
-                  "text": "Early seeding sets the tone for the rest of the season."
+                  "text": "Seeds are only used to schedule TV games."
                 }
               ],
               "correctOptionIds": [
-                "a",
-                "b"
+                "a"
               ],
               "explanation": {
-                "correct": "Exactly. Seeding means playoff spots and home court. Games now matter for spring.",
-                "incorrect": "Week-to-week games shift seeds and playoff positioning. Seeding determines playoff matchups and home court."
+                "correct": "Exactly. A better seed means a better first-round matchup and home court, so even a regular-season win can change the playoff picture.",
+                "incorrect": "Not quite. Seeds set the playoff bracket and home-court advantage. The top seed still has to win the series to advance."
               }
             }
           },
@@ -76,7 +75,7 @@
             ],
             "payload": {
               "statement": {
-                "speaker": "fan",
+                "speaker": "Your crush",
                 "text": "Our team plays three games this week and every one is against a contender."
               },
               "options": [
@@ -101,49 +100,46 @@
                   "text": "Winning does not matter against contenders."
                 }
               ],
-              "translation": "She means this week is a big test. Wins against contenders boost playoff positioning.",
+              "translation": "She means this is a tough week against strong teams, so the results will say a lot about where her team really stands.",
               "followUps": [
                 {
-                  "line": "Think they can win most of them?",
-                  "why": "Good: invites her to assess their roster against elite teams."
+                  "line": "Which of the three worries you most?",
+                  "why": "A curious question that invites her to name the game she is nervous about."
                 },
                 {
-                  "line": "That is a tough slate.",
-                  "why": "Valid: acknowledges the difficulty without predicting outcomes."
+                  "line": "That is a tough slate. Are you watching all three?",
+                  "why": "Acknowledges the difficulty without predicting outcomes."
                 }
               ],
-              "noFakeExpertNote": "Playing contenders on the road is hard. Wins here prove readiness."
+              "noFakeExpertNote": "You do not need to predict the week. Ask which game she is most nervous about."
             }
           },
           {
-            "id": "liv-01-mc-implications",
-            "type": "multiple-choice",
+            "id": "liv-01-bc-rival",
+            "type": "binary-call",
             "conceptIds": [
               "seeding"
             ],
             "payload": {
-              "prompt": "If {{team}} splits this week's games, how does that affect their seeding race?",
-              "options": [
+              "prompt": "{{team}} beats a direct rival for the same seed. Bigger swing than a normal win?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two teams close together in the standings, one moving up as the other slips."
+              },
+              "choices": [
                 {
-                  "id": "a",
-                  "text": "One win and one loss keeps them steady in the standings."
+                  "id": "yes",
+                  "label": "Yes, it helps them and hurts the rival"
                 },
                 {
-                  "id": "b",
-                  "text": "Splits against contenders show they can trade wins."
-                },
-                {
-                  "id": "c",
-                  "text": "Every game matters; splitting wastes opportunities against elite teams."
+                  "id": "no",
+                  "label": "No, all wins count the same"
                 }
               ],
-              "correctOptionIds": [
-                "a",
-                "c"
-              ],
+              "correctChoiceId": "yes",
               "explanation": {
-                "correct": "Right. In a tight seeding race, beating contenders lifts you; splitting does not move you much.",
-                "incorrect": "Close seeds mean wins against contenders matter. A split feels neutral but lost ground to direct competitors."
+                "correct": "Right. Beating a team you are racing gives you a win and hands them a loss, so the gap moves twice as much. Fans sometimes call it a two-way swing.",
+                "incorrect": "Every win is one win in the standings, but beating a direct rival also adds a loss to their record. That is why fans circle those games."
               }
             }
           },
@@ -155,52 +151,58 @@
               "seeding"
             ],
             "payload": {
-              "prompt": "One game back of eighth seed, three contenders ahead. Go for it or rest?",
+              "prompt": "She says {{team}} is tied for the last Play-In spot. What do you ask?",
               "situation": {
+                "narrative": "It is late in the season and her team is fighting to stay in the Play-In range.",
                 "facts": [
                   {
-                    "label": "Record",
-                    "value": "Tied with the 9th seed"
+                    "label": "Standing",
+                    "value": "Tied with the team just below"
                   },
                   {
-                    "label": "Schedule",
-                    "value": "Three contenders, then easier games"
+                    "label": "Games left",
+                    "value": "Three, all against contenders"
                   },
                   {
-                    "label": "Key players",
-                    "value": "One has a minor injury, playable"
-                  },
-                  {
-                    "label": "Playoff odds",
-                    "value": "Win all three: 85% chance to make playoffs"
+                    "label": "Tiebreaker",
+                    "value": "She is not sure who holds it"
                   }
                 ]
               },
               "options": [
                 {
-                  "id": "go-for-it",
-                  "label": "Play full strength, go for it.",
+                  "id": "tiebreaker-next",
+                  "label": "Who do they play next, and who holds the tiebreaker?",
                   "verdict": "best",
-                  "consequence": "Winning three straight secures playoff position. The reward justifies the risk.",
+                  "consequence": "Those two answers decide a tied race, and she gets to explain her team's path.",
                   "considerations": [
-                    "Win now or regret it.",
-                    "Contenders are predictable.",
-                    "Rest comes after playoffs."
+                    "The head-to-head record is usually the first tiebreaker",
+                    "The schedule shows which games really matter",
+                    "You learn what she is watching"
                   ]
                 },
                 {
-                  "id": "rest",
-                  "label": "Sit the injured player; be cautious.",
+                  "id": "healthy",
+                  "label": "Is everybody healthy?",
                   "verdict": "acceptable",
-                  "consequence": "Safer approach if you value continuity over seeding wins. But playoff odds drop.",
+                  "consequence": "A fair question, but it skips the race itself. Ask about the standings first, then the injuries.",
                   "considerations": [
-                    "Health is key.",
-                    "But playoffs matter more.",
-                    "Injury risk is real."
+                    "Injuries matter, but they are not the standings",
+                    "It is a good follow-up, not the opener"
+                  ]
+                },
+                {
+                  "id": "who-cares",
+                  "label": "It is just the regular season, so does it matter?",
+                  "verdict": "poor",
+                  "consequence": "It matters a lot to her. In this race, one game can decide whether the season continues.",
+                  "considerations": [
+                    "Dismissing the stakes shuts the conversation down",
+                    "Play-In spots decide who reaches the playoffs"
                   ]
                 }
               ],
-              "expertNote": "Late-season intensity against contenders is a playoff preview. Go all-in unless injury risk is severe."
+              "expertNote": "When two teams are tied, the standings and the tiebreaker are the story. Asking about them shows you followed what she said."
             }
           },
           {
@@ -210,8 +212,8 @@
               "live-weekly-brief"
             ],
             "payload": {
-              "prompt": "NBA teams play {{games-per-week}} games per week on average during the regular season.",
-              "template": "NBA teams play {{games-per-week}} games per week on average during the regular season.",
+              "prompt": "Fill in the NBA schedule math.",
+              "template": "NBA teams play about {{games-per-week}} games per week on average during the regular season.",
               "gaps": [
                 {
                   "id": "games-per-week",
@@ -225,8 +227,8 @@
                 }
               ],
               "explanation": {
-                "correct": "Right. Most weeks have 2-4 games; average is about three.",
-                "incorrect": "NBA schedule spreads games across the week. Most teams play 3 games per week on average."
+                "correct": "Right. An 82-game season over about 25 weeks works out to a little over three games a week, with most weeks holding two to four.",
+                "incorrect": "Not quite. 82 games over about 25 weeks is a little over three a week, so most weeks have two to four games."
               }
             }
           }
@@ -254,29 +256,27 @@
               "live-game-preview"
             ],
             "payload": {
-              "prompt": "{{team}} plays a back-to-back this week. What should you watch for?",
+              "prompt": "{{team}} plays the second night of a back-to-back. What might you see?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Bench unit performance; starters get extra rest on day two."
+                  "text": "A star resting or a tighter rotation because of the quick turnaround."
                 },
                 {
                   "id": "b",
-                  "text": "Energy levels and pace; second nights fatigue the team."
+                  "text": "The score from night one carrying over."
                 },
                 {
                   "id": "c",
-                  "text": "The coach's rotation shrinks; fewer players get heavy minutes."
+                  "text": "The second game automatically being postponed."
                 }
               ],
               "correctOptionIds": [
-                "a",
-                "b",
-                "c"
+                "a"
               ],
               "explanation": {
-                "correct": "All three happen. Back-to-backs change everything: rotation, pace, and who plays.",
-                "incorrect": "Back-to-backs are brutal. Watch for rotation changes, bench stepping up, and tired defense."
+                "correct": "Right. Back-to-backs are two games in two days, so teams sometimes rest a star or lean on a smaller rotation on night two.",
+                "incorrect": "Not quite. A back-to-back is just two games on consecutive nights. The effect is fatigue, so teams may rest players or shorten the rotation."
               }
             }
           },
@@ -289,7 +289,7 @@
             ],
             "payload": {
               "statement": {
-                "speaker": "fan",
+                "speaker": "Your crush",
                 "text": "This matchup is perfect for {{player}}. Their defense is slow."
               },
               "options": [
@@ -321,11 +321,11 @@
                   "why": "Good: you are thinking about whether he exploits the matchup."
                 },
                 {
-                  "line": "That defense is not great anyway.",
-                  "why": "Valid observation about their general struggles."
+                  "line": "Who usually guards {{player}} on that team?",
+                  "why": "A curious question that shows you are thinking about the individual matchup."
                 }
               ],
-              "noFakeExpertNote": "Mismatch-hunting is key: when the other team's defender cannot keep up, a player attacks it."
+              "noFakeExpertNote": "A mismatch is when a defender cannot keep up with the player he guards. Ask her which matchup she is most excited about."
             }
           },
           {
@@ -335,52 +335,58 @@
               "live-game-preview"
             ],
             "payload": {
-              "prompt": "Your team is on a four-game road trip. Tonight is game two. Rotation strategy?",
+              "prompt": "{{player}} is listed questionable tonight. What do you ask her?",
               "situation": {
+                "narrative": "She is checking the injury report before {{team}}'s game.",
                 "facts": [
                   {
-                    "label": "Trip",
-                    "value": "Four games in six nights, two more after tonight"
+                    "label": "Status",
+                    "value": "Questionable"
                   },
                   {
-                    "label": "Record so far",
-                    "value": "1-0 on the trip; tired"
+                    "label": "Schedule",
+                    "value": "Second night of a back-to-back"
                   },
                   {
-                    "label": "Opponent",
-                    "value": "Playoff-race team, not elite"
-                  },
-                  {
-                    "label": "Bench depth",
-                    "value": "Solid; can handle extra minutes"
+                    "label": "Update",
+                    "value": "Final word usually comes near tip-off"
                   }
                 ]
               },
               "options": [
                 {
-                  "id": "rest-starters",
-                  "label": "Rest starters now, lean on bench.",
+                  "id": "ask-rest",
+                  "label": "Do they usually rest him on back-to-backs?",
                   "verdict": "best",
-                  "consequence": "Conserve energy for the final two games. Bench gets valuable minutes.",
+                  "consequence": "That is the right question. On the second night of a back-to-back, teams sometimes rest a player, so the pattern is worth knowing.",
                   "considerations": [
-                    "Long trip ahead.",
-                    "This game is winnable with bench.",
-                    "Save the stars for critical games."
+                    "Questionable means it could go either way",
+                    "Back-to-backs are when rest days often happen",
+                    "It shows you understood both words on the report"
                   ]
                 },
                 {
-                  "id": "go-all-out",
-                  "label": "Play to win; go full strength.",
+                  "id": "ask-when",
+                  "label": "When will we know for sure?",
                   "verdict": "acceptable",
-                  "consequence": "Win now, handle fatigue later. But risky if key players get hurt.",
+                  "consequence": "A fair question, and the honest answer is usually close to game time. It just does not use what you can read on the report.",
                   "considerations": [
-                    "Winning matters now.",
-                    "But exhaustion is real.",
-                    "Rest matters later."
+                    "Teams often update close to tip-off",
+                    "It is a good second question"
+                  ]
+                },
+                {
+                  "id": "definitely-out",
+                  "label": "Questionable means he is definitely out, right?",
+                  "verdict": "poor",
+                  "consequence": "Not quite. Questionable means uncertain. A player labeled questionable plays in many games, so guessing out could make you sound unsure.",
+                  "considerations": [
+                    "Out means out; questionable means uncertain",
+                    "Assuming the worst can upset her"
                   ]
                 }
               ],
-              "expertNote": "Four-game trips are grinding. Winners rest strategically against non-elite teams early in the trip."
+              "expertNote": "Injury statuses are a scale. Questionable means it could go either way, and the final word often comes near tip-off. Ask, do not assume."
             }
           },
           {
@@ -523,7 +529,7 @@
             ],
             "payload": {
               "statement": {
-                "speaker": "fan",
+                "speaker": "Your crush",
                 "text": "The trade deadline is two weeks away and nobody knows what to expect."
               },
               "options": [
@@ -706,7 +712,7 @@
             ],
             "payload": {
               "statement": {
-                "speaker": "fan",
+                "speaker": "Your crush",
                 "text": "Three players are out tonight. That is a huge opportunity for the bench."
               },
               "options": [
@@ -914,7 +920,7 @@
             ],
             "payload": {
               "statement": {
-                "speaker": "fan",
+                "speaker": "Your crush",
                 "text": "We are right on the edge of the Play-In. One more loss and we are in danger."
               },
               "options": [
@@ -1155,7 +1161,7 @@
             ],
             "payload": {
               "statement": {
-                "speaker": "fan",
+                "speaker": "Your crush",
                 "text": "That trade looks bad long-term but makes sense for this year."
               },
               "options": [
@@ -1341,7 +1347,7 @@
             ],
             "payload": {
               "statement": {
-                "speaker": "fan",
+                "speaker": "Your crush",
                 "text": "If we land the three seed, we might duck the two seed in the first round."
               },
               "options": [
@@ -1548,7 +1554,7 @@
             ],
             "payload": {
               "statement": {
-                "speaker": "fan",
+                "speaker": "Your crush",
                 "text": "{{player}} is putting up numbers but his team is struggling. That hurts his MVP chances."
               },
               "options": [

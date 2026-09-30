@@ -57,56 +57,34 @@
           },
           {
             "id": "goalie-stance-02-ht-angles",
-            "type": "hotspot-tap",
+            "type": "multiple-choice",
             "conceptIds": [
               "goalie-angles"
             ],
             "payload": {
-              "prompt": "Tap the goalie's best position to cut angles.",
-              "diagram": {
-                "diagramId": "hockey-goalie-angles",
-                "alt": "Top-down view of goalie positioning to cut shooter angles.",
-                "aspectRatio": 1.6
-              },
-              "hotspots": [
+              "prompt": "A shooter comes down the wing. Where does the goalie stand to cut the angle?",
+              "options": [
                 {
-                  "id": "challenge",
-                  "label": "Challenge the shooter",
-                  "shape": {
-                    "kind": "circle",
-                    "cx": 0.3,
-                    "cy": 0.5,
-                    "r": 0.1
-                  }
+                  "id": "a",
+                  "text": "On the line between the puck and the middle of the net, a step out from the goal line.",
+                  "explanation": "Correct. Standing on that line, squared to the puck, leaves the shooter the least net to see."
                 },
                 {
-                  "id": "depth",
-                  "label": "Optimal depth",
-                  "shape": {
-                    "kind": "circle",
-                    "cx": 0.4,
-                    "cy": 0.5,
-                    "r": 0.08
-                  }
+                  "id": "b",
+                  "text": "Deep in the net, back against the goal line."
                 },
                 {
-                  "id": "deep",
-                  "label": "Too deep in crease",
-                  "shape": {
-                    "kind": "circle",
-                    "cx": 0.6,
-                    "cy": 0.5,
-                    "r": 0.08
-                  }
+                  "id": "c",
+                  "text": "Wide of the crease, right beside the shooter."
                 }
               ],
-              "correctHotspotIds": [
-                "depth"
+              "correctOptionIds": [
+                "a"
               ],
               "explanation": {
-                "correct": "Right. Optimal depth cuts the angle without overcommitting.",
-                "incorrect": "The goalie cuts angles by challenging out, but not so far that he is vulnerable.",
-                "sayThisLine": "Position between the puck and the goal."
+                "correct": "Right. Coming out a step and staying on the line between the puck and the net's center shrinks the target. Not too far, or the shooter can go around him.",
+                "incorrect": "The goalie wants to be on the line between the puck and the center of the net, a step out from the goal line. Too deep gives the shooter a big target; too wide leaves the net open.",
+                "sayThisLine": "He's so square to the shooter, he's cut the angle off."
               }
             }
           },
@@ -117,7 +95,7 @@
               "goalie-angles"
             ],
             "payload": {
-              "prompt": "A shooter at the circle stays unchallenged. The goalie sits deep. Smart?",
+              "prompt": "A goalie who sits deep in his net gives the shooter more net to see. True or false?",
               "scene": {
                 "kind": "none",
                 "alt": "Goalie positioning deep in the crease while a shooter approaches."
@@ -132,10 +110,10 @@
                   "label": "False"
                 }
               ],
-              "correctChoiceId": "false",
+              "correctChoiceId": "true",
               "explanation": {
-                "correct": "False. Challenging cuts the angle and forces a rushed shot.",
-                "incorrect": "Staying deep gives the shooter more time and space to find an opening."
+                "correct": "True. A goalie who sits deep leaves more of the net visible. Coming out to challenge makes the shooter's target smaller.",
+                "incorrect": "A goalie deep in the net gives the shooter more of the net to aim at. Challenging out shrinks that target, though going too far out invites a deke."
               }
             }
           },
@@ -169,9 +147,9 @@
                 "a"
               ],
               "explanation": {
-                "correct": "Right. Pads bounce pucks; gloves absorb. Rebounds are the trade-off.",
-                "incorrect": "The butterfly pads are hard and smooth, so they bounce shots forward.",
-                "sayThisLine": "Butterfly pads bounce pucks. Control the rebound."
+                "correct": "Right. Pads are firm, so pucks bounce off them, while a glove or chest can absorb the shot. The butterfly covers the bottom of the net, and the price is a few more rebounds.",
+                "incorrect": "The butterfly uses the hard pads to block low shots. Those pads bounce pucks away rather than absorbing them, which is where rebounds come from.",
+                "sayThisLine": "The butterfly is great, but he has to control the rebound."
               }
             }
           },
@@ -202,27 +180,23 @@
                 },
                 {
                   "id": "c",
-                  "text": "The goalie lets the shooter close in too much.",
+                  "text": "The goalie is facing the wrong way.",
                   "isCorrect": false,
-                  "explanation": "The opposite: challenge out to reduce the angle."
+                  "explanation": "The complaint is about how deep he sits, not which way he faces."
                 }
               ],
-              "translation": "Playing too deep in the crease gives shooters more of the net.",
+              "translation": "Playing too deep in the crease gives shooters more of the net to aim at. Coming out a step shrinks the target.",
               "followUps": [
                 {
-                  "line": "Good positioning shrinks the target. Challenge out.",
-                  "why": "Understands the goal of angle management."
+                  "line": "Does he come out to challenge more on other shots?",
+                  "why": "Shows you know goalies adjust depth depending on the shot."
                 },
                 {
-                  "line": "Depth balance: too far out and you lose to a deke.",
-                  "why": "Shows nuance in positioning."
-                },
-                {
-                  "line": "Great goalies make positioning look natural.",
-                  "why": "Appreciates the skill involved."
+                  "line": "Is he afraid of getting deked if he comes out too far?",
+                  "why": "Shows you know there's a balance between too deep and too far out."
                 }
               ],
-              "noFakeExpertNote": "Angles are subtle. Video review teaches you this."
+              "noFakeExpertNote": "Angles are subtle. Asking what she sees in a goalie's positioning is a great way to learn."
             }
           }
         ]
@@ -244,7 +218,7 @@
               "rebound"
             ],
             "payload": {
-              "prompt": "A save creates a big rebound. Is the second shot more dangerous?",
+              "prompt": "A big rebound in front often leads to a more dangerous second shot. True or false?",
               "scene": {
                 "kind": "none",
                 "alt": "Goalie deflecting a shot; puck bounces loose in front."
@@ -261,8 +235,8 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. Rebound = forward set up, close to net, loose puck.",
-                "incorrect": "A rebound is a gift. The forward is right on it."
+                "correct": "True. After a rebound the goalie is often out of position and the puck is loose in the slot, so a forward gets a close, quick shot.",
+                "incorrect": "A big rebound is dangerous. The goalie is often out of position, and a forward nearby gets a close shot at an open net."
               }
             }
           },
@@ -273,31 +247,27 @@
               "rebound"
             ],
             "payload": {
-              "prompt": "How does a goalie prevent big rebounds?",
+              "prompt": "What is a goalie's best way to kill a rebound?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Absorb the shot with glove or chest."
+                  "text": "Smother it with a glove or his body, or steer it to the corner."
                 },
                 {
                   "id": "b",
-                  "text": "Punch the puck high into the air."
+                  "text": "Kick it straight back into the slot."
                 },
                 {
                   "id": "c",
-                  "text": "Keep the pads flat to let pucks slide off."
-                },
-                {
-                  "id": "d",
-                  "text": "Kick the puck to the corner immediately."
+                  "text": "Let it bounce off a flat pad into the crease."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. Absorb to deaden it. Bounce to lose it.",
-                "incorrect": "Soft parts (glove, chest) kill rebounds. Hard pads bounce them."
+                "correct": "Right. Smothering freezes the puck and brings a whistle; steering it to the corner sends it somewhere attackers can't reach.",
+                "incorrect": "Rebounds that land in the slot or the crease are the ones forwards pounce on. Goalies either smother the puck or steer it toward the corners."
               }
             }
           },
@@ -309,43 +279,38 @@
               "slot"
             ],
             "payload": {
-              "prompt": "Slot rebounds are the riskiest because the net is close.",
-              "template": "A rebound in the {{area}} goes in before {{who}} {{when}}.",
+              "prompt": "Why are rebounds in the slot so dangerous?",
+              "template": "A rebound in the {{area}} is dangerous because the shooter is {{how}} to the net and the goalie must {{what}}.",
               "gaps": [
                 {
                   "id": "area",
                   "options": [
-                    "perimeter",
                     "slot",
-                    "behind goal",
-                    "boards"
+                    "corner",
+                    "neutral zone"
                   ],
                   "correct": "slot"
                 },
                 {
-                  "id": "who",
+                  "id": "how",
                   "options": [
-                    "the defense moves",
-                    "the goalie recovers",
-                    "anyone shoots",
-                    "the ref calls it"
+                    "close",
+                    "far"
                   ],
-                  "correct": "the goalie recovers"
+                  "correct": "close"
                 },
                 {
-                  "id": "when",
+                  "id": "what",
                   "options": [
-                    "after 2 seconds",
-                    "from the perimeter",
-                    "from their knees",
-                    "at all"
+                    "scramble to reset",
+                    "leave the ice"
                   ],
-                  "correct": "at all"
+                  "correct": "scramble to reset"
                 }
               ],
               "explanation": {
-                "correct": "Perfect. Slot rebounds are tap-in city.",
-                "incorrect": "The slot is where goals happen. A rebound there is a second chance on ice."
+                "correct": "Exactly. A slot rebound gives a forward a close shot while the goalie is still moving, so there's very little time to recover.",
+                "incorrect": "The slot is right in front of the net. A rebound there gives the shooter a short shot before the goalie can get set again."
               }
             }
           },
@@ -360,23 +325,23 @@
               "items": [
                 {
                   "id": "shot",
-                  "text": "Shot bounces off goalie into the slot.",
-                  "why": "Initial shot creates the rebound in scoring area."
+                  "text": "A shot bounces off the goalie into the slot.",
+                  "why": "The first shot leaves a rebound in the most dangerous area."
                 },
                 {
                   "id": "chance",
-                  "text": "Forward moves to puck while goalie recovers.",
-                  "why": "Forward has a split second while goalie is sliding."
+                  "text": "A forward gets to the puck while the goalie is still resetting.",
+                  "why": "The goalie needs a moment to get back in position, and the forward has that moment."
                 },
                 {
                   "id": "goal",
-                  "text": "Quick tap-in or snap shot beats the goalie.",
-                  "why": "Forward buries the easy chance."
+                  "text": "A quick shot from close range beats the goalie.",
+                  "why": "A close shot at a partly open net is hard to stop."
                 }
               ],
               "explanation": {
-                "correct": "Perfect. Rebound → forward ready → goal.",
-                "incorrect": "A careless rebound gives the forward a tap-in. Control it."
+                "correct": "That's the order: a rebound lands in the slot, a forward gets to it while the goalie is still resetting, and he has a close shot at a mostly open net.",
+                "incorrect": "It flows like this: the save leaves a rebound in the slot, a forward jumps on it before the goalie resets, and he scores from close range."
               }
             }
           },
@@ -412,22 +377,18 @@
                   "explanation": "Rebound control is a skill, not a timeout situation."
                 }
               ],
-              "translation": "A good save is wasted if the rebound lands in scoring range.",
+              "translation": "The goalie stopped the first shot, but the puck rebounded into the most dangerous area, giving a forward a second chance.",
               "followUps": [
                 {
-                  "line": "Goalie work continues after the initial save.",
-                  "why": "Work is not done on the save."
+                  "line": "Did his defense clear it, or did they score on the rebound?",
+                  "why": "Keeps the chat on what happened next."
                 },
                 {
-                  "line": "Forwards hunt rebounds. Do not feed them.",
-                  "why": "Understands forward positioning."
-                },
-                {
-                  "line": "Save % does not measure rebound control.",
-                  "why": "Recognizes advanced evaluation."
+                  "line": "Is he a goalie who controls his rebounds usually?",
+                  "why": "Shows you know rebound control is a goalie skill."
                 }
               ],
-              "noFakeExpertNote": "Rebound control is an art. Watch goalies who own it."
+              "noFakeExpertNote": "Rebound control is a skill you'll start to notice. Asking about a particular goalie is a good way in."
             }
           }
         ]
@@ -449,20 +410,20 @@
               "save-pct"
             ],
             "payload": {
-              "prompt": "Rate a .915 save percentage in the modern NHL.",
+              "prompt": "Estimate the NHL's typical save percentage in recent seasons.",
               "unit": "save pct",
-              "min": 0.85,
-              "max": 0.95,
+              "min": 0.88,
+              "max": 0.93,
               "step": 0.001,
-              "correctValue": 0.915,
+              "correctValue": 0.905,
               "tolerance": {
-                "full": 0.01,
-                "partial": 0.02
+                "full": 0.005,
+                "partial": 0.01
               },
               "explanation": {
-                "correct": "Good save percentage. .910 is average; .915 is solid.",
-                "incorrect": "In the modern NHL, .910 is average. .915 is above it.",
-                "sayThisLine": ".915 save percentage is solid."
+                "correct": "Nice. In recent seasons the league-wide save percentage has hovered around .905, so a goalie at .915 is having a strong year.",
+                "incorrect": "The typical NHL save percentage in recent seasons is about .905. Around .915 is strong, and it shifts a little from year to year.",
+                "sayThisLine": "A .915 save percentage is well above the league norm."
               }
             }
           },
@@ -473,31 +434,27 @@
               "save-pct"
             ],
             "payload": {
-              "prompt": "Save percentage alone does not tell you shot quality?",
+              "prompt": "Save percentage treats every shot the same. What does that miss?",
               "options": [
                 {
                   "id": "a",
-                  "text": "It misses the quality of shots faced."
+                  "text": "How dangerous each shot was."
                 },
                 {
                   "id": "b",
-                  "text": "It ignores team winning record."
+                  "text": "How many saves the goalie made."
                 },
                 {
                   "id": "c",
-                  "text": "It does not account for goalie height."
-                },
-                {
-                  "id": "d",
-                  "text": "It misses games played."
+                  "text": "Whether the goalie was in net."
                 }
               ],
               "correctOptionIds": [
                 "a"
               ],
               "explanation": {
-                "correct": "Right. .910 against good defense is different from .910 against bad defense.",
-                "incorrect": "Save percentage counts saves divided by shots, but ignores shot quality."
+                "correct": "Right. A .910 against lots of high-danger shots is a different story from a .910 against long, easy ones. Save percentage can't tell them apart.",
+                "incorrect": "Save percentage is saves divided by shots, so a point-shot save counts the same as a point-blank one. Shot quality is what it misses."
               }
             }
           },
@@ -508,43 +465,31 @@
               "gaa"
             ],
             "payload": {
-              "prompt": "Goals Against Average per 60 minutes.",
-              "template": "GAA is {{what}}, but it is {{useful}} because {{reason}}.",
+              "prompt": "What does goals-against average measure?",
+              "template": "Goals-against average is goals allowed per {{unit}}, and it depends partly on the {{who}} in front of the goalie.",
               "gaps": [
                 {
-                  "id": "what",
+                  "id": "unit",
                   "options": [
-                    "shots divided",
-                    "goals per 60 min",
-                    "win-loss ratio",
-                    "save count"
+                    "60 minutes",
+                    "shot",
+                    "period"
                   ],
-                  "correct": "goals per 60 min"
+                  "correct": "60 minutes"
                 },
                 {
-                  "id": "useful",
+                  "id": "who",
                   "options": [
-                    "very useful alone",
-                    "misleading alone",
-                    "never used",
-                    "playoff only"
+                    "defense",
+                    "fans",
+                    "referees"
                   ],
-                  "correct": "misleading alone"
-                },
-                {
-                  "id": "reason",
-                  "options": [
-                    "defense quality",
-                    "team size",
-                    "era changes",
-                    "stadium"
-                  ],
-                  "correct": "defense quality"
+                  "correct": "defense"
                 }
               ],
               "explanation": {
-                "correct": "Exactly. GAA depends on the defense in front.",
-                "incorrect": "GAA (goals per 60 min) is affected by defense. Save % is cleaner."
+                "correct": "Exactly. GAA is goals allowed per 60 minutes. A strong team that limits shots makes any goalie's GAA look better.",
+                "incorrect": "GAA is goals allowed per 60 minutes, and it depends on how many and how good the shots are, which is partly the defense in front of the goalie."
               }
             }
           },
@@ -561,22 +506,22 @@
                 {
                   "id": "sv-pct",
                   "term": "Save percentage (.915)",
-                  "definition": "Goalie's own performance stopping shots."
+                  "definition": "Saves divided by shots faced; it doesn't account for shot quality."
                 },
                 {
                   "id": "gaa",
                   "term": "Goals Against Average (2.10)",
-                  "definition": "Reflects both goalie and defense."
+                  "definition": "Goals allowed per 60 minutes; it reflects the goalie and the defense."
                 },
                 {
                   "id": "wins",
                   "term": "Wins and losses",
-                  "definition": "Team result, not just the goalie."
+                  "definition": "A team result that depends on offense and defense too, not just the goalie."
                 }
               ],
               "explanation": {
-                "summary": "Save % is cleanest. GAA and wins need context.",
-                "sayThisLine": "Save percentage is about the goalie alone."
+                "summary": "Save percentage is usually the cleaner goalie number, but it still misses shot quality. GAA and wins depend heavily on the team around him.",
+                "sayThisLine": "His save percentage is .915, so he's stopping most of what he sees."
               }
             }
           },
@@ -596,9 +541,9 @@
               "options": [
                 {
                   "id": "a",
-                  "text": "The other team's defense might be worse.",
+                  "text": "Our defense might be better, which lowers any goalie's GAA.",
                   "isCorrect": true,
-                  "explanation": "Correct. GAA depends on defense. Look at context."
+                  "explanation": "Correct. GAA depends partly on the defense in front, so context matters."
                 },
                 {
                   "id": "b",
@@ -613,22 +558,18 @@
                   "explanation": "Stats help. Just look at the right ones."
                 }
               ],
-              "translation": "Lower GAA might mean better defense, not better goalie.",
+              "translation": "A lower GAA might come from a better defense rather than a better goalie, so it doesn't settle the question by itself.",
               "followUps": [
                 {
-                  "line": "Save % is more portable between teams.",
-                  "why": "Understands what makes a good metric."
+                  "line": "What are their save percentages?",
+                  "why": "Save percentage is a cleaner comparison than GAA."
                 },
                 {
-                  "line": "Video review helps settle debates.",
-                  "why": "Recognizes the need for context."
-                },
-                {
-                  "line": "Strong defense makes every goalie look good.",
-                  "why": "Understands team nature of hockey."
+                  "line": "How many shots does each team give up?",
+                  "why": "Shows you know shot volume feeds into GAA."
                 }
               ],
-              "noFakeExpertNote": "Goalie comparison is hard. Context always matters."
+              "noFakeExpertNote": "Comparing goalies is hard. Asking for the context is better than picking a side."
             }
           }
         ]
@@ -652,45 +593,41 @@
             "payload": {
               "statement": {
                 "speaker": "Analyst",
-                "text": "His save percentage is .910 but xG is terrible. Stealing games."
+                "text": "His save percentage looks ordinary, but he faces brutal shots. His goals saved above expected are huge."
               },
-              "question": "What does this comparison show?",
+              "question": "What is the analyst saying?",
               "options": [
                 {
                   "id": "a",
-                  "text": "Stopping hard chances better than the model predicts.",
+                  "text": "He's stopping more than a shot-quality model says he should.",
                   "isCorrect": true,
-                  "explanation": "Correct. High save % on tough chances = outperforming."
+                  "explanation": "Correct. Saving more than expected on hard shots shows up as a big goals saved above expected."
                 },
                 {
                   "id": "b",
-                  "text": "Defense is excellent.",
+                  "text": "His team defends well and gives up only easy shots.",
                   "isCorrect": false,
-                  "explanation": "The analysis is about the goalie, not defense."
+                  "explanation": "The analyst says he faces brutal shots, so the defense isn't the story."
                 },
                 {
                   "id": "c",
-                  "text": "He got lucky and will regress.",
+                  "text": "He has the best save percentage in the league.",
                   "isCorrect": false,
-                  "explanation": "Maybe, but outperformance can signal skill."
+                  "explanation": "The analyst says his save percentage looks ordinary."
                 }
               ],
-              "translation": "When save % is high on difficult shots, the goalie is exceeding expectations.",
+              "translation": "His raw save percentage is average, but the shots he faces are tough, so he's beating what a model expects. That's what a high GSAx means.",
               "followUps": [
                 {
-                  "line": "GSAx (goals saved above expected) measures outperformance.",
-                  "why": "Names the stat."
+                  "line": "Is that GSAx number steady, or just a hot stretch?",
+                  "why": "Shows you know one season of goalie numbers can be noisy."
                 },
                 {
-                  "line": "Positive GSAx suggests skill in positioning.",
-                  "why": "Shows understanding of what it means."
-                },
-                {
-                  "line": "Over time, GSAx is more stable than luck.",
-                  "why": "Recognizes skill signal."
+                  "line": "How much of that is his team's defense?",
+                  "why": "Shows you know the stat tries to separate goalie from defense."
                 }
               ],
-              "noFakeExpertNote": "Advanced stats are evolving. Your intuition still counts."
+              "noFakeExpertNote": "Advanced stats are still evolving. It's fine to ask how the number is built."
             }
           },
           {
@@ -700,10 +637,10 @@
               "expected-goals"
             ],
             "payload": {
-              "prompt": "xG against is 2.5, goals allowed are 1.5. Is he outperforming?",
+              "prompt": "A goalie faces 2.5 expected goals and allows 1.5. He beat the model. True or false?",
               "scene": {
                 "kind": "none",
-                "alt": "Comparison of expected vs actual goals scored."
+                "alt": "Comparison of expected goals against and actual goals allowed."
               },
               "choices": [
                 {
@@ -717,8 +654,8 @@
               ],
               "correctChoiceId": "true",
               "explanation": {
-                "correct": "True. Model says 2.5, only 1.5 scored. Outperforming.",
-                "incorrect": "If model expects 2.5 and 1.5 went in, the goalie is beating the model."
+                "correct": "True. The shots he faced were worth 2.5 goals on average, and only 1.5 went in, so he saved about one goal above expected.",
+                "incorrect": "He allowed fewer goals than the shot quality predicted: 1.5 against 2.5 expected. That's one goal saved above expected."
               }
             }
           },
@@ -730,61 +667,58 @@
               "expected-goals"
             ],
             "payload": {
-              "prompt": "Goalie A: .900 SV%, Goalie B: .905 SV%. But A faced harder chances. Who is better?",
+              "prompt": "Similar save percentages, but A faced harder shots. Who's better?",
               "situation": {
-                "narrative": "Both have similar save percentages, different shot quality.",
+                "narrative": "Over a full season, two goalies have nearly the same save percentage, but the quality of the shots they faced was different.",
                 "facts": [
                   {
                     "label": "Goalie A",
-                    "value": ".900 SV%, xG 3.0, allowed 2"
+                    "value": ".900 sv%, 30 goals on 36 expected"
                   },
                   {
                     "label": "Goalie B",
-                    "value": ".905 SV%, xG 2.0, allowed 1.5"
+                    "value": ".905 sv%, 27 goals on 30 expected"
                   },
                   {
-                    "label": "Context",
-                    "value": "A: hard chances; B: easy chances"
+                    "label": "Shot quality",
+                    "value": "A faced tougher shots than B"
                   }
                 ]
               },
               "options": [
                 {
                   "id": "a",
-                  "label": "Goalie A (harder chances)",
-                  "verdict": "acceptable",
-                  "consequence": "Harder work deserves credit. But .900 is below average.",
+                  "label": "Goalie A: he beat the model by more",
+                  "verdict": "best",
+                  "consequence": "Saving six goals above expected against harder shots is a stronger season than saving three against easier ones.",
                   "considerations": [
-                    "Harder chances = credit",
-                    "But .900 is still weak",
-                    "Context matters"
+                    "A is six goals above expected; B is three.",
+                    "Raw save percentage ignores that A's shots were harder."
                   ]
                 },
                 {
                   "id": "b",
-                  "label": "Goalie B (higher SV%)",
-                  "verdict": "best",
-                  "consequence": "Higher save % on any load is a clear win.",
+                  "label": "Goalie B: his save percentage is higher",
+                  "verdict": "acceptable",
+                  "consequence": "B had a good year too, but his raw number is helped by easier shots.",
                   "considerations": [
-                    "Higher SV% always good",
-                    "Easier chances mean fewer tests",
-                    "Clearer performance"
+                    "A higher save percentage is a fair first look.",
+                    "Shot quality changes the picture."
                   ]
                 },
                 {
                   "id": "c",
-                  "label": "Impossible to tell",
+                  "label": "You can't say anything from these numbers",
                   "verdict": "poor",
-                  "consequence": "Avoid saying impossible. Numbers tell you something.",
+                  "consequence": "Over a full season the numbers do say something, even if no stat is perfect.",
                   "considerations": [
-                    "Stats are incomplete but useful",
-                    "B is clearly outperforming",
-                    "Use the data you have"
+                    "Expected goals are an estimate, not a verdict.",
+                    "A full season is a decent sample."
                   ]
                 }
               ],
-              "expertNote": "Context helps, but higher save % on any shot load is a plus.",
-              "sayThisLine": "Higher save percentage on any load is good."
+              "expertNote": "Raw save percentage treats every shot the same. Goals saved above expected adjusts for shot quality, so it can reverse the ranking. Even so, one season of goalie data is noisy.",
+              "sayThisLine": "His save percentage is lower, but he's facing tougher shots."
             }
           },
           {
@@ -794,43 +728,31 @@
               "goalie-stats-advanced"
             ],
             "payload": {
-              "prompt": "Goals saved above expected (GSAx) compares performance.",
-              "template": "GSAx compares {{who}} to {{what}}, and positive means {{outcome}}.",
+              "prompt": "Complete the GSAx definition.",
+              "template": "GSAx compares the goals a goalie allowed to the goals a {{model}} expected, and a positive number means he {{outcome}}.",
               "gaps": [
                 {
-                  "id": "who",
+                  "id": "model",
                   "options": [
-                    "goalie height",
-                    "actual saves",
-                    "defense rating",
-                    "career avg"
+                    "shot-quality model",
+                    "coach",
+                    "referee"
                   ],
-                  "correct": "actual saves"
-                },
-                {
-                  "id": "what",
-                  "options": [
-                    "games played",
-                    "model prediction",
-                    "career average",
-                    "team record"
-                  ],
-                  "correct": "model prediction"
+                  "correct": "shot-quality model"
                 },
                 {
                   "id": "outcome",
                   "options": [
-                    "got lucky",
-                    "saving hard chances",
-                    "is regressing",
-                    "won many"
+                    "saved more than expected",
+                    "allowed more than expected",
+                    "played more games"
                   ],
-                  "correct": "saving hard chances"
+                  "correct": "saved more than expected"
                 }
               ],
               "explanation": {
-                "correct": "Perfect. GSAx measures beating the model.",
-                "incorrect": "GSAx compares actual performance to shot-quality prediction."
+                "correct": "Exactly. A positive GSAx means he stopped more than a shot-quality model expected; a negative one means he let in more.",
+                "incorrect": "GSAx is actual goals allowed compared with the model's expected goals against. Positive means he beat the model."
               }
             }
           }
@@ -852,9 +774,9 @@
               "goalie-workload"
             ],
             "payload": {
-              "prompt": "Back-to-back nights, home then away. Starter is hot. Play him twice?",
+              "prompt": "Back-to-back nights and your starter is hot. Who plays?",
               "situation": {
-                "narrative": "Back-to-back set; starter in great form.",
+                "narrative": "Two games in two nights, home then away. The starter is in great form and the backup hasn't played in two weeks.",
                 "facts": [
                   {
                     "label": "Starter",
@@ -873,40 +795,39 @@
               "options": [
                 {
                   "id": "play-both",
-                  "label": "Play starter both nights",
+                  "label": "Play the starter both nights",
                   "verdict": "acceptable",
-                  "consequence": "Maximize win odds, but overwork risks fatigue.",
+                  "consequence": "You give yourself the best chance in both games, but a tired goalie may struggle on the second night.",
                   "considerations": [
-                    "Starter is hot",
-                    "Back-to-back fatigue is real",
-                    "One loss to save the goalie is smart"
+                    "The starter is hot.",
+                    "Back-to-back fatigue is real.",
+                    "It's more defensible late in a tight race."
                   ]
                 },
                 {
                   "id": "rest",
-                  "label": "Rest starter second night",
+                  "label": "Starter tonight, backup on the second night",
                   "verdict": "best",
-                  "consequence": "Smart management. Backup gets work. Save the star.",
+                  "consequence": "The starter stays fresh for the stretch, and the backup gets game action. It's the usual way teams manage back-to-backs.",
                   "considerations": [
-                    "Starter needs rest",
-                    "Backup gets live work",
-                    "One loss now, healthy goalie later"
+                    "A rested starter helps across the whole season.",
+                    "The backup needs game time to stay sharp.",
+                    "It's a small risk on one night for a healthier goalie later."
                   ]
                 },
                 {
-                  "id": "mix",
-                  "label": "Starter tonight, backup tomorrow",
-                  "verdict": "acceptable",
-                  "consequence": "Compromise. You get one win, but backup is cold.",
+                  "id": "backup-both",
+                  "label": "Start the backup both nights",
+                  "verdict": "poor",
+                  "consequence": "You give up your best chance in both games with a playoff race tightening, and the starter sits when he's hottest.",
                   "considerations": [
-                    "Likely win first game",
-                    "Backup is rusty in game two",
-                    "Middle ground"
+                    "Rest matters, but not at the expense of both games.",
+                    "The backup is rusty after two weeks off."
                   ]
                 }
               ],
-              "expertNote": "Rest your star on back-to-backs. One game beats a worn-down goalie.",
-              "sayThisLine": "Rest the starter. One game is worth health."
+              "expertNote": "Most teams use the backup on one half of a back-to-back. How much they push the starter depends on the stakes.",
+              "sayThisLine": "They'll rest the starter on the second night of the back-to-back."
             }
           },
           {
@@ -916,43 +837,31 @@
               "goalie-workload"
             ],
             "payload": {
-              "prompt": "A backup's job is rest and readiness.",
-              "template": "Backup plays {{when}} to {{purpose}} and {{maintain}}.",
+              "prompt": "What does a backup goalie usually do?",
+              "template": "A backup goalie often plays one game of a {{when}} so the starter can {{purpose}}.",
               "gaps": [
                 {
                   "id": "when",
                   "options": [
-                    "every night",
-                    "back-to-back second",
-                    "playoffs only",
-                    "never"
+                    "back-to-back",
+                    "shootout",
+                    "faceoff"
                   ],
-                  "correct": "back-to-back second"
+                  "correct": "back-to-back"
                 },
                 {
                   "id": "purpose",
                   "options": [
-                    "replace starter",
-                    "rest the starter",
-                    "beat opponents",
-                    "lose games"
+                    "rest",
+                    "retire",
+                    "switch teams"
                   ],
-                  "correct": "rest the starter"
-                },
-                {
-                  "id": "maintain",
-                  "options": [
-                    "starter fitness",
-                    "backup fitness",
-                    "both healthy",
-                    "draft position"
-                  ],
-                  "correct": "backup fitness"
+                  "correct": "rest"
                 }
               ],
               "explanation": {
-                "correct": "Exactly. Backup gets rests and stays sharp.",
-                "incorrect": "A backup plays 10-15 games: back-to-backs, rest days, injuries."
+                "correct": "Exactly. Backups usually get one game of a back-to-back so the starter stays fresh, and they fill in when the starter is hurt.",
+                "incorrect": "The backup's main job is to take some games so the starter can rest, often one night of a back-to-back."
               }
             }
           },
@@ -968,22 +877,22 @@
                 {
                   "id": "starter",
                   "term": "Starter",
-                  "definition": "Plays 50-60 games per season."
+                  "definition": "The goalie who plays most of the games, including the biggest ones."
                 },
                 {
                   "id": "backup",
                   "term": "Backup",
-                  "definition": "Plays 10-15 games; rests and fills in."
+                  "definition": "The second goalie, who plays fewer games and fills in when the starter rests."
                 },
                 {
                   "id": "b2b",
                   "term": "Back-to-back",
-                  "definition": "Two games on consecutive nights."
+                  "definition": "Two games on consecutive nights, which is when goalies often share the work."
                 }
               ],
               "explanation": {
-                "summary": "Smart teams use their backups to rest the starter.",
-                "sayThisLine": "Starter plays 50-60, backup plays 10-15."
+                "summary": "Smart teams use their backups to rest the starter, and the back-to-back is the classic spot for it.",
+                "sayThisLine": "It's a back-to-back, so the backup gets the start."
               }
             }
           },
@@ -1017,8 +926,8 @@
                 "b"
               ],
               "explanation": {
-                "correct": "Right. Tired goalie = worse angles and reads.",
-                "incorrect": "Overwork hurts the little things that make you good."
+                "correct": "Right. A tired goalie is a half-step late on the angles and reads that make him good, and a tired body also gets hurt more easily.",
+                "incorrect": "The main risk is fatigue: a goalie who's worn down loses the small details, like positioning and tracking rebounds."
               }
             }
           },
@@ -1039,7 +948,7 @@
                   "id": "a",
                   "text": "Resting starter on some back-to-back nights.",
                   "isCorrect": true,
-                  "explanation": "Correct. Workload = strategic rest."
+                  "explanation": "Correct. Workload management is about spreading games between goalies."
                 },
                 {
                   "id": "b",
@@ -1054,22 +963,18 @@
                   "explanation": "The schedule is fixed. The coach is managing what exists."
                 }
               ],
-              "translation": "Workload management = using the backup on back-to-backs.",
+              "translation": "The coach means he'll give the backup some games, usually on back-to-backs, so the starter stays fresh for the whole season.",
               "followUps": [
                 {
-                  "line": "A tired goalie in March hurts more than one game.",
-                  "why": "Season-long thinking."
+                  "line": "Do you trust your backup in those games?",
+                  "why": "Shows you know a good backup is part of a good team."
                 },
                 {
-                  "line": "Good backup depth is crucial for this.",
-                  "why": "Recognizes backup value."
-                },
-                {
-                  "line": "Coaches balance: rest star, keep backup sharp.",
-                  "why": "Shows trade-off thinking."
+                  "line": "Do they rest him more before the playoffs?",
+                  "why": "Shows you know workload management is a season-long plan."
                 }
               ],
-              "noFakeExpertNote": "Coaches trade short wins for long health."
+              "noFakeExpertNote": "Coaches trade a bit of short-term advantage for long-term health. Asking how they think about it is fair game."
             }
           }
         ]
@@ -1091,25 +996,25 @@
               "goalie-interference"
             ],
             "payload": {
-              "prompt": "Attacker in crease, no hard contact, puck at his feet. Interference?",
+              "prompt": "An attacker stands in the crease, doesn't touch the goalie, and the goalie moves freely. Interference?",
               "scene": {
                 "kind": "none",
-                "alt": "Attacker standing in crease with loose puck nearby."
+                "alt": "An attacker stands in the crease beside the goalie, who has full room to move."
               },
               "choices": [
                 {
                   "id": "true",
-                  "label": "True"
+                  "label": "Interference"
                 },
                 {
                   "id": "false",
-                  "label": "False"
+                  "label": "No interference"
                 }
               ],
-              "correctChoiceId": "true",
+              "correctChoiceId": "false",
               "explanation": {
-                "correct": "True. Being in the crease and blocking the goalie's movement.",
-                "incorrect": "Crease contact that prevents a save is interference."
+                "correct": "No interference. Standing in the crease isn't enough. The question is whether the attacker impaired the goalie's ability to make the save.",
+                "incorrect": "Being in the crease isn't the test. If the attacker doesn't touch the goalie or block his movement, the goal can still stand."
               }
             }
           },
@@ -1121,61 +1026,59 @@
               "goalie-interference"
             ],
             "payload": {
-              "prompt": "Goal called. You think interference. Challenge or accept?",
+              "prompt": "A goal might be interference. Do you challenge?",
               "situation": {
-                "narrative": "Goal was just called. Replays look close.",
+                "narrative": "Your team just allowed a goal in the second period. An attacker brushed your goalie, but the replay is unclear.",
                 "facts": [
-                  {
-                    "label": "Timeouts left",
-                    "value": "One timeout remaining"
-                  },
                   {
                     "label": "Period",
                     "value": "Second period"
                   },
                   {
                     "label": "Replay",
-                    "value": "Light contact, unclear if it prevented save"
+                    "value": "Light contact, unclear if it stopped the save"
+                  },
+                  {
+                    "label": "Cost of a failed challenge",
+                    "value": "A real price for your team",
+                    "emphasis": "warning"
                   }
                 ]
               },
               "options": [
                 {
                   "id": "challenge",
-                  "label": "Challenge for interference",
+                  "label": "Challenge; the contact was close enough",
                   "verdict": "acceptable",
-                  "consequence": "50-50 call. If you win, keep timeout. If you lose, it is gone.",
+                  "consequence": "You might win, but borderline calls rarely get overturned, and a failed challenge costs your team.",
                   "considerations": [
-                    "Interference is subjective",
-                    "Borderline calls rarely overturn",
-                    "One goal in period two"
+                    "Interference is a judgment call.",
+                    "Unclear replays tend to stand as called."
                   ]
                 },
                 {
                   "id": "accept",
-                  "label": "Accept the goal",
+                  "label": "Let it go and stay focused",
                   "verdict": "best",
-                  "consequence": "Save timeout for a clearer situation later.",
+                  "consequence": "You avoid the cost of a failed challenge and keep the challenge for a clearer play.",
                   "considerations": [
-                    "Borderline calls tough to overturn",
-                    "Need timeout late in game",
-                    "One goal is not worth it"
+                    "If the replay isn't clear, the call usually stands.",
+                    "Choosing your spots matters."
                   ]
                 },
                 {
                   "id": "yell",
-                  "label": "Yell at the referee",
+                  "label": "Argue with the referee from the bench",
                   "verdict": "poor",
-                  "consequence": "No change to call. Might get a penalty.",
+                  "consequence": "The call doesn't change, and you risk a bench penalty.",
                   "considerations": [
-                    "Yelling does not work",
-                    "Risk of misconduct",
-                    "Use the challenge tool correctly"
+                    "Arguing doesn't start a review.",
+                    "A challenge is the only formal way to ask."
                   ]
                 }
               ],
-              "expertNote": "Interference is judgment-heavy. Challenges rarely work on borderline calls.",
-              "sayThisLine": "Save the timeout for an obvious one."
+              "expertNote": "Interference is a judgment call, and borderline plays rarely get overturned, so coaches save challenges for the ones where the replay is clear.",
+              "sayThisLine": "It wasn't clear enough to risk the challenge."
             }
           },
           {
@@ -1201,15 +1104,15 @@
                 },
                 {
                   "id": "d",
-                  "text": "Did the attacker have clear view of net?"
+                  "text": "Did the attacker have a clear view of the net?"
                 }
               ],
               "correctOptionIds": [
                 "b"
               ],
               "explanation": {
-                "correct": "Right. Did it prevent a save? That is the question.",
-                "incorrect": "Interference is whether it prevented a save, not just contact."
+                "correct": "Right. The review asks whether the attacker's contact or position kept the goalie from making the save, not just whether there was contact.",
+                "incorrect": "Touching the goalie or standing in the crease isn't the test. The question is whether the attacker impaired the goalie's ability to make the save."
               }
             }
           },
@@ -1240,27 +1143,23 @@
                 },
                 {
                   "id": "c",
-                  "text": "Broadcaster thinks goal should stand.",
+                  "text": "The broadcaster thinks the goal should stand.",
                   "isCorrect": false,
-                  "explanation": "The broadcaster is describing interference."
+                  "explanation": "He says it's interference, which means the goal should come off the board."
                 }
               ],
-              "translation": "Interference depends on whether contact prevented the goalie.",
+              "translation": "The broadcaster thinks the contact was light but still kept the goalie from getting across, which is enough for interference.",
               "followUps": [
                 {
-                  "line": "Video review looks for objective facts, not fairness.",
-                  "why": "Understanding what reviewers seek."
+                  "line": "Do you think they'll challenge it?",
+                  "why": "It keeps the chat on the next step after the call."
                 },
                 {
-                  "line": "Interference is the most reviewed call.",
-                  "why": "Recognizing the common judgment call."
-                },
-                {
-                  "line": "Legally screen and do not contact the goalie.",
-                  "why": "The legal way to help your team."
+                  "line": "Would that have been a goal if he hadn't touched the goalie?",
+                  "why": "Shows you understand the test is whether the goalie could have made the save."
                 }
               ],
-              "noFakeExpertNote": "Interference is controversial. Borderline cases are tough."
+              "noFakeExpertNote": "Interference is one of the most argued calls in hockey. It's fine to say it looks close."
             }
           },
           {
@@ -1271,37 +1170,32 @@
               "goalie-interference"
             ],
             "payload": {
-              "prompt": "Order how a review happens after a goal.",
+              "prompt": "Order how a challenged goal gets reviewed.",
               "items": [
                 {
                   "id": "goal-called",
-                  "text": "Goal is called on the ice.",
-                  "why": "Play happens first."
+                  "text": "A goal is scored and signaled on the ice.",
+                  "why": "The play has to happen before anyone can challenge it."
                 },
                 {
                   "id": "challenge",
-                  "text": "Coach challenges using his timeout.",
-                  "why": "Coach requests review."
+                  "text": "The coach decides to challenge before play restarts.",
+                  "why": "A challenge has to be made quickly, before the next faceoff."
                 },
                 {
                   "id": "video-review",
-                  "text": "Video review studies the replays.",
-                  "why": "Review team checks the call."
+                  "text": "Officials and the league's video staff study the replays.",
+                  "why": "They look at the angles that show the contact or the entry."
                 },
                 {
                   "id": "decision",
-                  "text": "Refs confirm goal or wave it off.",
-                  "why": "Final decision is made."
-                },
-                {
-                  "id": "timeout-loss",
-                  "text": "Failed challenge costs a timeout.",
-                  "why": "Penalty for the challenge."
+                  "text": "The referee announces whether the goal stands or is waved off.",
+                  "why": "Play doesn't restart until the ruling is announced."
                 }
               ],
               "explanation": {
-                "correct": "Perfect. Goal, challenge, review, decision, penalty.",
-                "incorrect": "Coach must challenge quickly. Failed challenge = lost timeout."
+                "correct": "That's the order: the goal, the challenge, the video review, then the ruling.",
+                "incorrect": "It runs goal, then challenge before play restarts, then video review, and finally the referee announces the ruling."
               }
             }
           }
