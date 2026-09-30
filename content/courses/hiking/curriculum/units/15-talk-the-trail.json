@@ -1,0 +1,1881 @@
+{
+  "contractVersion": "1.2.0",
+  "courseId": "hiking",
+  "unit": {
+    "id": "talk-the-trail",
+    "title": "Talk the trail",
+    "layer": "conversation",
+    "order": 15,
+    "prerequisiteUnitIds": [
+      "trail-basics",
+      "gear-and-clothing"
+    ],
+    "personalizationSlots": [
+      "skill-level"
+    ],
+    "lessons": [
+      {
+        "id": "tk-01",
+        "title": "Planning a hike together",
+        "objective": "You can plan a hike together without overpromising.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "trip-plan",
+          "turnaround-time"
+        ],
+        "activities": [
+          {
+            "id": "tk-01-tt-saturday-idea",
+            "type": "talk-track",
+            "conceptIds": [
+              "trip-plan",
+              "turnaround-time"
+            ],
+            "payload": {
+              "title": "Picking a trail together",
+              "setting": "Texting about Saturday plans with someone who hikes a lot",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "I found a great 12-mile loop for Saturday. You in?",
+                  "replies": [
+                    {
+                      "id": "honest-ask",
+                      "text": "Love that you found it. I'm newer to hiking, so could we look at the mileage and climbing together?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Of course. It's about 2,500 feet of climbing. Want something shorter for a first go?",
+                      "coachNote": "Honest about your level and still enthusiastic. That invites her to plan with you."
+                    },
+                    {
+                      "id": "say-yes",
+                      "text": "Totally, I hike all the time. Twelve miles is nothing.",
+                      "smoothDelta": -15,
+                      "theirResponse": "Oh nice! I'll plan for a fast pace then.",
+                      "coachNote": "Overpromising sets you up for a hard day and an awkward one."
+                    },
+                    {
+                      "id": "maybe-short",
+                      "text": "Sounds fun. Is there a shorter version in case we want one?",
+                      "smoothDelta": 12,
+                      "theirResponse": "Good idea, there's a cutoff trail at mile four.",
+                      "coachNote": "A flexible ask. Naming your limits is easier with a specific question."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "I usually pick a turnaround time so we're never racing the sun. Does 1 PM work?",
+                  "replies": [
+                    {
+                      "id": "turnaround-good",
+                      "text": "I like that. If we haven't reached the top by 1, we turn around and call it a win?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Exactly. The summit will be there next time.",
+                      "coachNote": "You agreed to a rule that protects both of you."
+                    },
+                    {
+                      "id": "turnaround-bluff",
+                      "text": "We won't need one. We'll be fast.",
+                      "smoothDelta": -15,
+                      "theirResponse": "Hm. I'd still like to set one.",
+                      "coachNote": "A turnaround time is for slow days, not a verdict on you."
+                    },
+                    {
+                      "id": "turnaround-ask",
+                      "text": "What makes 1 PM the right time?",
+                      "smoothDelta": 15,
+                      "theirResponse": "It leaves time to get down before dark, with room to spare.",
+                      "coachNote": "Curious, and you learn her reasoning."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Planning together means saying what you can do. A turnaround time is a shared rule, not a test."
+            }
+          },
+          {
+            "id": "tk-01-ds-big-hike-invite",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "trip-plan",
+              "turnaround-time"
+            ],
+            "payload": {
+              "prompt": "She suggests a big hike. You have done little. What do you say?",
+              "situation": {
+                "narrative": "Your friend wants to hike a long route with lots of climbing this Saturday. You have only done short, flat walks, and you would love to go with her.",
+                "facts": [
+                  {
+                    "label": "Her plan",
+                    "value": "12 miles, 2,500 ft climbing"
+                  },
+                  {
+                    "label": "Your experience",
+                    "value": "Short, flat walks",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Daylight",
+                    "value": "Sunrise to early evening"
+                  },
+                  {
+                    "label": "Options",
+                    "value": "Shorter loops are nearby"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "honest-shorter",
+                  "label": "Tell her you are newer and suggest a shorter trail with a turnaround time",
+                  "verdict": "best",
+                  "consequence": "She can plan for your real pace, and you both get a good day with room to add miles next time.",
+                  "considerations": [
+                    "Honest levels make for safer plans.",
+                    "A shorter route still counts as a real hike."
+                  ]
+                },
+                {
+                  "id": "go-with-plan",
+                  "label": "Say yes, but ask to check the route together and agree on a turnaround time",
+                  "verdict": "acceptable",
+                  "consequence": "Checking together helps, though a long route may still be too much for a first effort.",
+                  "considerations": [
+                    "Agree up front that either of you can turn back.",
+                    "Tell her how much you have hiked before."
+                  ]
+                },
+                {
+                  "id": "hide",
+                  "label": "Say yes and keep quiet about your experience so she isn't disappointed",
+                  "verdict": "poor",
+                  "consequence": "Hiding your level can lead to a hard, unsafe day for both of you, and she has no chance to plan around it.",
+                  "considerations": [
+                    "A tired hiker who stays quiet slows the whole group.",
+                    "Being honest is more attractive than being impressive."
+                  ]
+                },
+                {
+                  "id": "decline-cold",
+                  "label": "Decline without explanation and never bring it up again",
+                  "verdict": "poor",
+                  "consequence": "You miss a chance to hike with her, and she may think you are not interested.",
+                  "considerations": [
+                    "A counter-offer keeps the door open.",
+                    "Explaining why shows you care about the plan."
+                  ]
+                }
+              ],
+              "expertNote": "Experienced hikers plan for the least experienced person in the group, and they say so out loud.",
+              "sayThisLine": "\"I'm newer to this. Can we pick something shorter with a turnaround time?\"",
+              "safetyNote": "Match the route to the least experienced person, tell someone your plan, and follow land manager guidance."
+            }
+          },
+          {
+            "id": "tk-01-bc-turnaround-fail",
+            "type": "binary-call",
+            "conceptIds": [
+              "turnaround-time"
+            ],
+            "payload": {
+              "prompt": "You agreed on a turnaround time. You are close to the top at that time. Turn around?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two hikers on a ridge trail with the summit just ahead, one checking a watch."
+              },
+              "choices": [
+                {
+                  "id": "push",
+                  "label": "No, just a little further"
+                },
+                {
+                  "id": "turn",
+                  "label": "Yes, keep the agreement"
+                }
+              ],
+              "correctChoiceId": "turn",
+              "explanation": {
+                "correct": "A turnaround time works only if you keep it. Being close feels like a reason to push, but that is when daylight and energy run out, and the summit will still be there next time.",
+                "incorrect": "The point of a turnaround time is to decide before you are tempted. Being close to the top is exactly when hikers talk themselves into pushing on, so keep the agreement.",
+                "sayThisLine": "\"We said 1 PM. Let's turn around and come back for it.\""
+              },
+              "ruleTag": "Keep the turnaround time you chose"
+            }
+          },
+          {
+            "id": "tk-01-ftg-plan-talk",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "trip-plan",
+              "turnaround-time"
+            ],
+            "payload": {
+              "prompt": "Finish the planning conversation:",
+              "template": "Before we go, let's agree on the {{route}}, a {{turnaround}} time, and who knows our {{plan}}.",
+              "gaps": [
+                {
+                  "id": "route",
+                  "options": [
+                    "route",
+                    "playlist",
+                    "outfit"
+                  ],
+                  "correct": "route"
+                },
+                {
+                  "id": "turnaround",
+                  "options": [
+                    "turnaround",
+                    "summit",
+                    "snack"
+                  ],
+                  "correct": "turnaround"
+                },
+                {
+                  "id": "plan",
+                  "options": [
+                    "plan",
+                    "gossip",
+                    "photos"
+                  ],
+                  "correct": "plan"
+                }
+              ],
+              "explanation": {
+                "correct": "A shared route, a turnaround time and a trusted contact who knows the plan are the basics of a trip plan. Saying them together makes planning a team effort.",
+                "incorrect": "Agree on the route, choose a turnaround time and tell someone where you are going and when you expect to be back.",
+                "sayThisLine": "\"Let's pick the route, set a turnaround time, and tell my roommate the plan.\""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "tk-02",
+        "title": "Her trip recap",
+        "objective": "You can respond to a trip recap with a curious follow-up.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "elevation-gain",
+          "exposure"
+        ],
+        "activities": [
+          {
+            "id": "tk-02-tt-ridge-recap",
+            "type": "talk-track",
+            "conceptIds": [
+              "elevation-gain",
+              "exposure"
+            ],
+            "payload": {
+              "title": "Sunday ridge recap",
+              "setting": "She texts you about yesterday's hike",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "Just got back. Four thousand feet of gain, and the last mile was super exposed. Legs are toast!",
+                  "replies": [
+                    {
+                      "id": "curious-gain",
+                      "text": "Four thousand feet! What was the best moment of the climb?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Honestly, the view from the saddle near the top. Worth every step.",
+                      "coachNote": "You noticed the big number and asked about the experience."
+                    },
+                    {
+                      "id": "flat-response",
+                      "text": "Nice. Sounds hard.",
+                      "smoothDelta": 0,
+                      "theirResponse": "Yeah it was.",
+                      "coachNote": "Kind, but it ends the conversation. Add a question."
+                    },
+                    {
+                      "id": "top-her",
+                      "text": "That's not a lot. I've done way more.",
+                      "smoothDelta": -20,
+                      "theirResponse": "Okay...",
+                      "coachNote": "Comparing shrinks her story. Celebrate her day instead."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "By exposed I mean no trees and steep drop-offs on one side. I was a little nervous, honestly.",
+                  "replies": [
+                    {
+                      "id": "nervous-ask",
+                      "text": "That sounds intense. How did you feel once you were past it?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Proud, mostly. I took it slow and stayed calm.",
+                      "coachNote": "Warm and curious. You let her share the feeling."
+                    },
+                    {
+                      "id": "nervous-dismiss",
+                      "text": "Oh, it's fine. Heights are easy once you get used to them.",
+                      "smoothDelta": -10,
+                      "theirResponse": "Maybe for you.",
+                      "coachNote": "Dismissing her nerves makes her feel unheard. Acknowledge it first."
+                    },
+                    {
+                      "id": "nervous-learn",
+                      "text": "I'm still learning what exposed means. Does it always include a drop-off?",
+                      "smoothDelta": 15,
+                      "theirResponse": "Not always. It can just mean no shelter from wind or weather, like above treeline.",
+                      "coachNote": "An honest question that teaches you something and lets her share."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Ask about the moment, not the number. Nervousness deserves a kind word before any advice."
+            }
+          },
+          {
+            "id": "tk-02-st-gain-brag",
+            "type": "say-this",
+            "conceptIds": [
+              "elevation-gain"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "It was only six miles, but it had 2,400 feet of gain. Those six miles took us four hours."
+              },
+              "question": "What is she telling you?",
+              "options": [
+                {
+                  "id": "climb",
+                  "text": "The trail climbed a lot, so it was slower and harder than six miles sounds",
+                  "isCorrect": true,
+                  "explanation": "Yes. Elevation gain is the total climbing, and lots of it slows the pace a lot."
+                },
+                {
+                  "id": "lost",
+                  "text": "They got lost and walked extra miles",
+                  "isCorrect": false,
+                  "explanation": "She never mentioned getting lost. She pointed to the climbing."
+                },
+                {
+                  "id": "easy",
+                  "text": "It was an easy walk that took too long for no reason",
+                  "isCorrect": false,
+                  "explanation": "2,400 feet of gain is a real climb, which is why it took four hours."
+                },
+                {
+                  "id": "miles-wrong",
+                  "text": "The mileage was measured wrong",
+                  "isCorrect": false,
+                  "explanation": "Nothing she said questions the mileage. She is saying distance is not the whole story."
+                }
+              ],
+              "translation": "The distance was short, but a lot of it was uphill, so it was hard work and took much longer than the mileage suggests.",
+              "followUps": [
+                {
+                  "line": "Was the climb steady or in steep bursts?",
+                  "why": "It shows you understand that gain is a feature of the trail and invites her to describe it."
+                },
+                {
+                  "line": "Four hours for six miles. Did you earn a big lunch?",
+                  "why": "A light, friendly follow-up that celebrates the effort."
+                }
+              ],
+              "noFakeExpertNote": "If you do not know how gain slows you down, say so and ask her how it felt."
+            }
+          },
+          {
+            "id": "tk-02-mc-exposed-meaning",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "exposure"
+            ],
+            "payload": {
+              "prompt": "She calls a section 'super exposed.' What might she mean?",
+              "options": [
+                {
+                  "id": "open-drop",
+                  "text": "Open terrain with little shelter from sun, wind or weather, and sometimes steep drop-offs",
+                  "explanation": "Yes. Exposure can mean lack of cover, a fall hazard or both, so ask which she meant."
+                },
+                {
+                  "id": "crowded",
+                  "text": "The trail was crowded with people",
+                  "explanation": "That is about crowds, not exposure."
+                },
+                {
+                  "id": "sunburn-only",
+                  "text": "She got a sunburn and nothing else",
+                  "explanation": "Sun can be part of exposure, but the word describes the terrain, not a sunburn."
+                },
+                {
+                  "id": "public",
+                  "text": "Everyone could see her from the road",
+                  "explanation": "It is about terrain and conditions, not privacy."
+                }
+              ],
+              "correctOptionIds": [
+                "open-drop"
+              ],
+              "explanation": {
+                "correct": "Exposed terrain has little cover from weather and sometimes steep drops. A good reply asks which she meant and how it felt, rather than guessing.",
+                "incorrect": "Exposure means open terrain with little shelter, and sometimes a fall risk. Asking which kind she meant is better than guessing.",
+                "sayThisLine": "\"Exposed like windy and open, or exposed like steep drop-offs?\""
+              }
+            }
+          },
+          {
+            "id": "tk-02-bc-compare-hikes",
+            "type": "binary-call",
+            "conceptIds": [
+              "elevation-gain"
+            ],
+            "payload": {
+              "prompt": "She finished a hard hike. Is 'I've done harder' a good reply?",
+              "scene": {
+                "kind": "none",
+                "alt": "A tired hiker sitting on a rock at a trailhead, smiling, with a muddy pair of boots."
+              },
+              "choices": [
+                {
+                  "id": "harder",
+                  "label": "Yes, it shows I'm experienced"
+                },
+                {
+                  "id": "celebrate",
+                  "label": "No, ask about her day"
+                }
+              ],
+              "correctChoiceId": "celebrate",
+              "explanation": {
+                "correct": "A recap is a chance for her to share something she is proud of. Asking about her favorite part shows interest, while one-upping makes it about you.",
+                "incorrect": "Comparing hikes turns her story into a contest. Ask a curious question about her favorite moment instead.",
+                "sayThisLine": "\"That sounds like a big day. What was your favorite moment?\""
+              },
+              "ruleTag": "Ask about her day, not your record"
+            }
+          }
+        ]
+      },
+      {
+        "id": "tk-03",
+        "title": "Gear talk, no faking",
+        "objective": "You can join gear talk honestly.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "base-weight",
+          "trail-runners-debate"
+        ],
+        "activities": [
+          {
+            "id": "tk-03-tt-pack-weight",
+            "type": "talk-track",
+            "conceptIds": [
+              "base-weight"
+            ],
+            "payload": {
+              "title": "Gear nerd in the wild",
+              "setting": "He is excited about his pack",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "I finally got my base weight under 12 pounds. Took me two years of swapping gear.",
+                  "replies": [
+                    {
+                      "id": "ask-base",
+                      "text": "I don't know base weight well. Is that everything except food, water and fuel?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Yep, exactly. The stuff that changes every trip doesn't count.",
+                      "coachNote": "Honest and correct. He gets to explain something he loves."
+                    },
+                    {
+                      "id": "bluff-base",
+                      "text": "Nice, mine's about 8 pounds.",
+                      "smoothDelta": -20,
+                      "theirResponse": "Whoa, really? What's in your pack?",
+                      "coachNote": "Making up a number invites questions you cannot answer."
+                    },
+                    {
+                      "id": "congrats",
+                      "text": "Two years of work. What was the hardest thing to give up?",
+                      "smoothDelta": 20,
+                      "theirResponse": "My camp chair. I miss it every night.",
+                      "coachNote": "Interested in his story and a little funny."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "Lighter isn't always better though. I still carry a real first-aid kit and a shelter.",
+                  "replies": [
+                    {
+                      "id": "agree-safety",
+                      "text": "That makes sense. Saving weight matters less than being prepared.",
+                      "smoothDelta": 25,
+                      "theirResponse": "Right. I trim comfort before I trim safety.",
+                      "coachNote": "You agreed with a safety-first approach."
+                    },
+                    {
+                      "id": "skip-safety",
+                      "text": "Why carry it? You won't need it.",
+                      "smoothDelta": -15,
+                      "theirResponse": "That's the thing, you carry it for the day you do.",
+                      "coachNote": "Never encourage skipping safety gear to save weight."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Gear people love to explain. Asking an honest question beats a made-up number every time."
+            }
+          },
+          {
+            "id": "tk-03-st-trail-runners",
+            "type": "say-this",
+            "conceptIds": [
+              "trail-runners-debate"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "He",
+                "text": "I switched to trail runners years ago. They dry fast and feel light, but my ankles miss the boot support on rocky stuff."
+              },
+              "question": "What is his point?",
+              "options": [
+                {
+                  "id": "tradeoffs",
+                  "text": "Trail runners have upsides and downsides, and the choice depends on the hike and the hiker",
+                  "isCorrect": true,
+                  "explanation": "Yes. He likes the speed and light weight, and admits boots add ankle support on rough ground."
+                },
+                {
+                  "id": "boots-bad",
+                  "text": "Boots are always a mistake",
+                  "isCorrect": false,
+                  "explanation": "He mentioned missing boot support, so he is not saying that."
+                },
+                {
+                  "id": "runners-perfect",
+                  "text": "Trail runners are perfect for everything",
+                  "isCorrect": false,
+                  "explanation": "He listed a downside, so he does not think they are perfect."
+                },
+                {
+                  "id": "quit",
+                  "text": "He stopped hiking because of his ankles",
+                  "isCorrect": false,
+                  "explanation": "He still hikes. He is weighing what his footwear does well and badly."
+                }
+              ],
+              "translation": "He likes trail runners for being light and quick-drying, but he knows they give less ankle support than boots.",
+              "followUps": [
+                {
+                  "line": "What would make you go back to boots?",
+                  "why": "It respects that he has a balanced view and invites him to share it."
+                },
+                {
+                  "line": "Do your feet stay comfortable on long days?",
+                  "why": "A curious, friendly question about his real experience."
+                }
+              ],
+              "noFakeExpertNote": "You do not need a side in the boots-versus-runners debate. Asking what works for him is enough."
+            }
+          },
+          {
+            "id": "tk-03-tm-gear-talk",
+            "type": "term-match",
+            "conceptIds": [
+              "base-weight",
+              "trail-runners-debate"
+            ],
+            "payload": {
+              "prompt": "Match the gear-talk phrase to what it means:",
+              "pairs": [
+                {
+                  "id": "base",
+                  "term": "Base weight",
+                  "definition": "Pack weight before food, water and fuel, since those change each trip"
+                },
+                {
+                  "id": "runners",
+                  "term": "Trail runners",
+                  "definition": "Lightweight, quick-drying shoes some hikers use instead of boots"
+                },
+                {
+                  "id": "boots",
+                  "term": "Hiking boots",
+                  "definition": "Sturdier footwear with more ankle support and protection"
+                },
+                {
+                  "id": "shakedown",
+                  "term": "Shakedown",
+                  "definition": "A short trip to test your gear and find what to change"
+                }
+              ],
+              "explanation": {
+                "summary": "Base weight leaves out the things you eat, drink and burn. Trail runners and boots trade weight against support, and a shakedown is how hikers test what actually works for them.",
+                "sayThisLine": "\"Do you count your water in your base weight, or is that extra?\""
+              }
+            }
+          },
+          {
+            "id": "tk-03-mc-gear-reply",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "base-weight",
+              "trail-runners-debate"
+            ],
+            "payload": {
+              "prompt": "He asks, 'Boots or trail runners?' You have no opinion. Best reply?",
+              "options": [
+                {
+                  "id": "honest-curious",
+                  "text": "\"I'm new to this. What made you choose runners?\"",
+                  "explanation": "Honest, curious, and it lets him share what he knows."
+                },
+                {
+                  "id": "pick-side",
+                  "text": "\"Boots, obviously. Runners are for running.\"",
+                  "explanation": "It fakes a strong opinion and starts an argument you cannot back up."
+                },
+                {
+                  "id": "deflect",
+                  "text": "\"Whatever. I don't care about gear.\"",
+                  "explanation": "It shuts down something he loves and may feel dismissive."
+                },
+                {
+                  "id": "brag",
+                  "text": "\"I've tested both for years and have strong views.\"",
+                  "explanation": "It is untrue and invites follow-ups that expose the bluff."
+                }
+              ],
+              "correctOptionIds": [
+                "honest-curious"
+              ],
+              "explanation": {
+                "correct": "Saying you are new and asking why he chose what he did keeps things warm and honest. Gear people enjoy explaining their choices.",
+                "incorrect": "Do not fake an opinion. Say you are still learning and ask about his experience, which he will enjoy sharing.",
+                "sayThisLine": "\"I'm still figuring out my setup. What's worked for you?\""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "tk-04",
+        "title": "When she is nervous about conditions",
+        "objective": "You can support a cautious call.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "weather-window",
+          "lightning-safety"
+        ],
+        "activities": [
+          {
+            "id": "tk-04-tt-storm-nerves",
+            "type": "talk-track",
+            "conceptIds": [
+              "weather-window",
+              "lightning-safety"
+            ],
+            "payload": {
+              "title": "She wants to reschedule",
+              "setting": "Texting the night before a planned hike",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "The forecast shows afternoon thunderstorms tomorrow. I'm nervous about the ridge. Can we move it?",
+                  "replies": [
+                    {
+                      "id": "support",
+                      "text": "Totally. Want to look at another day, or an early start that gets us down before noon?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Thank you. An early start would be great.",
+                      "coachNote": "You respect her caution and offer options."
+                    },
+                    {
+                      "id": "push-back",
+                      "text": "It's probably fine. Storms never hit where we go.",
+                      "smoothDelta": -20,
+                      "theirResponse": "I'd really rather not risk it.",
+                      "coachNote": "Pushing past her concern about lightning is never smooth."
+                    },
+                    {
+                      "id": "ask-why",
+                      "text": "Good catch. What time is the storm risk highest?",
+                      "smoothDelta": 15,
+                      "theirResponse": "After noon, mostly. That's why I want a morning plan.",
+                      "coachNote": "Curious and supportive."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "Also, I hate cancelling on you. I feel like I'm being a wimp.",
+                  "replies": [
+                    {
+                      "id": "reassure",
+                      "text": "You're not. Checking the weather is what good hikers do. I'd rather hike with someone who does.",
+                      "smoothDelta": 25,
+                      "theirResponse": "That means a lot. Thanks for getting it.",
+                      "coachNote": "Kind, honest, and it frames caution as a strength."
+                    },
+                    {
+                      "id": "tease",
+                      "text": "A little, yeah.",
+                      "smoothDelta": -20,
+                      "theirResponse": "Wow, okay.",
+                      "coachNote": "Teasing someone about safety is not playful, it is hurtful."
+                    },
+                    {
+                      "id": "neutral",
+                      "text": "No worries, we'll go another time.",
+                      "smoothDelta": 8,
+                      "theirResponse": "Thanks. I'll check the forecast for Sunday.",
+                      "coachNote": "Fine, but add a word of reassurance."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "A cautious call is good judgment. Support it, offer a plan B and never tease about safety."
+            }
+          },
+          {
+            "id": "tk-04-ds-storm-on-ridge",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "weather-window",
+              "lightning-safety"
+            ],
+            "payload": {
+              "prompt": "Clouds build. She wants to turn back. You want the summit. What now?",
+              "situation": {
+                "narrative": "You are on an exposed ridge trail, near the top. Dark clouds are building to the west and you hear distant thunder. She says she is nervous and wants to head down. You are close to the summit and feel disappointed.",
+                "facts": [
+                  {
+                    "label": "Weather",
+                    "value": "Building clouds, distant thunder",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Terrain",
+                    "value": "Exposed ridge"
+                  },
+                  {
+                    "label": "Distance to summit",
+                    "value": "About 20 minutes"
+                  },
+                  {
+                    "label": "Her preference",
+                    "value": "Head down now"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "descend-now",
+                  "label": "Agree right away and head down together, off the exposed ridge",
+                  "verdict": "best",
+                  "consequence": "You get off the high ground before the storm arrives and you show her that her concern matters.",
+                  "considerations": [
+                    "Thunder means lightning is close enough to be a danger.",
+                    "No place outdoors is truly safe, so leave exposed high ground early."
+                  ]
+                },
+                {
+                  "id": "quick-summit",
+                  "label": "Ask her to wait below while you dash to the summit and back",
+                  "verdict": "poor",
+                  "consequence": "You leave her alone and keep yourself on the most exposed spot as the storm closes in.",
+                  "considerations": [
+                    "Summits are the most exposed place in a storm.",
+                    "Splitting up adds risk and breaks trust."
+                  ]
+                },
+                {
+                  "id": "persuade",
+                  "label": "Say the storm is probably going to miss you and ask her to keep going",
+                  "verdict": "poor",
+                  "consequence": "Pressuring her puts both of you on an exposed ridge near a storm, and she may stop trusting your judgment.",
+                  "considerations": [
+                    "Nobody can predict exactly where a storm will go.",
+                    "Safety decisions go to the most cautious person."
+                  ]
+                },
+                {
+                  "id": "wait-on-ridge",
+                  "label": "Stay and watch the clouds for a while to see what they do",
+                  "verdict": "poor",
+                  "consequence": "Lingering on an exposed ridge wastes the time you have to get lower.",
+                  "considerations": [
+                    "Conditions can change fast.",
+                    "Decide to leave before lightning is overhead."
+                  ]
+                }
+              ],
+              "expertNote": "Experienced hikers treat thunder as a signal to get off exposed ground, and they give the cautious person the final say.",
+              "sayThisLine": "\"You're right, let's head down now. The summit will still be here.\"",
+              "safetyNote": "When thunder is near, descend from exposed high ground, avoid isolated trees and open areas, and follow National Weather Service and land manager guidance. No place outdoors is safe from lightning."
+            }
+          },
+          {
+            "id": "tk-04-st-weather-window",
+            "type": "say-this",
+            "conceptIds": [
+              "weather-window"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "I'm watching for a weather window on Saturday morning. If it's clear until noon, we can get up and down before the storms roll in."
+              },
+              "question": "What is she planning?",
+              "options": [
+                {
+                  "id": "window",
+                  "text": "A hike timed into a stretch of good weather, finishing before the storms",
+                  "isCorrect": true,
+                  "explanation": "Yes. A weather window is a stretch of good conditions, and she plans to be done before it closes."
+                },
+                {
+                  "id": "skip",
+                  "text": "Skipping the hike whatever the weather",
+                  "isCorrect": false,
+                  "explanation": "She plans to hike Saturday if the morning is clear."
+                },
+                {
+                  "id": "storm-chase",
+                  "text": "Hiking toward the storms to watch them",
+                  "isCorrect": false,
+                  "explanation": "She wants to be off the trail before the storms arrive."
+                },
+                {
+                  "id": "no-plan",
+                  "text": "Waiting until noon and then deciding",
+                  "isCorrect": false,
+                  "explanation": "She wants to finish by noon, which means starting early."
+                }
+              ],
+              "translation": "She wants to hike in a good-weather stretch, start early, and be off the trail before afternoon storms begin.",
+              "followUps": [
+                {
+                  "line": "What time would you want to start?",
+                  "why": "It shows you understand the window depends on an early start."
+                },
+                {
+                  "line": "Want me to keep an eye on the forecast too?",
+                  "why": "A small offer of help that supports her plan."
+                }
+              ],
+              "noFakeExpertNote": "You do not have to read weather maps. Asking what she is watching for is enough."
+            }
+          },
+          {
+            "id": "tk-04-bc-thunder-rule",
+            "type": "binary-call",
+            "conceptIds": [
+              "lightning-safety"
+            ],
+            "payload": {
+              "prompt": "She hears thunder and wants to head down. Do you wait to be sure it's close?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two hikers on an open ridge looking at dark clouds moving in while thunder rumbles in the distance."
+              },
+              "choices": [
+                {
+                  "id": "wait",
+                  "label": "Yes, wait until it is overhead"
+                },
+                {
+                  "id": "descend",
+                  "label": "No, head down now"
+                }
+              ],
+              "correctChoiceId": "descend",
+              "explanation": {
+                "correct": "If you can hear thunder, lightning is close enough to be a danger. Leave exposed high ground early, rather than waiting until the storm is overhead.",
+                "incorrect": "Thunder means lightning can strike where you are. Do not wait for it to get worse. Head down from exposed ground right away and follow official guidance.",
+                "sayThisLine": "\"I hear thunder too. Let's get off the ridge.\""
+              },
+              "ruleTag": "Thunder means start descending"
+            }
+          }
+        ]
+      },
+      {
+        "id": "tk-05",
+        "title": "The trail-name story",
+        "objective": "You can enjoy a trail-name story.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "trail-name",
+          "trail-magic"
+        ],
+        "activities": [
+          {
+            "id": "tk-05-tt-name-origin",
+            "type": "talk-track",
+            "conceptIds": [
+              "trail-name",
+              "trail-magic"
+            ],
+            "payload": {
+              "title": "How she got her name",
+              "setting": "She tells a story from a long hike",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "On the trail I went by Sprout. Another hiker named me after I planted a pinecone in camp. It stuck.",
+                  "replies": [
+                    {
+                      "id": "love-it",
+                      "text": "That's great. Did you like it right away, or did it grow on you?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Grew on me. Now it feels like a little piece of that hike.",
+                      "coachNote": "Warm and curious about her feelings."
+                    },
+                    {
+                      "id": "mock",
+                      "text": "Sprout? That's a silly name.",
+                      "smoothDelta": -20,
+                      "theirResponse": "It's a trail name. They are supposed to be silly.",
+                      "coachNote": "Trail names are affectionate. Do not make fun of them."
+                    },
+                    {
+                      "id": "pick",
+                      "text": "I'd give myself a cooler name than that.",
+                      "smoothDelta": -10,
+                      "theirResponse": "Well, you don't get to pick your own. That's the point.",
+                      "coachNote": "By tradition, other hikers give you the name. Ask before you assume."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "One day someone left cold sodas in a cooler at a road crossing. Trail magic! I nearly cried.",
+                  "replies": [
+                    {
+                      "id": "magic-ask",
+                      "text": "That sounds amazing. What did it feel like after a long stretch on the trail?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Like the world was looking out for us. I still think about it.",
+                      "coachNote": "You let her relive the feeling."
+                    },
+                    {
+                      "id": "magic-blank",
+                      "text": "Sure, free soda.",
+                      "smoothDelta": -5,
+                      "theirResponse": "It was more than the soda.",
+                      "coachNote": "It was about kindness, not the drink. Ask about the feeling."
+                    },
+                    {
+                      "id": "magic-learn",
+                      "text": "I don't know what trail magic is. Is it always food?",
+                      "smoothDelta": 18,
+                      "theirResponse": "Usually food or rides, anything kind and unexpected a stranger does for hikers.",
+                      "coachNote": "Honest, and she gets to explain."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Trail names are a gift from others, and trail magic is about kindness. Ask how it felt."
+            }
+          },
+          {
+            "id": "tk-05-st-trail-name",
+            "type": "say-this",
+            "conceptIds": [
+              "trail-name"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "He",
+                "text": "I don't have a trail name yet. You can't choose your own, somebody else gives it to you when you do something memorable."
+              },
+              "question": "What is he explaining?",
+              "options": [
+                {
+                  "id": "tradition",
+                  "text": "By tradition, other hikers give you a trail name after something memorable happens",
+                  "isCorrect": true,
+                  "explanation": "Yes. Trail names are usually given by fellow hikers, often from a funny or memorable moment."
+                },
+                {
+                  "id": "official",
+                  "text": "Trail names are official titles the park assigns",
+                  "isCorrect": false,
+                  "explanation": "They are informal and given by other hikers, not by any park."
+                },
+                {
+                  "id": "pick",
+                  "text": "Hikers pick any name they like on day one",
+                  "isCorrect": false,
+                  "explanation": "He said you cannot choose your own."
+                },
+                {
+                  "id": "no-one",
+                  "text": "Nobody actually uses trail names anymore",
+                  "isCorrect": false,
+                  "explanation": "He is waiting for one, so the tradition is alive."
+                }
+              ],
+              "translation": "A trail name is a nickname from other hikers, usually from a memorable moment, and he has not earned one yet.",
+              "followUps": [
+                {
+                  "line": "What's the best trail name you've ever heard?",
+                  "why": "It invites a story and shows you are curious about the tradition."
+                },
+                {
+                  "line": "Are you hoping for a good one or a funny one?",
+                  "why": "A playful question about what he wants."
+                }
+              ],
+              "noFakeExpertNote": "If you do not know the tradition, say so. He will enjoy explaining."
+            }
+          },
+          {
+            "id": "tk-05-mc-magic-reply",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "trail-magic"
+            ],
+            "payload": {
+              "prompt": "She tells a trail magic story. What is the warmest reply?",
+              "options": [
+                {
+                  "id": "ask-feel",
+                  "text": "\"That sounds like such a kind thing. What did you say to them?\"",
+                  "explanation": "It celebrates the kindness and invites the rest of the story."
+                },
+                {
+                  "id": "minimize",
+                  "text": "\"Free stuff is nice, I guess.\"",
+                  "explanation": "It misses that the gesture mattered more than the stuff."
+                },
+                {
+                  "id": "one-up",
+                  "text": "\"I once got free tickets, which is way better.\"",
+                  "explanation": "Topping her story takes the attention off her moment."
+                },
+                {
+                  "id": "skeptic",
+                  "text": "\"Why would strangers do that? What's the catch?\"",
+                  "explanation": "It is cynical about a story about generosity and can feel dismissive."
+                }
+              ],
+              "correctOptionIds": [
+                "ask-feel"
+              ],
+              "explanation": {
+                "correct": "Trail magic is about kindness from strangers, so the best replies are warm and curious. Asking what she said to them lets her keep telling the story.",
+                "incorrect": "Keep it warm and curious. The gift is about kindness, and a good reply invites her to share more of the moment.",
+                "sayThisLine": "\"That's lovely. Did you get to thank them?\""
+              }
+            }
+          },
+          {
+            "id": "tk-05-ftg-trail-etiquette",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "trail-magic",
+              "trail-name"
+            ],
+            "payload": {
+              "prompt": "Finish the trail tradition notes:",
+              "template": "A trail name is given by other {{hikers}}, and trail magic is an unexpected act of {{kindness}} for hikers, so when you find it, take a fair share and say {{thanks}}.",
+              "gaps": [
+                {
+                  "id": "hikers",
+                  "options": [
+                    "hikers",
+                    "rangers",
+                    "brands"
+                  ],
+                  "correct": "hikers"
+                },
+                {
+                  "id": "kindness",
+                  "options": [
+                    "kindness",
+                    "advertising",
+                    "punishment"
+                  ],
+                  "correct": "kindness"
+                },
+                {
+                  "id": "thanks",
+                  "options": [
+                    "thanks",
+                    "nothing",
+                    "no"
+                  ],
+                  "correct": "thanks"
+                }
+              ],
+              "explanation": {
+                "correct": "Trail names come from other hikers, and trail magic is someone's gift to whoever comes by. Taking a fair share and thanking them keeps the tradition going.",
+                "incorrect": "Trail names are given by fellow hikers, and trail magic is a kindness. Take only a fair share so there is enough for those after you, and be thankful.",
+                "sayThisLine": "\"We'll take one each and leave the rest for the next hikers.\""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "tk-06",
+        "title": "Decoding her trail reports",
+        "objective": "You can decode her trail-report message.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "trail-report",
+          "junction"
+        ],
+        "activities": [
+          {
+            "id": "tk-06-st-junction-report",
+            "type": "say-this",
+            "conceptIds": [
+              "trail-report",
+              "junction"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "Report from yesterday: good tread all the way, but the signpost at the second junction is missing, so take the left fork for the lake."
+              },
+              "question": "What is she telling you?",
+              "options": [
+                {
+                  "id": "fork",
+                  "text": "The trail is in good shape, but a missing sign at a junction means you need to choose the right fork yourself",
+                  "isCorrect": true,
+                  "explanation": "Yes. Good tread means the path is clear. The missing sign is the catch, and she tells you which way she went."
+                },
+                {
+                  "id": "closed",
+                  "text": "The trail is closed at the second junction",
+                  "isCorrect": false,
+                  "explanation": "She said the tread was good and only mentioned a missing signpost."
+                },
+                {
+                  "id": "lake-closed",
+                  "text": "The lake is closed to visitors",
+                  "isCorrect": false,
+                  "explanation": "She said to take the left fork for the lake, so she went there."
+                },
+                {
+                  "id": "lost",
+                  "text": "She got lost and gave up",
+                  "isCorrect": false,
+                  "explanation": "She reached the lake and is helping others find it."
+                }
+              ],
+              "translation": "The path itself was in good shape. One junction has no sign, so she went left to reach the lake and is passing that on.",
+              "followUps": [
+                {
+                  "line": "Thanks, that helps. I'll double-check the junction on my map.",
+                  "why": "It shows you use her report and still confirm it yourself."
+                },
+                {
+                  "line": "Was the left fork easy to spot?",
+                  "why": "A practical question that helps you picture the junction."
+                }
+              ],
+              "noFakeExpertNote": "If tread or junction are new words, ask. Nobody expects you to know them yet."
+            }
+          },
+          {
+            "id": "tk-06-st-stale-report",
+            "type": "say-this",
+            "conceptIds": [
+              "trail-report"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "He",
+                "text": "The report says bugs were brutal and the creek crossing was knee deep last week, but rain since then, so who knows."
+              },
+              "question": "What does he mean by 'who knows'?",
+              "options": [
+                {
+                  "id": "changing",
+                  "text": "Conditions may have changed since the report, so he will check again before going",
+                  "isCorrect": true,
+                  "explanation": "Yes. Rain can change creek levels, so a week-old report is only a starting point."
+                },
+                {
+                  "id": "ignore",
+                  "text": "He is ignoring the report completely",
+                  "isCorrect": false,
+                  "explanation": "He is using it as a clue while noticing it may be out of date."
+                },
+                {
+                  "id": "bugs",
+                  "text": "He is asking if bugs are real",
+                  "isCorrect": false,
+                  "explanation": "He said the bugs were brutal, so he believes the report."
+                },
+                {
+                  "id": "cancel",
+                  "text": "He already cancelled the trip",
+                  "isCorrect": false,
+                  "explanation": "He has not said that. He is being careful about stale information."
+                }
+              ],
+              "translation": "The report is a week old and rain since could have raised the creek, so he wants a fresher look before he commits.",
+              "followUps": [
+                {
+                  "line": "Want to check the ranger station for the creek level?",
+                  "why": "A helpful suggestion that treats the report as a clue and not a verdict."
+                },
+                {
+                  "line": "How deep is too deep for you to cross?",
+                  "why": "It shows you understand water crossings depend on comfort and conditions."
+                }
+              ],
+              "noFakeExpertNote": "You do not have to judge a creek crossing yourself. It is okay to ask what he would do."
+            }
+          },
+          {
+            "id": "tk-06-mc-report-meaning",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "trail-report"
+            ],
+            "payload": {
+              "prompt": "A report says 'trail is a bit loose in spots.' What might it mean?",
+              "options": [
+                {
+                  "id": "loose-rock",
+                  "text": "Gravel or rocks underfoot may shift, so go carefully",
+                  "explanation": "Yes. Loose footing can cause slips, so a careful pace helps."
+                },
+                {
+                  "id": "closed",
+                  "text": "The trail is closed for repairs",
+                  "explanation": "A closure would say so plainly. Check the official alert if unsure."
+                },
+                {
+                  "id": "loose-dog",
+                  "text": "Dogs are off leash on the trail",
+                  "explanation": "That is a different issue and would be stated differently."
+                },
+                {
+                  "id": "easy",
+                  "text": "The trail is very easy",
+                  "explanation": "Loose footing adds effort and risk, so it is not a sign of an easy trail."
+                }
+              ],
+              "correctOptionIds": [
+                "loose-rock"
+              ],
+              "explanation": {
+                "correct": "'Loose' usually points to shifting gravel or rock. It is worth slowing down for, and you can ask her where it was worst.",
+                "incorrect": "Loose footing usually means gravel or rock that can shift and cause slips. If you are unsure of a report phrase, ask her what she meant.",
+                "sayThisLine": "\"Loose like gravel, or loose like steep dirt? I'll bring poles.\""
+              }
+            }
+          },
+          {
+            "id": "tk-06-bc-trust-old-report",
+            "type": "binary-call",
+            "conceptIds": [
+              "trail-report",
+              "junction"
+            ],
+            "payload": {
+              "prompt": "A friend's report says, 'Follow the left fork.' Skip your map?",
+              "scene": {
+                "kind": "none",
+                "alt": "A trail junction with two paths splitting in the forest and a hiker holding a phone with a message."
+              },
+              "choices": [
+                {
+                  "id": "skip",
+                  "label": "Yes, her word is enough"
+                },
+                {
+                  "id": "check",
+                  "label": "No, confirm on the map too"
+                }
+              ],
+              "correctChoiceId": "check",
+              "explanation": {
+                "correct": "A friend's report is a good clue, but a quick map check at the junction catches mix-ups, such as which fork counts as left when you approach from another direction.",
+                "incorrect": "Trust her, and still confirm on your map or GPS at the junction. Directions can be described differently depending on where you are standing.",
+                "sayThisLine": "\"Thanks, that helps. I'll double-check the fork on my map.\""
+              },
+              "ruleTag": "Use reports as clues, then confirm"
+            }
+          },
+          {
+            "id": "tk-06-ftg-report-reply",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "trail-report"
+            ],
+            "payload": {
+              "prompt": "Finish how to use a friend's trail report:",
+              "template": "Thank her, note the {{date}} of the report, use it as a {{clue}}, and confirm the {{junction}} on your own map.",
+              "gaps": [
+                {
+                  "id": "date",
+                  "options": [
+                    "date",
+                    "weather emoji",
+                    "font"
+                  ],
+                  "correct": "date"
+                },
+                {
+                  "id": "clue",
+                  "options": [
+                    "clue",
+                    "guarantee",
+                    "rule"
+                  ],
+                  "correct": "clue"
+                },
+                {
+                  "id": "junction",
+                  "options": [
+                    "junction",
+                    "snack stop",
+                    "parking lot"
+                  ],
+                  "correct": "junction"
+                }
+              ],
+              "explanation": {
+                "correct": "The date tells you how fresh the report is, it is a clue and not a guarantee, and a junction is where a quick map check prevents wrong turns.",
+                "incorrect": "Check when the report was written, treat it as a clue and confirm tricky spots, like junctions, on your own map.",
+                "sayThisLine": "\"Thanks for the report! I'll check the date and double-check the junction.\""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "tk-07",
+        "title": "The first date hike",
+        "objective": "You can pace a first hike together.",
+        "estimatedMinutes": 12,
+        "conceptIds": [
+          "group-pace",
+          "margin-of-safety"
+        ],
+        "activities": [
+          {
+            "id": "tk-07-tt-first-hike",
+            "type": "talk-track",
+            "conceptIds": [
+              "group-pace",
+              "margin-of-safety"
+            ],
+            "payload": {
+              "title": "Halfway up, tired",
+              "setting": "First hike together, you are getting tired",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "You okay? You've gone quiet. We can keep going if you want.",
+                  "replies": [
+                    {
+                      "id": "honest-tired",
+                      "text": "I'm getting tired, honestly. Can we slow down and take a water break?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Of course. There's a flat rock with a view just ahead.",
+                      "coachNote": "Honest about your energy and easy to say yes to."
+                    },
+                    {
+                      "id": "fake-fine",
+                      "text": "I'm totally fine, I could do this all day.",
+                      "smoothDelta": -15,
+                      "theirResponse": "Great! Let's pick up the pace then.",
+                      "coachNote": "Pretending invites a pace you cannot keep."
+                    },
+                    {
+                      "id": "silent-push",
+                      "text": "Yep, all good.",
+                      "smoothDelta": -5,
+                      "theirResponse": "Okay, tell me if that changes.",
+                      "coachNote": "She asked honestly. Tell her how you really feel."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "We're about a mile from the top, but the turnaround time is in fifteen minutes. What do you think?",
+                  "replies": [
+                    {
+                      "id": "keep-rule",
+                      "text": "Let's stick to our turnaround time. We can come back and do the top another day.",
+                      "smoothDelta": 25,
+                      "theirResponse": "I like that. A second hike together sounds great.",
+                      "coachNote": "Keeping the rule is sensible, and you hinted at a next time."
+                    },
+                    {
+                      "id": "flip-rule",
+                      "text": "Let's go for the top. We've come this far.",
+                      "smoothDelta": -15,
+                      "theirResponse": "Hmm, we said we'd turn around, though.",
+                      "coachNote": "Being tired and close to the top is when turnaround rules matter most."
+                    },
+                    {
+                      "id": "ask-her",
+                      "text": "What's your gut say? I'm happy either way, but I'd lean toward turning around.",
+                      "smoothDelta": 15,
+                      "theirResponse": "Mine too. Let's save it for next time.",
+                      "coachNote": "Shares your lean and respects her view."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "Tell the truth about your energy. The turnaround rule is a kindness to both of you."
+            }
+          },
+          {
+            "id": "tk-07-ds-push-on",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "group-pace",
+              "margin-of-safety"
+            ],
+            "payload": {
+              "prompt": "They want to push on. You are tired and it is getting late. What do you do?",
+              "situation": {
+                "narrative": "You are on a group hike with friends. The others want to add a side trail to a waterfall. You are worn out, your feet hurt, and it is mid-afternoon with about three hours of daylight left. The group trusts the fastest hiker's pace.",
+                "facts": [
+                  {
+                    "label": "Your energy",
+                    "value": "Low, feet sore",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Daylight left",
+                    "value": "About three hours"
+                  },
+                  {
+                    "label": "Detour",
+                    "value": "Extra mile each way"
+                  },
+                  {
+                    "label": "Group mood",
+                    "value": "Excited to go on"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "speak-up",
+                  "label": "Say you are tired and suggest the group agree a turnaround time together",
+                  "verdict": "best",
+                  "consequence": "Saying it early lets the group pick a safe plan. Finishing before dark with margin matters more than one waterfall.",
+                  "considerations": [
+                    "Groups move at the pace of the slowest member.",
+                    "Being honest early is a gift, not a burden."
+                  ]
+                },
+                {
+                  "id": "wait-rest",
+                  "label": "Ask for a longer break first, then decide together if you have more energy",
+                  "verdict": "acceptable",
+                  "consequence": "A rest might help, but set a clear time limit so the day does not drift into the dark.",
+                  "considerations": [
+                    "Set a time to decide.",
+                    "Eat and drink during the break."
+                  ]
+                },
+                {
+                  "id": "stay-quiet",
+                  "label": "Stay quiet and push on so you don't spoil the fun",
+                  "verdict": "poor",
+                  "consequence": "A tired hiker on extra miles late in the day is at risk of slips, slowdowns and a dark walk out, and the group cannot help if they do not know.",
+                  "considerations": [
+                    "Tired hikers make more mistakes.",
+                    "Nobody is impressed by someone who hides a problem."
+                  ]
+                },
+                {
+                  "id": "go-alone",
+                  "label": "Head back alone without telling anyone",
+                  "verdict": "poor",
+                  "consequence": "Leaving without a word worries the group and puts you alone on the trail, which is riskier than a clear plan.",
+                  "considerations": [
+                    "Never split from a group without agreeing on it.",
+                    "A short conversation avoids a scare."
+                  ]
+                }
+              ],
+              "expertNote": "Good hiking partners name their limits early. Nobody should be pressured to push past them, and the group plan follows the most tired person.",
+              "sayThisLine": "\"I'm pretty tired. Can we skip the waterfall today and head back with daylight to spare?\"",
+              "safetyNote": "Tell the group how you feel, keep together, leave margin before dark and follow land manager guidance. If anyone shows confusion, stumbling or other warning signs, stop and get help."
+            }
+          },
+          {
+            "id": "tk-07-ds-date-pace",
+            "type": "decision-scenario",
+            "conceptIds": [
+              "group-pace",
+              "margin-of-safety"
+            ],
+            "payload": {
+              "prompt": "You want to impress your date. You're both winded. How do you set the pace?",
+              "situation": {
+                "narrative": "It is your first hike with someone you like. The trail is steeper than you expected, you are both breathing hard, and you feel the urge to keep up a fast pace to look fit.",
+                "facts": [
+                  {
+                    "label": "Trail",
+                    "value": "Steeper than expected"
+                  },
+                  {
+                    "label": "You",
+                    "value": "Winded",
+                    "emphasis": "warning"
+                  },
+                  {
+                    "label": "Your date",
+                    "value": "Also breathing hard, quiet"
+                  },
+                  {
+                    "label": "Time",
+                    "value": "Plenty of daylight"
+                  }
+                ]
+              },
+              "options": [
+                {
+                  "id": "slow-talk",
+                  "label": "Slow to a pace where you can still talk, and suggest a water and snack break",
+                  "verdict": "best",
+                  "consequence": "A conversational pace is sustainable, gives you both a chance to enjoy the trail and makes the day about each other.",
+                  "considerations": [
+                    "If you can talk in full sentences, the pace is sustainable.",
+                    "Short breaks are part of a good hike."
+                  ]
+                },
+                {
+                  "id": "ask-pace",
+                  "label": "Ask what pace feels good to her, and follow it",
+                  "verdict": "acceptable",
+                  "consequence": "Asking is considerate, though sometimes a suggestion from you takes the pressure off her to say it first.",
+                  "considerations": [
+                    "She may be too polite to ask you to slow down.",
+                    "Offer a break so neither has to admit struggling."
+                  ]
+                },
+                {
+                  "id": "speed-up",
+                  "label": "Speed up to prove you are fit",
+                  "verdict": "poor",
+                  "consequence": "A fast pace leaves little breath for conversation and tires you both out, and it makes the day a contest.",
+                  "considerations": [
+                    "Nobody enjoys a hike they have to race.",
+                    "Overexertion early makes the return harder."
+                  ]
+                },
+                {
+                  "id": "hide-tired",
+                  "label": "Hide that you are winded by stopping to take photos",
+                  "verdict": "poor",
+                  "consequence": "Covering up can work once, but being open about pace is more honest and more attractive.",
+                  "considerations": [
+                    "A real break beats a disguised one.",
+                    "Honesty builds trust on a first date."
+                  ]
+                }
+              ],
+              "expertNote": "Experienced hikers match their pace to the group, and a pace where you can talk is a good rule of thumb.",
+              "sayThisLine": "\"This is steeper than I thought. Want to take it a bit slower and grab some water?\"",
+              "safetyNote": "If either person feels dizzy, confused or unwell, stop, rest, and get help or go down. Follow land manager guidance."
+            }
+          },
+          {
+            "id": "tk-07-seq-pace-check",
+            "type": "sequence-order",
+            "conceptIds": [
+              "group-pace",
+              "margin-of-safety"
+            ],
+            "payload": {
+              "prompt": "Put the steps of a kind pace check in order:",
+              "items": [
+                {
+                  "id": "notice",
+                  "text": "Notice the group getting quiet or winded",
+                  "why": "Quiet or short breaths are early signs someone is working too hard."
+                },
+                {
+                  "id": "ask",
+                  "text": "Ask how everyone is doing, and be honest about yourself",
+                  "why": "Being open first makes it easier for others to be honest too."
+                },
+                {
+                  "id": "break",
+                  "text": "Stop for water, food and a rest",
+                  "why": "Fuel and rest restore energy and give people time to recover."
+                },
+                {
+                  "id": "reset",
+                  "text": "Reset the pace, or the goal, to fit the tiredest person",
+                  "why": "The group is only as fast as its slowest member, and that is fine."
+                },
+                {
+                  "id": "check-time",
+                  "text": "Recheck the time and daylight against the turnaround",
+                  "why": "A tired group needs margin, so confirm there is still enough."
+                }
+              ],
+              "explanation": {
+                "correct": "Notice, ask, break, reset the pace, then check the clock. Each step makes the next decision easier and keeps margin for the walk out.",
+                "incorrect": "Start by noticing signs, ask honestly, take a break, reset to the tiredest person and recheck the time against your turnaround.",
+                "sayThisLine": "\"Let's grab a snack, slow down a bit, and check how much daylight we have.\""
+              }
+            }
+          },
+          {
+            "id": "tk-07-bc-tired-silence",
+            "type": "binary-call",
+            "conceptIds": [
+              "group-pace"
+            ],
+            "payload": {
+              "prompt": "Your hiking partner goes quiet and slows down. Keep your pace without asking?",
+              "scene": {
+                "kind": "none",
+                "alt": "Two hikers on a climb, the one behind looking tired while the one ahead glances back."
+              },
+              "choices": [
+                {
+                  "id": "keep",
+                  "label": "Yes, don't make it awkward"
+                },
+                {
+                  "id": "check",
+                  "label": "No, slow down and check in"
+                }
+              ],
+              "correctChoiceId": "check",
+              "explanation": {
+                "correct": "Going quiet and slowing down are common signs of fatigue. A kind check-in and a slower pace take the pressure off and keep everyone safer.",
+                "incorrect": "A quiet, slower partner may be struggling and too polite to say so. Slow down and check in, without making it a big deal.",
+                "sayThisLine": "\"Let's take a breather. I could use one too.\""
+              },
+              "ruleTag": "Quiet and slow means check in"
+            }
+          }
+        ]
+      },
+      {
+        "id": "tk-08",
+        "title": "The good follow-up",
+        "objective": "You can ask a follow-up that shows you listened.",
+        "estimatedMinutes": 10,
+        "conceptIds": [
+          "hyoh",
+          "pace"
+        ],
+        "activities": [
+          {
+            "id": "tk-08-st-hyoh",
+            "type": "say-this",
+            "conceptIds": [
+              "hyoh"
+            ],
+            "payload": {
+              "statement": {
+                "speaker": "She",
+                "text": "Some people hike twenty miles a day. I like three and a long lunch by a lake. Hike your own hike, you know?"
+              },
+              "question": "What is she saying?",
+              "options": [
+                {
+                  "id": "own",
+                  "text": "Everyone can hike in the way that suits them, and her way is slower and relaxed",
+                  "isCorrect": true,
+                  "explanation": "Yes. 'Hike your own hike' means there is no single right way, and she enjoys an easy pace with a long lunch."
+                },
+                {
+                  "id": "judge",
+                  "text": "She thinks fast hikers are doing it wrong",
+                  "isCorrect": false,
+                  "explanation": "She is not criticizing anyone. She is saying styles differ."
+                },
+                {
+                  "id": "quit",
+                  "text": "She wants to stop hiking",
+                  "isCorrect": false,
+                  "explanation": "She describes what she enjoys, so she plans to keep hiking."
+                },
+                {
+                  "id": "rules",
+                  "text": "She says there are strict rules for pace",
+                  "isCorrect": false,
+                  "explanation": "It is the opposite. The phrase is about freedom to choose."
+                }
+              ],
+              "translation": "Some hikers go fast and far, she prefers short days with a long lunch, and she is comfortable with that.",
+              "followUps": [
+                {
+                  "line": "What's your favorite lake to have lunch at?",
+                  "why": "It shows you heard her, and invites a story about something she loves."
+                },
+                {
+                  "line": "I like the sound of that. Can I join one of your three-mile days?",
+                  "why": "A warm invitation that respects her style."
+                }
+              ],
+              "noFakeExpertNote": "You do not need a hiking style yet. Asking hers is a fine place to start."
+            }
+          },
+          {
+            "id": "tk-08-tt-own-pace",
+            "type": "talk-track",
+            "conceptIds": [
+              "hyoh",
+              "pace"
+            ],
+            "payload": {
+              "title": "Different paces, same trail",
+              "setting": "Talking about how you each like to hike",
+              "startingSmooth": 50,
+              "exchanges": [
+                {
+                  "theirMessage": "I usually cruise. Are you more of a stop-and-look kind of hiker?",
+                  "replies": [
+                    {
+                      "id": "honest-style",
+                      "text": "I'm still figuring it out, but I like stopping for views. Do you mind going a bit slower with me?",
+                      "smoothDelta": 25,
+                      "theirResponse": "Not at all. I'd like to see what you notice.",
+                      "coachNote": "Honest about your style and friendly about meeting in the middle."
+                    },
+                    {
+                      "id": "match-fake",
+                      "text": "Oh, I cruise too. Super fast.",
+                      "smoothDelta": -15,
+                      "theirResponse": "Perfect, we'll make great time then.",
+                      "coachNote": "Claiming a pace you don't hike at sets you up to struggle."
+                    },
+                    {
+                      "id": "ask-back",
+                      "text": "Stop-and-look, mostly. What does cruising feel like to you?",
+                      "smoothDelta": 15,
+                      "theirResponse": "Like a steady rhythm. It clears my head.",
+                      "coachNote": "Honest and curious, and you learn her style."
+                    }
+                  ]
+                },
+                {
+                  "theirMessage": "Hike your own hike, right? No judgment either way.",
+                  "replies": [
+                    {
+                      "id": "agree",
+                      "text": "Right. And I'd love to find a pace we both enjoy.",
+                      "smoothDelta": 25,
+                      "theirResponse": "Me too. Want to try a short one this weekend?",
+                      "coachNote": "You embraced the idea and suggested a next step."
+                    },
+                    {
+                      "id": "argue",
+                      "text": "Some people take hiking too easy to count as real hikers.",
+                      "smoothDelta": -20,
+                      "theirResponse": "Well, that's not very welcoming.",
+                      "coachNote": "Gatekeeping is the opposite of the idea. Everyone belongs on the trail."
+                    },
+                    {
+                      "id": "neutral-agree",
+                      "text": "Yeah, exactly.",
+                      "smoothDelta": 5,
+                      "theirResponse": "Cool.",
+                      "coachNote": "Agreeable but flat. Add something about what you'd like to try."
+                    }
+                  ]
+                }
+              ],
+              "closingNote": "A good follow-up shows you listened. Hiking your own hike means nobody has to fake a pace."
+            }
+          },
+          {
+            "id": "tk-08-mc-good-followup",
+            "type": "multiple-choice",
+            "conceptIds": [
+              "hyoh",
+              "pace"
+            ],
+            "payload": {
+              "prompt": "She says she prefers slow hikes with a long lunch. Best follow-up?",
+              "options": [
+                {
+                  "id": "interest",
+                  "text": "\"What's your perfect lunch spot on a trail?\"",
+                  "explanation": "It picks up her own detail and invites a story."
+                },
+                {
+                  "id": "fast-boast",
+                  "text": "\"I prefer fast hikes. That's the real workout.\"",
+                  "explanation": "It dismisses her style and turns it into a comparison."
+                },
+                {
+                  "id": "generic",
+                  "text": "\"Cool. Anyway, what else do you like?\"",
+                  "explanation": "It skips past what she said and shows you were not listening."
+                },
+                {
+                  "id": "pity",
+                  "text": "\"Aw, that's cute. Maybe one day you'll go farther.\"",
+                  "explanation": "It is condescending about a style she enjoys."
+                }
+              ],
+              "correctOptionIds": [
+                "interest"
+              ],
+              "explanation": {
+                "correct": "A follow-up that uses her own words, like the lunch, shows you were listening. It invites a story instead of judging her pace.",
+                "incorrect": "Skip the comparison and the change of subject. Pick up a detail she shared and ask about it.",
+                "sayThisLine": "\"A long lunch sounds perfect. Where's your favorite spot?\""
+              }
+            }
+          },
+          {
+            "id": "tk-08-ftg-follow-up-habit",
+            "type": "fill-the-gap",
+            "conceptIds": [
+              "hyoh",
+              "pace"
+            ],
+            "payload": {
+              "prompt": "Finish the good-listener habit:",
+              "template": "Pick up a {{detail}} she shared, ask about how it {{felt}}, and let each hiker set their own {{pace}}.",
+              "gaps": [
+                {
+                  "id": "detail",
+                  "options": [
+                    "detail",
+                    "rumor",
+                    "statistic"
+                  ],
+                  "correct": "detail"
+                },
+                {
+                  "id": "felt",
+                  "options": [
+                    "felt",
+                    "ranked",
+                    "cost"
+                  ],
+                  "correct": "felt"
+                },
+                {
+                  "id": "pace",
+                  "options": [
+                    "pace",
+                    "brand",
+                    "route"
+                  ],
+                  "correct": "pace"
+                }
+              ],
+              "explanation": {
+                "correct": "Using a detail she shared proves you listened, asking how it felt opens the door to her story, and letting each hiker set a pace honors hike your own hike.",
+                "incorrect": "Take a detail she mentioned, ask how it felt, and respect that each hiker has their own pace.",
+                "sayThisLine": "\"You mentioned the lake. How did it feel to get there?\""
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
