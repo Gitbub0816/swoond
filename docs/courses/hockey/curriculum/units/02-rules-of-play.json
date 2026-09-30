@@ -621,16 +621,16 @@
             "type": "binary-call",
             "conceptIds": ["coaches-challenge"],
             "payload": {
-              "prompt": "A failed challenge costs the team its timeout. True or false?",
-              "scene": {"kind": "none", "alt": "A coach throws the red flag and the video review upholds the call."},
+              "prompt": "A coach can challenge as often as he likes, risk-free. True or false?",
+              "scene": {"kind": "none", "alt": "A coach signals for a video review and the review upholds the call on the ice."},
               "choices": [
                 {"id": "true", "label": "True"},
                 {"id": "false", "label": "False"}
               ],
-              "correctChoiceId": "true",
+              "correctChoiceId": "false",
               "explanation": {
-                "correct": "True. Lose the challenge, lose the timeout. It is a real cost.",
-                "incorrect": "Yes, a failed challenge is expensive. You lose your timeout for the rest of the game."
+                "correct": "False. A failed challenge costs the team something (a timeout or a penalty, depending on the rules of the season), so coaches only challenge when they're fairly sure.",
+                "incorrect": "It isn't free. A failed challenge carries a cost, so coaches pick their spots. The exact price has changed over the years, so check the current rulebook."
               }
             }
           },
@@ -639,16 +639,16 @@
             "type": "multiple-choice",
             "conceptIds": ["coaches-challenge"],
             "payload": {
-              "prompt": "If a challenge is successful (video overturns the call), what is the cost?",
+              "prompt": "A challenge for goalie interference succeeds. What happens to the goal?",
               "options": [
-                {"id": "a", "text": "You lose your timeout anyway"},
-                {"id": "b", "text": "You keep your timeout and can challenge again if allowed"},
+                {"id": "a", "text": "It stands, but the coach is fined"},
+                {"id": "b", "text": "It comes off the board and play restarts with a faceoff"},
                 {"id": "c", "text": "The other team gets a power play"}
               ],
               "correctOptionIds": ["b"],
               "explanation": {
-                "correct": "Right. Winning a challenge has no cost. You keep your timeout.",
-                "incorrect": "A successful challenge is rewarded: you keep the timeout and often can challenge again."
+                "correct": "Right. A successful challenge wipes out the goal, and there's no penalty on the attacking team. Play restarts with a faceoff and the challenge counts as a win.",
+                "incorrect": "When the review agrees with the coach, the goal is cancelled and the game restarts with a faceoff. There's no power play or fine."
               }
             }
           },
@@ -659,32 +659,65 @@
             "payload": {
               "prompt": "Match the review term to what it means.",
               "pairs": [
-                {"id": "challenge", "term": "Coach's challenge", "definition": "The coach throws the red flag to request video review of a specific play."},
-                {"id": "success", "term": "Successful", "definition": "Video overturns the on-ice call; coach keeps timeout and the goal stands or is reversed."},
-                {"id": "fail", "term": "Failed", "definition": "Video upholds the call; coach loses timeout and the goal stands as called."}
+                {"id": "challenge", "term": "Coach's challenge", "definition": "The coach asks for a video review of a goal for one of a few specific reasons."},
+                {"id": "success", "term": "Successful", "definition": "The review agrees with the coach and the on-ice call is reversed."},
+                {"id": "fail", "term": "Failed", "definition": "The review upholds the on-ice call, and the challenging team pays a price."}
               ],
               "explanation": {
-                "summary": "Challenging is risky: win and you keep the timeout, lose and it costs you.",
-                "sayThisLine": "The challenge worked, the goal was offside."
+                "summary": "Challenging is a gamble: win and the call is reversed, lose and it costs you, so coaches are selective.",
+                "sayThisLine": "The challenge worked, it was offside."
               }
             }
           },
           {
             "id": "rules-review-05-mc-strategy",
-            "type": "multiple-choice",
+            "type": "decision-scenario",
             "conceptIds": ["coaches-challenge"],
             "payload": {
-              "prompt": "A coach thinks a goal is offside in the third period of a close game. Should they challenge?",
+              "prompt": "A goal against might be offside. Do you challenge?",
+              "situation": {
+                "narrative": "Third period, tied 2-2. The other team just scored. Your video coach says the entry looked close.",
+                "facts": [
+                  {"label": "Score", "value": "Now trailing 3-2"},
+                  {"label": "Video coach's read", "value": "Close, maybe a skate over"},
+                  {"label": "Cost of a failed challenge", "value": "A real penalty for your team"}
+                ]
+              },
               "options": [
-                {"id": "a", "text": "Yes, always challenge if you think you're right"},
-                {"id": "b", "text": "Think twice; you may need your timeout later"},
-                {"id": "c", "text": "No, challenges are rarely successful"}
+                {
+                  "id": "challenge-clear",
+                  "label": "Challenge, but only because the replay shows a clear skate over",
+                  "verdict": "best",
+                  "consequence": "If the review agrees, the goal is wiped out and the score is tied again.",
+                  "considerations": [
+                    "Confidence matters more than the score.",
+                    "A clear skate over the line is the kind of call that gets overturned."
+                  ]
+                },
+                {
+                  "id": "challenge-always",
+                  "label": "Challenge anyway; you're down and have nothing to lose",
+                  "verdict": "poor",
+                  "consequence": "A failed challenge can cost you a penalty and hand over a power play while you trail by a goal.",
+                  "considerations": [
+                    "Failed challenges have a price, and it hurts most in a tight third period.",
+                    "A coin-flip challenge is how teams give away special-teams time."
+                  ]
+                },
+                {
+                  "id": "skip",
+                  "label": "Let it go and focus on the next shift",
+                  "verdict": "acceptable",
+                  "consequence": "You avoid the risk, but you may be giving up a goal that wasn't legal.",
+                  "considerations": [
+                    "If the video coach isn't sure, skipping is reasonable.",
+                    "Weigh how clear the replay is against the cost of being wrong."
+                  ]
+                }
               ],
-              "correctOptionIds": ["b"],
-              "explanation": {
-                "correct": "Right. Strategy matters. Challenges are powerful but expensive if wrong.",
-                "incorrect": "Challenging late in a close game is risky. You need to know if you're confident or you might lose that timeout."
-              }
+              "expertNote": "Coaches challenge when the video staff is confident, because the cost of a failed challenge is real. Hearing 'they challenged and lost' tells you the review saw it differently from the bench.",
+              "sayThisLine": "They were sure enough to challenge, and they were right."
+            }
             }
           }
         ]
