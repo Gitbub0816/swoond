@@ -74,6 +74,13 @@ Format: `D-NNN - title`, status (Accepted / Superseded), context, decision, cons
 ### D-012 - Talk tab scenarios live in the curriculum JSON
 - **Decision:** Standalone conversation practice is `talkTracks[]` in the curriculum file (payload = `talk-track` exercise schema). Manifest `conversationScenarios.count/path` points at it.
 
+## 2026-09-30 - Curriculum contract 1.1
+
+### D-013 - Curriculum split into per-unit files (contract 1.1, additive)
+- **Status:** Accepted
+- **Decision:** Curriculum contract 1.1 adds an optional split layout so deep courses (D-007) can be authored one unit per file. `docs/courses/<id>/curriculum/course.json` holds courseId, curriculumVersion, contractVersion `1.1.0`, `concepts[]`, `talkTracks[]`, `reviewPolicy` and `unitOrder[]`; each `curriculum/units/<NN>-<unit-id>.json` holds `{contractVersion, courseId, unit, concepts?}`. The single-file v1.0 layout stays valid. `unitOrder` must match exactly the set of unit files; unit-local `concepts[]` merge into the course concept list and a duplicate concept id across files is an error.
+- **Consequences:** The validator detects the layout per course, merges, and runs the same schema, reference checks and content lint on the merged curriculum, reporting problems against the originating file. `BundledContentRepository` loads both layouts. New schemas `curriculum-root.schema.json` and `curriculum-unit.schema.json` sit beside the v1 schema (no new `v2/` folder: nothing was removed or tightened). Content must be authored, not generated: any `*.sh` / `*.py` / `*.js` under `docs/courses/*/curriculum/` is a lint error.
+
 ## Open questions (product owner)
 
 | # | Question | Needed by |

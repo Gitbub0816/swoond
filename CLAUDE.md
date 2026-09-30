@@ -23,7 +23,7 @@ docs/
   contracts/                 versioned JSON Schemas + examples (platform-neutral)
     unity-bridge/v1/         launch-request / simulation-result / bridge-event, lifecycle README
     course-manifest/v1/      per-course manifest schema
-    curriculum/v1/           curriculum schema
+    curriculum/v1/           curriculum schema (+ root/unit schemas for the 1.1 split layout)
     native-exercises/v1/     one schema + example per native exercise type
     sim-definition/v1/       Astra's data-driven sim schema
   native-exercises/          CATALOG.md (Tier B exercise catalog)

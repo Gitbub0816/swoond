@@ -13,6 +13,8 @@ public protocol ContentRepository: Sendable {
 /// <root>/<courseId>/manifest.json
 /// <root>/<courseId>/curriculum/*.json      (one file per locale; or curriculum.json)
 /// ```
+/// Contract 1.1 split layout: `curriculum/course.json` (root with `unitOrder`) plus
+/// `curriculum/units/<NN>-<unit-id>.json`; it is merged into one `Curriculum` (see `SplitCurriculum`).
 /// For flat sample folders use `init(locations:)`.
 public struct BundledContentRepository: ContentRepository {
     public struct Location: Sendable, Hashable {
@@ -37,7 +39,10 @@ public struct BundledContentRepository: ContentRepository {
             guard fm.fileExists(atPath: manifest.path) else { continue }
             var curricula: [URL] = []
             let sub = d.appendingPathComponent("curriculum")
-            if let files = try? fm.contentsOfDirectory(at: sub, includingPropertiesForKeys: nil) {
+            let splitRoot = sub.appendingPathComponent(SplitCurriculum.rootFileName)
+            if fm.fileExists(atPath: splitRoot.path) {
+                curricula.append(splitRoot) // split layout: unit files are read by the merge, never listed on their own
+            } else if let files = try? fm.contentsOfDirectory(at: sub, includingPropertiesForKeys: nil) {
                 curricula += files.filter { $0.pathExtension == "json" }.sorted { $0.lastPathComponent < $1.lastPathComponent }
             }
             let single = d.appendingPathComponent("curriculum.json")
@@ -80,7 +85,13 @@ public struct BundledContentRepository: ContentRepository {
     }
 
     static func loadManifest(_ url: URL) throws -> CourseManifest { try load(CourseManifest.self, url) }
-    static func loadCurriculum(_ url: URL) throws -> Curriculum { try load(Curriculum.self, url) }
+    /// Loads a single-file (v1.0) curriculum, or merges a split (v1.1) one when `url` is its `course.json` root.
+    static func loadCurriculum(_ url: URL) throws -> Curriculum {
+        guard FileManager.default.fileExists(atPath: url.path) else { throw ContentError.fileMissing(url.path) }
+        let data = try Data(contentsOf: url)
+        if SplitCurriculum.isRoot(data) { return try SplitCurriculum.load(rootURL: url, rootData: data) }
+        return try JSONDecoder().decode(Curriculum.self, from: data)
+    }
 
     private static func load<T: Decodable>(_ type: T.Type, _ url: URL) throws -> T {
         guard FileManager.default.fileExists(atPath: url.path) else { throw ContentError.fileMissing(url.path) }
