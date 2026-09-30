@@ -1,0 +1,829 @@
+{
+  "contractVersion": "1.1.0",
+  "courseId": "hockey",
+  "unit": {
+    "id": "rules-of-play",
+    "title": "The Rules That Cause Arguments",
+    "layer": "foundations",
+    "order": 1,
+    "lessons": [
+      {
+        "id": "rules-offside-line",
+        "title": "Offside: the blue line rule",
+        "objective": "State what makes an entry offside.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["offside", "zones"],
+        "activities": [
+          {
+            "id": "rules-offside-line-01-vi-entry",
+            "type": "visual-id",
+            "conceptIds": ["offside"],
+            "payload": {
+              "prompt": "In this diagram, which skater is offside?",
+              "diagram": {
+                "diagramId": "hockey-offside-entry",
+                "aspectRatio": 2.5,
+                "alt": "A hockey zone entry showing the blue line, with two attacking skaters ahead of the puck and one with skates straddling the line."
+              },
+              "hotspots": [
+                {"id": "a", "label": "Skater A (both skates over the line, puck behind)", "shape": {"kind": "circle", "cx": 0.65, "cy": 0.4, "r": 0.06}},
+                {"id": "b", "label": "Skater B (skate on the line)", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.6, "r": 0.06}},
+                {"id": "c", "label": "Skater C (in neutral zone)", "shape": {"kind": "circle", "cx": 0.3, "cy": 0.5, "r": 0.06}}
+              ],
+              "correctHotspotIds": ["a"],
+              "explanation": {
+                "correct": "Right. Skater A has both skates completely over the blue line before the puck crosses. That's offside. Skater B has one skate on the line (onside), and C is still in the neutral zone.",
+                "incorrect": "Offside is when both skates cross the leading edge of the blue line before the puck fully crosses. A skate touching the line keeps you onside."
+              }
+            }
+          },
+          {
+            "id": "rules-offside-line-02-bc-skate-touch",
+            "type": "binary-call",
+            "conceptIds": ["offside"],
+            "payload": {
+              "prompt": "If a player's skate is touching the blue line when the puck enters, it's offside. True or false?",
+              "scene": {"kind": "none", "alt": "A close-up of a skate blade touching the blue line as the puck crosses."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "false",
+              "explanation": {
+                "correct": "False. Touching the line is onside. Both skates must be completely over the line (on the wrong side) before the puck for it to be offside.",
+                "incorrect": "A skate on or inside the line is fine; you only go offside when both skates completely cross the blue line before the puck does. The rule is about being early, not about where you stand."
+              }
+            }
+          },
+          {
+            "id": "rules-offside-line-03-tm-concepts",
+            "type": "term-match",
+            "conceptIds": ["offside", "zones"],
+            "payload": {
+              "prompt": "Match the offside concept to its meaning.",
+              "pairs": [
+                {"id": "off-def", "term": "Offside", "definition": "An attacking player enters the opponent's zone before the puck, with both skates over the blue line."},
+                {"id": "lead-edge", "term": "Leading edge of the blue line", "definition": "The edge of the blue line closest to the attacking zone; both your skates must not cross it before the puck."},
+                {"id": "puck-full", "term": "Puck fully crosses", "definition": "The entire puck must cross the blue line before an attacking player can be fully in the zone without being offside."}
+              ],
+              "explanation": {
+                "summary": "Offside exists to prevent pure cherry-picking—you can't camp by the opponent's net waiting for a breakaway pass. You and the puck cross together (roughly).",
+                "sayThisLine": "He was over the line before the puck, that's offside every time."
+              }
+            }
+          },
+          {
+            "id": "rules-offside-line-04-mc-soccer-trap",
+            "type": "multiple-choice",
+            "conceptIds": ["offside"],
+            "payload": {
+              "prompt": "Soccer also has offside. Is hockey offside the same rule?",
+              "options": [
+                {"id": "a", "text": "Yes, exactly the same"},
+                {"id": "b", "text": "No. Hockey is about the blue line and skates crossing it. Soccer is about the last defender and involvement in play."},
+                {"id": "c", "text": "They're similar but not the same"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Exactly. Hockey offside: both skates over the blue line before the puck. Soccer offside: behind the last defender when the ball is played. Don't mix them up—it's a common trap.",
+                "incorrect": "Hockey and soccer offside are completely different. Hockey is mechanical (blue line + skates). Soccer is about who you're attacking with. If you know soccer, forget that instinct here."
+              }
+            }
+          },
+          {
+            "id": "rules-offside-line-05-ds-entry-choice",
+            "type": "decision-scenario",
+            "conceptIds": ["offside", "zones"],
+            "payload": {
+              "prompt": "Your team is on attack. The puck is at the blue line and a winger has both skates in the offensive zone. What happens?",
+              "scenario": "The puck is being carried toward the zone; the winger is waiting just inside the blue line.",
+              "options": [
+                {"id": "a", "text": "Offside immediately, play stops", "isCorrect": true},
+                {"id": "b", "text": "Okay if the puck reaches them first", "isCorrect": false},
+                {"id": "c", "text": "Delayed offside; they have time to get back out", "isCorrect": false}
+              ],
+              "explanation": {
+                "correct": "Right. The winger is offside the moment both skates cross before the puck. This is the basic entry offside call.",
+                "incorrect": "If the player is in the zone before the puck fully crosses the blue line, it's offside. No grace period on entry; you're either in or you're out."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "rules-offside-call",
+        "title": "Be the linesman: offside",
+        "objective": "Call offside plays correctly at real speed.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["offside"],
+        "activities": [
+          {
+            "id": "rules-offside-call-01-us-offside-sim",
+            "type": "unity-sim",
+            "conceptIds": ["offside"],
+            "payload": {
+              "simulationId": "hockey.rules.offside-read.v1",
+              "simulationVersion": "1.0.0",
+              "difficulty": 2,
+              "configuration": {
+                "scenarioCount": 5
+              }
+            }
+          },
+          {
+            "id": "rules-offside-call-02-st-whistle-timing",
+            "type": "say-this",
+            "conceptIds": ["offside"],
+            "payload": {
+              "statement": {"speaker": "Coach", "text": "You have to blow it dead right at the line—don't let them play with it in the zone."},
+              "question": "What is the coach emphasizing?",
+              "options": [
+                {"id": "a", "text": "Linesman should call it early to prevent scoring", "isCorrect": true},
+                {"id": "b", "text": "A goal is fine as long as it came from the right play", "isCorrect": false},
+                {"id": "c", "text": "Let players dispute the call later", "isCorrect": false},
+                {"id": "d", "text": "Catch offside as soon as it happens, not after an offside player touches the puck", "isCorrect": true}
+              ],
+              "translation": "The linesman should make the offside call immediately when the rule is violated, stopping play right away, so offside players don't get a chance to score.",
+              "followUps": [
+                {"line": "How often do you see late offside calls overturned on review?", "why": "Tests knowledge of video review timing."},
+                {"line": "What's the worst part of an offside miss?", "why": "Shows you understand the cascading consequences."}
+              ],
+              "noFakeExpertNote": "If you're new, say: 'I'm still learning the timing—when exactly does the linesman blow it?'"
+            }
+          },
+          {
+            "id": "rules-offside-call-03-bc-two-skates",
+            "type": "binary-call",
+            "conceptIds": ["offside"],
+            "payload": {
+              "prompt": "One skate over the line, one skate back in the neutral zone, puck still outside. Offside or onside?",
+              "scene": {"kind": "none", "alt": "A skater with skates straddling the blue line as the puck approaches."},
+              "choices": [
+                {"id": "offside", "label": "Offside"},
+                {"id": "onside", "label": "Onside"}
+              ],
+              "correctChoiceId": "onside",
+              "explanation": {
+                "correct": "Onside. You need both skates completely across the line to be offside. One skate straddling it is fine.",
+                "incorrect": "The rule requires both skates over the blue line. If one is on or behind the line, you're onside."
+              }
+            }
+          },
+          {
+            "id": "rules-offside-call-04-mc-angles",
+            "type": "multiple-choice",
+            "conceptIds": ["offside"],
+            "payload": {
+              "prompt": "Why do linesmen stand on the side of the ice instead of at center?",
+              "options": [
+                {"id": "a", "text": "To get a better angle to see if both skates crossed the line before the puck"},
+                {"id": "b", "text": "Because the head referee is at center ice"},
+                {"id": "c", "text": "It's tradition; any position works the same"}
+              ],
+              "correctOptionIds": ["a"],
+              "explanation": {
+                "correct": "Right. The linesman positions on the side for the clearest view of the blue line and player skates. It's all about the angle.",
+                "incorrect": "Positioning is critical for offside. The linesman on the side of the ice can see which skates are over the line and when the puck crosses."
+              }
+            }
+          },
+          {
+            "id": "rules-offside-call-05-fg-linesman-role",
+            "type": "fill-the-gap",
+            "conceptIds": ["offside"],
+            "payload": {
+              "prompt": "Complete the role of the linesman in offside calls.",
+              "template": "The linesman watches for an attacking player entering the zone with {{position}} over the {{line}} before the puck {{crosses}}. If both conditions are true, the linesman blows the whistle to call {{result}}.",
+              "gaps": [
+                {"id": "position", "options": ["one skate", "both skates", "the stick"], "correct": "both skates"},
+                {"id": "line", "options": ["the red line", "the blue line", "the side boards"], "correct": "the blue line"},
+                {"id": "crosses", "options": ["is shot", "fully crosses", "touches"], "correct": "fully crosses"},
+                {"id": "result", "options": ["icing", "offside", "too many men"], "correct": "offside"}
+              ],
+              "explanation": {
+                "correct": "Perfect. That's the offside call in one sentence.",
+                "incorrect": "Offside = both skates over the blue line before the puck fully crosses. Linesman blows the whistle immediately."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "rules-delayed-offside",
+        "title": "Delayed offside and tagging up",
+        "objective": "Explain why play sometimes continues after an early entry.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["delayed-offside", "offside"],
+        "activities": [
+          {
+            "id": "rules-delayed-offside-01-so-sequence",
+            "type": "sequence-order",
+            "conceptIds": ["delayed-offside"],
+            "payload": {
+              "prompt": "Put these events in order: (1) Skater enters zone early, (2) Defense gets the puck, (3) Linesman doesn't blow the whistle yet, (4) Attacking player tags up at the line.",
+              "items": [
+                {"id": "1", "text": "Skater A enters offside"},
+                {"id": "2", "text": "The defense touches or controls the puck in the zone"},
+                {"id": "3", "text": "Linesman does not immediately blow the whistle (delayed offside)"},
+                {"id": "4", "text": "Skater A can tag up and re-enter legally"}
+              ],
+              "correctOrder": ["1", "2", "3", "4"],
+              "explanation": {
+                "correct": "Right. If the defense gains control while an offside player is waiting, the linesman delays the whistle. The offside player then tags up (touches the line) and can re-enter.",
+                "incorrect": "Delayed offside is about letting play go when the defense has the puck. The attacking player must get back and touch the line to become onside again."
+              }
+            }
+          },
+          {
+            "id": "rules-delayed-offside-02-us-delayed-sim",
+            "type": "unity-sim",
+            "conceptIds": ["delayed-offside", "offside"],
+            "payload": {
+              "simulationId": "hockey.rules.offside-read.v1",
+              "prompt": "Watch: an attacking player enters early, but the defense controls the puck. What's the call—do you blow the whistle or let it play?",
+              "native-fallback": {
+                "type": "multiple-choice",
+                "payload": {
+                  "prompt": "An attacking skater is over the blue line offside. The defense then gains control of the puck and passes it. Do you call offside?",
+                  "options": [
+                    {"id": "a", "text": "Yes, immediately call it"},
+                    {"id": "b", "text": "No, it's delayed offside; let play continue until the attacking team gets the puck"},
+                    {"id": "c", "text": "Only if the offside player touches the puck"}
+                  ],
+                  "correctOptionIds": ["b"],
+                  "explanation": {
+                    "correct": "Right. It's delayed offside. If the defense has control, play continues. Only call it if the attacking team gets the puck while someone is still offside.",
+                    "incorrect": "Delayed offside means the linesman lets play go even though someone is offside, as long as the defense has possession."
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "rules-delayed-offside-03-tm-tag-up",
+            "type": "term-match",
+            "conceptIds": ["delayed-offside"],
+            "payload": {
+              "prompt": "Match the term to the definition.",
+              "pairs": [
+                {"id": "tag", "term": "Tag up", "definition": "An offside attacking player touches or crosses the blue line to become onside again."},
+                {"id": "delayed", "term": "Delayed offside", "definition": "The linesman does not blow the whistle immediately because the defense has control of the puck."},
+                {"id": "reenter", "term": "Re-enter", "definition": "After tagging up, an attacking player can re-enter the zone and participate in play."}
+              ],
+              "explanation": {
+                "summary": "Delayed offside gives the defense a chance to clear it; tag-up is how the early player gets back in the game.",
+                "sayThisLine": "She's offside but the defense has it, so delayed offside—she can tag up."
+              }
+            }
+          },
+          {
+            "id": "rules-delayed-offside-04-ds-clear-vs-score",
+            "type": "decision-scenario",
+            "conceptIds": ["delayed-offside"],
+            "payload": {
+              "prompt": "Attacker A is offside in the zone. Defense has the puck and passes to Attacker B (who is onside). Delayed offside still applies. What happens if Attacker B scores?",
+              "scenario": "The offside player waits while the defense passes to an onside teammate who buries it.",
+              "options": [
+                {"id": "a", "text": "Goal counts; the scorer was onside", "isCorrect": true},
+                {"id": "b", "text": "No goal; someone was offside", "isCorrect": false},
+                {"id": "c", "text": "Goal counts only if the offside player didn't touch the puck", "isCorrect": false}
+              ],
+              "explanation": {
+                "correct": "Correct. The goal counts because the player who scored (Attacker B) was onside. Attacker A being offside doesn't void a goal by an onside teammate.",
+                "incorrect": "What matters is: did the scorer have proper positioning? If yes, the goal counts, even if a teammate was offside."
+              }
+            }
+          },
+          {
+            "id": "rules-delayed-offside-05-bc-clear-whistle",
+            "type": "binary-call",
+            "conceptIds": ["delayed-offside"],
+            "payload": {
+              "prompt": "If the defense clears the puck back out of the zone while an attacking player is offside, the linesman immediately calls it. True or false?",
+              "scene": {"kind": "none", "alt": "A defense player shoots the puck back out as an offside attacker watches."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "false",
+              "explanation": {
+                "correct": "False. If the defense successfully clears the puck out of the zone, play is no longer offside—the opportunity is gone. The linesman only calls delayed offside if the attacking team regains possession while someone is still offside.",
+                "incorrect": "Once the defense clears the zone, there's no offside to call. The attacking team never got the puck while in that offside position."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "rules-icing-basics",
+        "title": "Icing, and why teams hate it",
+        "objective": "Describe what icing is and its penalty.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["icing"],
+        "activities": [
+          {
+            "id": "rules-icing-basics-01-mc-definition",
+            "type": "multiple-choice",
+            "conceptIds": ["icing"],
+            "payload": {
+              "prompt": "What is icing in hockey?",
+              "options": [
+                {"id": "a", "text": "A penalty for hitting someone"},
+                {"id": "b", "text": "Shooting the puck from your own side of center ice across the opponent's goal line untouched"},
+                {"id": "c", "text": "Deliberately putting the puck over the glass"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Exactly. Icing is a desperation clear: shoot it down the ice to get out of the zone, but if no one touches it, it's called and play restarts in your zone.",
+                "incorrect": "Icing is when you dump the puck from your side of the red center line down to the opponent's goal line without anyone touching it. It's a stoppage, and it has consequences."
+              }
+            }
+          },
+          {
+            "id": "rules-icing-basics-02-bc-not-penalty",
+            "type": "binary-call",
+            "conceptIds": ["icing"],
+            "payload": {
+              "prompt": "Icing is a penalty that puts your team on the power play for two minutes. True or false?",
+              "scene": {"kind": "none", "alt": "A puck sliding down the ice past the goal line."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "false",
+              "explanation": {
+                "correct": "False. Icing is not a penalty. It's a stoppage. The other team does NOT get a power play. Instead, play restarts with a faceoff in your zone, and your team cannot change players.",
+                "incorrect": "Icing is not a penalty in the sense of giving the other team a power play. It's a stoppage that actually puts you at a disadvantage because you're stuck on the ice."
+              }
+            }
+          },
+          {
+            "id": "rules-icing-basics-03-tm-cost",
+            "type": "term-match",
+            "conceptIds": ["icing"],
+            "payload": {
+              "prompt": "Match the consequence to what happens after icing.",
+              "pairs": [
+                {"id": "no-change", "term": "Cannot change players", "definition": "After icing is called, the team that iced cannot make a line change; the same players must defend the faceoff in their zone."},
+                {"id": "faceoff", "term": "Faceoff in your zone", "definition": "Play restarts in the icing team's defensive zone, putting them immediately under pressure."},
+                {"id": "tired", "term": "Tired legs", "definition": "Because of no line change and the faceoff in their zone, the tired players from the previous play stay on the ice."}
+              ],
+              "explanation": {
+                "summary": "Icing is self-inflicted: you're stuck out there for the next play. This is why teams avoid it in close games.",
+                "sayThisLine": "They iced it and now they can't change, so the top line is exhausted."
+              }
+            }
+          },
+          {
+            "id": "rules-icing-basics-04-ds-when-icing",
+            "type": "decision-scenario",
+            "conceptIds": ["icing"],
+            "payload": {
+              "prompt": "Your team is down 3–1 with five minutes left. You're in your defensive zone being pressed. Do you ice the puck or try to pass it out?",
+              "scenario": "Tired, pressured, and losing, your team has the puck near the goal line.",
+              "options": [
+                {"id": "a", "text": "Ice it to relieve pressure, even though you can't change", "isCorrect": false},
+                {"id": "b", "text": "Try to pass it out or skate it out; icing makes you defend immediately with tired legs", "isCorrect": true},
+                {"id": "c", "text": "Ice it because it's not a penalty", "isCorrect": false}
+              ],
+              "explanation": {
+                "correct": "Right. Icing seems like a relief, but it's not. You're immediately back defending in your zone with the same exhausted players. If you're losing, you need fresh legs and to keep pressing.",
+                "incorrect": "Never think 'icing is not a penalty, so I'll just ice it.' It's worse than a penalty because you can't change and you're defending again immediately."
+              }
+            }
+          },
+          {
+            "id": "rules-icing-basics-05-vi-down-ice",
+            "type": "visual-id",
+            "conceptIds": ["icing"],
+            "payload": {
+              "prompt": "Which of these shots is icing?",
+              "diagram": {
+                "diagramId": "hockey-icing-examples",
+                "aspectRatio": 2.5,
+                "alt": "Three scenarios: (A) from the defensive zone to the goal line untouched, (B) from center ice to the goal line untouched, (C) deflected before the goal line."
+              },
+              "hotspots": [
+                {"id": "a", "label": "Shot from defense zone to goal line, untouched", "shape": {"kind": "circle", "cx": 0.2, "cy": 0.5, "r": 0.08}},
+                {"id": "b", "label": "Shot from center ice to goal line, untouched", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.5, "r": 0.08}},
+                {"id": "c", "label": "Shot from defense zone, deflected before goal line", "shape": {"kind": "circle", "cx": 0.8, "cy": 0.5, "r": 0.08}}
+              ],
+              "correctHotspotIds": ["a"],
+              "explanation": {
+                "correct": "Right. Icing is from behind the center line (your side of center) to the opponent's goal line without a touch. Shot B from center ice is not icing because it starts at or past center. Shot C is not icing because it was touched.",
+                "incorrect": "Icing must be shot from behind the center red line (your defensive side) all the way to the goal line with no one touching it."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "rules-icing-race",
+        "title": "Be the linesman: hybrid icing",
+        "objective": "Decide when hybrid icing is called.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["hybrid-icing", "icing"],
+        "activities": [
+          {
+            "id": "rules-icing-race-01-us-hybrid-sim",
+            "type": "unity-sim",
+            "conceptIds": ["hybrid-icing"],
+            "payload": {
+              "simulationId": "hockey.rules.icing-call.v1",
+              "prompt": "Watch the icing race: does the defender or the attacker reach the dots first? Call it in real time.",
+              "native-fallback": {
+                "type": "multiple-choice",
+                "payload": {
+                  "prompt": "In NHL hybrid icing, when does the linesman blow the whistle?",
+                  "options": [
+                    {"id": "a", "text": "When a player first touches the puck after icing"},
+                    {"id": "b", "text": "As soon as a defender would reach the faceoff dots ahead of the opposing skater"},
+                    {"id": "c", "text": "When the puck reaches the goal line"}
+                  ],
+                  "correctOptionIds": ["b"],
+                  "explanation": {
+                    "correct": "Right. The linesman blows the whistle as soon as it's clear the defender will reach the dots first. No one touches the puck; it's an automatic call based on positioning.",
+                    "incorrect": "Hybrid icing prevents races to the puck at the boards. The linesman calls it based on who would get there first, not on an actual touch."
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "rules-icing-race-02-bc-old-touch",
+            "type": "binary-call",
+            "conceptIds": ["icing"],
+            "payload": {
+              "prompt": "In the old 'touch-up icing' rule, if the attacking team touched the puck before the goal line, icing was no longer called. True or false?",
+              "scene": {"kind": "none", "alt": "An attacking player's stick barely touches a puck sliding toward the goal line."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "true",
+              "explanation": {
+                "correct": "True. In touch-up icing, any touch by the attacking team wiped out the icing call. The NHL replaced this with hybrid icing to avoid injuries from high-speed puck races.",
+                "incorrect": "Touch-up icing required a player to touch the puck to negate icing. The NHL switched to hybrid icing (linesman judges positioning) to be safer."
+              }
+            }
+          },
+          {
+            "id": "rules-icing-race-03-mc-hybrid-logic",
+            "type": "multiple-choice",
+            "conceptIds": ["hybrid-icing"],
+            "payload": {
+              "prompt": "Why did the NHL switch to hybrid icing from the old race-to-the-puck rule?",
+              "options": [
+                {"id": "a", "text": "It's faster to get back to play"},
+                {"id": "b", "text": "It's safer; no high-speed races into the boards"},
+                {"id": "c", "text": "It gives the offense an unfair advantage"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. The old touch-up rule forced players to race at full speed into the boards, causing injuries. Hybrid icing prevents that collision.",
+                "incorrect": "Hybrid icing was a safety move. The linesman judges who would get there first instead of letting two players collide racing for the puck."
+              }
+            }
+          },
+          {
+            "id": "rules-icing-race-04-tm-call-timing",
+            "type": "term-match",
+            "conceptIds": ["hybrid-icing"],
+            "payload": {
+              "prompt": "Match the term to how it applies in hybrid icing.",
+              "pairs": [
+                {"id": "dots", "term": "Faceoff dots", "definition": "The reference points (two marks between the goal line and center) where the linesman judges if a defender would reach ahead of the attacker."},
+                {"id": "early", "term": "Linesman's judgment", "definition": "The call is made before anyone touches the puck, based on who is closer to or would reach the dots first."},
+                {"id": "no-race", "term": "No collision", "definition": "Unlike old touch-up icing, players never race at full speed into the boards."}
+              ],
+              "explanation": {
+                "summary": "Hybrid icing is about positioning and judgment, not a race. It prevents injury and is still accurate.",
+                "sayThisLine": "The linesman called hybrid icing before anyone even touched it."
+              }
+            }
+          },
+          {
+            "id": "rules-icing-race-05-ds-strategy",
+            "type": "decision-scenario",
+            "conceptIds": ["hybrid-icing"],
+            "payload": {
+              "prompt": "Your team ices the puck from deep in the zone. The linesman is watching the race at the dots. Will it be called icing?",
+              "scenario": "Your slower defenseman is closest to the puck; the other team's fast forward is coming down the ice.",
+              "options": [
+                {"id": "a", "text": "No, because your player might get there first", "isCorrect": false},
+                {"id": "b", "text": "Yes, icing is called if the attacker would reach the dots first", "isCorrect": true},
+                {"id": "c", "text": "Depends on how close the players are to each other", "isCorrect": false}
+              ],
+              "explanation": {
+                "correct": "Right. If the attacker is clearly faster or closer to the dots, the linesman calls icing without letting them race. That's hybrid icing.",
+                "incorrect": "It doesn't matter who actually gets there; the linesman judges positioning and calls it if the defender is beaten."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "rules-icing-exceptions",
+        "title": "When icing does not apply",
+        "objective": "Know why a shorthanded team can freely ice.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["icing", "penalty-kill"],
+        "activities": [
+          {
+            "id": "rules-icing-exceptions-01-ds-shorthanded",
+            "type": "decision-scenario",
+            "conceptIds": ["icing", "penalty-kill"],
+            "payload": {
+              "prompt": "Your team is on the penalty kill (down a player). Your goalie shoots the puck from behind the goal line all the way down to the opponent's goal line untouched. Is it icing?",
+              "scenario": "A shorthanded team (fewer players due to a power play) needs to clear pressure.",
+              "options": [
+                {"id": "a", "text": "Yes, icing is called because it crossed the goal line untouched", "isCorrect": false},
+                {"id": "b", "text": "No, a shorthanded team can ice freely without penalty", "isCorrect": true},
+                {"id": "c", "text": "It's half-icing; they get a 30-second rest", "isCorrect": false}
+              ],
+              "explanation": {
+                "correct": "Correct. A shorthanded team (on the penalty kill) can ice freely. It's not called. This is a built-in relief for the team down a player.",
+                "incorrect": "The icing rule does not apply to teams on the penalty kill. They need the ability to clear the puck without being punished for it."
+              }
+            }
+          },
+          {
+            "id": "rules-icing-exceptions-02-fg-when-allowed",
+            "type": "fill-the-gap",
+            "conceptIds": ["icing", "penalty-kill"],
+            "payload": {
+              "prompt": "Complete the icing exception.",
+              "template": "A team on the {{situation}} can ice the puck freely without an icing call. This is allowed to help the {{team-status}} team clear pressure and survive the {{duration}}.",
+              "gaps": [
+                {"id": "situation", "options": ["power play", "penalty kill", "overtime"], "correct": "penalty kill"},
+                {"id": "team-status", "options": ["winning", "shorthanded", "attacking"], "correct": "shorthanded"},
+                {"id": "duration", "options": ["power play", "overtime", "period"], "correct": "power play"}
+              ],
+              "explanation": {
+                "correct": "Perfect. The penalty-kill team has a icing exemption because they're already at a disadvantage.",
+                "incorrect": "Shorthanded teams do not get called for icing. It's an exception built into the rules to help the defensive team."
+              }
+            }
+          },
+          {
+            "id": "rules-icing-exceptions-03-tm-relief",
+            "type": "term-match",
+            "conceptIds": ["penalty-kill", "icing"],
+            "payload": {
+              "prompt": "Match the term to its meaning on the penalty kill.",
+              "pairs": [
+                {"id": "shorthanded", "term": "Shorthanded", "definition": "Down a player because a teammate is serving a penalty; the team needs relief from pressure."},
+                {"id": "icing-free", "term": "Icing exemption", "definition": "A shorthanded team can ice the puck without it being called; it's built-in relief."},
+                {"id": "survival", "term": "Survival (penalty kill)", "definition": "The shorthanded team's goal: run out the two-minute clock and get the power play to end."}
+              ],
+              "explanation": {
+                "summary": "The icing exemption is a fairness rule: you're already down a player, so you get to clear the puck freely.",
+                "sayThisLine": "On the penalty kill, we can ice it all we want; they can't call it."
+              }
+            }
+          },
+          {
+            "id": "rules-icing-exceptions-04-bc-power-play-icing",
+            "type": "binary-call",
+            "conceptIds": ["icing"],
+            "payload": {
+              "prompt": "A team on the power play (the attacking team with a man advantage) can also ice freely without it being called. True or false?",
+              "scene": {"kind": "none", "alt": "A team with more players clears the puck down the ice."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "false",
+              "explanation": {
+                "correct": "False. Only the shorthanded (penalty-kill) team gets the icing exemption. The power-play team can ice and it will be called against them.",
+                "incorrect": "The icing exemption applies only to the team on the penalty kill (the one down a player). The power-play team is not exempt."
+              }
+            }
+          },
+          {
+            "id": "rules-icing-exceptions-05-mc-other-exceptions",
+            "type": "multiple-choice",
+            "conceptIds": ["icing"],
+            "payload": {
+              "prompt": "Besides the penalty-kill exemption, in what other situation is icing sometimes not called?",
+              "options": [
+                {"id": "a", "text": "During overtime (any overtime situation)"},
+                {"id": "b", "text": "If the puck is deflected before the goal line"},
+                {"id": "c", "text": "When the puck goes over the glass instead of down the ice"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Right. If any player (from either team) touches or deflects the puck before it reaches the goal line untouched, icing is not called.",
+                "incorrect": "A deflection cancels icing because the puck was touched. Any contact negates it—it's not considered a pure icing anymore."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "rules-review",
+        "title": "Goal, no goal: review and challenges",
+        "objective": "Explain what coaches can challenge and what it costs.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["coaches-challenge", "goalie-interference"],
+        "activities": [
+          {
+            "id": "rules-review-01-ds-challenge-risk",
+            "type": "decision-scenario",
+            "conceptIds": ["coaches-challenge"],
+            "payload": {
+              "prompt": "A goal is scored on your team. You think the attacker was in the crease. Do you challenge it?",
+              "scenario": "It's the third period of a close game. The video review might go either way.",
+              "options": [
+                {"id": "a", "text": "Yes, always challenge if you think it's wrong", "isCorrect": false},
+                {"id": "b", "text": "Think twice; if you lose the challenge, you also lose your timeout", "isCorrect": true},
+                {"id": "c", "text": "No, it's too risky", "isCorrect": false}
+              ],
+              "explanation": {
+                "correct": "Right. A failed challenge costs your timeout, which you might need late in the game. Strategy matters here.",
+                "incorrect": "Challenging is powerful but expensive. You get only one challenge per game (in most situations), and losing it means losing your timeout too."
+              }
+            }
+          },
+          {
+            "id": "rules-review-02-mc-what-challenges",
+            "type": "multiple-choice",
+            "conceptIds": ["coaches-challenge"],
+            "payload": {
+              "prompt": "What can a coach challenge in the NHL?",
+              "options": [
+                {"id": "a", "text": "Any goal they think was wrong"},
+                {"id": "b", "text": "Offside on the entry, goalie interference, or a puck that went in but was waved off by the ref"},
+                {"id": "c", "text": "Only goalie interference"}
+              ],
+              "correctOptionIds": ["b"],
+              "explanation": {
+                "correct": "Exactly. Three main challenges: offside entry, goalie interference, and goals that should have counted but were waved off.",
+                "incorrect": "Coaches can challenge offside (did the attacking player enter early?), goalie interference (was the goalie impeded?), and reversals (did the ref miss a goal?). Not every call."
+              }
+            }
+          },
+          {
+            "id": "rules-review-03-tm-review-mechanics",
+            "type": "term-match",
+            "conceptIds": ["coaches-challenge"],
+            "payload": {
+              "prompt": "Match the review term to its meaning.",
+              "pairs": [
+                {"id": "challenge", "term": "Coach's challenge", "definition": "A coach throws the red flag to request video review of a specific play (offside, interference, or no-goal)."},
+                {"id": "success", "term": "Successful challenge", "definition": "The video review overturns the on-ice call; the coach keeps the timeout and the challenge."},
+                {"id": "fail", "term": "Failed challenge", "definition": "The video review upholds the call; the team loses its timeout and cannot challenge again that game."}
+              ],
+              "explanation": {
+                "summary": "Challenging is smart but risky. Get it right and you keep your timeout; get it wrong and you lose it.",
+                "sayThisLine": "He challenged and it worked—the goal was offside; they got the timeout back."
+              }
+            }
+          },
+          {
+            "id": "rules-review-04-bc-timeout-cost",
+            "type": "binary-call",
+            "conceptIds": ["coaches-challenge"],
+            "payload": {
+              "prompt": "In the NHL, a successful challenge (video review overturns the call) costs the team its timeout. True or false?",
+              "scene": {"kind": "none", "alt": "A coach's challenge is upheld and reversed on the video board."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "false",
+              "explanation": {
+                "correct": "False. A successful challenge does not cost the timeout. You keep it. Only a failed challenge costs the timeout.",
+                "incorrect": "Winning a challenge is rewarded: you get the call overturned and keep your timeout for later."
+              }
+            }
+          },
+          {
+            "id": "rules-review-05-vi-challenge-situations",
+            "type": "visual-id",
+            "conceptIds": ["coaches-challenge"],
+            "payload": {
+              "prompt": "Which of these plays can a coach challenge?",
+              "diagram": {
+                "diagramId": "hockey-challenge-examples",
+                "aspectRatio": 2.5,
+                "alt": "Three plays: (A) a goal with an attacker in the crease, (B) an offside entry, (C) a high-sticking penalty."
+              },
+              "hotspots": [
+                {"id": "a", "label": "Goal scored; attacker in the crease (goalie interference)", "shape": {"kind": "circle", "cx": 0.3, "cy": 0.5, "r": 0.08}},
+                {"id": "b", "label": "Offside entry on zone entry", "shape": {"kind": "circle", "cx": 0.5, "cy": 0.5, "r": 0.08}},
+                {"id": "c", "label": "High-sticking penalty called", "shape": {"kind": "circle", "cx": 0.7, "cy": 0.5, "r": 0.08}}
+              ],
+              "correctHotspotIds": ["a", "b"],
+              "explanation": {
+                "correct": "Right. Goalie interference (A) and offside (B) are challengeable. A penalty (C) cannot be challenged; only goals or off-ice calls.",
+                "incorrect": "Coaches can challenge goals (goalie interference, offside on entry). They cannot challenge penalties or other plays. Only goal-related situations."
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "rules-crease-contact",
+        "title": "The crease and goalie contact",
+        "objective": "Explain why some goals get waved off.",
+        "estimatedMinutes": 8,
+        "conceptIds": ["crease", "goalie-interference"],
+        "activities": [
+          {
+            "id": "rules-crease-contact-01-bc-interference-rule",
+            "type": "binary-call",
+            "conceptIds": ["goalie-interference", "crease"],
+            "payload": {
+              "prompt": "If an attacker lightly touches the goalie while the goalie is making a save, the goal is automatically waved off. True or false?",
+              "scene": {"kind": "none", "alt": "A slight contact between an attacker and the goalie in the crease as the puck goes in."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "false",
+              "explanation": {
+                "correct": "False. Light incidental contact is okay. Only contact that actually impairs the goalie's ability to make the save is interference. The call depends on whether the goalie was prevented from saving it.",
+                "incorrect": "Goalie interference is not automatic. It must be significant enough that the goalie could not make the save because of the contact. Touch alone is not enough."
+              }
+            }
+          },
+          {
+            "id": "rules-crease-contact-02-st-controversy",
+            "type": "say-this",
+            "conceptIds": ["goalie-interference"],
+            "payload": {
+              "statement": {"speaker": "Coach", "text": "That's goalie interference, no goal. He had him pinned and the goalie never got his pad there."},
+              "question": "What is the coach describing?",
+              "options": [
+                {"id": "a", "text": "The attacker's body prevented the goalie from moving into position", "isCorrect": true},
+                {"id": "b", "text": "Any attacker in the crease automatically cancels the goal", "isCorrect": false},
+                {"id": "c", "text": "The attacker was standing in front of the net (screening)", "isCorrect": false},
+                {"id": "d", "text": "The attacker's contact materially impaired the goalie's save attempt", "isCorrect": true}
+              ],
+              "translation": "The attacker was pinning or pushing the goalie, preventing him from being in the right place to stop the puck. This is contact that makes a save impossible.",
+              "followUps": [
+                {"line": "How tight do you think the calls have been on that lately?", "why": "Tests if you follow the debate."},
+                {"line": "What's the difference between screening and interfering?", "why": "Shows you can distinguish tactics."}
+              ],
+              "noFakeExpertNote": "Say: 'I still can't always tell the difference between a good screen and goalie interference on the replay.'"
+            }
+          },
+          {
+            "id": "rules-crease-contact-03-tm-crease-concepts",
+            "type": "term-match",
+            "conceptIds": ["crease", "goalie-interference"],
+            "payload": {
+              "prompt": "Match the crease concept to its role in goalie interference.",
+              "pairs": [
+                {"id": "crease", "term": "Crease", "definition": "The light-blue painted area in front of the goal. It is the goalie's space; attackers can enter but cannot impair the goalie."},
+                {"id": "contact", "term": "Contact", "definition": "Touching the goalie. Light contact is okay; significant contact that prevents a save is interference."},
+                {"id": "impair", "term": "Impair the save", "definition": "Prevent the goalie from making a stop, usually by taking away their space or limbs."}
+              ],
+              "explanation": {
+                "summary": "Goalie interference is about whether the attacker's actions prevented a save. Just being in the crease is not automatic.",
+                "sayThisLine": "He was in the crease but he didn't impair the save, so it should count."
+              }
+            }
+          },
+          {
+            "id": "rules-crease-contact-04-ds-judgment-call",
+            "type": "decision-scenario",
+            "conceptIds": ["goalie-interference"],
+            "payload": {
+              "prompt": "An attacker is standing in the crease, screening the goalie. The puck comes through traffic and goes in. The attacker did not touch the goalie. Is this a goal or goalie interference?",
+              "scenario": "A legitimate screen play where the goal is scored from traffic.",
+              "options": [
+                {"id": "a", "text": "No goal; the attacker was in the crease", "isCorrect": false},
+                {"id": "b", "text": "Goal; the attacker did not impair the goalie's movement or ability to save", "isCorrect": true},
+                {"id": "c", "text": "No goal; any attacker in the crease negates it", "isCorrect": false}
+              ],
+              "explanation": {
+                "correct": "Correct. If the attacker is passively screening and didn't prevent the goalie from moving or attempting a save, it's a goal. Presence ≠ interference.",
+                "incorrect": "Attackers can legally occupy the crease. It only becomes interference if their actions actually prevented the save."
+              }
+            }
+          },
+          {
+            "id": "rules-crease-contact-05-bc-contact-consequence",
+            "type": "binary-call",
+            "conceptIds": ["goalie-interference"],
+            "payload": {
+              "prompt": "An attacker pushes a goalie's shoulder, and the goalie cannot get across to make the save. A goal is scored. The goal should stand because the attacker is allowed in the crease. True or false?",
+              "scene": {"kind": "none", "alt": "An attacker applies pressure to a goalie who cannot extend to make the save."},
+              "choices": [
+                {"id": "true", "label": "True"},
+                {"id": "false", "label": "False"}
+              ],
+              "correctChoiceId": "false",
+              "explanation": {
+                "correct": "False. Even though attackers can be in the crease, pushing or holding the goalie prevents the save. That's interference and the goal is waved off.",
+                "incorrect": "Being in the crease is legal, but actively moving or restraining the goalie is not. If your contact prevents a save, it's interference."
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

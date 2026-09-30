@@ -236,7 +236,7 @@ Tokens: `{{skillLevel}}`, `{{player}}`, `{{league}}`, `{{team}}`, `{{equipment}}
 
 ## 11. Curriculum map (ongoing course)
 
-Course version target at launch: `curriculumVersion 0.1.0` (structure + first units); see release plan. **20 units, 116 lessons, ~205 concepts** across all six layers. Activity legend: `mc` multiple-choice, `bc` binary-call, `tm` term-match, `so` sequence-order, `vi` visual-id, `ds` decision-scenario, `tk` talk-track, `tt` timing-tap, `st` say-this, `fg` fill-the-gap, `li` listening-id, `es` estimate-slider, `ht` hotspot-tap, `SIM` = Unity sim (id given). Each lesson lists its *lead* activity families; the authored lesson has 4-6 activities (validator rule `thin-lesson`), ends with one item that carries a "line you could say out loud", and adds 1-3 Playbook terms. Every unit's final lesson is a mixed-review capstone with one `tk` or `st` conversation beat. Lesson ids are stable kebab-case. A learner sees about 16 units (only the branch unit that matches their branch appears).
+Course version target at launch: `curriculumVersion 0.1.0` (structure + first units); see release plan. **20 units, 116 lessons, ~230 concepts** across all six layers. Activity legend: `mc` multiple-choice, `bc` binary-call, `tm` term-match, `so` sequence-order, `vi` visual-id, `ds` decision-scenario, `tk` talk-track, `tt` timing-tap, `st` say-this, `fg` fill-the-gap, `li` listening-id, `es` estimate-slider, `ht` hotspot-tap, `SIM` = Unity sim (id given). Each lesson lists its *lead* activity families; the authored lesson has 4-6 activities (validator rule `thin-lesson`), ends with one item that carries a "line you could say out loud", and adds 1-3 Playbook terms. Every unit's final lesson is a mixed-review capstone with one `tk` or `st` conversation beat. Lesson ids are stable kebab-case. A learner sees about 16 units (only the branch unit that matches their branch appears).
 
 ### Layer 1: Foundations
 
@@ -472,7 +472,7 @@ Branch units set `branchId`; layer is `branch`. Shared units also carry activiti
 
 ### Concept targets, personalization slots, release plan
 
-- **Concept count target:** ~205 Playbook concepts (listed in the Appendix below); at least 60 have full Playbook entries with an example line (see `exercises.md` section 3).
+- **Concept count target:** ~230 Playbook concepts (listed in the Appendix below); at least 60 have full Playbook entries with an example line (see `exercises.md` section 3).
 - **Personalization slots:** `{{skillLevel}}`, `{{player}}`, `{{league}}`, `{{team}}`, `{{equipment}}`, `{{region}}` (section 8).
 - **Release plan:**
   - **Launch (0.1 to 1.0):** units `the-game`, `scoring`, `clubs-and-swings`, `rules-and-etiquette`, `short-game-and-putting`, `course-management`, `formats-and-handicaps`, `courses-and-conditions`, `branch-rec-play`, `conversation-lab`, `review-loop`; sims 1, 2 and 3 (ball flight, putting, play-your-miss) first; branch `rec-play` complete.
@@ -496,3 +496,96 @@ Branches: `rec-golf-life`, `muni-vs-private`, `playing-partner-etiquette`, `leag
 Live and conversation: `live-weekly-context`, `live-leaderboard`, `live-ranking-race`, `live-major-preview`, `rule-news-explainer`, `season-rollover`, `convo-follow-up-questions`, `convo-bad-round`, `convo-watching-together`, `convo-gear-talk`, `convo-handicap-talk`, `convo-major-sunday`, `convo-invitation-to-play`, `convo-admit-what-you-dont-know`.
 
 ---
+
+## 12. Interaction plan
+
+Tier rubric (CLAUDE.md section 4): Unity only where spatial reasoning, movement, physics, timing in a scene, or camera perspective materially improves learning and a native exercise would teach it clearly worse. Golf has a real physical core (ball flight, rolling on a slope, dispersion over a map), so it earns four sims, but most of golf's conversational competence is rules, scoring, formats and culture, which is native.
+
+| Lesson / activity family | Concepts | Type | Justification (why this and not the alternative) | Tier | Est. count |
+|---|---|---|---|---|---|
+| `club-05`: Shot shape (face and path) | swing-path, clubface-angle, face-to-path, start-line, draw, fade, slice, hook, push-pull | `unity-sim` `golf.ball-flight.shot-shape.v1` (spec `sims/golf.ball-flight.shot-shape.v1.md`) | Rubric: **physics (ball flight) + camera perspective** (behind-the-ball view of start line and curve, top-down replay). Closest native: `binary-call` / `hotspot-tap` on a static diagram, which can label "fade" but cannot let her *change the face and path and watch the curve respond*; cause and effect is the concept. Static diagram rejected as weaker. | A | 1 sim, 12 scenarios |
+| `short-03`: Read the break | break, fall-line, green-speed-stimp, aim-point | `unity-sim` `golf.putting.read-the-break.v1` (spec `sims/golf.putting.read-the-break.v1.md`) | Rubric: **3D terrain + physics + camera perspective**. The slope is a 3D surface; contour lines and flow arrows can be drawn natively but "more speed means less break" needs a ball actually rolling. Closest native: `hotspot-tap` on a contour diagram, which teaches where the high side is but not speed and break. Second consumer of the Terrain module (GK-20) after hiking. | A | 1 sim, 12 scenarios |
+| `mgmt-02`: Play your miss | dispersion, play-your-miss, risk-reward, safe-side, layup | `unity-sim` `golf.strategy.play-your-miss.v1` (spec `sims/golf.strategy.play-your-miss.v1.md`) | Rubric: **spatial reasoning over a map**: the concept is the shape of *her* miss overlaid on hazards. Closest native: `decision-scenario` (text + facts), which can state the answer but cannot show the oval sliding into the water as the aim moves. Weak alternative rejected. | A | 1 sim, 12 scenarios |
+| `short-05`: Carry and roll | landing-spot, carry-and-roll, chip, pitch, flop, bump-and-run | `unity-sim` `golf.short-game.carry-and-roll.v1` (spec `sims/golf.short-game.carry-and-roll.v1.md`) | Rubric: **physics (bounce and roll) + camera perspective** (side-on to see carry and roll, top-down for the landing spot). Closest native: `estimate-slider` or `multiple-choice` on ratios, which teaches the numbers not the feel. Retained; moderate-strong justification; native fallback exists. | A | 1 sim, 12 scenarios |
+| Course anatomy, scorecard, hazards, holes | tee-box, fairway, green, scorecard, famous-holes | `hotspot-tap` | Fixed diagram, no motion (`docs/native-exercises/CATALOG.md` #13). | B | ~35 |
+| Rules calls and relief (OB, penalty area, drop, bunker) | stroke-and-distance, penalty-area-relief, free-relief, bunker-rules | `binary-call`, `decision-scenario`, `hotspot-tap` | A yes/no or a diagram with a relief area to tap. **Considered for Unity and rejected:** the drop-zone geometry (one club-length, no nearer the hole) is static and fully expressible as a hotspot on a diagram; a sim would add nothing. Judgment with penalties: decision-scenario with consequence panel. | B | ~110 |
+| Scoring situations, formats and handicap math | score-to-par, match-result-notation, net-score, stableford, course-handicap | `multiple-choice`, `fill-the-gap`, `decision-scenario`, `sequence-order`, `estimate-slider` | Logic and arithmetic; text plus a facts table beats an animation. | B | ~150 |
+| Vocabulary and terms | par, fade, bounce, dormie, stimpmeter... | `term-match`, `fill-the-gap`, `multiple-choice` | Recall and recognition. | B | ~110 |
+| Equipment, courses, holes (recognition) | club-families, course-types, putter-styles, wedge-loft-gapping | `visual-id` (procedural/original illustrations, license `original-swoond`) | Recognition; no third-party imagery. | B | ~30 |
+| Sounds of the game | mishits, bunker-shot, putting-line-speed | `listening-id` (original recordings or synthesised audio) | The sound of a pure iron versus a thin shot, the "thock" of a driver, a ball dropping into the cup: audio is the concept; used sparingly. | B | ~10 |
+| Numbers (par lengths, carry distances, cup size, handicap max) | hole-yardage, carry-distance, slope-rating | `estimate-slider` | Numeric intuition. | B | ~25 |
+| Swing tempo and putting rhythm | swing-phases, putting-line-speed | `timing-tap` | A 1D timing bar is enough (rubric row "Simple 1D timing bar": no Unity). Tempo (backswing to downswing ratio) is a rhythm, not a scene. | B | ~8 |
+| Etiquette, gear choices, trip and league dilemmas | golf-etiquette, ready-golf, club-fitting, playing-partner-etiquette | `decision-scenario` | Judgment with consequences and an expert note; never coaches confrontation. | B | ~55 |
+| Conversation | all | `talk-track`, `say-this` | Native conversation practice (Talk tab and unit ends). | B | 18 talk tracks + ~80 say-this |
+| Tour, cups and pathway sequencing | fedexcup, cup-points-math, ryder-cup-format | `sequence-order`, `multiple-choice`, `estimate-slider` | Order and points math; text list suffices. | B | ~30 |
+
+**Not used:** all 13 native types are used and all appear in `exercises.md` (with `listening-id` and `timing-tap` kept deliberately light). Accessibility fallback: each sim has a designed native fallback lesson (a `hotspot-tap` / `binary-call` / `decision-scenario` set) named in its spec section 16 (`club-05-native`, `short-03-native`, `mgmt-02-native`, `short-05-native`). Unity content is not required for any lesson to be passable: each sim lesson has a native fallback so VoiceOver users can complete the unit.
+
+---
+
+## 13. Licensing & safety
+
+| Area | Handling |
+|---|---|
+| Imagery | No third-party photos at launch. Procedural or original illustrations only (`license: original-swoond`): course diagrams, hole maps, club silhouettes, ball cutaways, green contour diagrams. Player photos and course photography not used without a written license. Famous-hole lessons use original schematic maps only. |
+| Audio | Original foley or synthesised audio only (`original-swoond`): driver strike, iron strike, thin shot, putt drop, bunker splash. No broadcast, commentary or crowd recordings. |
+| Logos / trademarks | PGA TOUR, LPGA, DP World Tour, LIV Golf, R&A, USGA, PGA of America, Ryder Cup, Solheim Cup, Presidents Cup, Masters, Augusta National, "green jacket", equipment brands and team marks are trademarks: text mentions and link-outs only; no logos or event artwork in lesson art without permission. Augusta National and the Masters are particularly protective of imagery; text only. |
+| Video | No embedded broadcast video; deep-link to official streams and tours' own channels. |
+| Rules text | The Rules of Golf are copyrighted by the R&A and USGA: paraphrase in Swoon'd's words with rule numbers; link to the official rules site; never republish text. |
+| Data terms | No unofficial or reverse-engineered feeds (for example undocumented tour or media JSON/GraphQL endpoints). Licensed providers (Sportradar, SportsDataIO) or official partnership only for live scores; TheSportsDB only after golf coverage and terms are confirmed. Rankings pages: link and curated snapshots with attribution. OpenStreetMap data (courses) needs ODbL attribution. |
+| Player likeness | Names as facts only; no likeness, endorsement implication, or fabricated quotes. |
+| News text | Never copied; explain and link (spec section 11). |
+| Betting | Golf is heavily tied to betting media. Swoon'd never shows odds, tips or promotes gambling; friendly formats (skins, Nassau) are explained as social games. |
+| Safety (on-course) | Conservative mainstream guidance only. **"Fore!" and awareness of golf-ball impacts.** **Lightning: leave the course when the course sounds its warning or thunder is heard; never shelter under a tree or hold a club aloft; follow the course's own procedure.** Heat, sun and hydration mentions generic. Cart safety generic (keep to paths, slow down, no horseplay). Back, elbow and wrist care generic ("warm up, stop if it hurts, see a professional"). No medical claims. Swoon'd builds appreciation, not a substitute for lessons or fitness training. |
+| Etiquette and conflict | Rules-and-etiquette scenarios teach honesty, de-escalation and asking an official; never coach confrontation or cheating (no "quiet" improvements of lies, no fudged scores). |
+| Voice / people | Never mock beginners, seniors, high handicaps, private-club members or muni regulars; jokes target our learner's ignorance, never the crush. Political controversies (LIV, funding) are presented neutrally with both arguments; no accusations against named individuals. |
+
+---
+
+## 14. Content assets
+
+| Asset | Type | Source | License id |
+|---|---|---|---|
+| Hole and course diagrams (top-down, side profile) | Procedural (SwiftUI, Unity) | Generated | `original-swoond` |
+| Green contour and slope diagrams | Procedural (from Terrain `Heightfield` seeds) | Generated | `original-swoond` |
+| Club and ball illustrations (families, loft, cutaways) | Original vector art | Swoon'd | `original-swoond` |
+| Course-type schematics (links, parkland, desert, heathland) | Original vector art | Swoon'd | `original-swoond` |
+| Shot flight diagrams (draw, fade, slice, hook) | Procedural | Generated | `original-swoond` |
+| Strike and putt sounds | Original foley or synthesis | Swoon'd | `original-swoond` |
+| Player spotlight cards | Text + curated stats | Curated | n/a (no images) |
+| Sim scenes | Procedural low-poly hole, green, characters, ball | Astra | `original-swoond` |
+
+---
+
+## 15. Section 47 quality checklist
+
+- [x] 1. **What does a beginner need to understand?** Par and the scorecard, the clubs and loft, why a ball curves, penalty and relief logic, putting line and speed, formats (sections 2, 3).
+- [x] 2. **What do enthusiasts care about?** Handicaps, breaking 90 or 80, gear, courses and setups, the majors, the cups, LIV and the ball debate (section 4).
+- [x] 3. **What current information matters?** Tour calendars, leaderboards, majors, rankings and races, cup teams, rules and equipment news (section 6).
+- [x] 4. **What should be interactive?** Four Unity sims (shot shape, green reading, play your miss, carry and roll) plus native rules, scoring, formats, gear, conversation (section 12).
+- [x] 5. **What should NOT be gamified?** Betting, injuries, LIV sides, rankings as a toy, shaming slow or high-handicap players, rules-lawyering (section 5).
+- [x] 6. **How should it personalize?** skill level (handicap band), player, league, team, equipment, region (section 8).
+- [x] 7. **What does conversational competence look like?** Decode her round recap, follow a leaderboard, ask honest follow-ups, admit gaps, accept an invitation (sections 9, 10).
+- [x] 8. **What data providers are needed?** Licensed golf data provider (Sportradar or SportsDataIO) for leaderboards; curated official pages for calendars and rankings; NWS weather; editorial link sources (section 6; `live-data.md`).
+- [x] 9. **What licensing constraints apply?** Trademarks (especially Masters/Augusta), Rules of Golf text, broadcast video, player likeness, data terms, betting (section 13).
+- [x] 10. **How will Swoon'd measure useful understanding?** Concept mastery 0.8, review ladder, talk-track Smooth >= 60, sim masterySignals, competence statement (section 10).
+
+Additional gates: [ ] manifest validates (run `tools/validate`); [ ] curriculum validates (not yet authored); [x] every Unity sim has a draft spec (`sims/`); [ ] every image/audio asset has a license id (assets not yet produced; ids defined); [ ] voice review; [x] no copied publisher text (all copy original).
+
+---
+
+## 16. Open questions
+
+| # | Question | Owner | Blocking? |
+|---|---|---|---|
+| 1 | Confirm the next Rules of Golf edition and its date (four-year cycle: 2019, 2023, expected 2027) before any rules lesson locks; no official announcement found on 2026-09-30. | Content | No |
+| 2 | Golf data provider: coverage and pricing of Sportradar Golf / SportsDataIO Golf for PGA TOUR, LPGA, DP World Tour, LIV and majors; does TheSportsDB cover golf adequately? Blocks the live leaderboard layer. | Product/Data | Yes for `live-02` only |
+| 3 | Confirm the 2026 LIV team champion and season-end results, the 2027 LIV format after Saudi funding ends, and any format change (54 vs 72 holes) before `tour-liv` locks. | Content | No |
+| 4 | Confirm the 2026 Ryder Cup 2025 result wording and captains' details, and the 2027 Ryder Cup qualification rules. | Content | No |
+| 5 | Status of the 2028 model local rules (ball at 317.0 yd overall distance, CT limit, club length) after the comment period closes Oct 21, 2026; wording in `hist-06`. | Content | No |
+| 6 | Golf-specific safety review (lightning, heat, cart use) by a qualified reviewer (for example a golf-course superintendent or PGA professional) before `rec-` and etiquette safety copy releases. | Product | No |
+| 7 | SME review of the four sim reference models (ball-flight mapping, roll physics, dispersion evaluator, carry-roll table) by a PGA professional or a golf coach. | Product | Yes for sim approval |
+| 8 | Astra: confirm the Game Kit additions requested (Golf module, GK-20 Terrain reuse, dispersion overlay, `DispersionModel`, `RollModel`). | Astra | Yes for sim build |
+| 9 | Original audio (strike sounds): synthesise vs record; a `listening-id` set is kept small until decided (L-11). | Product | No |
+| 10 | Unit count (20; a learner sees ~16). Approve or fold branch units (see OPEN_QUESTIONS P-04). | Product | No |
+| 11 | Should `tennis` and `pickleball` cross-link lessons be authored when those courses ship (self-officiating culture)? | Product | No |
