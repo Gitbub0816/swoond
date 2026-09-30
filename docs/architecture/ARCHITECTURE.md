@@ -216,3 +216,17 @@ Timing-tap scoring (design): hit = 100; miss = `max(0, 60 - offPct*3)` where `of
 - Heart regeneration timing (4h per heart) is inferred from the design copy "Wait 4h"; confirm.
 - Streak freeze / repair is not in the design; not implemented until specified.
 - Cross-person mastery sharing (section 5) is an architectural decision proposed here; ratify in DECISIONS.
+
+## 13. SwoondCore implementation notes (2026-09-30)
+
+`ios/SwoondCore` implements sections 2-7 as a single Foundation-only library target (folders Domain, Bridge, Exercises, Progress, Content, Repositories, Providers, Session). Choices the docs left open:
+
+- **Level curve** (not specified in the design): level n starts at `50*n*(n-1)` XP (L2 = 100, L3 = 300, L4 = 600). Proposed; confirm with the product owner.
+- **Leitner details:** a correct answer advances the box only when the concept is due (or unscheduled); a correct answer before `dueAt` counts toward mastery but does not advance. A wrong answer on an unscheduled concept schedules it in box 0 so weak concepts return.
+- **Mastery for partial results:** engines report a 0...1 `masteryFraction`; delta = `0.20*f - 0.15*(1-f)` (so 1 = +0.20, 0 = -0.15); a hint halves positive deltas; skips (listening-id) have no mastery effect.
+- **Unity results:** aborted results award 0 XP, 0 hearts and no mastery. Mastery signals are summed per concept, then capped at +0.40 per session. `lessonXPBudget` defaults to 40 (the finished-game XP) when an activity has no `xp`; `outcome.correct = completed && score >= 60`.
+- **Timing-tap:** session `isCorrect` = mean round score >= 60; `hold-and-release` scores like standard; `tap-to-stop-slow` widens each zone x1.5 (clamped to the bar) and lengthens each sweep x1.5. Marker position is a triangle wave over `2 * sweepSeconds`.
+- **Hotspot circles:** `r` is interpreted as a fraction of the diagram width (y distance is divided by `aspectRatio` = width/height).
+- **Finished-game bonus:** talk-track and timing-tap already include their +40; `LearningSession.finish()` adds +40 only when no activity did.
+- **Common Ground:** per interest = mean over concepts taught by the branch-visible units of `min(1, mastery / masteryThreshold)`; person score = weighted mean (main interest x2).
+- **Not implemented yet:** `BridgeSession` state machine (ready/max-duration timers, seq ordering), `NotificationComposer` copy policy, streak freeze.
